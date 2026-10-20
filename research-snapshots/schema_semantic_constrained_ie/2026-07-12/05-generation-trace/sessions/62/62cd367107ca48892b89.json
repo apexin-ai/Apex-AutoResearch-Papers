@@ -1,0 +1,2633 @@
+{
+  "schema_version": "1.0",
+  "id": "62cd367107ca48892b89",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to check whether several \"supposedly fixed\" issues are actually fixed in the current LaTeX paper. Base path: /hom",
+  "task_key": "agent-a0c3dc8c7b4791bb8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a0c3dc8c7b4791bb8.jsonl",
+    "occurrence": 1,
+    "bytes": 126000,
+    "sha256": "7d1681f900971aed77d5873438a13d879dca63033345ccc47ae5ff67a6e37d53"
+  },
+  "statistics": {
+    "messages": 53,
+    "user_turns": 1,
+    "tool_calls": 20,
+    "roles": {
+      "user": 1,
+      "assistant": 12,
+      "tool_call": 20,
+      "tool_result": 20
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T13:49:27.612Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to check whether several \"supposedly fixed\" issues are actually fixed in the current LaTeX paper. Base path: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/\n\nCheck these 4 items:\n\n**W1 — Beam search discussion in main text**\nR4 SF1 required adding 2-3 sentences about beam search results in §5 or §7. Check:\n- In `section5_scierc_draft.tex` or `section5_docred_draft.tex`: is there any mention of beam search results (DR=0%, CF=0.53% on SciERC full set)?\n- In `section7_discussion.tex` or similar: is there beam search discussion?\n- Report exact text if found, or confirm it's missing.\n\n**W2 — Post-hoc framing balance in §1**\nR4 SF6 required adding a sentence in Introduction acknowledging post-hoc achieves higher F1 in 5/6 ZS settings. Check:\n- In `section1_intro_draft.tex` or similar: search for \"post-hoc\" mentions. Is there a balanced statement acknowledging post-hoc precision advantage?\n- Report exact text if found.\n\n**W3 — Parse failure excluded analysis for Llama DocRED**\nR4 SF5 required providing parse-failure-excluded violation rates for Llama DocRED. Check:\n- In any section 5 file: search for \"parse failure\" or \"parse-failure-excluded\" near Llama DocRED discussion.\n- Is there a statement about Llama DocRED parse failure (+34%) with excluded analysis?\n\n**W4 — DocRED semantic-only ET +70% explanation**\nR4 M3 required adding 1-2 sentences explaining why DocRED semantic-only ET increases by 70% (2.48%→4.22%). Check:\n- In `section5_docred_draft.tex`: search for ET increase explanation near the semantic-only ablation discussion.\n- Report exact text if found.\n\nFor each item, report: found/not found, exact text, file and line number."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "1c0a1665-6dca-4abe-9df7-bc05fb805819",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T13:49:30.376Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll systematically check each of these four items in the paper directory. Let me start by exploring the file structure and then searching for the specific content."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c0a1665-6dca-4abe-9df7-bc05fb805819",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKGpuB1ykCPYwnXCGy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "527b557b-010a-4c1c-ad03-8052ea19d657",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SvKBHeajAvdE1EmMatJYmP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37698,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 37698,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T13:49:30.581Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LF7HKG4dMxxCW277ZrRVVb",
+              "name": "Bash",
+              "input": {
+                "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper -type f -name \"*.tex\" | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "527b557b-010a-4c1c-ad03-8052ea19d657",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKGpuB1ykCPYwnXCGy",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "03aedd54-2ba3-476b-bde2-39432c1ed613",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SvKBHeajAvdE1EmMatJYmP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 37698,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 133,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 37698
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 133,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 37698,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 37698,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T13:49:30.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LF7HKG4dMxxCW277ZrRVVb",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract_fd4b26.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract_d3264e.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/paper_tables_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_550cbf.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft_4796e8.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/discussion_paragraphs.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_additions.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "03aedd54-2ba3-476b-bde2-39432c1ed613",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "33e08380-4db0-4bf0-9438-5452abc38e0c",
+            "sourceToolAssistantUUID": "03aedd54-2ba3-476b-bde2-39432c1ed613",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T13:49:32.357Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me now search for each of the four items systematically using grep to look through the key files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33e08380-4db0-4bf0-9438-5452abc38e0c",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKWB5bWz32NgSfYzWW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e2b37c0d-e485-4dc5-8ef5-71ee62fa1006",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FUo5g8ErCoBmFf9mEFTsSZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 37698,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1902,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T13:49:32.787Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Syteu9X7qEqDo8o1KYb11t",
+              "name": "Grep",
+              "input": {
+                "pattern": "beam search",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2b37c0d-e485-4dc5-8ef5-71ee62fa1006",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKWB5bWz32NgSfYzWW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e63a43db-7eb1-46bb-b01b-618b3b7ee88e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FUo5g8ErCoBmFf9mEFTsSZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 37698,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1902,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T13:49:32.808Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Syteu9X7qEqDo8o1KYb11t",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex:77:All main experiments use greedy decoding; preliminary evaluation of nucleus sampling and beam search (Appendices~\\ref{app:sampling},~\\ref{app:beam-search}) suggests compatibility, but comprehensive evaluation across decoding configurations remains future work.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex:41:In the autoregressive era, GENRE~\\cite{decao2021genre} pioneers trie-based constrained beam search for autoregressive entity retrieval, restricting each decoding step to tokens consistent with valid entity names from a predefined catalog.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex:45:NeuroLogic Decoding~\\cite{lu2021neurologic} expresses lexical inclusion and exclusion constraints as predicate logic formulas enforced during beam search, offering a general mechanism for token-level control that can encode vocabulary membership but not relational type rules.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex:82:\\citet{ekaw2024_ontology_beam} introduce ontology-constrained beam scoring for clinical summarization, applying soft biases (not hard masks) during beam search to steer outputs toward ontology-compliant terms, a middle ground between unconstrained generation and hard enforcement that reduces but cannot eliminate violations.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex:46:In the autoregressive era, GENRE~\\cite{decao2021genre} pioneers trie-based constrained beam search for autoregressive entity retrieval, limiting each decoding step to tokens consistent with valid entity names.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex:54:NeuroLogic Decoding~\\cite{lu2021neurologic} expresses lexical inclusion/exclusion constraints as predicate logic formulas enforced during beam search.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex:100:\\citet{ekaw2024_ontology_beam} introduce ontology-constrained beam scoring for clinical summarization, applying soft biases (not hard masks) during beam search to steer outputs toward ontology-compliant terms---a middle ground between unconstrained generation and hard enforcement.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:6:Here we verify compatibility with beam search, completing coverage of the three standard decoding strategies.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:9:Two stateful components require adaptation for beam search.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:17:Table~\\ref{tab:beam-search} compares beam search ($k{=}4$, \\texttt{early\\_stopping=True}) against greedy decoding under full S1 constraints across six model-dataset combinations.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:58:For calibrated models (Qwen3-8B, Llama-3.1-8B), beam search achieves DR=0\\% across all four model-dataset combinations (both SciERC with 7 entity types, 551 documents, and DocRED with 96 relation types, 50 documents), regardless of schema complexity.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:59:On SciERC, beam search eliminates DR for both Qwen (0.93\\%\\,$\\to$\\,0\\%) and Llama (0.08\\%\\,$\\to$\\,0\\%), and substantially reduces CF (Qwen: 9.90\\%\\,$\\to$\\,0.53\\%; Llama: 6.56\\%\\,$\\to$\\,0.93\\%).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:60:On DocRED (matched 50-document subsets), beam search eliminates DR for both Qwen (8.69\\%\\,$\\to$\\,0\\%) and Llama (1.58\\%\\,$\\to$\\,0\\%), with CF reductions of 74\\% and 86\\% respectively.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:61:Llama DocRED shows the largest R-F1 gain ($+$3.4\\,pp), consistent with beam search recovering valid type assignments that greedy decoding missed due to constraint fallback.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:62:The CF reduction is an indirect effect: beam search reduces constraint-fallback frequency by exploring alternative token sequences that satisfy both grammar and semantic masks simultaneously, avoiding the fallback-to-grammar path that produces cross-field inconsistencies under greedy decoding.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:65:On SciERC (7 entity types), beam search does not reduce DR (13.4\\%\\,$\\to$\\,13.8\\%), though CF drops by 55\\% relative (1.27\\%\\,$\\to$\\,0.57\\%) and R-F1 improves by $+$0.7\\,pp; the unchanged DR confirms that all residual violations stem from entity type misclassification, not constraint-search failure.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:66:On DocRED (96 relation types), beam search reduces DR by 25\\% relative (28.4\\%\\,$\\to$\\,21.4\\%): the more complex schema introduces constraint-search failures that beam exploration resolves, but the entity misclassification component remains.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:67:This contrast reveals that beam search resolves constraint-search failure (where greedy decoding encounters grammar$\\cap$semantic$=$\\emptyset$ conflicts) but cannot overcome fundamental model calibration limitations in entity typing.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:95:Adding beam search ($k{=}4$) eliminates all residual CF violations (1.18\\%\\,$\\to$\\,0\\%), yielding zero violations across all four metrics (ET=0\\%, RV=0\\%, DR=0\\%, CF=0\\%) while preserving extraction quality (E-F1=66.88, R-F1=44.23; changes within $\\pm$0.5\\,pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:100:Combined with the sampling robustness results (Appendix~\\ref{app:sampling}), these findings confirm that OntoCoDec's constraint enforcement is compatible with greedy, sampling, and beam search decoding without modification to the core constraint logic.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:105:This confirms that beam search resolves the CF$\\leftrightarrow$DR tension through a fundamentally different mechanism: token-level exploration of paths satisfying both constraints simultaneously.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_type_consensus.tex.archived:54:% - Interaction with beam search (Layer 4): does GTC reduce the search space beam must explore?"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e63a43db-7eb1-46bb-b01b-618b3b7ee88e",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "75f33aec-975a-4bbd-870e-f2de9d841156",
+            "sourceToolAssistantUUID": "e63a43db-7eb1-46bb-b01b-618b3b7ee88e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T13:49:33.208Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019GVtRs9vGdysM3o8fhd4vs",
+              "name": "Grep",
+              "input": {
+                "pattern": "post-hoc",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "75f33aec-975a-4bbd-870e-f2de9d841156",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKWB5bWz32NgSfYzWW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "3c8a2e8e-dea1-4263-8b31-edc987049260",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FUo5g8ErCoBmFf9mEFTsSZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 37698,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1902,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T13:49:33.223Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019GVtRs9vGdysM3o8fhd4vs",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:26:    \\item The first systematic study of ontological constraint violations in LLM-based IE (spanning per-relation tightness analysis, dual-factor characterization, and post-hoc baseline comparison), showing that violation rates are driven by constraint tightness rather than ontology size, and that prompt-level intervention is per-relation unreliable.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex:76:Schema coverage gaps (one-third of residual violations) are irreducible by decoding-time constraints alone (training-set frequency coverage), motivating complementary approaches such as global type consensus or post-hoc correction.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex:39:Grammar-only and post-hoc filtering add negligible overhead ($<$4.2\\% and $<$0.2\\%, respectively).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex:48:While Roth \\& Yih's ILP formulation shares the same type-compatibility motivation, it operates as a post-hoc reranker over discrete candidates; OntoCoDec integrates enforcement directly into autoregressive decoding, preventing violations rather than filtering them.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex:109:Unlike training-based IE systems, OntoCoDec is training-free and substantially reduces type violations at inference time (DR$\\downarrow$94\\% on SciERC, $\\downarrow$45--90\\% on DocRED); unlike post-hoc validation, it prevents violations rather than detecting them, redirecting probability mass to valid alternatives with significant R-F1 gains on DocRED ($p \\leq 0.013$) and F1-neutral impact on SciERC.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:139:On DocRED, post-hoc filtering discards 48.1\\% of all predicted triples, including 127 true positives (11.2\\% of correct predictions), reducing recall from 9.46\\% to 8.40\\%.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:144:The two strategies are complementary: post-hoc filtering can serve as an additional safety net for residual violations that decoding-time enforcement does not fully resolve.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:332:In zero-shot settings, post-hoc F1 is higher in 5/6 groups (precision-dominated), but constrained decoding preserves higher recall in all 6/6 groups.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:333:At reject rate $>$70\\% (Mistral DocRED), post-hoc F1 collapses below constrained.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:339:The crossover point occurs when post-hoc rejection exceeds $\\sim$70\\%: Mistral DocRED rejects 73.7\\% of predicted triples, discarding enough true positives that constrained decoding's recall advantage dominates ($+$1.67\\,pp).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:340:OntoCoDec's advantage thus scales with violation severity---precisely when constraints are most needed, post-hoc filtering is most destructive.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex:56:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex:98:\\citet{regino2025kgcurator} propose a multi-stage LLM pipeline for validating RDF triple insertions against domain/range constraints, representing the post-hoc validation paradigm.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex:104:% TODO: Add quantitative comparison of compute cost: post-hoc rejection vs.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex:135:Unlike training-based IE systems, OntoCoDec is training-free and substantially reduces type violations (up to 94\\% DR reduction); unlike post-hoc validation, it prevents violations rather than detecting them, redirecting probability mass to valid alternatives at zero quality cost.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/discussion_paragraphs.tex:67:On DocRED, post-hoc filtering discards 48.1\\% of all predicted triples, including 127 true positives (11.2\\% of correct predictions), reducing recall from 9.46\\% to 8.40\\%.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/discussion_paragraphs.tex:72:The two strategies are complementary: post-hoc filtering can serve as an additional safety net for residual violations that decoding-time enforcement does not fully resolve.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex:12:\\citet{roth_yih_2004} establish relational type compatibility as a hard constraint via ILP, though applied post-hoc.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:2112:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:2113:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex:23:Compared with post-hoc filtering, decoding-time enforcement preserves true positives and eliminates entity-type violations that post-hoc methods cannot address."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c8a2e8e-dea1-4263-8b31-edc987049260",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "e001292d-0b97-493b-ba56-8291504be94e",
+            "sourceToolAssistantUUID": "3c8a2e8e-dea1-4263-8b31-edc987049260",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T13:49:33.633Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Qrso4MdxzwVDT2X6doK5Ps",
+              "name": "Grep",
+              "input": {
+                "pattern": "parse.?fail",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e001292d-0b97-493b-ba56-8291504be94e",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKWB5bWz32NgSfYzWW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7edea205-fd4b-40cf-b526-90c4eec99339",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FUo5g8ErCoBmFf9mEFTsSZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 37698,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1902,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T13:49:33.649Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Qrso4MdxzwVDT2X6doK5Ps",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex:68:Entity F1 impact is model-dependent ($+$1.22\\,pp for Qwen vs.\\ $-$0.64\\,pp for Llama on DocRED), partially confounded by increased parse failures under constraints (Llama: 9.1\\% vs.\\ 6.8\\%).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex:51:Violation rates are computed over successfully parsed documents; excluding parse failures from the F1 denominator recovers $+$3.17\\,pp E-F1 for Llama DocRED (55.01$\\to$58.18), confirming that the lower reported F1 is partially attributable to generation truncation rather than constraint-induced extraction degradation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:265:DR/RV/ET/CF: violation rates (\\%); PF: parse failure rate (\\%); F1 $\\times$100.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:275:F1 cost is negligible: the maximum R-F1 decrease across all 16 model$\\times$dataset$\\times$mode combinations is $-$0.30\\,pp (Qwen DocRED, full vs.\\ unconstrained), attributable to parse failure increase (7.11\\%\\,$\\to$\\,8.52\\%) rather than constraint-induced extraction degradation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:98:Beam search on DocRED introduces a modest increase in parse failures (3/50, 6\\%) compared to greedy (1.1\\%), as longer beam-generated sequences occasionally produce malformed JSON in complex documents.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex:13:Violation rates are computed over successfully parsed documents; including parse failures as zero-violation instances adjusts rates by at most 0.23\\,pp (Llama DocRED zero-shot; $<$0.01\\,pp under fine-tuning), confirming robustness to this exclusion.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex:152:The full system achieves near-complete DR elimination: Qwen 0.76\\%\\,$\\to$\\,0.01\\% ($-$98.7\\%), Llama 0.49\\%\\,$\\to$\\,0.20\\% ($-$59.2\\%), with R-F1 changes of $-$0.30\\,pp and $+$0.51\\,pp respectively.\\footnote{Qwen DocRED all-set R-F1 change is $-$0.30\\,pp (40.86\\,$\\to$\\,40.56); excluding parse-failure documents (7.1\\%\\,$\\to$\\,8.5\\%) yields $\\Delta$R-F1 $+$0.03\\,pp. We report all-set as primary.}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:2035:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:2036:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex:32:Constrained decoding can increase parse failure rates for some model-dataset combinations: Llama-3.1-8B on DocRED shows 91 parse failures under full constraints versus 68 unconstrained (9.1\\% vs.\\ 6.8\\%), likely due to max-token truncation of longer constrained outputs. All F1 metrics are computed over successfully parsed documents only. % exp_ids: llama_docred_full_s1, llama_docred_unconstrained"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7edea205-fd4b-40cf-b526-90c4eec99339",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "46af061f-7d6a-4b02-98bd-2f3c1ec16c67",
+            "sourceToolAssistantUUID": "7edea205-fd4b-40cf-b526-90c4eec99339",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T13:49:34.078Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017ZjXxkebWPiTvz8pzYkYRW",
+              "name": "Grep",
+              "input": {
+                "pattern": "semantic.?only.*ET|ET.*semantic.?only",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "46af061f-7d6a-4b02-98bd-2f3c1ec16c67",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKWB5bWz32NgSfYzWW",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e3ce5e26-ae84-43c2-8589-bc4529fa1dfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FUo5g8ErCoBmFf9mEFTsSZ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1902,
+                "cache_read_input_tokens": 37698,
+                "output_tokens": 482,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1902
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 482,
+                    "cache_read_input_tokens": 37698,
+                    "cache_creation_input_tokens": 1902,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1902,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T13:49:34.097Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017ZjXxkebWPiTvz8pzYkYRW",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex:132:% phase2_docred_semantic_only: DR=0.1384, RV=0.2987, ET=0.1044\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex:133:The elevated ET under semantic-only decoding (10.44\\% vs.\\ 8.18\\%\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex:111:% phase2_scierc_semantic_only: DR=0.1165, RV=0.0151, ET=0.004\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex:112:The residual ET under semantic-only arises because the semantic mask constrains type tokens to relation-specific valid sets but cannot enforce vocabulary membership; occasionally the mask excludes the model's preferred valid-vocabulary type, forcing an OOV alternative.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft_4796e8.tex:123:% phase2_scierc_semantic_only: DR=0.1165, RV=0.0151, ET=0.004"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e3ce5e26-ae84-43c2-8589-bc4529fa1dfa",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "57b0d086-fa3d-4fe4-b11d-3586f12d9106",
+            "sourceToolAssistantUUID": "e3ce5e26-ae84-43c2-8589-bc4529fa1dfa",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T13:49:35.859Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me read the specific files mentioned to get more context and find the exact text for each issue."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "57b0d086-fa3d-4fe4-b11d-3586f12d9106",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKkXXrcf6H7255Xnnj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d34cd4cb-a3a9-44d1-8911-c346fa03d449",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ui1ZSrt7yKK9kTWMjYyb3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 6431,
+                "cache_read_input_tokens": 39600,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6431,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T13:49:36.108Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Wm7QT9P5vbYG3Dn1116FBf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d34cd4cb-a3a9-44d1-8911-c346fa03d449",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKkXXrcf6H7255Xnnj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "405693b7-3105-4a38-b38a-c55be28fb6d5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ui1ZSrt7yKK9kTWMjYyb3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 6431,
+                "cache_read_input_tokens": 39600,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6431,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T13:49:36.131Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Wm7QT9P5vbYG3Dn1116FBf",
+              "type": "tool_result",
+              "content": "1\t% Section 1: Introduction (compressed, 669→~550 words)\n2\t\n3\t\\section{Introduction}\n4\t\\label{sec:introduction}\n5\t\n6\tLarge language models are increasingly deployed for zero-shot information extraction~\\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity is guaranteed to carry a type consistent with the ontology's domain/range constraints for $r$.\n7\tWe call such outputs \\emph{domain/range violations}: structurally valid triples that are ontologically invalid.\n8\tIn a systematic study, we find violations are pervasive: 15.4\\% of triples on SciERC~\\cite{luan2018scierc} and 18.5\\% on DocRED~\\cite{yao2019docred}, driven by \\emph{constraint tightness} (few valid type pairs per relation) rather than ontology scale.\n9\tRelations with tight constraints exhibit far higher rates (\\textsc{Compare}: 42.4\\%) than loosely constrained ones (\\textsc{Used-for}: 0.8\\%).\n10\t\n11\tExisting approaches leave a fundamental gap.\n12\tSchema-informed prompting reduces violations by 62\\% on average but is per-relation unreliable (violations for \\textsc{Evaluate-for} actually \\emph{increase} by 5.8\\,pp).\n13\tGrammar-constrained decoding~\\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} guarantees syntactic well-formedness but cannot encode cross-field semantic constraints.\n14\tPost-hoc filtering achieves higher F1 in most zero-shot settings via precision gains, but at the cost of discarding up to 48\\% of predictions including true positives; at high rejection rates (e.g., Mistral DocRED 73.7\\%), it discards the majority of outputs, making it impractical.\n15\tOntoCoDec preserves recall by enforcing constraints during generation rather than discarding non-compliant outputs.\n16\tTraining-based approaches~\\cite{sainz2024gollie,lu2022uie} provide only soft guidance that cannot eliminate violations.\n17\t\n18\tWe propose \\textbf{OntoCoDec} (\\textbf{Onto}logy-\\textbf{Co}mpiled \\textbf{Dec}oding), a framework that compiles an IE ontology into two composable layers of decoding-time constraints.\n19\tThe \\emph{grammar layer} enforces JSON well-formedness and vocabulary validity via XGrammar.\n20\tThe \\emph{semantic layer} maintains a stateful entity registry during generation: as entities are decoded, the registry records type assignments; when relation arguments are generated, dynamic logit masking restricts output to types compatible with the relation's domain/range specification.\n21\tThe layers compose via bitwise AND with an \\emph{enabling dependency}: the grammar layer guarantees vocabulary membership, enabling the semantic layer to look up domain/range rules.\n22\tOn SciERC, OntoCoDec reduces DR violations from 15.37\\% to 0.93\\% ($\\downarrow$94\\%) while remaining F1-neutral ($+$0.13\\,pp).\n23\t\n24\tOur contributions:\n25\t\\begin{enumerate}\n26\t    \\item The first systematic study of ontological constraint violations in LLM-based IE (spanning per-relation tightness analysis, dual-factor characterization, and post-hoc baseline comparison), showing that violation rates are driven by constraint tightness rather than ontology size, and that prompt-level intervention is per-relation unreliable.\n27\t    \\item OntoCoDec, a two-layer compiled constraint framework that is the first to enforce pair-based domain/range type constraints via compiled stateful logit masks during autoregressive IE.\n28\t    Unlike type-constrained decoding in code generation, where output types are statically determined by the grammar, IE requires stateful cross-field constraints because entity type validity depends on the co-occurring relation within each triple.\n29\t    \\item Empirical validation on 3 models $\\times$ 2 datasets: DR $\\downarrow$76--99\\% on SciERC and $\\downarrow$42--90\\% across three models on DocRED, with significant R-F1 gains on DocRED (Qwen $p{<}0.001$, Llama $p{=}0.013$), model-agnostic structural guarantees, composability with fine-tuning (DR\\,$\\leq$\\,0.20\\% at $<$0.6\\,pp F1 cost), and characterization of the CF$\\leftrightarrow$DR trade-off inherent to per-relation enforcement (resolved by fine-tuning to CF\\,$\\leq$\\,1.2\\%).\n30\t\\end{enumerate}\n31\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "405693b7-3105-4a38-b38a-c55be28fb6d5",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "25c17d15-ec0a-440f-baa1-dabb711016f5",
+            "sourceToolAssistantUUID": "405693b7-3105-4a38-b38a-c55be28fb6d5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T13:49:36.526Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014hoRskfL1qjsyhTfdRnpWd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25c17d15-ec0a-440f-baa1-dabb711016f5",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKkXXrcf6H7255Xnnj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "cb308d0f-188d-4d8c-87fd-26cf9d637402",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ui1ZSrt7yKK9kTWMjYyb3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 6431,
+                "cache_read_input_tokens": 39600,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6431,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T13:49:36.536Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014hoRskfL1qjsyhTfdRnpWd",
+              "type": "tool_result",
+              "content": "1\t% Section 5 — DocRED Results (compressed, 1450→~600 words)\n2\t% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\n3\t%          phase2_docred_semantic_only, phase2_docred_full_s1\n4\t% All numbers verified against registry 2026-05-14.\n5\t\n6\t\\subsection{Cross-Dataset Validation on DocRED}\n7\t\\label{sec:docred-results}\n8\t\n9\tTable~\\ref{tab:docred-ablation} presents the four-way ablation on DocRED, a document-level RE benchmark with 96 Wikidata relation types (14$\\times$ the ontology size of SciERC).\n10\tAll experiments use Qwen3-8B zero-shot on 998 documents.\n11\t\n12\t% ──────────────────────────────────────────\n13\t%  Table: DocRED four-way ablation\n14\t% ──────────────────────────────────────────\n15\t\\begin{table}[t]\n16\t\\centering\n17\t\\small\n18\t\\setlength{\\tabcolsep}{3.6pt}\n19\t\\resizebox{\\columnwidth}{!}{%\n20\t\\begin{tabular}{@{}l rrrrr rr@{}}\n21\t\\toprule\n22\t& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n23\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n24\t\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n25\t\\textbf{Mode}\n26\t  & DR\\,$\\downarrow$ & $\\Delta$DR\n27\t  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n28\t  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n29\t\\midrule\n30\tUnconstrained\n31\t  & 18.46 & ---\n32\t  & 29.66 & 2.48\n33\t  & 0.10\n34\t  & 7.74  & 58.15 \\\\\n35\tGrammar\n36\t  & 26.17 & $\\uparrow$42\\%\n37\t  & \\textbf{0.03} & \\textbf{0}\n38\t  & 0.07\n39\t  & \\textbf{8.31}  & \\textbf{59.38} \\\\\n40\tSemantic\n41\t  & 13.84 & $\\downarrow$25\\%\n42\t  & 29.87 & 4.22\n43\t  & 1.05\n44\t  & 7.70  & 57.81 \\\\\n45\tFull (S1)\n46\t  & \\textbf{10.21} & $\\downarrow$\\textbf{45\\%}\n47\t  & \\textbf{0.03} & \\textbf{0}\n48\t  & 2.57\n49\t  & 8.23  & 59.37 \\\\\n50\t\\bottomrule\n51\t\\end{tabular}}%\n52\t\\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).\n53\t$\\Delta$DR: relative change vs.\\ unconstrained.\n54\tBest per column in \\textbf{bold} (CF excluded).\n55\tF1 $\\times$100. Bootstrap significance: R-F1 $+$0.50\\,pp ($p < 0.001$).}\n56\t\\label{tab:docred-ablation}\n57\t\\end{table}\n58\t\n59\t% exp_ids: phase2_docred_unconstrained, phase2_docred_full_s1\n60\t\\paragraph{Core result.}\n61\tFull S1 reduces DR from 18.46\\% to 10.21\\% ($\\downarrow$45\\%), eliminates ET (2.48\\%\\,$\\to$\\,0\\%), and near-eliminates RV (29.66\\%\\,$\\to$\\,0.03\\%; the residual 5 triples arise from an XGrammar v0.1.33 enum compilation edge case where the grammar bitmask leaks token continuations across adjacent enum entries (e.g., the valid relation ``member of'' produces the invalid token sequence ``membericipant'')).\n62\tRelation F1 improves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81], $p < 0.001$), attributable to grammar-layer elimination of 5{,}189 OOV relation predictions counted as false positives.\n63\tCF increases modestly (0.10\\%\\,$\\to$\\,2.57\\%), lower than SciERC's 9.90\\%.\n64\t\n65\t% exp_ids: phase2_docred_grammar_only\n66\t\\paragraph{Grammar layer surfaces latent violations.}\n67\tGrammar-only constraints eliminate RV and ET but \\emph{increase} DR from 18.46\\% to 26.17\\% ($+$42\\%).\n68\tThis counter-intuitive result has a structural explanation: the unconstrained baseline's 29.66\\% OOV relation triples cannot be evaluated for DR (no schema entry exists); grammar enforcement assigns these triples valid relation names whose domain/range rules the associated entity types frequently violate.\n69\tThe grammar layer thus \\emph{reveals} latent type incompatibilities, directly motivating the semantic layer.\n70\t\n71\t% exp_ids: phase2_docred_semantic_only, phase2_docred_full_s1\n72\t\\paragraph{Enabling dependency.}\n73\tSemantic-only constraints reduce DR by only 25\\% (18.46\\%\\,$\\to$\\,13.84\\%) while failing to eliminate RV (29.87\\%) or ET (4.22\\%).\n74\tFull S1 achieves a further 26\\% relative reduction over semantic-only (13.84\\%\\,$\\to$\\,10.21\\%), replicating the enabling dependency from SciERC: without grammar-enforced vocabulary, the semantic layer encounters OOV relation types for which no domain/range rules exist.\n75\t\n76\t% exp_ids: phase2_docred_full_s1, llama_docred_full_s1\n77\t\\paragraph{Zero-shot F1 context.}\n78\tZero-shot R-F1 values (6--8\\%) reflect zero-shot RE difficulty; supervised SOTA achieves 49--53\\% on SciERC~\\citep{zhong2021frustratingly}.\n79\tF1 serves primarily as a control variable verifying constraint enforcement preserves extraction quality, not as an optimization target.\n80\t\n81\t\\paragraph{Constraint tightness governs enforcement ceiling.}\n82\tThe residual DR on DocRED (10.21\\%) exceeds SciERC (0.93\\%) due to per-relation \\emph{constraint tightness}: DocRED relations average 5.68 valid type pairs ($\\bar{\\kappa}{=}0.842$) vs.\\ 24 on SciERC ($\\bar{\\kappa}{=}0.333$).\n83\tTighter constraints produce narrower grammar$\\cap$semantic mask intersections, increasing fallback frequency. The aggregate fallback rate (10.2\\%; 1{,}770/17{,}341 triples) closely tracks residual DR (10.21\\%), confirming a near-bijection between fallback events and residual violations.\n84\tCrucially, tightness interacts with the model's baseline violation profile: Qwen's high RV (29.66\\%) causes grammar enforcement to surface many latent DR violations, yielding 10.21\\% residual DR; Llama's lower RV (16.03\\%) limits this surfacing, achieving 2.55\\% residual ($\\downarrow$90.2\\%) on the same ontology (\\S\\ref{sec:cross-model}).\n85\tThis dual-factor pattern (tightness $\\times$ baseline RV) is consistent with cross-dataset and cross-model DR reduction differences.\n86\tWe omit S2 on DocRED because S1 already achieves near-complete RV/ET elimination and the two-pass overhead is less justified when residual DR is dominated by fallback events rather than forward coreference.\n87\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb308d0f-188d-4d8c-87fd-26cf9d637402",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "1410a5ac-e924-46c5-b99d-876961604ab1",
+            "sourceToolAssistantUUID": "cb308d0f-188d-4d8c-87fd-26cf9d637402",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T13:49:36.664Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ERCH5FYymCvYgDD9nqiL8e",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1410a5ac-e924-46c5-b99d-876961604ab1",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKkXXrcf6H7255Xnnj",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "38a46159-89d8-4619-9a0c-e8e034bd25c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_019ui1ZSrt7yKK9kTWMjYyb3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 6431,
+                "cache_read_input_tokens": 39600,
+                "output_tokens": 281,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6431
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 281,
+                    "cache_read_input_tokens": 39600,
+                    "cache_creation_input_tokens": 6431,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6431,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T13:49:36.672Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ERCH5FYymCvYgDD9nqiL8e",
+              "type": "tool_result",
+              "content": "1\t% Section 5 — Cross-Model Validation (compressed, 830→~400 words)\n2\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n3\t%          phase2_docred_unconstrained, phase2_docred_full_s1,\n4\t%          llama_scierc_unconstrained, llama_scierc_full_s1,\n5\t%          llama_docred_unconstrained, llama_docred_full_s1\n6\t\n7\t\\subsection{Cross-Model Validation}\n8\t\\label{sec:cross-model}\n9\t\n10\tWe replicate the full S1 configuration with Llama-3.1-8B-Instruct and Mistral-7B-Instruct-v0.3 under identical prompts, decoding parameters, and evaluation.\n11\tTable~\\ref{tab:cross-model} summarizes results across all three models.\n12\tMistral serves as a third zero-shot verification point confirming model-agnosticism; composability evaluation (\\S\\ref{sec:composability}) uses LoRA fine-tuning which requires domain-specific training data available only for Qwen and Llama.\n13\t\n14\t\\begin{table}[t]\n15\t\\centering\n16\t\\small\n17\t\\setlength{\\tabcolsep}{3.4pt}\n18\t\\resizebox{\\columnwidth}{!}{%\n19\t\\begin{tabular}{@{}ll rrrr r@{}}\n20\t\\toprule\n21\t& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n22\t& \\textbf{R-F1} \\\\\n23\t\\cmidrule(lr){3-6} \\cmidrule(l){7-7}\n24\t\\textbf{Dataset} & \\textbf{Model}\n25\t  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n26\t  & $\\uparrow$ \\\\\n27\t\\midrule\n28\t\\multirow{6}{*}{SciERC}\n29\t  & Qwen (U)    & 15.37 & 1.39  & 0.40 & 0.08 & 8.23 \\\\\n30\t  & Qwen (S1)   &  0.93 & 0     & 0    & 9.90 & 8.36 \\\\\n31\t  \\cmidrule(l){2-7}\n32\t  & Llama (U)   & 13.34 & 0.55  & 0    & 0.24 & 2.68 \\\\\n33\t  & Llama (S1)  &  0.08 & 0     & 0    & 6.56 & 2.54 \\\\\n34\t  \\cmidrule(l){2-7}\n35\t  & Mistral (U) & 56.94 & 0     & 1.50 & 56.87$^\\dagger$ & 3.66 \\\\\n36\t  & Mistral (S1)& 13.40 & 0     & 0    & 1.27  & 3.67 \\\\\n37\t\\midrule\n38\t\\multirow{6}{*}{DocRED}\n39\t  & Qwen (U)    & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 \\\\\n40\t  & Qwen (S1)   & 10.21 &  0.03 & 0    & 2.57 & 8.23 \\\\\n41\t  \\cmidrule(l){2-7}\n42\t  & Llama (U)   & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 \\\\\n43\t  & Llama (S1)  &  2.55 &  0    & 0    & 12.02& 6.27 \\\\\n44\t  \\cmidrule(l){2-7}\n45\t  & Mistral (U) & 57.42 & 42.35 & 7.58 & 24.78 & 4.34 \\\\\n46\t  & Mistral (S1)& 33.20 &  0    & 0    & 0.19  & 5.52 \\\\\n47\t\\bottomrule\n48\t\\end{tabular}}%\n49\t\\caption{Three-model zero-shot validation. U: unconstrained; S1: full two-layer.\n50\tParse failures: Qwen DocRED 12$\\to$11 (S1 1.10\\%), Llama DocRED 68$\\to$91 (9.1\\% of 998 docs); others $\\leq$1.\n51\tViolation rates are computed over successfully parsed documents; excluding parse failures from the F1 denominator recovers $+$3.17\\,pp E-F1 for Llama DocRED (55.01$\\to$58.18), confirming that the lower reported F1 is partially attributable to generation truncation rather than constraint-induced extraction degradation.\n52\t$^\\dagger$Mistral's poor zero-shot type calibration leads to pervasive entity type assignment inconsistencies across triples.\n53\tF1 $\\times$100.}\n54\t\\label{tab:cross-model}\n55\t\\end{table}\n56\t\n57\t\\paragraph{Model-agnostic structural guarantees.}\n58\tRV and ET violations are eliminated ($\\leq$0.03\\%) for all three models on both datasets, confirming that grammar-layer enforcement depends on the decoding mechanism, not model-specific generation patterns.\n59\t\n60\t% exp_ids: phase2_scierc_full_s1, llama_scierc_full_s1, phase2_docred_full_s1, llama_docred_full_s1, mistral_scierc, mistral_docred\n61\t\\paragraph{DR reduction generalizes across models.}\n62\tSciERC DR drops 94\\% (Qwen), 99\\% (Llama), 76\\% (Mistral); DocRED DR drops 45\\% (Qwen), 90\\% (Llama), 42\\% (Mistral).\n63\tMistral exhibits the highest baseline DR (56--57\\%) due to poor zero-shot type calibration, yet still benefits substantially.\n64\tR-F1 is preserved or improves in five of six settings; on DocRED, gains are significant for Qwen ($+$0.50\\,pp, $p{<}0.001$) and Llama ($+$0.29\\,pp, $p{=}0.013$).\n65\t\n66\t\\paragraph{Cross-model DR asymmetry.}\n67\tLlama's higher DR reduction reflects lower baseline RV (16.03\\% vs.\\ 29.66\\% on DocRED): with fewer OOV relations to surface, grammar enforcement exposes fewer latent type incompatibilities, yielding residual DR of 2.55\\% vs.\\ Qwen's 10.21\\%.\n68\tLlama's per-relation DR shows no correlation with tightness ($\\rho{=}0.069$, $p{=}0.52$; Appendix~\\ref{app:llama-per-relation}), confirming uniform enforcement once baseline RV is low.\n69\tCF direction depends on baseline calibration: S1 introduces CF for well-calibrated Qwen and Llama (up to 12.02\\%; \\S\\ref{sec:discussion}), while reducing CF for poorly-calibrated Mistral (56.87\\%\\,$\\to$\\,1.27\\%) by constraining type assignments to schema-valid values.\n70\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "38a46159-89d8-4619-9a0c-e8e034bd25c0",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "511070c9-daec-4276-9151-2b215ebd8b78",
+            "sourceToolAssistantUUID": "38a46159-89d8-4619-9a0c-e8e034bd25c0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T13:49:38.868Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search more specifically for W2 in the introduction and check if there's balanced language about post-hoc:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "511070c9-daec-4276-9151-2b215ebd8b78",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKwb3XFXhwgB4y4gfh",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e8b9414e-709e-4a8d-aea6-bcf036af6f5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LTyz2jd9SA5HxcumVYyXg3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 5754,
+                "cache_read_input_tokens": 46031,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5754,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T13:49:39.648Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GAuTV6wZ3fhfe8brtKcqqf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+                "limit": 100
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e8b9414e-709e-4a8d-aea6-bcf036af6f5c",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FKwb3XFXhwgB4y4gfh",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "0016f7db-dfd6-44fa-a54e-5e986f32eae8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01LTyz2jd9SA5HxcumVYyXg3",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 6,
+                "cache_creation_input_tokens": 5754,
+                "cache_read_input_tokens": 46031,
+                "output_tokens": 136,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5754
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 6,
+                    "output_tokens": 136,
+                    "cache_read_input_tokens": 46031,
+                    "cache_creation_input_tokens": 5754,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5754,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T13:49:39.658Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GAuTV6wZ3fhfe8brtKcqqf",
+              "type": "tool_result",
+              "content": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\usepackage{booktabs}\n12\t\\usepackage{multirow}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{enumitem}\n16\t\\usepackage{xcolor}\n17\t\n18\t\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Ontology Constraints}\n19\t\n20\t\\author{Anonymous ACL submission}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t% === Abstract ===\n26\t\\input{abstract}\n27\t\n28\t% === §1 Introduction ===\n29\t\\input{section1_introduction_draft}\n30\t\n31\t% === §2 Background ===\n32\t\\input{section2_background}\n33\t\n34\t% === §3 Method ===\n35\t\\input{section3_method_draft}\n36\t\n37\t% === §4 Constraint Composition ===\n38\t\\section{Constraint Composition}\n39\t\\label{sec:composition}\n40\t\\input{section4_composition_draft}\n41\t\n42\t% === §5 Experiments ===\n43\t\\section{Experiments}\n44\t\\label{sec:experiments}\n45\t\n46\t\\subsection{Violation Landscape}\n47\t\\input{section3_violation_landscape}\n48\t\n49\t\\input{section5_scierc_draft}\n50\t\\input{section5_docred_draft}\n51\t\\input{section5_crossmodel_draft}\n52\t\\input{section5_runtime}\n53\t\n54\t% === §6 Related Work ===\n55\t\\input{section6_related_work}\n56\t\n57\t% === §7 Discussion and Conclusion ===\n58\t\\section{Discussion and Conclusion}\n59\t\\label{sec:discussion}\n60\t\\input{section7_conclusion_compressed}\n61\t\n62\t% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===\n63\t\\clearpage\n64\t\\section*{Limitations}\n65\t\n66\tCF impact is model-dependent: for well-calibrated models (Qwen, Llama), S1 introduces CF violations (up to 12.02\\%) as a consequence of per-relation independent enforcement; for poorly-calibrated models (Mistral), S1 substantially reduces CF (56.87\\%\\,$\\to$\\,1.27\\%) by constraining type assignments to schema-valid values.\n67\tCF fallback ablation shows that eliminating CF re-routes violations to DR ($+$13.85\\,pp), confirming that CF$\\leftrightarrow$DR represents a fundamental trade-off in composable constraint systems rather than an independently resolvable limitation (Appendix~\\ref{app:cf-dr-tradeoff}).\n68\tEntity F1 impact is model-dependent ($+$1.22\\,pp for Qwen vs.\\ $-$0.64\\,pp for Llama on DocRED), partially confounded by increased parse failures under constraints (Llama: 9.1\\% vs.\\ 6.8\\%).\n69\tZero-shot results cover three 7--8B-class models, where relation F1 remains around 4--8\\% compared to $\\sim$45\\% for fine-tuned systems.\n70\tComposability with fine-tuned models is validated on both SciERC and DocRED with Qwen3-8B and Llama-3.1-8B (DR\\,$\\leq$\\,0.20\\%, R-F1 change within $\\pm$0.6\\,pp), but evaluation is limited to one fine-tuning method (LoRA); residual CF (Qwen 1.18\\%, Llama 0.46\\% on SciERC) traces to schema-level type ambiguity (\\textsc{Generic}$\\leftrightarrow$X) rather than enforcement failure.\n71\tThe semantic layer's dynamic masking assumes each entity type maps to a unique first subword token, verified for both tokenizers on our two ontologies (6 entity types each), but ontologies with many types or multi-token type names would require prefix-tree masking, which we have not implemented.\n72\tGlobal entity-level type consensus during decoding offers the most direct path to resolving CF violations.\n73\tAll models tested are 7--8B-parameter class; scaling behavior to larger (70B+) or smaller models has not been verified, and the dual-factor pattern's predictive scope may differ at other scales.\n74\tCF type inconsistencies may propagate to downstream tasks that consume extracted triples (e.g., knowledge graph construction, question answering); the impact of such propagation has not been evaluated.\n75\tResidual DR under fine-tuning (36 violations across all fine-tuned settings, both models and both datasets) decomposes into entity type errors (39\\%), schema coverage gaps (33\\%), and model generation errors correctly caught by constraints (28\\%); Llama DocRED alone accounts for 33 of 36 residual violations (92\\%), reflecting weaker entity typing (Appendix~\\ref{app:residual-dr-analysis}).\n76\tSchema coverage gaps (one-third of residual violations) are irreducible by decoding-time constraints alone (training-set frequency coverage), motivating complementary approaches such as global type consensus or post-hoc correction.\n77\tAll main experiments use greedy decoding; preliminary evaluation of nucleus sampling and beam search (Appendices~\\ref{app:sampling},~\\ref{app:beam-search}) suggests compatibility, but comprehensive evaluation across decoding configurations remains future work.\n78\tValidation with fine-tuned models, larger scales, and non-English ontologies remains to be explored.\n79\t\n80\t% === Ethics Statement ===\n81\t\\section*{Ethics Statement}\n82\t\n83\tThis work uses publicly available benchmark datasets (SciERC and DocRED) with no personally identifiable information.\n84\tNo human subjects were involved in the experiments.\n85\tThe constrained decoding method operates on model outputs and does not introduce new privacy or safety risks beyond those inherent in the base language models.\n86\tCode and data will be released upon acceptance.\n87\t\n88\t% === Bibliography ===\n89\t\\bibliography{relwork_new_entries}\n90\t\n91\t% === Appendix ===\n92\t\\appendix\n93\t\n94\t\\input{appendix_prompts}\n95\t\\input{appendix_related_work}\n96\t\\input{appendix_discussion}\n97\t\\input{appendix_llama_per_relation}\n98\t\\input{appendix_sampling_table}\n99\t\\input{appendix_beam_search}\n100\t\\input{appendix_reproducibility}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0016f7db-dfd6-44fa-a54e-5e986f32eae8",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "591eaf55-5d0a-4459-92c4-2a754ae3df3d",
+            "sourceToolAssistantUUID": "0016f7db-dfd6-44fa-a54e-5e986f32eae8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T13:49:41.424Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for more details about the semantic-only ET issue in DocRED and look at the discussion section:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "591eaf55-5d0a-4459-92c4-2a754ae3df3d",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLAEoJ6DhpQTJQyWoa",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "10949b1e-1cc0-4d19-8b5e-1426c2ab8617",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01M2NCQzp5B8hTW1MGzbWcSr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1892,
+                "cache_read_input_tokens": 51785,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1892,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T13:49:42.695Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RQE1HLNwN31VVn73ibMGTq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "10949b1e-1cc0-4d19-8b5e-1426c2ab8617",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLAEoJ6DhpQTJQyWoa",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6bf49c5b-e758-4626-8769-55fa787bf93f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01M2NCQzp5B8hTW1MGzbWcSr",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1892,
+                "cache_read_input_tokens": 51785,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1892,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T13:49:42.701Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RQE1HLNwN31VVn73ibMGTq",
+              "type": "tool_result",
+              "content": "1\t% Section 7 — Discussion and Conclusion (compressed)\n2\t% Full discussion paragraphs moved to Appendix C.\n3\t\n4\tOntoCoDec compiles IE ontology schemas into composable token-level decoding constraints, achieving 42--99\\% DR reduction across three models and two datasets with no significant F1 cost.\n5\tComposed with LoRA fine-tuning, it reaches DR\\,$\\leq$\\,0.20\\% at $<$0.6\\,pp F1 cost, confirming orthogonal error targeting.\n6\tWithin calibrated models (Qwen, Llama; $n{=}4$), residual DR correlates linearly with $\\bar{\\kappa} \\times \\text{RV}_{\\text{baseline}}$ ($R^2{=}0.99$), suggesting constraint benefit scales with schema stringency and model OOV tendency.\n7\tThis pattern has an informative boundary condition: Mistral achieves RV\\,=\\,0\\% on SciERC yet retains DR\\,=\\,13.4\\%, because its dominant error mode is entity type misclassification rather than vocabulary confusion---a factor not captured by the dual-factor product.\n8\tWe present this as a descriptive characterization with explicit scope rather than a universal predictive law.\n9\t\n10\tCF impact is model-dependent: S1 introduces CF for well-calibrated models (up to 12.02\\%) but reduces it for poorly-calibrated ones (Mistral: 56.87\\%\\,$\\to$\\,1.27\\%).\n11\tAblation confirms CF$\\leftrightarrow$DR tension ($+$13.85\\,pp; Appendix~\\ref{app:cf-dr-tradeoff}); fine-tuning reduces CF by 88\\% (\\S\\ref{sec:composability}); global entity-level type consensus offers the most direct path forward.\n12\t\n13\t% Limitations and Future Work moved to \\section*{Limitations} in main.tex (ARR requirement)\n14\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6bf49c5b-e758-4626-8769-55fa787bf93f",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "54b3708f-df3e-4292-ad35-99db8d527d48",
+            "sourceToolAssistantUUID": "6bf49c5b-e758-4626-8769-55fa787bf93f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T13:49:43.122Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SrS9Ku3FamXL6KBBtYbVDn",
+              "name": "Grep",
+              "input": {
+                "pattern": "semantic-only.*increase|increase.*semantic-only",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54b3708f-df3e-4292-ad35-99db8d527d48",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLAEoJ6DhpQTJQyWoa",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1b7e3e89-8958-4a15-a0b1-6806eed80051",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01M2NCQzp5B8hTW1MGzbWcSr",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1892,
+                "cache_read_input_tokens": 51785,
+                "output_tokens": 239,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1892
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 239,
+                    "cache_read_input_tokens": 51785,
+                    "cache_creation_input_tokens": 1892,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1892,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T13:49:43.155Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SrS9Ku3FamXL6KBBtYbVDn",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b7e3e89-8958-4a15-a0b1-6806eed80051",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "44678214-7303-48af-a74a-40032cc1fc65",
+            "sourceToolAssistantUUID": "1b7e3e89-8958-4a15-a0b1-6806eed80051",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T13:49:45.579Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me search for the specific ET increase in semantic-only for DocRED with more detail:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44678214-7303-48af-a74a-40032cc1fc65",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLR9jwL6k5j6ww4Ecb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "379e18bd-c057-4da3-8286-18ec1ca96784",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011QcP45GxqV7mHKxtUSkhxa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 792,
+                "cache_read_input_tokens": 53677,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 792,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T13:49:46.021Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01QZUP9NVuTVmo43cUTFMiVa",
+              "name": "Grep",
+              "input": {
+                "pattern": "elevated ET|ET.*semantic",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "379e18bd-c057-4da3-8286-18ec1ca96784",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLR9jwL6k5j6ww4Ecb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7d77b094-5400-4a2a-bbdb-42884e7aa2e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011QcP45GxqV7mHKxtUSkhxa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 792,
+                "cache_read_input_tokens": 53677,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 792,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T13:49:46.044Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01QZUP9NVuTVmo43cUTFMiVa",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex:133:The elevated ET under semantic-only decoding (10.44\\% vs.\\ 8.18\\%\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex:112:The residual ET under semantic-only arises because the semantic mask constrains type tokens to relation-specific valid sets but cannot enforce vocabulary membership; occasionally the mask excludes the model's preferred valid-vocabulary type, forcing an OOV alternative.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_550cbf.tex:15:a \\emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\\,$\\to$\\,0\\%) and a \\emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex:17:a \\emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\\,$\\to$\\,0\\%) and a \\emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d77b094-5400-4a2a-bbdb-42884e7aa2e4",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "e2a6da4f-e6c7-4072-9c0e-54186775eb91",
+            "sourceToolAssistantUUID": "7d77b094-5400-4a2a-bbdb-42884e7aa2e4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T13:49:46.450Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FxPEZFm98YBG2hQDZAvLmy",
+              "name": "Grep",
+              "input": {
+                "pattern": "2.48.*4.22|4.22.*2.48",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2a6da4f-e6c7-4072-9c0e-54186775eb91",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLR9jwL6k5j6ww4Ecb",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "1580170b-19bc-42c4-b44b-e0452deed925",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011QcP45GxqV7mHKxtUSkhxa",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 792,
+                "cache_read_input_tokens": 53677,
+                "output_tokens": 269,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 792
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 269,
+                    "cache_read_input_tokens": 53677,
+                    "cache_creation_input_tokens": 792,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 792,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T13:49:46.473Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FxPEZFm98YBG2hQDZAvLmy",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1580170b-19bc-42c4-b44b-e0452deed925",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "dde85f42-4c59-4534-838c-6e36e9bacd32",
+            "sourceToolAssistantUUID": "1580170b-19bc-42c4-b44b-e0452deed925",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T13:49:47.929Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the DocRED draft more carefully around the semantic-only discussion:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dde85f42-4c59-4534-838c-6e36e9bacd32",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLfKXSEdt7TYNKs397",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "af920b8e-b9b6-42b5-80f0-a98b3fb27ace",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PT2fwbARs9tDdr6dLv6Zdj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 779,
+                "cache_read_input_tokens": 54469,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 779,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T13:49:48.253Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XLLzQuEXuHAmFSVtDP39VA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+                "offset": 65,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "af920b8e-b9b6-42b5-80f0-a98b3fb27ace",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLfKXSEdt7TYNKs397",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "713c67ee-fe7f-40ee-9ca3-bd62bab1d4de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01PT2fwbARs9tDdr6dLv6Zdj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 779,
+                "cache_read_input_tokens": 54469,
+                "output_tokens": 150,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 779
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 150,
+                    "cache_read_input_tokens": 54469,
+                    "cache_creation_input_tokens": 779,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 779,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T13:49:48.274Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XLLzQuEXuHAmFSVtDP39VA",
+              "type": "tool_result",
+              "content": "65\t% exp_ids: phase2_docred_grammar_only\n66\t\\paragraph{Grammar layer surfaces latent violations.}\n67\tGrammar-only constraints eliminate RV and ET but \\emph{increase} DR from 18.46\\% to 26.17\\% ($+$42\\%).\n68\tThis counter-intuitive result has a structural explanation: the unconstrained baseline's 29.66\\% OOV relation triples cannot be evaluated for DR (no schema entry exists); grammar enforcement assigns these triples valid relation names whose domain/range rules the associated entity types frequently violate.\n69\tThe grammar layer thus \\emph{reveals} latent type incompatibilities, directly motivating the semantic layer.\n70\t\n71\t% exp_ids: phase2_docred_semantic_only, phase2_docred_full_s1\n72\t\\paragraph{Enabling dependency.}\n73\tSemantic-only constraints reduce DR by only 25\\% (18.46\\%\\,$\\to$\\,13.84\\%) while failing to eliminate RV (29.87\\%) or ET (4.22\\%).\n74\tFull S1 achieves a further 26\\% relative reduction over semantic-only (13.84\\%\\,$\\to$\\,10.21\\%), replicating the enabling dependency from SciERC: without grammar-enforced vocabulary, the semantic layer encounters OOV relation types for which no domain/range rules exist.\n75\t\n76\t% exp_ids: phase2_docred_full_s1, llama_docred_full_s1\n77\t\\paragraph{Zero-shot F1 context.}\n78\tZero-shot R-F1 values (6--8\\%) reflect zero-shot RE difficulty; supervised SOTA achieves 49--53\\% on SciERC~\\citep{zhong2021frustratingly}.\n79\tF1 serves primarily as a control variable verifying constraint enforcement preserves extraction quality, not as an optimization target.\n80\t\n81\t\\paragraph{Constraint tightness governs enforcement ceiling.}\n82\tThe residual DR on DocRED (10.21\\%) exceeds SciERC (0.93\\%) due to per-relation \\emph{constraint tightness}: DocRED relations average 5.68 valid type pairs ($\\bar{\\kappa}{=}0.842$) vs.\\ 24 on SciERC ($\\bar{\\kappa}{=}0.333$).\n83\tTighter constraints produce narrower grammar$\\cap$semantic mask intersections, increasing fallback frequency. The aggregate fallback rate (10.2\\%; 1{,}770/17{,}341 triples) closely tracks residual DR (10.21\\%), confirming a near-bijection between fallback events and residual violations.\n84\tCrucially, tightness interacts with the model's baseline violation profile: Qwen's high RV (29.66\\%) causes grammar enforcement to surface many latent DR violations, yielding 10.21\\% residual DR; Llama's lower RV (16.03\\%) limits this surfacing, achieving 2.55\\% residual ($\\downarrow$90.2\\%) on the same ontology (\\S\\ref{sec:cross-model}).\n85\tThis dual-factor pattern (tightness $\\times$ baseline RV) is consistent with cross-dataset and cross-model DR reduction differences.\n86\tWe omit S2 on DocRED because S1 already achieves near-complete RV/ET elimination and the two-pass overhead is less justified when residual DR is dominated by fallback events rather than forward coreference.\n87\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "713c67ee-fe7f-40ee-9ca3-bd62bab1d4de",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "b2d2b5fb-c121-48bd-989e-f30d25573cc9",
+            "sourceToolAssistantUUID": "713c67ee-fe7f-40ee-9ca3-bd62bab1d4de",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T13:49:49.717Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the appendix discussion for more details on the ET increase and post-hoc comparison:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b2d2b5fb-c121-48bd-989e-f30d25573cc9",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLo4MxjPWCnVPy3TUt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a55d3b4d-60da-44c3-8889-fe419854c609",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016X4KbGemK9K6wypiEiRRpA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 55248,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1124,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T13:49:51.075Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019mJjBj9vbTC1aGX1YqJViG",
+              "name": "Grep",
+              "input": {
+                "pattern": "70\\%|70 percent",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a55d3b4d-60da-44c3-8889-fe419854c609",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLo4MxjPWCnVPy3TUt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8eaf0c67-9409-41e4-8ad9-5f86a1686a35",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016X4KbGemK9K6wypiEiRRpA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 55248,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1124,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T13:49:51.091Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019mJjBj9vbTC1aGX1YqJViG",
+              "type": "tool_result",
+              "content": "No matches found"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8eaf0c67-9409-41e4-8ad9-5f86a1686a35",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "35de37b0-01de-4eaa-93d6-0d3dd74c5360",
+            "sourceToolAssistantUUID": "8eaf0c67-9409-41e4-8ad9-5f86a1686a35",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T13:49:51.491Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XMhaxaC6RN5GuxozYg85x3",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+                "offset": 330,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "35de37b0-01de-4eaa-93d6-0d3dd74c5360",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FLo4MxjPWCnVPy3TUt",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "93364efe-01e3-43e1-bef0-ca330691a464",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016X4KbGemK9K6wypiEiRRpA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1124,
+                "cache_read_input_tokens": 55248,
+                "output_tokens": 264,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1124
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 264,
+                    "cache_read_input_tokens": 55248,
+                    "cache_creation_input_tokens": 1124,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1124,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T13:49:51.500Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01XMhaxaC6RN5GuxozYg85x3",
+              "type": "tool_result",
+              "content": "330\t\\end{tabular}}%\n331\t\\caption{Post-hoc filtering (ph) vs.\\ constrained decoding (cd).\n332\tIn zero-shot settings, post-hoc F1 is higher in 5/6 groups (precision-dominated), but constrained decoding preserves higher recall in all 6/6 groups.\n333\tAt reject rate $>$70\\% (Mistral DocRED), post-hoc F1 collapses below constrained.\n334\tUnder fine-tuning, rejection rates drop to 0.6--2.0\\% and the two strategies are equivalent ($\\Delta \\leq 0.55$\\,pp; each wins two groups).\n335\tF1 $\\times$100.}\n336\t\\label{tab:posthoc-extended}\n337\t\\end{table}\n338\t\n339\tThe crossover point occurs when post-hoc rejection exceeds $\\sim$70\\%: Mistral DocRED rejects 73.7\\% of predicted triples, discarding enough true positives that constrained decoding's recall advantage dominates ($+$1.67\\,pp).\n340\tOntoCoDec's advantage thus scales with violation severity---precisely when constraints are most needed, post-hoc filtering is most destructive.\n341\tUnder fine-tuning, both strategies converge because few violations remain to filter or constrain ($\\Delta \\leq 0.55$\\,pp across all four FT groups, with each strategy winning two).\n342\t\n343\t%%% FT Latency %%%\n344\t\n345\t\\paragraph{Fine-Tuned Latency Profiling.}\n346\t\\label{app:ft-latency}\n347\tUnder LoRA fine-tuning (Qwen3-8B, SciERC, 100 documents, RTX PRO 6000), per-document inference times are: unconstrained 2.594\\,s, grammar-only 2.637\\,s ($+$1.7\\%), semantic-only 2.625\\,s ($+$1.2\\%), full S1 2.655\\,s ($+$2.3\\%, $p{<}0.0001$ paired $t$-test).\n348\tThe combined overhead is sub-additive (2.3\\% $<$ 1.7\\%$+$1.2\\%) because fine-tuned models produce fewer grammar-first fallback events (the semantic mask conflicts with grammar-valid tokens less often when per-slot predictions are better calibrated), reducing the number of active masking calls per document.\n349\tCompared to the zero-shot regime (Table~\\ref{tab:runtime}), absolute overhead decreases from seconds-scale to milliseconds-scale: the fine-tuned model generates shorter, more structured outputs, compressing total generation time from 8.69\\,s to 2.594\\,s per document."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "93364efe-01e3-43e1-bef0-ca330691a464",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "356ad758-379a-4e3c-9076-d4c2023e94e4",
+            "sourceToolAssistantUUID": "93364efe-01e3-43e1-bef0-ca330691a464",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T13:49:53.385Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me look for the specific explanation of why semantic-only ET increases. Let me check if there's discussion elsewhere:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "356ad758-379a-4e3c-9076-d4c2023e94e4",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FM2orNZMCbJ8NR5T3U",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "48f15aa1-18fc-41e2-9d23-68be4df0eed4",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016ToFdefqKeGuYYTxbFhCKj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1009,
+                "cache_read_input_tokens": 56372,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1009,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T13:49:53.784Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UfHnE5T7vGvh54RJbvjFZ8",
+              "name": "Bash",
+              "input": {
+                "command": "grep -n \"OOV alternative\\|semantic.*ET\\|ET.*semantic\" /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/*.tex 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48f15aa1-18fc-41e2-9d23-68be4df0eed4",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FM2orNZMCbJ8NR5T3U",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "8415ba20-d016-4e3f-8fa4-06b81a1461b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016ToFdefqKeGuYYTxbFhCKj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1009,
+                "cache_read_input_tokens": 56372,
+                "output_tokens": 144,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1009
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 144,
+                    "cache_read_input_tokens": 56372,
+                    "cache_creation_input_tokens": 1009,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1009,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T13:49:53.850Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UfHnE5T7vGvh54RJbvjFZ8",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex:132:% phase2_docred_semantic_only: DR=0.1384, RV=0.2987, ET=0.1044\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex:133:The elevated ET under semantic-only decoding (10.44\\% vs.\\ 8.18\\%\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex:111:% phase2_scierc_semantic_only: DR=0.1165, RV=0.0151, ET=0.004\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex:112:The residual ET under semantic-only arises because the semantic mask constrains type tokens to relation-specific valid sets but cannot enforce vocabulary membership; occasionally the mask excludes the model's preferred valid-vocabulary type, forcing an OOV alternative.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft_4796e8.tex:123:% phase2_scierc_semantic_only: DR=0.1165, RV=0.0151, ET=0.004\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex:17:a \\emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\\,$\\to$\\,0\\%) and a \\emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_550cbf.tex:15:a \\emph{grammar layer} (XGrammar CFG) that eliminates structural violations (RV, ET\\,$\\to$\\,0\\%) and a \\emph{semantic layer} (TypeConstraintProcessor with a stateful entity registry) that enforces domain/range constraints at the token level. % exp_id: phase2_scierc_grammar_only",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8415ba20-d016-4e3f-8fa4-06b81a1461b1",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "ebab2b02-9420-4fe3-8878-89efc6e47d0d",
+            "sourceToolAssistantUUID": "8415ba20-d016-4e3f-8fa4-06b81a1461b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T13:49:55.679Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Good! Now let me check the SciERC draft for the explanation and also verify what's in section 1 about post-hoc:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ebab2b02-9420-4fe3-8878-89efc6e47d0d",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FMCsadEwcBLvgDsDQn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d96cb1fa-36c4-46d2-b45c-3d07018e8726",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016NG1TNvytg6pA8JnLJSEoe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 57381,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 862,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T13:49:56.419Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ErimoBMkQWPEt5twJ4uJxR",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+                "offset": 105,
+                "limit": 15
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d96cb1fa-36c4-46d2-b45c-3d07018e8726",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FMCsadEwcBLvgDsDQn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "d208e311-a08d-4b24-b6a1-4ffcb832461d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016NG1TNvytg6pA8JnLJSEoe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 57381,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 862,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T13:49:56.425Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ErimoBMkQWPEt5twJ4uJxR",
+              "type": "tool_result",
+              "content": "105\t\n106\t% ──────────────────────────────────────────\n107\t%  (c) Enabling dependency\n108\t% ──────────────────────────────────────────\n109\t\\paragraph{Enabling dependency.}\n110\tSemantic-only constraints reduce DR by only 24\\% (15.37\\%\\,$\\to$\\,11.65\\%) and cannot eliminate RV (1.51\\%) or ET (0.40\\%).\n111\t% phase2_scierc_semantic_only: DR=0.1165, RV=0.0151, ET=0.004\n112\tThe residual ET under semantic-only arises because the semantic mask constrains type tokens to relation-specific valid sets but cannot enforce vocabulary membership; occasionally the mask excludes the model's preferred valid-vocabulary type, forcing an OOV alternative.\n113\tUnder full mode, the grammar layer's intersection prevents this, confirming the \\emph{enabling dependency}: without grammar-enforced vocabulary, the semantic layer encounters OOV relation types with no domain/range rules.\n114\tAdding the grammar layer yields a further 92\\% relative reduction (11.65\\%\\,$\\to$\\,0.93\\%).\n115\t% phase2_scierc_full_s1: DR=0.0093\n116\t\n117\t% ──────────────────────────────────────────\n118\t%  (d) S1 vs S2\n119\t% ──────────────────────────────────────────"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d208e311-a08d-4b24-b6a1-4ffcb832461d",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "4c479aed-668d-41bf-b50e-03233767074f",
+            "sourceToolAssistantUUID": "d208e311-a08d-4b24-b6a1-4ffcb832461d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T13:49:56.510Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GnBj1cwo4fERRFbhD22Z84",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex",
+                "offset": 10,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4c479aed-668d-41bf-b50e-03233767074f",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FMCsadEwcBLvgDsDQn",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "18a345ae-3d1a-4d02-9a3d-0ef4dd99facc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_016NG1TNvytg6pA8JnLJSEoe",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 862,
+                "cache_read_input_tokens": 57381,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 862,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T13:49:56.522Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GnBj1cwo4fERRFbhD22Z84",
+              "type": "tool_result",
+              "content": "10\t\n11\tExisting approaches leave a fundamental gap.\n12\tSchema-informed prompting reduces violations by 62\\% on average but is per-relation unreliable (violations for \\textsc{Evaluate-for} actually \\emph{increase} by 5.8\\,pp).\n13\tGrammar-constrained decoding~\\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} guarantees syntactic well-formedness but cannot encode cross-field semantic constraints.\n14\tPost-hoc filtering achieves higher F1 in most zero-shot settings via precision gains, but at the cost of discarding up to 48\\% of predictions including true positives; at high rejection rates (e.g., Mistral DocRED 73.7\\%), it discards the majority of outputs, making it impractical.\n15\tOntoCoDec preserves recall by enforcing constraints during generation rather than discarding non-compliant outputs.\n16\tTraining-based approaches~\\cite{sainz2024gollie,lu2022uie} provide only soft guidance that cannot eliminate violations.\n17\t\n18\tWe propose \\textbf{OntoCoDec} (\\textbf{Onto}logy-\\textbf{Co}mpiled \\textbf{Dec}oding), a framework that compiles an IE ontology into two composable layers of decoding-time constraints.\n19\tThe \\emph{grammar layer} enforces JSON well-formedness and vocabulary validity via XGrammar.\n20\tThe \\emph{semantic layer} maintains a stateful entity registry during generation: as entities are decoded, the registry records type assignments; when relation arguments are generated, dynamic logit masking restricts output to types compatible with the relation's domain/range specification.\n21\tThe layers compose via bitwise AND with an \\emph{enabling dependency}: the grammar layer guarantees vocabulary membership, enabling the semantic layer to look up domain/range rules.\n22\tOn SciERC, OntoCoDec reduces DR violations from 15.37\\% to 0.93\\% ($\\downarrow$94\\%) while remaining F1-neutral ($+$0.13\\,pp).\n23\t\n24\tOur contributions:\n25\t\\begin{enumerate}\n26\t    \\item The first systematic study of ontological constraint violations in LLM-based IE (spanning per-relation tightness analysis, dual-factor characterization, and post-hoc baseline comparison), showing that violation rates are driven by constraint tightness rather than ontology size, and that prompt-level intervention is per-relation unreliable.\n27\t    \\item OntoCoDec, a two-layer compiled constraint framework that is the first to enforce pair-based domain/range type constraints via compiled stateful logit masks during autoregressive IE.\n28\t    Unlike type-constrained decoding in code generation, where output types are statically determined by the grammar, IE requires stateful cross-field constraints because entity type validity depends on the co-occurring relation within each triple.\n29\t    \\item Empirical validation on 3 models $\\times$ 2 datasets: DR $\\downarrow$76--99\\% on SciERC and $\\downarrow$42--90\\% across three models on DocRED, with significant R-F1 gains on DocRED (Qwen $p{<}0.001$, Llama $p{=}0.013$), model-agnostic structural guarantees, composability with fine-tuning (DR\\,$\\leq$\\,0.20\\% at $<$0.6\\,pp F1 cost), and characterization of the CF$\\leftrightarrow$DR trade-off inherent to per-relation enforcement (resolved by fine-tuning to CF\\,$\\leq$\\,1.2\\%)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "18a345ae-3d1a-4d02-9a3d-0ef4dd99facc",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "07f29cf1-9a3b-47da-b2b2-5c11dab58894",
+            "sourceToolAssistantUUID": "18a345ae-3d1a-4d02-9a3d-0ef4dd99facc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T13:49:58.522Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me consolidate my findings. Let me double-check the DocRED numbers for the semantic-only ET issue:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07f29cf1-9a3b-47da-b2b2-5c11dab58894",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FMR4ZWHL5LsdCgCxc2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "de0f3679-a6ab-48f4-9630-60b05dbb94f3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NB3mg1Qzr5coPbVr3pqMtS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1580,
+                "cache_read_input_tokens": 58243,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1580,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T13:49:59.672Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017f4Z8tUbLqrqstxLpfShBA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+                "offset": 30,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de0f3679-a6ab-48f4-9630-60b05dbb94f3",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FMR4ZWHL5LsdCgCxc2",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "bf635167-c1d4-4fa2-92f1-82929c2583df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NB3mg1Qzr5coPbVr3pqMtS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 4,
+                "cache_creation_input_tokens": 1580,
+                "cache_read_input_tokens": 58243,
+                "output_tokens": 161,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1580
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 4,
+                    "output_tokens": 161,
+                    "cache_read_input_tokens": 58243,
+                    "cache_creation_input_tokens": 1580,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1580,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-17T13:49:59.681Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017f4Z8tUbLqrqstxLpfShBA",
+              "type": "tool_result",
+              "content": "30\tUnconstrained\n31\t  & 18.46 & ---\n32\t  & 29.66 & 2.48\n33\t  & 0.10\n34\t  & 7.74  & 58.15 \\\\\n35\tGrammar\n36\t  & 26.17 & $\\uparrow$42\\%\n37\t  & \\textbf{0.03} & \\textbf{0}\n38\t  & 0.07\n39\t  & \\textbf{8.31}  & \\textbf{59.38} \\\\\n40\tSemantic\n41\t  & 13.84 & $\\downarrow$25\\%\n42\t  & 29.87 & 4.22\n43\t  & 1.05\n44\t  & 7.70  & 57.81 \\\\\n45\tFull (S1)\n46\t  & \\textbf{10.21} & $\\downarrow$\\textbf{45\\%}\n47\t  & \\textbf{0.03} & \\textbf{0}\n48\t  & 2.57\n49\t  & 8.23  & 59.37 \\\\"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf635167-c1d4-4fa2-92f1-82929c2583df",
+            "isSidechain": true,
+            "promptId": "86f0449f-7005-49ca-abf9-65c3c3c864fb",
+            "agentId": "a0c3dc8c7b4791bb8",
+            "type": "user",
+            "uuid": "6f256b45-e33d-4736-ab03-5cb9a4cfa41c",
+            "sourceToolAssistantUUID": "bf635167-c1d4-4fa2-92f1-82929c2583df",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart"
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-17T13:50:18.773Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now I have all the information I need. Let me provide the comprehensive report:\n\n---\n\n## Report: Four Review Items Status Check\n\n### **W1 — Beam search discussion in main text**\n**Status: FOUND** ✓\n\n**Finding:** Beam search results ARE present in the paper, but located in the **Appendix**, not in the main text sections 5 or 7.\n\n**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex`, line 59\n\n**Exact Text Found:**\n```\nOn SciERC, beam search eliminates DR for both Qwen (0.93%→0%) and \nLlama (0.08%→0%), and substantially reduces CF (Qwen: 9.90%→0.53%; \nLlama: 6.56%→0.93%).\n```\n\n**Assessment:** The **exact beam search metrics mentioned in R4 SF1 (DR=0%, CF=0.53% on SciERC)** are present—confirming the data is in the paper. However, R4 SF1 required adding 2-3 sentences to the **main text** (§5 or §7), not just the appendix. The main sections only contain:\n- Line 77 in main.tex: \"All main experiments use greedy decoding; preliminary evaluation of nucleus sampling and beam search (Appendices~\\ref{app:sampling},~\\ref{app:beam-search}) suggests compatibility...\"\n- No detailed beam search discussion in §5 (SciERC/DocRED) or §7 (Discussion/Conclusion).\n\n**Verdict:** PARTIALLY FIXED. Beam search results exist but remain confined to Appendix. The requirement for 2-3 sentences in main text has NOT been fully satisfied.\n\n---\n\n### **W2 — Post-hoc framing balance in §1**\n**Status: FOUND (BALANCED STATEMENT PRESENT)** ✓\n\n**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex`, lines 14-15\n\n**Exact Text Found:**\n```\nPost-hoc filtering achieves higher F1 in most zero-shot settings via \nprecision gains, but at the cost of discarding up to 48% of predictions \nincluding true positives; at high rejection rates (e.g., Mistral DocRED \n73.7%), it discards the majority of outputs, making it impractical.\n```\n\n**Assessment:** This sentence **acknowledges post-hoc achieves higher F1** (\"achieves higher F1 in most zero-shot settings\") AND **provides balanced context** about the precision-vs-recall trade-off and practical limitations. The statement directly acknowledges post-hoc's precision advantage while maintaining a balanced framing.\n\n**Additional Support from Appendix:** Line 332 in appendix_discussion.tex further supports this: \"In zero-shot settings, post-hoc F1 is higher in 5/6 groups (precision-dominated).\"\n\n**Verdict:** FIXED. ✓ The balanced statement is present in §1 Introduction.\n\n---\n\n### **W3 — Parse failure excluded analysis for Llama DocRED**\n**Status: FOUND** ✓\n\n**Location:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex`, lines 50-51\n\n**Exact Text Found:**\n```\nParse failures: Qwen DocRED 12→11 (S1 1.10%), Llama DocRED 68→91 (9.1% \nof 998 docs); others ≤1. Violation rates are computed over successfully \nparsed documents; excluding parse failures from the F1 denominator \nrecovers +3.17 pp E-F1 for Llama DocRED (55.01→58.18), confirming that \nthe lower reported F1 is partially attributable to generation truncation \nrather than constraint-induced extraction degradation.\n```\n\n**Assessment:** The statement explicitly addresses the parse-failure-excluded analysis for Llama DocRED:\n- Parse failures: 68→91 (9.1% of 998 docs)\n- F1 recovery when excluded: +3.17 pp (55.01→58.18)\n- Clear attribution to generation truncation, not constraint-induced degradation\n\n**Verdict:** FIXED. ✓ Parse-failure-excluded violation rates are clearly stated.\n\n---\n\n### **W4 — DocRED semantic-only ET +70% explanation**\n**Status: PARTIALLY FIXED** ✓ (explanation present but incomplete)\n\n**Finding:** The data showing ET increase is present, but the explanation of **why** it increases by ~70% is missing from the DocRED discussion.\n\n**Location of Data:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex`, lines 40-42\n\n**Table Data (Semantic mode):**\n```\nSemantic    13.84    29.87    4.22    1.05    7.70    57.81\nUnconstrained   18.46    29.66    2.48    0.10    7.74    58.15\n```\nET increases: 2.48% → 4.22% = **+70.2% relative** (0.74 pp absolute)\n\n**Location of Explanation:** `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex`, lines 111-112\n\n**Exact Text Found:**\n```\nThe residual ET under semantic-only arises because the semantic mask \nconstrains type tokens to relation-specific valid sets but cannot enforce \nvocabulary membership; occasionally the mask excludes the model's preferred \nvalid-vocabulary type, forcing an OOV alternative.\n```\n\n**Assessment:** This explanation **exists in the SciERC section** but NOT in the **DocRED section**. The DocRED discussion (section5_docred_draft.tex, lines 71-74) mentions the enabling dependency but provides NO explanation for why ET increases under semantic-only mode on DocRED, only that it \"fails to eliminate RV (29.87%) or ET (4.22%).\"\n\n**Verdict:** PARTIALLY FIXED. The explanation exists but is in the wrong section (SciERC instead of DocRED). The DocRED section lacks the 1-2 sentence explanation of why semantic-only ET increases by 70%.\n\n---\n\n## Summary Table\n\n| Item | Status | Finding |\n|------|--------|---------|\n| **W1** Beam search in main text | NOT FIXED | Results exist in Appendix only; main text §5/§7 lack 2-3 sentence discussion |\n| **W2** Post-hoc balance in §1 | FIXED ✓ | Balanced statement acknowledging F1 advantage present (line 14-15) |\n| **W3** Llama DocRED parse-failure excluded | FIXED ✓ | +3.17 pp E-F1 recovery data clearly stated (crossmodel section) |\n| **W4** DocRED semantic-only ET +70% explanation | PARTIALLY FIXED | Explanation exists but in SciERC section; DocRED section lacks it |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6f256b45-e33d-4736-ab03-5cb9a4cfa41c",
+            "isSidechain": true,
+            "agentId": "a0c3dc8c7b4791bb8",
+            "requestId": "req_011Cb8FMdr1DstUMqpTqyAEE",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7f81cb29-2d40-435b-8ba4-b2e86e9365b1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/director_8494441a",
+            "sessionId": "baf094ef-5db5-4d5c-a672-693fc11e1506",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "luminous-jingling-engelbart",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01NzMZZ3miFXGb8H67HobsMu",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 574,
+                "cache_read_input_tokens": 59823,
+                "output_tokens": 1821,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 574
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 1821,
+                    "cache_read_input_tokens": 59823,
+                    "cache_creation_input_tokens": 574,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 574,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000053"
+        }
+      ],
+      "message_count": 53
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-check-whether-several-supposedly-fixed-issues-are-actually-fixed-in.md"
+}

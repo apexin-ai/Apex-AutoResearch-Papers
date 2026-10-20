@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.0",
+  "id": "639e326ef6c561bc0ade",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need you to verify if the Qwen constrained dry-run v2 output has any Role of Violation (RoV). RoV means a predicted ro",
+  "task_key": "agent-a9888146d7edcd796",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a9888146d7edcd796.jsonl",
+    "occurrence": 1,
+    "bytes": 569002,
+    "sha256": "e339cad4bbe02c9ee5e9e199471f97bbd60f63c73712cb9426ec5d5e8f0ef635"
+  },
+  "statistics": {
+    "messages": 174,
+    "user_turns": 1,
+    "tool_calls": 62,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 48,
+      "tool_call": 62,
+      "tool_result": 62
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 174,
+      "chunks": [
+        {
+          "path": "639e326ef6c561bc0ade-part-0001.json",
+          "message_count": 174
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-you-to-verify-if-the-qwen-constrained-dry-run-v2-output-has-any-role-of.md"
+}

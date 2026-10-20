@@ -1,0 +1,1417 @@
+{
+  "schema_version": "1.0",
+  "id": "4254fd052bf6c0ddf348",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/, find the cod",
+  "task_key": "agent-aa5a3385f8631d543",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-aa5a3385f8631d543.jsonl",
+    "occurrence": 1,
+    "bytes": 98438,
+    "sha256": "1f1544eac996864e0af1aaefa1f36e179a5babcd0203f8b6d8bcfe263667591c"
+  },
+  "statistics": {
+    "messages": 29,
+    "user_turns": 1,
+    "tool_calls": 11,
+    "roles": {
+      "user": 1,
+      "assistant": 6,
+      "tool_call": 11,
+      "tool_result": 11
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T18:18:58.812Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/, find the code that computes violation rates (DR_pct, RV_pct, ET_pct, domain_range_violation_rate, etc.). I need to understand:\n1. What is the denominator for these rates - is it total_triples/total_relations from successfully parsed documents only, or from all documents?\n2. How parse_failures are handled in the calculation\n\nLook in artifacts/ directory and also check if there's source code on the server path /root/schema_semantic_constrained_ie/ that might be referenced. Search for files like checker.py, evaluate.py, violation_checker.py, schema_checker.py, or similar."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "7a77dbcf-7c06-43cf-a08c-8da32c478ad6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T18:19:00.121Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you find and understand the violation rate computation code. Let me search through the project structure systematically."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a77dbcf-7c06-43cf-a08c-8da32c478ad6",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4QS2Eyzvk3Su7EcQK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ec265331-902f-43ee-9686-0dd9c827f18a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Ss3ZXz4UDtEw8WGdjoGea1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16912,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16912,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T18:19:00.380Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P2heVeWYRmio4BisxCZxdn",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ec265331-902f-43ee-9686-0dd9c827f18a",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4QS2Eyzvk3Su7EcQK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "51842d99-2090-483f-b5f0-2aa1f35f5335",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Ss3ZXz4UDtEw8WGdjoGea1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16912,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 16912,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 6,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T18:19:00.404Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P2heVeWYRmio4BisxCZxdn",
+              "type": "tool_result",
+              "content": "artifacts/analyze_ontology_docred.py\nartifacts/violation_checker_docred.py\nartifacts/run_extraction_docred.py\nviolation_checker.py\nviolation_checker_docred.py\nrun_extraction_docred.py\ncompiler/ontology_compiler.py\ncompiler/test_type_mask.py\ncompiler/__init__.py\nartifacts/compare_prompts.py\ncompiler/tests/__init__.py\ncompiler/tests/test_e2e.py\nartifacts/run_constrained_extraction.py\ncompiler/type_mask_processor.py\nanalyze_cf_violations.py\nfigures/paper/gen_fig1_overview.py\nfigures/paper/gen_fig2_per_relation_dr.py\nartifacts/llama_docred_full_s1/analyze_dr_residual.py\nartifacts/dual_factor_analysis/plot_dual_factor.py\nanalyze_cf_fallback.py\nartifacts/impact_analysis.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "51842d99-2090-483f-b5f0-2aa1f35f5335",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "bd4cd110-64ee-402f-818c-25d2b6fde343",
+            "sourceToolAssistantUUID": "51842d99-2090-483f-b5f0-2aa1f35f5335",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T18:19:00.571Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015tKC12oHQFqjFeM7oJLX6Z",
+              "name": "Bash",
+              "input": {
+                "command": "find /root/schema_semantic_constrained_ie -type f -name \"*.py\" 2>/dev/null | head -20"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd4cd110-64ee-402f-818c-25d2b6fde343",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4QS2Eyzvk3Su7EcQK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5f9ac4f3-5dcf-4bef-8268-8a837ad8d89e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Ss3ZXz4UDtEw8WGdjoGea1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 16912,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 189,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16912
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 189,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 16912,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 16912,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T18:19:00.639Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015tKC12oHQFqjFeM7oJLX6Z",
+              "type": "tool_result",
+              "content": "(Bash completed with no output)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5f9ac4f3-5dcf-4bef-8268-8a837ad8d89e",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "755ebabd-d03e-4842-8ee0-6ae24452b08e",
+            "sourceToolAssistantUUID": "5f9ac4f3-5dcf-4bef-8268-8a837ad8d89e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T18:19:01.791Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me search for the key violation checking files and understand the calculation:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "755ebabd-d03e-4842-8ee0-6ae24452b08e",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4YAMkXbv9AWCLzFDf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "87edb4df-ba9d-4f77-ac77-ab6d149b4b42",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013jSLoetKr3HY959oUs15dV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1315,
+                "cache_read_input_tokens": 16912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1315,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T18:19:02.434Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017uoP9E2iEkMwKWyqeMBepa",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/violation_checker.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87edb4df-ba9d-4f77-ac77-ab6d149b4b42",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4YAMkXbv9AWCLzFDf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6ef9e42f-5a2a-4707-b3de-8c9ad373eb6a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013jSLoetKr3HY959oUs15dV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1315,
+                "cache_read_input_tokens": 16912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1315,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T18:19:02.451Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017uoP9E2iEkMwKWyqeMBepa",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Check ontology constraint violations in SciERC extraction outputs.\n2\t\n3\tViolation types (mutually exclusive per triple):\n4\t1. entity_type_violations      - entity type not in ontology's valid type list\n5\t2. relation_vocabulary_violations - relation name not in ontology (solvable by grammar-constrained decoding)\n6\t3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\n7\t4. cross_field_consistency_violations - same entity mention has inconsistent types across relations\n8\t\"\"\"\n9\timport argparse\n10\timport json\n11\tfrom collections import defaultdict\n12\tfrom pathlib import Path\n13\t\n14\t\n15\tdef normalize_type(t, valid_types, type_map=None):\n16\t    \"\"\"Case-insensitive type matching with common aliases.\"\"\"\n17\t    if type_map is None:\n18\t        type_map = {\n19\t            \"otherscientificterm\": \"OtherScientificTerm\",\n20\t            \"other-scientificterm\": \"OtherScientificTerm\",\n21\t            \"other_scientific_term\": \"OtherScientificTerm\",\n22\t            \"scientificterm\": \"OtherScientificTerm\",\n23\t            \"other\": \"OtherScientificTerm\",\n24\t        }\n25\t    t_lower = t.strip().lower().replace(\" \", \"\").replace(\"_\", \"\").replace(\"-\", \"\")\n26\t    for vt in valid_types:\n27\t        if t_lower == vt.lower().replace(\" \", \"\").replace(\"_\", \"\").replace(\"-\", \"\"):\n28\t            return vt\n29\t    if t_lower in type_map:\n30\t        return type_map[t_lower]\n31\t    return None\n32\t\n33\t\n34\tdef normalize_relation(rel_name, valid_relation_types):\n35\t    \"\"\"Fuzzy-match a model-output relation name to the nearest ontology relation.\n36\t\n37\t    Match conditions (any one suffices):\n38\t    1. Exact match (case-insensitive, ignoring spaces/hyphens/underscores)\n39\t    2. Token overlap > 80%\n40\t    3. Levenshtein distance <= 2\n41\t\n42\t    Returns: (matched_name, is_fuzzy_match) or (None, False)\n43\t    \"\"\"\n44\t    rel_norm = rel_name.strip().lower().replace(\" \", \"\").replace(\"_\", \"\").replace(\"-\", \"\")\n45\t    for vrt in valid_relation_types:\n46\t        if rel_norm == vrt.lower().replace(\" \", \"\").replace(\"_\", \"\").replace(\"-\", \"\"):\n47\t            return vrt, False\n48\t\n49\t    rel_tokens = set(rel_name.strip().lower().replace(\"-\", \" \").replace(\"_\", \" \").split())\n50\t    for vrt in valid_relation_types:\n51\t        vrt_tokens = set(vrt.lower().replace(\"-\", \" \").replace(\"_\", \" \").split())\n52\t        if rel_tokens and vrt_tokens:\n53\t            overlap = len(rel_tokens & vrt_tokens)\n54\t            union = len(rel_tokens | vrt_tokens)\n55\t            if overlap / union > 0.8:\n56\t                return vrt, True\n57\t\n58\t    for vrt in valid_relation_types:\n59\t        if _levenshtein(rel_name.strip().lower(), vrt.lower()) <= 2:\n60\t            return vrt, True\n61\t\n62\t    return None, False\n63\t\n64\t\n65\tdef _levenshtein(s1, s2):\n66\t    if len(s1) < len(s2):\n67\t        return _levenshtein(s2, s1)\n68\t    if len(s2) == 0:\n69\t        return len(s1)\n70\t    prev_row = range(len(s2) + 1)\n71\t    for i, c1 in enumerate(s1):\n72\t        curr_row = [i + 1]\n73\t        for j, c2 in enumerate(s2):\n74\t            insertions = prev_row[j + 1] + 1\n75\t            deletions = curr_row[j] + 1\n76\t            substitutions = prev_row[j] + (c1 != c2)\n77\t            curr_row.append(min(insertions, deletions, substitutions))\n78\t        prev_row = curr_row\n79\t    return prev_row[-1]\n80\t\n81\t\n82\tdef compute_f1(gold_items, pred_items, key_fn):\n83\t    \"\"\"Compute micro P/R/F1 between gold and predicted item sets.\"\"\"\n84\t    gold_set = set(key_fn(g) for g in gold_items)\n85\t    pred_set = set(key_fn(p) for p in pred_items)\n86\t    tp = len(gold_set & pred_set)\n87\t    p = tp / len(pred_set) if pred_set else 0.0\n88\t    r = tp / len(gold_set) if gold_set else 0.0\n89\t    f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0.0\n90\t    return {\"precision\": round(p, 4), \"recall\": round(r, 4), \"f1\": round(f1, 4),\n91\t            \"tp\": tp, \"gold\": len(gold_set), \"pred\": len(pred_set)}\n92\t\n93\t\n94\tdef check_violations(input_path, constraints_path, output_path):\n95\t    with open(constraints_path) as f:\n96\t        constraints = json.load(f)\n97\t\n98\t    valid_entity_types = constraints[\"entity_types\"]\n99\t    rel_constraints = constraints[\"relation_constraints\"]\n100\t    valid_relation_types = constraints[\"relation_types\"]\n101\t\n102\t    valid_pairs_map = {}\n103\t    for rtype, info in rel_constraints.items():\n104\t        valid_pairs_map[rtype] = set(tuple(p) for p in info[\"valid_pairs\"])\n105\t\n106\t    records = []\n107\t    with open(input_path) as f:\n108\t        for line in f:\n109\t            line = line.strip()\n110\t            if line:\n111\t                records.append(json.loads(line))\n112\t\n113\t    total = len(records)\n114\t    json_fail = 0\n115\t\n116\t    entity_type_violation_examples = []\n117\t    relation_vocab_violation_examples = []\n118\t    domain_range_violation_examples = []\n119\t    consistency_violation_examples = []\n120\t\n121\t    entity_type_violation_count = 0\n122\t    relation_vocab_violation_count = 0\n123\t    domain_range_violation_count = 0\n124\t    consistency_violation_count = 0\n125\t    fuzzy_match_count = 0\n126\t\n127\t    total_pred_entities = 0\n128\t    total_pred_relations = 0\n129\t\n130\t    rel_type_stats = defaultdict(lambda: {\"total\": 0, \"domain_range_violations\": 0})\n131\t    invalid_type_counts = defaultdict(int)\n132\t\n133\t    all_entity_f1 = {\"tp\": 0, \"gold\": 0, \"pred\": 0}\n134\t    all_rel_f1 = {\"tp\": 0, \"gold\": 0, \"pred\": 0}\n135\t\n136\t    for rec in records:\n137\t        parsed = rec.get(\"parsed_output\")\n138\t        if parsed is None:\n139\t            json_fail += 1\n140\t            continue\n141\t\n142\t        entities = parsed.get(\"entities\", [])\n143\t        relations = parsed.get(\"relations\", [])\n144\t        total_pred_entities += len(entities)\n145\t        total_pred_relations += len(relations)\n146\t\n147\t        mention_types = {}\n148\t        for ent in entities:\n149\t            etype = ent.get(\"type\", \"\")\n150\t            normalized = normalize_type(etype, valid_entity_types)\n151\t            if normalized is None:\n152\t                entity_type_violation_count += 1\n153\t                invalid_type_counts[etype] += 1\n154\t                if len(entity_type_violation_examples) < 10:\n155\t                    entity_type_violation_examples.append({\n156\t                        \"doc_id\": rec[\"doc_id\"],\n157\t                        \"entity\": ent.get(\"text\", \"\"),\n158\t                        \"invalid_type\": etype,\n159\t                    })\n160\t            else:\n161\t                text_key = ent.get(\"text\", \"\").lower().strip()\n162\t                mention_types.setdefault(text_key, set()).add(normalized)\n163\t\n164\t        for rel in relations:\n165\t            rtype = rel.get(\"type\", \"\")\n166\t            head_type = rel.get(\"head_type\", \"\")\n167\t            tail_type = rel.get(\"tail_type\", \"\")\n168\t\n169\t            matched_rel, is_fuzzy = normalize_relation(rtype, valid_relation_types)\n170\t\n171\t            if matched_rel is None:\n172\t                relation_vocab_violation_count += 1\n173\t                if len(relation_vocab_violation_examples) < 10:\n174\t                    relation_vocab_violation_examples.append({\n175\t                        \"doc_id\": rec[\"doc_id\"],\n176\t                        \"relation\": rel,\n177\t                        \"reason\": f\"unknown relation type: {rtype}\",\n178\t                    })\n179\t                continue\n180\t\n181\t            if is_fuzzy:\n182\t                fuzzy_match_count += 1\n183\t\n184\t            head_norm = normalize_type(head_type, valid_entity_types)\n185\t            tail_norm = normalize_type(tail_type, valid_entity_types)\n186\t            rel_type_stats[matched_rel][\"total\"] += 1\n187\t\n188\t            if head_norm is None or tail_norm is None:\n189\t                domain_range_violation_count += 1\n190\t                rel_type_stats[matched_rel][\"domain_range_violations\"] += 1\n191\t                if len(domain_range_violation_examples) < 10:\n192\t                    domain_range_violation_examples.append({\n193\t                        \"doc_id\": rec[\"doc_id\"],\n194\t                        \"relation\": rel,\n195\t                        \"matched_relation\": matched_rel,\n196\t                        \"reason\": f\"invalid entity types: head={head_type}, tail={tail_type}\",\n197\t                    })\n198\t                continue\n199\t\n200\t            pair = (head_norm, tail_norm)\n201\t            if pair not in valid_pairs_map.get(matched_rel, set()):\n202\t                domain_range_violation_count += 1\n203\t                rel_type_stats[matched_rel][\"domain_range_violations\"] += 1\n204\t                if len(domain_range_violation_examples) < 10:\n205\t                    domain_range_violation_examples.append({\n206\t                        \"doc_id\": rec[\"doc_id\"],\n207\t                        \"relation\": rel,\n208\t                        \"matched_relation\": matched_rel,\n209\t                        \"reason\": f\"({head_norm}, {tail_norm}) not in valid pairs for {matched_rel}\",\n210\t                    })\n211\t\n212\t            head_text = rel.get(\"head\", \"\").lower().strip()\n213\t            tail_text = rel.get(\"tail\", \"\").lower().strip()\n214\t            if head_norm:\n215\t                mention_types.setdefault(head_text, set()).add(head_norm)\n216\t            if tail_norm:\n217\t                mention_types.setdefault(tail_text, set()).add(tail_norm)\n218\t\n219\t        for mention, types in mention_types.items():\n220\t            if len(types) > 1:\n221\t                consistency_violation_count += 1\n222\t                if len(consistency_violation_examples) < 10:\n223\t                    consistency_violation_examples.append({\n224\t                        \"doc_id\": rec[\"doc_id\"],\n225\t                        \"mention\": mention,\n226\t                        \"conflicting_types\": sorted(types),\n227\t                    })\n228\t\n229\t        # F1 computation\n230\t        gold_ents = rec.get(\"gold_entities\", [])\n231\t        gold_rels = rec.get(\"gold_relations\", [])\n232\t\n233\t        def ent_key(e):\n234\t            return (e.get(\"text\", \"\").lower().strip(), e.get(\"type\", \"\"))\n235\t\n236\t        def rel_key(r):\n237\t            return (r.get(\"head\", \"\").lower().strip(), r.get(\"tail\", \"\").lower().strip(), r.get(\"type\", \"\"))\n238\t\n239\t        norm_pred_ents = []\n240\t        for e in entities:\n241\t            nt = normalize_type(e.get(\"type\", \"\"), valid_entity_types)\n242\t            if nt:\n243\t                norm_pred_ents.append({\"text\": e.get(\"text\", \"\"), \"type\": nt})\n244\t\n245\t        ef1 = compute_f1(gold_ents, norm_pred_ents, ent_key)\n246\t        all_entity_f1[\"tp\"] += ef1[\"tp\"]\n247\t        all_entity_f1[\"gold\"] += ef1[\"gold\"]\n248\t        all_entity_f1[\"pred\"] += ef1[\"pred\"]\n249\t\n250\t        rf1 = compute_f1(gold_rels, relations, rel_key)\n251\t        all_rel_f1[\"tp\"] += rf1[\"tp\"]\n252\t        all_rel_f1[\"gold\"] += rf1[\"gold\"]\n253\t        all_rel_f1[\"pred\"] += rf1[\"pred\"]\n254\t\n255\t    def aggregate_f1(stats):\n256\t        p = stats[\"tp\"] / stats[\"pred\"] if stats[\"pred\"] else 0.0\n257\t        r = stats[\"tp\"] / stats[\"gold\"] if stats[\"gold\"] else 0.0\n258\t        f1 = 2 * p * r / (p + r) if (p + r) > 0 else 0.0\n259\t        return {\"precision\": round(p, 4), \"recall\": round(r, 4), \"f1\": round(f1, 4), **stats}\n260\t\n261\t    total_violations = (entity_type_violation_count + relation_vocab_violation_count\n262\t                        + domain_range_violation_count + consistency_violation_count)\n263\t\n264\t    report = {\n265\t        \"summary\": {\n266\t            \"total_samples\": total,\n267\t            \"total_triples_extracted\": total_pred_relations,\n268\t            \"total_entities_extracted\": total_pred_entities,\n269\t            \"json_parse_failures\": json_fail,\n270\t            \"json_parse_rate\": round((total - json_fail) / total, 4) if total else 0,\n271\t\n272\t            \"entity_type_violations\": entity_type_violation_count,\n273\t            \"entity_type_violation_rate\": round(entity_type_violation_count / total_pred_entities, 4) if total_pred_entities else 0,\n274\t\n275\t            \"relation_vocabulary_violations\": relation_vocab_violation_count,\n276\t            \"relation_vocabulary_violation_rate\": round(relation_vocab_violation_count / total_pred_relations, 4) if total_pred_relations else 0,\n277\t            \"relation_fuzzy_matches\": fuzzy_match_count,\n278\t\n279\t            \"domain_range_violations\": domain_range_violation_count,\n280\t            \"domain_range_violation_rate\": round(domain_range_violation_count / total_pred_relations, 4) if total_pred_relations else 0,\n281\t\n282\t            \"cross_field_consistency_violations\": consistency_violation_count,\n283\t            \"cross_field_consistency_violation_rate\": round(consistency_violation_count / total_pred_entities, 4) if total_pred_entities else 0,\n284\t\n285\t            \"total_violations_any\": total_violations,\n286\t            \"total_violation_rate\": round(total_violations / max(total_pred_entities + total_pred_relations, 1), 4),\n287\t\n288\t            \"go_nogo_metric\": round(domain_range_violation_count / total_pred_relations, 4) if total_pred_relations else 0,\n289\t            \"go_nogo_metric_description\": \"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\",\n290\t        },\n291\t        \"per_relation_type\": {\n292\t            k: {\n293\t                \"total\": v[\"total\"],\n294\t                \"domain_range_violations\": v[\"domain_range_violations\"],\n295\t                \"violation_rate\": round(v[\"domain_range_violations\"] / v[\"total\"], 4) if v[\"total\"] else 0,\n296\t            }\n297\t            for k, v in sorted(rel_type_stats.items())\n298\t        },\n299\t        \"examples\": {\n300\t            \"entity_type_violations\": entity_type_violation_examples[:3],\n301\t            \"relation_vocabulary_violations\": relation_vocab_violation_examples[:3],\n302\t            \"domain_range_violations\": domain_range_violation_examples[:3],\n303\t            \"cross_field_consistency_violations\": consistency_violation_examples[:3],\n304\t        },\n305\t        \"quality\": {\n306\t            \"entity_f1\": aggregate_f1(all_entity_f1),\n307\t            \"relation_f1\": aggregate_f1(all_rel_f1),\n308\t        },\n309\t    }\n310\t\n311\t    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n312\t    with open(output_path, \"w\") as f:\n313\t        json.dump(report, f, indent=2, ensure_ascii=False)\n314\t\n315\t    s = report[\"summary\"]\n316\t    print(\"=== Violation Report (SciERC) ===\")\n317\t    if total:\n318\t        print(f\"Samples: {total}, JSON failures: {json_fail} ({100*json_fail/total:.1f}%)\")\n319\t    print(f\"Entities: {total_pred_entities}, Relations: {total_pred_relations}\")\n320\t    if total_pred_entities:\n321\t        print(f\"\\nEntity type violations: {entity_type_violation_count}/{total_pred_entities} ({100*s['entity_type_violation_rate']:.1f}%)\")\n322\t    if total_pred_relations:\n323\t        print(f\"Relation vocab violations: {relation_vocab_violation_count}/{total_pred_relations} ({100*s['relation_vocabulary_violation_rate']:.1f}%)\")\n324\t        print(f\"Domain/range violations: {domain_range_violation_count}/{total_pred_relations} ({100*s['domain_range_violation_rate']:.1f}%)\")\n325\t    print(f\"Cross-field consistency violations: {consistency_violation_count}\")\n326\t    print(f\"Fuzzy relation matches: {fuzzy_match_count}\")\n327\t    print(f\"\\nGo/No-go metric (D/R violation rate): {s['go_nogo_metric']:.4f}\")\n328\t\n329\t    ef = aggregate_f1(all_entity_f1)\n330\t    rf = aggregate_f1(all_rel_f1)\n331\t    print(f\"\\nEntity F1: P={ef['precision']:.4f} R={ef['recall']:.4f} F1={ef['f1']:.4f}\")\n332\t    print(f\"Relation F1: P={rf['precision']:.4f} R={rf['recall']:.4f} F1={rf['f1']:.4f}\")\n333\t    print(f\"\\nReport saved to {output_path}\")\n334\t\n335\t    return report\n336\t\n337\t\n338\tif __name__ == \"__main__\":\n339\t    parser = argparse.ArgumentParser(description=\"Check ontology constraint violations (SciERC)\")\n340\t    parser.add_argument(\"--input_path\", type=str, default=\"outputs/raw_outputs.jsonl\")\n341\t    parser.add_argument(\"--constraints_path\", type=str, default=\"ontology_constraints.json\")\n342\t    parser.add_argument(\"--output_path\", type=str, default=\"outputs/violation_report.json\")\n343\t    args = parser.parse_args()\n344\t\n345\t    check_violations(args.input_path, args.constraints_path, args.output_path)\n346\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ef9e42f-5a2a-4707-b3de-8c9ad373eb6a",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "6d74922b-9474-47b8-85ec-d881fe04af31",
+            "sourceToolAssistantUUID": "6ef9e42f-5a2a-4707-b3de-8c9ad373eb6a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T18:19:02.883Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011dFkgGtEUWcPxFg6rsxSmf",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/violation_checker_docred.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d74922b-9474-47b8-85ec-d881fe04af31",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4YAMkXbv9AWCLzFDf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "9e54cf7e-9e7a-414c-a37c-3523f8836bc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013jSLoetKr3HY959oUs15dV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1315,
+                "cache_read_input_tokens": 16912,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1315,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T18:19:02.894Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011dFkgGtEUWcPxFg6rsxSmf",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Check ontology constraint violations in DocRED extraction outputs.\n2\t\n3\tViolation types (mutually exclusive per triple):\n4\t1. entity_type_violations      - entity type not in {PER, ORG, LOC, TIME, NUM, MISC}\n5\t2. relation_vocabulary_violations - relation name not in ontology (solvable by grammar-constrained decoding)\n6\t3. domain_range_violations     - relation name valid but (head_type, tail_type) violates constraints (OntoCoDec core target)\n7\t4. cross_field_consistency_violations - same entity mention has inconsistent types across relations\n8\t\"\"\"\n9\t\n10\timport json\n11\timport argparse\n12\tfrom collections import defaultdict, Counter\n13\tfrom pathlib import Path\n14\t\n15\t\n16\tVALID_ENTITY_TYPES = {\"PER\", \"ORG\", \"LOC\", \"TIME\", \"NUM\", \"MISC\"}\n17\t\n18\t\n19\tdef _levenshtein(s1, s2):\n20\t    if len(s1) < len(s2):\n21\t        return _levenshtein(s2, s1)\n22\t    if len(s2) == 0:\n23\t        return len(s1)\n24\t    prev_row = range(len(s2) + 1)\n25\t    for i, c1 in enumerate(s1):\n26\t        curr_row = [i + 1]\n27\t        for j, c2 in enumerate(s2):\n28\t            insertions = prev_row[j + 1] + 1\n29\t            deletions = curr_row[j] + 1\n30\t            substitutions = prev_row[j] + (c1 != c2)\n31\t            curr_row.append(min(insertions, deletions, substitutions))\n32\t        prev_row = curr_row\n33\t    return prev_row[-1]\n34\t\n35\t\n36\tdef load_constraints(path: str) -> dict:\n37\t    with open(path) as f:\n38\t        return json.load(f)\n39\t\n40\t\n41\tdef build_relation_name_to_id(rel_types: dict) -> dict:\n42\t    \"\"\"Map relation name -> relation ID for matching model output.\"\"\"\n43\t    name_to_id = {}\n44\t    for rid, rname in rel_types.items():\n45\t        name_to_id[rname.lower().strip()] = rid\n46\t        name_to_id[rid.lower()] = rid\n47\t    return name_to_id\n48\t\n49\t\n50\tdef normalize_relation(rel_name, rel_types, name_to_id):\n51\t    \"\"\"Fuzzy-match a model-output relation name to the nearest ontology relation.\n52\t\n53\t    Match conditions (any one suffices):\n54\t    1. Exact match via name_to_id (case-insensitive)\n55\t    2. Token overlap > 80%\n56\t    3. Levenshtein distance <= 2 on the relation name\n57\t\n58\t    Returns: (matched_pid, matched_name, is_fuzzy_match) or (None, None, False)\n59\t    \"\"\"\n60\t    rel_key = name_to_id.get(rel_name.lower().strip())\n61\t    if rel_key:\n62\t        return rel_key, rel_types.get(rel_key, rel_name), False\n63\t\n64\t    rel_tokens = set(rel_name.strip().lower().split())\n65\t    best_pid, best_name = None, None\n66\t    best_overlap = 0.0\n67\t    for rid, rname in rel_types.items():\n68\t        rname_tokens = set(rname.lower().split())\n69\t        if rel_tokens and rname_tokens:\n70\t            overlap = len(rel_tokens & rname_tokens)\n71\t            union = len(rel_tokens | rname_tokens)\n72\t            ratio = overlap / union\n73\t            if ratio > 0.8 and ratio > best_overlap:\n74\t                best_overlap = ratio\n75\t                best_pid, best_name = rid, rname\n76\t    if best_pid:\n77\t        return best_pid, best_name, True\n78\t\n79\t    for rid, rname in rel_types.items():\n80\t        if _levenshtein(rel_name.strip().lower(), rname.lower()) <= 2:\n81\t            return rid, rname, True\n82\t\n83\t    return None, None, False\n84\t\n85\t\n86\tdef check_document(parsed, constraints, rel_types, name_to_id):\n87\t    \"\"\"Check violations for one document's parsed output.\n88\t\n89\t    Returns dict with 4 violation lists + fuzzy_match_count.\n90\t    \"\"\"\n91\t    entities = parsed.get(\"entities\", [])\n92\t    relations = parsed.get(\"relations\", [])\n93\t\n94\t    violations = {\n95\t        \"entity_type\": [],\n96\t        \"relation_vocabulary\": [],\n97\t        \"domain_range\": [],\n98\t        \"cross_field_consistency\": [],\n99\t    }\n100\t    fuzzy_matches = 0\n101\t\n102\t    for ent in entities:\n103\t        etype = ent.get(\"type\", \"\")\n104\t        if etype.upper() not in VALID_ENTITY_TYPES:\n105\t            violations[\"entity_type\"].append({\n106\t                \"entity\": ent.get(\"text\", \"?\"),\n107\t                \"invalid_type\": etype,\n108\t            })\n109\t\n110\t    entity_type_assignments = defaultdict(set)\n111\t\n112\t    for rel in relations:\n113\t        head = rel.get(\"head\", \"\")\n114\t        tail = rel.get(\"tail\", \"\")\n115\t        h_type = rel.get(\"head_type\", \"\")\n116\t        t_type = rel.get(\"tail_type\", \"\")\n117\t        rel_type = rel.get(\"type\", \"\")\n118\t\n119\t        if head and h_type:\n120\t            entity_type_assignments[head.lower()].add(h_type.upper())\n121\t        if tail and t_type:\n122\t            entity_type_assignments[tail.lower()].add(t_type.upper())\n123\t\n124\t        if h_type.upper() not in VALID_ENTITY_TYPES:\n125\t            violations[\"entity_type\"].append({\n126\t                \"entity\": head,\n127\t                \"invalid_type\": h_type,\n128\t                \"context\": f\"head of relation '{rel_type}'\",\n129\t            })\n130\t        if t_type.upper() not in VALID_ENTITY_TYPES:\n131\t            violations[\"entity_type\"].append({\n132\t                \"entity\": tail,\n133\t                \"invalid_type\": t_type,\n134\t                \"context\": f\"tail of relation '{rel_type}'\",\n135\t            })\n136\t\n137\t        matched_pid, matched_name, is_fuzzy = normalize_relation(rel_type, rel_types, name_to_id)\n138\t\n139\t        if matched_pid is None:\n140\t            violations[\"relation_vocabulary\"].append({\n141\t                \"head\": head,\n142\t                \"tail\": tail,\n143\t                \"relation\": rel_type,\n144\t                \"reason\": \"unknown_relation_type\",\n145\t            })\n146\t            continue\n147\t\n148\t        if is_fuzzy:\n149\t            fuzzy_matches += 1\n150\t\n151\t        if matched_pid in constraints.get(\"relation_constraints\", {}):\n152\t            valid_pairs = constraints[\"relation_constraints\"][matched_pid][\"valid_pairs\"]\n153\t            pair = [h_type.upper(), t_type.upper()]\n154\t            if pair not in valid_pairs:\n155\t                violations[\"domain_range\"].append({\n156\t                    \"head\": head,\n157\t                    \"tail\": tail,\n158\t                    \"relation\": rel_type,\n159\t                    \"relation_id\": matched_pid,\n160\t                    \"matched_name\": matched_name,\n161\t                    \"head_type\": h_type,\n162\t                    \"tail_type\": t_type,\n163\t                })\n164\t\n165\t    for entity_name, types in entity_type_assignments.items():\n166\t        if len(types) > 1:\n167\t            violations[\"cross_field_consistency\"].append({\n168\t                \"entity\": entity_name,\n169\t                \"conflicting_types\": sorted(types),\n170\t            })\n171\t\n172\t    return violations, fuzzy_matches\n173\t\n174\t\n175\tdef main():\n176\t    parser = argparse.ArgumentParser(description=\"Check ontology constraint violations (DocRED)\")\n177\t    parser.add_argument(\"--input_path\", type=str, default=\"outputs/raw_outputs_docred.jsonl\")\n178\t    parser.add_argument(\"--constraints_path\", type=str, default=\"data/docred/ontology_constraints_docred.json\")\n179\t    parser.add_argument(\"--output_path\", type=str, default=\"outputs/violation_report_docred.json\")\n180\t    args = parser.parse_args()\n181\t\n182\t    constraints = load_constraints(args.constraints_path)\n183\t    rel_types = constraints.get(\"relation_types\", {})\n184\t    name_to_id = build_relation_name_to_id(rel_types)\n185\t\n186\t    records = []\n187\t    with open(args.input_path) as f:\n188\t        for line in f:\n189\t            line = line.strip()\n190\t            if line:\n191\t                records.append(json.loads(line))\n192\t\n193\t    parse_failures = 0\n194\t    total_triples = 0\n195\t    total_entities = 0\n196\t    total_entity_type_violations = 0\n197\t    total_relation_vocab_violations = 0\n198\t    total_domain_range_violations = 0\n199\t    total_cross_field_violations = 0\n200\t    total_fuzzy_matches = 0\n201\t\n202\t    per_relation_totals = defaultdict(int)\n203\t    per_relation_dr_violations = defaultdict(int)\n204\t    per_relation_vocab_violations = defaultdict(int)\n205\t\n206\t    doc_results = []\n207\t\n208\t    for rec in records:\n209\t        doc_id = rec.get(\"doc_id\", \"unknown\")\n210\t        parsed = rec.get(\"parsed_output\")\n211\t        if parsed is None:\n212\t            parse_failures += 1\n213\t            doc_results.append({\"doc_id\": doc_id, \"status\": \"parse_failure\"})\n214\t            continue\n215\t\n216\t        violations, fuzzy_matches = check_document(parsed, constraints, rel_types, name_to_id)\n217\t        relations = parsed.get(\"relations\", [])\n218\t        entities = parsed.get(\"entities\", [])\n219\t\n220\t        n_triples = len(relations)\n221\t        n_entities = len(entities)\n222\t        total_triples += n_triples\n223\t        total_entities += n_entities\n224\t        total_fuzzy_matches += fuzzy_matches\n225\t\n226\t        n_entity_type = len(violations[\"entity_type\"])\n227\t        n_relation_vocab = len(violations[\"relation_vocabulary\"])\n228\t        n_domain_range = len(violations[\"domain_range\"])\n229\t        n_cross_field = len(violations[\"cross_field_consistency\"])\n230\t\n231\t        total_entity_type_violations += n_entity_type\n232\t        total_relation_vocab_violations += n_relation_vocab\n233\t        total_domain_range_violations += n_domain_range\n234\t        total_cross_field_violations += n_cross_field\n235\t\n236\t        for v in violations[\"relation_vocabulary\"]:\n237\t            per_relation_vocab_violations[v.get(\"relation\", \"unknown\")] += 1\n238\t        for v in violations[\"domain_range\"]:\n239\t            rid = v.get(\"relation_id\", v.get(\"relation\", \"unknown\"))\n240\t            per_relation_dr_violations[rid] += 1\n241\t        for rel in relations:\n242\t            rel_type = rel.get(\"type\", \"\")\n243\t            matched_pid, _, _ = normalize_relation(rel_type, rel_types, name_to_id)\n244\t            rid = matched_pid if matched_pid else rel_type\n245\t            per_relation_totals[rid] += 1\n246\t\n247\t        doc_results.append({\n248\t            \"doc_id\": doc_id,\n249\t            \"status\": \"checked\",\n250\t            \"n_triples\": n_triples,\n251\t            \"entity_type_violations\": n_entity_type,\n252\t            \"relation_vocabulary_violations\": n_relation_vocab,\n253\t            \"domain_range_violations\": n_domain_range,\n254\t            \"cross_field_violations\": n_cross_field,\n255\t        })\n256\t\n257\t    n_docs = len(doc_results)\n258\t    docs_checked = n_docs - parse_failures\n259\t\n260\t    per_relation_breakdown = {}\n261\t    all_rels = set(per_relation_totals.keys()) | set(per_relation_dr_violations.keys())\n262\t    for rid in sorted(all_rels):\n263\t        t = per_relation_totals.get(rid, 0)\n264\t        dr = per_relation_dr_violations.get(rid, 0)\n265\t        per_relation_breakdown[rid] = {\n266\t            \"total\": t,\n267\t            \"domain_range_violations\": dr,\n268\t            \"violation_rate\": round(dr / t, 4) if t > 0 else 0.0,\n269\t        }\n270\t\n271\t    total_violations = (total_entity_type_violations + total_relation_vocab_violations\n272\t                        + total_domain_range_violations + total_cross_field_violations)\n273\t\n274\t    entity_type_examples = []\n275\t    relation_vocab_examples = []\n276\t    domain_range_examples = []\n277\t    cross_field_examples = []\n278\t    for d in doc_results:\n279\t        if d.get(\"status\") != \"checked\":\n280\t            continue\n281\t\n282\t    all_examples = {\"entity_type_violations\": [], \"relation_vocabulary_violations\": [],\n283\t                    \"domain_range_violations\": [], \"cross_field_consistency_violations\": []}\n284\t    for rec in records:\n285\t        parsed = rec.get(\"parsed_output\")\n286\t        if parsed is None:\n287\t            continue\n288\t        violations, _ = check_document(parsed, constraints, rel_types, name_to_id)\n289\t        doc_id = rec.get(\"doc_id\", \"unknown\")\n290\t        for v in violations[\"entity_type\"]:\n291\t            if len(all_examples[\"entity_type_violations\"]) < 3:\n292\t                all_examples[\"entity_type_violations\"].append({\"doc_id\": doc_id, **v})\n293\t        for v in violations[\"relation_vocabulary\"]:\n294\t            if len(all_examples[\"relation_vocabulary_violations\"]) < 3:\n295\t                all_examples[\"relation_vocabulary_violations\"].append({\"doc_id\": doc_id, **v})\n296\t        for v in violations[\"domain_range\"]:\n297\t            if len(all_examples[\"domain_range_violations\"]) < 3:\n298\t                all_examples[\"domain_range_violations\"].append({\"doc_id\": doc_id, **v})\n299\t        for v in violations[\"cross_field_consistency\"]:\n300\t            if len(all_examples[\"cross_field_consistency_violations\"]) < 3:\n301\t                all_examples[\"cross_field_consistency_violations\"].append({\"doc_id\": doc_id, **v})\n302\t\n303\t    report = {\n304\t        \"summary\": {\n305\t            \"total_documents\": n_docs,\n306\t            \"documents_checked\": docs_checked,\n307\t            \"parse_failures\": parse_failures,\n308\t            \"json_parse_rate\": round(docs_checked / n_docs, 4) if n_docs else 0,\n309\t            \"total_triples_extracted\": total_triples,\n310\t            \"total_entities_extracted\": total_entities,\n311\t\n312\t            \"entity_type_violations\": total_entity_type_violations,\n313\t            \"entity_type_violation_rate\": round(total_entity_type_violations / total_entities, 4) if total_entities else 0,\n314\t\n315\t            \"relation_vocabulary_violations\": total_relation_vocab_violations,\n316\t            \"relation_vocabulary_violation_rate\": round(total_relation_vocab_violations / total_triples, 4) if total_triples else 0,\n317\t            \"relation_fuzzy_matches\": total_fuzzy_matches,\n318\t\n319\t            \"domain_range_violations\": total_domain_range_violations,\n320\t            \"domain_range_violation_rate\": round(total_domain_range_violations / total_triples, 4) if total_triples else 0,\n321\t\n322\t            \"cross_field_consistency_violations\": total_cross_field_violations,\n323\t            \"cross_field_consistency_violation_rate\": round(total_cross_field_violations / total_entities, 4) if total_entities else 0,\n324\t\n325\t            \"total_violations_any\": total_violations,\n326\t            \"total_violation_rate\": round(total_violations / max(total_entities + total_triples, 1), 4),\n327\t\n328\t            \"go_nogo_metric\": round(total_domain_range_violations / total_triples, 4) if total_triples else 0,\n329\t            \"go_nogo_metric_description\": \"per-triple domain_range_violation_rate (excludes relation_vocabulary_violations)\",\n330\t        },\n331\t        \"per_relation_type\": per_relation_breakdown,\n332\t        \"examples\": all_examples,\n333\t        \"per_document_details\": doc_results,\n334\t    }\n335\t\n336\t    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\n337\t    with open(args.output_path, \"w\") as f:\n338\t        json.dump(report, f, indent=2, ensure_ascii=False)\n339\t\n340\t    s = report[\"summary\"]\n341\t    print(\"=== Violation Report (DocRED) ===\")\n342\t    print(f\"Documents: {docs_checked} checked, {parse_failures} parse failures\")\n343\t    print(f\"Entities: {total_entities}, Triples: {total_triples}\")\n344\t    print(f\"\\nEntity type violations: {total_entity_type_violations} ({100*s['entity_type_violation_rate']:.1f}%)\")\n345\t    print(f\"Relation vocab violations: {total_relation_vocab_violations}/{total_triples} ({100*s['relation_vocabulary_violation_rate']:.1f}%)\")\n346\t    print(f\"Domain/range violations: {total_domain_range_violations}/{total_triples} ({100*s['domain_range_violation_rate']:.1f}%)\")\n347\t    print(f\"Cross-field consistency violations: {total_cross_field_violations}\")\n348\t    print(f\"Fuzzy relation matches: {total_fuzzy_matches}\")\n349\t    print(f\"\\nGo/No-go metric (D/R violation rate): {s['go_nogo_metric']:.4f}\")\n350\t    print(f\"Output: {args.output_path}\")\n351\t\n352\t\n353\tif __name__ == \"__main__\":\n354\t    main()\n355\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9e54cf7e-9e7a-414c-a37c-3523f8836bc9",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "6a220842-f922-49dc-ac7f-a3b6f8632639",
+            "sourceToolAssistantUUID": "9e54cf7e-9e7a-414c-a37c-3523f8836bc9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T18:19:03.507Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0166sGFF2JjwnVuQkaBozFwr",
+              "name": "Grep",
+              "input": {
+                "pattern": "DR_pct|RV_pct|ET_pct|domain_range_violation_rate|parse_failure",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "type": "py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6a220842-f922-49dc-ac7f-a3b6f8632639",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4YAMkXbv9AWCLzFDf",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "faaf111c-1e20-4f18-a721-a65882d66e62",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_013jSLoetKr3HY959oUs15dV",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1315,
+                "cache_read_input_tokens": 16912,
+                "output_tokens": 302,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1315
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 302,
+                    "cache_read_input_tokens": 16912,
+                    "cache_creation_input_tokens": 1315,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1315,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T18:19:03.540Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0166sGFF2JjwnVuQkaBozFwr",
+              "type": "tool_result",
+              "content": "Found 6 files\nanalyze_cf_fallback.py\nartifacts/dual_factor_analysis/plot_dual_factor.py\nartifacts/compare_prompts.py\nviolation_checker_docred.py\nviolation_checker.py\nartifacts/violation_checker_docred.py"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "faaf111c-1e20-4f18-a721-a65882d66e62",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "26075a27-5b82-45a3-868a-b8153921b81e",
+            "sourceToolAssistantUUID": "faaf111c-1e20-4f18-a721-a65882d66e62",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T18:19:04.744Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I found the key files. Let me also check the artifacts version to see if there are any differences:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "26075a27-5b82-45a3-868a-b8153921b81e",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4kfvvBZfWmqinCRDZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dc9733ca-92db-473a-a671-3d5961a4bc89",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011GvjWGEXHjd6oys3XuzLxc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10700,
+                "cache_read_input_tokens": 18227,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10700,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T18:19:05.656Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01D8tY4Xsc8izGZGBNQEdxD6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/violation_checker_docred.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dc9733ca-92db-473a-a671-3d5961a4bc89",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4kfvvBZfWmqinCRDZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "68c051d6-d1b4-4932-8bb1-78116f2792b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011GvjWGEXHjd6oys3XuzLxc",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10700,
+                "cache_read_input_tokens": 18227,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 10700,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T18:19:05.672Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01D8tY4Xsc8izGZGBNQEdxD6",
+              "type": "tool_result",
+              "content": "1\t\"\"\"\n2\tCheck ontology constraint violations in DocRED extraction outputs.\n3\t\n4\tInput:  outputs/raw_outputs_docred.jsonl, data/docred/ontology_constraints_docred.json\n5\tOutput: outputs/violation_report_docred.json\n6\t\n7\tThree violation types:\n8\t1. Entity type validity  – entity type not in {PER, ORG, LOC, TIME, NUM, MISC}\n9\t2. Relation domain/range – (head_type, tail_type) not in valid_pairs for that relation\n10\t3. Cross-field consistency – same entity mention assigned different types across relations\n11\t\"\"\"\n12\t\n13\timport json\n14\timport argparse\n15\tfrom collections import defaultdict, Counter\n16\tfrom pathlib import Path\n17\t\n18\t\n19\tVALID_ENTITY_TYPES = {\"PER\", \"ORG\", \"LOC\", \"TIME\", \"NUM\", \"MISC\"}\n20\t\n21\t\n22\tdef load_constraints(path: str) -> dict:\n23\t    with open(path) as f:\n24\t        return json.load(f)\n25\t\n26\t\n27\tdef build_relation_name_to_id(rel_types: dict) -> dict:\n28\t    \"\"\"Map relation name -> relation ID for matching model output.\"\"\"\n29\t    name_to_id = {}\n30\t    for rid, rname in rel_types.items():\n31\t        name_to_id[rname.lower().strip()] = rid\n32\t        name_to_id[rid.lower()] = rid\n33\t    return name_to_id\n34\t\n35\t\n36\tdef check_document(parsed: dict, constraints: dict, name_to_id: dict) -> dict:\n37\t    \"\"\"Check violations for one document's parsed output.\n38\t\n39\t    Returns dict with violation counts and details.\n40\t    \"\"\"\n41\t    entities = parsed.get(\"entities\", [])\n42\t    relations = parsed.get(\"relations\", [])\n43\t\n44\t    violations = {\n45\t        \"entity_type\": [],\n46\t        \"relation_domain_range\": [],\n47\t        \"cross_field_consistency\": [],\n48\t    }\n49\t\n50\t    # 1. Entity type validity\n51\t    for ent in entities:\n52\t        etype = ent.get(\"type\", \"\")\n53\t        if etype.upper() not in VALID_ENTITY_TYPES:\n54\t            violations[\"entity_type\"].append({\n55\t                \"entity\": ent.get(\"text\", \"?\"),\n56\t                \"invalid_type\": etype,\n57\t            })\n58\t\n59\t    # Collect entity type assignments from relations for cross-field check\n60\t    entity_type_assignments = defaultdict(set)\n61\t\n62\t    for rel in relations:\n63\t        head = rel.get(\"head\", \"\")\n64\t        tail = rel.get(\"tail\", \"\")\n65\t        h_type = rel.get(\"head_type\", \"\")\n66\t        t_type = rel.get(\"tail_type\", \"\")\n67\t        rel_type = rel.get(\"type\", \"\")\n68\t\n69\t        # Track type assignments\n70\t        if head and h_type:\n71\t            entity_type_assignments[head.lower()].add(h_type.upper())\n72\t        if tail and t_type:\n73\t            entity_type_assignments[tail.lower()].add(t_type.upper())\n74\t\n75\t        # 1b. Entity type validity for relation-level types\n76\t        if h_type.upper() not in VALID_ENTITY_TYPES:\n77\t            violations[\"entity_type\"].append({\n78\t                \"entity\": head,\n79\t                \"invalid_type\": h_type,\n80\t                \"context\": f\"head of relation '{rel_type}'\",\n81\t            })\n82\t        if t_type.upper() not in VALID_ENTITY_TYPES:\n83\t            violations[\"entity_type\"].append({\n84\t                \"entity\": tail,\n85\t                \"invalid_type\": t_type,\n86\t                \"context\": f\"tail of relation '{rel_type}'\",\n87\t            })\n88\t\n89\t        # 2. Relation domain/range\n90\t        rel_key = name_to_id.get(rel_type.lower().strip())\n91\t        if rel_key and rel_key in constraints.get(\"relation_constraints\", {}):\n92\t            valid_pairs = constraints[\"relation_constraints\"][rel_key][\"valid_pairs\"]\n93\t            pair = [h_type.upper(), t_type.upper()]\n94\t            if pair not in valid_pairs:\n95\t                violations[\"relation_domain_range\"].append({\n96\t                    \"head\": head,\n97\t                    \"tail\": tail,\n98\t                    \"relation\": rel_type,\n99\t                    \"relation_id\": rel_key,\n100\t                    \"head_type\": h_type,\n101\t                    \"tail_type\": t_type,\n102\t                    \"valid_pairs\": valid_pairs,\n103\t                })\n104\t        elif rel_key is None:\n105\t            # Unknown relation type – counts as domain/range violation\n106\t            violations[\"relation_domain_range\"].append({\n107\t                \"head\": head,\n108\t                \"tail\": tail,\n109\t                \"relation\": rel_type,\n110\t                \"relation_id\": None,\n111\t                \"head_type\": h_type,\n112\t                \"tail_type\": t_type,\n113\t                \"reason\": \"unknown_relation_type\",\n114\t            })\n115\t\n116\t    # 3. Cross-field consistency\n117\t    for entity_name, types in entity_type_assignments.items():\n118\t        if len(types) > 1:\n119\t            violations[\"cross_field_consistency\"].append({\n120\t                \"entity\": entity_name,\n121\t                \"assigned_types\": sorted(types),\n122\t            })\n123\t\n124\t    return violations\n125\t\n126\t\n127\tdef compute_per_triple_violation(relations: list, violations: dict) -> dict:\n128\t    \"\"\"Compute per-triple violation rate.\"\"\"\n129\t    n_triples = len(relations)\n130\t    if n_triples == 0:\n131\t        return {\"total_triples\": 0, \"violated_triples\": 0, \"rate\": 0.0}\n132\t\n133\t    # A triple is violated if it has entity type or domain/range violation\n134\t    violated_indices = set()\n135\t\n136\t    # Entity type violations in relation context\n137\t    for v in violations[\"entity_type\"]:\n138\t        if \"context\" in v:\n139\t            # Find the triple index - mark all triples as we check per-triple\n140\t            for i, rel in enumerate(relations):\n141\t                h = rel.get(\"head\", \"\")\n142\t                t = rel.get(\"tail\", \"\")\n143\t                if v[\"entity\"] in (h, t):\n144\t                    violated_indices.add(i)\n145\t\n146\t    # Domain/range violations\n147\t    for v in violations[\"relation_domain_range\"]:\n148\t        for i, rel in enumerate(relations):\n149\t            if (rel.get(\"head\", \"\") == v[\"head\"]\n150\t                    and rel.get(\"tail\", \"\") == v[\"tail\"]\n151\t                    and rel.get(\"type\", \"\") == v[\"relation\"]):\n152\t                violated_indices.add(i)\n153\t\n154\t    return {\n155\t        \"total_triples\": n_triples,\n156\t        \"violated_triples\": len(violated_indices),\n157\t        \"rate\": round(len(violated_indices) / n_triples, 4),\n158\t    }\n159\t\n160\t\n161\tdef main():\n162\t    parser = argparse.ArgumentParser()\n163\t    parser.add_argument(\"--input_path\", default=\"outputs/raw_outputs_docred.jsonl\")\n164\t    parser.add_argument(\"--constraints_path\",\n165\t                        default=\"data/docred/ontology_constraints_docred.json\")\n166\t    parser.add_argument(\"--output_path\", default=\"outputs/violation_report_docred.json\")\n167\t    args = parser.parse_args()\n168\t\n169\t    constraints = load_constraints(args.constraints_path)\n170\t    name_to_id = build_relation_name_to_id(constraints.get(\"relation_types\", {}))\n171\t\n172\t    # Process each document\n173\t    doc_results = []\n174\t    total_triples = 0\n175\t    total_violated = 0\n176\t    total_entity_type_violations = 0\n177\t    total_domain_range_violations = 0\n178\t    total_cross_field_violations = 0\n179\t    parse_failures = 0\n180\t    per_relation_violations = Counter()\n181\t    per_relation_totals = Counter()\n182\t\n183\t    with open(args.input_path) as f:\n184\t        for line in f:\n185\t            record = json.loads(line)\n186\t            parsed = record.get(\"parsed_output\")\n187\t            doc_id = record.get(\"doc_id\", \"?\")\n188\t\n189\t            if parsed is None:\n190\t                parse_failures += 1\n191\t                doc_results.append({\n192\t                    \"doc_id\": doc_id,\n193\t                    \"status\": \"parse_failure\",\n194\t                })\n195\t                continue\n196\t\n197\t            violations = check_document(parsed, constraints, name_to_id)\n198\t            relations = parsed.get(\"relations\", [])\n199\t            triple_stats = compute_per_triple_violation(relations, violations)\n200\t\n201\t            total_triples += triple_stats[\"total_triples\"]\n202\t            total_violated += triple_stats[\"violated_triples\"]\n203\t            total_entity_type_violations += len(violations[\"entity_type\"])\n204\t            total_domain_range_violations += len(violations[\"relation_domain_range\"])\n205\t            total_cross_field_violations += len(violations[\"cross_field_consistency\"])\n206\t\n207\t            # Per-relation tracking\n208\t            for v in violations[\"relation_domain_range\"]:\n209\t                rid = v.get(\"relation_id\") or v.get(\"relation\", \"unknown\")\n210\t                per_relation_violations[rid] += 1\n211\t            for rel in relations:\n212\t                rel_type = rel.get(\"type\", \"\")\n213\t                rid = name_to_id.get(rel_type.lower().strip(), rel_type)\n214\t                per_relation_totals[rid] += 1\n215\t\n216\t            doc_results.append({\n217\t                \"doc_id\": doc_id,\n218\t                \"status\": \"checked\",\n219\t                \"n_triples\": triple_stats[\"total_triples\"],\n220\t                \"n_violated\": triple_stats[\"violated_triples\"],\n221\t                \"violation_rate\": triple_stats[\"rate\"],\n222\t                \"entity_type_violations\": len(violations[\"entity_type\"]),\n223\t                \"domain_range_violations\": len(violations[\"relation_domain_range\"]),\n224\t                \"cross_field_violations\": len(violations[\"cross_field_consistency\"]),\n225\t                \"violation_details\": violations,\n226\t            })\n227\t\n228\t    # Per-relation breakdown\n229\t    per_relation_breakdown = {}\n230\t    all_rels = set(per_relation_totals.keys()) | set(per_relation_violations.keys())\n231\t    for rid in sorted(all_rels):\n232\t        t = per_relation_totals[rid]\n233\t        v = per_relation_violations[rid]\n234\t        per_relation_breakdown[rid] = {\n235\t            \"total\": t,\n236\t            \"violations\": v,\n237\t            \"rate\": round(v / t, 4) if t > 0 else 0.0,\n238\t        }\n239\t\n240\t    n_docs = len(doc_results)\n241\t    docs_with_violations = sum(\n242\t        1 for d in doc_results if d.get(\"n_violated\", 0) > 0\n243\t    )\n244\t\n245\t    report = {\n246\t        \"summary\": {\n247\t            \"total_documents\": n_docs,\n248\t            \"parse_failures\": parse_failures,\n249\t            \"documents_checked\": n_docs - parse_failures,\n250\t            \"documents_with_violations\": docs_with_violations,\n251\t            \"per_document_violation_rate\": round(\n252\t                docs_with_violations / (n_docs - parse_failures), 4\n253\t            ) if (n_docs - parse_failures) > 0 else 0.0,\n254\t            \"total_triples\": total_triples,\n255\t            \"violated_triples\": total_violated,\n256\t            \"per_triple_violation_rate\": round(\n257\t                total_violated / total_triples, 4\n258\t            ) if total_triples > 0 else 0.0,\n259\t            \"entity_type_violations\": total_entity_type_violations,\n260\t            \"domain_range_violations\": total_domain_range_violations,\n261\t            \"cross_field_violations\": total_cross_field_violations,\n262\t        },\n263\t        \"per_relation_breakdown\": per_relation_breakdown,\n264\t        \"per_document_details\": doc_results,\n265\t    }\n266\t\n267\t    Path(args.output_path).parent.mkdir(parents=True, exist_ok=True)\n268\t    with open(args.output_path, \"w\") as f:\n269\t        json.dump(report, f, indent=2, ensure_ascii=False)\n270\t\n271\t    s = report[\"summary\"]\n272\t    print(f\"Documents: {s['documents_checked']} checked, {s['parse_failures']} parse failures\")\n273\t    print(f\"Triples: {s['total_triples']} total, {s['violated_triples']} violated\")\n274\t    print(f\"Per-triple violation rate: {s['per_triple_violation_rate']:.2%}\")\n275\t    print(f\"Per-document violation rate: {s['per_document_violation_rate']:.2%}\")\n276\t    print(f\"  Entity type violations: {s['entity_type_violations']}\")\n277\t    print(f\"  Domain/range violations: {s['domain_range_violations']}\")\n278\t    print(f\"  Cross-field violations: {s['cross_field_violations']}\")\n279\t    print(f\"Output: {args.output_path}\")\n280\t\n281\t\n282\tif __name__ == \"__main__\":\n283\t    main()\n284\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "68c051d6-d1b4-4932-8bb1-78116f2792b7",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "882d1b97-c294-4f08-94ac-f5277d709421",
+            "sourceToolAssistantUUID": "68c051d6-d1b4-4932-8bb1-78116f2792b7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T18:19:06.166Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015cayffvMYnKr22S5NuwCfH",
+              "name": "Grep",
+              "input": {
+                "pattern": "total_triples|total_entities|parse_failures|violated_triples|total_pred",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "type": "py",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "882d1b97-c294-4f08-94ac-f5277d709421",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4kfvvBZfWmqinCRDZ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ad1f0c7f-16b3-448f-80cd-19f3e9501a1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_011GvjWGEXHjd6oys3XuzLxc",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 10700,
+                "cache_read_input_tokens": 18227,
+                "output_tokens": 254,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10700
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 254,
+                    "cache_read_input_tokens": 18227,
+                    "cache_creation_input_tokens": 10700,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 10700,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T18:19:06.192Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015cayffvMYnKr22S5NuwCfH",
+              "type": "tool_result",
+              "content": "artifacts/analyze_ontology_docred.py:35:    total_triples = 0\nartifacts/analyze_ontology_docred.py:49:            total_triples += 1\nartifacts/analyze_ontology_docred.py:77:            \"total_triples\": total_triples,\nartifacts/analyze_ontology_docred.py:119:    print(f\"Triples analyzed: {s['total_triples']}\")\nartifacts/impact_analysis.py:85:        \"total_triples\": total,\nartifacts/impact_analysis.py:99:    print(\"  Total triples:                          {}\".format(r[\"total_triples\"]))\nartifacts/violation_checker_docred.py:131:        return {\"total_triples\": 0, \"violated_triples\": 0, \"rate\": 0.0}\nartifacts/violation_checker_docred.py:155:        \"total_triples\": n_triples,\nartifacts/violation_checker_docred.py:156:        \"violated_triples\": len(violated_indices),\nartifacts/violation_checker_docred.py:174:    total_triples = 0\nartifacts/violation_checker_docred.py:179:    parse_failures = 0\nartifacts/violation_checker_docred.py:190:                parse_failures += 1\nartifacts/violation_checker_docred.py:201:            total_triples += triple_stats[\"total_triples\"]\nartifacts/violation_checker_docred.py:202:            total_violated += triple_stats[\"violated_triples\"]\nartifacts/violation_checker_docred.py:219:                \"n_triples\": triple_stats[\"total_triples\"],\nartifacts/violation_checker_docred.py:220:                \"n_violated\": triple_stats[\"violated_triples\"],\nartifacts/violation_checker_docred.py:248:            \"parse_failures\": parse_failures,\nartifacts/violation_checker_docred.py:249:            \"documents_checked\": n_docs - parse_failures,\nartifacts/violation_checker_docred.py:252:                docs_with_violations / (n_docs - parse_failures), 4\nartifacts/violation_checker_docred.py:253:            ) if (n_docs - parse_failures) > 0 else 0.0,\nartifacts/violation_checker_docred.py:254:            \"total_triples\": total_triples,\nartifacts/violation_checker_docred.py:255:            \"violated_triples\": total_violated,\nartifacts/violation_checker_docred.py:257:                total_violated / total_triples, 4\nartifacts/violation_checker_docred.py:258:            ) if total_triples > 0 else 0.0,\nartifacts/violation_checker_docred.py:272:    print(f\"Documents: {s['documents_checked']} checked, {s['parse_failures']} parse failures\")\nartifacts/violation_checker_docred.py:273:    print(f\"Triples: {s['total_triples']} total, {s['violated_triples']} violated\")\nviolation_checker.py:127:    total_pred_entities = 0\nviolation_checker.py:128:    total_pred_relations = 0\nviolation_checker.py:144:        total_pred_entities += len(entities)\nviolation_checker.py:145:        total_pred_relations += len(relations)\nviolation_checker.py:267:            \"total_triples_extracted\": total_pred_relations,\nviolation_checker.py:268:            \"total_entities_extracted\": total_pred_entities,\nviolation_checker.py:269:            \"json_parse_failures\": json_fail,\nviolation_checker.py:273:            \"entity_type_violation_rate\": round(entity_type_violation_count / total_pred_entities, 4) if total_pred_entities else 0,\nviolation_checker.py:276:            \"relation_vocabulary_violation_rate\": round(relation_vocab_violation_count / total_pred_relations, 4) if total_pred_relations else 0,\nviolation_checker.py:280:            \"domain_range_violation_rate\": round(domain_range_violation_count / total_pred_relations, 4) if total_pred_relations else 0,\nviolation_checker.py:283:            \"cross_field_consistency_violation_rate\": round(consistency_violation_count / total_pred_entities, 4) if total_pred_entities else 0,\nviolation_checker.py:286:            \"total_violation_rate\": round(total_violations / max(total_pred_entities + total_pred_relations, 1), 4),\nviolation_checker.py:288:            \"go_nogo_metric\": round(domain_range_violation_count / total_pred_relations, 4) if total_pred_relations else 0,\nviolation_checker.py:319:    print(f\"Entities: {total_pred_entities}, Relations: {total_pred_relations}\")\nviolation_checker.py:320:    if total_pred_entities:\nviolation_checker.py:321:        print(f\"\\nEntity type violations: {entity_type_violation_count}/{total_pred_entities} ({100*s['entity_type_violation_rate']:.1f}%)\")\nviolation_checker.py:322:    if total_pred_relations:\nviolation_checker.py:323:        print(f\"Relation vocab violations: {relation_vocab_violation_count}/{total_pred_relations} ({100*s['relation_vocabulary_violation_rate']:.1f}%)\")\nviolation_checker.py:324:        print(f\"Domain/range violations: {domain_range_violation_count}/{total_pred_relations} ({100*s['domain_range_violation_rate']:.1f}%)\")\nviolation_checker_docred.py:193:    parse_failures = 0\nviolation_checker_docred.py:194:    total_triples = 0\nviolation_checker_docred.py:195:    total_entities = 0\nviolation_checker_docred.py:212:            parse_failures += 1\nviolation_checker_docred.py:222:        total_triples += n_triples\nviolation_checker_docred.py:223:        total_entities += n_entities\nviolation_checker_docred.py:258:    docs_checked = n_docs - parse_failures\nviolation_checker_docred.py:307:            \"parse_failures\": parse_failures,\nviolation_checker_docred.py:309:            \"total_triples_extracted\": total_triples,\nviolation_checker_docred.py:310:            \"total_entities_extracted\": total_entities,\nviolation_checker_docred.py:313:            \"entity_type_violation_rate\": round(total_entity_type_violations / total_entities, 4) if total_entities else 0,\nviolation_checker_docred.py:316:            \"relation_vocabulary_violation_rate\": round(total_relation_vocab_violations / total_triples, 4) if total_triples else 0,\nviolation_checker_docred.py:320:            \"domain_range_violation_rate\": round(total_domain_range_violations / total_triples, 4) if total_triples else 0,\nviolation_checker_docred.py:323:            \"cross_field_consistency_violation_rate\": round(total_cross_field_violations / total_entities, 4) if total_entities else 0,\nviolation_checker_docred.py:326:            \"total_violation_rate\": round(total_violations / max(total_entities + total_triples, 1), 4),\nviolation_checker_docred.py:328:            \"go_nogo_metric\": round(total_domain_range_violations / total_triples, 4) if total_triples else 0,\nviolation_checker_docred.py:342:    print(f\"Documents: {docs_checked} checked, {parse_failures} parse failures\")\nviolation_checker_docred.py:343:    print(f\"Entities: {total_entities}, Triples: {total_triples}\")\nviolation_checker_docred.py:345:    print(f\"Relation vocab violations: {total_relation_vocab_violations}/{total_triples} ({100*s['relation_vocabulary_violation_rate']:.1f}%)\")\nviolation_checker_docred.py:346:    print(f\"Domain/range violations: {total_domain_range_violations}/{total_triples} ({100*s['domain_range_violation_rate']:.1f}%)\")\nartifacts/compare_prompts.py:60:    if \"json_parse_failures\" in s and \"parse_failures\" not in s:\nartifacts/compare_prompts.py:61:        s[\"parse_failures\"] = s.pop(\"json_parse_failures\")\nartifacts/compare_prompts.py:71:        (\"total_entities_extracted\", \"Total Entities\", \"count\"),\nartifacts/compare_prompts.py:72:        (\"total_triples_extracted\", \"Total Triples\", \"count\"),\nartifacts/compare_prompts.py:73:        (\"parse_failures\", \"Parse Failures\", \"count\"),\nanalyze_cf_fallback.py:134:        \"total_triples\": s.get(\"total_triples_extracted\", 0),\nanalyze_cf_fallback.py:135:        \"total_entities\": s.get(\"total_entities_extracted\",\nanalyze_cf_fallback.py:136:                                s.get(\"total_entities\", 0)),\nanalyze_cf_fallback.py:137:        \"parse_failures\": s.get(\"json_parse_failures\",\nanalyze_cf_fallback.py:138:                                s.get(\"parse_failures\", 0)),"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ad1f0c7f-16b3-448f-80cd-19f3e9501a1a",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "5987616d-0717-4bd0-a6c5-582619350234",
+            "sourceToolAssistantUUID": "ad1f0c7f-16b3-448f-80cd-19f3e9501a1a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T18:19:07.871Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check if there's any documentation or notes about the calculation in the memory or project files:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5987616d-0717-4bd0-a6c5-582619350234",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4x1JwoHUeLZqnAKsm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "77cd0842-18fb-4a2f-9648-32defc443a4d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SZL4XGnjarpM6jTJMJwnnh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6355,
+                "cache_read_input_tokens": 28927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6355,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T18:19:08.506Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015KUYBVvene8Q3pzHJVPiJv",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "schema_semantic_constrained_ie",
+                "file": "memory.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "77cd0842-18fb-4a2f-9648-32defc443a4d",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4x1JwoHUeLZqnAKsm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "33aaf7f3-4a25-421a-94b0-30c5a18182e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SZL4XGnjarpM6jTJMJwnnh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6355,
+                "cache_read_input_tokens": 28927,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6355,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T18:19:08.521Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015KUYBVvene8Q3pzHJVPiJv",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/memory.md\\\", \\\"content\\\": \\\"# Project Memory\\\\n\\\\n## W5 Qwen DocRED LoRA Constrained Eval Results (2026-05-16)\\\\n\\\\n### Constrained Metrics (w5_qwen_docred_lora_constrained_eval)\\\\n| Metric | Value |\\\\n|--------|-------|\\\\n| ET_pct | 0.00% |\\\\n| RV_pct | 0.00% |\\\\n| DR_pct | 0.01% |\\\\n| CF_pct | 0.41% |\\\\n| E_F1 | 81.43 |\\\\n| E_P | 85.41 |\\\\n| E_R | 77.81 |\\\\n| R_F1 | 40.56 |\\\\n| R_P | 36.35 |\\\\n| R_R | 45.86 |\\\\n| parse_fail_rate | 8.52% |\\\\n| total_samples | 998 |\\\\n| success_samples | 913 |\\\\n| fail_samples | 85 |\\\\n| total_entities_pred | 17799 |\\\\n| total_relations_pred | 15563 |\\\\n| E_F1_excl_fail | 85.69 |\\\\n| R_F1_excl_fail | 42.23 |\\\\n\\\\n### Unconstrained Baseline (w5_qwen_docred_lora_unconstrained_eval)\\\\n| Metric | Value |\\\\n|--------|-------|\\\\n| ET_pct | 0.00% |\\\\n| RV_pct | 0.27% |\\\\n| DR_pct | 0.76% |\\\\n| CF_pct | 0.12% |\\\\n| E_F1 | 82.15 |\\\\n| E_P | 85.44 |\\\\n| E_R | 79.11 |\\\\n| R_F1 | 40.86 |\\\\n| R_P | 36.41 |\\\\n| R_R | 46.56 |\\\\n| parse_fail_rate | 7.11% |\\\\n| E_F1_excl_fail | 85.72 |\\\\n| R_F1_excl_fail | 42.20 |\\\\n\\\\n### Delta (Constrained - Unconstrained)\\\\n| Metric | Delta | Direction |\\\\n|--------|-------|-----------|\\\\n| ΔET_pct | 0.00pp | neutral |\\\\n| ΔRV_pct | -0.27pp | ✓ improved |\\\\n| ΔDR_pct | -0.75pp | ✓ improved |\\\\n| ΔCF_pct | +0.29pp | ✗ worse |\\\\n| ΔE_F1 | -0.72pp | slight drop |\\\\n| ΔR_F1 | -0.30pp | slight drop |\\\\n| Δparse_fail_rate | +1.41pp | worse |\\\\n| ΔE_F1_excl_fail | -0.03pp | neutral |\\\\n| ΔR_F1_excl_fail | +0.03pp | neutral |\\\\n\\\\n### Composability Conclusion\\\\n- DR nearly eliminated: 0.76% → 0.01% (98.7% relative reduction, only 2 violations in 15563 relations)\\\\n- RV completely eliminated: 0.27% → 0.00%\\\\n- R_F1 essentially preserved (excl_fail: 42.20 → 42.23, +0.03pp)\\\\n- The slight overall R_F1 drop (-0.30pp) is entirely attributable to higher parse_fail_rate\\\\n\\\\n### Comparison with Llama DocRED\\\\n| Model | DR_unconstrained | DR_constrained | ΔDR | ΔR_F1 |\\\\n|-------|-----------------|----------------|-----|-------|\\\\n| Qwen | 0.76% | 0.01% | -0.75pp | -0.30pp (overall) / +0.03pp (excl_fail) |\\\\n| Llama | 0.49% | 0.20% | -0.29pp | +0.22pp |\\\\n\\\\nQwen constrained decoding is significantly more effective at eliminating DR violations (98.7% vs 59.2% relative reduction) while maintaining comparable R_F1 performance.\\\\n\\\\n## FT Ablation Core Insight (2026-05-16, 全部 8 实验完成)\\\\n\\\\n**决策原因**: w7 SciERC + w8 DocRED ablation 实验验证两层约束的各自贡献。\\\\n\\\\n**完整数据** (2模型×2数据集×2modes = 8实验):\\\\n| Model | Dataset | grammar_only DR | semantic_only DR | Δ DR |\\\\n|-------|---------|:---:|:---:|:---:|\\\\n| Qwen3-8B | SciERC | 1.90% (不降) | 0.60% | -68% |\\\\n| Llama-3.1-8B | SciERC | 1.11% (不降) | 0.65% | -42% |\\\\n| Qwen3-8B | DocRED | 0.61% (不降) | 0.21% | -72% |\\\\n| Llama-3.1-8B | DocRED | 0.51% (不降) | 0.30% | -41% |\\\\n\\\\n**结论**: Grammar 层和 Semantic 层功能完全互补，不可替代：\\\\n- Grammar 层消除 ET violations 和 RV violations（强制 JSON 结构 + relation name 枚举）\\\\n- Grammar 层对 DR **完全无效**（4/4 settings 确认：FT 模型上 grammar_only DR ≈ unconstrained DR）\\\\n- Semantic 层是 DR 的**唯一有效消除者**（降幅 41-72%，跨模型×跨数据集一致）\\\\n- 两层联合（full_s1）DR 消除率 92-100%\\\\n- **F1 完全无损**：所有 setting Δ<0.15pp\\\\n\\\\n**Enabling dependency**: Grammar 是 Semantic 的前提——Semantic 需要 valid relation name 来查询 domain/range 规则。这不是\\\\\\\"协同\\\\\\\"(synergy) 而是\\\\\\\"依赖\\\\\\\"(prerequisite)。\\\\n\\\\n**论文 claim 强度**: 可 claim \\\\\\\"semantic 层是 FT regime 下唯一的 DR defense\\\\\\\"——grammar 在 FT 后对 DR 完全冗余（因为 FT 已内化 ET/RV），但 semantic constraint 仍提供不可替代的边际价值。\\\\n\\\\n## Post-hoc vs Constrained Decoding Framing (2026-05-16, D032)\\\\n\\\\n**决策原因**: w8_ft_posthoc_baseline 和 posthoc_filtering_baseline 实验揭示 post-hoc filtering 在多数场景下 R_F1 ≥ constrained decoding。\\\\n\\\\n**论文论点必须调整**: Constrained decoding 的价值不在 \\\\\\\"F1 preservation\\\\\\\"（post-hoc 也能做到甚至更好），而在：\\\\n1. **生成时硬保证 0% violations**（post-hoc 只能 filter，不能 prevent）\\\\n2. **Composability with FT**（FT 降低 base violation rate，constrained 进一步压到接近 0）\\\\n3. **极端场景下的鲁棒性**（Mistral DocRED: post-hoc 73.7% rejection rate 导致 F1 崩溃，constrained 仍保持 F1 提升）\\\\n\\\\n**例外**: Mistral DocRED 是唯一 post-hoc 伤害 R_F1 的 case（-0.49pp vs constrained +2.02pp）。高 violation rate → 高 rejection rate → 大量 TP 被误杀。\\\\n\\\\n## Mistral DocRED Residual DR 33.2% (2026-05-16)\\\\n\\\\n**原因分析**: Mistral ZS DocRED constrained 后 DR 仍高达 33.2%（vs Qwen 10.21%, Llama 2.55%）。原因是 semantic constraint 在 96 relation types 的复杂 schema 下无法覆盖所有 domain-range 组合，且 Mistral 的 entity type 预测更不稳定。但 R_F1 仍提升 +2.02pp，说明约束将输出引导到更接近 gold 的方向。\\\\n\\\\n**论文写作注意**: 不要试图 normalize 这个数字。如实报告并分析原因（constraint coverage 与 schema complexity 的关系）。\\\\n\\\\n## Residual DR Root Causes (2026-05-16)\\\\n\\\\n**数据来源**: art_20260516_c2a16a (FT+full_s1 残余 violation 分析)\\\\n\\\\n36 个残余 violation 的根因分布：\\\\n- Entity type 错误 39%（LLM 标错实体类型，如地名标 LOC 应为 MISC）\\\\n- Schema 覆盖不全 33%（训练集 frequency-based constraint 的 long-tail gap，不可通过 decoding 消除）\\\\n- 错误关系选择 17%（模型选了语义不匹配的关系）\\\\n- 方向反转 11%（head/tail 角色搞反）\\\\n\\\\n**关键洞察**: Qwen 和 SciERC 的残余 violation **全部是 schema gap**（类别 B），说明 LLM typing 已无错误，剩余问题是 constraint 固有局限。Llama DocRED 贡献 92% violation，主因是 entity typing 弱于 Qwen。\\\\n\\\\n**论文用途**: Discussion section limitation + future work evidence。\\\\n\\\", \\\"total_chars\\\": 4749, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "33aaf7f3-4a25-421a-94b0-30c5a18182e3",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "79795adb-9978-4f81-b80c-e54071a00342",
+            "sourceToolAssistantUUID": "33aaf7f3-4a25-421a-94b0-30c5a18182e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T18:19:08.721Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01F9s3ECEvwqX5SKF1Xr3JDt",
+              "name": "mcp__agent-ml-research__read_project_file",
+              "input": {
+                "project": "schema_semantic_constrained_ie",
+                "file": "ARCHITECTURE.md",
+                "max_chars": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79795adb-9978-4f81-b80c-e54071a00342",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i4x1JwoHUeLZqnAKsm",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "ccc1f958-3842-4b5f-861a-bc09355a555a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01SZL4XGnjarpM6jTJMJwnnh",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 6355,
+                "cache_read_input_tokens": 28927,
+                "output_tokens": 224,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6355
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 224,
+                    "cache_read_input_tokens": 28927,
+                    "cache_creation_input_tokens": 6355,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6355,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T18:19:08.738Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01F9s3ECEvwqX5SKF1Xr3JDt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ARCHITECTURE.md found for 'schema_semantic_constrained_ie'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ccc1f958-3842-4b5f-861a-bc09355a555a",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "45b9b618-14c1-4eb2-b94e-f78c0fc76990",
+            "sourceToolAssistantUUID": "ccc1f958-3842-4b5f-861a-bc09355a555a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T18:19:10.210Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! Now let me create a comprehensive summary with specific findings. Let me verify one more key detail by examining the actual calculation lines closely:"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45b9b618-14c1-4eb2-b94e-f78c0fc76990",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i58qgjeJohGGregfGB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "5bfa522e-b541-4095-9dd3-f808ba8652f0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HfRUqksKi8RKjYoP6TtVHy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3112,
+                "cache_read_input_tokens": 35282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3112,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T18:19:11.056Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KyknLhBh1SiR72gmXVqYVa",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/violation_checker.py",
+                "offset": 136,
+                "limit": 20
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5bfa522e-b541-4095-9dd3-f808ba8652f0",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i58qgjeJohGGregfGB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "a3025545-9aae-489d-b7ca-47e57e5f1d8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HfRUqksKi8RKjYoP6TtVHy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3112,
+                "cache_read_input_tokens": 35282,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3112,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T18:19:11.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KyknLhBh1SiR72gmXVqYVa",
+              "type": "tool_result",
+              "content": "136\t    for rec in records:\n137\t        parsed = rec.get(\"parsed_output\")\n138\t        if parsed is None:\n139\t            json_fail += 1\n140\t            continue\n141\t\n142\t        entities = parsed.get(\"entities\", [])\n143\t        relations = parsed.get(\"relations\", [])\n144\t        total_pred_entities += len(entities)\n145\t        total_pred_relations += len(relations)\n146\t\n147\t        mention_types = {}\n148\t        for ent in entities:\n149\t            etype = ent.get(\"type\", \"\")\n150\t            normalized = normalize_type(etype, valid_entity_types)\n151\t            if normalized is None:\n152\t                entity_type_violation_count += 1\n153\t                invalid_type_counts[etype] += 1\n154\t                if len(entity_type_violation_examples) < 10:\n155\t                    entity_type_violation_examples.append({"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a3025545-9aae-489d-b7ca-47e57e5f1d8e",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "a464baf3-b7e8-4625-855c-0167149364c2",
+            "sourceToolAssistantUUID": "a3025545-9aae-489d-b7ca-47e57e5f1d8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T18:19:11.448Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T9aD44DgLwixJYRZCSdgKp",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/violation_checker_docred.py",
+                "offset": 208,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a464baf3-b7e8-4625-855c-0167149364c2",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i58qgjeJohGGregfGB",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "53c95a60-a80d-4d1e-8ac9-24d27d7e5d9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01HfRUqksKi8RKjYoP6TtVHy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 3112,
+                "cache_read_input_tokens": 35282,
+                "output_tokens": 259,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3112
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 259,
+                    "cache_read_input_tokens": 35282,
+                    "cache_creation_input_tokens": 3112,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3112,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T18:19:11.466Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T9aD44DgLwixJYRZCSdgKp",
+              "type": "tool_result",
+              "content": "208\t    for rec in records:\n209\t        doc_id = rec.get(\"doc_id\", \"unknown\")\n210\t        parsed = rec.get(\"parsed_output\")\n211\t        if parsed is None:\n212\t            parse_failures += 1\n213\t            doc_results.append({\"doc_id\": doc_id, \"status\": \"parse_failure\"})\n214\t            continue\n215\t\n216\t        violations, fuzzy_matches = check_document(parsed, constraints, rel_types, name_to_id)\n217\t        relations = parsed.get(\"relations\", [])\n218\t        entities = parsed.get(\"entities\", [])\n219\t\n220\t        n_triples = len(relations)\n221\t        n_entities = len(entities)\n222\t        total_triples += n_triples\n223\t        total_entities += n_entities\n224\t        total_fuzzy_matches += fuzzy_matches\n225\t\n226\t        n_entity_type = len(violations[\"entity_type\"])\n227\t        n_relation_vocab = len(violations[\"relation_vocabulary\"])\n228\t        n_domain_range = len(violations[\"domain_range\"])\n229\t        n_cross_field = len(violations[\"cross_field_consistency\"])\n230\t\n231\t        total_entity_type_violations += n_entity_type\n232\t        total_relation_vocab_violations += n_relation_vocab\n233\t        total_domain_range_violations += n_domain_range\n234\t        total_cross_field_violations += n_cross_field\n235\t\n236\t        for v in violations[\"relation_vocabulary\"]:\n237\t            per_relation_vocab_violations[v.get(\"relation\", \"unknown\")] += 1"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53c95a60-a80d-4d1e-8ac9-24d27d7e5d9c",
+            "isSidechain": true,
+            "promptId": "bb64832c-9a21-4a93-b9a0-bad1a00031e1",
+            "agentId": "aa5a3385f8631d543",
+            "type": "user",
+            "uuid": "07f5e5be-fce0-437b-8ebb-82c7363df3d6",
+            "sourceToolAssistantUUID": "53c95a60-a80d-4d1e-8ac9-24d27d7e5d9c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T18:19:20.006Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Excellent! Now I have all the information needed. Let me create a comprehensive summary:\n\n## Summary: Violation Rate Calculation in schema_semantic_constrained_ie\n\nBased on my analysis of the violation checking code across three main files, here are the key findings:\n\n### **Answer to Question 1: Denominator for Violation Rates**\n\nThe violation rate denominators are **computed ONLY from successfully parsed documents**. Documents with parse failures are completely excluded from the rates.\n\n**Evidence:**\n\n**violation_checker.py** (lines 136-145):\n- Iterates through all records\n- If `parsed = rec.get(\"parsed_output\")` is None, increments `json_fail` counter and **`continue`** (skips processing)\n- Only successfully parsed documents contribute to `total_pred_entities` and `total_pred_relations`\n\n**violation_checker_docred.py** (lines 208-214):\n- Same pattern: if `parsed is None`, increments `parse_failures` and **`continue`**\n- Only checked documents accumulate into `total_triples` and `total_entities`\n\n**Specific rate calculations:**\n- **ET_pct** (Entity Type): `entity_type_violation_count / total_pred_entities` (line 273 in violation_checker.py)\n- **RV_pct** (Relation Vocabulary): `relation_vocab_violation_count / total_pred_relations` (line 276)\n- **DR_pct** (Domain Range): `domain_range_violation_count / total_pred_relations` (line 280)\n- **CF_pct** (Cross-field): `consistency_violation_count / total_pred_entities` (line 283)\n\nAll denominators use only successfully-parsed triple/entity counts from the `parsed_output` field.\n\n---\n\n### **Answer to Question 2: How Parse Failures Are Handled**\n\nParse failures are **excluded from all rate calculations** but tracked separately:\n\n**In violation_checker.py:**\n- **Line 269**: `\"json_parse_failures\": json_fail` — raw count\n- **Line 270**: `\"json_parse_rate\": round((total - json_fail) / total, 4)` — parse success rate (not failure rate)\n- Report includes: `total_samples`, `json_parse_failures`, and `json_parse_rate` for transparency\n\n**In violation_checker_docred.py:**\n- **Line 307**: `\"parse_failures\": parse_failures` — raw count\n- **Line 308**: `\"json_parse_rate\": round(docs_checked / n_docs, 4)` — success rate\n- **Line 309**: `\"documents_checked\": n_docs - parse_failures`\n\n**Key design choice:** Parse failures are **not counted in the denominator** for violation rates. They are tracked separately to allow understanding of both:\n1. Constraint compliance rate (violations / successfully-parsed items)\n2. Overall system reliability (success rate = 1 - parse_fail_rate)\n\n---\n\n### **File Locations**\n\n- **Main SciERC implementation**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/violation_checker.py` (346 lines)\n- **Main DocRED implementation**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/violation_checker_docred.py` (355 lines)\n- **Newer artifact version** (per-triple violation tracking): `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/violation_checker_docred.py` (283 lines)\n\n**Note:** There are two versions of the DocRED checker. The artifact version (in `artifacts/`) uses a more sophisticated `compute_per_triple_violation()` function that identifies which specific triples are violated, while the main version counts violations independently."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07f5e5be-fce0-437b-8ebb-82c7363df3d6",
+            "isSidechain": true,
+            "agentId": "aa5a3385f8631d543",
+            "requestId": "req_011Cb6i5La8EwVRqq5qzsGPc",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "324f4097-4e13-41a6-9e5e-a1adffafed70",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "68e23bd4-9ba4-47db-aa55-f1b5bc681f84",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01A25qP9fN2ecCU68dvGnbLx",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 963,
+                "cache_read_input_tokens": 38394,
+                "output_tokens": 936,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 963
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 936,
+                    "cache_read_input_tokens": 38394,
+                    "cache_creation_input_tokens": 963,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 963,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        }
+      ],
+      "message_count": 29
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-project-at-home-ubuntu-agent-ml-research-idea-gen-0509-6-projects-schem-copy-11.md"
+}

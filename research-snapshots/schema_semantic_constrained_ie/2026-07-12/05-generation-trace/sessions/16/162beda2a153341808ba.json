@@ -1,0 +1,485 @@
+{
+  "schema_version": "1.0",
+  "id": "162beda2a153341808ba",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: In the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_pro",
+  "task_key": "agent-a4650b514e3d7db74",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a4650b514e3d7db74.jsonl",
+    "occurrence": 1,
+    "bytes": 28560,
+    "sha256": "c45d44c68011e3db1db9080a763c98fac94227c4424654ca62abb31ea26c0909"
+  },
+  "statistics": {
+    "messages": 9,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "assistant": 2,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T13:07:59.631Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "In the project at /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/, I need to verify data about total violation decreases under fine-tuning.\n\n1. Read section7_conclusion_compressed.tex — find the line with \">90%\" and its exact context\n2. Read the ft-ablation table in appendix_discussion.tex (around lines 345-397) — I need the Unconstrained and S1 rows for all 4 configs (Qwen SciERC, Qwen DocRED, Llama SciERC, Llama DocRED). For each, I need DR%, CF%, RV%, ET% columns to compute total violations.\n3. Read appendix_beam_search.tex (around lines 110-230) — find the beam k=4 constrained rows to see if total violation decrease is >90% there.\n\nReport all the raw numbers so I can compute total violation percentages myself."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "36ff1619-a168-4048-980f-7c99a58afb17",
+            "agentId": "a4650b514e3d7db74",
+            "type": "user",
+            "uuid": "a8de4b1a-6a12-44d8-b8d5-951661a61648",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T13:08:02.252Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll help you verify the data about total violation decreases under fine-tuning. Let me read the three files you specified."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a8de4b1a-6a12-44d8-b8d5-951661a61648",
+            "isSidechain": true,
+            "agentId": "a4650b514e3d7db74",
+            "requestId": "req_011CbKZ1NfGmTNcve85iAuRR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "075dd462-4942-4b60-926d-2519b35d843b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FEm3gZhbDiyrHUSdTpaufz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 21275,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 21275,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T13:08:03.154Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P2WEp11uDKXyP43dQms3k4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "075dd462-4942-4b60-926d-2519b35d843b",
+            "isSidechain": true,
+            "agentId": "a4650b514e3d7db74",
+            "requestId": "req_011CbKZ1NfGmTNcve85iAuRR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "65bf2199-69a1-4cc6-957a-8f9eb193b6dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FEm3gZhbDiyrHUSdTpaufz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 21275,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 21275,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T13:08:03.162Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P2WEp11uDKXyP43dQms3k4",
+              "type": "tool_result",
+              "content": "1\t% Section 7 — Discussion and Conclusion\n2\t\n3\tOntoCoDec compiles IE ontologies into composable token-level constraints, validated across 3 datasets, 3+ models, and 2 tasks.\n4\tThe central empirical finding is non-additive layer interaction: grammar alone achieves 3\\% DR reduction on SciERC, semantic alone 24\\%, but their composition yields 94\\% at 8B (\\S\\ref{sec:scierc-results})---an enabling dependency where grammar-enforced vocabulary membership creates the clean input the semantic layer requires.\n5\t\n6\t\\paragraph{Scale-dependent layer interaction.}\n7\tThis dependency weakens at scale: at 70B, the semantic layer independently achieves 84\\% DR reduction (\\S\\ref{sec:70b-results}).\n8\tWe hypothesize this reflects improved vocabulary calibration: larger models assign higher probability to ontology-valid tokens, reducing the semantic layer's dependence on grammar-enforced vocabulary membership (Appendix~\\ref{app:causal-tracing}).\n9\tSupporting evidence includes the fallback frequency gap: under LoRA + S1, Qwen-8B triggers 0 grammar-first fallbacks on SciERC while Llama-8B triggers 5{,}882 (Table~\\ref{tab:ft-ablation}), yet both achieve DR\\,$\\leq$\\,0.21\\%, confirming that fallback frequency does not determine enforcement effectiveness.\n10\tGrammar-constrained decoding is thus necessary but increasingly insufficient as models improve; constraint enforcement is preserved under INT4 quantization (4$\\times$ compression; Appendix~\\ref{app:quantization}).\n11\t\n12\t\\paragraph{DR$\\leftrightarrow$CF trade-off.}\n13\tGreedy S1 reduces DR to $\\leq$\\,0.21\\% but introduces CF (zero-shot $+$9.82\\,pp, fine-tuned $+$1.18\\,pp)---an architectural consequence of per-triple independent enforcement.\n14\tAmong 248 zero-shot CF violations, 58.1\\% involve hallucinated entities (absent from gold) and only 7.3\\% are true cascade errors (\\S\\ref{sec:scierc-results}); fine-tuned CF drops to $\\leq$1.4\\%.\n15\tBeam $k{=}2$ reduces CF to 0.11\\% at 1.18$\\times$ latency (Pareto-optimal; recommended for zero-shot deployment); $k{=}4$ eliminates all violations at 8B (1 residual CF at 70B) at 1.39$\\times$ (\\S\\ref{sec:beam-results}).\n16\tNet effect: total violations decrease ${\\sim}$31\\% in zero-shot and ${>}$90\\% under fine-tuning; DR is irrecoverable while CF is amenable to post-hoc resolution (TCR; Appendix~\\ref{app:tcr}).\n17\t\n18\t\\paragraph{Complementarity and deployment.}\n19\tGoLLIE and KnowCoder internalize schema knowledge via training but lack runtime guarantees; LoRA + S1 shows the two are complementary (DR 1--2\\%\\,$\\to$\\,$\\leq$0.21\\%; neither alone achieves both high R-F1 and near-zero DR).\n20\tS2 (two-pass) exhibits scale-sensitive behavior: comparable to S1 at 8B but $-$8\\,pp R-F1 at 70B, consistent with CRANE's~\\cite{banerjee2025crane} finding that aggressive constraint enforcement can interfere with well-calibrated reasoning; we recommend S1 as the default configuration.\n21\t\n22\t\\paragraph{Per-triple vs.\\ global enforcement.}\n23\tPer-triple enforcement cannot coordinate cross-triple type assignments---the source of CF (Level~3; \\S\\ref{sec:decidability}); global entity-level type consensus exceeds online per-token masking.\n24\tBeam search and TCR approximate this; integrating consensus into decoding remains future work.\n25\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65bf2199-69a1-4cc6-957a-8f9eb193b6dd",
+            "isSidechain": true,
+            "promptId": "36ff1619-a168-4048-980f-7c99a58afb17",
+            "agentId": "a4650b514e3d7db74",
+            "type": "user",
+            "uuid": "79feef00-682e-4acd-9687-aff4a48b91bd",
+            "sourceToolAssistantUUID": "65bf2199-69a1-4cc6-957a-8f9eb193b6dd",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T13:08:03.837Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LKwUNpqQRub2eJwLSkddxP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+                "offset": 340,
+                "limit": 60
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "79feef00-682e-4acd-9687-aff4a48b91bd",
+            "isSidechain": true,
+            "agentId": "a4650b514e3d7db74",
+            "requestId": "req_011CbKZ1NfGmTNcve85iAuRR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "b35475ba-7cf3-491b-acab-9d58c1a66a6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FEm3gZhbDiyrHUSdTpaufz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 21275,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 351,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 21275
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 351,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 21275,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 21275,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T13:08:03.851Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LKwUNpqQRub2eJwLSkddxP",
+              "type": "tool_result",
+              "content": "340\t\\end{table}\n341\t\n342\t%%% Fine-Tuned Four-Way Ablation %%%\n343\t% exp_ids: w5_lora_scierc_*, w5_llama_lora_scierc_*, w5_qwen_docred_*, w5_llama_docred_*, w8_*\n344\t\n345\t\\paragraph{Fine-Tuned Four-Way Ablation.}\n346\t\\label{app:ft-ablation}\n347\t\n348\tTable~\\ref{tab:ft-ablation} presents the four-way constraint ablation on fine-tuned models across both datasets, isolating each layer's contribution when the base model has already internalized schema knowledge.\n349\t\n350\t\\begin{table}[t]\n351\t\\centering\n352\t\\small\n353\t\\setlength{\\tabcolsep}{3pt}\n354\t\\resizebox{\\columnwidth}{!}{%\n355\t\\begin{tabular}{@{}lll rrrrr rr@{}}\n356\t\\toprule\n357\t\\textbf{Dataset} & \\textbf{Model} & \\textbf{Mode} & \\textbf{DR\\,$\\downarrow$} & \\textbf{RV\\,$\\downarrow$} & \\textbf{ET\\,$\\downarrow$} & \\textbf{CF} & \\textbf{PF} & \\textbf{E-F1\\,$\\uparrow$} & \\textbf{R-F1\\,$\\uparrow$} \\\\\n358\t\\midrule\n359\t\\multirow{8}{*}{SciERC}\n360\t  & \\multirow{4}{*}{Qwen3-8B}\n361\t    & Unconstrained & 1.95 & 0.00 & 0.00 & 0.00 & 0.00 & 67.05 & 43.86 \\\\\n362\t  & & Grammar       & 1.90 & 0.00 & 0.00 & 0.00 & 0.00 & 67.05 & 43.86 \\\\\n363\t  & & Semantic      & 0.60 & 0.00 & 0.00 & 0.18 & 0.00 & 67.05 & 43.69 \\\\\n364\t  & & S1       & \\textbf{0}    & 0.00 & 0.00 & 1.18 & 0.00 & 67.05 & 43.77 \\\\\n365\t  \\cmidrule(l){2-10}\n366\t  & \\multirow{4}{*}{Llama-3.1-8B}\n367\t    & Unconstrained & 1.11 & 0.00 & 0.00 & 0.00 & 0.00 & 67.76 & 45.45 \\\\\n368\t  & & Grammar       & 1.11 & 0.00 & 0.00 & 0.00 & 0.00 & 67.76 & 45.45 \\\\\n369\t  & & Semantic      & 0.65 & 0.00 & 0.00 & 0.10 & 0.00 & 67.76 & 45.47 \\\\\n370\t  & & S1       & \\textbf{0.09} & 0.00 & 0.00 & 0.46 & 0.00 & 67.76 & 45.47 \\\\\n371\t\\midrule\n372\t\\multirow{8}{*}{DocRED}\n373\t  & \\multirow{4}{*}{Qwen3-8B}\n374\t    & Unconstrained & 0.76 & 0.27 & 0.00 & 0.12 & 7.11 & 82.15 & 40.86 \\\\\n375\t  & & Grammar       & 0.61 & 0.00 & 0.00 & 0.11 & 7.01 & 82.19 & 40.85 \\\\\n376\t  & & Semantic      & 0.19 & 0.23 & 0.00 & 0.27 & 7.52 & 82.15 & 40.85 \\\\\n377\t  & & S1       & \\textbf{0.01} & 0.00 & 0.00 & 0.41 & 8.52 & 81.43 & 40.56 \\\\\n378\t  \\cmidrule(l){2-10}\n379\t  & \\multirow{4}{*}{Llama-3.1-8B}\n380\t    & Unconstrained & 0.49 & 0.15 & 0.00 & 0.08 & 2.30 & 83.93 & 43.72 \\\\\n381\t  & & Grammar       & 0.51 & 0.00 & 0.00 & 0.12 & 2.30 & 84.04 & 43.72 \\\\\n382\t  & & Semantic      & 0.48 & 0.15 & 0.00 & 0.16 & 2.40 & 84.02 & 43.85 \\\\\n383\t  & & S1       & \\textbf{0.21} & 0.00 & 0.00 & 0.21 & 2.51 & 83.94 & 43.78 \\\\\n384\t\\bottomrule\n385\t\\end{tabular}}%\n386\t\\caption{Four-way constraint ablation on fine-tuned models (LoRA, 2 models $\\times$ 2 datasets).\n387\tDR/RV/ET: violation rates (\\%) over predicted relations; CF: over predicted entities; PF: parse failure rate (\\%); F1 $\\times$100.\n388\tGrammar layer is a no-op post-fine-tuning (DR change $<$0.2\\,pp in all 4 settings; RV and ET already 0\\% without constraints).\n389\tSemantic layer is the sole effective DR defense (41--69\\% on SciERC, 2--75\\% on DocRED); the near-zero Llama DocRED reduction reflects a near-floor baseline (DR${=}$0.49\\%).\n390\tF1 cost is negligible: max $\\Delta$R-F1 = $-$0.30\\,pp (Qwen DocRED, full vs.\\ unconstrained).}\n391\t\\label{tab:ft-ablation}\n392\t\\end{table}\n393\t\n394\tThe grammar layer is effectively a no-op for fine-tuned models across all four settings: RV and ET are already 0\\% without constraints, and grammar-only DR change is $<$0.2\\,pp (4/4 settings).\n395\tThe semantic layer is the sole effective DR defense under fine-tuning, independently reducing DR by 41--69\\% on SciERC (Qwen $-$69\\%, Llama $-$41\\%) and 2--75\\% on DocRED (Qwen $-$75\\%, Llama $-$2\\%); the near-zero Llama DocRED reduction reflects a near-floor baseline (DR${=}$0.49\\%, 80 violations in 16{,}074 triples), where the semantic layer has minimal room to improve.\n396\tAdding both layers achieves near-complete elimination (DR\\,$\\leq$\\,0.21\\% in all 4 settings): even after fine-tuning, the semantic layer's pair-based enforcement captures violations that training alone cannot eliminate, specifically on tight-constraint relations where the valid type-pair space is small.\n397\tF1 cost is negligible: the maximum R-F1 decrease across S1 vs.\\ unconstrained is $-$0.30\\,pp (Qwen DocRED).\n398\t\n399\t%%% DocRED Zero-Shot Ablation (moved from main text) %%%"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b35475ba-7cf3-491b-acab-9d58c1a66a6b",
+            "isSidechain": true,
+            "promptId": "36ff1619-a168-4048-980f-7c99a58afb17",
+            "agentId": "a4650b514e3d7db74",
+            "type": "user",
+            "uuid": "cd9e065c-37f5-4ca2-a98e-8aeaec6949c4",
+            "sourceToolAssistantUUID": "b35475ba-7cf3-491b-acab-9d58c1a66a6b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T13:08:03.879Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01C3aiVX53b9wq2XWK38bMdq",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex",
+                "offset": 105,
+                "limit": 130
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cd9e065c-37f5-4ca2-a98e-8aeaec6949c4",
+            "isSidechain": true,
+            "agentId": "a4650b514e3d7db74",
+            "requestId": "req_011CbKZ1NfGmTNcve85iAuRR",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c14275f5-2b42-4575-a373-9874f97d2082",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01FEm3gZhbDiyrHUSdTpaufz",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 21275,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 351,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 21275
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 351,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 21275,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 21275,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T13:08:03.886Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01C3aiVX53b9wq2XWK38bMdq",
+              "type": "tool_result",
+              "content": "105\t\n106\t\\begin{table}[h]\n107\t\\centering\n108\t\\small\n109\t\\caption{Beam width sweep on SciERC (Qwen3-8B LoRA, 551 documents). \\textsc{unc}: unconstrained; \\textsc{con}: schema-constrained. Latency relative to $k{=}1$ unconstrained. Highlighted row: Pareto-optimal configuration.}\n110\t\\label{tab:beam-sweep}\n111\t\\resizebox{\\columnwidth}{!}{%\n112\t\\begin{tabular}{@{}cl cccc cc@{}}\n113\t\\toprule\n114\t$k$ & Mode & E-F1 & R-F1 & DR (\\%) & CF (\\%) & Latency (s) & Rel.\\ Lat. \\\\\n115\t\\midrule\n116\t\\multirow{2}{*}{1}\n117\t & \\textsc{unc} & 66.88 & 42.95 & 2.11 & 0    & 2.494 & 1.00$\\times$ \\\\\n118\t & \\textsc{con} & 66.88 & 42.95 & \\textbf{0} & 0.50 & 2.932 & 1.18$\\times$ \\\\\n119\t\\midrule\n120\t\\multirow{2}{*}{2}\n121\t & \\textsc{unc} & 67.79 & 44.75 & 1.54 & 0    & 2.954 & 1.18$\\times$ \\\\\n122\t & \\cellcolor{blue!8}\\textsc{con} & \\cellcolor{blue!8}67.71 & \\cellcolor{blue!8}\\textbf{44.60} & \\cellcolor{blue!8}\\textbf{0} & \\cellcolor{blue!8}0.11 & \\cellcolor{blue!8}3.463 & \\cellcolor{blue!8}1.39$\\times$ \\\\\n123\t\\midrule\n124\t\\multirow{2}{*}{4}\n125\t & \\textsc{unc} & 67.49 & 43.72 & 1.89 & 0    & 3.485 & 1.40$\\times$ \\\\\n126\t & \\textsc{con} & 67.22 & 43.60 & \\textbf{0} & 0    & 4.069 & 1.63$\\times$ \\\\\n127\t\\midrule\n128\t\\multirow{2}{*}{8}\n129\t & \\textsc{unc} & 66.40 & 43.17 & 1.77 & 0    & 4.194 & 1.68$\\times$ \\\\\n130\t & \\textsc{con} & 66.36 & 43.65 & \\textbf{0} & 0    & 5.058 & 2.03$\\times$ \\\\\n131\t\\bottomrule\n132\t\\end{tabular}}\n133\t\\end{table}\n134\t\n135\t\\paragraph{Composability with fine-tuning.}\n136\tUnder greedy decoding, the fine-tuned Qwen3-8B (LoRA, SciERC) with S1 constraints already achieves DR=0\\% but retains CF=1.18\\% (22 cross-field violations across 551 documents), with E-F1=67.05 and R-F1=43.77.\n137\tAdding beam search ($k{=}4$) eliminates all residual CF violations (1.18\\%\\,$\\to$\\,0\\%), yielding zero violations across all four metrics (ET=0\\%, RV=0\\%, DR=0\\%, CF=0\\%) while preserving extraction quality (E-F1=66.88, R-F1=43.60; changes within $\\pm$0.5\\,pp).\n138\tLlama-3.1-8B (LoRA, SciERC) with S1 constraints and beam search ($k{=}4$) likewise achieves zero violations across all four metrics (ET=0\\%, RV=0\\%, DR=0\\%, CF=0\\%) with R-F1=46.18; the zero-violation result thus generalizes across calibrated model families.\n139\t% exp_id: q1_llama_ft_beam_scierc\n140\tThe three constraint mechanisms (grammar masking, semantic domain-range filtering, and beam exploration) are thus fully composable: each addresses a distinct violation source without interfering with the others or degrading task performance.\n141\t\n142\tThe initial 50-document DocRED subset (Table~\\ref{tab:beam-search}) was subsequently validated on the full 998-document set (Table~\\ref{tab:beam-docred-998-zs}): both models achieve DR${=}$0\\%, confirming subset representativeness.\n143\tLlama shows the larger improvement (CF 8.54\\%\\,$\\to$\\,1.00\\%, 88\\% reduction; R-F1 $+$2.6\\,pp), consistent with beam search resolving constraint-search failures that greedy decoding cannot.\n144\t\n145\t\\begin{table}[h]\n146\t\\centering\n147\t\\small\n148\t\\caption{Zero-shot beam search ($k{=}4$) under S1 constraints on the full DocRED dev set (998 documents).\n149\tET/RV/DR/CF: violation rates (\\%); PF: parse failure rate (\\%); F1 $\\times$100.}\n150\t\\label{tab:beam-docred-998-zs}\n151\t\\begin{tabular}{@{}lcccccc@{}}\n152\t\\toprule\n153\t\\textbf{Model} & ET & RV & DR$\\,\\downarrow$ & CF$\\,\\downarrow$ & E-F1$\\,\\uparrow$ & R-F1$\\,\\uparrow$ \\\\\n154\t\\midrule\n155\tQwen3-8B  & 0 & 0 & \\textbf{0} & 4.94 & 58.19 & 8.72 \\\\\n156\tLlama-3.1-8B & 0 & 0 & \\textbf{0} & 1.00 & 57.81 & 8.83 \\\\\n157\t\\bottomrule\n158\t\\end{tabular}\n159\t\\end{table}\n160\t\n161\tTable~\\ref{tab:beam-docred-lora} reports LoRA + beam-4 results on the full DocRED dev set (998 documents), extending the fine-tuning composability evaluation from SciERC to the higher-$\\bar{\\kappa}$ regime.\n162\tParse failure rates under LoRA beam-4 range from 1.3\\% to 2.9\\%, lower than the zero-shot rate.\n163\t\n164\t\\begin{table}[h]\n165\t\\centering\n166\t\\small\n167\t\\caption{LoRA greedy vs.\\ beam search ($k{=}4$) on DocRED (998 dev documents) under S1 constraints.\n168\tET = entity type, RV = relation vocabulary, DR = domain/range, CF = cross-field violation rates (\\%); PF = parse failure rate (\\%); F1 $\\times$ 100.}\n169\t\\label{tab:beam-docred-lora}\n170\t\\resizebox{\\columnwidth}{!}{%\n171\t\\begin{tabular}{@{}llccccccc@{}}\n172\t\\toprule\n173\t\\textbf{Model} & \\textbf{Decoding} & ET & RV & DR$\\,\\downarrow$ & CF$\\,\\downarrow$ & E-F1$\\,\\uparrow$ & R-F1$\\,\\uparrow$ & PF \\\\\n174\t\\midrule\n175\t\\multirow{2}{*}{Qwen3-8B}\n176\t  & Greedy con & 0 & 0 & 0.01 & 0.41 & 81.43 & 40.56 & 8.52 \\\\ % d065_qwen_greedy_4096_r2\n177\t  & Beam-4 con & 0 & \\textbf{0} & \\textbf{0} & 0.01 & 84.00 & 44.46 & 2.9 \\\\\n178\t\\midrule\n179\t\\multirow{2}{*}{Llama-3.1-8B}\n180\t  & Greedy con & 0 & 0 & 0.21 & 0.21 & 83.94 & 43.78 & 2.51 \\\\ % d065: 4096 context\n181\t  & Beam-4 con & 0 & 0 & 0 & \\textbf{0} & \\textbf{85.23} & \\textbf{47.17} & \\textbf{1.3} \\\\\n182\t\\bottomrule\n183\t\\end{tabular}}\n184\t\\end{table}\n185\t\n186\tLlama-3.1-8B achieves zero violations across all four metrics (ET, RV, DR, CF = 0\\%) on DocRED with LoRA + beam-4, extending the zero-violation result from SciERC to the high-$\\bar{\\kappa}$ regime.\n187\tQwen3-8B achieves DR=0\\% with near-zero CF (0.01\\%); R-F1 is preserved ($\\pm$0.06\\,pp).\n188\tCombined with the sampling robustness results (Appendix~\\ref{app:sampling}), these findings confirm that OntoCoDec's constraint enforcement is compatible with greedy, sampling, and beam search decoding without modification to the core constraint logic.\n189\t\n190\t\\paragraph{Latency overhead.}\n191\tTable~\\ref{tab:beam-latency} reports wall-clock latency for greedy and beam search ($k{=}4$) under LoRA fine-tuning.\n192\t\n193\t\\begin{table}[h]\n194\t\\centering\n195\t\\small\n196\t\\begin{tabular}{@{}lrr@{}}\n197\t\\toprule\n198\t\\textbf{Condition} & \\textbf{s/doc} & \\textbf{Overhead} \\\\\n199\t\\midrule\n200\tGreedy unconstrained   & 2.612 & 1.00$\\times$ \\\\\n201\tGreedy constrained (S1)& 2.873 & 1.10$\\times$ \\\\\n202\tBeam-4 unconstrained   & 3.446 & 1.32$\\times$ \\\\\n203\tBeam-4 constrained (S1)& 4.013 & 1.54$\\times$ \\\\\n204\t\\bottomrule\n205\t\\end{tabular}\n206\t\\caption{Latency per document (SciERC, 551 docs, Qwen3-8B LoRA FT, RTX PRO 6000 Blackwell). Overhead relative to greedy unconstrained.}\n207\t\\label{tab:beam-latency}\n208\t\\end{table}\n209\t\n210\tBeam search itself adds 32\\% latency (4 beams); constraint overhead increases from 10\\% (greedy) to 17\\% (beam) because each beam independently maintains grammar and semantic state.\n211\tPer-beam entity registry memory is $O(|\\text{entities}|)$ per beam; at $k{=}8$ with typical document sizes, overhead is ${<}$1\\,MB per beam, negligible relative to model memory.\n212\tThe total 1.54$\\times$ overhead is acceptable for offline batch IE; \\texttt{early\\_stopping} limits additional compute to partial-sequence exploration.\n213\t\n214\tWe also explored a type-consensus constraint that forces identical entity types across all relations within a document.\n215\tHowever, CF violations occur precisely where the consensus type conflicts with domain-range constraints, creating a fundamental CF$\\leftrightarrow$DR trade-off.\n216\tWith DR-aware enforcement (skipping consensus when it would violate domain-range), the layer becomes a no-op (100\\% skip rate on 551 SciERC documents and 50 DocRED documents).\n217\tThis confirms that beam search resolves the CF$\\leftrightarrow$DR tension through a fundamentally different mechanism: token-level exploration of paths satisfying both constraints simultaneously.\n218\t\n219\t\\paragraph{TCR reranking under beam search.}\n220\tTCR reranking with beam search ($k{=}4$) showed no effect on either Qwen3-8B or Llama-3.1-8B under LoRA (0/551 SciERC candidates changed): fine-tuned beam candidates are already type-consistent (TCR score${=}$1.0 for all candidates), confirming that beam search implicitly subsumes post-hoc type consensus under fine-tuning.\n221\tThis further strengthens the beam search deployment recommendation: beam not only eliminates all four violation types but also renders post-hoc CF resolution unnecessary.\n222\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c14275f5-2b42-4575-a373-9874f97d2082",
+            "isSidechain": true,
+            "promptId": "36ff1619-a168-4048-980f-7c99a58afb17",
+            "agentId": "a4650b514e3d7db74",
+            "type": "user",
+            "uuid": "676dc584-a7d9-45f8-a596-c19f7bd1aa54",
+            "sourceToolAssistantUUID": "c14275f5-2b42-4575-a373-9874f97d2082",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny"
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T13:08:21.444Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have all the data you need. Let me extract and organize the raw numbers for you:\n\n## 1. Section 7 Conclusion (\">90%\" context)\n\n**Line 16:**\n> Net effect: total violations decrease ${\\sim}$31\\% in zero-shot and ${>}$90\\% under fine-tuning; DR is irrecoverable while CF is amenable to post-hoc resolution (TCR; Appendix~\\ref{app:tcr}).\n\n## 2. Fine-Tuned Four-Way Ablation Table (Table 6, lines 345-397)\n\nHere are the **Unconstrained and S1 rows** with all 4 configs:\n\n### SciERC - Qwen3-8B\n- **Unconstrained**: DR=1.95%, RV=0.00%, ET=0.00%, CF=0.00%\n- **S1**: DR=0%, RV=0.00%, ET=0.00%, CF=1.18%\n\n### SciERC - Llama-3.1-8B\n- **Unconstrained**: DR=1.11%, RV=0.00%, ET=0.00%, CF=0.00%\n- **S1**: DR=0.09%, RV=0.00%, ET=0.00%, CF=0.46%\n\n### DocRED - Qwen3-8B\n- **Unconstrained**: DR=0.76%, RV=0.27%, ET=0.00%, CF=0.12%\n- **S1**: DR=0.01%, RV=0.00%, ET=0.00%, CF=0.41%\n\n### DocRED - Llama-3.1-8B\n- **Unconstrained**: DR=0.49%, RV=0.15%, ET=0.00%, CF=0.08%\n- **S1**: DR=0.21%, RV=0.00%, ET=0.00%, CF=0.21%\n\n## 3. Beam Search k=4 Constrained Results\n\n**From Table 4 (lines 124-126)** - SciERC, Qwen3-8B LoRA, greedy k=4 constrained:\n- DR=0%, CF=0%\n\n**From Table 5 (lines 176-177)** - DocRED, Qwen3-8B LoRA, Beam-4 constrained:\n- DR=0%, CF=0.01%\n\n**From Table 5 (lines 180-181)** - DocRED, Llama-3.1-8B LoRA, Beam-4 constrained:\n- DR=0%, CF=0%\n\n**SciERC beam k=4 details** (lines 136-138): Fine-tuned Qwen3-8B with S1+beam-4 achieves zero violations across all four metrics (ET=0%, RV=0%, DR=0%, CF=0%).\n\nAll raw numbers are now available for you to compute total violation percentages."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "676dc584-a7d9-45f8-a596-c19f7bd1aa54",
+            "isSidechain": true,
+            "agentId": "a4650b514e3d7db74",
+            "requestId": "req_011CbKZ1gScAF7Z3bZw4Z5sN",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "dfd26496-612b-4202-9eb5-52356c2ca62e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "9485bf07-277e-42ea-88c3-c883a57507b5",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zany-marinating-cherny",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01QpmS4V8HtGUZoTwcXehLqN",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 7597,
+                "cache_read_input_tokens": 21275,
+                "output_tokens": 729,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7597
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 729,
+                    "cache_read_input_tokens": 21275,
+                    "cache_creation_input_tokens": 7597,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 7597,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        }
+      ],
+      "message_count": 9
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-in-the-project-at-home-ubuntu-agent-ml-research-idea-gen-0509-6-projects-schem-copy-2.md"
+}

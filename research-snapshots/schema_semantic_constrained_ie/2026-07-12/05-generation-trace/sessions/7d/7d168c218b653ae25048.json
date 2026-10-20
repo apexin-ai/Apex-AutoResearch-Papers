@@ -1,0 +1,54 @@
+{
+  "schema_version": "1.0",
+  "id": "7d168c218b653ae25048",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目：schema_semantic_constrained_ie (OntoCoDec) Dream 审稿人三档均要求 post-hoc filtering baseline。纯 CPU 后处理任务。 已有",
+  "task_key": "8ec9a733-05e3-4c9c-a82e-f8b296bf6a06",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/8ec9a733-05e3-4c9c-a82e-f8b296bf6a06.jsonl",
+    "occurrence": 1,
+    "bytes": 573338,
+    "sha256": "e310d3ee60da8c5b469618bd074229ed23808e1bd150645973aa0094accaa3f1"
+  },
+  "statistics": {
+    "messages": 163,
+    "user_turns": 1,
+    "tool_calls": 48,
+    "roles": {
+      "record": 39,
+      "user": 1,
+      "assistant": 27,
+      "tool_call": 48,
+      "tool_result": 48
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "7d168c218b653ae25048-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "7d168c218b653ae25048-part-0001.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-schema-semantic-constrained-ie-ontocodec-dream-post-hoc-filterin.md"
+}

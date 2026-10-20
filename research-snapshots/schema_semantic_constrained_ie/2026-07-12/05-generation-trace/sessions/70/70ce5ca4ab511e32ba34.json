@@ -1,0 +1,250 @@
+{
+  "schema_version": "1.0",
+  "id": "70ce5ca4ab511e32ba34",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [系统通知 — cron:on_failed:dpo_candgen_v2_gpu0]: 实验 dpo_candgen_v2_gpu0 failed，请审查。",
+  "task_key": "78587f88-0c71-4e0a-bb2b-093b592b2401",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/78587f88-0c71-4e0a-bb2b-093b592b2401.jsonl",
+    "occurrence": 1,
+    "bytes": 1254091,
+    "sha256": "91b483eaa2643b9770ec4605d1a044c9d009464a5899578d18d6628e4485a69b"
+  },
+  "statistics": {
+    "messages": 383,
+    "user_turns": 18,
+    "tool_calls": 94,
+    "roles": {
+      "record": 93,
+      "user": 18,
+      "assistant": 83,
+      "tool_call": 94,
+      "tool_result": 94,
+      "system": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 81,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0001.json",
+          "message_count": 81
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 46,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0001.json",
+          "message_count": 46
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0001.json",
+          "message_count": 10
+        },
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 55,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 29,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 29
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 22,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 22
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0002.json",
+          "message_count": 20
+        },
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0003.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0003.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0003.json",
+          "message_count": 19
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "boundary": "recorded_user_message",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "70ce5ca4ab511e32ba34-part-0003.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-cron-on-failed-dpo-candgen-v2-gpu0-dpo-candgen-v2-gpu0-failed.md"
+}

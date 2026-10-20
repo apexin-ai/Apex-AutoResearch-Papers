@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "session_id": "57abf1e1f6fabab53643",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 718,
+          "timestamp": "2026-05-17T17:09:43.671Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "All changes verified. Here's the complete report:\n\n---\n\n## 修改总结\n\n### 1. 代码修改\n\n**`compiler/type_mask_processor.py`** (3 处修改):\n\n| 行号 | 修改 |\n|------|------|\n| L36 | 新增 `import logging` |\n| L47 | 新增 `logger = logging.getLogger(__name__)` |\n| L272 | `__init__` 中新增 `self._fallback_count = 0` |\n| L456-479 | `__call__` 内部：整个 batch_idx 循环体包裹在 `try/except Exception`，初始化 `position = FieldPosition.UNKNOWN`，错误时记录诊断日志（step、position、event_type、role、ids_tail、error type+message），不修改 scores（grammar-only fallback） |\n\n**`run_constrained_extraction.py`** (1 处修改):\n\n| 行号 | 修改 |\n|------|------|\n| L582-585 | `run_single_pass` 中 generate() 后、decode 前：遍历 processors 找 TypeConstraintProcessor，如 `_fallback_count > 0` 则打印统计 |\n\n### 2. 诊断日志格式\n\n```\nSemantic fallback step=N pos=POSITION evt=EVENT_TYPE role=ROLE ids_tail=[...last 20 ids...] err=ExceptionType: message\n```\n\n### 3. Re-Dry-Run 对比表 (10 docs, Qwen3-8B)\n\n| 指标 | unconstrained | full_s1 (per-step fallback) |\n|------|:------------:|:---------------------------:|\n| Parse success | 9/10 (90%) | 9/10 (90%) |\n| EV (Event Vocab) | 38.5% | **0.0%** |\n| RoV (Role Vocab) | 59.8% | **28.6%** |\n| AC (Arg Constraint) | 0.0% | 1.9% |\n| CF (Cross-Field) | 0.0% | 12.2% |\n| Entity F1 | 0.00 | **0.145** |\n| Trigger F1 | 0.129 | **0.137** |\n| Argument F1 | 0.000 | **0.006** |\n\n### 4. Fallback 触发频率\n\n**0 次**。10 个 doc 全部完成，没有触发任何 per-step semantic fallback。`_GRAMMAR_MASK_THRESHOLD` 安全检查在 mask 层面已经阻止了所有可能导致 assertion error 的情况。try/except 作为安全网存在，未需要实际触发。\n\n### 关键发现\n\n- **EV 从 38.5% 降至 0%**：event type 约束完全消除了 event vocab violations\n- **RoV 从 59.8% 降至 28.6%**：显著下降但未完全消除，剩余 28.6% 来自 position detection 未识别到 role 位置的 step（非 fallback 导致，是 detector coverage 问题）\n- **之前的 generate-level fallback 导致整个 sample 放弃 semantic masking；现在这不再发生**（per-step fallback 粒度更细，但本次实验中未触发）\n- 之前的 full_s1 在 doc 3 崩溃（assertion error），现在 10/10 完成"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "65a0469a-8ec5-480f-a332-a807d28277c7",
+            "isSidechain": false,
+            "requestId": "req_011Cb8WZCKvKuLHP3VFw5YeN",
+            "type": "assistant",
+            "uuid": "c886cb1a-15fe-4a1e-ba7c-cf16eccd011f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "b64bbb2d-1360-407a-b095-c5bd6e9b0769",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FDNRY79o4iwaScG7KAppuU",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2784,
+                "cache_read_input_tokens": 146396,
+                "output_tokens": 944,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 2784,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 944,
+                    "cache_read_input_tokens": 146396,
+                    "cache_creation_input_tokens": 2784,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 2784
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000718"
+        },
+        {
+          "source_line": 719,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "c886cb1a-15fe-4a1e-ba7c-cf16eccd011f",
+                "sessionId": "b64bbb2d-1360-407a-b095-c5bd6e9b0769"
+              }
+            }
+          ],
+          "id": "event-000719"
+        },
+        {
+          "source_line": 720,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Fix WikiEvents per-token semantic mask fallback",
+                "sessionId": "b64bbb2d-1360-407a-b095-c5bd6e9b0769"
+              }
+            }
+          ],
+          "id": "event-000720"
+        }
+      ]
+    }
+  ]
+}

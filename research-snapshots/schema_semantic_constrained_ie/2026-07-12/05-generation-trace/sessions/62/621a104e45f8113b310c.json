@@ -1,0 +1,894 @@
+{
+  "schema_version": "1.0",
+  "id": "621a104e45f8113b310c",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Read these files from the local filesystem and find what beam search latency ratio is claimed for k=4 on SciERC: 1. /hom",
+  "task_key": "agent-a63cd9d7b7a612093",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a63cd9d7b7a612093.jsonl",
+    "occurrence": 1,
+    "bytes": 47787,
+    "sha256": "80951c30e35d576afcbf53a87bc482ccff45ae80404c3d1833861dea8626e2f8"
+  },
+  "statistics": {
+    "messages": 17,
+    "user_turns": 1,
+    "tool_calls": 6,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 3,
+      "tool_call": 6,
+      "tool_result": 6
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T13:36:12.243Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Read these files from the local filesystem and find what beam search latency ratio is claimed for k=4 on SciERC:\n1. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_runtime.tex — look for beam latency data\n2. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex — check the 1.54× claim\n3. /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex — check beam latency claims\n\nReport: (a) the exact 1.54× claim text with file:line, (b) which experiment the latency ratio derives from, (c) what the ratio is measured against (greedy unc? greedy con?). Keep it under 200 words."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e883707e-188d-424b-b959-0bcf59b6c778",
+            "agentId": "a63cd9d7b7a612093",
+            "type": "user",
+            "uuid": "0253e849-5124-4221-ad50-266863041a8c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T13:36:12.328Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "0253e849-5124-4221-ad50-266863041a8c",
+                "isSidechain": true,
+                "agentId": "a63cd9d7b7a612093",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__check_figures_and_layout",
+                    "mcp__agent-ml-research__cleanup_pdf_images",
+                    "mcp__agent-ml-research__compute_coverage_matrix",
+                    "mcp__agent-ml-research__fetch_wandb_metrics",
+                    "mcp__agent-ml-research__get_gpu_health",
+                    "mcp__agent-ml-research__get_project_resource_usage",
+                    "mcp__agent-ml-research__list_constraints",
+                    "mcp__agent-ml-research__pdf_to_images",
+                    "mcp__agent-ml-research__read_experiment_plan_with_status",
+                    "mcp__agent-ml-research__read_matrix",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__read_roadmap",
+                    "mcp__agent-ml-research__reviewer_post_to_director",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__tail_training_logs"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "e01525f3-fccd-4be5-b7ca-867ae085c3f6",
+                "timestamp": "2026-05-20T13:36:12.328Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+                "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "radiant-snacking-stallman"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T13:36:14.785Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me read all three files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e01525f3-fccd-4be5-b7ca-867ae085c3f6",
+            "isSidechain": true,
+            "agentId": "a63cd9d7b7a612093",
+            "requestId": "req_011CbDujPoi2y4W2FAb18LTY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5c599dc5-a90b-46d8-8951-853ceee2b9a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ALSt1kEUQEbozZibEy3kxD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25084,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25084,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T13:36:15.271Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014nJfYkfodiRs6n9H4XuKb1",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_runtime.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5c599dc5-a90b-46d8-8951-853ceee2b9a6",
+            "isSidechain": true,
+            "agentId": "a63cd9d7b7a612093",
+            "requestId": "req_011CbDujPoi2y4W2FAb18LTY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "09c6b2c7-8b05-423d-bdf2-bdf1b18470b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ALSt1kEUQEbozZibEy3kxD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25084,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25084,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T13:36:15.289Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d.",
+              "is_error": true,
+              "tool_use_id": "toolu_014nJfYkfodiRs6n9H4XuKb1"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "09c6b2c7-8b05-423d-bdf2-bdf1b18470b3",
+            "isSidechain": true,
+            "promptId": "e883707e-188d-424b-b959-0bcf59b6c778",
+            "agentId": "a63cd9d7b7a612093",
+            "type": "user",
+            "uuid": "d2a69202-19e1-4fb5-814d-edb9c265ea69",
+            "toolUseResult": "Error: File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d.",
+            "sourceToolAssistantUUID": "09c6b2c7-8b05-423d-bdf2-bdf1b18470b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T13:36:16.181Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ReDJDZzmdp73AKPDyQVHy9",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2a69202-19e1-4fb5-814d-edb9c265ea69",
+            "isSidechain": true,
+            "agentId": "a63cd9d7b7a612093",
+            "requestId": "req_011CbDujPoi2y4W2FAb18LTY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dd177932-bb3c-4aac-90ad-4fec9f2e5d69",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ALSt1kEUQEbozZibEy3kxD",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25084,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 25084,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T13:36:16.188Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ReDJDZzmdp73AKPDyQVHy9",
+              "type": "tool_result",
+              "content": "1\t% Section 7 — Discussion and Conclusion\n2\t% Full discussion in Appendix; Mistral boundary condition in app:dual-factor.\n3\t\n4\tOntoCoDec formally compiles IE ontologies into composable token-level constraints via a decidability-guided architecture: LoRA + greedy S1 achieves DR\\,$\\leq$\\,0.21\\%, CF\\,$\\leq$\\,1.2\\%; beam ($k{=}4$) eliminates all violations on SciERC (1.54$\\times$ latency); zero-shot DR drops 76--99\\% for calibrated models.\n5\t$\\bar{\\kappa}$ characterizes constraint regimes, with entity type confusability as the critical co-factor (Appendix~\\ref{app:kappa-case-study}); the decidability taxonomy and $\\bar{\\kappa}$ diagnostic yield a principled deployment workflow.\n6\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dd177932-bb3c-4aac-90ad-4fec9f2e5d69",
+            "isSidechain": true,
+            "promptId": "e883707e-188d-424b-b959-0bcf59b6c778",
+            "agentId": "a63cd9d7b7a612093",
+            "type": "user",
+            "uuid": "aaa8f642-55ed-434d-8308-06f64bd04987",
+            "sourceToolAssistantUUID": "dd177932-bb3c-4aac-90ad-4fec9f2e5d69",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T13:36:16.382Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012yfyaQabhMVUHWhN6gsr4Z",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aaa8f642-55ed-434d-8308-06f64bd04987",
+            "isSidechain": true,
+            "agentId": "a63cd9d7b7a612093",
+            "requestId": "req_011CbDujPoi2y4W2FAb18LTY",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "ff8b56c0-3317-468e-8c48-26767a539615",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ALSt1kEUQEbozZibEy3kxD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 25084,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 266,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25084
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 266,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 25084,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 25084,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T13:36:16.388Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012yfyaQabhMVUHWhN6gsr4Z",
+              "type": "tool_result",
+              "content": "1\t% Section 5 — SciERC Results (Draft)\n2\t% Data source: Phase 2 SciERC registry experiments\n3\t% exp_ids: phase2_scierc_unconstrained, phase2_scierc_grammar_only,\n4\t%          phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2\n5\t% All numbers verified against registry 2026-05-14.\n6\t\n7\t\\subsection{Ablation and Composability with Fine-Tuning}\n8\t\\label{sec:scierc-results}\n9\t\n10\tTable~\\ref{tab:scierc-ablation} presents the five-way ablation on SciERC (Qwen3-8B, zero-shot, 551 documents); only the active constraint layers differ across rows.\n11\t\n12\t% ──────────────────────────────────────────\n13\t%  Table: SciERC five-way ablation\n14\t% ──────────────────────────────────────────\n15\t\\begin{table}[t]\n16\t\\centering\n17\t\\small\n18\t\\setlength{\\tabcolsep}{3.6pt}\n19\t\\resizebox{\\columnwidth}{!}{%\n20\t\\begin{tabular}{@{}l rrrrrr rr@{}}\n21\t\\toprule\n22\t& \\multicolumn{6}{c}{\\textbf{Violation Rates (\\%)}}\n23\t& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n24\t\\cmidrule(lr){2-7} \\cmidrule(l){8-9}\n25\t\\textbf{Mode}\n26\t  & DR\\,$\\downarrow$ & $\\Delta$DR\n27\t  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF & Tot.\\,$\\downarrow$\n28\t  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n29\t\\midrule\n30\tUnconstrained\n31\t  & 15.37 & ---\n32\t  & 1.39  & 0.40\n33\t  & 0.08  & 15.45\n34\t  & 8.23  & 31.01 \\\\\n35\tGrammar\n36\t  & 14.84 & $\\downarrow$3\\%\n37\t  & \\textbf{0} & \\textbf{0}\n38\t  & 0.08  & 14.92\n39\t  & 8.23  & 30.98 \\\\\n40\tSemantic\n41\t  & 11.65 & $\\downarrow$24\\%\n42\t  & 1.51  & 0.40\n43\t  & 2.71  & 14.36\n44\t  & 8.15  & 31.01 \\\\\n45\tFull (S1)\n46\t  & \\textbf{0.93} & $\\downarrow$\\textbf{94\\%}\n47\t  & \\textbf{0} & \\textbf{0}\n48\t  & 9.90  & \\textbf{10.83}\n49\t  & \\textbf{8.36} & 30.98 \\\\\n50\tFull (S2)\n51\t  & 0.97  & $\\downarrow$94\\%\n52\t  & \\textbf{0} & \\textbf{0}\n53\t  & 8.03  & \\textbf{9.00}\n54\t  & 8.03  & \\textbf{31.90} \\\\\n55\t\\bottomrule\n56\t\\end{tabular}}%\n57\t\\caption{Five-way ablation on SciERC (551 docs, Qwen3-8B, zero-shot).\n58\t$\\Delta$DR: relative change vs.\\ unconstrained.\n59\tTot.\\ = DR + CF (total type-violation burden).\n60\tBest per column in \\textbf{bold} (CF excluded; Tot.\\ included).\n61\tF1 $\\times$100. Bootstrap: 10{,}000 iterations.\n62\tS1 = single-pass (\\S\\ref{sec:strategies}), S2 = two-pass (\\S\\ref{sec:s2}).\n63\tGrammar-only represents the ceiling of grammar-constrained decoding~\\cite{geng2023gcd}: vocabulary membership is enforced but cross-field semantic constraints are not.}\n64\t\\label{tab:scierc-ablation}\n65\t\\end{table}\n66\t\n67\t% ──────────────────────────────────────────\n68\t%  (a) Core result\n69\t% ──────────────────────────────────────────\n70\t\\paragraph{Zero-shot diagnostic.}\n71\t% phase2_scierc_unconstrained: DR=0.1537; phase2_scierc_full_s1: DR=0.0093\n72\t% phase2_scierc_unconstrained: R-F1=0.0823; phase2_scierc_full_s1: R-F1=0.0836\n73\t% bootstrap: delta=+0.13pp, CI=[-0.24,+0.58], p=0.5824\n74\tFull S1 reduces DR from 15.37\\% to 0.93\\% ($\\downarrow$94\\%) while R-F1 is unchanged (8.23\\,$\\to$\\,8.36, $p{=}0.58$).\n75\tPer-relation DR drops to $\\leq$2.82\\%, reaching 0\\% on 4/7 relations (Appendix~\\ref{app:per-relation-landscape}).\n76\tPost-hoc filtering achieves slightly higher F1 via precision gains but discards up to 48\\% of predictions including true positives (Appendix~\\ref{app:posthoc-extended}).\n77\tCF rises from 0.08\\% to 9.90\\% (\\S\\ref{sec:discussion}).\n78\t\n79\t% ──────────────────────────────────────────\n80\t%  (b) Grammar layer\n81\t% ──────────────────────────────────────────\n82\t\\paragraph{Layer contributions.}\n83\t% phase2_scierc_grammar_only: RV=0, ET=0, DR=0.1484, R-F1=0.0823\n84\tGrammar-only eliminates RV and ET with no F1 impact while DR remains at 14.84\\%, the ceiling of grammar-based decoding~\\cite{geng2023gcd}; grammar-only CF is near-zero (0.08\\%), so CF originates from the semantic layer.\n85\tSemantic-only reduces DR by only 24\\% and cannot eliminate RV or ET; this is the \\emph{enabling dependency}: adding the grammar layer yields a further 92\\% reduction (11.65\\%\\,$\\to$\\,0.93\\%).\n86\t\n87\t% ──────────────────────────────────────────\n88\t%  (d) S1 vs S2\n89\t% ──────────────────────────────────────────\n90\t\\paragraph{S1 vs.\\ S2.}\n91\tS2 achieves comparable DR (0.97\\%) but lower R-F1 (8.03 vs.\\ 8.36) with fewer triples (1{,}644 vs.\\ 1{,}729) and does not resolve the CF trade-off (8.03\\% vs.\\ 9.90\\%); we adopt S1 as the primary configuration.\n92\t% phase2_scierc_full_s2: DR=0.0097, R-F1=0.0803, CF=0.0803, triples=1644\n93\t\n94\t% ──────────────────────────────────────────\n95\t%  (e) Composability with Fine-Tuning\n96\t%  exp_ids: w5_lora_scierc_unconstrained_eval, w5_lora_scierc_constrained_eval,\n97\t%           w5_llama_lora_scierc_unconstrained_eval, w5_llama_lora_scierc_constrained_eval,\n98\t%           w5_qwen_docred_lora_unconstrained_eval, w5_qwen_docred_lora_constrained_eval,\n99\t%           w5_llama_docred_lora_unconstrained_eval, w5_llama_docred_lora_constrained_eval\n100\t% ──────────────────────────────────────────\n101\t\\paragraph{Composability with fine-tuning.}\n102\t\\label{sec:composability}\n103\tFine-tuning alone reduces DR to 1--2\\% but leaves residual violations that vary by schema tightness (Table~\\ref{tab:composability}).\n104\tOn SciERC ($\\bar{\\kappa}{=}0.333$), adding S1 eliminates or near-eliminates DR: Qwen 1.95\\%\\,$\\to$\\,0\\%, Llama 1.11\\%\\,$\\to$\\,0.09\\%, with R-F1 within $\\pm$0.1\\,pp.\n105\tOn DocRED ($\\bar{\\kappa}{=}0.842$, 96 relations), S1 reduces DR from 0.76\\% to 0.01\\% (Qwen, $\\downarrow$99\\%) and 0.49\\% to 0.21\\% (Llama, $\\downarrow$57\\%); R-F1 changes are $-$0.30\\,pp and $+$0.06\\,pp.\n106\tThe lower Llama-DocRED reduction (57\\% vs.\\ 92--100\\%) traces to higher tightness ($\\bar{\\kappa}{=}0.842$), which triggers grammar-first fallback more frequently.\n107\tAcross all four model-dataset settings, DR\\,$\\leq$\\,0.21\\% with R-F1 within $\\pm$0.6\\,pp.\n108\tCF interference drops from $+$9.82\\,pp (zero-shot SciERC) to $+$1.18\\,pp (fine-tuned), tracing to \\textsc{Generic}$\\leftrightarrow$X ambiguity (Appendix~\\ref{app:cf-distribution}); the semantic layer alone accounts for 39--72\\% of DR reduction under fine-tuning (\\S\\ref{sec:composition}).\n109\tLoRA + greedy S1 is the recommended fast deployment configuration: DR\\,$\\leq$\\,0.21\\%, CF\\,$\\leq$\\,1.2\\% at R-F1 40--46, with $+$10\\% latency overhead (\\S\\ref{sec:runtime}).\n110\tBeam search ($k{=}4$) with LoRA eliminates all four violation types on SciERC for both Qwen and Llama (R-F1 44.23, 46.11; \\S\\ref{sec:beam-results}).\n111\t\n112\t\\begin{table}[t]\n113\t\\centering\n114\t\\small\n115\t\\setlength{\\tabcolsep}{3pt}\n116\t\\resizebox{\\columnwidth}{!}{%\n117\t\\begin{tabular}{@{}lll rrrr r@{}}\n118\t\\toprule\n119\t\\textbf{Model} & \\textbf{Dataset} & \\textbf{Mode}\n120\t  & \\textbf{DR\\,$\\downarrow$} & \\textbf{CF}\n121\t  & \\textbf{R-F1\\,$\\uparrow$} & \\textbf{E-F1\\,$\\uparrow$}\n122\t  & \\textbf{$\\Delta$DR} \\\\\n123\t\\midrule\n124\t\\multirow{4}{*}{Qwen3-8B}\n125\t  & \\multirow{2}{*}{SciERC}\n126\t    & Unconstr.\\ &  1.95 & 0    & 43.86 & 67.05 & --- \\\\\n127\t  & & Full S1    & \\textbf{0} & 1.18 & 43.77 & 67.05 & $\\downarrow$100\\% \\\\\n128\t\\cmidrule(l){2-8}\n129\t  & \\multirow{2}{*}{DocRED}\n130\t    & Unconstr.\\ &  0.76 & 0.09 & 40.86 & 82.15 & --- \\\\\n131\t  & & Full S1    & \\textbf{0.01} & 0.27 & 40.56 & 81.43 & $\\downarrow$99\\% \\\\\n132\t\\midrule\n133\t\\multirow{4}{*}{\\shortstack[l]{Llama\\\\3.1-8B}}\n134\t  & \\multirow{2}{*}{SciERC}\n135\t    & Unconstr.\\ &  1.11 & 0    & 45.45 & 67.76 & --- \\\\\n136\t  & & Full S1    &  0.09 & 0.46 & 45.47 & 67.76 & $\\downarrow$92\\% \\\\\n137\t\\cmidrule(l){2-8}\n138\t  & \\multirow{2}{*}{DocRED}\n139\t    & Unconstr.\\ &  0.49 & 0.08 & 43.72 & 83.93 & --- \\\\\n140\t  & & Full S1    &  0.21 & 0.21 & 43.78 & 83.94 & $\\downarrow$57\\% \\\\\n141\t\\bottomrule\n142\t\\end{tabular}}%\n143\t\\caption{Fine-tuning composability: LoRA $\\times$ unconstrained vs.\\ S1 on SciERC (551 docs) and DocRED (998 dev docs).\n144\tDR\\,$\\leq$\\,0.21\\% across both datasets with R-F1 within $\\pm$0.6\\,pp.\n145\tF1\\,$\\times$100. Bootstrap: 10{,}000 iterations. ---: not computed.\n146\tE-F1 includes parse-failure documents (Qwen PF: 7--9\\%; Llama PF: 2--3\\%); excluding parse failures, E-F1 is stable for both models ($\\pm$0.1\\,pp).}\n147\t\\label{tab:composability}\n148\t\\end{table}\n149\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff8b56c0-3317-468e-8c48-26767a539615",
+            "isSidechain": true,
+            "promptId": "e883707e-188d-424b-b959-0bcf59b6c778",
+            "agentId": "a63cd9d7b7a612093",
+            "type": "user",
+            "uuid": "c4e1d556-ed64-4112-a773-13249ae742d3",
+            "sourceToolAssistantUUID": "ff8b56c0-3317-468e-8c48-26767a539615",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman"
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T13:36:19.886Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`appendix_runtime.tex` 不存在。在 `section5_scierc_draft.tex` 中搜索 beam latency 相关内容。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c4e1d556-ed64-4112-a773-13249ae742d3",
+            "isSidechain": true,
+            "agentId": "a63cd9d7b7a612093",
+            "requestId": "req_011CbDujhNPjExV32HQyFWAD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c9f6fa17-e8ef-4e07-b8c5-4739bc2fe5cc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TYNKFr6v2371zdwjWHJYeY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5171,
+                "cache_read_input_tokens": 25084,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5171,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T13:36:22.480Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01THRBHstNjTPEQEMxwdooYN",
+              "name": "Grep",
+              "input": {
+                "pattern": "1\\.54|beam.*laten|latency.*beam|runtime|sec:beam|sec:runtime",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+                "output_mode": "content",
+                "-n": true
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c9f6fa17-e8ef-4e07-b8c5-4739bc2fe5cc",
+            "isSidechain": true,
+            "agentId": "a63cd9d7b7a612093",
+            "requestId": "req_011CbDujhNPjExV32HQyFWAD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "55cd0671-4844-47c3-927b-cb28b686f822",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TYNKFr6v2371zdwjWHJYeY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5171,
+                "cache_read_input_tokens": 25084,
+                "output_tokens": 206,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5171
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 206,
+                    "cache_read_input_tokens": 25084,
+                    "cache_creation_input_tokens": 5171,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5171,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T13:36:22.509Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01THRBHstNjTPEQEMxwdooYN",
+              "type": "tool_result",
+              "content": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.fls:355:INPUT ./section5_runtime.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.fls:356:INPUT ./section5_runtime.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.fls:357:INPUT ./section5_runtime.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.fls:358:INPUT ./section5_runtime.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.fls:359:INPUT section5_runtime.tex\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:16:Training-based approaches~\\cite{sainz2024gollie,lu2022uie} internalize schema knowledge but provide only soft guidance without runtime guarantees.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:17:These two directions—grammar-constrained decoding and schema-aware training—have developed independently; no method provides both semantic awareness and runtime enforcement.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:20:A decidability analysis of IE type constraints (\\S\\ref{sec:decidability}) yields a two-layer architecture: the \\emph{grammar layer} enforces context-free constraints (JSON structure, vocabulary membership) via XGrammar; the \\emph{semantic layer} enforces prefix-decidable constraints (pair-based domain/range) through dynamic logit masking over a runtime entity registry, with an \\emph{enabling dependency} between layers.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex:22:We evaluate two deployment configurations: LoRA + greedy S1 near-eliminates DR ($\\leq$ 0.21\\%) with R-F1 within $\\pm$0.6\\,pp and $+$10\\% latency; LoRA + beam S1 ($k{=}4$) additionally resolves the CF trade-off, achieving zero violations on SciERC (1.54$\\times$ latency).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex:54:\\input{section5_runtime}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_reproducibility.tex:17:Inference timing is reported in Appendix~\\ref{app:runtime} (NVIDIA RTX PRO 6000 Blackwell Server Edition GPU, same hardware as training).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.log:664:(./section5_runtime.tex [7])\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/checklist.tex:47:\\\\ Yes. Model sizes (7B--70B) in \\S5. GPU infrastructure, LoRA configuration, and runtime overhead in \\S\\ref{sec:runtime} and Appendix~\\ref{app:reproducibility}.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex:10:Outlines~\\cite{willard2023outlines} reformulates constrained generation as finite-state machine transitions with offline vocabulary indexing, which enables efficient enforcement of regular-expression and JSON-schema constraints without runtime overhead per token.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex:81:This ``ontology-to-tools'' approach shares OntoCoDec's philosophy of compiling formal ontological knowledge into runtime enforcement mechanisms, but operates at the tool-call level (constraining which API functions the agent invokes) rather than at the token level (constraining which tokens the decoder produces), and requires an agentic multi-step workflow rather than single-pass autoregressive generation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex:32:OntoCoDec's semantic layer addresses this with a runtime entity registry $\\mathcal{D}$ (a finite map enabling random-access type lookups), operating as a deterministic stateful transducer over the token stream.\\hfill$\\square$\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:82:Beam search (\\S\\ref{sec:beam-results}) resolves CF and DR simultaneously across all $\\bar{\\kappa}$ values (SciERC and DocRED (998 docs): DR$\\to$0\\% for calibrated models), making it the preferred approach for high-tightness schemas.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_tcr.tex:83:TCR is a zero-cost complement for low-tightness schemas where beam search latency (1.54$\\times$) is undesirable.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex:347:\\label{app:runtime}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_additions.tex:55:This ``ontology-to-tools'' approach shares OntoCoDec's philosophy of compiling formal ontological knowledge into runtime enforcement mechanisms, but operates at the tool-call level (constraining which API functions the agent invokes) rather than at the token level (constraining which tokens the decoder produces), and requires an agentic multi-step workflow rather than single-pass autoregressive generation.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:82:2          & 0.35 & 4.12 & 31.54 & \\textbf{8.75} \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:119: & \\textsc{unc} & 67.79 & 44.75 & 1.54 & 0    & 2.954 & 1.18$\\times$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:172:Table~\\ref{tab:beam-latency} reports wall-clock latency for greedy and beam search ($k{=}4$) under LoRA fine-tuning.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:184:Beam-4 constrained (S1)& 4.013 & 1.54$\\times$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:188:\\label{tab:beam-latency}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:191:Beam search itself adds 32\\% latency (4 beams); constraint overhead increases from 10\\% (greedy) to 16.5\\% (beam) because each beam independently maintains grammar and semantic state.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex:192:The total 1.54$\\times$ overhead is acceptable for offline batch IE; \\texttt{early\\_stopping} limits additional compute to partial-sequence exploration.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex:9:LoRA + beam S1 (\\S\\ref{sec:beam-results}) additionally resolves cross-field consistency, achieving zero total violations at 1.54$\\times$ latency.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.fdb_latexmk:197:  \"section5_runtime.tex\" 1779237721.25323 2124 202d1642e49b495a495b9dc77b87b303 \"\"\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex:109:LoRA + greedy S1 is the recommended fast deployment configuration: DR\\,$\\leq$\\,0.21\\%, CF\\,$\\leq$\\,1.2\\% at R-F1 40--46, with $+$10\\% latency overhead (\\S\\ref{sec:runtime}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex:110:Beam search ($k{=}4$) with LoRA eliminates all four violation types on SciERC for both Qwen and Llama (R-F1 44.23, 46.11; \\S\\ref{sec:beam-results}).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex:6:Composed with Low-Rank Adaptation (LoRA), \\textsc{OntoCoDec} near-eliminates DR violations (DR $\\leq$ 0.21\\%) with negligible R-F1 impact ($\\pm$0.6\\,pp); beam search ($k{=}4$) resolves the cross-field consistency (CF) trade-off, achieving zero violations on SciERC (R-F1 44--46, 1.54$\\times$ latency).\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:689:\\newlabel{sec:runtime}{{5.4}{7}{Runtime overhead}{section*.34}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:730:\\newlabel{sec:beam-results}{{5.4}{8}{Beam search compatibility}{section*.35}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:2300:\\newlabel{app:runtime}{{C}{23}{Zero-Shot Runtime Profiling}{section*.78}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.aux:2607:\\newlabel{tab:beam-latency}{{19}{27}{Latency per document (SciERC, 551 docs, Qwen3-8B LoRA FT, RTX PRO 6000 Blackwell). Overhead relative to greedy unconstrained}{table.caption.100}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex:4:OntoCoDec formally compiles IE ontologies into composable token-level constraints via a decidability-guided architecture: LoRA + greedy S1 achieves DR\\,$\\leq$\\,0.21\\%, CF\\,$\\leq$\\,1.2\\%; beam ($k{=}4$) eliminates all violations on SciERC (1.54$\\times$ latency); zero-shot DR drops 76--99\\% for calibrated models.\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex:4:\\label{sec:runtime}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex:10:\\label{sec:beam-results}\n/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex:14:Total latency overhead is 1.54$\\times$ (beam 1.32$\\times$ $+$ constraint 1.17$\\times$; Table~\\ref{tab:beam-latency})."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "55cd0671-4844-47c3-927b-cb28b686f822",
+            "isSidechain": true,
+            "promptId": "e883707e-188d-424b-b959-0bcf59b6c778",
+            "agentId": "a63cd9d7b7a612093",
+            "type": "user",
+            "uuid": "86d5f857-49d5-4821-92f7-dfd3cd7f058b",
+            "sourceToolAssistantUUID": "55cd0671-4844-47c3-927b-cb28b686f822",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T13:36:27.084Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019k9LqvJhqBWLfTTZLP4Vjj",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_beam_search.tex",
+                "offset": 168,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86d5f857-49d5-4821-92f7-dfd3cd7f058b",
+            "isSidechain": true,
+            "agentId": "a63cd9d7b7a612093",
+            "requestId": "req_011CbDuk9VWmj3dcGUTm4ReB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "904967ce-9ba5-4926-9864-db376c2623d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TVTYRfE62ujXAdKR3vxJAU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3815,
+                "cache_read_input_tokens": 30255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3815,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 68,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T13:36:27.091Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019k9LqvJhqBWLfTTZLP4Vjj",
+              "type": "tool_result",
+              "content": "168\tQwen3-8B achieves DR=0\\% with near-zero CF (0.01\\%); R-F1 is preserved ($\\pm$0.06\\,pp).\n169\tCombined with the sampling robustness results (Appendix~\\ref{app:sampling}), these findings confirm that OntoCoDec's constraint enforcement is compatible with greedy, sampling, and beam search decoding without modification to the core constraint logic.\n170\t\n171\t\\paragraph{Latency overhead.}\n172\tTable~\\ref{tab:beam-latency} reports wall-clock latency for greedy and beam search ($k{=}4$) under LoRA fine-tuning.\n173\t\n174\t\\begin{table}[h]\n175\t\\centering\n176\t\\small\n177\t\\begin{tabular}{@{}lrr@{}}\n178\t\\toprule\n179\t\\textbf{Condition} & \\textbf{s/doc} & \\textbf{Overhead} \\\\\n180\t\\midrule\n181\tGreedy unconstrained   & 2.612 & 1.00$\\times$ \\\\\n182\tGreedy constrained (S1)& 2.873 & 1.10$\\times$ \\\\\n183\tBeam-4 unconstrained   & 3.446 & 1.32$\\times$ \\\\\n184\tBeam-4 constrained (S1)& 4.013 & 1.54$\\times$ \\\\\n185\t\\bottomrule\n186\t\\end{tabular}\n187\t\\caption{Latency per document (SciERC, 551 docs, Qwen3-8B LoRA FT, RTX PRO 6000 Blackwell). Overhead relative to greedy unconstrained.}\n188\t\\label{tab:beam-latency}\n189\t\\end{table}\n190\t\n191\tBeam search itself adds 32\\% latency (4 beams); constraint overhead increases from 10\\% (greedy) to 16.5\\% (beam) because each beam independently maintains grammar and semantic state.\n192\tThe total 1.54$\\times$ overhead is acceptable for offline batch IE; \\texttt{early\\_stopping} limits additional compute to partial-sequence exploration.\n193\t\n194\tWe also explored a type-consensus constraint that forces identical entity types across all relations within a document.\n195\tHowever, CF violations occur precisely where the consensus type conflicts with domain-range constraints, creating a fundamental CF$\\leftrightarrow$DR trade-off.\n196\tWith DR-aware enforcement (skipping consensus when it would violate domain-range), the layer becomes a no-op (100\\% skip rate on 551 SciERC documents and 50 DocRED documents).\n197\tThis confirms that beam search resolves the CF$\\leftrightarrow$DR tension through a fundamentally different mechanism: token-level exploration of paths satisfying both constraints simultaneously."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "904967ce-9ba5-4926-9864-db376c2623d6",
+            "isSidechain": true,
+            "promptId": "e883707e-188d-424b-b959-0bcf59b6c778",
+            "agentId": "a63cd9d7b7a612093",
+            "type": "user",
+            "uuid": "acf6dc1d-b236-4303-8ef6-599f8a4712af",
+            "sourceToolAssistantUUID": "904967ce-9ba5-4926-9864-db376c2623d6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T13:36:27.346Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VMdxZkMJoQ5JDhm6TTfjDG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "acf6dc1d-b236-4303-8ef6-599f8a4712af",
+            "isSidechain": true,
+            "agentId": "a63cd9d7b7a612093",
+            "requestId": "req_011CbDuk9VWmj3dcGUTm4ReB",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "872cb465-bb70-4697-88b3-7f9a3dd8ba45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TVTYRfE62ujXAdKR3vxJAU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3815,
+                "cache_read_input_tokens": 30255,
+                "output_tokens": 209,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3815
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 209,
+                    "cache_read_input_tokens": 30255,
+                    "cache_creation_input_tokens": 3815,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3815,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T13:36:27.351Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VMdxZkMJoQ5JDhm6TTfjDG",
+              "type": "tool_result",
+              "content": "1\t% Runtime overhead (inline paragraph, no subsection header to save space)\n2\t\n3\t\\paragraph{Runtime overhead.}\n4\t\\label{sec:runtime}\n5\tS1 overhead is $+$13.1\\% on SciERC and $+$2.43\\% on DocRED (amortized over longer sequences); under LoRA, $+$10.0\\% with 37\\% lower absolute latency.\n6\tFull constraint compilation (schema parsing + grammar build): one-time $<$0.5\\,s across all tested scales (Appendix~\\ref{app:scalability}).\n7\tScaling benchmarks confirm constant overhead (2--3\\%) up to 200 entity types and 1{,}000 relations (Appendix~\\ref{app:scalability}).\n8\t\n9\t\\paragraph{Beam search compatibility.}\n10\t\\label{sec:beam-results}\n11\tUnder greedy S1, the grammar-first fallback resolves DR$\\leftrightarrow$CF conflicts one token at a time; beam search ($k{=}4$) explores paths that satisfy both layers jointly and reduces DR and CF simultaneously.\n12\tWith LoRA, beam S1 eliminates all four violation types on SciERC for both models and on DocRED for Llama (R-F1 44--47; Appendix~\\ref{app:beam-search}).\n13\tUnder zero-shot, beam reduces DR to 0\\% for calibrated models on SciERC (551 docs) and a DocRED subset (50 docs), and CF substantially (9.90\\%\\,$\\to$\\,0.53\\% Qwen; 6.56\\%\\,$\\to$\\,0.93\\% Llama on SciERC); Mistral remains a boundary condition (Appendix~\\ref{app:beam-search}).\n14\tTotal latency overhead is 1.54$\\times$ (beam 1.32$\\times$ $+$ constraint 1.17$\\times$; Table~\\ref{tab:beam-latency}).\n15\t\n16\t% exp_ids: 70b_scierc_unconstrained, 70b_scierc_constrained, 70b_docred_unconstrained, 70b_docred_constrained\n17\t\\paragraph{Cross-scale generalizability.}\n18\t\\label{sec:70b-results}\n19\tOn Llama-3.1-70B (AWQ INT4), OntoCoDec achieves DR$\\to$0\\% on SciERC (R-F1 $-$0.03\\,pp) and \\textbf{0\\%} across ET, RV, and DR on the full DocRED 998-document set (R-F1 $+$0.04\\,pp), one of three configurations to eliminate DR on DocRED (also achieved by LoRA + beam-4; Appendix~\\ref{app:beam-search}).\n20\tCF rises to 7.01\\% (from 0.07\\%); the low baseline reflects under-measurement (malformed outputs bypass the checker), while constrained decoding exposes more triples to the consistency check (\\S\\ref{sec:discussion}).\n21\tModel scale reduces but does not eliminate violations.\n22\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "872cb465-bb70-4697-88b3-7f9a3dd8ba45",
+            "isSidechain": true,
+            "promptId": "e883707e-188d-424b-b959-0bcf59b6c778",
+            "agentId": "a63cd9d7b7a612093",
+            "type": "user",
+            "uuid": "c3e553ef-083a-4c0c-8286-9b87f529fea1",
+            "sourceToolAssistantUUID": "872cb465-bb70-4697-88b3-7f9a3dd8ba45",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T13:36:37.353Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果如下：\n\n**(a) 1.54x claim 精确位置**\n\n该数字出现在多处，核心数据源在 `appendix_beam_search.tex:184`：\n```\nBeam-4 constrained (S1)& 4.013 & 1.54$\\times$ \\\\\n```\n主文引用在 `section5_runtime.tex:14`：\n```\nTotal latency overhead is 1.54$\\times$ (beam 1.32$\\times$ $+$ constraint 1.17$\\times$; Table~\\ref{tab:beam-latency}).\n```\nConclusion 在 `section7_conclusion_compressed.tex:4`，Abstract 在 `abstract.tex:6`，Intro 在 `section1_introduction_draft.tex:22` 均引用同一数字。\n\n**(b) 实验来源**\n\nTable 19 (`tab:beam-latency`)，条件：SciERC 551 docs, Qwen3-8B LoRA FT, RTX PRO 6000 Blackwell GPU。四行：greedy unconstrained (2.612 s/doc), greedy constrained S1 (2.873), beam-4 unconstrained (3.446), beam-4 constrained S1 (4.013)。\n\n**(c) 基准线**\n\n1.54x 是 **beam-4 constrained S1 相对于 greedy unconstrained** 的比值（4.013 / 2.612 = 1.536 ≈ 1.54x）。论文将其分解为 beam 本身 1.32x + 约束开销 1.17x（实际是乘法关系：1.32 × 1.17 ≈ 1.54）。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c3e553ef-083a-4c0c-8286-9b87f529fea1",
+            "isSidechain": true,
+            "agentId": "a63cd9d7b7a612093",
+            "requestId": "req_011CbDukWCD3pdetziioNTSD",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8c269d7f-036f-43da-bf51-70720cd2f5c1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/reviewer_17ad4b4d",
+            "sessionId": "4e505cfd-e511-450e-9353-c82f3ae222f4",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "radiant-snacking-stallman",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01WwmgmZbve7rq8gxu92GN9L",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1770,
+                "cache_read_input_tokens": 34070,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1770,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        }
+      ],
+      "message_count": 17
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-read-these-files-from-the-local-filesystem-and-find-what-beam-search-latency-r.md"
+}

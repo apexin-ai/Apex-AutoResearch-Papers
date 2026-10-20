@@ -1,0 +1,2000 @@
+{
+  "schema_version": "1.0",
+  "id": "684c98ab4d91b2429e31",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: I need to find Qwen DocRED 200-doc beam sweep experiment results in this project's registry. The project is `schema_sema",
+  "task_key": "agent-a2b3c3006156a19fc",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/agent-a2b3c3006156a19fc.jsonl",
+    "occurrence": 1,
+    "bytes": 96506,
+    "sha256": "020dd635876d71f6fae49796abad847264be57d20b554c79881479bb41994b99"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 1,
+    "tool_calls": 14,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 8,
+      "tool_call": 14,
+      "tool_result": 14
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T05:51:45.283Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "I need to find Qwen DocRED 200-doc beam sweep experiment results in this project's registry. The project is `schema_semantic_constrained_ie`. I'm looking for experiments like `d066_sweep_qwen_docred*` or similar, especially `beam1` or greedy `full_s1` on 200 docs.\n\nUse the tool `mcp__agent-ml-research__read_registry` with:\n- project: \"schema_semantic_constrained_ie\"\n- filters: {\"status\": \"DONE\"}\n- limit: 50\n- fields: [\"status\", \"metrics\", \"spec\"]\n\nBut use an offset or search for experiments beyond the first 50 (the default sorting is by updated_at desc). The Qwen DocRED beam sweep experiments were from around 2026-05-19 to 2026-05-21.\n\nAlternatively, search with a different filter. Report back any experiments containing \"qwen\" and \"docred\" with sample count 200, especially their R-F1, E-F1, DR%, and CF% metrics."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "c8df9a2f-453b-4913-8cd5-2ef615afffad",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T05:51:45.291Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "c8df9a2f-453b-4913-8cd5-2ef615afffad",
+                "isSidechain": true,
+                "agentId": "a2b3c3006156a19fc",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "addedLines": [
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "Monitor",
+                    "NotebookEdit",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__detect_image",
+                    "mcp__agent-ml-research__kill_job",
+                    "mcp__agent-ml-research__read_registry",
+                    "mcp__agent-ml-research__register_artifact",
+                    "mcp__agent-ml-research__ssh_execute",
+                    "mcp__agent-ml-research__ssh_read_only",
+                    "mcp__agent-ml-research__update_registry"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "5e89dd70-3fc4-4afa-bd25-09362f3f3bc2",
+                "timestamp": "2026-05-23T05:51:45.291Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T05:51:47.641Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nLet me first load the tool schema, then search for the experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e89dd70-3fc4-4afa-bd25-09362f3f3bc2",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyjwbdm9PAYKxt8Z9Lv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "068f25fd-c5d8-4067-8e7c-9f546c0daac7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J7ETeXcSjtk96AEniQgZkE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14239,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 14239,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T05:51:48.227Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0178mgTwoXDkmwZxkprqGkW9",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:mcp__agent-ml-research__read_registry",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "068f25fd-c5d8-4067-8e7c-9f546c0daac7",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyjwbdm9PAYKxt8Z9Lv",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1de8e098-4758-4b68-b07f-eb1c1dd04d75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01J7ETeXcSjtk96AEniQgZkE",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 14239,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 101,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14239
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 101,
+                    "cache_read_input_tokens": 0,
+                    "cache_creation_input_tokens": 14239,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 14239,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T05:51:48.232Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_0178mgTwoXDkmwZxkprqGkW9",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "mcp__agent-ml-research__read_registry"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1de8e098-4758-4b68-b07f-eb1c1dd04d75",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "b56dc216-06a8-4ec1-a268-b6d4e99a554e",
+            "sourceToolAssistantUUID": "1de8e098-4758-4b68-b07f-eb1c1dd04d75",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T05:51:51.897Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MxVrVi8QjsEVqvFYNzedfG",
+              "name": "mcp__agent-ml-research__read_registry",
+              "input": {
+                "project": "schema_semantic_constrained_ie",
+                "filters": {
+                  "status": "DONE"
+                },
+                "limit": 0,
+                "fields": [
+                  "status",
+                  "metrics",
+                  "spec",
+                  "experiment_id",
+                  "updated_at"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b56dc216-06a8-4ec1-a268-b6d4e99a554e",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJykAFPaZkfDSxynQARS",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "78667b70-e689-4a29-ab31-7582675a223a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0195eQZ9JqvdPEm1a89mSjDo",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1299,
+                "cache_read_input_tokens": 14239,
+                "output_tokens": 145,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1299
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 145,
+                    "cache_read_input_tokens": 14239,
+                    "cache_creation_input_tokens": 1299,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1299,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T05:51:52.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MxVrVi8QjsEVqvFYNzedfG",
+              "type": "tool_result",
+              "content": "Error: result (190,801 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "78667b70-e689-4a29-ab31-7582675a223a",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "c5eb9674-7752-49a7-b975-ba46bb20793e",
+            "sourceToolAssistantUUID": "78667b70-e689-4a29-ab31-7582675a223a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T05:51:55.030Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The result is too large. Let me search within it for the relevant experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c5eb9674-7752-49a7-b975-ba46bb20793e",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJykVPpuj1NrN9oC2mjT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "062e6e55-dcdc-4219-ac0f-9809cc126659",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011JjMDpHBhJrEsnQYK9gzyS",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 515,
+                "cache_read_input_tokens": 15538,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 515,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T05:51:58.962Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019CwGddq4NNAatnLjMUNbL4",
+              "name": "Bash",
+              "input": {
+                "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt | python3 -c \"\nimport json, sys\n\ndata = json.loads(sys.stdin.read())\nresult = json.loads(data['result'])\n\n# Filter for experiments containing 'qwen' and 'docred' (case insensitive)\nmatching = []\nfor exp in result:\n    eid = exp.get('experiment_id', '').lower()\n    if 'qwen' in eid and 'docred' in eid:\n        matching.append(exp)\n\nprint(f'Found {len(matching)} matching experiments')\nfor exp in matching:\n    print(json.dumps(exp, indent=2))\n    print('---')\n\"\n",
+                "description": "Filter registry results for qwen+docred experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "062e6e55-dcdc-4219-ac0f-9809cc126659",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJykVPpuj1NrN9oC2mjT",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a941883c-c06d-40d9-b1fe-d7f8c43bd1ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011JjMDpHBhJrEsnQYK9gzyS",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 515,
+                "cache_read_input_tokens": 15538,
+                "output_tokens": 361,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 515
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 361,
+                    "cache_read_input_tokens": 15538,
+                    "cache_creation_input_tokens": 515,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 515,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T05:51:59.402Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 10, in <module>\n    eid = exp.get('experiment_id', '').lower()\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+              "is_error": true,
+              "tool_use_id": "toolu_019CwGddq4NNAatnLjMUNbL4"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a941883c-c06d-40d9-b1fe-d7f8c43bd1ee",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "f8356c10-bd29-46d1-8ce6-4238ad4d43f9",
+            "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 10, in <module>\n    eid = exp.get('experiment_id', '').lower()\n          ^^^^^^^\nAttributeError: 'str' object has no attribute 'get'",
+            "sourceToolAssistantUUID": "a941883c-c06d-40d9-b1fe-d7f8c43bd1ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T05:52:01.891Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01XRPuFczJ6JdB5dZfwXzRYA",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt",
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f8356c10-bd29-46d1-8ce6-4238ad4d43f9",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJykyvZRzRax7f9crakn",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f0fa000a-75d7-474d-b2a4-c1ba460fdef1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KHcb2oDLaAfC22kmnAkpw8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 448,
+                "cache_read_input_tokens": 16053,
+                "output_tokens": 159,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 448
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 159,
+                    "cache_read_input_tokens": 16053,
+                    "cache_creation_input_tokens": 448,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 448,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T05:52:02.224Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (82494 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01XRPuFczJ6JdB5dZfwXzRYA"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0fa000a-75d7-474d-b2a4-c1ba460fdef1",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "d30caf5d-524c-4eb6-ac94-bb313c5275ce",
+            "toolUseResult": "Error: File content (82494 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "f0fa000a-75d7-474d-b2a4-c1ba460fdef1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T05:52:09.364Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TNq4fAXfFW1ZwYpCuv9nMx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt",
+                "limit": 5
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d30caf5d-524c-4eb6-ac94-bb313c5275ce",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJymBxru9Kq1X8USgA9L",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "733ce456-1126-423f-b088-9388115dbc93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01VvjkPvZLeU36pXxqSPBh4X",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 220,
+                "cache_read_input_tokens": 16501,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 220,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 65,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T05:52:09.887Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (82494 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01TNq4fAXfFW1ZwYpCuv9nMx"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "733ce456-1126-423f-b088-9388115dbc93",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "7a159c70-56be-4d72-bd44-28047c7b76ca",
+            "toolUseResult": "Error: File content (82494 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "733ce456-1126-423f-b088-9388115dbc93",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T05:52:12.299Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UXYyUxPwGN8c4HhozEAyy4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt",
+                "offset": 0,
+                "limit": 3
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a159c70-56be-4d72-bd44-28047c7b76ca",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJymkjqPbANqCLknDUrG",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "86f50b48-a2d7-4295-944e-e7de02c6d088",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lrt5Af7KsbwPajt8rhQmFU",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 220,
+                "cache_read_input_tokens": 16721,
+                "output_tokens": 176,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 220
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 176,
+                    "cache_read_input_tokens": 16721,
+                    "cache_creation_input_tokens": 220,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 220,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T05:52:12.629Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (82494 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01UXYyUxPwGN8c4HhozEAyy4"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "86f50b48-a2d7-4295-944e-e7de02c6d088",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "48aa6010-ab62-4b8b-8401-87f7e8ebb3ed",
+            "toolUseResult": "Error: File content (82494 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "86f50b48-a2d7-4295-944e-e7de02c6d088",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T05:52:15.250Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TfTbwHWhhJSU8a9LQ8TbgK",
+              "name": "Bash",
+              "input": {
+                "command": "head -c 500 /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt",
+                "description": "Check file structure"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "48aa6010-ab62-4b8b-8401-87f7e8ebb3ed",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJymxTnFS8NsBhu3xsxh",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e2fc443c-c5f5-4f22-8c3b-b72a11b5cbd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UZ3UcWrHNNM14wHK7tWQeW",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 237,
+                "cache_read_input_tokens": 16941,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 237
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 16941,
+                    "cache_creation_input_tokens": 237,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 237,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T05:52:15.307Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TfTbwHWhhJSU8a9LQ8TbgK",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"sf2_llama_int4_scierc_s1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"updated_at\\\": \\\"2026-05-23T05:35:25.774Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=1 python run_constrained_extraction.py --mode full_s1 --dataset scierc --model_path /root/autodl-tmp/models/Llama-8B-SciERC-FT-AWQ-INT4/ --data_path data/processed_data/test.json --constraints_path ontology_constraints.json --output_path outputs/sf2_llama_int4_scierc_s1/raw_outputs.jsonl --dev",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e2fc443c-c5f5-4f22-8c3b-b72a11b5cbd9",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "22098d57-df0c-44d2-b7fc-c8988bfac1fd",
+            "sourceToolAssistantUUID": "e2fc443c-c5f5-4f22-8c3b-b72a11b5cbd9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T05:52:27.962Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011URgHdoeD2jXPbw8XCT6SA",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Filter for qwen + docred\nmatching = {}\nfor eid, exp in experiments.items():\n    if 'qwen' in eid.lower() and 'docred' in eid.lower():\n        matching[eid] = exp\n\nprint(f'Found {len(matching)} matching experiments:')\nfor eid in sorted(matching.keys()):\n    print(f'  {eid}')\nprint()\n\n# Print details\nfor eid in sorted(matching.keys()):\n    exp = matching[eid]\n    print(f'=== {eid} ===')\n    print(f'  status: {exp.get(\\\"status\\\")}')\n    print(f'  updated_at: {exp.get(\\\"updated_at\\\")}')\n    metrics = exp.get('metrics', {})\n    if metrics:\n        print(f'  metrics: {json.dumps(metrics, indent=4)}')\n    spec = exp.get('spec', {})\n    # Extract key spec info\n    cmd = spec.get('command', '')\n    if '--num_samples' in cmd:\n        import re\n        m = re.search(r'--num_samples\\s+(\\d+)', cmd)\n        if m:\n            print(f'  num_samples: {m.group(1)}')\n    if '--beam_width' in cmd:\n        m = re.search(r'--beam_width\\s+(\\d+)', cmd)\n        if m:\n            print(f'  beam_width: {m.group(1)}')\n    if '--mode' in cmd:\n        m = re.search(r'--mode\\s+(\\S+)', cmd)\n        if m:\n            print(f'  mode: {m.group(1)}')\n    print()\n\" 2>&1",
+                "description": "Extract qwen+docred experiments with metrics",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "22098d57-df0c-44d2-b7fc-c8988bfac1fd",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyn9uN8Ri2zRytkmiHf",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "c376d911-c0eb-437a-86da-e093fe35a89e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DwUBGCtbVq3fSCsSjrho4w",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 380,
+                "cache_read_input_tokens": 17178,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 380,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 63,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T05:52:28.327Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 43, in <module>\n    m = re.search(r'--mode\\s+(\\S+)', cmd)\n        ^^\nNameError: name 're' is not defined. Did you forget to import 're'?\nFound 9 matching experiments:\n  r14_qwen_docred_beam4_998\n  w5_qwen_docred_lora_constrained_eval\n  w5_qwen_docred_lora_training\n  w5_qwen_docred_lora_unconstrained_eval\n  w8_qwen_docred_ft_grammar_only\n  w8_qwen_docred_ft_semantic_only\n  w9_qwen_docred_beam_50\n  w9_qwen_docred_zs_sampling\n  w9_qwen_docred_zs_sampling_r2\n\n=== r14_qwen_docred_beam4_998 ===\n  status: DONE\n  updated_at: 2026-05-21T05:43:45.941Z\n  metrics: {\n    \"E_F1\": 58.19,\n    \"R_F1\": 8.72,\n    \"DR_pct\": 0,\n    \"RV_pct\": 0,\n    \"ET_pct\": 0,\n    \"CF_pct\": 4.94,\n    \"parse_fail_pct\": 3.51,\n    \"samples\": 998,\n    \"success\": 963,\n    \"fail\": 35\n}",
+              "is_error": true,
+              "tool_use_id": "toolu_011URgHdoeD2jXPbw8XCT6SA"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c376d911-c0eb-437a-86da-e093fe35a89e",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "32afceab-782e-4ab6-9f26-58996f950a48",
+            "toolUseResult": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 43, in <module>\n    m = re.search(r'--mode\\s+(\\S+)', cmd)\n        ^^\nNameError: name 're' is not defined. Did you forget to import 're'?\nFound 9 matching experiments:\n  r14_qwen_docred_beam4_998\n  w5_qwen_docred_lora_constrained_eval\n  w5_qwen_docred_lora_training\n  w5_qwen_docred_lora_unconstrained_eval\n  w8_qwen_docred_ft_grammar_only\n  w8_qwen_docred_ft_semantic_only\n  w9_qwen_docred_beam_50\n  w9_qwen_docred_zs_sampling\n  w9_qwen_docred_zs_sampling_r2\n\n=== r14_qwen_docred_beam4_998 ===\n  status: DONE\n  updated_at: 2026-05-21T05:43:45.941Z\n  metrics: {\n    \"E_F1\": 58.19,\n    \"R_F1\": 8.72,\n    \"DR_pct\": 0,\n    \"RV_pct\": 0,\n    \"ET_pct\": 0,\n    \"CF_pct\": 4.94,\n    \"parse_fail_pct\": 3.51,\n    \"samples\": 998,\n    \"success\": 963,\n    \"fail\": 35\n}",
+            "sourceToolAssistantUUID": "c376d911-c0eb-437a-86da-e093fe35a89e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T05:52:37.619Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013Semd3E8d618cDWuEBUWzb",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json, re\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Filter for qwen + docred\nmatching = {}\nfor eid, exp in experiments.items():\n    if 'qwen' in eid.lower() and 'docred' in eid.lower():\n        matching[eid] = exp\n\nprint(f'Found {len(matching)} matching experiments:\\n')\n\nfor eid in sorted(matching.keys()):\n    exp = matching[eid]\n    print(f'=== {eid} ===')\n    print(f'  status: {exp.get(\"status\")}')\n    print(f'  updated_at: {exp.get(\"updated_at\")}')\n    metrics = exp.get('metrics', {})\n    if metrics:\n        print(f'  metrics: {json.dumps(metrics, indent=4)}')\n    spec = exp.get('spec', {})\n    cmd = spec.get('command', '')\n    # Extract key params\n    for param in ['--num_samples', '--beam_width', '--mode', '--dataset']:\n        m = re.search(rf'{param}\\s+(\\S+)', cmd)\n        if m:\n            print(f'  {param.lstrip(\"-\")}: {m.group(1)}')\n    print()\nPYEOF\n",
+                "description": "Extract qwen+docred experiments with all details",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "32afceab-782e-4ab6-9f26-58996f950a48",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyo7ZzadsLbzRnkANiM",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "45e0c0a6-96b1-422e-9a0e-7a26ab0c3dd3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Lmht1sDrwDepX1G11h2KnG",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1181,
+                "cache_read_input_tokens": 17558,
+                "output_tokens": 534,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1181
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 534,
+                    "cache_read_input_tokens": 17558,
+                    "cache_creation_input_tokens": 1181,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1181,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T05:52:37.745Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013Semd3E8d618cDWuEBUWzb",
+              "type": "tool_result",
+              "content": "Found 9 matching experiments:\n\n=== r14_qwen_docred_beam4_998 ===\n  status: DONE\n  updated_at: 2026-05-21T05:43:45.941Z\n  metrics: {\n    \"E_F1\": 58.19,\n    \"R_F1\": 8.72,\n    \"DR_pct\": 0,\n    \"RV_pct\": 0,\n    \"ET_pct\": 0,\n    \"CF_pct\": 4.94,\n    \"parse_fail_pct\": 3.51,\n    \"samples\": 998,\n    \"success\": 963,\n    \"fail\": 35\n}\n  mode: full_s1\n  dataset: docred\n\n=== w5_qwen_docred_lora_constrained_eval ===\n  status: DONE\n  updated_at: 2026-05-16T08:10:01.206Z\n  metrics: {\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 0.01,\n    \"CF_pct\": 0.41,\n    \"E_F1\": 81.43,\n    \"E_P\": 85.41,\n    \"E_R\": 77.81,\n    \"R_F1\": 40.56,\n    \"R_P\": 36.35,\n    \"R_R\": 45.86,\n    \"parse_fail_rate\": 8.52,\n    \"total_samples\": 998,\n    \"success_samples\": 913,\n    \"fail_samples\": 85,\n    \"total_entities_pred\": 17799,\n    \"total_relations_pred\": 15563,\n    \"E_F1_excl_fail\": 85.69,\n    \"R_F1_excl_fail\": 42.23,\n    \"delta_vs_unconstrained\": {\n        \"delta_DR\": -0.75,\n        \"delta_RV\": -0.27,\n        \"delta_R_F1\": -0.3,\n        \"delta_R_F1_excl_fail\": 0.03,\n        \"DR_reduction_pct\": 98.7,\n        \"note\": \"Constrained - unconstrained. Unconstrained: DR=0.76%, R_F1=40.86, R_F1_excl_fail=42.20\"\n    }\n}\n  mode: full_s1\n  dataset: docred\n\n=== w5_qwen_docred_lora_training ===\n  status: DONE\n  updated_at: 2026-05-15T20:02:42.106Z\n  metrics: {\n    \"eval_loss\": 0.0614,\n    \"eval_mean_token_accuracy\": 0.9804,\n    \"eval_entropy\": 0.715,\n    \"train_loss\": 0.0682,\n    \"train_runtime_s\": 5825.6,\n    \"epochs\": 3,\n    \"adapter_path\": \"/root/schema_semantic_constrained_ie/checkpoints/qwen_lora_docred\",\n    \"merged_path\": \"/root/autodl-tmp/checkpoints/qwen_lora_docred_merged\"\n}\n\n=== w5_qwen_docred_lora_unconstrained_eval ===\n  status: DONE\n  updated_at: 2026-05-16T01:55:03.824Z\n  metrics: {\n    \"ET_pct\": 0,\n    \"RV_pct\": 0.27,\n    \"DR_pct\": 0.76,\n    \"CF_pct\": 0.12,\n    \"E_F1\": 82.15,\n    \"E_P\": 85.44,\n    \"E_R\": 79.11,\n    \"R_F1\": 40.86,\n    \"R_P\": 36.41,\n    \"R_R\": 46.56,\n    \"parse_fail_rate\": 7.11,\n    \"total_samples\": 998,\n    \"success_samples\": 927,\n    \"fail_samples\": 71,\n    \"total_entities_pred\": 18091,\n    \"total_relations_pred\": 15870,\n    \"ET_pct_excl_fail\": 0,\n    \"RV_pct_excl_fail\": 0.27,\n    \"DR_pct_excl_fail\": 0.76,\n    \"CF_pct_excl_fail\": 0.12,\n    \"E_F1_excl_fail\": 85.72,\n    \"E_P_excl_fail\": 85.44,\n    \"E_R_excl_fail\": 86,\n    \"R_F1_excl_fail\": 42.2,\n    \"R_P_excl_fail\": 36.41,\n    \"R_R_excl_fail\": 50.17\n}\n  mode: unconstrained\n  dataset: docred\n\n=== w8_qwen_docred_ft_grammar_only ===\n  status: DONE\n  updated_at: 2026-05-16T15:25:52.761Z\n  metrics: {\n    \"E_F1\": 82.19,\n    \"E_P\": 85.47,\n    \"E_R\": 79.16,\n    \"R_F1\": 40.85,\n    \"R_P\": 36.27,\n    \"R_R\": 46.77,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 0.61,\n    \"CF_pct\": 0.11,\n    \"parse_fail_rate\": 7.01,\n    \"total_samples\": 998,\n    \"parse_failures\": 70\n}\n  mode: grammar_only\n  dataset: docred\n\n=== w8_qwen_docred_ft_semantic_only ===\n  status: DONE\n  updated_at: 2026-05-22T07:36:54.996Z\n  metrics: {\n    \"R_F1\": 40.85,\n    \"R_P\": 36.33,\n    \"R_R\": 46.65,\n    \"parse_fail_pct\": 7.52,\n    \"samples\": 998,\n    \"note\": \"Re-verified 2026-05-22 with eval_d064.py (no bug). Old registry value 40.89 was from unified_f1_eval.py (had same parse-failure bug, delta -0.04pp).\"\n}\n  mode: semantic_only\n  dataset: docred\n\n=== w9_qwen_docred_beam_50 ===\n  status: DONE\n  updated_at: 2026-05-17T04:50:39.890Z\n  metrics: {\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0.55,\n    \"E_F1\": 58.64,\n    \"R_F1\": 9.37,\n    \"total_samples\": 50,\n    \"parse_failures\": 3,\n    \"parse_fail_rate\": 6,\n    \"vs_greedy_full_s1\": {\n        \"DR_delta\": -10.21,\n        \"CF_delta\": -2.02,\n        \"E_F1_delta\": -0.73,\n        \"R_F1_delta\": 1.14,\n        \"note\": \"Greedy full_s1 998 docs: DR=10.21%, CF=2.57%, E_F1=59.37, R_F1=8.23. Beam eliminates ALL DR on DocRED 96-type schema.\"\n    }\n}\n  mode: full_s1\n  dataset: docred\n\n=== w9_qwen_docred_zs_sampling ===\n  status: DONE\n  updated_at: 2026-05-18T15:49:26.958Z\n  mode: full_s1\n  dataset: docred\n\n=== w9_qwen_docred_zs_sampling_r2 ===\n  status: DONE\n  updated_at: 2026-05-18T21:59:17.743Z\n  mode: full_s1\n  dataset: docred",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "45e0c0a6-96b1-422e-9a0e-7a26ab0c3dd3",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "1d2316e1-3cac-4b25-bacf-08d9daedfc3b",
+            "sourceToolAssistantUUID": "45e0c0a6-96b1-422e-9a0e-7a26ab0c3dd3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T05:52:41.726Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also search for experiments with \"d066\" or \"sweep\" patterns, and also look for any 200-doc experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1d2316e1-3cac-4b25-bacf-08d9daedfc3b",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyooqBMmRnuEUhiAnPy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b0b817f6-04d4-40b0-8045-dc27d9d5c64e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EdfoRaAJQDJgy5gkPszccJ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2640,
+                "cache_read_input_tokens": 18739,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2640,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T05:52:53.863Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AJrTGMY8QFXqXBGqDQS1A2",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json, re\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Search for d066, sweep, beam sweep, or 200 in experiment ids\nmatching = {}\nfor eid, exp in experiments.items():\n    eid_lower = eid.lower()\n    if 'd066' in eid_lower or 'sweep' in eid_lower or 'beam_sweep' in eid_lower:\n        matching[eid] = exp\n    # Also check if num_samples=200 in the command\n    cmd = exp.get('spec', {}).get('command', '')\n    if '--num_samples 200' in cmd and ('qwen' in eid_lower or 'qwen' in cmd.lower()):\n        matching[eid] = exp\n    # Also check 200 in experiment id\n    if '200' in eid and ('qwen' in eid_lower or 'docred' in eid_lower):\n        matching[eid] = exp\n\nprint(f'Found {len(matching)} matching experiments:\\n')\n\nfor eid in sorted(matching.keys()):\n    exp = matching[eid]\n    print(f'=== {eid} ===')\n    print(f'  status: {exp.get(\"status\")}')\n    print(f'  updated_at: {exp.get(\"updated_at\")}')\n    metrics = exp.get('metrics', {})\n    if metrics:\n        print(f'  metrics: {json.dumps(metrics, indent=4)}')\n    spec = exp.get('spec', {})\n    cmd = spec.get('command', '')\n    for param in ['--num_samples', '--beam_width', '--mode', '--dataset', '--model_path']:\n        m = re.search(rf'{param}\\s+(\\S+)', cmd)\n        if m:\n            print(f'  {param.lstrip(\"-\")}: {m.group(1)}')\n    print()\nPYEOF\n",
+                "description": "Search for d066/sweep/200-doc experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b0b817f6-04d4-40b0-8045-dc27d9d5c64e",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyooqBMmRnuEUhiAnPy",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "dbd45650-c0fc-473e-8d31-1e45b0c1a9a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01EdfoRaAJQDJgy5gkPszccJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2640,
+                "cache_read_input_tokens": 18739,
+                "output_tokens": 721,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2640
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 721,
+                    "cache_read_input_tokens": 18739,
+                    "cache_creation_input_tokens": 2640,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2640,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T05:52:53.954Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AJrTGMY8QFXqXBGqDQS1A2",
+              "type": "tool_result",
+              "content": "Found 24 matching experiments:\n\n=== d066_beam_sweep ===\n  status: DONE\n  updated_at: 2026-05-22T10:34:14.027Z\n  metrics: {\n    \"scierc_qwen3_8b\": {\n        \"k1_unc\": {\n            \"E_F1\": 66.88,\n            \"R_F1\": 42.95,\n            \"DR_pct\": 2.11,\n            \"CF_pct\": 0,\n            \"avg_time\": 2.494\n        },\n        \"k1_con\": {\n            \"E_F1\": 66.88,\n            \"R_F1\": 42.95,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0.5,\n            \"avg_time\": 2.932\n        },\n        \"k2_unc\": {\n            \"E_F1\": 67.79,\n            \"R_F1\": 44.75,\n            \"DR_pct\": 1.54,\n            \"CF_pct\": 0,\n            \"avg_time\": 2.954\n        },\n        \"k2_con\": {\n            \"E_F1\": 67.71,\n            \"R_F1\": 44.6,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0.11,\n            \"avg_time\": 3.463\n        },\n        \"k4_unc\": {\n            \"E_F1\": 67.49,\n            \"R_F1\": 43.72,\n            \"DR_pct\": 1.89,\n            \"CF_pct\": 0,\n            \"avg_time\": 3.485\n        },\n        \"k4_con\": {\n            \"E_F1\": 67.22,\n            \"R_F1\": 43.6,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0,\n            \"avg_time\": 4.069\n        },\n        \"k8_unc\": {\n            \"E_F1\": 66.4,\n            \"R_F1\": 43.17,\n            \"DR_pct\": 1.77,\n            \"CF_pct\": 0,\n            \"avg_time\": 4.194\n        },\n        \"k8_con\": {\n            \"E_F1\": 66.36,\n            \"R_F1\": 43.65,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0,\n            \"avg_time\": 5.058\n        }\n    },\n    \"pareto_optimal\": \"k=2 con\",\n    \"best_E_F1\": {\n        \"config\": \"k=2 unc\",\n        \"value\": 67.79\n    },\n    \"best_R_F1\": {\n        \"config\": \"k=2 unc\",\n        \"value\": 44.75\n    }\n}\n\n=== d066_docred_beam_sweep ===\n  status: DONE\n  updated_at: 2026-05-20T03:02:27.736Z\n  mode: {unconstrained,full_s1}\n  dataset: docred\n\n=== d066_sweep_16980_gpu1 ===\n  status: DONE\n  updated_at: 2026-05-20T11:23:11.984Z\n  mode: unconstrained\n  dataset: docred\n  model_path: llama_lora_docred_merged\n\n=== d066_sweep_21461_gpu1 ===\n  status: DONE\n  updated_at: 2026-05-20T12:13:00.737Z\n  metrics: {\n    \"total\": 551,\n    \"E_F1\": 66.36,\n    \"R_F1\": 43.65,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"avg_time_s\": 5.058,\n    \"output_file\": \"qwen_scierc_beam8_full_s1.jsonl\",\n    \"note\": \"Actually ran on SciERC 551 docs (not DocRED 200 as originally recorded in hypothesis)\"\n}\n  mode: full_s1\n  dataset: docred\n  model_path: qwen_lora_docred_merged\n\n=== d066_sweep_llama_beam2_s1 ===\n  status: DONE\n  updated_at: 2026-05-22T04:07:10.538Z\n  metrics: {\n    \"E_F1\": 85.6,\n    \"E_P\": 85.29,\n    \"E_R\": 85.92,\n    \"R_F1\": 51.17,\n    \"R_P\": 48.51,\n    \"R_R\": 54.14,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"parse_fail_pct\": 0.5,\n    \"total_samples\": 200,\n    \"total_entities_pred\": 3814,\n    \"total_relations_pred\": 2839\n}\n  mode: full_s1\n  dataset: docred\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_docred_merged\n\n=== d066_sweep_llama_beam8_s1 ===\n  status: DONE\n  updated_at: 2026-05-20T16:40:59.767Z\n  metrics: {\n    \"E-F1\": 85.76,\n    \"R-F1\": 51.74,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0,\n    \"PF_pct\": 0.5,\n    \"samples\": 200\n}\n  mode: full_s1\n  dataset: docred\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_docred_merged\n\n=== d066_sweep_llama_beam8_unc ===\n  status: DONE\n  updated_at: 2026-05-22T04:07:12.776Z\n  metrics: {\n    \"E_F1\": 85.77,\n    \"E_P\": 85.7,\n    \"E_R\": 85.84,\n    \"R_F1\": 51.97,\n    \"R_P\": 49.76,\n    \"R_R\": 54.38,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0.05,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0.07,\n    \"parse_fail_pct\": 0.5,\n    \"total_samples\": 200,\n    \"total_entities_pred\": 3788,\n    \"total_relations_pred\": 2779\n}\n  mode: unconstrained\n  dataset: docred\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_docred_merged\n\n=== d066_sweep_llama_docred_beam1_s1 ===\n  status: DONE\n  updated_at: 2026-05-20T16:41:01.414Z\n  metrics: {\n    \"E-F1\": 85.43,\n    \"R-F1\": 47.35,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0.19,\n    \"PF_pct\": 2,\n    \"samples\": 200\n}\n  mode: full_s1\n  dataset: docred\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_docred_merged\n\n=== d066_sweep_llama_docred_beam1_unc ===\n  status: DONE\n  updated_at: 2026-05-20T13:18:06.388Z\n  metrics: {\n    \"total\": 200,\n    \"success\": 196,\n    \"fail\": 4,\n    \"output_file\": \"llama_docred_200_beam1_unconstrained.jsonl\"\n}\n  mode: unconstrained\n  dataset: docred\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_docred_merged\n\n=== d066_sweep_llama_docred_beam4_s1 ===\n  status: DONE\n  updated_at: 2026-05-22T04:03:52.952Z\n  metrics: {\n    \"E-F1\": 85.61,\n    \"E-P\": 85.48,\n    \"E-R\": 85.73,\n    \"R-F1\": 51.89,\n    \"R-P\": 51.59,\n    \"R-R\": 52.2,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0,\n    \"PF_pct\": 0.5,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"samples\": 200,\n    \"parse_fail\": 1\n}\n\n=== d066_sweep_llama_docred_beam4_unc ===\n  status: DONE\n  updated_at: 2026-05-20T16:41:02.850Z\n  metrics: {\n    \"E-F1\": 85.67,\n    \"R-F1\": 52.65,\n    \"DR_pct\": 0.04,\n    \"CF_pct\": 0.08,\n    \"PF_pct\": 0.5,\n    \"samples\": 200\n}\n  mode: unconstrained\n  dataset: docred\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_docred_merged\n\n=== d066_sweep_llama_scierc_beam1_unc ===\n  status: DONE\n  updated_at: 2026-05-20T13:52:26.684Z\n  metrics: {\n    \"total\": 275,\n    \"success\": 275,\n    \"fail\": 0,\n    \"output_file\": \"llama_scierc_beam1_unconstrained.jsonl\",\n    \"note\": \"INVALIDATED: Used dev set (275 docs) instead of test set (551 docs). Not comparable with other beam sweep results. Llama SciERC beam sweep deprioritized \\u2014 must use scripts/d066_beam_sweep_scierc.sh with --data_path data/processed_data/test.json if rerun.\"\n}\n  mode: unconstrained\n  dataset: scierc\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_scierc_merged\n\n=== d066_sweep_llama_scierc_beam2_s1_551 ===\n  status: DONE\n  updated_at: 2026-05-20T16:37:54.940Z\n  metrics: {\n    \"entity_f1\": 68.34,\n    \"entity_p\": 66.59,\n    \"entity_r\": 70.17,\n    \"relation_f1\": 46.12,\n    \"relation_p\": 42.73,\n    \"relation_r\": 50.1,\n    \"parse_fail_pct\": 0,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0.17,\n    \"note\": \"ET/RV corrected from 100\\u21920: original eval used hardcoded DocRED ontology, re-evaled with --dataset scierc\"\n}\n  mode: full_s1\n  dataset: scierc\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_scierc_merged\n\n=== d066_sweep_llama_scierc_beam4_s1_551 ===\n  status: DONE\n  updated_at: 2026-05-20T16:42:22.936Z\n  metrics: {\n    \"E-F1\": 68.06,\n    \"E-P\": 65.96,\n    \"E-R\": 70.29,\n    \"R-F1\": 46.18,\n    \"R-P\": 42.1,\n    \"R-R\": 51.13,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0,\n    \"parse_fail\": 0,\n    \"samples\": 551,\n    \"note\": \"ET/RV corrected from 100\\u21920: original eval used hardcoded DocRED ontology, re-evaled with --dataset scierc\"\n}\n  mode: full_s1\n  dataset: scierc\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_scierc_merged\n\n=== d066_sweep_llama_scierc_beam8_s1_551 ===\n  status: DONE\n  updated_at: 2026-05-20T16:47:28.821Z\n  metrics: {\n    \"E-F1\": 67.51,\n    \"E-P\": 64.99,\n    \"E-R\": 70.23,\n    \"R-F1\": 44.95,\n    \"R-P\": 40.1,\n    \"R-R\": 51.13,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0,\n    \"PF_pct\": 0,\n    \"samples\": 551,\n    \"note\": \"Reconcile false positive corrected. Eval with --dataset scierc confirmed.\"\n}\n  mode: full_s1\n  dataset: scierc\n  model_path: /root/autodl-tmp/checkpoints/llama_lora_scierc_merged\n\n=== eval_70b_lora_docred_200_beam4_s1 ===\n  status: DONE\n  updated_at: 2026-05-22T21:21:11.254Z\n  metrics: {\n    \"E-F1\": 85.57,\n    \"E-P\": 85.45,\n    \"E-R\": 85.68,\n    \"R-F1\": 48.14,\n    \"R-P\": 44.24,\n    \"R-R\": 52.79,\n    \"ET%\": 0,\n    \"RV%\": 0,\n    \"DR%\": 0,\n    \"CF%\": 0,\n    \"parse_fail\": \"1/200 (0.5%)\",\n    \"entities_pred\": 3790,\n    \"relations_pred\": 3030\n}\n  mode: full_s1\n  dataset: docred\n  model_path: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4\n\n=== eval_70b_lora_docred_200_grammar_only ===\n  status: DONE\n  updated_at: 2026-05-23T01:55:24.472Z\n  metrics: {\n    \"samples\": 200,\n    \"parse_fail_pct\": 10.5,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 0.38,\n    \"CF_pct\": 0.06,\n    \"E_F1\": 80.13,\n    \"E_P\": 85.16,\n    \"E_R\": 75.66,\n    \"R_F1\": 43.96,\n    \"R_P\": 39.78,\n    \"R_R\": 49.11,\n    \"entities_pred\": 3362,\n    \"relations_pred\": 3154\n}\n  mode: grammar_only\n  dataset: docred\n  model_path: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\n\n=== eval_70b_lora_docred_200_s1_constrained ===\n  status: DONE\n  updated_at: 2026-05-22T10:34:22.854Z\n  metrics: {\n    \"E_F1\": 79.38,\n    \"E_P\": 85.24,\n    \"E_R\": 74.28,\n    \"R_F1\": 43.95,\n    \"R_P\": 40.48,\n    \"R_R\": 48.08,\n    \"DR_pct\": 0,\n    \"RV_pct\": 0,\n    \"ET_pct\": 0,\n    \"CF_pct\": 0.18,\n    \"parse_fail_pct\": 12.5,\n    \"samples\": 200\n}\n\n=== eval_70b_lora_docred_200_semantic_only ===\n  status: DONE\n  updated_at: 2026-05-23T01:20:56.659Z\n  metrics: {\n    \"samples\": 200,\n    \"parse_fail_pct\": 11,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0.51,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0.21,\n    \"E_F1\": 80.06,\n    \"E_P\": 85.21,\n    \"E_R\": 75.5,\n    \"R_F1\": 43.61,\n    \"R_P\": 39.44,\n    \"R_R\": 48.75,\n    \"entities_pred\": 3351,\n    \"relations_pred\": 3148\n}\n  mode: semantic_only\n  dataset: docred\n  model_path: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\n\n=== eval_70b_lora_docred_200_unconstrained ===\n  status: DONE\n  updated_at: 2026-05-22T07:09:22.684Z\n  metrics: {\n    \"E_F1\": 80.34,\n    \"E_P\": 85.13,\n    \"E_R\": 76.05,\n    \"R_F1\": 43.8,\n    \"R_P\": 39.6,\n    \"R_R\": 48.99,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0.57,\n    \"DR_pct\": 0.22,\n    \"CF_pct\": 0.06,\n    \"parse_fail_pct\": 10,\n    \"samples\": 200,\n    \"relations\": 3159,\n    \"RV_count\": 18,\n    \"DR_count\": 7,\n    \"CF_count\": 2\n}\n\n=== eval_70b_zs_docred_200_full_s1 ===\n  status: DONE\n  updated_at: 2026-05-23T02:30:50.739Z\n  metrics: {\n    \"DR%\": 0,\n    \"RV%\": 0,\n    \"ET%\": 0,\n    \"CF%\": 5.34,\n    \"E-F1\": 70.05,\n    \"R-F1\": 13.25,\n    \"PF%\": 0,\n    \"entities_pred\": 3234,\n    \"relations_pred\": 2637,\n    \"triples_checked\": 2642\n}\n  mode: full_s1\n  dataset: docred\n  model_path: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4\n\n=== eval_70b_zs_docred_200_grammar_only ===\n  status: DONE\n  updated_at: 2026-05-23T00:37:43.935Z\n  metrics: {\n    \"samples\": 200,\n    \"parse_failures\": 1,\n    \"entities_pred\": 3221,\n    \"relations_pred\": 2609,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 17.03,\n    \"CF_count\": 0,\n    \"fuzzy_matches\": 0,\n    \"E_F1\": 70.12,\n    \"E_P\": 75.88,\n    \"E_R\": 65.17,\n    \"R_F1\": 13.23,\n    \"R_P\": 12.99,\n    \"R_R\": 13.47\n}\n  mode: grammar_only\n  dataset: docred\n  model_path: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4\n\n=== eval_70b_zs_docred_200_semantic_only ===\n  status: DONE\n  updated_at: 2026-05-22T22:55:11.458Z\n  metrics: {\n    \"samples\": 200,\n    \"parse_failures\": 0,\n    \"entities\": 3240,\n    \"relations\": 2596,\n    \"ET_pct\": 0.12,\n    \"RV_pct\": 8.24,\n    \"DR_pct\": 1.66,\n    \"CF_count\": 132,\n    \"CF_pct\": 4.07,\n    \"E_F1\": 70.1,\n    \"E_P\": 75.87,\n    \"E_R\": 65.15,\n    \"R_F1\": 13.05,\n    \"R_P\": 12.88,\n    \"R_R\": 13.23,\n    \"fuzzy_matches\": 8\n}\n  mode: semantic_only\n  dataset: docred\n  model_path: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3.1-70B-Instruct-AWQ-INT4\n\n=== eval_70b_zs_docred_200_unconstrained ===\n  status: DONE\n  updated_at: 2026-05-23T00:38:42.757Z\n  metrics: {\n    \"samples\": 200,\n    \"parse_failures\": 0,\n    \"entities_pred\": 3242,\n    \"relations_pred\": 2637,\n    \"ET_pct\": 0,\n    \"RV_pct\": 7.88,\n    \"DR_pct\": 13.45,\n    \"CF_count\": 0,\n    \"fuzzy_matches\": 8,\n    \"E_F1\": 70.14,\n    \"E_P\": 75.85,\n    \"E_R\": 65.23,\n    \"R_F1\": 13.25,\n    \"R_P\": 12.97,\n    \"R_R\": 13.54\n}\n  mode: unconstrained\n  dataset: docred\n  model_path: /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-70B-Instruct-AWQ-INT4",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "dbd45650-c0fc-473e-8d31-1e45b0c1a9a6",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "bc208ad6-d8aa-45e5-a3bc-37e7cd853fd9",
+            "sourceToolAssistantUUID": "dbd45650-c0fc-473e-8d31-1e45b0c1a9a6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T05:52:56.612Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me specifically look for Qwen DocRED 200-doc beam sweep experiments."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bc208ad6-d8aa-45e5-a3bc-37e7cd853fd9",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyq18rABzxLpsoA8jS4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f0ce5bbe-5d19-44c7-a79d-0d70d6135aa7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SGdfcoEGTPQvkm4ui4UK39",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6643,
+                "cache_read_input_tokens": 21379,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 6643,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T05:53:13.556Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A2zZKkyCSeoRySkYUi65DS",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json, re\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Broader search: anything with qwen and (beam or sweep or 200 or docred greedy full_s1)\nmatching = {}\nfor eid, exp in experiments.items():\n    eid_lower = eid.lower()\n    cmd = exp.get('spec', {}).get('command', '')\n    \n    # Qwen docred beam experiments\n    if 'qwen' in eid_lower and 'docred' in eid_lower and ('beam' in eid_lower or 'sweep' in eid_lower):\n        matching[eid] = exp\n    # d066 with qwen in command  \n    if 'd066' in eid_lower and 'qwen' in cmd.lower() and 'docred' in cmd.lower():\n        matching[eid] = exp\n    # Any qwen docred 200 doc experiment\n    if 'qwen' in eid_lower and 'docred' in eid_lower and '200' in eid:\n        matching[eid] = exp\n    # d066_sweep_qwen pattern\n    if 'd066' in eid_lower and 'qwen' in eid_lower:\n        matching[eid] = exp\n\nif not matching:\n    # Let's just list ALL d066 experiments\n    print(\"No specific qwen docred beam sweep found. All d066 experiments:\")\n    for eid in sorted(experiments.keys()):\n        if 'd066' in eid.lower():\n            print(f\"  {eid}\")\n    \n    # Also list all experiments with 'qwen' \n    print(\"\\nAll experiments with 'qwen':\")\n    for eid in sorted(experiments.keys()):\n        if 'qwen' in eid.lower():\n            print(f\"  {eid}\")\nelse:\n    print(f'Found {len(matching)} matching experiments:\\n')\n    for eid in sorted(matching.keys()):\n        exp = matching[eid]\n        print(f'=== {eid} ===')\n        print(f'  status: {exp.get(\"status\")}')\n        print(f'  updated_at: {exp.get(\"updated_at\")}')\n        metrics = exp.get('metrics', {})\n        if metrics:\n            print(f'  metrics: {json.dumps(metrics, indent=4)}')\n        spec = exp.get('spec', {})\n        cmd = spec.get('command', '')\n        for param in ['--num_samples', '--beam_width', '--mode', '--dataset']:\n            m = re.search(rf'{param}\\s+(\\S+)', cmd)\n            if m:\n                print(f'  {param.lstrip(\"-\")}: {m.group(1)}')\n        print()\nPYEOF\n",
+                "description": "Search specifically for Qwen DocRED beam sweep experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f0ce5bbe-5d19-44c7-a79d-0d70d6135aa7",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyq18rABzxLpsoA8jS4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "98dbf4b4-5425-4994-b325-f587b2119a09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SGdfcoEGTPQvkm4ui4UK39",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6643,
+                "cache_read_input_tokens": 21379,
+                "output_tokens": 930,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6643
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 930,
+                    "cache_read_input_tokens": 21379,
+                    "cache_creation_input_tokens": 6643,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 6643,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T05:53:13.642Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A2zZKkyCSeoRySkYUi65DS",
+              "type": "tool_result",
+              "content": "Found 4 matching experiments:\n\n=== d066_beam_sweep ===\n  status: DONE\n  updated_at: 2026-05-22T10:34:14.027Z\n  metrics: {\n    \"scierc_qwen3_8b\": {\n        \"k1_unc\": {\n            \"E_F1\": 66.88,\n            \"R_F1\": 42.95,\n            \"DR_pct\": 2.11,\n            \"CF_pct\": 0,\n            \"avg_time\": 2.494\n        },\n        \"k1_con\": {\n            \"E_F1\": 66.88,\n            \"R_F1\": 42.95,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0.5,\n            \"avg_time\": 2.932\n        },\n        \"k2_unc\": {\n            \"E_F1\": 67.79,\n            \"R_F1\": 44.75,\n            \"DR_pct\": 1.54,\n            \"CF_pct\": 0,\n            \"avg_time\": 2.954\n        },\n        \"k2_con\": {\n            \"E_F1\": 67.71,\n            \"R_F1\": 44.6,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0.11,\n            \"avg_time\": 3.463\n        },\n        \"k4_unc\": {\n            \"E_F1\": 67.49,\n            \"R_F1\": 43.72,\n            \"DR_pct\": 1.89,\n            \"CF_pct\": 0,\n            \"avg_time\": 3.485\n        },\n        \"k4_con\": {\n            \"E_F1\": 67.22,\n            \"R_F1\": 43.6,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0,\n            \"avg_time\": 4.069\n        },\n        \"k8_unc\": {\n            \"E_F1\": 66.4,\n            \"R_F1\": 43.17,\n            \"DR_pct\": 1.77,\n            \"CF_pct\": 0,\n            \"avg_time\": 4.194\n        },\n        \"k8_con\": {\n            \"E_F1\": 66.36,\n            \"R_F1\": 43.65,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0,\n            \"avg_time\": 5.058\n        }\n    },\n    \"pareto_optimal\": \"k=2 con\",\n    \"best_E_F1\": {\n        \"config\": \"k=2 unc\",\n        \"value\": 67.79\n    },\n    \"best_R_F1\": {\n        \"config\": \"k=2 unc\",\n        \"value\": 44.75\n    }\n}\n\n=== d066_sweep_21461_gpu1 ===\n  status: DONE\n  updated_at: 2026-05-20T12:13:00.737Z\n  metrics: {\n    \"total\": 551,\n    \"E_F1\": 66.36,\n    \"R_F1\": 43.65,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"avg_time_s\": 5.058,\n    \"output_file\": \"qwen_scierc_beam8_full_s1.jsonl\",\n    \"note\": \"Actually ran on SciERC 551 docs (not DocRED 200 as originally recorded in hypothesis)\"\n}\n  mode: full_s1\n  dataset: docred\n\n=== r14_qwen_docred_beam4_998 ===\n  status: DONE\n  updated_at: 2026-05-21T05:43:45.941Z\n  metrics: {\n    \"E_F1\": 58.19,\n    \"R_F1\": 8.72,\n    \"DR_pct\": 0,\n    \"RV_pct\": 0,\n    \"ET_pct\": 0,\n    \"CF_pct\": 4.94,\n    \"parse_fail_pct\": 3.51,\n    \"samples\": 998,\n    \"success\": 963,\n    \"fail\": 35\n}\n  mode: full_s1\n  dataset: docred\n\n=== w9_qwen_docred_beam_50 ===\n  status: DONE\n  updated_at: 2026-05-17T04:50:39.890Z\n  metrics: {\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0.55,\n    \"E_F1\": 58.64,\n    \"R_F1\": 9.37,\n    \"total_samples\": 50,\n    \"parse_failures\": 3,\n    \"parse_fail_rate\": 6,\n    \"vs_greedy_full_s1\": {\n        \"DR_delta\": -10.21,\n        \"CF_delta\": -2.02,\n        \"E_F1_delta\": -0.73,\n        \"R_F1_delta\": 1.14,\n        \"note\": \"Greedy full_s1 998 docs: DR=10.21%, CF=2.57%, E_F1=59.37, R_F1=8.23. Beam eliminates ALL DR on DocRED 96-type schema.\"\n    }\n}\n  mode: full_s1\n  dataset: docred",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "98dbf4b4-5425-4994-b325-f587b2119a09",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "07dced25-6384-4860-b7b7-21df2cd548d9",
+            "sourceToolAssistantUUID": "98dbf4b4-5425-4994-b325-f587b2119a09",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T05:53:16.582Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check `d066_docred_beam_sweep` which had no metrics displayed, and also look for the Qwen DocRED 200-doc greedy full_s1 baseline."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "07dced25-6384-4860-b7b7-21df2cd548d9",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyrTKE6CJPCn27Yx92S",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "528b459c-8b06-4cac-a420-ec1627896a55",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B5jMuYv5ha2NBMq2MbtXPY",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2385,
+                "cache_read_input_tokens": 28022,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2385,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 5,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T05:53:34.766Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01A6Xw3aW62N31KoUxjsiFwy",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json, re\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Get full details for d066_docred_beam_sweep\ntarget = 'd066_docred_beam_sweep'\nif target in experiments:\n    print(f'=== {target} ===')\n    print(json.dumps(experiments[target], indent=2))\nelse:\n    print(f'{target} not found')\n\nprint('\\n\\n')\n\n# Also look for qwen docred greedy / full_s1 / beam1 200-doc experiments\n# and any other qwen docred experiments we might have missed\nfor eid, exp in sorted(experiments.items()):\n    eid_lower = eid.lower()\n    cmd = exp.get('spec', {}).get('command', '')\n    # Check for qwen docred with 200 samples\n    if 'qwen' in (eid_lower + cmd.lower()) and 'docred' in (eid_lower + cmd.lower()):\n        if '200' in cmd or '200' in eid:\n            print(f'\\n=== {eid} ===')\n            print(f'  status: {exp.get(\"status\")}')\n            metrics = exp.get('metrics', {})\n            if metrics:\n                print(f'  metrics: {json.dumps(metrics, indent=4)}')\n            for param in ['--num_samples', '--beam_width', '--mode']:\n                m = re.search(rf'{param}\\s+(\\S+)', cmd)\n                if m:\n                    print(f'  {param.lstrip(\"-\")}: {m.group(1)}')\n\n# Also search for \"d066_sweep_qwen_docred\" pattern specifically\nprint('\\n\\n--- Searching for d066_sweep_qwen ---')\nfor eid in sorted(experiments.keys()):\n    if 'd066' in eid.lower() and 'qwen' in eid.lower():\n        print(f'  {eid}')\n    if 'sweep' in eid.lower() and 'qwen' in eid.lower():\n        print(f'  {eid}')\n\n# Also search for qwen ft docred or qwen_ft_docred\nprint('\\n--- Searching for qwen ft docred ---')\nfor eid in sorted(experiments.keys()):\n    if 'qwen' in eid.lower() and ('ft' in eid.lower() or 'lora' in eid.lower()) and 'docred' in eid.lower():\n        exp = experiments[eid]\n        cmd = exp.get('spec', {}).get('command', '')\n        print(f'  {eid} - mode: ', end='')\n        m = re.search(r'--mode\\s+(\\S+)', cmd)\n        print(m.group(1) if m else 'N/A')\n\n# Search for any qwen 200 experiment\nprint('\\n--- All experiments with qwen and num_samples 200 ---')\nfor eid, exp in sorted(experiments.items()):\n    cmd = exp.get('spec', {}).get('command', '')\n    if 'qwen' in (eid.lower() + cmd.lower()) and '--num_samples 200' in cmd:\n        print(f'  {eid}')\n        metrics = exp.get('metrics', {})\n        if metrics:\n            for k in ['E_F1', 'E-F1', 'R_F1', 'R-F1', 'DR_pct', 'DR%', 'CF_pct', 'CF%']:\n                if k in metrics:\n                    print(f'    {k}: {metrics[k]}')\nPYEOF\n",
+                "description": "Deep dive into d066_docred_beam_sweep and search for Qwen 200-doc experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "528b459c-8b06-4cac-a420-ec1627896a55",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyrTKE6CJPCn27Yx92S",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f190e130-1262-412f-bb32-57fd887f7275",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01B5jMuYv5ha2NBMq2MbtXPY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2385,
+                "cache_read_input_tokens": 28022,
+                "output_tokens": 1178,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2385
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1178,
+                    "cache_read_input_tokens": 28022,
+                    "cache_creation_input_tokens": 2385,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2385,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T05:53:34.858Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01A6Xw3aW62N31KoUxjsiFwy",
+              "type": "tool_result",
+              "content": "=== d066_docred_beam_sweep ===\n{\n  \"status\": \"DONE\",\n  \"updated_at\": \"2026-05-20T03:02:27.736Z\",\n  \"spec\": {\n    \"command\": \"python run_constrained_extraction.py --dataset docred --decoding_strategy beam --num_beams {2,8} --mode {unconstrained,full_s1} (4 runs serial)\",\n    \"server\": \"westd-21461 GPU0\",\n    \"data_path\": \"data/docred/dev.json (200-doc subset)\",\n    \"data_count\": 200,\n    \"model_name\": \"Qwen3-8B LoRA DocRED (merged)\",\n    \"seed\": 42,\n    \"claim\": \"Claim 3 + deployment guidance\",\n    \"paper_usage\": \"DocRED Pareto curve in appendix\"\n  }\n}\n\n\n\n\n=== d066_beam_sweep ===\n  status: DONE\n  metrics: {\n    \"scierc_qwen3_8b\": {\n        \"k1_unc\": {\n            \"E_F1\": 66.88,\n            \"R_F1\": 42.95,\n            \"DR_pct\": 2.11,\n            \"CF_pct\": 0,\n            \"avg_time\": 2.494\n        },\n        \"k1_con\": {\n            \"E_F1\": 66.88,\n            \"R_F1\": 42.95,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0.5,\n            \"avg_time\": 2.932\n        },\n        \"k2_unc\": {\n            \"E_F1\": 67.79,\n            \"R_F1\": 44.75,\n            \"DR_pct\": 1.54,\n            \"CF_pct\": 0,\n            \"avg_time\": 2.954\n        },\n        \"k2_con\": {\n            \"E_F1\": 67.71,\n            \"R_F1\": 44.6,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0.11,\n            \"avg_time\": 3.463\n        },\n        \"k4_unc\": {\n            \"E_F1\": 67.49,\n            \"R_F1\": 43.72,\n            \"DR_pct\": 1.89,\n            \"CF_pct\": 0,\n            \"avg_time\": 3.485\n        },\n        \"k4_con\": {\n            \"E_F1\": 67.22,\n            \"R_F1\": 43.6,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0,\n            \"avg_time\": 4.069\n        },\n        \"k8_unc\": {\n            \"E_F1\": 66.4,\n            \"R_F1\": 43.17,\n            \"DR_pct\": 1.77,\n            \"CF_pct\": 0,\n            \"avg_time\": 4.194\n        },\n        \"k8_con\": {\n            \"E_F1\": 66.36,\n            \"R_F1\": 43.65,\n            \"DR_pct\": 0,\n            \"CF_pct\": 0,\n            \"avg_time\": 5.058\n        }\n    },\n    \"pareto_optimal\": \"k=2 con\",\n    \"best_E_F1\": {\n        \"config\": \"k=2 unc\",\n        \"value\": 67.79\n    },\n    \"best_R_F1\": {\n        \"config\": \"k=2 unc\",\n        \"value\": 44.75\n    }\n}\n\n=== d066_sweep_21461_gpu1 ===\n  status: DONE\n  metrics: {\n    \"total\": 551,\n    \"E_F1\": 66.36,\n    \"R_F1\": 43.65,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"avg_time_s\": 5.058,\n    \"output_file\": \"qwen_scierc_beam8_full_s1.jsonl\",\n    \"note\": \"Actually ran on SciERC 551 docs (not DocRED 200 as originally recorded in hypothesis)\"\n}\n  mode: full_s1\n\n\n--- Searching for d066_sweep_qwen ---\n\n--- Searching for qwen ft docred ---\n  w5_qwen_docred_lora_constrained_eval - mode: full_s1\n  w5_qwen_docred_lora_training - mode: N/A\n  w5_qwen_docred_lora_unconstrained_eval - mode: unconstrained\n  w8_qwen_docred_ft_grammar_only - mode: grammar_only\n  w8_qwen_docred_ft_semantic_only - mode: semantic_only\n\n--- All experiments with qwen and num_samples 200 ---",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f190e130-1262-412f-bb32-57fd887f7275",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "41751bf3-e17a-4e0b-b602-432dce99c5d3",
+            "sourceToolAssistantUUID": "f190e130-1262-412f-bb32-57fd887f7275",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T05:53:39.735Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me look for the actual DocRED Qwen beam sweep results that `d066_docred_beam_sweep` was supposed to have. The spec says 4 runs (beam 2,8 x unconstrained,full_s1) on 200 DocRED docs, but metrics are empty. Let me check if these results were stored in separate experiment entries."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "41751bf3-e17a-4e0b-b602-432dce99c5d3",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyt22GTDUYAP7Xbo92D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "746401fe-0f9b-438b-8b5c-c2e888afaf6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013N2hZtqXn4TNsXN1Vd97NM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2468,
+                "cache_read_input_tokens": 30407,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2468,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T05:53:55.099Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VJAe7B2rN617CQ1ti3jko3",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json, re\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\n# Search broadly: any experiment with docred + beam + (200 or qwen) in EITHER id or command\nfor eid, exp in sorted(experiments.items()):\n    eid_lower = eid.lower()\n    cmd = exp.get('spec', {}).get('command', '').lower()\n    combined = eid_lower + ' ' + cmd\n    \n    if 'docred' in combined and 'beam' in combined:\n        # Skip llama-only ones unless they also mention qwen\n        if 'llama' in eid_lower and 'qwen' not in combined:\n            continue\n        metrics = exp.get('metrics', {})\n        print(f'{eid}')\n        print(f'  status={exp.get(\"status\")}, updated={exp.get(\"updated_at\")}')\n        if metrics:\n            # Print key metrics\n            for k in ['E_F1', 'E-F1', 'R_F1', 'R-F1', 'DR_pct', 'DR%', 'CF_pct', 'CF%', 'samples', 'total_samples', 'total']:\n                if k in metrics:\n                    print(f'  {k}: {metrics[k]}')\n        else:\n            print('  NO METRICS')\n        # Print mode from command\n        m = re.search(r'--mode\\s+(\\S+)', cmd)\n        if m: print(f'  mode: {m.group(1)}')\n        m = re.search(r'--num_beams\\s+(\\S+)', cmd)\n        if m: print(f'  num_beams: {m.group(1)}')\n        m = re.search(r'--beam_width\\s+(\\S+)', cmd)\n        if m: print(f'  beam_width: {m.group(1)}')\n        print()\n\n# Also search for qwen docred greedy/full_s1 as baselines\nprint('\\n=== Qwen DocRED greedy baselines (full_s1 or unconstrained, greedy) ===')\nfor eid, exp in sorted(experiments.items()):\n    eid_lower = eid.lower()\n    cmd = exp.get('spec', {}).get('command', '').lower()\n    combined = eid_lower + ' ' + cmd\n    \n    if 'qwen' in combined and 'docred' in combined and 'beam' not in eid_lower:\n        if exp.get('status') == 'DONE':\n            metrics = exp.get('metrics', {})\n            print(f'{eid}')\n            if metrics:\n                for k in ['E_F1', 'E-F1', 'R_F1', 'R-F1', 'DR_pct', 'CF_pct', 'samples', 'total_samples']:\n                    if k in metrics:\n                        print(f'  {k}: {metrics[k]}')\n            m = re.search(r'--mode\\s+(\\S+)', cmd)\n            if m: print(f'  mode: {m.group(1)}')\n            print()\nPYEOF\n",
+                "description": "Search for all DocRED beam experiments and Qwen baselines",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "746401fe-0f9b-438b-8b5c-c2e888afaf6f",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyt22GTDUYAP7Xbo92D",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cb54c3fd-7151-45b5-b1b2-c25ff33bc32c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013N2hZtqXn4TNsXN1Vd97NM",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2468,
+                "cache_read_input_tokens": 30407,
+                "output_tokens": 1101,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2468
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1101,
+                    "cache_read_input_tokens": 30407,
+                    "cache_creation_input_tokens": 2468,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2468,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T05:53:55.192Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VJAe7B2rN617CQ1ti3jko3",
+              "type": "tool_result",
+              "content": "d064_docred_full_beam\n  status=DONE, updated=2026-05-19T14:40:11.790Z\n  NO METRICS\n\nd066_beam_sweep\n  status=DONE, updated=2026-05-22T10:34:14.027Z\n\nd066_docred_beam_sweep\n  status=DONE, updated=2026-05-20T03:02:27.736Z\n  NO METRICS\n  mode: {unconstrained,full_s1}\n  num_beams: {2,8}\n\nd066_sweep_16980_gpu1\n  status=DONE, updated=2026-05-20T11:23:11.984Z\n  NO METRICS\n  mode: unconstrained\n  num_beams: 2\n\nd066_sweep_21461_gpu1\n  status=DONE, updated=2026-05-20T12:13:00.737Z\n  E_F1: 66.36\n  R_F1: 43.65\n  DR_pct: 0\n  CF_pct: 0\n  total: 551\n  mode: full_s1\n  num_beams: 8\n\neval_70b_lora_docred_200_beam4_s1\n  status=DONE, updated=2026-05-22T21:21:11.254Z\n  E-F1: 85.57\n  R-F1: 48.14\n  DR%: 0\n  CF%: 0\n  mode: full_s1\n  num_beams: 4\n\nr14_qwen_docred_beam4_998\n  status=DONE, updated=2026-05-21T05:43:45.941Z\n  E_F1: 58.19\n  R_F1: 8.72\n  DR_pct: 0\n  CF_pct: 4.94\n  samples: 998\n  mode: full_s1\n  num_beams: 4\n\nw9_mistral_docred_beam_50\n  status=DONE, updated=2026-05-17T09:42:22.695Z\n  E_F1: 51.78\n  R_F1: 5.7\n  mode: full_s1\n  num_beams: 4\n\nw9_qwen_docred_beam_50\n  status=DONE, updated=2026-05-17T04:50:39.890Z\n  E_F1: 58.64\n  R_F1: 9.37\n  DR_pct: 0\n  CF_pct: 0.55\n  total_samples: 50\n  mode: full_s1\n  num_beams: 4\n\n\n=== Qwen DocRED greedy baselines (full_s1 or unconstrained, greedy) ===\nd065_qwen_greedy_4096_r2\n  E-F1: 81.87\n  R-F1: 40.79\n  DR_pct: 0\n  CF_pct: 0.22\n  samples: 998\n  mode: full_s1\n\nd066_sweep_21461_gpu1\n  E_F1: 66.36\n  R_F1: 43.65\n  DR_pct: 0\n  CF_pct: 0\n  mode: full_s1\n\nmvp_phase0_docred_schema\n\nmvp_phase0_docred_schema_r2\n\nmvp_phase0_violation_rate_docred\n\nphase2_docred_full_s1\n  mode: full_s1\n\nphase2_docred_grammar_only\n  mode: grammar_only\n\nphase2_docred_semantic_only\n  mode: semantic_only\n\nphase2_docred_unconstrained\n  mode: unconstrained\n\nw1_cf_fallback_docred\n  mode: full_s1\n\nw5_qwen_docred_lora_constrained_eval\n  E_F1: 81.43\n  R_F1: 40.56\n  DR_pct: 0.01\n  CF_pct: 0.41\n  total_samples: 998\n  mode: full_s1\n\nw5_qwen_docred_lora_training\n\nw5_qwen_docred_lora_unconstrained_eval\n  E_F1: 82.15\n  R_F1: 40.86\n  DR_pct: 0.76\n  CF_pct: 0.12\n  total_samples: 998\n  mode: unconstrained\n\nw8_qwen_docred_ft_grammar_only\n  E_F1: 82.19\n  R_F1: 40.85\n  DR_pct: 0.61\n  CF_pct: 0.11\n  total_samples: 998\n  mode: grammar_only\n\nw8_qwen_docred_ft_semantic_only\n  R_F1: 40.85\n  samples: 998\n  mode: semantic_only\n\nw9_qwen_docred_zs_sampling\n  mode: full_s1\n\nw9_qwen_docred_zs_sampling_r2\n  mode: full_s1",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cb54c3fd-7151-45b5-b1b2-c25ff33bc32c",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "bcad179d-a711-4a14-bfdc-506a5afadb63",
+            "sourceToolAssistantUUID": "cb54c3fd-7151-45b5-b1b2-c25ff33bc32c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T05:54:04.938Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me also check `d064_docred_full_beam` and `d066_sweep_16980_gpu1` for their full details, and search for any stored Qwen DocRED 200-doc results that might have gone under a different naming."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bcad179d-a711-4a14-bfdc-506a5afadb63",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyuX14m6HDR9LeNNuAH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "114d5c52-ab06-42e1-bcf3-1cc1a5f2a99f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhvSuD4w2rbVtrX21m2AQ6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2394,
+                "cache_read_input_tokens": 32875,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 2394,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-23T05:54:11.693Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01FRqaX6yNYm1PeFskxwCMzT",
+              "name": "Bash",
+              "input": {
+                "command": "python3 << 'PYEOF'\nimport json\n\nwith open('/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie/bcaaae93-c135-4568-bb9e-6ae384bb4c94/tool-results/mcp-agent-ml-research-read_registry-1779515512713.txt') as f:\n    data = json.load(f)\n\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\n\nfor target in ['d064_docred_full_beam', 'd066_sweep_16980_gpu1', 'd065_qwen_greedy_4096_r2',\n               'w9_qwen_docred_zs_sampling', 'w9_qwen_docred_zs_sampling_r2']:\n    if target in experiments:\n        print(f'=== {target} ===')\n        print(json.dumps(experiments[target], indent=2))\n        print()\nPYEOF\n",
+                "description": "Get full details for key experiments",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "114d5c52-ab06-42e1-bcf3-1cc1a5f2a99f",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyuX14m6HDR9LeNNuAH",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8a12f4d6-2574-4f18-a987-5db0d943a10c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QhvSuD4w2rbVtrX21m2AQ6",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2394,
+                "cache_read_input_tokens": 32875,
+                "output_tokens": 416,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2394
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 416,
+                    "cache_read_input_tokens": 32875,
+                    "cache_creation_input_tokens": 2394,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2394,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-23T05:54:11.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01FRqaX6yNYm1PeFskxwCMzT",
+              "type": "tool_result",
+              "content": "=== d064_docred_full_beam ===\n{\n  \"status\": \"DONE\",\n  \"updated_at\": \"2026-05-19T14:40:11.790Z\",\n  \"spec\": {\n    \"actual_status\": \"STILL RUNNING - startup recovery falsely marked DONE/failed\",\n    \"status_override\": \"2026-05-19T14:40 UTC: Director confirmed processes still running on both servers. d064 will be re-registered as success when all 6 runs complete.\",\n    \"servers\": {\n      \"westd-21461\": \"Qwen beam-4 unc/con + Llama greedy unc/con (cascade)\",\n      \"westd-16980\": \"Llama beam-4 unc + con (Option C: will add Llama greedy unc/con after beam)\"\n    },\n    \"checkpoint_policy\": \"All Llama results use w5 checkpoint (16980). 21461 Llama greedy (d064 checkpoint) kept as internal reference only.\",\n    \"command\": \"cascade inference scripts on both servers\",\n    \"server\": \"westd-21461 + westd-16980\",\n    \"data_path\": \"/root/autodl-tmp/OntoCoDec/data/docred/\",\n    \"data_count\": 998,\n    \"model_name\": \"Qwen-2.5-7B-Instruct + Llama-3.1-8B-Instruct (LoRA)\",\n    \"seed\": 42\n  }\n}\n\n=== d066_sweep_16980_gpu1 ===\n{\n  \"status\": \"DONE\",\n  \"updated_at\": \"2026-05-20T11:23:11.984Z\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=1 nohup python3 run_constrained_extraction.py --mode unconstrained --dataset docred --model_path llama_lora_docred_merged --decoding_strategy beam --num_beams 2 --max_docs 200\",\n    \"server\": \"westd-16980 GPU1\",\n    \"data_path\": \"data/docred/dev.json (200-doc subset)\",\n    \"data_count\": 200,\n    \"model_name\": \"Llama-3.1-8B LoRA DocRED (merged)\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/llama_lora_docred_merged\",\n    \"eval_data\": \"data/docred/dev.json (200-doc subset)\"\n  }\n}\n\n=== d065_qwen_greedy_4096_r2 ===\n{\n  \"status\": \"DONE\",\n  \"updated_at\": \"2026-05-20T16:40:58.219Z\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=0 nohup python3 run_constrained_extraction.py --mode full_s1 --dataset docred --decoding_strategy greedy --max_new_tokens 4096 --model_path /root/autodl-tmp/checkpoints/qwen_lora_docred_merged --output_file /root/autodl-tmp/schema_outputs/d065_qwen_docred_greedy_con_4096_rerun.jsonl --seed 42\",\n    \"server\": \"westd-21461 GPU0\",\n    \"data_path\": \"data/docred/dev.json\",\n    \"data_count\": 998,\n    \"model_name\": \"Qwen3-8B LoRA DocRED (merged)\",\n    \"seed\": 42,\n    \"checkpoint_source\": \"/root/autodl-tmp/checkpoints/qwen_lora_docred_merged\",\n    \"eval_data\": \"data/docred/dev.json (998 docs, constrained decoding inference)\",\n    \"note\": \"Rerun after dual-process corruption. PID 194615.\"\n  },\n  \"metrics\": {\n    \"E-F1\": 81.87,\n    \"R-F1\": 40.79,\n    \"DR_pct\": 0,\n    \"CF_pct\": 0.22,\n    \"ET_pct\": 0,\n    \"RV_pct\": 0,\n    \"PF_pct\": 8.52,\n    \"samples\": 998\n  }\n}\n\n=== w9_qwen_docred_zs_sampling ===\n{\n  \"status\": \"DONE\",\n  \"updated_at\": \"2026-05-18T15:49:26.958Z\",\n  \"spec\": {\n    \"command\": \"python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218 --data_path data/docred/dev.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling.jsonl --batch_size 1 --max_new_tokens 4096 --temperature 0.7 --top_p 0.9 --skip_on_error --device cuda:0\",\n    \"server\": \"westd-21461\",\n    \"gpu\": \"cuda:1\",\n    \"pid\": \"40367\",\n    \"log_path\": \"/root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling.log\",\n    \"submitted_at\": \"2026-05-16T19:29:57.448Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"data/docred/dev.json\",\n    \"data_count\": 998,\n    \"model_name\": \"Qwen3-8B\",\n    \"seed\": \"N/A (sampling)\",\n    \"tmux_session\": \"w9_qwen_docred_zs_sampling\",\n    \"checkpoint_path\": \"/root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling.jsonl\",\n    \"wall_clock_seconds\": 157505.5,\n    \"gpu_hours\": 43.75,\n    \"kill_reason\": \"Director decision: DocRED sampling ROI too low. SciERC sampling sufficient.\"\n  }\n}\n\n=== w9_qwen_docred_zs_sampling_r2 ===\n{\n  \"status\": \"DONE\",\n  \"updated_at\": \"2026-05-18T21:59:17.743Z\",\n  \"spec\": {\n    \"command\": \"CUDA_VISIBLE_DEVICES=1 python3 run_constrained_extraction.py --mode full_s1 --dataset docred --model_path /root/.cache/huggingface/hub/models--Qwen--Qwen3-8B/snapshots/b968826d9c46dd6066d109eabc6255188de91218 --data_path /root/autodl-tmp/schema_outputs/w9_docred_remaining.json --constraints_path data/docred/ontology_constraints_docred.json --output_path /root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling_r2.jsonl --batch_size 1 --max_new_tokens 4096 --temperature 0.7 --top_p 0.9 --skip_on_error --device cuda:0\",\n    \"server\": \"westd-21461\",\n    \"gpu\": [\n      \"cuda:1\"\n    ],\n    \"pid\": \"383602\",\n    \"log_path\": \"/root/autodl-tmp/schema_outputs/w9_docred_r2.log\",\n    \"submitted_at\": \"2026-05-16T19:56:51.235Z\",\n    \"submitted_via\": \"submit_training_job\",\n    \"backend\": \"tmux\",\n    \"account\": \"root\",\n    \"data_path\": \"/root/autodl-tmp/schema_outputs/w9_docred_remaining.json\",\n    \"data_count\": 892,\n    \"model_name\": \"Qwen3-8B\",\n    \"seed\": null,\n    \"checkpoint_path\": \"/root/autodl-tmp/schema_outputs/w9_qwen_docred_zs_sampling_r2.jsonl\",\n    \"checkpoint_source\": \"Qwen3-8B pretrained (zero-shot)\",\n    \"eval_data\": \"DocRED dev set (remaining 892 docs from index 106)\",\n    \"tmux_session\": \"w9_docred_r2\",\n    \"wall_clock_seconds\": 179718.7,\n    \"gpu_hours\": 49.92\n  }\n}",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8a12f4d6-2574-4f18-a987-5db0d943a10c",
+            "isSidechain": true,
+            "promptId": "653b1e00-ae6c-4abc-8f0e-00ce6f68e849",
+            "agentId": "a2b3c3006156a19fc",
+            "type": "user",
+            "uuid": "9fa2cd30-8186-4eee-83af-7e16571b9f93",
+            "sourceToolAssistantUUID": "8a12f4d6-2574-4f18-a987-5db0d943a10c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-23T05:54:35.247Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Here are the findings from the registry search.\n\n---\n\n## Qwen DocRED Beam Sweep Experiments\n\n### Key finding: No dedicated \"Qwen DocRED 200-doc beam sweep\" results exist in the registry.\n\nThe `d066_docred_beam_sweep` entry was created as a plan (spec shows Qwen3-8B LoRA DocRED, 200-doc subset, beam {2,8} x {unconstrained, full_s1}), but **it has no metrics** — the results were never backfilled.\n\nThe `d066_beam_sweep` entry contains consolidated results, but **only for SciERC** (Qwen3-8B, 551 docs), not DocRED.\n\n### What does exist for Qwen DocRED:\n\n**Zero-shot Qwen (no LoRA) on DocRED — beam experiments:**\n| Experiment | Samples | Mode | Beam | E-F1 | R-F1 | DR% | CF% |\n|---|---|---|---|---|---|---|---|\n| `w9_qwen_docred_beam_50` | 50 | full_s1 | 4 | 58.64 | 9.37 | 0 | 0.55 |\n| `r14_qwen_docred_beam4_998` | 998 | full_s1 | 4 | 58.19 | 8.72 | 0 | 4.94 |\n\n**Qwen LoRA FT on DocRED — greedy (998 docs):**\n| Experiment | Samples | Mode | E-F1 | R-F1 | DR% | CF% |\n|---|---|---|---|---|---|---|\n| `d065_qwen_greedy_4096_r2` | 998 | full_s1 | 81.87 | 40.79 | 0 | 0.22 |\n| `w5_qwen_docred_lora_constrained_eval` | 998 | full_s1 | 81.43 | 40.56 | 0.01 | 0.41 |\n| `w5_qwen_docred_lora_unconstrained_eval` | 998 | unconstrained | 82.15 | 40.86 | 0.76 | 0.12 |\n| `w8_qwen_docred_ft_grammar_only` | 998 | grammar_only | 82.19 | 40.85 | 0.61 | 0.11 |\n| `w8_qwen_docred_ft_semantic_only` | 998 | semantic_only | — | 40.85 | — | — |\n\n**Llama DocRED 200-doc beam sweep (for comparison):**\n| Experiment | Beam | Mode | E-F1 | R-F1 | DR% | CF% |\n|---|---|---|---|---|---|---|\n| `d066_sweep_llama_docred_beam1_s1` | 1 | full_s1 | 85.43 | 47.35 | 0 | 0.19 |\n| `d066_sweep_llama_beam2_s1` | 2 | full_s1 | 85.60 | 51.17 | 0 | 0 |\n| `d066_sweep_llama_docred_beam4_s1` | 4 | full_s1 | 85.61 | 51.89 | 0 | 0 |\n| `d066_sweep_llama_beam8_s1` | 8 | full_s1 | 85.76 | 51.74 | 0 | 0 |\n| `d066_sweep_llama_docred_beam1_unc` | 1 | unconstrained | — | — | — | — |\n| `d066_sweep_llama_docred_beam4_unc` | 4 | unconstrained | 85.67 | 52.65 | 0.04 | 0.08 |\n| `d066_sweep_llama_beam8_unc` | 8 | unconstrained | 85.77 | 51.97 | 0 | 0.05 |\n\n### Summary\n\nThe Qwen DocRED 200-doc beam sweep (`d066_docred_beam_sweep`) was planned but its metrics were never recorded in the registry. Only SciERC Qwen beam sweep results are available (in `d066_beam_sweep`). The Llama DocRED 200-doc beam sweep has complete results for beam 1/2/4/8 in both constrained and unconstrained modes."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9fa2cd30-8186-4eee-83af-7e16571b9f93",
+            "isSidechain": true,
+            "agentId": "a2b3c3006156a19fc",
+            "requestId": "req_011CbJyvjrknUX7CyEV8g6Ry",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "5a33c2a0-39ed-4ae5-a733-d20af67be379",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "bcaaae93-c135-4568-bb9e-6ae384bb4c94",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012bdFzKKe5UrDegoRqkYuqj",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2761,
+                "cache_read_input_tokens": 35269,
+                "output_tokens": 1162,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 2761
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1162,
+                    "cache_read_input_tokens": 35269,
+                    "cache_creation_input_tokens": 2761,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 2761,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 38
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-i-need-to-find-qwen-docred-200-doc-beam-sweep-experiment-results-in-this-proje.md"
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "56d94e7b016a71b222e7",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> SSH 密码: nkX3oQlfpRht 预置镜像可能是 aml-train（conda 环境，不是 venv）。 aml-train 镜像环境激活: source /root/miniconda3/etc/",
+  "task_key": "54b66c80-b767-43c2-a137-c38f170bf5d5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/54b66c80-b767-43c2-a137-c38f170bf5d5.jsonl",
+    "occurrence": 1,
+    "bytes": 783174,
+    "sha256": "f5c134a0e7defbd6aa0120f1d580d4eee52a65a7ff681fbcb2ab534daf1b5c4e"
+  },
+  "statistics": {
+    "messages": 493,
+    "user_turns": 1,
+    "tool_calls": 145,
+    "roles": {
+      "record": 72,
+      "user": 1,
+      "assistant": 130,
+      "tool_call": 145,
+      "tool_result": 145
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "56d94e7b016a71b222e7-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 491,
+      "chunks": [
+        {
+          "path": "56d94e7b016a71b222e7-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "56d94e7b016a71b222e7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "56d94e7b016a71b222e7-part-0003.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-ssh-nkx3oqlfprht-aml-train-conda-venv-aml-train-source-root-mini.md"
+}

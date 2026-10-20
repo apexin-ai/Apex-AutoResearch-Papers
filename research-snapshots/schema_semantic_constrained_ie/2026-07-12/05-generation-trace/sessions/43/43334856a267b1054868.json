@@ -1,0 +1,74 @@
+{
+  "schema_version": "1.0",
+  "id": "43334856a267b1054868",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: schema_semantic_constrained_ie ## 运行环境 - 服务器名: westd-16980 - SSH 连接命令: ssh westd-16980 # 必须用此命令，",
+  "task_key": "b9bd727a-b62d-46eb-8616-b922edade31b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/b9bd727a-b62d-46eb-8616-b922edade31b.jsonl",
+    "occurrence": 1,
+    "bytes": 1639718,
+    "sha256": "322384fdd652281283419fd2db88d62f371991d99b3caa08947f9bec2b610052"
+  },
+  "statistics": {
+    "messages": 982,
+    "user_turns": 1,
+    "tool_calls": 374,
+    "roles": {
+      "record": 139,
+      "user": 1,
+      "assistant": 94,
+      "tool_call": 374,
+      "tool_result": 374
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "43334856a267b1054868-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 980,
+      "chunks": [
+        {
+          "path": "43334856a267b1054868-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "43334856a267b1054868-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "43334856a267b1054868-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "43334856a267b1054868-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "43334856a267b1054868-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "43334856a267b1054868-part-0006.json",
+          "message_count": 82
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-schema-semantic-constrained-ie-westd-16980-ssh-ssh-westd-16980-copy-230.md"
+}

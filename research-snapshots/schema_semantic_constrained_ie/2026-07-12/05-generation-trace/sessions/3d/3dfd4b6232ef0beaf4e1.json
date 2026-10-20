@@ -1,0 +1,179 @@
+{
+  "schema_version": "1.0",
+  "id": "3dfd4b6232ef0beaf4e1",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: 系统通知：审稿审批已通过。请开始审稿。 [论文提交] - 项目: schema_semantic_constrained_ie - 论文路径: projects/schema_semantic_constrained_ie/artifact",
+  "task_key": "db7cec05-888e-4bf4-9cfd-9e92331e9255",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/db7cec05-888e-4bf4-9cfd-9e92331e9255.jsonl",
+    "occurrence": 1,
+    "bytes": 691313,
+    "sha256": "811e64a0b74ecdad0f23697c7a4a71fd4715b33b729dc409dbd96b246e68bc5e"
+  },
+  "statistics": {
+    "messages": 190,
+    "user_turns": 12,
+    "tool_calls": 42,
+    "roles": {
+      "record": 61,
+      "user": 12,
+      "assistant": 33,
+      "tool_call": 42,
+      "tool_result": 42
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 120
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 13,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 13
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 5
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 23,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0001.json",
+          "message_count": 6
+        },
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0002.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "3dfd4b6232ef0beaf4e1-part-0002.json",
+          "message_count": 1
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-schema-semantic-constrained-ie-projects-schema-semantic-constrained-ie-artifac-copy-14.md"
+}

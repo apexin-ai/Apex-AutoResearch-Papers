@@ -1,0 +1,2722 @@
+{
+  "schema_version": "1.0",
+  "id": "4c0ef02fc77340b59547",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: You are verifying BibTeX entries for correctness. For each entry below, use WebSearch to verify: (1) paper exists, (2) a",
+  "task_key": "agent-aa130c251db53cee3",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/agent-aa130c251db53cee3.jsonl",
+    "occurrence": 1,
+    "bytes": 143578,
+    "sha256": "c16105b5fc944564f07e3b3a9bf4df9ae630a2e5e026447e068e69f09b8b2cb0"
+  },
+  "statistics": {
+    "messages": 59,
+    "user_turns": 1,
+    "tool_calls": 25,
+    "roles": {
+      "user": 1,
+      "record": 1,
+      "assistant": 7,
+      "tool_call": 25,
+      "tool_result": 25
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-26T10:29:15.124Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "You are verifying BibTeX entries for correctness. For each entry below, use WebSearch to verify: (1) paper exists, (2) author names correct, (3) year correct, (4) title correct, (5) venue correct, (6) DOI/arXiv ID if present. Search for exact title in quotes + author last name.\n\nFor each entry, output the verification result in this format:\n```\n[cite_key] ✓ or ✗\n  - 存在性: ✓/✗\n  - 作者: ✓/✗ (note if issue)\n  - 年份: ✓/✗\n  - 标题: ✓/✗\n  - Venue: ✓/✗ (note if issue)\n  - DOI/arXiv: ✓/✗\n  - 正文引用: ✓/✗ (note if issue)\n  - 备注: (any notes)\n```\n\n**21. decao2021genre**\nBibTeX: @inproceedings{decao2021genre, title={Autoregressive Entity Retrieval}, author={De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio}, booktitle={ICLR}, year={2021}, url={https://openreview.net/forum?id=5k8F6UU39V}}\nCitation context: appendix_related_work.tex L40-45 - GENRE.\n\n**22. josifoski2022genie**\nBibTeX: @inproceedings{josifoski2022genie, title={GenIE: Generative Information Extraction}, author={Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert}, booktitle={NAACL 2022}, pages={4626--4643}, year={2022}, url={https://aclanthology.org/2022.naacl-main.342/}}\nCitation context: appendix_related_work.tex L40-45 - GenIE; section6_related_work.tex L13 - training-time internalization.\n\n**23. geng2023gcd**\nBibTeX: @inproceedings{geng2023gcd, title={Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning}, author={Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert}, booktitle={EMNLP 2023}, year={2023}, url={https://aclanthology.org/2023.emnlp-main.674/}}\nCitation context: section6_related_work.tex L17 - grammar-only; section5_scierc_draft.tex L65 - GCD ceiling; section5_runtime.tex L64; appendix_related_work.tex L40-45.\n\n**24. lu2021neurologic**\nBibTeX: @inproceedings{lu2021neurologic, title={NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints}, author={Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin}, booktitle={NAACL 2021}, pages={4288--4299}, year={2021}, url={https://aclanthology.org/2021.naacl-main.339/}}\nCitation context: appendix_related_work.tex L40-45.\n\n**25. lu2022uie**\nBibTeX: @inproceedings{lu2022uie, title={Unified Structure Generation for Universal Information Extraction}, author={Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua}, booktitle={ACL 2022}, pages={5755--5772}, year={2022}, url={https://aclanthology.org/2022.acl-long.395/}}\nCitation context: section1_introduction_draft.tex L15 - training-based approaches; section6_related_work.tex L13 - training-time internalization; appendix_related_work.tex L55-60.\n\n**26. sainz2024gollie**\nBibTeX: @inproceedings{sainz2024gollie, title={GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling}, author={Sainz, Oscar and García-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacalle, Oier and Rigau, German and Agirre, Eneko}, booktitle={ICLR 2024}, year={2024}, url={https://openreview.net/forum?id=Y3wpuxd7u9}}\nCitation context: section1_introduction_draft.tex L15, L24; section6_related_work.tex L13; appendix_related_work.tex L55-60; appendix_gollie_comparison.tex L6.\n\n**27. li2023codeie**\nBibTeX: @inproceedings{li2023codeie, title={CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors}, author={Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng}, booktitle={ACL 2023}, pages={15339--15353}, year={2023}, url={https://aclanthology.org/2023.acl-long.855/}}\nCitation context: section1_introduction_draft.tex L6 - LLMs for IE; section6_related_work.tex L13; appendix_related_work.tex L55-60.\n\n**28. qi2024adelie**\nBibTeX: @inproceedings{qi2024adelie, title={ADELIE: Aligning Large Language Models on Information Extraction}, author={Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juanzi}, booktitle={EMNLP 2024}, year={2024}, url={https://aclanthology.org/2024.emnlp-main.419/}}\nCitation context: section6_related_work.tex L13 - training-time internalization; appendix_related_work.tex L55-60.\n\n**29. zaratiana2024enrico**\nBibTeX: @article{zaratiana2024enrico, title={EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction}, author={Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charnois, Thierry}, journal={arXiv preprint arXiv:2404.12493}, year={2024}, url={https://arxiv.org/abs/2404.12493}}\nCitation context: section6_related_work.tex L18 - ASP constraints; appendix_related_work.tex L62.\n\n**30. khorshidi2025odke**\nBibTeX: @article{khorshidi2025odke, title={ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs}, author={Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and Govind, Yash and Jang, Hyun and Kasgari, Ali and McClimans, Alexis and Soliman, Mohamed and Konda, Vishnu and Fakhry, Ahmed and Qi, Xiaoguang}, journal={arXiv preprint arXiv:2509.04696}, year={2025}, url={https://arxiv.org/abs/2509.04696}}\nCitation context: section6_related_work.tex L17 - post-hoc; appendix_related_work.tex L72-77.\n\nSearch and verify each one thoroughly."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "8c22390c-72fa-4042-9094-816d07e00400",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-26T10:29:15.128Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "8c22390c-72fa-4042-9094-816d07e00400",
+                "isSidechain": true,
+                "agentId": "aa130c251db53cee3",
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "addedLines": [
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterWorktree",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskStop",
+                    "WebFetch",
+                    "WebSearch"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "034e5ef2-e37a-46fe-9642-d4ffefb42366",
+                "timestamp": "2026-05-26T10:29:15.128Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-26T10:29:18.793Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "\n\nI'll verify all 10 BibTeX entries systematically. Let me search for them in parallel."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "034e5ef2-e37a-46fe-9642-d4ffefb42366",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2L26xaWxEn4msbskJ8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "d5a3ee77-ad66-4ac8-8083-b3748b4f09ec",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011NxXMNbLVBhPj5q3GSX9T2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8637,
+                "cache_read_input_tokens": 8252,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8637,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-26T10:29:19.024Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019iusBMAZgFaUoJ5wKVSLkH",
+              "name": "ToolSearch",
+              "input": {
+                "query": "select:WebSearch",
+                "max_results": 1
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d5a3ee77-ad66-4ac8-8083-b3748b4f09ec",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2L26xaWxEn4msbskJ8",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "1c508194-1004-4a78-96e1-0a20b4d19bd5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011NxXMNbLVBhPj5q3GSX9T2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 8637,
+                "cache_read_input_tokens": 8252,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 8637,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-26T10:29:19.032Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "tool_use_id": "toolu_019iusBMAZgFaUoJ5wKVSLkH",
+              "content": [
+                {
+                  "type": "tool_reference",
+                  "tool_name": "WebSearch"
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1c508194-1004-4a78-96e1-0a20b4d19bd5",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "7d5b5f79-5695-4609-9603-30777117d760",
+            "sourceToolAssistantUUID": "1c508194-1004-4a78-96e1-0a20b4d19bd5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-26T10:29:26.881Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search for each of the 10 BibTeX entries to verify their correctness."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d5b5f79-5695-4609-9603-30777117d760",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2LKcuW96c2Ckh7fG7Q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "790f49b0-e219-425a-8369-4146765d7e54",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GZTr7DDRp3JGivnNAw6psk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1463,
+                "cache_read_input_tokens": 16889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1463,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-26T10:29:27.004Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WX6wjEoDu3U4jpSyjuKyo6",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Autoregressive Entity Retrieval\" De Cao ICLR 2021"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "790f49b0-e219-425a-8369-4146765d7e54",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2LKcuW96c2Ckh7fG7Q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "154bd395-4421-4560-97d6-5a275d3e5e8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GZTr7DDRp3JGivnNAw6psk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1463,
+                "cache_read_input_tokens": 16889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1463,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-26T10:29:27.475Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BBbFspgToqNAAyubSdMTeW",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"GenIE: Generative Information Extraction\" Josifoski NAACL 2022"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "154bd395-4421-4560-97d6-5a275d3e5e8e",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2LKcuW96c2Ckh7fG7Q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7d2363aa-90a9-4c5d-aa56-88ef9706877b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GZTr7DDRp3JGivnNAw6psk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1463,
+                "cache_read_input_tokens": 16889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1463,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-26T10:29:27.946Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SSUJyUKD2UToF9ctCTWSSw",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\" Geng EMNLP 2023"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d2363aa-90a9-4c5d-aa56-88ef9706877b",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2LKcuW96c2Ckh7fG7Q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "2516dfd6-32f6-40b5-82ca-68e20ec9fced",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GZTr7DDRp3JGivnNAw6psk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1463,
+                "cache_read_input_tokens": 16889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1463,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-26T10:29:28.418Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014GTxwv61F2g7byY3gqxHUw",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\" Lu NAACL 2021"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2516dfd6-32f6-40b5-82ca-68e20ec9fced",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2LKcuW96c2Ckh7fG7Q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b84d3b84-b59f-4d7b-b6e0-75d1a2ac2b22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GZTr7DDRp3JGivnNAw6psk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1463,
+                "cache_read_input_tokens": 16889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1463,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-26T10:29:28.466Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DPPKKPKfZjUNSD2p8s9YQW",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"Unified Structure Generation for Universal Information Extraction\" Lu ACL 2022"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b84d3b84-b59f-4d7b-b6e0-75d1a2ac2b22",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2LKcuW96c2Ckh7fG7Q",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a21d837e-e982-4531-90b6-2eb7cfc845d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GZTr7DDRp3JGivnNAw6psk",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 1463,
+                "cache_read_input_tokens": 16889,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1463,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-26T10:29:34.398Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SSUJyUKD2UToF9ctCTWSSw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\" Geng EMNLP 2023\"\n\nLinks: [{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.emnlp-main.674/\"},{\"title\":\"[2305.13971] Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\",\"url\":\"https://arxiv.org/abs/2305.13971\"},{\"title\":\"[PDF] Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Grammar-Constrained-Decoding-for-Structured-NLP-Geng-Josifosky/7e269bfabb451765a16ca0357de6b497cefb60bf\"},{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv230513971G/abstract\"},{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning | OpenReview\",\"url\":\"https://openreview.net/forum?id=KkHY1WGDII\"},{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning | Request PDF\",\"url\":\"https://www.researchgate.net/publication/376402267_Grammar-Constrained_Decoding_for_Structured_NLP_Tasks_without_Finetuning\"},{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks ...\",\"url\":\"https://aclanthology.org/2023.emnlp-main.674.pdf\"},{\"title\":\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\",\"url\":\"https://arxiv.org/html/2305.13971v6\"},{\"title\":\"Flexible and Efficient Grammar-Constrained Decoding\",\"url\":\"https://arxiv.org/pdf/2502.05111\"},{\"title\":\"Generating Structured Outputs from Language Models: Benchmark and Studies\",\"url\":\"https://arxiv.org/html/2501.10868v1\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n**Paper Title:** \"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\"\n\n**Authors:** Saibo Geng, Martin Josifoski, Maxime Peyrard, and Robert West\n\n**Conference:** Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, pages 10932–10952, Singapore\n\n**Main Contribution:** Grammar-constrained decoding (GCD) can be used to control the generation of LMs, guaranteeing that the output follows a given structure. The work demonstrates that formal grammars can describe the output space for a much wider range of tasks and argues that GCD can serve as a unified framework for structured NLP tasks in general.\n\n**Key Features:** The paper introduces input-dependent grammars, which allow the grammar to depend on the input and thus enable the generation of different output structures for different inputs.\n\n**Applications:** The paper evaluates the approach on multiple tasks including information extraction and entity disambiguation.\n\nYou can access the paper through the ACL Anthology at: https://aclanthology.org/2023.emnlp-main.674/\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2516dfd6-32f6-40b5-82ca-68e20ec9fced",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "6c6e2e86-f237-48e5-ab84-78fbf7658e1a",
+            "sourceToolAssistantUUID": "2516dfd6-32f6-40b5-82ca-68e20ec9fced",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-26T10:29:37.396Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BBbFspgToqNAAyubSdMTeW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"GenIE: Generative Information Extraction\" Josifoski NAACL 2022\"\n\nLinks: [{\"title\":\"GenIE: Generative Information Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2022.naacl-main.342/\"},{\"title\":\"GenIE: Generative Information Extraction\",\"url\":\"https://aclanthology.org/2022.naacl-main.342.pdf\"},{\"title\":\"[2112.08340] GenIE: Generative Information Extraction\",\"url\":\"https://arxiv.org/abs/2112.08340\"},{\"title\":\"GitHub - epfl-dlab/GenIE: The autoregressive information extraction system GenIE (Generative Information Extraction) implemented in PyTorch. · GitHub\",\"url\":\"https://github.com/epfl-dlab/GenIE\"},{\"title\":\"(PDF) GenIE: Generative Information Extraction\",\"url\":\"https://www.researchgate.net/publication/362262820_GenIE_Generative_Information_Extraction\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?title=GenIE:+Generative+information+extraction&amp=&author=Martin+Josifoski&amp=&author=Nicola+De+Cao&amp=&author=Maxime+Peyrard&amp=&author=Fabio+Petroni&amp=&author=Robert+West&amp=&publication_year=2022&amp=&pages=4626-4643&amp=&doi=10.18653/v1/2022.naacl-main.342\"},{\"title\":\"GenIE: Generative Information Extraction\",\"url\":\"https://infoscience.epfl.ch/entities/publication/ac96118e-64f4-4d05-8461-aa27321afaeb\"},{\"title\":\"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11704-024-40555-y\"}]\n\nI found the paper you're looking for! Here's what I found about GenIE:\n\n## GenIE: Generative Information Extraction\n\nGenIE was presented by Martin Josifoski, Nicola De Cao, Maxime Peyrard, Fabio Petroni, and Robert West at NAACL 2022 in Seattle, United States (pages 4626–4643).\n\n### Overview\n\nGenIE is the first end-to-end autoregressive formulation of closed information extraction, which naturally exploits the language knowledge from pre-trained transformers by autoregressively generating relations and entities in textual form. The system uses a sequence-to-sequence model that takes unstructured text as input and autoregressively generates a structured semantic representation in the form of (subject, relation, object) triplets.\n\n### Key Innovation\n\nThanks to a new bi-level constrained generation strategy, only triplets consistent with the predefined knowledge base schema are produced.\n\n### Results\n\nGenIE is state-of-the-art on closed information extraction, generalizes from fewer training data points than baselines, and scales to a previously unmanageable number of entities and relations.\n\nThe paper, code, and models are available at the [ACL Anthology](https://aclanthology.org/2022.naacl-main.342/) and on [GitHub](https://github.com/epfl-dlab/GenIE).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7d2363aa-90a9-4c5d-aa56-88ef9706877b",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "ffeaaf44-eead-4718-b78d-48982104c836",
+            "sourceToolAssistantUUID": "7d2363aa-90a9-4c5d-aa56-88ef9706877b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-26T10:29:37.482Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WX6wjEoDu3U4jpSyjuKyo6",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Autoregressive Entity Retrieval\" De Cao ICLR 2021\"\n\nLinks: [{\"title\":\"ICLR Spotlight Autoregressive Entity Retrieval\",\"url\":\"https://iclr.cc/virtual/2021/spotlight/3521\"},{\"title\":\"GitHub - facebookresearch/GENRE: Autoregressive Entity Retrieval · GitHub\",\"url\":\"https://github.com/facebookresearch/GENRE\"},{\"title\":\"Published as a conference paper at ICLR 2021 AUTOREGRESSIVE ENTITY RETRIEVAL\",\"url\":\"https://openreview.net/pdf?id=5k8F6UU39V\"},{\"title\":\"Autoregressive Entity Retrieval - Meta AI\",\"url\":\"https://ai.meta.com/research/publications/autoregressive-entry-retrieval/\"},{\"title\":\"dblp: Autoregressive Entity Retrieval.\",\"url\":\"https://dblp.org/rec/conf/iclr/CaoI0P21.html\"},{\"title\":\"Nicola De Cao –\",\"url\":\"https://nicola-decao.github.io/Nicola_De_Cao_CV.pdf\"},{\"title\":\"dblp: Nicola De Cao\",\"url\":\"https://dblp.org/pid/218/6626.html\"},{\"title\":\"Autoregressive Entity Retrieval - UCL Discovery\",\"url\":\"https://discovery.ucl.ac.uk/id/eprint/10167460/\"},{\"title\":\"[2010.00904] Autoregressive Entity Retrieval\",\"url\":\"https://arxiv.org/abs/2010.00904\"},{\"title\":\"(PDF) Autoregressive Entity Retrieval\",\"url\":\"https://www.researchgate.net/publication/344468840_Autoregressive_Entity_Retrieval\"}]\n\nI found comprehensive information about the paper. Here's what I found:\n\n## Autoregressive Entity Retrieval - De Cao et al., ICLR 2021\n\nThe paper was authored by Nicola De Cao, Gautier Izacard, Sebastian Riedel, and Fabio Petroni from the University of Amsterdam and Facebook AI Research, and was published as a 2021 ICLR Spotlight presentation.\n\n### Core Contribution\n\nThe paper proposes GENRE, the first system that retrieves entities by generating their unique names, left to right, token-by-token in an autoregressive fashion, and conditioned on the context.\n\n### Key Advantages\n\nThe autoregressive formulation directly captures relations between context and entity name, effectively cross encoding both; the memory footprint is greatly reduced because the parameters of their encoder-decoder architecture scale with vocabulary size, not entity count; and the softmax loss is computed without subsampling negative data.\n\n### Technical Approach\n\n(m)GENRE uses a sequence-to-sequence approach to entity retrieval based on fine-tuned BART architecture, and performs retrieval by generating the unique entity name conditioned on the input text using constrained beam search to only generate valid identifiers.\n\n### Empirical Results\n\nThe paper experiments with more than 20 datasets on entity disambiguation, end-to-end entity linking and document retrieval tasks, achieving new state-of-the-art or very competitive results while using a tiny fraction of the memory footprint of competing systems.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "154bd395-4421-4560-97d6-5a275d3e5e8e",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "b6eeffea-82f2-43a6-b67f-b08ae14a9ec4",
+            "sourceToolAssistantUUID": "154bd395-4421-4560-97d6-5a275d3e5e8e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-26T10:29:38.676Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DPPKKPKfZjUNSD2p8s9YQW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"Unified Structure Generation for Universal Information Extraction\" Lu ACL 2022\"\n\nLinks: [{\"title\":\"Unified Structure Generation for Universal Information Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2022.acl-long.395/\"},{\"title\":\"Unified Structure Generation for Universal Information ...\",\"url\":\"https://aclanthology.org/2022.acl-long.395.pdf\"},{\"title\":\"[2203.12277] Unified Structure Generation for Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2203.12277\"},{\"title\":\"Unified Structure Generation for Universal Information Extraction | universal-ie.github.io\",\"url\":\"https://universal-ie.github.io/\"},{\"title\":\"GitHub - universal-ie/UIE: Unified Structure Generation for Universal Information Extraction\",\"url\":\"https://github.com/universal-ie/UIE\"},{\"title\":\"UIE - Universal Information Extraction | Zhanliang Liu\",\"url\":\"https://zliu.org/post/universal-information-extraction/\"},{\"title\":\"[PDF] Unified Structure Generation for Universal Information Extraction | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Unified-Structure-Generation-for-Universal-Lu-Liu/5eb9dad01d9b61947d7a9aae6dfff400d20555b9\"},{\"title\":\"Google Scholar\",\"url\":\"https://scholar.google.com/scholar_lookup?title=Unified+structure+generation+for+universal+information+extraction&amp=&author=Yaojie+Lu&amp=&author=Qing+Liu&amp=&author=Dai+Dai&amp=&author=Xinyan+Xiao&amp=&author=Hongyu+Lin&amp=&author=Xianpei+Han&amp=&author=Le+Sun&amp=&author=Hua+Wu&amp=&publication_year=2022&amp=&pages=5755-5772&amp=&doi=10.18653/v1/2022.acl-long.395\"},{\"title\":\"[2203.12277v1] Unified Structure Generation for Universal Information Extraction\",\"url\":\"https://arxiv.org/abs/2203.12277v1\"},{\"title\":\"Uniﬁed Structure Generation for Universal Information Extraction\",\"url\":\"https://arxiv.org/pdf/2203.12277\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n**Paper Title:** Unified Structure Generation for Universal Information Extraction\n\n**Authors:** Yaojie Lu, Qing Liu, Dai Dai, Xinyan Xiao, Hongyu Lin, Xianpei Han, Le Sun, and Hua Wu\n\n**Publication:** Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 5755–5772, Dublin, Ireland, May 2022\n\n**Main Contribution:** The paper proposes a unified text-to-structure generation framework, namely UIE, which can universally model different IE tasks, adaptively generate targeted structures, and collaboratively learn general IE abilities from different knowledge sources. Specifically, UIE uniformly encodes different extraction structures via a structured extraction language, adaptively generates target extractions via a schema-based prompt mechanism - structural schema instructor, and captures the common IE abilities via a large-scale pre-trained text-to-structure model.\n\n**Results:** UIE achieved state-of-the-art performance on 4 IE tasks, 13 datasets, and on all supervised, low-resource, and few-shot settings for a wide range of entity, relation, event and sentiment extraction tasks and their unification.\n\nYou can access the paper on the ACL Anthology at: https://aclanthology.org/2022.acl-long.395/ or on arXiv at: https://arxiv.org/abs/2203.12277\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a21d837e-e982-4531-90b6-2eb7cfc845d2",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "0d2c267c-55cd-40af-829a-8fbb6f671c00",
+            "sourceToolAssistantUUID": "a21d837e-e982-4531-90b6-2eb7cfc845d2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-26T10:29:44.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014GTxwv61F2g7byY3gqxHUw",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\" Lu NAACL 2021\"\n\nLinks: [{\"title\":\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints - ACL Anthology\",\"url\":\"https://aclanthology.org/2021.naacl-main.339/\"},{\"title\":\"dblp: NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints.\",\"url\":\"https://dblp.uni-trier.de/rec/conf/naacl/LuWZBBC21.html\"},{\"title\":\"GitHub - GXimingLu/neurologic_decoding\",\"url\":\"https://github.com/GXimingLu/neurologic_decoding\"},{\"title\":\"[PDF] NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/NeuroLogic-Decoding:-(Un)supervised-Neural-Text-Lu-West/2c5bf29079cd958a2bef150077a02a1deb300652\"},{\"title\":\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints | Request PDF\",\"url\":\"https://www.researchgate.net/publication/352365466_NeuroLogic_Decoding_Unsupervised_Neural_Text_Generation_with_Predicate_Logic_Constraints\"},{\"title\":\"[2010.12884] NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\",\"url\":\"https://arxiv.org/abs/2010.12884\"},{\"title\":\"Table 1 from NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/NeuroLogic-Decoding:-(Un)supervised-Neural-Text-Lu-West/2c5bf29079cd958a2bef150077a02a1deb300652/figure/1\"},{\"title\":\"Underline | NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\",\"url\":\"https://underline.io/lecture/19645-neurologic-decoding-un-supervised-neural-text-generation-with-predicate-logic-constraints\"},{\"title\":\"Table 7 from NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/NeuroLogic-Decoding%3A-(Un)supervised-Neural-Text-Lu-West/e3215a2412c204f6936572982a0d7c13c8f03cb7/figure/11\"}]\n\nI found the paper you're looking for! Here's the information:\n\n**NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints** was published by Lu et al. at NAACL 2021, authored by Ximing Lu, Peter West, Rowan Zellers, Ronan Le Bras, Chandra Bhagavatula, and Yejin Choi.\n\nThe paper was published in the Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, pages 4288–4299, Online.\n\n**Key highlights of the paper:**\n\n- The algorithm handles any set of lexical constraints that is expressible under predicate logic, while its asymptotic runtime is equivalent to conventional beam search.\n\n- Empirical results on four benchmarks show that NeuroLogic Decoding outperforms previous approaches, including algorithms that handle a subset of their constraints.\n\n- Unsupervised models with NeuroLogic Decoding often outperform supervised models with conventional decoding, even when the latter is based on considerably larger networks, suggesting the promise of inference-time algorithms.\n\nThe official paper is available at: https://aclanthology.org/2021.naacl-main.339/\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b84d3b84-b59f-4d7b-b6e0-75d1a2ac2b22",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "651e955b-a356-4a25-b459-e1ef2b96ec06",
+            "sourceToolAssistantUUID": "b84d3b84-b59f-4d7b-b6e0-75d1a2ac2b22",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-26T10:29:49.113Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018t3wdrymEdkwZXwjFT4py4",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\" Sainz ICLR 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "651e955b-a356-4a25-b459-e1ef2b96ec06",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2NCXpVCZEmm4FkQpZW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "3c5bbaa4-2f02-43c9-9c83-0001d3f4f175",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NyYNxtvQuZrwZs1whtJmW2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 967,
+                "cache_creation_input_tokens": 3988,
+                "cache_read_input_tokens": 18352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3988,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-26T10:29:50.061Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01He5Y4vFxYfEjAweUPBTm48",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\" Li ACL 2023"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c5bbaa4-2f02-43c9-9c83-0001d3f4f175",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2NCXpVCZEmm4FkQpZW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "94af60b4-d439-4529-95d8-c540aff29649",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NyYNxtvQuZrwZs1whtJmW2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 967,
+                "cache_creation_input_tokens": 3988,
+                "cache_read_input_tokens": 18352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3988,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-26T10:29:50.595Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DZVkP64EAg7k9Dsa6YqhGW",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"ADELIE: Aligning Large Language Models on Information Extraction\" Qi EMNLP 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94af60b4-d439-4529-95d8-c540aff29649",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2NCXpVCZEmm4FkQpZW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "aa8e7846-3ff1-48c4-83e1-ea2355fa9706",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NyYNxtvQuZrwZs1whtJmW2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 967,
+                "cache_creation_input_tokens": 3988,
+                "cache_read_input_tokens": 18352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3988,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-26T10:29:52.064Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013hEwaJvSy2U3TAunxgH3j8",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\" Zaratiana 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa8e7846-3ff1-48c4-83e1-ea2355fa9706",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2NCXpVCZEmm4FkQpZW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "7a6225ed-843d-48ab-bb98-2c865e55371d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NyYNxtvQuZrwZs1whtJmW2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 967,
+                "cache_creation_input_tokens": 3988,
+                "cache_read_input_tokens": 18352,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3988,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 34,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-26T10:29:52.754Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UcWoVWmFqTWFvMFsdXJ5w7",
+              "name": "WebSearch",
+              "input": {
+                "query": "\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\" Khorshidi 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a6225ed-843d-48ab-bb98-2c865e55371d",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2NCXpVCZEmm4FkQpZW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "466db9c9-d574-41f4-803e-ddd15808e60b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NyYNxtvQuZrwZs1whtJmW2",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 967,
+                "cache_creation_input_tokens": 3988,
+                "cache_read_input_tokens": 18352,
+                "output_tokens": 334,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3988
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 967,
+                    "output_tokens": 334,
+                    "cache_read_input_tokens": 18352,
+                    "cache_creation_input_tokens": 3988,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3988,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-26T10:29:56.966Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01He5Y4vFxYfEjAweUPBTm48",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\" Li ACL 2023\"\n\nLinks: [{\"title\":\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors - ACL Anthology\",\"url\":\"https://aclanthology.org/2023.acl-long.855/\"},{\"title\":\"[2305.05711] CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\",\"url\":\"https://arxiv.org/abs/2305.05711\"},{\"title\":\"GitHub - artpli/CodeIE: [ACL 23] CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors · GitHub\",\"url\":\"https://github.com/artpli/CodeIE\"},{\"title\":\"CODEIE: Large Code Generation Models are Better Few- ...\",\"url\":\"https://aclanthology.org/2023.acl-long.855.pdf\"},{\"title\":\"[2305.05711v2] CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\",\"url\":\"https://arxiv.org/abs/2305.05711v2\"},{\"title\":\"CodeIE\",\"url\":\"https://artpli.github.io/CodeIE/\"},{\"title\":\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors | Request PDF\",\"url\":\"https://www.researchgate.net/publication/372919086_CodeIE_Large_Code_Generation_Models_are_Better_Few-Shot_Information_Extractors\"},{\"title\":\"[PDF] CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/CodeIE:-Large-Code-Generation-Models-are-Better-Li-Sun/a86dd6c62d3dc9c7989c98a3e4ace3fd8000e515\"},{\"title\":\"Main Conference - ACL 2023\",\"url\":\"https://2023.aclweb.org/program/accepted_main_conference/\"}]\n\nI found the paper you're looking for. Here's what I found:\n\n\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\" was authored by Peng Li, Tianxiang Sun, Qiong Tang, Hang Yan, Yuanbin Wu, Xuanjing Huang, and Xipeng Qiu at ACL 2023. The paper was published in the Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), pages 15339–15353, in Toronto, Canada.\n\nThe paper addresses the challenge that it is nontrivial to perform information extraction (IE) tasks with natural language LLMs since the output is usually structured and hard to be converted into plain text. The authors propose to recast the structured output in the form of code instead of natural language and utilize generative LLMs of code (Code-LLMs) such as Codex to perform IE tasks, particularly named entity recognition and relation extraction.\n\nThe paper is available in multiple locations:\n- Official ACL Anthology: https://aclanthology.org/2023.acl-long.855/\n- arXiv: https://arxiv.org/abs/2305.05711\n- Official GitHub Repository: https://github.com/artpli/CodeIE\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94af60b4-d439-4529-95d8-c540aff29649",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "448b1401-843b-4985-a5f6-0dd0cde9eb32",
+            "sourceToolAssistantUUID": "94af60b4-d439-4529-95d8-c540aff29649",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-26T10:30:01.150Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DZVkP64EAg7k9Dsa6YqhGW",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"ADELIE: Aligning Large Language Models on Information Extraction\" Qi EMNLP 2024\"\n\nLinks: [{\"title\":\"ADELIE: Aligning Large Language Models on Information Extraction - ACL Anthology\",\"url\":\"https://aclanthology.org/2024.emnlp-main.419/\"},{\"title\":\"GitHub - THU-KEG/ADELIE: [EMNLP2024] Aligning Large Language Models on Information Extraction · GitHub\",\"url\":\"https://github.com/THU-KEG/ADELIE\"},{\"title\":\"[2405.05008] ADELIE: Aligning Large Language Models on Information Extraction\",\"url\":\"https://arxiv.org/abs/2405.05008\"},{\"title\":\"ADELIE: Aligning Large Language Models on Information Extraction | Request PDF\",\"url\":\"https://www.researchgate.net/publication/386188440_ADELIE_Aligning_Large_Language_Models_on_Information_Extraction\"},{\"title\":\"ADELIE: Aligning Large Language Models on Information Extraction | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/adelie-aligning-large-language-models-information-extraction\"},{\"title\":\"[Quick Review] ADELIE: Aligning Large Language Models on Information Extraction\",\"url\":\"https://liner.com/review/adelie-aligning-large-language-models-on-information-extraction\"},{\"title\":\"dblp: ADELIE: Aligning Large Language Models on Information Extraction.\",\"url\":\"https://dblp.org/rec/journals/corr/abs-2405-05008.html\"},{\"title\":\"Paper page - ADELIE: Aligning Large Language Models on Information Extraction\",\"url\":\"https://huggingface.co/papers/2405.05008\"},{\"title\":\"ADELIE: Aligning Large Language Models on Information Extraction\",\"url\":\"https://paperreading.club/page?id=226238\"},{\"title\":\"ADELIE: Aligning Large Language Models on Information Extraction\",\"url\":\"https://arxiv.org/html/2405.05008v1\"}]\n\nI found the paper! Here's information about \"ADELIE: Aligning Large Language Models on Information Extraction\":\n\n## Paper Details\n\nThe paper was authored by Yunjia Qi, Hao Peng, Xiaozhi Wang, Bin Xu, Lei Hou, and Juanzi Li, and was published in the Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing (EMNLP 2024), pages 7371–7387, held in Miami, Florida, USA.\n\n## Overview\n\nLarge language models usually fall short on information extraction (IE) tasks and struggle to follow complex IE task instructions, primarily because LLMs are not aligned with humans and mainstream alignment datasets typically do not include IE data.\n\nADELIE (Aligning large language moDELs on Information Extraction) is an aligned LLM that effectively solves various IE tasks, including closed IE, open IE, and on-demand IE.\n\n## Methodology\n\nThe researchers first collected and constructed a high-quality alignment corpus called IEInstruct for IE, then trained ADELIE_SFT using instruction tuning on IEInstruct, and further trained ADELIE_SFT with a direct preference optimization (DPO) objective, resulting in ADELIE_DPO.\n\n## Results\n\nExtensive experiments on various held-out IE datasets demonstrate that both ADELIE_SFT and ADELIE_DPO achieve state-of-the-art performance among open-source models.\n\nThe paper also has code and models available on GitHub and HuggingFace.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "aa8e7846-3ff1-48c4-83e1-ea2355fa9706",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "759c5a55-97a3-4b0a-ba26-41c6a2213f44",
+            "sourceToolAssistantUUID": "aa8e7846-3ff1-48c4-83e1-ea2355fa9706",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-26T10:30:03.114Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013hEwaJvSy2U3TAunxgH3j8",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\" Zaratiana 2024\"\n\nLinks: [{\"title\":\"[2404.12493] EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\",\"url\":\"https://arxiv.org/abs/2404.12493\"},{\"title\":\"GitHub - urchade/EnriCo: EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction · GitHub\",\"url\":\"https://github.com/urchade/enrico\"},{\"title\":\"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\",\"url\":\"https://arxiv.org/html/2404.12493v1\"},{\"title\":\"Paper page - EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\",\"url\":\"https://huggingface.co/papers/2404.12493\"},{\"title\":\"[Literature Review] EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\",\"url\":\"https://www.themoonlight.io/en/review/enrico-enriched-representation-and-globally-constrained-inference-for-entity-and-relation-extraction\"},{\"title\":\"[PDF] EnriCo: Enriched Representation and Globally ...\",\"url\":\"https://www.semanticscholar.org/paper/EnriCo:-Enriched-Representation-and-Globally-for-Zaratiana-Tomeh/5b1e811cd7f22cf5f9a76265ac4837626883df29\"},{\"title\":\"urchade (Urchade Zaratiana) · GitHub\",\"url\":\"https://github.com/urchade\"},{\"title\":\"EnriCo: Enriched Representation and Globally Constrained ...\",\"url\":\"https://chatpaper.com/chatpaper/zh-CN/paper/15800\"},{\"title\":\"Urchade Zaratiana\",\"url\":\"https://www.catalyzex.com/author/Urchade%20Zaratiana\"}]\n\nI found the paper you're looking for! Here are the search results:\n\n**Paper Information:**\n\nEnriCo was authored by Urchade Zaratiana, Nadi Tomeh, Yann Dauxais, Pierre Holat, and Thierry Charnois from FI Group and LIPN, CNRS UMR 7030, France. The paper was published on April 18, 2024.\n\n**Paper Summary:**\n\nThe paper addresses joint entity and relation extraction, which plays a pivotal role in applications like knowledge graph construction. Existing approaches often fall short in two key aspects: richness of representation and coherence in output structure, as they rely on handcrafted heuristics that can lead to loss of information and disregard task-specific constraints.\n\n**Main Contributions:**\n\nEnriCo uses attention mechanisms that allow entities and relations to dynamically determine pertinent information for accurate extraction, and introduces decoding algorithms designed to infer the highest scoring solutions while adhering to task and dataset-specific constraints.\n\nThe paper is available on arXiv (2404.12493), and the code is available on GitHub at https://github.com/urchade/enrico.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7a6225ed-843d-48ab-bb98-2c865e55371d",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "9634bd9c-7a4d-4ab9-a792-973a4bee62a7",
+            "sourceToolAssistantUUID": "7a6225ed-843d-48ab-bb98-2c865e55371d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-26T10:30:07.601Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018t3wdrymEdkwZXwjFT4py4",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\" Sainz ICLR 2024\"\n\nLinks: [{\"title\":\"[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://arxiv.org/abs/2310.03668\"},{\"title\":\"ICLR Poster GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://iclr.cc/virtual/2024/poster/18435\"},{\"title\":\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | OpenReview\",\"url\":\"https://openreview.net/forum?id=Y3wpuxd7u9\"},{\"title\":\"GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf\"},{\"title\":\"GOLLIE: ANNOTATION GUIDELINES IMPROVE ZERO-SHOT INFORMATION-EXTRACTION | Documents - Universidad del País Vasco / Euskal Herriko Unibertsitatea\",\"url\":\"https://ekoizpen-zientifikoa.ehu.eus/documentos/66cb8eeac7cd8e0cebf21fbb\"},{\"title\":\"GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://arxiv.org/html/2310.03668v5\"},{\"title\":\"[PDF] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/GoLLIE:-Annotation-Guidelines-improve-Zero-Shot-Sainz-Garc%C3%ADa-Ferrero/3f40edfcafc018b2cb54612a9aaa9d6b43a11a26\"}]\n\nI found the paper! Here are the search results for \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\" by Sainz et al. presented at ICLR 2024:\n\n**Overview:**\nGoLLIE (Guideline-following Large Language Model for IE) is a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines.\n\n**Problem:**\nWhile Large Language Models (LLMs) combined with instruction tuning have made significant progress when generalizing to unseen tasks, they have been less successful in Information Extraction (IE), lagging behind task-specific models. IE tasks are typically characterized by complex annotation guidelines which describe the task and give examples to humans, but previous attempts to leverage such information have failed, even with the largest models, as they are not able to follow the guidelines out-of-the-box.\n\n**Key Results:**\nComprehensive evaluation empirically demonstrates that GoLLIE is able to generalize to and follow unseen guidelines, outperforming previous attempts at zero-shot information extraction. GoLLIE surpasses by a large margin the current zero-shot state-of-the-art methods Instruct-UIE and Entailment based IE.\n\n**Sources:**\n- ArXiv: https://arxiv.org/abs/2310.03668\n- ICLR 2024 Poster: https://iclr.cc/virtual/2024/poster/18435\n- OpenReview: https://openreview.net/forum?id=Y3wpuxd7u9\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3c5bbaa4-2f02-43c9-9c83-0001d3f4f175",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "df5e2a5f-49c1-4e7d-80d7-06c5b6563c25",
+            "sourceToolAssistantUUID": "3c5bbaa4-2f02-43c9-9c83-0001d3f4f175",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-26T10:30:12.682Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UcWoVWmFqTWFvMFsdXJ5w7",
+              "type": "tool_result",
+              "content": "Web search results for query: \"\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\" Khorshidi 2025\"\n\nLinks: [{\"title\":\"[2509.04696] ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\",\"url\":\"https://arxiv.org/abs/2509.04696\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs - Apple Machine Learning Research\",\"url\":\"https://machinelearning.apple.com/research/odke\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\",\"url\":\"https://arxiv.org/html/2509.04696v1\"},{\"title\":\"[PDF] ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/ODKE+:-Ontology-Guided-Open-Domain-Knowledge-with-Khorshidi-Nikfarjam/23991e9d5ab7780527a1753633a7f065c5da4663\"},{\"title\":\"(PDF) ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\",\"url\":\"https://www.researchgate.net/publication/395338944_ODKE_Ontology-Guided_Open-Domain_Knowledge_Extraction_with_LLMs\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/odke-ontology-guided-open-domain-knowledge-extraction\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs - haebom\",\"url\":\"https://slashpage.com/haebom/7vgjr4m1nwwwz2dwpy86?lang=en&tl=en\"},{\"title\":\"LLM-empowered knowledge graph construction: A survey\",\"url\":\"https://arxiv.org/pdf/2510.20345\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs (AI Podcast) - YouTube\",\"url\":\"https://www.youtube.com/watch?v=c8RMyq48XYk\"}]\n\nI found the paper! Here's what I found about ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs by Khorshidi et al. (2025):\n\n## Overview\nODKE+ is a production-grade system that automatically extracts and ingests millions of open-domain facts from web sources with high precision.\n\n## Key Technical Features\nThe system combines modular components into a scalable pipeline: (1) the Extraction Initiator detects missing or stale facts, (2) the Evidence Retriever collects supporting documents, (3) hybrid Knowledge Extractors apply both pattern-based rules and ontology-guided prompting for large language models (LLMs), (4) a lightweight Grounder validates extracted facts using a second LLM, and (5) the Corroborator ranks and normalizes candidate facts for ingestion.\n\nODKE+ dynamically generates ontology snippets tailored to each entity type to align extractions with schema constraints, enabling scalable, type-consistent fact extraction across 195 predicates.\n\n## Performance Results\nThe system supports batch and streaming modes, processing over 9 million Wikipedia pages and ingesting 19 million high-confidence facts with 98.8% precision. Additionally, ODKE+ significantly improves coverage over traditional methods, achieving up to 48% overlap with third-party KGs and reducing update lag by 50 days on average.\n\nThe paper was published on arXiv on September 4, 2025 (arXiv:2509.04696) and is also available on Apple's Machine Learning Research website.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "466db9c9-d574-41f4-803e-ddd15808e60b",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "9a2622eb-6f0d-4761-b326-ac7c684dcec3",
+            "sourceToolAssistantUUID": "466db9c9-d574-41f4-803e-ddd15808e60b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-26T10:30:16.837Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify the author lists more carefully for entries where the DBLP records provide exact author information."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9a2622eb-6f0d-4761-b326-ac7c684dcec3",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2QGCtZV2YAtERUjNmW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "94d15300-de87-4178-98a0-92f51daad379",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XjVonYy8cBMFT3hprPUm8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5787,
+                "cache_read_input_tokens": 22340,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5787,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-26T10:30:18.392Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Fk5u6C8UdoG57VRy3W1PFA",
+              "name": "WebSearch",
+              "input": {
+                "query": "dblp \"Autoregressive Entity Retrieval\" De Cao Izacard Riedel Petroni authors ICLR 2021"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "94d15300-de87-4178-98a0-92f51daad379",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2QGCtZV2YAtERUjNmW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "897be7d4-60e8-4a97-ba1e-71e5d5963a30",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XjVonYy8cBMFT3hprPUm8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5787,
+                "cache_read_input_tokens": 22340,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5787,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-26T10:30:19.467Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018JZTe3fsTXKzPsoiUBAhWv",
+              "name": "WebSearch",
+              "input": {
+                "query": "GoLLIE ICLR 2024 authors Sainz Garcia-Ferrero Agerri \"Lopez de Lacalle\" Rigau Agirre"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "897be7d4-60e8-4a97-ba1e-71e5d5963a30",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2QGCtZV2YAtERUjNmW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "cfb88fe4-99ec-4f97-be4e-65d131181150",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XjVonYy8cBMFT3hprPUm8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5787,
+                "cache_read_input_tokens": 22340,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5787,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-26T10:30:19.894Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01ADK82zMqdUAHif1VsLjym9",
+              "name": "WebSearch",
+              "input": {
+                "query": "arXiv 2509.04696 ODKE+ authors Khorshidi Nikfarjam 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfb88fe4-99ec-4f97-be4e-65d131181150",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2QGCtZV2YAtERUjNmW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4d2dd55f-626e-4c0b-ac44-ddb3a00a51e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XjVonYy8cBMFT3hprPUm8",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5787,
+                "cache_read_input_tokens": 22340,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5787,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-26T10:30:20.448Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01U5ktJwhc96swYKp25BoEgy",
+              "name": "WebSearch",
+              "input": {
+                "query": "EnriCo Zaratiana 2024 venue published conference EMNLP ACL"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d2dd55f-626e-4c0b-ac44-ddb3a00a51e0",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2QGCtZV2YAtERUjNmW",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "4d86a765-c69d-4ae2-a9f9-12d636c72f57",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017XjVonYy8cBMFT3hprPUm8",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5787,
+                "cache_read_input_tokens": 22340,
+                "output_tokens": 302,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5787
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 302,
+                    "cache_read_input_tokens": 22340,
+                    "cache_creation_input_tokens": 5787,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 5787,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-26T10:30:28.853Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018JZTe3fsTXKzPsoiUBAhWv",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GoLLIE ICLR 2024 authors Sainz Garcia-Ferrero Agerri \"Lopez de Lacalle\" Rigau Agirre\"\n\nLinks: [{\"title\":\"[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://arxiv.org/abs/2310.03668\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf\"},{\"title\":\"[PDF] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/GoLLIE:-Annotation-Guidelines-improve-Zero-Shot-Sainz-Garc%C3%ADa-Ferrero/3f40edfcafc018b2cb54612a9aaa9d6b43a11a26\"},{\"title\":\"dblp: Iker García-Ferrero\",\"url\":\"https://dblp.org/pid/305/9880.html\"},{\"title\":\"GOLLIE: ANNOTATION GUIDELINES IMPROVE ZERO-SHOT INFORMATION-EXTRACTION | Documents - Universidad del País Vasco / Euskal Herriko Unibertsitatea\",\"url\":\"https://ekoizpen-zientifikoa.ehu.eus/documentos/66cb8eeac7cd8e0cebf21fbb\"},{\"title\":\"GitHub - hitz-zentroa/GoLLIE: Guideline following Large Language Model for Information Extraction · GitHub\",\"url\":\"https://github.com/hitz-zentroa/gollie\"},{\"title\":\"dblp: BibTeX records: Eneko Agirre\",\"url\":\"https://dblp.org/pid/a/EnekoAgirre.html?view=bibtex&param=0\"},{\"title\":\"Selected Publications - Rodrigo Agerri - Website\",\"url\":\"https://ragerri.github.io/publications/\"}]\n\nBased on the search results, I found information about the GoLLIE paper published at ICLR 2024.\n\nThe paper \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\" was authored by Oscar Sainz, Iker García-Ferrero, Rodrigo Agerri, Oier Lopez de Lacalle, German Rigau, and Eneko Agirre from the HiTZ Basque Center for Language Technology - Ixa NLP Group at the University of the Basque Country (UPV/EHU).\n\nThe paper proposes GoLLIE (Guideline-following Large Language Model for IE), a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines. The comprehensive evaluation demonstrates that GoLLIE is able to generalize to and follow unseen guidelines, outperforming previous attempts at zero-shot information extraction.\n\nThe paper is available on arXiv and was published at the Twelfth International Conference on Learning Representations (ICLR 2024).\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "cfb88fe4-99ec-4f97-be4e-65d131181150",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "51c51777-8ee0-4cce-be61-9d45c9aa2cbb",
+            "sourceToolAssistantUUID": "cfb88fe4-99ec-4f97-be4e-65d131181150",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-26T10:30:29.555Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Fk5u6C8UdoG57VRy3W1PFA",
+              "type": "tool_result",
+              "content": "Web search results for query: \"dblp \"Autoregressive Entity Retrieval\" De Cao Izacard Riedel Petroni authors ICLR 2021\"\n\nLinks: [{\"title\":\"dblp: Autoregressive Entity Retrieval.\",\"url\":\"https://dblp.org/rec/conf/iclr/CaoI0P21.html\"},{\"title\":\"dblp: Nicola De Cao\",\"url\":\"https://dblp.org/pid/218/6626.html\"},{\"title\":\"dblp: ICLR 2021\",\"url\":\"https://dblp.org/db/conf/iclr/iclr2021.html\"},{\"title\":\"ICLR Spotlight Autoregressive Entity Retrieval\",\"url\":\"https://iclr.cc/virtual/2021/spotlight/3521\"},{\"title\":\"[PDF] Autoregressive Entity Retrieval | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Autoregressive-Entity-Retrieval-Cao-Izacard/572c12e81319ccd47cc0c637c82efadd03fd05ab\"},{\"title\":\"GitHub - facebookresearch/GENRE: Autoregressive Entity Retrieval · GitHub\",\"url\":\"https://github.com/facebookresearch/GENRE\"},{\"title\":\"dblp: Gautier Izacard\",\"url\":\"https://dblp.org/pid/222/3621.html\"},{\"title\":\"Autoregressive Entity Retrieval - UCL Discovery\",\"url\":\"https://discovery.ucl.ac.uk/id/eprint/10167460/\"},{\"title\":\"Published as a conference paper at ICLR 2021 AUTOREGRESSIVE ENTITY RETRIEVAL\",\"url\":\"https://openreview.net/pdf?id=5k8F6UU39V\"}]\n\nThe web search found comprehensive information about the paper \"Autoregressive Entity Retrieval\" from ICLR 2021. Here are the key results:\n\n**Paper Information:**\nThe paper is authored by Nicola De Cao, Gautier Izacard, Sebastian Riedel, and Fabio Petroni, published at ICLR 2021.\n\n**Paper Focus:**\nThe paper addresses entity retrieval, document retrieval, autoregressive language models, entity linking, end-to-end entity linking, entity disambiguation, and constrained beam search. The ability to retrieve entities given a query is fundamental for knowledge-intensive tasks such as entity linking and open-domain question answering.\n\n**Key Results:**\nThe models achieve state-of-the-art or very competitive results on nearly all datasets with substantial improvements, and require substantially less memory (approximately 20 times smaller footprint on average) compared with recent models.\n\n**Available Resources:**\nThe code is available on GitHub under the name GENRE (Generative Entity Retrieval), and the authors released code and pre-processed data to reproduce their experiments.\n\nThe paper can be accessed through the DBLP entry at https://dblp.org/rec/conf/iclr/CaoI0P21.html.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "897be7d4-60e8-4a97-ba1e-71e5d5963a30",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "d7068b8e-dba5-44eb-b43c-d80f32d29165",
+            "sourceToolAssistantUUID": "897be7d4-60e8-4a97-ba1e-71e5d5963a30",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-26T10:30:30.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01ADK82zMqdUAHif1VsLjym9",
+              "type": "tool_result",
+              "content": "Web search results for query: \"arXiv 2509.04696 ODKE+ authors Khorshidi Nikfarjam 2025\"\n\nLinks: [{\"title\":\"[2509.04696] ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\",\"url\":\"https://arxiv.org/abs/2509.04696\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\",\"url\":\"https://arxiv.org/pdf/2509.04696\"},{\"title\":\"[PDF] ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/ODKE+:-Ontology-Guided-Open-Domain-Knowledge-with-Khorshidi-Nikfarjam/23991e9d5ab7780527a1753633a7f065c5da4663\"},{\"title\":\"(PDF) ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\",\"url\":\"https://www.researchgate.net/publication/395338944_ODKE_Ontology-Guided_Open-Domain_Knowledge_Extraction_with_LLMs\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/odke-ontology-guided-open-domain-knowledge-extraction\"},{\"title\":\"[PDF] Open Domain Knowledge Extraction for Knowledge Graphs | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Open-Domain-Knowledge-Extraction-for-Knowledge-Qian-Belyi/5118df03ae5c226f3875f34845438b09951a3e45\"},{\"title\":\"Open Domain Knowledge Extraction for Knowledge Graphs\",\"url\":\"https://arxiv.org/pdf/2312.09424\"},{\"title\":\"[2312.09424] Open Domain Knowledge Extraction for Knowledge Graphs\",\"url\":\"https://arxiv.org/abs/2312.09424\"}]\n\nI found the paper you're looking for. The paper arXiv:2509.04696 titled \"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\" was submitted on September 4, 2025, with authors Samira Khorshidi, Azadeh Nikfarjam, Suprita Shankar, Yisi Sang, Yash Govind, Hyun Jang, Ali Kasgari, Alexis McClimans, Mohamed Soliman, Vishnu Konda, Ahmed Fakhry, and Xiaoguang Qi.\n\nThe paper presents ODKE+, a production-grade system that automatically extracts and ingests millions of open-domain facts from web sources with high precision, combining modular components including an Extraction Initiator, Evidence Retriever, hybrid Knowledge Extractors, a Grounder, and a Corroborator.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d2dd55f-626e-4c0b-ac44-ddb3a00a51e0",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "dc96f15b-c05c-4e2a-bee5-101971b2e26d",
+            "sourceToolAssistantUUID": "4d2dd55f-626e-4c0b-ac44-ddb3a00a51e0",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-26T10:30:30.058Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01U5ktJwhc96swYKp25BoEgy",
+              "type": "tool_result",
+              "content": "Web search results for query: \"EnriCo Zaratiana 2024 venue published conference EMNLP ACL\"\n\nLinks: [{\"title\":\"Conference on Empirical Methods in Natural Language Processing - ACL Anthology\",\"url\":\"https://aclanthology.org/venues/emnlp/\"},{\"title\":\"EMNLP 2024: Call for Papers | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/emnlp-2024-call-papers\"},{\"title\":\"The 2024 Conference on Empirical Methods in Natural Language Processing - EMNLP 2024\",\"url\":\"https://2024.emnlp.org/\"},{\"title\":\"Urchade Zaratiana\",\"url\":\"https://urchade.github.io/\"},{\"title\":\"EMNLP 2024: Call for Demo Papers | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/emnlp-2024-call-demo-papers\"},{\"title\":\"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"EMNLP 2024 Conference | OpenReview\",\"url\":\"https://openreview.net/group?id=EMNLP/2024/Conference\"},{\"title\":\"Sponsorship brochure for ACL 2024 conferences - 2023-12-19\",\"url\":\"https://2024.eacl.org/downloads/Sponsorship-brochure-for-ACL-2024-conferences-2023-12-19.pdf\"},{\"title\":\"Call for Bids to Host EMNLP 2025 or 2026 - SIGDAT\",\"url\":\"https://sigdat.org/calls/bids2025\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"}]\n\nBased on the search results, I found information about EnriCo and related work by Zaratiana:\n\nEnriCO: Constrained decoding of information extraction using logical rules (Zaratiana et al., ArXiv 2024) is listed among Zaratiana's work. However, the search results indicate this was published on ArXiv in 2024 rather than at a specific conference venue like EMNLP or ACL.\n\nThe search results also show that EMNLP 2024 took place in Miami, Florida from Nov 12th to Nov 16th, 2024, at the Hyatt Regency Miami Hotel, and Zaratiana has other papers published at EMNLP conferences (such as work from EMNLP 2022 and 2023).\n\nIf you're looking for specific information about whether EnriCo was published at a particular EMNLP or ACL conference in 2024, the search results suggest it may have been an ArXiv preprint rather than a peer-reviewed conference publication.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4d86a765-c69d-4ae2-a9f9-12d636c72f57",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "8b61f122-bb6a-432b-8205-3471778c74f5",
+            "sourceToolAssistantUUID": "4d86a765-c69d-4ae2-a9f9-12d636c72f57",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-26T10:30:34.017Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the citation contexts by reading the referenced tex files."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8b61f122-bb6a-432b-8205-3471778c74f5",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2RYUxY7e1jyyR4Tnr4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b85cec30-2450-446f-a529-3a94b98ba458",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kf5vz4vXqdduobvu7eCLSi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3460,
+                "cache_read_input_tokens": 28127,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 3460,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-26T10:30:35.453Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SLQqa86GHCfNAkjmXPbBL2",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b85cec30-2450-446f-a529-3a94b98ba458",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2RYUxY7e1jyyR4Tnr4",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "06551a1b-f046-430e-8498-fd6f52622941",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Kf5vz4vXqdduobvu7eCLSi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3460,
+                "cache_read_input_tokens": 28127,
+                "output_tokens": 115,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 3460
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 115,
+                    "cache_read_input_tokens": 28127,
+                    "cache_creation_input_tokens": 3460,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 3460,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-26T10:30:35.480Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SLQqa86GHCfNAkjmXPbBL2",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/section5_scierc_draft_4796e8.tex\nartifacts/_project/paper/abstract_fd4b26.tex\nartifacts/_project/paper/abstract_d3264e.tex\nartifacts/_project/paper/section7_conclusion_550cbf_DEPRECATED.tex\nartifacts/dream_reports/dream_20260514T094226/best/paper.tex\nartifacts/dream_reports/dream_20260514T094226/median/paper.tex\nartifacts/dream_reports/dream_20260514T094226/worst/paper.tex\nartifacts/_project/paper/discussion_paragraphs_cf83d1.tex\nartifacts/_project/paper/section6_relwork_additions.tex\nartifacts/_project/paper/discussion_paragraphs.tex\nartifacts/dream_reports/dream_20260514T205155/best/paper.tex\nartifacts/dream_reports/dream_20260514T205155/median/paper.tex\nartifacts/dream_reports/dream_20260514T205155/worst/paper.tex\nartifacts/_project/paper/section6_relwork_outline.tex\nartifacts/_project/paper/section7_conclusion_DEPRECATED.tex\nartifacts/dream_reports/dream_20260516T021434/best/paper.tex\nartifacts/dream_reports/dream_20260516T021434/median/paper.tex\nartifacts/dream_reports/dream_20260516T021434/worst/paper.tex\nartifacts/dream_reports/dream_20260516T173022/best/paper.tex\nartifacts/dream_reports/dream_20260516T173022/median/paper.tex\nartifacts/_project/paper/paper_tables_draft.tex\nartifacts/appendix_sampling_table.tex\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex\nartifacts/_project/paper/p3_case_studies.tex\nartifacts/_project/paper/p3_case_studies_861a0d.tex\nartifacts/p3_case_studies.tex\nartifacts/dream_reports/dream_20260518T162745/best/paper.tex\nartifacts/dream_reports/dream_20260518T162745/median/paper.tex\nartifacts/dream_reports/dream_20260518T162745/worst/paper.tex\nartifacts/_project/paper/appendix_scalability.tex\nartifacts/_project/paper/case_study_kappa_dr.tex\nartifacts/figures/case_study_kappa_dr.tex\nartifacts/d066_beam_sweep/beam_sweep_table.tex\nartifacts/d066_beam_sweep/beam_docred_sweep_table.tex\nartifacts/dream_reports/dream_20260522T052642/best/paper.tex\nartifacts/dream_reports/dream_20260522T052642/median/paper.tex\nartifacts/dream_reports/dream_20260522T052642/worst/paper.tex\nartifacts/_project/paper/appendix_sampling_table.tex\nartifacts/_project/paper/appendix_doc_length.tex\nartifacts/_project/paper/appendix_power_analysis_523cc9.tex\nartifacts/_project/paper/appendix_power_analysis.tex\nartifacts/_project/paper/appendix_downstream_analysis.tex\nartifacts/_project/paper/appendix_order_invariance.tex\nartifacts/_project/paper/checklist.tex\nartifacts/_project/paper/section5_docred_draft.tex\nartifacts/_project/paper/appendix_full_ft.tex\nartifacts/_project/paper/appendix_pumping_lemma.tex\nartifacts/_project/paper/fig1_framework.tex\nartifacts/_project/paper/appendix_related_work.tex\nartifacts/_project/paper/appendix_high_kappa_analysis.tex\nartifacts/_project/paper/section2_background.tex\nartifacts/_project/paper/section3_method_draft.tex\nartifacts/_project/paper/section4_composition_draft.tex\nartifacts/_project/paper/main.tex\nartifacts/_project/paper/section7_conclusion_compressed.tex\nartifacts/_project/paper/appendix_zs_crossmodel.tex\nartifacts/_project/paper/appendix_ai_assistants.tex\nartifacts/_project/paper/section3_violation_landscape.tex\nartifacts/_project/paper/section5_crossmodel_draft.tex\nartifacts/_project/paper/section5_runtime.tex\nartifacts/_project/paper/appendix_prompts.tex\nartifacts/_project/paper/appendix_discussion.tex\nartifacts/_project/paper/appendix_70b_ablation.tex\nartifacts/_project/paper/appendix_llama_per_relation.tex\nartifacts/_project/paper/appendix_beam_search.tex\nartifacts/_project/paper/appendix_reproducibility.tex\nartifacts/_project/paper/appendix_prompt_sensitivity.tex\nartifacts/_project/paper/appendix_case_studies.tex\nartifacts/_project/paper/appendix_tcr.tex\nartifacts/_project/paper/appendix_kappa_case_study.tex\nartifacts/_project/paper/appendix_wikievents_pilot.tex\nartifacts/_project/paper/appendix_quantization.tex\nartifacts/_project/paper/appendix_gollie_comparison.tex\nartifacts/_project/paper/section5_scierc_draft.tex\nartifacts/_project/paper/section5_wikievents_draft.tex\nartifacts/_project/paper/section6_related_work.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/section1_introduction_draft.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "06551a1b-f046-430e-8498-fd6f52622941",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "5b15b010-1f59-4636-9463-7fbc3b3c9f74",
+            "sourceToolAssistantUUID": "06551a1b-f046-430e-8498-fd6f52622941",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-26T10:30:39.386Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Tf8BdNWuuzkH1wj6WW1DaC",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex",
+                "offset": 35,
+                "limit": 50
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5b15b010-1f59-4636-9463-7fbc3b3c9f74",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2Rwr8s6i2TCa18Sq4y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "8c1279b2-d151-40d8-a2e1-462b1b248b5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AZnNQKEcQHv2dHsagorYXd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1431,
+                "cache_read_input_tokens": 31587,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1431,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-26T10:30:39.394Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Tf8BdNWuuzkH1wj6WW1DaC",
+              "type": "tool_result",
+              "content": "35\t% ===========================================================================\n36\t% Paradigm 2: Vocabulary/Type-Constrained Generation\n37\t% ===========================================================================\n38\t\\paragraph{Vocabulary and Type-Constrained Generation.}\n39\tThe idea of enforcing entity-type compatibility constraints for information extraction dates back to pre-neural methods.\n40\t\\citet{roth_yih_2004} formulate joint entity and relation identification as an integer linear program (ILP) that enforces type constraints (e.g., \\textsc{Emp-Org} only between \\textsc{Per} and \\textsc{Org} entities); this establishes the foundational principle that relational type compatibility should be a hard constraint, not a soft preference learned from data.\n41\tIn the autoregressive era, GENRE~\\cite{decao2021genre} pioneers trie-based constrained beam search for autoregressive entity retrieval, restricting each decoding step to tokens consistent with valid entity names from a predefined catalog.\n42\tGenIE~\\cite{josifoski2022genie} extends this approach to end-to-end information extraction with state-based constraints that enforce valid triple structures, achieving strong performance on closed-world knowledge base population, though it requires task-specific fine-tuning on the target schema.\n43\tAdaKGC~\\cite{adakgc_emnlp2023} introduces schema-constrained dynamic decoding with trie-based prefix trees that adapt to the target schema, enforcing that generated entity and relation names belong to a predefined inventory, a vocabulary-level constraint that ensures name validity but does not verify type compatibility between a relation and its arguments.\n44\tGCD~\\cite{geng2023gcd} provides a unified grammar-constrained decoding framework for structured NLP tasks including IE, introducing input-dependent grammars that adapt constraints based on the source text. GCD is the closest precursor to OntoCoDec in applying logits masking to IE, though limited to syntactic constraints.\n45\tNeuroLogic Decoding~\\cite{lu2021neurologic} expresses lexical inclusion and exclusion constraints as predicate logic formulas enforced during beam search, offering a general mechanism for token-level control that can encode vocabulary membership but not relational type rules.\n46\tThese approaches constrain \\emph{which tokens} can appear (vocabulary membership) but not \\emph{which type combinations} are valid for a given relation.\n47\tOntoCoDec's semantic layer enforces relational constraints (e.g., that the head entity of relation $R$ must belong to type set $\\mathcal{D}(R)$) which cannot be expressed as static vocabulary restrictions because the valid set depends on the relation type generated earlier in the same sequence.\n48\tWhile Roth \\& Yih's ILP formulation shares the same type-compatibility motivation, it operates as a post-hoc reranker over discrete candidates; OntoCoDec integrates enforcement directly into autoregressive decoding, preventing violations rather than filtering them.\n49\t\n50\t% ===========================================================================\n51\t% Paradigm 3: Structural Constraints for IE\n52\t% ===========================================================================\n53\t\\paragraph{Structural Constraints via Training and Prompting.}\n54\tAn orthogonal approach encodes IE output structure through model training or prompt design rather than decoding-time enforcement, relying on learned representations to produce schema-compliant outputs.\n55\tUIE~\\cite{lu2022uie} defines a Structured Extraction Language and trains a unified text-to-structure model across 13 IE datasets, relying on large-scale pre-training to internalize output format constraints.\n56\tGoLLIE~\\cite{sainz2024gollie} expresses annotation guidelines as Python dataclass definitions and fine-tunes Code-LLaMA to generate typed code, achieving strong zero-shot transfer to unseen IE schemas through the implicit type structure of programming languages.\n57\tKnowCoder~\\cite{knowcoder_acl2024} takes this further by encoding 29K entity types from Wikidata as a Python class hierarchy, training a Code-LLM to generate structured extraction code that implicitly respects type inheritance, the most comprehensive schema-as-code approach to date.\n58\tCodeIE~\\cite{li2023codeie} similarly reformulates IE as code generation, using the structural regularity of programming languages to reduce output format errors.\n59\tADELIE~\\cite{qi2024adelie} uses supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) to align LLMs on IE tasks, achieving state-of-the-art results among open-source models while preserving general capabilities, though compliance with ontological constraints remains a learned soft preference rather than a hard constraint.\n60\tIn the supervised setting, joint entity-relation architectures such as SpERT~\\cite{eberts2020spert} and PFN~\\cite{yan2021pfn} enforce type consistency implicitly through shared representations: SpERT classifies entity spans and relation pairs in a single BERT pass with span-level negative sampling, while PFN decomposes feature encoding into entity-specific, relation-specific, and shared partitions via gating mechanisms.\n61\tThese models achieve strong performance but are limited to fixed, predefined schemas and cannot generalize to unseen ontologies without retraining, precisely the ontology-portable scenario requiring no constraint-specific training that OntoCoDec targets.\n62\tEnriCo~\\cite{zaratiana2024enrico} applies Answer Set Programming (ASP) constraints during decoding of joint entity-relation extraction models, enforcing structural type compatibility at generation time. This is a decoding-time approach, though with model-specific, manually authored constraints rather than ontology-driven compilation.\n63\tTraining-based methods provide \\emph{soft} structural guidance: the model learns to prefer valid outputs but cannot enforce compliance at inference time, as demonstrated by non-trivial violation rates even in fine-tuned systems.\n64\tImportantly, training-based and decoding-time approaches are complementary rather than competing: a system like GoLLIE could be combined with OntoCoDec's constraint layers, using fine-tuning to maximize the probability of valid outputs while decoding-time enforcement eliminates residual violations.\n65\tOntoCoDec provides \\emph{hard} decoding-time enforcement that requires no constraint-specific training, is automatically compiled from IE ontologies, and composable with any of these training-based approaches.\n66\t\n67\t% ===========================================================================\n68\t% Paradigm 4: Type-Checking / Ontology Validation\n69\t% ===========================================================================\n70\t\\paragraph{Post-hoc Ontology Validation.}\n71\tRather than constraining generation, several methods validate LLM outputs against ontological rules after generation, applying a detect-then-fix paradigm.\n72\tODKE+~\\cite{khorshidi2025odke} dynamically generates ontology snippets containing domain/range constraints as prompt context, achieving 98.8\\% precision across 195 predicates at web scale, but constraint adherence relies on prompt-level guidance, not enforcement, leaving residual violations unaddressed.\n73\tSPIRES/OntoGPT~\\cite{spires_2024} provides an ontology-based extraction framework that grounds LLM outputs against OBO ontologies post-generation: it validates extracted entities and relations through ontology lookup and corrects mismatches in a second pass, the prompt-then-validate paradigm in the biomedical domain.\n74\tOntoLogX~\\cite{ontologx_2025} applies Shapes Constraint Language (SHACL) validation to LLM-generated knowledge graphs, iteratively re-prompting the LLM to correct constraint violations and reducing them by approximately 10$\\times$ across multiple correction rounds. This demonstrates the detect-then-fix paradigm's effectiveness but also its inherent multi-pass cost.\n75\t\\citet{upadhyay2023openie} inject entity-type knowledge as constraints into Open IE via both constrained inference and constraint-aware training, improving F1 by 29\\% on CaRB, though their constrained inference operates over a discrete candidate set rather than during autoregressive generation.\n76\t\\citet{regino2025kgcurator} propose a multi-stage LLM pipeline for validating Resource Description Framework (RDF) triple insertions against RDF Schema (RDFS) domain/range constraints, where each validation step requires a separate LLM call, effective but computationally expensive at scale.\n77\tRELATE~\\cite{olasunkanmi2025relate} addresses the alignment gap between LLM-extracted biomedical relations and standardized ontology predicates through a three-stage pipeline: ontology preprocessing with predicate embeddings, similarity-based retrieval via SapBERT, and LLM-based reranking with negation handling, achieving 94\\% accuracy@10 on ChemProt.\n78\tWhile RELATE demonstrates effective ontology grounding for relation extraction, its constraints are applied \\emph{post-extraction} through retrieval and reranking rather than during generation, and it requires domain-specific embedding models trained on biomedical corpora.\n79\tOntoCoDec enforces ontology constraints \\emph{during} autoregressive decoding and requires no additional trained components beyond the base LLM.\n80\tConcurrently, \\citet{zhou2026ontologytools} compile Web Ontology Language (OWL) ontologies into executable tool interfaces within The World Avatar framework; LLM agents must invoke ontology-aware tools that enforce semantic constraints during knowledge graph construction from scientific text.\n81\tThis ``ontology-to-tools'' approach shares OntoCoDec's philosophy of compiling formal ontological knowledge into runtime enforcement mechanisms, but operates at the tool-call level (constraining which API functions the agent invokes) rather than at the token level (constraining which tokens the decoder produces), and requires an agentic multi-step workflow rather than single-pass autoregressive generation.\n82\t\\citet{ekaw2024_ontology_beam} introduce ontology-constrained beam scoring for clinical summarization, applying soft biases (not hard masks) during beam search to steer outputs toward ontology-compliant terms, a middle ground between unconstrained generation and hard enforcement that reduces but cannot eliminate violations.\n83\tPost-hoc validation detects violations after generation and requires rejection or correction cycles that waste compute. In our setting, 15.37\\% of generated triples contain domain/range violations under unconstrained decoding, a substantial waste of generation effort.\n84\tOntoCoDec \\emph{prevents} violations during decoding, redirecting probability mass to valid alternatives rather than discarding invalid outputs, with only marginal overhead from logits masking compared to the cost of regenerating or correcting violated triples."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8c1279b2-d151-40d8-a2e1-462b1b248b5d",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "bce33764-000d-4c9b-9a38-db9d675c29c6",
+            "sourceToolAssistantUUID": "8c1279b2-d151-40d8-a2e1-462b1b248b5d",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-26T10:30:40.328Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012dNQrUxGoi3rqCs9F9MyPT",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex",
+                "offset": 0,
+                "limit": 80
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bce33764-000d-4c9b-9a38-db9d675c29c6",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2Rwr8s6i2TCa18Sq4y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "0e14f3da-c611-498d-8015-e78db314b8fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AZnNQKEcQHv2dHsagorYXd",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1431,
+                "cache_read_input_tokens": 31587,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1431,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-26T10:30:40.333Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012dNQrUxGoi3rqCs9F9MyPT",
+              "type": "tool_result",
+              "content": "0\t\\section{Related Work}\n1\t\\label{sec:related_work}\n2\t\n3\tWe provide a detailed survey in Appendix~\\ref{app:related_work}; here we position OntoCoDec along three axes.\n4\t\n5\t\\paragraph{Constrained decoding.}\n6\tGrammar-constrained decoding restricts each token to a mask derived from a target grammar.\n7\tXGrammar~\\cite{dong2025xgrammar}, Outlines~\\cite{willard2023outlines}, SGLang~\\cite{zheng2024sglang}, SynCode~\\cite{ugare2024syncode}, and related systems~\\cite{beurer-kellner2023lmql,park2024grammar,jsonschemabench2025} compile JSON Schemas into pushdown automata for structural enforcement, but are limited to context-free constraints and cannot enforce cross-field semantic rules that depend on previously generated field values.\n8\tPICARD~\\cite{scholak2021picard} and \\citet{pldi2025_type_constrained_codegen} compile type systems into prefix automata; KG-Trie~\\cite{luo2025kgtrie} applies trie-based KG constraints for knowledge-to-text generation.\n9\tOntoCoDec fills this gap with a stateful semantic layer whose entity registry is populated dynamically during generation.\n10\t\n11\t\\paragraph{Schema-aware IE.}\n12\tGoLLIE~\\cite{sainz2024gollie}, KnowCoder~\\cite{knowcoder_acl2024}, and others~\\cite{guidex2025,josifoski2022genie,paolini2021tanl,cabot2021rebel,wang2023instructuie,qi2024adelie,fei2022lasuie,lu2022uie,zhou2024universalner} encode ontology structure via training-time internalization, learning schema preferences but without runtime guarantees: violations persist at 0.5--2\\% even after fine-tuning~\\cite{wadhwa2023revisiting}.\n13\tOntoCoDec provides orthogonal runtime enforcement composable with these systems, including GoLLIE itself (Appendix~\\ref{app:gollie-comparison}).\n14\t\n15\t\\paragraph{Constraint enforcement in IE.}\n16\t\\citet{roth_yih_2004} and \\citet{riedel2010modeling} formulated hard type constraints via integer linear programming (ILP); post-hoc validation~\\cite{khorshidi2025odke,spires_2024,ontologx_2025} detects violations after generation but discards up to 74\\% of predictions; grammar-only enforcement~\\cite{geng2023gcd,boostcd2025} achieves only 3\\% DR reduction (\\S\\ref{sec:constrained-baselines}).\n17\tEnriCo~\\cite{zaratiana2024enrico} uses answer set programming (ASP); IterGen~\\cite{ugare2025itergen} backtracks on violations; \\citet{vukovic2024dialogue} combines ontology constraints with constrained chain-of-thought for dialogue RE.\n18\tThese methods either operate post-hoc (discarding predictions) or require iterative refinement; OntoCoDec prevents violations during generation via forward-only stateful masking at $O(|V|)$ per step.\n19\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0e14f3da-c611-498d-8015-e78db314b8fe",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "8f9f15a2-6aca-42da-95ad-1c453c1136b5",
+            "sourceToolAssistantUUID": "0e14f3da-c611-498d-8015-e78db314b8fe",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-26T10:30:41.090Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E7do22wkas7K27TfNrEb57",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex",
+                "offset": 0,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8f9f15a2-6aca-42da-95ad-1c453c1136b5",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2Rwr8s6i2TCa18Sq4y",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "052a7a13-1e36-493c-a671-9facc05039e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AZnNQKEcQHv2dHsagorYXd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1431,
+                "cache_read_input_tokens": 31587,
+                "output_tokens": 359,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1431
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 359,
+                    "cache_read_input_tokens": 31587,
+                    "cache_creation_input_tokens": 1431,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1431,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-26T10:30:41.096Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E7do22wkas7K27TfNrEb57",
+              "type": "tool_result",
+              "content": "0\t% Section 1: Introduction (compressed, 669→~550 words)\n1\t\n2\t\\section{Introduction}\n3\t\\label{sec:introduction}\n4\t\n5\tLarge language models (LLMs) are increasingly used for information extraction (IE)~\\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity necessarily carries a type consistent with the ontology's domain/range constraints for $r$.\n6\tWe call such outputs \\emph{domain/range violations} (DR): structurally valid triples that are ontologically invalid.\n7\tViolations are pervasive (15--18\\% of triples under zero-shot decoding and 0.5--2\\% even after LoRA fine-tuning) and correlate with schema restrictiveness rather than model scale.\n8\tAt competitive quality, even low residual violation rates compound across thousands of documents into systematic knowledge graph corruption, making reliable constraint enforcement necessary.\n9\t\n10\tExisting approaches leave a fundamental gap.\n11\tSchema-informed prompting reduces violations by 62\\% on SciERC but is per-relation unreliable (violations for \\textsc{Evaluate-for} actually \\emph{increase} by 5.8\\,pp).\n12\tGrammar-constrained decoding~\\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} ensures syntactic well-formedness but cannot encode cross-field semantic constraints.\n13\tPost-hoc filtering discards up to 74\\% of predictions including true positives (Appendices~\\ref{app:cross-model-zs},~\\ref{app:posthoc-extended}).\n14\tTraining-based approaches~\\cite{sainz2024gollie,lu2022uie} internalize schema knowledge but provide only soft guidance without runtime enforcement.\n15\t\n16\tWe propose \\textbf{OntoCoDec}, a framework that translates IE ontologies into composable layers of decoding-time constraints.\n17\tA decidability analysis of IE type constraints (\\S\\ref{sec:decidability}) yields a two-layer architecture: the \\emph{grammar layer} compiles ontology constraints into context-free grammars (CFGs) via XGrammar (JSON structure, vocabulary membership); the \\emph{semantic layer} enforces type constraints at runtime via dynamic logit masking over an entity registry.\n18\tOntoCoDec compiles constraints automatically from IE ontologies, requires no constraint-specific training, and is applicable to any autoregressive LM with logits access.\n19\tWe validate across three model families, two relation extraction (RE) datasets (up to 96 relation types), and event extraction (EE; \\S\\ref{sec:wikievents}), with 70B-class supporting evidence (\\S\\ref{sec:70b-results}).\n20\tComposed with LoRA, greedy decoding reduces DR to near-zero ($\\leq$\\,0.21\\%) at relation F1 (R-F1) 40--46\\% ($\\pm$0.3 percentage points, $+$10\\% latency), with 97.6--100\\% of removed triples confirmed as false positives; beam ($k{=}4$) achieves near-zero violations at ${\\sim}$1.5$\\times$ latency.\n21\tDR enforcement converts irrecoverable ontology violations into cross-field type inconsistencies (CF;\\,$\\leq$\\,1.4\\% under fine-tuning), a severity downgrade amenable to post-hoc resolution.\n22\t\n23\tOntoCoDec is orthogonal and complementary to training-based schema-aware approaches such as GoLLIE~\\cite{sainz2024gollie} and KnowCoder~\\cite{knowcoder_acl2024}; it can be composed with any generative IE system to improve schema compliance without retraining.\n24\t\n25\tOur contributions:\n26\t\\begin{enumerate}[leftmargin=*,itemsep=2pt]\n27\t    \\item A two-layer constrained decoding framework that reduces domain/range violations to near-zero ($\\leq$\\,0.21\\%) without retraining or significant quality loss, showing that these type constraints require stateful enforcement beyond context-free grammars (Proposition~1; \\S\\ref{sec:decidability}).\n28\t    \\item An empirical finding of non-additive layer interaction: grammar-only reduces DR by 3\\% and semantic-only by 24\\%, yet their composition achieves 94\\%, because grammar-enforced vocabulary membership creates the clean input the semantic layer requires.\n29\t    \\item Scale-dependent layer interaction: the semantic layer's independent DR reduction grows from 24\\% (8B) to 84\\% (70B; \\S\\ref{sec:70b-results}), because larger models better satisfy the vocabulary prerequisites that enable semantic enforcement. Beam $k{=}4$ achieves near-zero violations at 8B; event extraction on WikiEvents confirms cross-task generalization (\\S\\ref{sec:wikievents})."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "052a7a13-1e36-493c-a671-9facc05039e3",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "bad1041e-f1c7-4746-85a0-e25d67cbe88b",
+            "sourceToolAssistantUUID": "052a7a13-1e36-493c-a671-9facc05039e3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-26T10:30:46.368Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012dyuC4diV3o9enw2JAKnGU",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+                "offset": 60,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bad1041e-f1c7-4746-85a0-e25d67cbe88b",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2SMyiErs6R9xqpoDRV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "20badd8e-528d-4e28-8a6d-993c71b7c85b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ShjihfuENYW4yeFdBqaih1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4974,
+                "cache_read_input_tokens": 33018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4974,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-26T10:30:46.372Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012dyuC4diV3o9enw2JAKnGU",
+              "type": "tool_result",
+              "content": "60\t\\bottomrule\n61\t\\end{tabular}}%\n62\t\\caption{Five-way ablation on SciERC (551 docs, Qwen3-8B, zero-shot).\n63\t$\\Delta$DR: relative change vs.\\ unconstrained; Tot.\\ = DR + CF; bold = best (CF excluded).\n64\tF1 (\\%). S1/S2 = single/two-pass (\\S\\ref{sec:strategies}).\n65\tGrammar = grammar-constrained decoding (GCD) ceiling~\\cite{geng2023gcd}.\n66\t$\\dagger$vLLM \\texttt{guided\\_json}~\\cite{kwon2023vllm} (\\S\\ref{sec:constrained-baselines}).\n67\tDeterministic (greedy, $T{=}$0); robustness evidence in Table~\\ref{tab:cross-model} and Appendices~\\ref{app:bootstrap-effect-sizes},~\\ref{app:prompt-sensitivity},~\\ref{app:doc-length},~\\ref{app:sampling}.}\n68\t\\label{tab:scierc-ablation}\n69\t\\end{table}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "20badd8e-528d-4e28-8a6d-993c71b7c85b",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "25a40493-8be3-4553-a09e-de1fe23438da",
+            "sourceToolAssistantUUID": "20badd8e-528d-4e28-8a6d-993c71b7c85b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-26T10:30:47.332Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013iDuZeNP1FgNxsUGGsVVcP",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex",
+                "offset": 59,
+                "limit": 10
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "25a40493-8be3-4553-a09e-de1fe23438da",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2SMyiErs6R9xqpoDRV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "24bc3825-1148-4e32-8eb3-04194a1739a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ShjihfuENYW4yeFdBqaih1",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4974,
+                "cache_read_input_tokens": 33018,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 4974,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 38,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-26T10:30:47.338Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013iDuZeNP1FgNxsUGGsVVcP",
+              "type": "tool_result",
+              "content": "59\tOn Llama-3.1-70B (AWQ INT4), zero-shot S1 eliminates DR on both datasets (SciERC 6.41\\%\\,$\\to$\\,0\\%, DocRED 14.98\\%\\,$\\to$\\,0\\%); semantic-only achieves 84\\% DR reduction vs.\\ 8B's 24\\% (Figure~\\ref{fig:scale-dependency}).\n60\tLoRA confirms composability: DR\\,$\\to$\\,0\\% on both datasets (R-F1 44--45; Appendices~\\ref{app:70b-ablation},~\\ref{app:70b-docred-zs},~\\ref{app:70b-docred},~\\ref{app:quantization}).\n61\t\n62\t\\paragraph{GCD comparison.}\n63\t\\label{sec:constrained-baselines}\n64\tOur grammar-only row (Table~\\ref{tab:scierc-ablation}) is analytically equivalent to GCD~\\cite{geng2023gcd}/BoostCD~\\cite{boostcd2025}; vLLM \\texttt{guided\\_json}~\\cite{kwon2023vllm} confirms this (DR${=}$15.26\\%; Appendix~\\ref{app:gcd-comparison}).\n65\tThe ${\\sim}$15\\% residual DR is the gap our semantic layer addresses (94\\% total reduction).\n66\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "24bc3825-1148-4e32-8eb3-04194a1739a1",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "44639d10-b22a-42d8-b2cb-11c07f249924",
+            "sourceToolAssistantUUID": "24bc3825-1148-4e32-8eb3-04194a1739a1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-26T10:30:48.149Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TFETRsFwvzCeQvpcoWYAf6",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_gollie_comparison.tex",
+                "offset": 0,
+                "limit": 15
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "44639d10-b22a-42d8-b2cb-11c07f249924",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2SMyiErs6R9xqpoDRV",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b92e40ac-1496-44ea-8120-42c7fcc13837",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ShjihfuENYW4yeFdBqaih1",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4974,
+                "cache_read_input_tokens": 33018,
+                "output_tokens": 360,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4974
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 360,
+                    "cache_read_input_tokens": 33018,
+                    "cache_creation_input_tokens": 4974,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 4974,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-26T10:30:48.153Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TFETRsFwvzCeQvpcoWYAf6",
+              "type": "tool_result",
+              "content": "0\t% Appendix: GoLLIE Comparison (D4 response)\n1\t\n2\t\\section{GoLLIE Comparison}\n3\t\\label{app:gollie-comparison}\n4\t\n5\tGoLLIE~\\cite{sainz2024gollie} and OntoCoDec represent complementary paradigms for schema compliance in IE:\n6\t\n7\t\\begin{itemize}[nosep,leftmargin=*]\n8\t\\item \\emph{Training-time internalization} (GoLLIE, KnowCoder): Schema knowledge is encoded into model parameters via annotation-guideline-aware training. This achieves compliance through learned generation patterns but cannot guarantee zero violations at inference time, and requires schema-specific retraining when ontologies evolve.\n9\t\\item \\emph{Runtime constraint enforcement} (OntoCoDec): Schema constraints are compiled into decoding-time masks applied to any generative model. This provides formal enforcement without schema-specific training, but operates per-triple and cannot resolve cross-triple type consistency (CF) within a single pass.\n10\t\\end{itemize}\n11\t\n12\tThe two approaches are orthogonal: OntoCoDec can be composed with GoLLIE or similar training-based systems to add runtime enforcement atop learned schema compliance.\n13\tDirect numerical comparison is methodologically constrained by incompatible evaluation settings (code-style schema encoding vs.\\ natural language prompting, different model families and sizes); a controlled comparison would require running both approaches on the same model with matched prompting, which we leave to future work.\n14\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b92e40ac-1496-44ea-8120-42c7fcc13837",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "a7a3da0c-ae98-4d03-a901-c9edfb3dbb02",
+            "sourceToolAssistantUUID": "b92e40ac-1496-44ea-8120-42c7fcc13837",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-26T10:30:52.056Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify the GoLLIE title more precisely - the BibTeX has \"Modeling\" but the actual paper title may differ."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7a3da0c-ae98-4d03-a901-c9edfb3dbb02",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2St8vZACYeLFZaX68V",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "6fd0f062-1ef7-4717-aef6-44200094c6cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FtPttLVNoZiCp1JQe7EGyh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1458,
+                "cache_read_input_tokens": 37992,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1458,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-26T10:30:53.039Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01X64i2obewSTfkG34VVLLbk",
+              "name": "WebSearch",
+              "input": {
+                "query": "GoLLIE exact title \"Annotation Guidelines improve Zero-Shot Information-Extraction\" OR \"Information-Extraction Modeling\" ICLR 2024"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6fd0f062-1ef7-4717-aef6-44200094c6cf",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2St8vZACYeLFZaX68V",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "a4d42401-be7a-4e79-a73d-aebd231ea492",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FtPttLVNoZiCp1JQe7EGyh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1458,
+                "cache_read_input_tokens": 37992,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1458,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-26T10:30:53.863Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01GETRrC4o4LD25LXyNFqXPq",
+              "name": "WebSearch",
+              "input": {
+                "query": "ODKE+ arXiv 2509.04696 submission date September 2025"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4d42401-be7a-4e79-a73d-aebd231ea492",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2St8vZACYeLFZaX68V",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "daf7aa45-bde0-4684-910d-9b72495b3a27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FtPttLVNoZiCp1JQe7EGyh",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1458,
+                "cache_read_input_tokens": 37992,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1458,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-26T10:30:59.935Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01GETRrC4o4LD25LXyNFqXPq",
+              "type": "tool_result",
+              "content": "Web search results for query: \"ODKE+ arXiv 2509.04696 submission date September 2025\"\n\nLinks: [{\"title\":\"[2509.04696] ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\",\"url\":\"https://arxiv.org/abs/2509.04696\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\",\"url\":\"https://arxiv.org/pdf/2509.04696\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs | alphaXiv\",\"url\":\"https://www.alphaxiv.org/abs/2509.04696\"},{\"title\":\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/odke-ontology-guided-open-domain-knowledge-extraction\"},{\"title\":\"[PDF] ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/ODKE+:-Ontology-Guided-Open-Domain-Knowledge-with-Khorshidi-Nikfarjam/23991e9d5ab7780527a1753633a7f065c5da4663\"},{\"title\":\"(PDF) ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\",\"url\":\"https://www.researchgate.net/publication/395338944_ODKE_Ontology-Guided_Open-Domain_Knowledge_Extraction_with_LLMs\"}]\n\nBased on the search results, I found information about the ODKE+ arXiv paper:\n\n**Submission Date:** The paper was submitted to arXiv on September 4, 2025 (arXiv:2509.04696v1).\n\n**Paper Summary:** ODKE+ is a production-grade system that automatically extracts and ingests millions of open-domain facts from web sources with high precision. \n\n**Key Components:** The system combines modular components into a scalable pipeline: (1) the Extraction Initiator detects missing or stale facts, (2) the Evidence Retriever collects supporting documents, (3) hybrid Knowledge Extractors apply both pattern-based rules and ontology-guided prompting for large language models (LLMs), (4) a lightweight Grounder validates extracted facts using a second LLM, and (5) the Corroborator ranks and normalizes candidate facts for ingestion.\n\n**Performance:** The system supports batch and streaming modes, processing over 9 million Wikipedia pages and ingesting 19 million high-confidence facts with 98.8% precision.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "daf7aa45-bde0-4684-910d-9b72495b3a27",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "d4b318c8-4170-417e-aca8-8beeac023675",
+            "sourceToolAssistantUUID": "daf7aa45-bde0-4684-910d-9b72495b3a27",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-26T10:31:00.322Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01X64i2obewSTfkG34VVLLbk",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GoLLIE exact title \"Annotation Guidelines improve Zero-Shot Information-Extraction\" OR \"Information-Extraction Modeling\" ICLR 2024\"\n\nLinks: [{\"title\":\"ICLR Poster GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://iclr.cc/virtual/2024/poster/18435\"},{\"title\":\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | OpenReview\",\"url\":\"https://openreview.net/forum?id=Y3wpuxd7u9\"},{\"title\":\"[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://arxiv.org/abs/2310.03668\"},{\"title\":\"Published as a conference paper at ICLR 2024\",\"url\":\"https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf\"},{\"title\":\"GOLLIE: ANNOTATION GUIDELINES IMPROVE ZERO-SHOT INFORMATION-EXTRACTION | Documents - Universidad del País Vasco / Euskal Herriko Unibertsitatea\",\"url\":\"https://ekoizpen-zientifikoa.ehu.eus/documentos/66cb8eeac7cd8e0cebf21fbb\"},{\"title\":\"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub\",\"url\":\"https://github.com/quqxui/Awesome-LLM4IE-Papers\"},{\"title\":\"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link\",\"url\":\"https://link.springer.com/article/10.1007/s11704-024-40555-y\"},{\"title\":\"dblp: Iker García-Ferrero\",\"url\":\"https://dblp.org/pid/305/9880.html\"}]\n\nPerfect! I found the paper you're searching for. Here are the search results:\n\n**GoLLIE: Annotation Guidelines Improve Zero-Shot Information-Extraction** is a paper published at ICLR 2024 by Oscar Sainz, Iker García-Ferrero, Rodrigo Agerri, Oier Lopez de Lacalle, German Rigau, and Eneko Agirre from HiTZ Basque Center for Language Technology.\n\nThe paper proposes GoLLIE (Guideline-following Large Language Model for IE), a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines.\n\nThe paper is available at multiple sources:\n- **ICLR Official**: https://iclr.cc/virtual/2024/poster/18435\n- **OpenReview**: https://openreview.net/forum?id=Y3wpuxd7u9\n- **arXiv**: https://arxiv.org/abs/2310.03668\n- **ICLR Proceedings PDF**: https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a4d42401-be7a-4e79-a73d-aebd231ea492",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "7df78f7f-7240-45be-a6a4-94ba98aa76f6",
+            "sourceToolAssistantUUID": "a4d42401-be7a-4e79-a73d-aebd231ea492",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-26T10:31:05.642Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all the information needed to compile the verification results. Let me check one more detail about the GoLLIE title - the BibTeX says \"Modeling\" at the end but the actual title does not include \"Modeling\"."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7df78f7f-7240-45be-a6a4-94ba98aa76f6",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2Tmqw2AAZGCgqwfe25",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "b67db847-8fa8-4132-bf3c-3742794672c2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GPTzgjh8QFqS7EJgAzevVs",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 712,
+                "cache_creation_input_tokens": 1027,
+                "cache_read_input_tokens": 39450,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1027,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-26T10:31:06.100Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bmp9qTRkk2ybmnMBVBfH4w",
+              "name": "WebSearch",
+              "input": {
+                "query": "GoLLIE \"Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\" title"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b67db847-8fa8-4132-bf3c-3742794672c2",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2Tmqw2AAZGCgqwfe25",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "f50eb5c9-200c-494c-9c14-036df6be6b23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GPTzgjh8QFqS7EJgAzevVs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 712,
+                "cache_creation_input_tokens": 1027,
+                "cache_read_input_tokens": 39450,
+                "output_tokens": 124,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1027
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 712,
+                    "output_tokens": 124,
+                    "cache_read_input_tokens": 39450,
+                    "cache_creation_input_tokens": 1027,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1027,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-26T10:31:13.872Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bmp9qTRkk2ybmnMBVBfH4w",
+              "type": "tool_result",
+              "content": "Web search results for query: \"GoLLIE \"Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\" title\"\n\nLinks: [{\"title\":\"[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://arxiv.org/abs/2310.03668\"},{\"title\":\"GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://arxiv.org/html/2310.03668v3\"},{\"title\":\"Paper page - GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://huggingface.co/papers/2310.03668\"},{\"title\":\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | OpenReview\",\"url\":\"https://openreview.net/forum?id=Y3wpuxd7u9\"},{\"title\":\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction - Consensus\",\"url\":\"https://www.consensus.app/papers/gollie-annotation-guidelines-improve-zeroshot-agerri-agirre/702c1409b5b35fb6b3b75effea46f729/\"},{\"title\":\"ICLR Poster GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\"url\":\"https://iclr.cc/virtual/2024/poster/18435\"},{\"title\":\"[PDF] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/3f40edfcafc018b2cb54612a9aaa9d6b43a11a26\"}]\n\nI found the paper! Here are the results for your web search:\n\n**Paper Title:** GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\n\n**Key Information:**\n\nGoLLIE (Guideline-following Large Language Model for IE) is a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines.\n\n**Main Problem Addressed:**\nWhile Large Language Models combined with instruction tuning have made progress in generalizing to unseen tasks, they have been less successful in Information Extraction, lagging behind task-specific models. IE tasks are typically characterized by complex annotation guidelines that describe the task and give examples to humans, but previous attempts to leverage such information have failed, even with the largest models, as they are not able to follow the guidelines out of the box.\n\n**Results:**\nComprehensive evaluation empirically demonstrates that GoLLIE is able to generalize to and follow unseen guidelines, outperforming previous attempts at zero-shot information extraction.\n\n**Available Sources:**\n- arXiv: https://arxiv.org/abs/2310.03668\n- OpenReview: https://openreview.net/forum?id=Y3wpuxd7u9\n- ICLR 2024 Poster: https://iclr.cc/virtual/2024/poster/18435\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f50eb5c9-200c-494c-9c14-036df6be6b23",
+            "isSidechain": true,
+            "promptId": "64e0f655-42e1-4930-8d37-bed5c631ed0c",
+            "agentId": "aa130c251db53cee3",
+            "type": "user",
+            "uuid": "2b3c466d-5598-4cbf-9b45-b18c06dee67c",
+            "sourceToolAssistantUUID": "f50eb5c9-200c-494c-9c14-036df6be6b23",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-26T10:31:57.093Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The GoLLIE title is confirmed as \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\" (without \"Modeling\"). The BibTeX has \"Modeling\" appended which is incorrect.\n\nHere are my verification results:\n\n---\n\n```\n[decao2021genre] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Nicola De Cao, Gautier Izacard, Sebastian Riedel, Fabio Petroni)\n  - 年份: ✓ (2021)\n  - 标题: ✓ (Autoregressive Entity Retrieval)\n  - Venue: ✓ (ICLR 2021, Spotlight paper)\n  - DOI/arXiv: ✓ (OpenReview URL https://openreview.net/forum?id=5k8F6UU39V correct)\n  - 正文引用: ✓ (appendix_related_work.tex L41 - GENRE trie-based constrained beam search)\n  - 备注: 无问题\n```\n\n```\n[josifoski2022genie] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Martin Josifoski, Nicola De Cao, Maxime Peyrard, Fabio Petroni, Robert West)\n  - 年份: ✓ (2022)\n  - 标题: ✓ (GenIE: Generative Information Extraction)\n  - Venue: ✓ (NAACL 2022, pages 4626-4643)\n  - DOI/arXiv: ✓ (ACL Anthology URL correct)\n  - 正文引用: ✓ (appendix_related_work.tex L42; section6_related_work.tex L12 - training-time internalization list)\n  - 备注: 无问题\n```\n\n```\n[geng2023gcd] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Saibo Geng, Martin Josifoski, Maxime Peyrard, Robert West)\n  - 年份: ✓ (2023)\n  - 标题: ✓ (Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning)\n  - Venue: ✓ (EMNLP 2023, pages 10932-10952 per ACL Anthology)\n  - DOI/arXiv: ✓ (ACL Anthology URL correct)\n  - 正文引用: ✓ (section6_related_work.tex L16 - grammar-only; section5_scierc_draft.tex L65 - GCD ceiling; section5_runtime.tex L64; appendix_related_work.tex L44)\n  - 备注: 无问题\n```\n\n```\n[lu2021neurologic] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Ximing Lu, Peter West, Rowan Zellers, Ronan Le Bras, Chandra Bhagavatula, Yejin Choi)\n  - 年份: ✓ (2021)\n  - 标题: ✓ (NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints)\n  - Venue: ✓ (NAACL 2021, pages 4288-4299)\n  - DOI/arXiv: ✓ (ACL Anthology URL correct)\n  - 正文引用: ✓ (appendix_related_work.tex L45 - predicate logic formulas enforced during beam search)\n  - 备注: 无问题\n```\n\n```\n[lu2022uie] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Yaojie Lu, Qing Liu, Dai Dai, Xinyan Xiao, Hongyu Lin, Xianpei Han, Le Sun, Hua Wu)\n  - 年份: ✓ (2022)\n  - 标题: ✓ (Unified Structure Generation for Universal Information Extraction)\n  - Venue: ✓ (ACL 2022, pages 5755-5772)\n  - DOI/arXiv: ✓ (ACL Anthology URL correct)\n  - 正文引用: ✓ (section1_introduction_draft.tex L14 - training-based approaches; section6_related_work.tex L12; appendix_related_work.tex L55)\n  - 备注: 无问题\n```\n\n```\n[sainz2024gollie] ✗\n  - 存在性: ✓\n  - 作者: ✓ (Oscar Sainz, Iker García-Ferrero, Rodrigo Agerri, Oier Lopez de Lacalle, German Rigau, Eneko Agirre)\n  - 年份: ✓ (2024)\n  - 标题: ✗ — BibTeX has \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\" but actual title is \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\" (no \"Modeling\")\n  - Venue: ✓ (ICLR 2024)\n  - DOI/arXiv: ✓ (OpenReview URL correct)\n  - 正文引用: ✓ (section1_introduction_draft.tex L5, L14, L23; section6_related_work.tex L12; appendix_related_work.tex L56; appendix_gollie_comparison.tex L5)\n  - 备注: 标题末尾多了 \"Modeling\"，应删除\n```\n\n```\n[li2023codeie] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Peng Li, Tianxiang Sun, Qiong Tang, Hang Yan, Yuanbin Wu, Xuanjing Huang, Xipeng Qiu)\n  - 年份: ✓ (2023)\n  - 标题: ✓ (CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors)\n  - Venue: ✓ (ACL 2023, pages 15339-15353)\n  - DOI/arXiv: ✓ (ACL Anthology URL correct)\n  - 正文引用: ✓ (section1_introduction_draft.tex L5 - LLMs for IE; section6_related_work.tex L12 implied in \"others\"; appendix_related_work.tex L58)\n  - 备注: 无问题\n```\n\n```\n[qi2024adelie] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Yunjia Qi, Hao Peng, Xiaozhi Wang, Bin Xu, Lei Hou, Juanzi Li)\n  - 年份: ✓ (2024)\n  - 标题: ✓ (ADELIE: Aligning Large Language Models on Information Extraction)\n  - Venue: ✓ (EMNLP 2024)\n  - DOI/arXiv: ✓ (ACL Anthology URL correct)\n  - 正文引用: ✓ (section6_related_work.tex L12 - training-time internalization list; appendix_related_work.tex L59)\n  - 备注: 无问题\n```\n\n```\n[zaratiana2024enrico] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Urchade Zaratiana, Nadi Tomeh, Yann Dauxais, Pierre Holat, Thierry Charnois)\n  - 年份: ✓ (2024)\n  - 标题: ✓ (EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction)\n  - Venue: ✓ (arXiv preprint arXiv:2404.12493 — correctly listed as @article, not published at a peer-reviewed venue as of search date)\n  - DOI/arXiv: ✓ (arXiv URL correct)\n  - 正文引用: ✓ (section6_related_work.tex L17 - ASP constraints; appendix_related_work.tex L62)\n  - 备注: 无问题\n```\n\n```\n[khorshidi2025odke] ✓\n  - 存在性: ✓\n  - 作者: ✓ (Samira Khorshidi, Azadeh Nikfarjam, Suprita Shankar, Yisi Sang, Yash Govind, Hyun Jang, Ali Kasgari, Alexis McClimans, Mohamed Soliman, Vishnu Konda, Ahmed Fakhry, Xiaoguang Qi)\n  - 年份: ✓ (2025, submitted September 2025)\n  - 标题: ✓ (ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs)\n  - Venue: ✓ (arXiv preprint arXiv:2509.04696, also on Apple ML Research)\n  - DOI/arXiv: ✓ (arXiv URL correct)\n  - 正文引用: ✓ (section6_related_work.tex L16 - post-hoc validation; appendix_related_work.tex L72)\n  - 备注: 无问题\n```\n\n---\n\n**Summary:** 9/10 entries verified correct. 1 issue found:\n\n| Entry | Issue | Fix |\n|-------|-------|-----|\n| `sainz2024gollie` | Title has extraneous \"Modeling\" at end | Change to `\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\"` |"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2b3c466d-5598-4cbf-9b45-b18c06dee67c",
+            "isSidechain": true,
+            "agentId": "aa130c251db53cee3",
+            "requestId": "req_011CbR2Umpxus3dvZojg7njz",
+            "attributionAgent": "general-purpose",
+            "type": "assistant",
+            "uuid": "e977be1a-8a5e-4b36-b496-79355b2b8962",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "7b77b8ee-8fa2-4d75-93e1-9dc547e576fe",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W3MT6fe5a1cJHzaj94wMed",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1581,
+                "cache_read_input_tokens": 40477,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1581,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000059"
+        }
+      ],
+      "message_count": 59
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-you-are-verifying-bibtex-entries-for-correctness-for-each-entry-below-use-webs-copy-5.md"
+}

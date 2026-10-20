@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "163cc908cfeb6ec12b6f",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [Round 10 审稿请求]: ## Round 10 审稿任务 — Reviewer 1（方法严谨性 + 实验设计） ### 论文信息 - **标题**: OntoCoDec: Type-Constrained Information ",
+  "task_key": "a58c226f-7842-4f51-911b-b9f2f1f6d19d",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/a58c226f-7842-4f51-911b-b9f2f1f6d19d.jsonl",
+    "occurrence": 1,
+    "bytes": 747769,
+    "sha256": "8316144c270b69268faa5d16fe90c8c962373886bef4d720f6fc17b85be3ef0e"
+  },
+  "statistics": {
+    "messages": 118,
+    "user_turns": 3,
+    "tool_calls": 34,
+    "roles": {
+      "record": 31,
+      "user": 3,
+      "assistant": 16,
+      "tool_call": 34,
+      "tool_result": 34
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "163cc908cfeb6ec12b6f-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 109,
+      "chunks": [
+        {
+          "path": "163cc908cfeb6ec12b6f-part-0001.json",
+          "message_count": 97
+        },
+        {
+          "path": "163cc908cfeb6ec12b6f-part-0002.json",
+          "message_count": 12
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "163cc908cfeb6ec12b6f-part-0002.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 5,
+      "chunks": [
+        {
+          "path": "163cc908cfeb6ec12b6f-part-0002.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-round-10-round-10-reviewer-1-ontocodec-type-constrained-information.md"
+}

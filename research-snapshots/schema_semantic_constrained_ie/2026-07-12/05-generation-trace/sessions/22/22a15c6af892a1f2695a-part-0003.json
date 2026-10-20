@@ -1,0 +1,27 @@
+{
+  "schema_version": "1.0",
+  "session_id": "22a15c6af892a1f2695a",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 318,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Build ontology scalability benchmark",
+                "sessionId": "62f48fd9-5e3d-43d8-8d84-6fcdff52979a"
+              }
+            }
+          ],
+          "id": "event-000318"
+        }
+      ]
+    }
+  ]
+}

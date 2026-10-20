@@ -1,0 +1,1826 @@
+{
+  "schema_version": "1.0",
+  "id": "50ab9fb11fbc27f725d9",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: schema_semantic_constrained_ie ## 运行环境 - 服务器名: westd-16980 - SSH 账户: root（调用 ssh_execute / submi",
+  "task_key": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/792fd5d1-8e08-4b1e-aa48-18870a6d752b.jsonl",
+    "occurrence": 1,
+    "bytes": 100005,
+    "sha256": "4716f26566cf255c4d74581bab3b90cc6a31802946eb3e2b952eca343d53590e"
+  },
+  "statistics": {
+    "messages": 38,
+    "user_turns": 1,
+    "tool_calls": 8,
+    "roles": {
+      "record": 14,
+      "user": 1,
+      "assistant": 7,
+      "tool_call": 8,
+      "tool_result": 8
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T18:47:42.798Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-14T18:47:42.798Z",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+                "content": "<project_context>\n# 项目: schema_semantic_constrained_ie\n\n## 运行环境\n- 服务器名: westd-16980\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/schema_semantic_constrained_ie\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n在 §4 Method 中添加 constraint tightness 的正式定义。\n\n## 背景\n§5 Results (DocRED 草稿) 使用了 \"constraint tightness\" 概念来解释 DocRED 和 SciERC DR reduction 差异：\n- DocRED: avg tightness = 0.842 (5.68 valid pairs / relation), DR↓45%\n- SciERC: avg tightness = 0.333 (23 valid pairs / relation), DR↓94%\n\n但 §4 Method 没有正式定义这个概念。需要添加。\n\n## 任务\n\n### 1. 找到 §4 Method 文件\n搜索 `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/` 下的 section4 或 method 相关 .tex 文件。\n\n### 2. 找到合适的插入位置\n应该在描述 semantic constraint layer 的段落之后（TypeConstraintProcessor / domain-range enforcement），因为 tightness 是 semantic constraint 的属性。\n\n### 3. 添加定义\n大约 3-5 句话的定义段落：\n\n```latex\n\\paragraph{Constraint tightness.}\n```\n\n内容要点：\n- 对每个 relation r，定义 tightness τ(r) = 1 - |V(r)| / |T|²，其中 V(r) 是 r 允许的 (head_type, tail_type) pairs 集合，|T| 是 entity type vocabulary 大小\n- τ(r) ∈ [0, 1]，τ=1 表示 no valid pairs（不可能出现），τ=0 表示 all pairs valid（无约束）\n- Mean tightness 跨所有 relations 取平均\n- 解释直觉：tighter constraints → semantic mask 消除更大比例的 candidate tokens → 更高概率 grammar∩semantic mask 为空 → 更多 fallback → 更高 residual DR\n- 引用 §5 的经验验证（\"Section~\\ref{sec:docred-results} demonstrates...\"）\n\n### 4. 如果找不到 §4 文件\n在 artifacts/_project/paper/ 下创建 `section4_tightness_addition.tex` 作为补充片段，标注插入位置。\n\n## 数学符号规范\n- 用 \\mathcal{V}(r) 表示 valid pairs\n- 用 \\mathcal{T} 表示 entity type set\n- tightness 用 \\tau(r)\n- 保持与论文其他部分的符号一致"
+              }
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T18:47:42.802Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-14T18:47:42.802Z",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b"
+              }
+            }
+          ],
+          "id": "event-000002"
+        }
+      ],
+      "message_count": 2
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T18:47:42.838Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "<project_context>\n# 项目: schema_semantic_constrained_ie\n\n## 运行环境\n- 服务器名: westd-16980\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh connect.westd.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/schema_semantic_constrained_ie\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n</project_context>\n在 §4 Method 中添加 constraint tightness 的正式定义。\n\n## 背景\n§5 Results (DocRED 草稿) 使用了 \"constraint tightness\" 概念来解释 DocRED 和 SciERC DR reduction 差异：\n- DocRED: avg tightness = 0.842 (5.68 valid pairs / relation), DR↓45%\n- SciERC: avg tightness = 0.333 (23 valid pairs / relation), DR↓94%\n\n但 §4 Method 没有正式定义这个概念。需要添加。\n\n## 任务\n\n### 1. 找到 §4 Method 文件\n搜索 `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/` 下的 section4 或 method 相关 .tex 文件。\n\n### 2. 找到合适的插入位置\n应该在描述 semantic constraint layer 的段落之后（TypeConstraintProcessor / domain-range enforcement），因为 tightness 是 semantic constraint 的属性。\n\n### 3. 添加定义\n大约 3-5 句话的定义段落：\n\n```latex\n\\paragraph{Constraint tightness.}\n```\n\n内容要点：\n- 对每个 relation r，定义 tightness τ(r) = 1 - |V(r)| / |T|²，其中 V(r) 是 r 允许的 (head_type, tail_type) pairs 集合，|T| 是 entity type vocabulary 大小\n- τ(r) ∈ [0, 1]，τ=1 表示 no valid pairs（不可能出现），τ=0 表示 all pairs valid（无约束）\n- Mean tightness 跨所有 relations 取平均\n- 解释直觉：tighter constraints → semantic mask 消除更大比例的 candidate tokens → 更高概率 grammar∩semantic mask 为空 → 更多 fallback → 更高 residual DR\n- 引用 §5 的经验验证（\"Section~\\ref{sec:docred-results} demonstrates...\"）\n\n### 4. 如果找不到 §4 文件\n在 artifacts/_project/paper/ 下创建 `section4_tightness_addition.tex` 作为补充片段，标注插入位置。\n\n## 数学符号规范\n- 用 \\mathcal{V}(r) 表示 valid pairs\n- 用 \\mathcal{T} 表示 entity type set\n- tightness 用 \\tau(r)\n- 保持与论文其他部分的符号一致"
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": false,
+            "promptId": "6e1961ed-12f2-459d-b68f-22ad2edc5d6e",
+            "type": "user",
+            "uuid": "26b3c1db-5a89-4aad-97b1-c27bd51a901a",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T18:47:42.838Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "26b3c1db-5a89-4aad-97b1-c27bd51a901a",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "deferred_tools_delta",
+                  "addedNames": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "addedLines": [
+                    "AskUserQuestion",
+                    "CronCreate",
+                    "CronDelete",
+                    "CronList",
+                    "EnterPlanMode",
+                    "EnterWorktree",
+                    "ExitPlanMode",
+                    "ExitWorktree",
+                    "ListMcpResourcesTool",
+                    "Monitor",
+                    "NotebookEdit",
+                    "PushNotification",
+                    "ReadMcpResourceTool",
+                    "RemoteTrigger",
+                    "TaskOutput",
+                    "TaskStop",
+                    "TodoWrite",
+                    "WebFetch",
+                    "WebSearch",
+                    "mcp__agent-ml-research__append_idea",
+                    "mcp__agent-ml-research__read_project_file",
+                    "mcp__agent-ml-research__save_project_file"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "a9ba1140-fc24-4217-b9b2-8b474a4257d0",
+                "timestamp": "2026-05-14T18:47:42.838Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T18:47:42.838Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a9ba1140-fc24-4217-b9b2-8b474a4257d0",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "agent_listing_delta",
+                  "addedTypes": [
+                    "claude",
+                    "Explore",
+                    "general-purpose",
+                    "Plan",
+                    "statusline-setup"
+                  ],
+                  "addedLines": [
+                    "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+                    "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+                    "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+                    "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+                  ],
+                  "removedTypes": [],
+                  "isInitial": true,
+                  "showConcurrencyNote": true
+                },
+                "type": "attachment",
+                "uuid": "a8541454-88e2-42d1-8e2e-c32fb1d1737e",
+                "timestamp": "2026-05-14T18:47:42.838Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T18:47:42.838Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "a8541454-88e2-42d1-8e2e-c32fb1d1737e",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "mcp_instructions_delta",
+                  "addedNames": [
+                    "agent-ml-research"
+                  ],
+                  "addedBlocks": [
+                    "## agent-ml-research\nML research experiment management tools"
+                  ],
+                  "removedNames": []
+                },
+                "type": "attachment",
+                "uuid": "46473671-1365-4abd-ab8c-c202b7c4d7e9",
+                "timestamp": "2026-05-14T18:47:42.838Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T18:47:42.838Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "46473671-1365-4abd-ab8c-c202b7c4d7e9",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "skill_listing",
+                  "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+                  "skillCount": 10,
+                  "isInitial": true
+                },
+                "type": "attachment",
+                "uuid": "d7174767-6ddf-4c2e-bcf2-89a736144e62",
+                "timestamp": "2026-05-14T18:47:42.838Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add constraint tightness definition to Method section",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b"
+              }
+            }
+          ],
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T18:47:45.794Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me find the §4 Method file in the artifacts directory.",
+              "signature": "EvYBClkIDRgCKkDGFDY41hd2mJzKEFzmHa4uXuoPpUFq15EpJrrmOVzd0iFeSmUImF0u+qxp4fyi7V1SWbUrsr38TvQkrWRYZOSlMg9jbGF1ZGUtb3B1cy00LTY4ABIMYzrYqm+Vc3WGSHrRGgyEieekGjumRVFM9E4iMLFzw44ySI01zX9zLTlmTS6iZ9oPEcp/ZeQDq3UW0qCX6MokV7tD/xpUm2N0F0fa0SpL2pZntfJoB5VAXFxu8qaKVWY9k+i++mK88gGCTSFQvSPZDc2V6IqkvbCbwIL3ujFUbOXabz4ToKvC29UQTRWEx+DWdlURpHm1E7BDGAE="
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7174767-6ddf-4c2e-bcf2-89a736144e62",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xdfAaEQYLWQP4Z2jLF",
+            "type": "assistant",
+            "uuid": "15d7c910-1df0-42ad-ab36-ee381ceb27bc",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fsfs1gSZpnqp6ji1LFQQN7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11893,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 305,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11893,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 305,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 11893,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11893
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T18:47:46.273Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013NQ4PKWMAYGykaYkaZfubK",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.tex",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15d7c910-1df0-42ad-ab36-ee381ceb27bc",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xdfAaEQYLWQP4Z2jLF",
+            "type": "assistant",
+            "uuid": "ff2af3e0-1f1a-4120-a5e0-bc29dacaa394",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fsfs1gSZpnqp6ji1LFQQN7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11893,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 305,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11893,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 305,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 11893,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11893
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T18:47:46.295Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013NQ4PKWMAYGykaYkaZfubK",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/paper_tables_draft.tex\nartifacts/_project/paper/section5_scierc_draft_4796e8.tex\nartifacts/_project/paper/section3_method_draft.tex\nartifacts/_project/paper/section4_composition_draft.tex\nartifacts/_project/paper/abstract_fd4b26.tex\nartifacts/_project/paper/abstract_d3264e.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/section7_conclusion.tex\nartifacts/_project/paper/section7_conclusion_550cbf.tex\nartifacts/_project/paper/section2_background.tex\nartifacts/_project/paper/section3_violation_landscape.tex\nartifacts/_project/paper/section1_introduction_draft.tex\nartifacts/dream_reports/dream_20260514T094226/best/paper.tex\nartifacts/dream_reports/dream_20260514T094226/median/paper.tex\nartifacts/dream_reports/dream_20260514T094226/worst/paper.tex\nartifacts/_project/paper/section5_docred_draft_9b84f1.tex\nartifacts/_project/paper/section6_relwork_additions.tex\nartifacts/_project/paper/discussion_paragraphs_cf83d1.tex\nartifacts/_project/paper/section5_scierc_draft.tex\nartifacts/_project/paper/section5_docred_draft.tex\nartifacts/_project/paper/section6_related_work.tex\nartifacts/_project/paper/section6_relwork_outline.tex\nartifacts/_project/paper/discussion_paragraphs.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ff2af3e0-1f1a-4120-a5e0-bc29dacaa394",
+            "isSidechain": false,
+            "promptId": "6e1961ed-12f2-459d-b68f-22ad2edc5d6e",
+            "type": "user",
+            "uuid": "ed9387a0-ba62-4ed7-a4dd-e2d7ab163330",
+            "toolUseResult": {
+              "filenames": [
+                "artifacts/_project/paper/paper_tables_draft.tex",
+                "artifacts/_project/paper/section5_scierc_draft_4796e8.tex",
+                "artifacts/_project/paper/section3_method_draft.tex",
+                "artifacts/_project/paper/section4_composition_draft.tex",
+                "artifacts/_project/paper/abstract_fd4b26.tex",
+                "artifacts/_project/paper/abstract_d3264e.tex",
+                "artifacts/_project/paper/abstract.tex",
+                "artifacts/_project/paper/section7_conclusion.tex",
+                "artifacts/_project/paper/section7_conclusion_550cbf.tex",
+                "artifacts/_project/paper/section2_background.tex",
+                "artifacts/_project/paper/section3_violation_landscape.tex",
+                "artifacts/_project/paper/section1_introduction_draft.tex",
+                "artifacts/dream_reports/dream_20260514T094226/best/paper.tex",
+                "artifacts/dream_reports/dream_20260514T094226/median/paper.tex",
+                "artifacts/dream_reports/dream_20260514T094226/worst/paper.tex",
+                "artifacts/_project/paper/section5_docred_draft_9b84f1.tex",
+                "artifacts/_project/paper/section6_relwork_additions.tex",
+                "artifacts/_project/paper/discussion_paragraphs_cf83d1.tex",
+                "artifacts/_project/paper/section5_scierc_draft.tex",
+                "artifacts/_project/paper/section5_docred_draft.tex",
+                "artifacts/_project/paper/section6_related_work.tex",
+                "artifacts/_project/paper/section6_relwork_outline.tex",
+                "artifacts/_project/paper/discussion_paragraphs.tex"
+              ],
+              "durationMs": 12,
+              "numFiles": 23,
+              "truncated": false
+            },
+            "sourceToolAssistantUUID": "ff2af3e0-1f1a-4120-a5e0-bc29dacaa394",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T18:47:47.642Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011j8d4TgGHovfkJyf1GaJb4",
+              "type": "tool_result",
+              "content": "artifacts/_project/paper/section4_composition_draft.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ab2738c4-5d4f-4154-9706-1d8d02b724e1",
+            "isSidechain": false,
+            "promptId": "6e1961ed-12f2-459d-b68f-22ad2edc5d6e",
+            "type": "user",
+            "uuid": "8535c4b6-3235-4a88-bce4-459b18c9e4b5",
+            "toolUseResult": {
+              "filenames": [
+                "artifacts/_project/paper/section4_composition_draft.tex"
+              ],
+              "durationMs": 26,
+              "numFiles": 1,
+              "truncated": false
+            },
+            "sourceToolAssistantUUID": "ab2738c4-5d4f-4154-9706-1d8d02b724e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T18:47:47.222Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PtrL5xi4AarKW8ctokKhq8",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*method*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ed9387a0-ba62-4ed7-a4dd-e2d7ab163330",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xdfAaEQYLWQP4Z2jLF",
+            "type": "assistant",
+            "uuid": "27b4d516-c01f-4597-a106-a694cdc5a134",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fsfs1gSZpnqp6ji1LFQQN7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11893,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 305,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11893,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 305,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 11893,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11893
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T18:47:47.239Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PtrL5xi4AarKW8ctokKhq8",
+              "type": "tool_result",
+              "content": "artifacts/_project/report/method_invariant_notes.md\nartifacts/method_invariant_notes.md\nartifacts/_project/paper/section3_method_draft.tex"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "27b4d516-c01f-4597-a106-a694cdc5a134",
+            "isSidechain": false,
+            "promptId": "6e1961ed-12f2-459d-b68f-22ad2edc5d6e",
+            "type": "user",
+            "uuid": "de00e6d8-da8c-4e8b-ab9c-a9a2d8c7fb23",
+            "toolUseResult": {
+              "filenames": [
+                "artifacts/_project/report/method_invariant_notes.md",
+                "artifacts/method_invariant_notes.md",
+                "artifacts/_project/paper/section3_method_draft.tex"
+              ],
+              "durationMs": 12,
+              "numFiles": 3,
+              "truncated": false
+            },
+            "sourceToolAssistantUUID": "27b4d516-c01f-4597-a106-a694cdc5a134",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T18:47:47.603Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011j8d4TgGHovfkJyf1GaJb4",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*section4*",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "de00e6d8-da8c-4e8b-ab9c-a9a2d8c7fb23",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xdfAaEQYLWQP4Z2jLF",
+            "type": "assistant",
+            "uuid": "ab2738c4-5d4f-4154-9706-1d8d02b724e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fsfs1gSZpnqp6ji1LFQQN7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 11893,
+                "cache_read_input_tokens": 11447,
+                "output_tokens": 305,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 11893,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 305,
+                    "cache_read_input_tokens": 11447,
+                    "cache_creation_input_tokens": 11893,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 11893
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T18:47:54.426Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "有两个候选文件：`section3_method_draft.tex`（Method）和 `section4_composition_draft.tex`。让我读取它们来确定 semantic constraint 的定义位置。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8535c4b6-3235-4a88-bce4-459b18c9e4b5",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xe1k5XrkakDBn4jR1h",
+            "type": "assistant",
+            "uuid": "a9cb854c-90dd-4837-9ae8-44843b2c2796",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012eJ7JpPwNMxvzYqkKXHHGF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 821,
+                "cache_read_input_tokens": 23340,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 821,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 23340,
+                    "cache_creation_input_tokens": 821,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 821
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T18:47:55.038Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JJfMEMUxJxcANUxLU7KwUJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a9cb854c-90dd-4837-9ae8-44843b2c2796",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xe1k5XrkakDBn4jR1h",
+            "type": "assistant",
+            "uuid": "afe0b624-4658-4b68-9a32-e0950dfb537a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012eJ7JpPwNMxvzYqkKXHHGF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 821,
+                "cache_read_input_tokens": 23340,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 821,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 23340,
+                    "cache_creation_input_tokens": 821,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 821
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T18:47:55.052Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JJfMEMUxJxcANUxLU7KwUJ",
+              "type": "tool_result",
+              "content": "1\t% Section 3 — Method (Draft)\n2\t% OntoCoDec: Near-Complete Type-Valid Information Extraction\n3\t% via Compiled Ontology Constraints\n4\t\n5\t\\section{Method}\n6\t\\label{sec:method}\n7\t\n8\tWe present OntoCoDec, a two-layer constrained decoding framework that compiles ontology schemas into token-level masks enforced during autoregressive generation.\n9\tThe grammar layer (\\S\\ref{sec:grammar}) guarantees structural validity—well-formed JSON with ontology-vocabulary membership—while the semantic layer (\\S\\ref{sec:semantic}) enforces domain/range type constraints via a stateful entity registry.\n10\tWe describe the problem formulation (\\S\\ref{sec:formulation}), each layer, and the two decoding strategies (\\S\\ref{sec:strategies}).\n11\tFormal analysis of constraint composition and the grammar-first invariant is deferred to Section~\\ref{sec:composition}.\n12\t\n13\t\n14\t\\subsection{Problem Formulation}\n15\t\\label{sec:formulation}\n16\t\n17\t\\paragraph{IE as structured generation.}\n18\tGiven an input text $x$, a language model generates a structured JSON output $y$ encoding the extracted information:\n19\t%\n20\t\\begin{equation}\\label{eq:output-schema}\n21\t  y = \\bigl\\{\\texttt{entities}: [\\{n_i, \\tau_i\\}],\\; \\texttt{relations}: [\\{h_j, t_j, r_j, \\tau^h_j, \\tau^t_j\\}]\\bigr\\},\n22\t\\end{equation}\n23\t%\n24\twhere each entity has a name $n_i$ and type $\\tau_i$, and each relation triple specifies a head entity $h_j$, tail entity $t_j$, relation type $r_j$, and the corresponding head and tail entity types $\\tau^h_j$ and $\\tau^t_j$.\n25\t\n26\t\\paragraph{Ontology schema.}\n27\tAn ontology $\\mathcal{O} = (\\mathcal{E}, \\mathcal{R}, \\operatorname{dom}, \\operatorname{range})$ defines the set of entity types $\\mathcal{E}$, the set of relation types $\\mathcal{R}$, and two functions $\\operatorname{dom}: \\mathcal{R} \\to 2^{\\mathcal{E}}$ and $\\operatorname{range}: \\mathcal{R} \\to 2^{\\mathcal{E}}$ that specify, for each relation, the entity types permitted as head and tail respectively.\n28\t\n29\t\\paragraph{Ontology compliance.}\n30\tA relation triple $(h, r, t)$ with $\\operatorname{type}(h) = \\tau^h$ and $\\operatorname{type}(t) = \\tau^t$ is \\emph{type-valid} with respect to $\\mathcal{O}$ if and only if:\n31\t%\n32\t\\begin{equation}\\label{eq:type-valid}\n33\t  \\tau^h \\in \\operatorname{dom}(r) \\;\\wedge\\; \\tau^t \\in \\operatorname{range}(r).\n34\t\\end{equation}\n35\t%\n36\tWe define the \\emph{domain/range violation rate} (DR) as the fraction of generated triples that fail Eq.~\\eqref{eq:type-valid}.\n37\t\n38\t\\paragraph{Objective.}\n39\tWe seek a decoding strategy that maximizes $P(y \\mid x)$ subject to ontology compliance: all generated triples should be type-valid under $\\mathcal{O}$, and the output $y$ must be structurally well-formed JSON conforming to the schema in Eq.~\\eqref{eq:output-schema}.\n40\t\n41\t\\paragraph{Constraint decidability.}\n42\tNot all ontology constraints are enforceable at every point during left-to-right generation.\n43\tWe distinguish three classes by \\emph{prefix-decidability}---i.e., when sufficient information becomes available in the generated prefix:\n44\t%\n45\t\\begin{enumerate}[leftmargin=*,nosep]\n46\t  \\item \\textbf{Local constraints} depend only on the current token position.\n47\t    Entity-type membership ($\\tau_i \\in \\mathcal{E}$) and relation-vocabulary membership ($r_j \\in \\mathcal{R}$) are local: each candidate token can be checked against the ontology vocabulary independently.\n48\t  \\item \\textbf{Prefix-decidable constraints} depend on the current token plus previously generated context.\n49\t    Domain/range constraints are prefix-decidable: once the head entity, its type, and the relation type have been generated, the set of valid tail types is fully determined.\n50\t  \\item \\textbf{Non-local constraints} depend on information not yet generated.\n51\t    Forward coreference---where a later entity mention determines the type of an earlier one---is inherently non-local and falls outside the scope of single-pass autoregressive decoding.\n52\t\\end{enumerate}\n53\t%\n54\tOntoCoDec's two-layer design covers the first two classes: the grammar layer handles local constraints, and the semantic layer handles prefix-decidable constraints.\n55\tWe revisit this taxonomy in Section~\\ref{sec:composition} to formalize constraint composition properties.\n56\t\n57\t\n58\t\\subsection{Grammar Layer}\n59\t\\label{sec:grammar}\n60\t\n61\tThe grammar layer compiles the ontology schema $\\mathcal{O}$ into a context-free grammar (CFG) that is enforced at every decoding step via logit masking.\n62\tThis compilation proceeds in two stages.\n63\t\n64\t\\paragraph{Schema-to-grammar compilation.}\n65\tGiven $\\mathcal{O}$, we first generate a JSON Schema that encodes the output structure in Eq.~\\eqref{eq:output-schema}, with \\texttt{enum} constraints restricting entity types to $\\mathcal{E}$, relation types to $\\mathcal{R}$, and head/tail types to $\\mathcal{E}$.\n66\tThe JSON Schema is then compiled into an EBNF grammar using XGrammar~\\cite{xgrammar}, which converts the schema into a pushdown automaton that tracks JSON nesting, field names, string boundaries, and enum membership.\n67\t\n68\t\\paragraph{Logit masking.}\n69\tAt each decoding step $t$, the grammar processor computes the set of grammar-valid tokens $G(t) \\subseteq V$ based on the automaton state, and masks all tokens outside $G(t)$ by setting their logits to $-\\infty$.\n70\tThis enforces three categories of constraints simultaneously:\n71\t(i)~\\emph{structural validity}---the output is always well-formed JSON with correct field names and nesting;\n72\t(ii)~\\emph{relation vocabulary membership}---$r_j \\in \\mathcal{R}$ for all generated relations; and\n73\t(iii)~\\emph{entity type membership}---$\\tau_i \\in \\mathcal{E}$ for all generated entity types.\n74\t\n75\t\\paragraph{What grammar does not enforce.}\n76\tThe grammar layer does not encode domain/range constraints ($\\operatorname{dom}$, $\\operatorname{range}$), because these depend on the specific entity types appearing in each triple---information that is only available during generation.\n77\tThis is precisely the gap that the semantic layer fills.\n78\t\n79\t\\paragraph{Empirical profile.}\n80\tOn SciERC, grammar-only constraints eliminate relation vocabulary violations entirely (1.39\\%\\,$\\to$\\,0\\%) and entity type violations entirely (0.40\\%\\,$\\to$\\,0\\%), with no measurable F1 impact (R-F1 8.23, E-F1 30.98 vs.\\ unconstrained R-F1 8.23, E-F1 31.01).\n81\tDomain/range violations remain effectively unchanged (15.37\\%\\,$\\to$\\,14.84\\%), confirming that grammar constraints enforce structural but not semantic validity.\n82\t\n83\t\n84\t\\subsection{Semantic Layer}\n85\t\\label{sec:semantic}\n86\t\n87\tThe semantic layer enforces domain/range type constraints through a stateful logits processor that maintains an entity registry during generation.\n88\t\n89\t\\subsubsection{Entity Registry}\n90\t\\label{sec:entity-registry}\n91\t\n92\tAs the model generates the entity list portion of the output, the semantic layer builds an \\emph{entity registry} $\\mathcal{D}: \\text{name} \\to \\text{type}$ that maps each entity mention to its declared type.\n93\tThis registry is populated incrementally: when the model completes an entity entry $\\{n_i, \\tau_i\\}$, the pair $(n_i, \\tau_i)$ is added to $\\mathcal{D}$.\n94\tThe registry is then consulted during relation generation to look up the declared types of head and tail entities.\n95\t\n96\t\\subsubsection{Position Detection}\n97\t\\label{sec:position-detection}\n98\t\n99\tAt each decoding step $t$, the processor determines which field is currently being generated by pattern-matching on the decoded text prefix.\n100\tWe define a set of field positions $\\mathcal{F} = \\{\\textsc{EntityType}, \\textsc{RelationType}, \\textsc{HeadType}, \\textsc{TailType}, \\textsc{FreeText}\\}$.\n101\tThe detector examines the trailing context of the decoded output to identify the active field based on JSON key patterns (e.g., the token sequence following \\texttt{\"head\\_type\":} indicates a \\textsc{HeadType} position).\n102\tOnly at type-bearing positions (\\textsc{HeadType}, \\textsc{TailType}) does the semantic layer activate its constraint masks.\n103\t\n104\t\\subsubsection{Dynamic Masking}\n105\t\\label{sec:dynamic-masking}\n106\t\n107\tWhen a type-bearing position is detected, the processor computes a semantic mask $S(t) \\subseteq V$ that restricts generation to type-valid tokens.\n108\tThe masking rules differ by position:\n109\t\n110\t\\paragraph{Head type masking.}\n111\tAt a \\textsc{HeadType} position within a relation triple, the processor considers two information sources: the entity registry $\\mathcal{D}$ and the current relation type $r_j$ (if already generated).\n112\tIf $h_j \\in \\mathcal{D}$ and the registered type $\\mathcal{D}[h_j] \\in \\operatorname{dom}(r_j)$, the mask allows only that type: $S(t) = \\{\\operatorname{tok}(\\mathcal{D}[h_j])\\}$, ensuring consistency with both the entity list and domain constraints.\n113\tOtherwise, if $r_j$ is known, the mask falls back to all domain-valid head types: $S(t) = \\{\\operatorname{tok}(\\tau) : \\tau \\in \\operatorname{dom}(r_j)\\}$.\n114\tIf $r_j$ is not yet available, no semantic mask is applied and the grammar layer's entity-type membership constraint remains the sole guard.\n115\t\n116\t\\paragraph{Tail type masking.}\n117\tAt a \\textsc{TailType} position, the processor has access to the current relation type $r_j$ and head type $\\tau^h_j$ from the already-generated prefix.\n118\tIt computes the set of valid tail types as $\\operatorname{range}(r_j)$ and, if the tail entity $t_j$ is found in $\\mathcal{D}$, further restricts to the registered type if it is domain/range-valid.\n119\tThis implements the core prefix-decidable constraint: once $(h_j, r_j, \\tau^h_j)$ are known, the valid $\\tau^t_j$ values are fully determined by $\\operatorname{range}(r_j)$.\n120\t\n121\t\\paragraph{Implementation.}\n122\tEach type $\\tau \\in \\mathcal{E}$ is mapped to the token ID of its first subword token under the model's tokenizer.\n123\tWe pre-verify that these first-token IDs are unique across all entity types, which holds for both SciERC (6 types) and DocRED (6 types) with the Qwen3-8B tokenizer.\n124\tThe semantic mask is applied by setting the logits of disallowed first-token IDs to $-\\infty$.\n125\t\n126\t\\subsubsection{Grammar-Semantic Interaction}\n127\t\\label{sec:interaction}\n128\t\n129\tThe semantic mask $S(t)$ is combined with the grammar mask $G(t)$ via conjunction:\n130\t%\n131\t\\begin{equation}\\label{eq:mask-conjunction}\n132\t  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n133\t\\end{equation}\n134\t%\n135\tso a token is permitted only if it satisfies both structural and type-level constraints.\n136\tThis conjunction embodies an \\emph{enabling dependency}: the semantic layer's constraint lookup requires the relation type to be a valid member of $\\mathcal{R}$---a property guaranteed only when the grammar layer is active.\n137\tWithout grammar enforcement, the model may generate out-of-vocabulary relation types for which no $\\operatorname{dom}$/$\\operatorname{range}$ rules exist, rendering semantic masking ineffective.\n138\tEmpirically, semantic-only constraints reduce DR by only 24\\% (15.37\\%\\,$\\to$\\,11.65\\%) and fail to eliminate RV (1.51\\%) or ET (0.40\\%) violations, whereas the full combination achieves 94\\% DR reduction.\n139\t\n140\tWhen $S(t) \\cap G(t) = \\emptyset$---the semantic layer would mask out all grammar-valid tokens---the system falls back to grammar-only control, preserving structural validity at the cost of a potential type violation.\n141\tThis \\emph{grammar-first invariant} reflects a deliberate priority ordering: structural integrity is a hard constraint, while a type violation is a soft error detectable by downstream validation.\n142\tWe formalize this invariant and analyze constraint composition in detail in Section~\\ref{sec:composition}.\n143\t\n144\t\n145\t\\subsection{Decoding Strategies}\n146\t\\label{sec:strategies}\n147\t\n148\tWe consider two decoding strategies that differ in how entity and relation generation are orchestrated.\n149\t\n150\t\\paragraph{S1: Single-pass decoding.}\n151\tBoth constraint layers are active throughout a single generation pass.\n152\tThe entity registry is populated as entities are generated and is immediately available for relation-level type checking within the same pass.\n153\tThis is the simpler and recommended strategy.\n154\t\n155\t\\paragraph{S2: Two-pass decoding.}\n156\tIn the first pass, the model generates only the entity list under grammar-only constraints.\n157\tThe extracted entities are then used to compile an input-dependent grammar that additionally constrains head and tail entity names to match declared entities.\n158\tIn the second pass, the model generates relations under this tighter grammar plus semantic constraints.\n159\tThe two-pass separation aims to provide a more complete entity registry before relation generation begins, potentially improving type consistency.\n160\t\n161\t\\paragraph{Comparison.}\n162\tOn SciERC, S1 and S2 achieve comparable DR reduction (0.93\\% vs.\\ 0.97\\%) but S1 yields higher relation F1 (8.36 vs.\\ 8.03) and generates more triples (1,729 vs.\\ 1,644).\n163\tS2 does not resolve the cross-field consistency trade-off introduced by semantic enforcement (CF 8.03\\% vs.\\ 9.90\\% for S1, both elevated from 0.08\\% unconstrained).\n164\tWe adopt S1 as the primary configuration; S2 is retained as an ablation variant.\n165\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "afe0b624-4658-4b68-9a32-e0950dfb537a",
+            "isSidechain": false,
+            "promptId": "6e1961ed-12f2-459d-b68f-22ad2edc5d6e",
+            "type": "user",
+            "uuid": "52ca2ae0-7476-4ce5-ac5b-44b5a30887fe",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex",
+                "content": "% Section 3 — Method (Draft)\n% OntoCoDec: Near-Complete Type-Valid Information Extraction\n% via Compiled Ontology Constraints\n\n\\section{Method}\n\\label{sec:method}\n\nWe present OntoCoDec, a two-layer constrained decoding framework that compiles ontology schemas into token-level masks enforced during autoregressive generation.\nThe grammar layer (\\S\\ref{sec:grammar}) guarantees structural validity—well-formed JSON with ontology-vocabulary membership—while the semantic layer (\\S\\ref{sec:semantic}) enforces domain/range type constraints via a stateful entity registry.\nWe describe the problem formulation (\\S\\ref{sec:formulation}), each layer, and the two decoding strategies (\\S\\ref{sec:strategies}).\nFormal analysis of constraint composition and the grammar-first invariant is deferred to Section~\\ref{sec:composition}.\n\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\n\\paragraph{IE as structured generation.}\nGiven an input text $x$, a language model generates a structured JSON output $y$ encoding the extracted information:\n%\n\\begin{equation}\\label{eq:output-schema}\n  y = \\bigl\\{\\texttt{entities}: [\\{n_i, \\tau_i\\}],\\; \\texttt{relations}: [\\{h_j, t_j, r_j, \\tau^h_j, \\tau^t_j\\}]\\bigr\\},\n\\end{equation}\n%\nwhere each entity has a name $n_i$ and type $\\tau_i$, and each relation triple specifies a head entity $h_j$, tail entity $t_j$, relation type $r_j$, and the corresponding head and tail entity types $\\tau^h_j$ and $\\tau^t_j$.\n\n\\paragraph{Ontology schema.}\nAn ontology $\\mathcal{O} = (\\mathcal{E}, \\mathcal{R}, \\operatorname{dom}, \\operatorname{range})$ defines the set of entity types $\\mathcal{E}$, the set of relation types $\\mathcal{R}$, and two functions $\\operatorname{dom}: \\mathcal{R} \\to 2^{\\mathcal{E}}$ and $\\operatorname{range}: \\mathcal{R} \\to 2^{\\mathcal{E}}$ that specify, for each relation, the entity types permitted as head and tail respectively.\n\n\\paragraph{Ontology compliance.}\nA relation triple $(h, r, t)$ with $\\operatorname{type}(h) = \\tau^h$ and $\\operatorname{type}(t) = \\tau^t$ is \\emph{type-valid} with respect to $\\mathcal{O}$ if and only if:\n%\n\\begin{equation}\\label{eq:type-valid}\n  \\tau^h \\in \\operatorname{dom}(r) \\;\\wedge\\; \\tau^t \\in \\operatorname{range}(r).\n\\end{equation}\n%\nWe define the \\emph{domain/range violation rate} (DR) as the fraction of generated triples that fail Eq.~\\eqref{eq:type-valid}.\n\n\\paragraph{Objective.}\nWe seek a decoding strategy that maximizes $P(y \\mid x)$ subject to ontology compliance: all generated triples should be type-valid under $\\mathcal{O}$, and the output $y$ must be structurally well-formed JSON conforming to the schema in Eq.~\\eqref{eq:output-schema}.\n\n\\paragraph{Constraint decidability.}\nNot all ontology constraints are enforceable at every point during left-to-right generation.\nWe distinguish three classes by \\emph{prefix-decidability}---i.e., when sufficient information becomes available in the generated prefix:\n%\n\\begin{enumerate}[leftmargin=*,nosep]\n  \\item \\textbf{Local constraints} depend only on the current token position.\n    Entity-type membership ($\\tau_i \\in \\mathcal{E}$) and relation-vocabulary membership ($r_j \\in \\mathcal{R}$) are local: each candidate token can be checked against the ontology vocabulary independently.\n  \\item \\textbf{Prefix-decidable constraints} depend on the current token plus previously generated context.\n    Domain/range constraints are prefix-decidable: once the head entity, its type, and the relation type have been generated, the set of valid tail types is fully determined.\n  \\item \\textbf{Non-local constraints} depend on information not yet generated.\n    Forward coreference---where a later entity mention determines the type of an earlier one---is inherently non-local and falls outside the scope of single-pass autoregressive decoding.\n\\end{enumerate}\n%\nOntoCoDec's two-layer design covers the first two classes: the grammar layer handles local constraints, and the semantic layer handles prefix-decidable constraints.\nWe revisit this taxonomy in Section~\\ref{sec:composition} to formalize constraint composition properties.\n\n\n\\subsection{Grammar Layer}\n\\label{sec:grammar}\n\nThe grammar layer compiles the ontology schema $\\mathcal{O}$ into a context-free grammar (CFG) that is enforced at every decoding step via logit masking.\nThis compilation proceeds in two stages.\n\n\\paragraph{Schema-to-grammar compilation.}\nGiven $\\mathcal{O}$, we first generate a JSON Schema that encodes the output structure in Eq.~\\eqref{eq:output-schema}, with \\texttt{enum} constraints restricting entity types to $\\mathcal{E}$, relation types to $\\mathcal{R}$, and head/tail types to $\\mathcal{E}$.\nThe JSON Schema is then compiled into an EBNF grammar using XGrammar~\\cite{xgrammar}, which converts the schema into a pushdown automaton that tracks JSON nesting, field names, string boundaries, and enum membership.\n\n\\paragraph{Logit masking.}\nAt each decoding step $t$, the grammar processor computes the set of grammar-valid tokens $G(t) \\subseteq V$ based on the automaton state, and masks all tokens outside $G(t)$ by setting their logits to $-\\infty$.\nThis enforces three categories of constraints simultaneously:\n(i)~\\emph{structural validity}---the output is always well-formed JSON with correct field names and nesting;\n(ii)~\\emph{relation vocabulary membership}---$r_j \\in \\mathcal{R}$ for all generated relations; and\n(iii)~\\emph{entity type membership}---$\\tau_i \\in \\mathcal{E}$ for all generated entity types.\n\n\\paragraph{What grammar does not enforce.}\nThe grammar layer does not encode domain/range constraints ($\\operatorname{dom}$, $\\operatorname{range}$), because these depend on the specific entity types appearing in each triple---information that is only available during generation.\nThis is precisely the gap that the semantic layer fills.\n\n\\paragraph{Empirical profile.}\nOn SciERC, grammar-only constraints eliminate relation vocabulary violations entirely (1.39\\%\\,$\\to$\\,0\\%) and entity type violations entirely (0.40\\%\\,$\\to$\\,0\\%), with no measurable F1 impact (R-F1 8.23, E-F1 30.98 vs.\\ unconstrained R-F1 8.23, E-F1 31.01).\nDomain/range violations remain effectively unchanged (15.37\\%\\,$\\to$\\,14.84\\%), confirming that grammar constraints enforce structural but not semantic validity.\n\n\n\\subsection{Semantic Layer}\n\\label{sec:semantic}\n\nThe semantic layer enforces domain/range type constraints through a stateful logits processor that maintains an entity registry during generation.\n\n\\subsubsection{Entity Registry}\n\\label{sec:entity-registry}\n\nAs the model generates the entity list portion of the output, the semantic layer builds an \\emph{entity registry} $\\mathcal{D}: \\text{name} \\to \\text{type}$ that maps each entity mention to its declared type.\nThis registry is populated incrementally: when the model completes an entity entry $\\{n_i, \\tau_i\\}$, the pair $(n_i, \\tau_i)$ is added to $\\mathcal{D}$.\nThe registry is then consulted during relation generation to look up the declared types of head and tail entities.\n\n\\subsubsection{Position Detection}\n\\label{sec:position-detection}\n\nAt each decoding step $t$, the processor determines which field is currently being generated by pattern-matching on the decoded text prefix.\nWe define a set of field positions $\\mathcal{F} = \\{\\textsc{EntityType}, \\textsc{RelationType}, \\textsc{HeadType}, \\textsc{TailType}, \\textsc{FreeText}\\}$.\nThe detector examines the trailing context of the decoded output to identify the active field based on JSON key patterns (e.g., the token sequence following \\texttt{\"head\\_type\":} indicates a \\textsc{HeadType} position).\nOnly at type-bearing positions (\\textsc{HeadType}, \\textsc{TailType}) does the semantic layer activate its constraint masks.\n\n\\subsubsection{Dynamic Masking}\n\\label{sec:dynamic-masking}\n\nWhen a type-bearing position is detected, the processor computes a semantic mask $S(t) \\subseteq V$ that restricts generation to type-valid tokens.\nThe masking rules differ by position:\n\n\\paragraph{Head type masking.}\nAt a \\textsc{HeadType} position within a relation triple, the processor considers two information sources: the entity registry $\\mathcal{D}$ and the current relation type $r_j$ (if already generated).\nIf $h_j \\in \\mathcal{D}$ and the registered type $\\mathcal{D}[h_j] \\in \\operatorname{dom}(r_j)$, the mask allows only that type: $S(t) = \\{\\operatorname{tok}(\\mathcal{D}[h_j])\\}$, ensuring consistency with both the entity list and domain constraints.\nOtherwise, if $r_j$ is known, the mask falls back to all domain-valid head types: $S(t) = \\{\\operatorname{tok}(\\tau) : \\tau \\in \\operatorname{dom}(r_j)\\}$.\nIf $r_j$ is not yet available, no semantic mask is applied and the grammar layer's entity-type membership constraint remains the sole guard.\n\n\\paragraph{Tail type masking.}\nAt a \\textsc{TailType} position, the processor has access to the current relation type $r_j$ and head type $\\tau^h_j$ from the already-generated prefix.\nIt computes the set of valid tail types as $\\operatorname{range}(r_j)$ and, if the tail entity $t_j$ is found in $\\mathcal{D}$, further restricts to the registered type if it is domain/range-valid.\nThis implements the core prefix-decidable constraint: once $(h_j, r_j, \\tau^h_j)$ are known, the valid $\\tau^t_j$ values are fully determined by $\\operatorname{range}(r_j)$.\n\n\\paragraph{Implementation.}\nEach type $\\tau \\in \\mathcal{E}$ is mapped to the token ID of its first subword token under the model's tokenizer.\nWe pre-verify that these first-token IDs are unique across all entity types, which holds for both SciERC (6 types) and DocRED (6 types) with the Qwen3-8B tokenizer.\nThe semantic mask is applied by setting the logits of disallowed first-token IDs to $-\\infty$.\n\n\\subsubsection{Grammar-Semantic Interaction}\n\\label{sec:interaction}\n\nThe semantic mask $S(t)$ is combined with the grammar mask $G(t)$ via conjunction:\n%\n\\begin{equation}\\label{eq:mask-conjunction}\n  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n\\end{equation}\n%\nso a token is permitted only if it satisfies both structural and type-level constraints.\nThis conjunction embodies an \\emph{enabling dependency}: the semantic layer's constraint lookup requires the relation type to be a valid member of $\\mathcal{R}$---a property guaranteed only when the grammar layer is active.\nWithout grammar enforcement, the model may generate out-of-vocabulary relation types for which no $\\operatorname{dom}$/$\\operatorname{range}$ rules exist, rendering semantic masking ineffective.\nEmpirically, semantic-only constraints reduce DR by only 24\\% (15.37\\%\\,$\\to$\\,11.65\\%) and fail to eliminate RV (1.51\\%) or ET (0.40\\%) violations, whereas the full combination achieves 94\\% DR reduction.\n\nWhen $S(t) \\cap G(t) = \\emptyset$---the semantic layer would mask out all grammar-valid tokens---the system falls back to grammar-only control, preserving structural validity at the cost of a potential type violation.\nThis \\emph{grammar-first invariant} reflects a deliberate priority ordering: structural integrity is a hard constraint, while a type violation is a soft error detectable by downstream validation.\nWe formalize this invariant and analyze constraint composition in detail in Section~\\ref{sec:composition}.\n\n\n\\subsection{Decoding Strategies}\n\\label{sec:strategies}\n\nWe consider two decoding strategies that differ in how entity and relation generation are orchestrated.\n\n\\paragraph{S1: Single-pass decoding.}\nBoth constraint layers are active throughout a single generation pass.\nThe entity registry is populated as entities are generated and is immediately available for relation-level type checking within the same pass.\nThis is the simpler and recommended strategy.\n\n\\paragraph{S2: Two-pass decoding.}\nIn the first pass, the model generates only the entity list under grammar-only constraints.\nThe extracted entities are then used to compile an input-dependent grammar that additionally constrains head and tail entity names to match declared entities.\nIn the second pass, the model generates relations under this tighter grammar plus semantic constraints.\nThe two-pass separation aims to provide a more complete entity registry before relation generation begins, potentially improving type consistency.\n\n\\paragraph{Comparison.}\nOn SciERC, S1 and S2 achieve comparable DR reduction (0.93\\% vs.\\ 0.97\\%) but S1 yields higher relation F1 (8.36 vs.\\ 8.03) and generates more triples (1,729 vs.\\ 1,644).\nS2 does not resolve the cross-field consistency trade-off introduced by semantic enforcement (CF 8.03\\% vs.\\ 9.90\\% for S1, both elevated from 0.08\\% unconstrained).\nWe adopt S1 as the primary configuration; S2 is retained as an ablation variant.\n",
+                "numLines": 165,
+                "startLine": 1,
+                "totalLines": 165
+              }
+            },
+            "sourceToolAssistantUUID": "afe0b624-4658-4b68-9a32-e0950dfb537a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T18:47:55.342Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PUFJFxtopriF3uBcsZqq6g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "52ca2ae0-7476-4ce5-ac5b-44b5a30887fe",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xe1k5XrkakDBn4jR1h",
+            "type": "assistant",
+            "uuid": "a58dd996-976b-46dd-858c-e5201311a4e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012eJ7JpPwNMxvzYqkKXHHGF",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 821,
+                "cache_read_input_tokens": 23340,
+                "output_tokens": 231,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 821,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 231,
+                    "cache_read_input_tokens": 23340,
+                    "cache_creation_input_tokens": 821,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 821
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T18:47:55.352Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PUFJFxtopriF3uBcsZqq6g",
+              "type": "tool_result",
+              "content": "1\t% Section 4 subsection: Constraint Composition\n2\t% Draft — OntoCoDec Framework\n3\t\n4\t\\paragraph{Constraint Composition.}\n5\t\n6\tAt each decoding step $t$, both layers produce a binary token mask over the vocabulary $V$.\n7\tLet $G(t) \\subseteq V$ denote the set of tokens permitted by the grammar layer (valid JSON structure and ontology-vocabulary membership),\n8\tand $S(t) \\subseteq V$ the set permitted by the semantic layer (domain/range type compliance given the current entity registry state).\n9\tThe final mask is their conjunction:\n10\t%\n11\t\\begin{equation}\\label{eq:composition}\n12\t  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n13\t\\end{equation}\n14\t%\n15\tso that a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\n16\tThe conjunction is asymmetric in an important sense: the semantic layer operates \\emph{strictly within} the grammar-valid set, i.e., $S(t)$ is defined only over $G(t)$.\n17\tThis reflects the enabling dependency described in \\S\\ref{sec:overview}: grammar validity is a precondition for semantic enforcement, because the semantic layer must identify the current relation type to look up its domain/range rules—an operation that is only well-defined when the relation type belongs to the ontology vocabulary.\n18\t\n19\t\\paragraph{Grammar-First Fallback.}\n20\t\n21\tThe conjunction in Eq.~\\eqref{eq:composition} requires the precondition $S(t) \\cap G(t) \\neq \\emptyset$: at least one token must be simultaneously grammar-valid and semantically valid.\n22\tWhen this precondition is violated—which can occur under tight ontology constraints where the allowed entity types for a relation do not overlap with the grammar-valid tokens at a particular position—na\\\"{\\i}ve application of the semantic mask sets all grammar-valid tokens to $-\\infty$ while grammar-invalid tokens retain finite (though heavily penalized) logits.\n23\tThe resulting argmax selects a grammar-invalid token, breaking JSON structure.\n24\tWe enforce a \\emph{grammar-first fallback rule}: before applying the semantic mask, we verify that at least one semantically allowed type token has a logit above a grammar-validity threshold $\\tau_g = -10^{8}$.\n25\tIf $S(t) \\cap G(t) = \\emptyset$, semantic masking is skipped entirely, and the grammar layer alone controls token selection.\n26\tThis reflects a deliberate priority ordering: structural integrity (grammar) is a hard constraint, while a type violation is a soft error detectable by downstream validation.\n27\t\n28\t\n29\t\\paragraph{Decidability Taxonomy.}\n30\t\n31\tNot all ontology constraints can be enforced at the same point during autoregressive generation.\n32\tWe classify them by \\emph{when} sufficient information becomes available:\n33\t%\n34\t\\begin{enumerate}[leftmargin=*,nosep]\n35\t  \\item \\textbf{Local constraints} require only the current token. Entity-type and relation-vocabulary membership fall in this class: each candidate token can be checked against the ontology vocabulary independently, which the grammar layer handles via CFG and enum rules.\n36\t  \\item \\textbf{Prefix-decidable constraints} require the current token plus previously generated context. Domain/range constraints are prefix-decidable: once the head entity type and relation type have been generated, the valid tail entity types are fully determined. The semantic layer implements this via a stateful entity registry that tracks decoded types and activates the appropriate logit mask at each type-bearing position.\n37\t  \\item \\textbf{Non-local constraints} require information not yet generated. Forward coreference—where a later mention determines the type of an earlier one—is inherently non-local and falls outside the scope of single-pass left-to-right decoding.\n38\t\\end{enumerate}\n39\t%\n40\tOntoCoDec's two-layer design covers the first two classes: grammar for local, semantic for prefix-decidable. The non-local class motivates the two-pass strategy (S2, \\S\\ref{sec:s2}), which partially addresses cross-field consistency by separating entity extraction from relation generation, though it does not fully resolve forward coreference (\\S\\ref{sec:limitations}).\n41\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a58dd996-976b-46dd-858c-e5201311a4e5",
+            "isSidechain": false,
+            "promptId": "6e1961ed-12f2-459d-b68f-22ad2edc5d6e",
+            "type": "user",
+            "uuid": "2bc98830-ae49-4d30-9cd1-6487b1af4be7",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex",
+                "content": "% Section 4 subsection: Constraint Composition\n% Draft — OntoCoDec Framework\n\n\\paragraph{Constraint Composition.}\n\nAt each decoding step $t$, both layers produce a binary token mask over the vocabulary $V$.\nLet $G(t) \\subseteq V$ denote the set of tokens permitted by the grammar layer (valid JSON structure and ontology-vocabulary membership),\nand $S(t) \\subseteq V$ the set permitted by the semantic layer (domain/range type compliance given the current entity registry state).\nThe final mask is their conjunction:\n%\n\\begin{equation}\\label{eq:composition}\n  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n\\end{equation}\n%\nso that a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\nThe conjunction is asymmetric in an important sense: the semantic layer operates \\emph{strictly within} the grammar-valid set, i.e., $S(t)$ is defined only over $G(t)$.\nThis reflects the enabling dependency described in \\S\\ref{sec:overview}: grammar validity is a precondition for semantic enforcement, because the semantic layer must identify the current relation type to look up its domain/range rules—an operation that is only well-defined when the relation type belongs to the ontology vocabulary.\n\n\\paragraph{Grammar-First Fallback.}\n\nThe conjunction in Eq.~\\eqref{eq:composition} requires the precondition $S(t) \\cap G(t) \\neq \\emptyset$: at least one token must be simultaneously grammar-valid and semantically valid.\nWhen this precondition is violated—which can occur under tight ontology constraints where the allowed entity types for a relation do not overlap with the grammar-valid tokens at a particular position—na\\\"{\\i}ve application of the semantic mask sets all grammar-valid tokens to $-\\infty$ while grammar-invalid tokens retain finite (though heavily penalized) logits.\nThe resulting argmax selects a grammar-invalid token, breaking JSON structure.\nWe enforce a \\emph{grammar-first fallback rule}: before applying the semantic mask, we verify that at least one semantically allowed type token has a logit above a grammar-validity threshold $\\tau_g = -10^{8}$.\nIf $S(t) \\cap G(t) = \\emptyset$, semantic masking is skipped entirely, and the grammar layer alone controls token selection.\nThis reflects a deliberate priority ordering: structural integrity (grammar) is a hard constraint, while a type violation is a soft error detectable by downstream validation.\n\n\n\\paragraph{Decidability Taxonomy.}\n\nNot all ontology constraints can be enforced at the same point during autoregressive generation.\nWe classify them by \\emph{when} sufficient information becomes available:\n%\n\\begin{enumerate}[leftmargin=*,nosep]\n  \\item \\textbf{Local constraints} require only the current token. Entity-type and relation-vocabulary membership fall in this class: each candidate token can be checked against the ontology vocabulary independently, which the grammar layer handles via CFG and enum rules.\n  \\item \\textbf{Prefix-decidable constraints} require the current token plus previously generated context. Domain/range constraints are prefix-decidable: once the head entity type and relation type have been generated, the valid tail entity types are fully determined. The semantic layer implements this via a stateful entity registry that tracks decoded types and activates the appropriate logit mask at each type-bearing position.\n  \\item \\textbf{Non-local constraints} require information not yet generated. Forward coreference—where a later mention determines the type of an earlier one—is inherently non-local and falls outside the scope of single-pass left-to-right decoding.\n\\end{enumerate}\n%\nOntoCoDec's two-layer design covers the first two classes: grammar for local, semantic for prefix-decidable. The non-local class motivates the two-pass strategy (S2, \\S\\ref{sec:s2}), which partially addresses cross-field consistency by separating entity extraction from relation generation, though it does not fully resolve forward coreference (\\S\\ref{sec:limitations}).\n",
+                "numLines": 41,
+                "startLine": 1,
+                "totalLines": 41
+              }
+            },
+            "sourceToolAssistantUUID": "a58dd996-976b-46dd-858c-e5201311a4e5",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "2bc98830-ae49-4d30-9cd1-6487b1af4be7",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b"
+              }
+            }
+          ],
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add constraint tightness definition to Method section",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b"
+              }
+            }
+          ],
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T18:48:31.505Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture. The section structure is:\n- `section3_method_draft.tex` = §3 Method (with `\\section{Method}`)\n- `section4_composition_draft.tex` = §4 Constraint Composition (a subsection/paragraph level)\n\nThe user says \"§4 Method\" but looking at the files, the method is §3, and composition is §4. The user wants to add the constraint tightness definition to §4 (Composition), which is in `section4_composition_draft.tex`.\n\nThe best insertion point is after the \"Grammar-First Fallback\" paragraph, since tightness describes when the fallback is triggered (S(t) ∩ G(t) = ∅). \n\nTightness is fundamentally a property of the semantic constraints themselves—it measures how restrictive they are for each relation and directly determines how frequently the fallback mechanism gets invoked. The user's instruction confirms this should follow the semantic constraint layer discussion (TypeConstraintProcessor and domain-range enforcement), so I'll place it right after Grammar-First Fallback and before Decidability Taxonomy.\n\nLooking at the notation, I need to be careful since τ_i is already used for entity types in section3_method_draft.tex, but the user wants τ(r) for tightness of relation r. While reusing Greek letters with different arguments is standard practice in papers, I should verify this won't create confusion in the final document.\n\nI'm also realizing that τ_g appears as a threshold in line 24 of section4, so τ is already overloaded. I'll follow the user's specification but keep this in mind.\n\nFor the definition itself, τ(r) = 1 - |V(r)|/|T|² makes sense as the fraction of invalid type pairs, where V(r) represents the valid (head_type, tail_type) pairs and |T|² is the total possible pairs. Since domain and range are defined separately in the ontology, V(r) should be the Cartesian product of dom(r) and range(r).\n\nThe user specifies using T for entity types, but the paper uses \\mathcal{E}. Since they explicitly asked to keep notation consistent with the rest of the paper, I should probably use \\mathcal{E} instead of \\mathcal{T}.\n\nActually, wait—the user's instructions are clear: use \\mathcal{T} for the entity type set. They know their paper better than I do, and maybe they want this notation to distinguish it in the tightness context. Let me just follow their specifications exactly as given.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2bc98830-ae49-4d30-9cd1-6487b1af4be7",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xeaezX9f1ia2BpCNvJ",
+            "type": "assistant",
+            "uuid": "3efe97b6-6b8e-4abf-85cd-65d817df95ee",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ByN4nJwzX5itkfB3R4BZE4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5379,
+                "cache_read_input_tokens": 24161,
+                "output_tokens": 1392,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5379,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1392,
+                    "cache_read_input_tokens": 24161,
+                    "cache_creation_input_tokens": 5379,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5379
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T18:48:31.941Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me check the §5 DocRED draft for the section label."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "3efe97b6-6b8e-4abf-85cd-65d817df95ee",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xeaezX9f1ia2BpCNvJ",
+            "type": "assistant",
+            "uuid": "28ec87a6-b5eb-4746-ae96-78b1371d597f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ByN4nJwzX5itkfB3R4BZE4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5379,
+                "cache_read_input_tokens": 24161,
+                "output_tokens": 1392,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5379,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1392,
+                    "cache_read_input_tokens": 24161,
+                    "cache_creation_input_tokens": 5379,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5379
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T18:48:34.430Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01KUpDmGU7Co9nQ44v34ei1F",
+              "name": "Grep",
+              "input": {
+                "pattern": "\\\\label\\{sec:",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+                "output_mode": "content"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "28ec87a6-b5eb-4746-ae96-78b1371d597f",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xeaezX9f1ia2BpCNvJ",
+            "type": "assistant",
+            "uuid": "d3a19582-40fc-435d-b370-f5d7d1eaf9cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ByN4nJwzX5itkfB3R4BZE4",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 5379,
+                "cache_read_input_tokens": 24161,
+                "output_tokens": 1392,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 5379,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 1392,
+                    "cache_read_input_tokens": 24161,
+                    "cache_creation_input_tokens": 5379,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 5379
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T18:48:34.455Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01KUpDmGU7Co9nQ44v34ei1F",
+              "type": "tool_result",
+              "content": "9:\\label{sec:docred-results}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d3a19582-40fc-435d-b370-f5d7d1eaf9cf",
+            "isSidechain": false,
+            "promptId": "6e1961ed-12f2-459d-b68f-22ad2edc5d6e",
+            "type": "user",
+            "uuid": "eb9be767-6057-4c09-b96b-13521537da6f",
+            "toolUseResult": {
+              "mode": "content",
+              "numFiles": 0,
+              "filenames": [],
+              "content": "9:\\label{sec:docred-results}",
+              "numLines": 1
+            },
+            "sourceToolAssistantUUID": "d3a19582-40fc-435d-b370-f5d7d1eaf9cf",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T18:48:39.356Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "插入位置确定：`section4_composition_draft.tex` 中，Grammar-First Fallback 段落之后、Decidability Taxonomy 段落之前。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb9be767-6057-4c09-b96b-13521537da6f",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xhUq5cQh1JcRwDYoKp",
+            "type": "assistant",
+            "uuid": "99edc433-7786-43fc-81b1-d45cb761b459",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SiPsQZ6hhAM3zgVNkC8yKj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1410,
+                "cache_read_input_tokens": 29540,
+                "output_tokens": 709,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1410,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 709,
+                    "cache_read_input_tokens": 29540,
+                    "cache_creation_input_tokens": 1410,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1410
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T18:48:52.033Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WPjUAe3VRuSKoNdmcWuGd7",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex",
+                "old_string": "\\paragraph{Decidability Taxonomy.}",
+                "new_string": "\\paragraph{Constraint Tightness.}\n\nWe quantify the restrictiveness of semantic constraints with a per-relation \\emph{tightness} measure.\nFor a relation $r \\in \\mathcal{R}$, let $\\mathcal{V}(r) = \\operatorname{dom}(r) \\times \\operatorname{range}(r)$ denote the set of type pairs $(\\tau^h, \\tau^t)$ permitted by the ontology, and let $\\mathcal{T}$ denote the full entity type vocabulary.\nWe define the tightness of $r$ as:\n%\n\\begin{equation}\\label{eq:tightness}\n  \\tau(r) = 1 - \\frac{|\\mathcal{V}(r)|}{|\\mathcal{T}|^2},\n\\end{equation}\n%\nwhere $\\tau(r) \\in [0, 1]$: $\\tau = 1$ indicates that $r$ admits no valid type pair (a degenerate case), while $\\tau = 0$ means all type combinations are permitted and the semantic mask imposes no additional restriction beyond grammar.\nThe mean tightness $\\bar{\\tau} = \\frac{1}{|\\mathcal{R}|}\\sum_{r \\in \\mathcal{R}} \\tau(r)$ characterizes the overall restrictiveness of an ontology's type constraints.\nIntuitively, tighter constraints cause the semantic mask $S(t)$ to eliminate a larger fraction of grammar-valid tokens at type-bearing positions, increasing the probability that $S(t) \\cap G(t) = \\emptyset$ and triggering the grammar-first fallback.\nConsequently, ontologies with high mean tightness retain higher residual domain/range violation rates despite full constraint enforcement.\nSection~\\ref{sec:docred-results} demonstrates this empirically: DocRED ($\\bar{\\tau} = 0.842$, 5.68 valid pairs per relation) achieves only 45\\% DR reduction, whereas SciERC ($\\bar{\\tau} = 0.333$, 23 valid pairs per relation) achieves 94\\%.\n\n\n\\paragraph{Decidability Taxonomy.}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "99edc433-7786-43fc-81b1-d45cb761b459",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xhUq5cQh1JcRwDYoKp",
+            "type": "assistant",
+            "uuid": "d86babb0-6bb4-4f5a-b84a-7e98808b9f6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01SiPsQZ6hhAM3zgVNkC8yKj",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1410,
+                "cache_read_input_tokens": 29540,
+                "output_tokens": 709,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1410,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 709,
+                    "cache_read_input_tokens": 29540,
+                    "cache_creation_input_tokens": 1410,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1410
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T18:48:52.066Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WPjUAe3VRuSKoNdmcWuGd7",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d86babb0-6bb4-4f5a-b84a-7e98808b9f6f",
+            "isSidechain": false,
+            "promptId": "6e1961ed-12f2-459d-b68f-22ad2edc5d6e",
+            "type": "user",
+            "uuid": "cda119dd-88bc-4390-ad45-b2e1f2c28f9c",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex",
+              "oldString": "\\paragraph{Decidability Taxonomy.}",
+              "newString": "\\paragraph{Constraint Tightness.}\n\nWe quantify the restrictiveness of semantic constraints with a per-relation \\emph{tightness} measure.\nFor a relation $r \\in \\mathcal{R}$, let $\\mathcal{V}(r) = \\operatorname{dom}(r) \\times \\operatorname{range}(r)$ denote the set of type pairs $(\\tau^h, \\tau^t)$ permitted by the ontology, and let $\\mathcal{T}$ denote the full entity type vocabulary.\nWe define the tightness of $r$ as:\n%\n\\begin{equation}\\label{eq:tightness}\n  \\tau(r) = 1 - \\frac{|\\mathcal{V}(r)|}{|\\mathcal{T}|^2},\n\\end{equation}\n%\nwhere $\\tau(r) \\in [0, 1]$: $\\tau = 1$ indicates that $r$ admits no valid type pair (a degenerate case), while $\\tau = 0$ means all type combinations are permitted and the semantic mask imposes no additional restriction beyond grammar.\nThe mean tightness $\\bar{\\tau} = \\frac{1}{|\\mathcal{R}|}\\sum_{r \\in \\mathcal{R}} \\tau(r)$ characterizes the overall restrictiveness of an ontology's type constraints.\nIntuitively, tighter constraints cause the semantic mask $S(t)$ to eliminate a larger fraction of grammar-valid tokens at type-bearing positions, increasing the probability that $S(t) \\cap G(t) = \\emptyset$ and triggering the grammar-first fallback.\nConsequently, ontologies with high mean tightness retain higher residual domain/range violation rates despite full constraint enforcement.\nSection~\\ref{sec:docred-results} demonstrates this empirically: DocRED ($\\bar{\\tau} = 0.842$, 5.68 valid pairs per relation) achieves only 45\\% DR reduction, whereas SciERC ($\\bar{\\tau} = 0.333$, 23 valid pairs per relation) achieves 94\\%.\n\n\n\\paragraph{Decidability Taxonomy.}",
+              "originalFile": "% Section 4 subsection: Constraint Composition\n% Draft — OntoCoDec Framework\n\n\\paragraph{Constraint Composition.}\n\nAt each decoding step $t$, both layers produce a binary token mask over the vocabulary $V$.\nLet $G(t) \\subseteq V$ denote the set of tokens permitted by the grammar layer (valid JSON structure and ontology-vocabulary membership),\nand $S(t) \\subseteq V$ the set permitted by the semantic layer (domain/range type compliance given the current entity registry state).\nThe final mask is their conjunction:\n%\n\\begin{equation}\\label{eq:composition}\n  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n\\end{equation}\n%\nso that a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\nThe conjunction is asymmetric in an important sense: the semantic layer operates \\emph{strictly within} the grammar-valid set, i.e., $S(t)$ is defined only over $G(t)$.\nThis reflects the enabling dependency described in \\S\\ref{sec:overview}: grammar validity is a precondition for semantic enforcement, because the semantic layer must identify the current relation type to look up its domain/range rules—an operation that is only well-defined when the relation type belongs to the ontology vocabulary.\n\n\\paragraph{Grammar-First Fallback.}\n\nThe conjunction in Eq.~\\eqref{eq:composition} requires the precondition $S(t) \\cap G(t) \\neq \\emptyset$: at least one token must be simultaneously grammar-valid and semantically valid.\nWhen this precondition is violated—which can occur under tight ontology constraints where the allowed entity types for a relation do not overlap with the grammar-valid tokens at a particular position—na\\\"{\\i}ve application of the semantic mask sets all grammar-valid tokens to $-\\infty$ while grammar-invalid tokens retain finite (though heavily penalized) logits.\nThe resulting argmax selects a grammar-invalid token, breaking JSON structure.\nWe enforce a \\emph{grammar-first fallback rule}: before applying the semantic mask, we verify that at least one semantically allowed type token has a logit above a grammar-validity threshold $\\tau_g = -10^{8}$.\nIf $S(t) \\cap G(t) = \\emptyset$, semantic masking is skipped entirely, and the grammar layer alone controls token selection.\nThis reflects a deliberate priority ordering: structural integrity (grammar) is a hard constraint, while a type violation is a soft error detectable by downstream validation.\n\n\n\\paragraph{Decidability Taxonomy.}\n\nNot all ontology constraints can be enforced at the same point during autoregressive generation.\nWe classify them by \\emph{when} sufficient information becomes available:\n%\n\\begin{enumerate}[leftmargin=*,nosep]\n  \\item \\textbf{Local constraints} require only the current token. Entity-type and relation-vocabulary membership fall in this class: each candidate token can be checked against the ontology vocabulary independently, which the grammar layer handles via CFG and enum rules.\n  \\item \\textbf{Prefix-decidable constraints} require the current token plus previously generated context. Domain/range constraints are prefix-decidable: once the head entity type and relation type have been generated, the valid tail entity types are fully determined. The semantic layer implements this via a stateful entity registry that tracks decoded types and activates the appropriate logit mask at each type-bearing position.\n  \\item \\textbf{Non-local constraints} require information not yet generated. Forward coreference—where a later mention determines the type of an earlier one—is inherently non-local and falls outside the scope of single-pass left-to-right decoding.\n\\end{enumerate}\n%\nOntoCoDec's two-layer design covers the first two classes: grammar for local, semantic for prefix-decidable. The non-local class motivates the two-pass strategy (S2, \\S\\ref{sec:s2}), which partially addresses cross-field consistency by separating entity extraction from relation generation, though it does not fully resolve forward coreference (\\S\\ref{sec:limitations}).\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 26,
+                  "oldLines": 6,
+                  "newStart": 26,
+                  "newLines": 23,
+                  "lines": [
+                    " This reflects a deliberate priority ordering: structural integrity (grammar) is a hard constraint, while a type violation is a soft error detectable by downstream validation.",
+                    " ",
+                    " ",
+                    "+\\paragraph{Constraint Tightness.}",
+                    "+",
+                    "+We quantify the restrictiveness of semantic constraints with a per-relation \\emph{tightness} measure.",
+                    "+For a relation $r \\in \\mathcal{R}$, let $\\mathcal{V}(r) = \\operatorname{dom}(r) \\times \\operatorname{range}(r)$ denote the set of type pairs $(\\tau^h, \\tau^t)$ permitted by the ontology, and let $\\mathcal{T}$ denote the full entity type vocabulary.",
+                    "+We define the tightness of $r$ as:",
+                    "+%",
+                    "+\\begin{equation}\\label{eq:tightness}",
+                    "+  \\tau(r) = 1 - \\frac{|\\mathcal{V}(r)|}{|\\mathcal{T}|^2},",
+                    "+\\end{equation}",
+                    "+%",
+                    "+where $\\tau(r) \\in [0, 1]$: $\\tau = 1$ indicates that $r$ admits no valid type pair (a degenerate case), while $\\tau = 0$ means all type combinations are permitted and the semantic mask imposes no additional restriction beyond grammar.",
+                    "+The mean tightness $\\bar{\\tau} = \\frac{1}{|\\mathcal{R}|}\\sum_{r \\in \\mathcal{R}} \\tau(r)$ characterizes the overall restrictiveness of an ontology's type constraints.",
+                    "+Intuitively, tighter constraints cause the semantic mask $S(t)$ to eliminate a larger fraction of grammar-valid tokens at type-bearing positions, increasing the probability that $S(t) \\cap G(t) = \\emptyset$ and triggering the grammar-first fallback.",
+                    "+Consequently, ontologies with high mean tightness retain higher residual domain/range violation rates despite full constraint enforcement.",
+                    "+Section~\\ref{sec:docred-results} demonstrates this empirically: DocRED ($\\bar{\\tau} = 0.842$, 5.68 valid pairs per relation) achieves only 45\\% DR reduction, whereas SciERC ($\\bar{\\tau} = 0.333$, 23 valid pairs per relation) achieves 94\\%.",
+                    "+",
+                    "+",
+                    " \\paragraph{Decidability Taxonomy.}",
+                    " ",
+                    " Not all ontology constraints can be enforced at the same point during autoregressive generation."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "d86babb0-6bb4-4f5a-b84a-7e98808b9f6f",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T18:48:52.071Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "cda119dd-88bc-4390-ad45-b2e1f2c28f9c",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "0041d717-b07a-4a70-a70d-5e23bbbdcbf3",
+                "timestamp": "2026-05-14T18:48:52.071Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T18:48:57.686Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加。验证最终文件结构。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0041d717-b07a-4a70-a70d-5e23bbbdcbf3",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xim8tW3qwdRa4hK6vs",
+            "type": "assistant",
+            "uuid": "e99f4efc-0205-425a-b30e-7b9486790158",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ew8TqcL6DQzJZasQfSRvxD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 895,
+                "cache_read_input_tokens": 30950,
+                "output_tokens": 145,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 895,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 145,
+                    "cache_read_input_tokens": 30950,
+                    "cache_creation_input_tokens": 895,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 895
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T18:48:58.317Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013hnzWB32piEAGwZTkNeD4g",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex",
+                "offset": 26,
+                "limit": 30
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e99f4efc-0205-425a-b30e-7b9486790158",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xim8tW3qwdRa4hK6vs",
+            "type": "assistant",
+            "uuid": "471714d5-fd24-400c-b855-4fea7514a682",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ew8TqcL6DQzJZasQfSRvxD",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 895,
+                "cache_read_input_tokens": 30950,
+                "output_tokens": 145,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 895,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 145,
+                    "cache_read_input_tokens": 30950,
+                    "cache_creation_input_tokens": 895,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 895
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T18:48:58.322Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013hnzWB32piEAGwZTkNeD4g",
+              "type": "tool_result",
+              "content": "26\tThis reflects a deliberate priority ordering: structural integrity (grammar) is a hard constraint, while a type violation is a soft error detectable by downstream validation.\n27\t\n28\t\n29\t\\paragraph{Constraint Tightness.}\n30\t\n31\tWe quantify the restrictiveness of semantic constraints with a per-relation \\emph{tightness} measure.\n32\tFor a relation $r \\in \\mathcal{R}$, let $\\mathcal{V}(r) = \\operatorname{dom}(r) \\times \\operatorname{range}(r)$ denote the set of type pairs $(\\tau^h, \\tau^t)$ permitted by the ontology, and let $\\mathcal{T}$ denote the full entity type vocabulary.\n33\tWe define the tightness of $r$ as:\n34\t%\n35\t\\begin{equation}\\label{eq:tightness}\n36\t  \\tau(r) = 1 - \\frac{|\\mathcal{V}(r)|}{|\\mathcal{T}|^2},\n37\t\\end{equation}\n38\t%\n39\twhere $\\tau(r) \\in [0, 1]$: $\\tau = 1$ indicates that $r$ admits no valid type pair (a degenerate case), while $\\tau = 0$ means all type combinations are permitted and the semantic mask imposes no additional restriction beyond grammar.\n40\tThe mean tightness $\\bar{\\tau} = \\frac{1}{|\\mathcal{R}|}\\sum_{r \\in \\mathcal{R}} \\tau(r)$ characterizes the overall restrictiveness of an ontology's type constraints.\n41\tIntuitively, tighter constraints cause the semantic mask $S(t)$ to eliminate a larger fraction of grammar-valid tokens at type-bearing positions, increasing the probability that $S(t) \\cap G(t) = \\emptyset$ and triggering the grammar-first fallback.\n42\tConsequently, ontologies with high mean tightness retain higher residual domain/range violation rates despite full constraint enforcement.\n43\tSection~\\ref{sec:docred-results} demonstrates this empirically: DocRED ($\\bar{\\tau} = 0.842$, 5.68 valid pairs per relation) achieves only 45\\% DR reduction, whereas SciERC ($\\bar{\\tau} = 0.333$, 23 valid pairs per relation) achieves 94\\%.\n44\t\n45\t\n46\t\\paragraph{Decidability Taxonomy.}\n47\t\n48\tNot all ontology constraints can be enforced at the same point during autoregressive generation.\n49\tWe classify them by \\emph{when} sufficient information becomes available:\n50\t%\n51\t\\begin{enumerate}[leftmargin=*,nosep]\n52\t  \\item \\textbf{Local constraints} require only the current token. Entity-type and relation-vocabulary membership fall in this class: each candidate token can be checked against the ontology vocabulary independently, which the grammar layer handles via CFG and enum rules.\n53\t  \\item \\textbf{Prefix-decidable constraints} require the current token plus previously generated context. Domain/range constraints are prefix-decidable: once the head entity type and relation type have been generated, the valid tail entity types are fully determined. The semantic layer implements this via a stateful entity registry that tracks decoded types and activates the appropriate logit mask at each type-bearing position.\n54\t  \\item \\textbf{Non-local constraints} require information not yet generated. Forward coreference—where a later mention determines the type of an earlier one—is inherently non-local and falls outside the scope of single-pass left-to-right decoding.\n55\t\\end{enumerate}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "471714d5-fd24-400c-b855-4fea7514a682",
+            "isSidechain": false,
+            "promptId": "6e1961ed-12f2-459d-b68f-22ad2edc5d6e",
+            "type": "user",
+            "uuid": "edc168de-6907-435f-ac74-6c08972e6720",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex",
+                "content": "This reflects a deliberate priority ordering: structural integrity (grammar) is a hard constraint, while a type violation is a soft error detectable by downstream validation.\n\n\n\\paragraph{Constraint Tightness.}\n\nWe quantify the restrictiveness of semantic constraints with a per-relation \\emph{tightness} measure.\nFor a relation $r \\in \\mathcal{R}$, let $\\mathcal{V}(r) = \\operatorname{dom}(r) \\times \\operatorname{range}(r)$ denote the set of type pairs $(\\tau^h, \\tau^t)$ permitted by the ontology, and let $\\mathcal{T}$ denote the full entity type vocabulary.\nWe define the tightness of $r$ as:\n%\n\\begin{equation}\\label{eq:tightness}\n  \\tau(r) = 1 - \\frac{|\\mathcal{V}(r)|}{|\\mathcal{T}|^2},\n\\end{equation}\n%\nwhere $\\tau(r) \\in [0, 1]$: $\\tau = 1$ indicates that $r$ admits no valid type pair (a degenerate case), while $\\tau = 0$ means all type combinations are permitted and the semantic mask imposes no additional restriction beyond grammar.\nThe mean tightness $\\bar{\\tau} = \\frac{1}{|\\mathcal{R}|}\\sum_{r \\in \\mathcal{R}} \\tau(r)$ characterizes the overall restrictiveness of an ontology's type constraints.\nIntuitively, tighter constraints cause the semantic mask $S(t)$ to eliminate a larger fraction of grammar-valid tokens at type-bearing positions, increasing the probability that $S(t) \\cap G(t) = \\emptyset$ and triggering the grammar-first fallback.\nConsequently, ontologies with high mean tightness retain higher residual domain/range violation rates despite full constraint enforcement.\nSection~\\ref{sec:docred-results} demonstrates this empirically: DocRED ($\\bar{\\tau} = 0.842$, 5.68 valid pairs per relation) achieves only 45\\% DR reduction, whereas SciERC ($\\bar{\\tau} = 0.333$, 23 valid pairs per relation) achieves 94\\%.\n\n\n\\paragraph{Decidability Taxonomy.}\n\nNot all ontology constraints can be enforced at the same point during autoregressive generation.\nWe classify them by \\emph{when} sufficient information becomes available:\n%\n\\begin{enumerate}[leftmargin=*,nosep]\n  \\item \\textbf{Local constraints} require only the current token. Entity-type and relation-vocabulary membership fall in this class: each candidate token can be checked against the ontology vocabulary independently, which the grammar layer handles via CFG and enum rules.\n  \\item \\textbf{Prefix-decidable constraints} require the current token plus previously generated context. Domain/range constraints are prefix-decidable: once the head entity type and relation type have been generated, the valid tail entity types are fully determined. The semantic layer implements this via a stateful entity registry that tracks decoded types and activates the appropriate logit mask at each type-bearing position.\n  \\item \\textbf{Non-local constraints} require information not yet generated. Forward coreference—where a later mention determines the type of an earlier one—is inherently non-local and falls outside the scope of single-pass left-to-right decoding.\n\\end{enumerate}",
+                "numLines": 30,
+                "startLine": 26,
+                "totalLines": 58
+              }
+            },
+            "sourceToolAssistantUUID": "471714d5-fd24-400c-b855-4fea7514a682",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "edc168de-6907-435f-ac74-6c08972e6720",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b"
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add constraint tightness definition to Method section",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b"
+              }
+            }
+          ],
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T18:49:05.679Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已在 `section4_composition_draft.tex` 的 Grammar-First Fallback 与 Decidability Taxonomy 之间插入 Constraint Tightness 定义段落（第 29–43 行）。内容包含：\n\n- τ(r) = 1 − |V(r)| / |T|² 的正式定义与公式（Eq. `\\ref{eq:tightness}`）\n- 值域 [0,1] 的端点解释\n- 均值 τ̄ 的定义\n- 直觉解释：tightness → fallback 概率 → residual DR\n- 引用 §5 DocRED 经验数据（DocRED τ̄=0.842 → DR↓45% vs SciERC τ̄=0.333 → DR↓94%）"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "edc168de-6907-435f-ac74-6c08972e6720",
+            "isSidechain": false,
+            "requestId": "req_011Cb2xjE6s5Vk6DSnvNAGZv",
+            "type": "assistant",
+            "uuid": "9cb96e72-e5c3-4eda-a5d6-569c9d7176ab",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01ErmrHH897QKSdeL4VFZoqk",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1041,
+                "cache_read_input_tokens": 31845,
+                "output_tokens": 224,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1041,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 224,
+                    "cache_read_input_tokens": 31845,
+                    "cache_creation_input_tokens": 1041,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1041
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "9cb96e72-e5c3-4eda-a5d6-569c9d7176ab",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b"
+              }
+            }
+          ],
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Add constraint tightness definition to Method section",
+                "sessionId": "792fd5d1-8e08-4b1e-aa48-18870a6d752b"
+              }
+            }
+          ],
+          "id": "event-000038"
+        }
+      ],
+      "message_count": 36
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-schema-semantic-constrained-ie-westd-16980-ssh-root-ssh-execut-copy-175.md"
+}

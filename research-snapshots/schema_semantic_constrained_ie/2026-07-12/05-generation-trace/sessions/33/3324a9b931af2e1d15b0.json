@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3324a9b931af2e1d15b0",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: trace-verdict-study ## 运行环境 - 服务器名: autodl-rtxpro6000 - SSH 账户: root（调用 ssh_execute / submit_tra",
+  "task_key": "42b07ba3-4da9-4349-89de-03b6bd5c114b",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/42b07ba3-4da9-4349-89de-03b6bd5c114b.jsonl",
+    "occurrence": 1,
+    "bytes": 841869,
+    "sha256": "810526a9e746d01324696d4c76d2e86d60b0de1c7181f6a66b784f6454cd40c7"
+  },
+  "statistics": {
+    "messages": 233,
+    "user_turns": 1,
+    "tool_calls": 60,
+    "roles": {
+      "record": 55,
+      "user": 1,
+      "assistant": 57,
+      "tool_call": 60,
+      "tool_result": 60
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "3324a9b931af2e1d15b0-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 231,
+      "chunks": [
+        {
+          "path": "3324a9b931af2e1d15b0-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "3324a9b931af2e1d15b0-part-0002.json",
+          "message_count": 85
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-trace-verdict-study-autodl-rtxpro6000-ssh-root-ssh-execute-sub-copy-11.md"
+}

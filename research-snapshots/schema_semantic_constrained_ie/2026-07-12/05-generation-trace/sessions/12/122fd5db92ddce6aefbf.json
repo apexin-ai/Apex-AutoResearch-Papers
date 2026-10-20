@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "122fd5db92ddce6aefbf",
+  "project": "schema_semantic_constrained_ie--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目方向：ProvUIE - 将 evidence-span co-prediction 作为 GRPO 可验证奖励。核心差异化：在结构抽取正确性基础上新增 evidence provenance 维度（NL",
+  "task_key": "a4d294db-4292-4d75-890e-170b69ee37a6",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-1/a4d294db-4292-4d75-890e-170b69ee37a6.jsonl",
+    "occurrence": 1,
+    "bytes": 1097310,
+    "sha256": "37706eeecc50026a707fd9cb8f9780c950e3c7845fa2bd77011445f8161ac62e"
+  },
+  "statistics": {
+    "messages": 429,
+    "user_turns": 1,
+    "tool_calls": 116,
+    "roles": {
+      "record": 81,
+      "user": 1,
+      "assistant": 115,
+      "tool_call": 116,
+      "tool_result": 116
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "122fd5db92ddce6aefbf-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 427,
+      "chunks": [
+        {
+          "path": "122fd5db92ddce6aefbf-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "122fd5db92ddce6aefbf-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "122fd5db92ddce6aefbf-part-0003.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-provuie-evidence-span-co-prediction-grpo-evidence-provenance-nl.md"
+}

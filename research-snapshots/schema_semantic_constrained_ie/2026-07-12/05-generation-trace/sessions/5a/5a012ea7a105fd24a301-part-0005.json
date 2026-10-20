@@ -1,0 +1,44 @@
+{
+  "schema_version": "1.0",
+  "session_id": "5a012ea7a105fd24a301",
+  "rounds": [
+    {
+      "number": 122,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "🛠️ **响应方式**：本条催促**必须**通过调用 `keepalive_respond` 工具回复。 调用规范：   • `keepalive_respond(kind=\"ACK\", minutes=X, detail=\"具体行动\")`   • `keepalive_respond(kind=\"WAIT\", minutes=X, detail=\"等什么\")`   • `keepalive_r…",
+                "leafUuid": "0e7a2506-1f5e-475d-b175-f49fae889b56",
+                "sessionId": "5e6c6407-2de3-4c8b-a490-23ba8dd91678"
+              }
+            }
+          ],
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review response handling for grpo and nli experiments",
+                "sessionId": "5e6c6407-2de3-4c8b-a490-23ba8dd91678"
+              }
+            }
+          ],
+          "id": "event-000722"
+        }
+      ]
+    }
+  ]
+}

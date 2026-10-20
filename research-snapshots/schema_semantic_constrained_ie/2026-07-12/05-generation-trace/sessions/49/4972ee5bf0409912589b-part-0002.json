@@ -1,0 +1,366 @@
+{
+  "schema_version": "1.0",
+  "session_id": "4972ee5bf0409912589b",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-21T03:42:43.418Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01PRQoLpnddpj5Wy22f3a5Js",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/r16_verification/task_d_gollie_comparison.json",
+                "content": "{\n  \"task\": \"D: GoLLIE Head-to-Head Comparison on SciERC\",\n  \"option_used\": 2,\n  \"option_decision_reasoning\": \"Option 1 (running GoLLIE prompt on our model with OntoCoDec constraints) is infeasible because: (1) GoLLIE outputs Python dataclass format (e.g., Task(span='...'), UsedFor(arg1='...', arg2='...')), while OntoCoDec's FSM-based constraint processor is built for JSON output format; adapting it would require rewriting the entire grammar/FSM. (2) We already have GoLLIE-7B experimental results from D063 (ran GoLLIE-7B natively on SciERC). Option 2 enhanced: we use our own GoLLIE-7B experiment data plus published numbers from GoLLIE and KnowCoder papers.\",\n\n  \"published_numbers_analysis\": {\n    \"gollie_paper\": {\n      \"source\": \"Sainz et al., ICLR 2024 - GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\n      \"scierc_evaluated\": false,\n      \"note\": \"GoLLIE does NOT evaluate on SciERC. SciERC is not among their 18 evaluation datasets. They evaluate on ACE05, BC5CDR, CoNLL03, DIANN, NCBIDisease, Ontonotes5, RAMS, TACRED, WNUT17 (training), and BroadTwitter, CASIE, CrossNER, E3C, FabNER, HarveyNER, MIT Movie/Restaurants, MultiNERD, WikiEvents (zero-shot).\",\n      \"published_zs_average_f1\": {\n        \"baseline_7B\": 42.3,\n        \"gollie_7B\": 55.3,\n        \"gollie_13B\": 56.0,\n        \"gollie_34B\": 57.2\n      },\n      \"schema_compliance\": \"Both parse failures and hallucinations occur in less than 1% of predictions across all zero-shot datasets (Table 8, Appendix C).\"\n    },\n    \"knowcoder_paper\": {\n      \"source\": \"Li et al., ACL 2024 - KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\",\n      \"scierc_re_f1_supervised\": 40.0,\n      \"model\": \"KnowCoder-7B (LLaMA2-7B base)\",\n      \"note\": \"Supervised (fine-tuned) result. Entity F1 on SciERC not reported. Previous SoTA was 37.4.\"\n    }\n  },\n\n  \"our_gollie_experiment\": {\n    \"experiment_id\": \"D063\",\n    \"setup\": {\n      \"model\": \"GoLLIE-7B (HiTZ/GoLLIE-7B, based on CodeLlama-7B)\",\n      \"dataset\": \"SciERC test set (100 documents, 551 sentences)\",\n      \"prompt_format\": \"Python dataclass definitions with docstring guidelines (GoLLIE native format)\",\n      \"decoding\": \"Greedy (num_beams=1, do_sample=False), max_new_tokens=512\",\n      \"setting\": \"Zero-shot (GoLLIE was fine-tuned on other IE datasets but NOT on SciERC)\"\n    },\n    \"results\": {\n      \"E_F1\": 9.17,\n      \"E_P\": 33.61,\n      \"E_R\": 5.31,\n      \"R_F1\": 0.0,\n      \"R_P\": 0.0,\n      \"R_R\": 0.0,\n      \"ET_pct\": 0.0,\n      \"RV_pct\": 0.0,\n      \"DR_pct\": 0.0,\n      \"CF_pct\": 0.83,\n      \"total_pred_entities\": 241,\n      \"total_pred_relations\": 5,\n      \"total_gold_entities\": 1525,\n      \"total_gold_relations\": 971,\n      \"docs_with_output\": 54,\n      \"docs_with_relations\": 2,\n      \"evaluation_granularity\": \"document-level (100 docs)\"\n    }\n  },\n\n  \"comparison_table_document_level\": {\n    \"note\": \"All rows evaluated at document level (100 docs) for consistent comparison. Violation rates (ET%, RV%, DR%, CF%) for OntoCoDec come from per-sentence d066 evaluation which includes DR% computation.\",\n    \"rows\": [\n      {\n        \"method\": \"GoLLIE\",\n        \"model\": \"CodeLlama-7B (GoLLIE-7B)\",\n        \"setting\": \"ZS\",\n        \"E_F1\": 9.17,\n        \"R_F1\": 0.0,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 0.0,\n        \"CF_pct\": 0.83,\n        \"pred_entities\": 241,\n        \"pred_relations\": 5\n      },\n      {\n        \"method\": \"OntoCoDec (unc)\",\n        \"model\": \"Qwen-3-8B\",\n        \"setting\": \"ZS\",\n        \"E_F1\": 31.39,\n        \"R_F1\": 8.25,\n        \"ET_pct\": 0.40,\n        \"RV_pct\": 1.39,\n        \"DR_pct\": 15.37,\n        \"CF_pct\": 0.04,\n        \"pred_entities\": 2342,\n        \"pred_relations\": 1721\n      },\n      {\n        \"method\": \"OntoCoDec (S1)\",\n        \"model\": \"Qwen-3-8B\",\n        \"setting\": \"ZS\",\n        \"E_F1\": 31.45,\n        \"R_F1\": 8.38,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 0.93,\n        \"CF_pct\": 1.62,\n        \"pred_entities\": 2342,\n        \"pred_relations\": 1726\n      },\n      {\n        \"method\": \"KnowCoder\",\n        \"model\": \"LLaMA2-7B (KnowCoder-7B)\",\n        \"setting\": \"FT\",\n        \"E_F1\": null,\n        \"R_F1\": 40.0,\n        \"ET_pct\": null,\n        \"RV_pct\": null,\n        \"DR_pct\": null,\n        \"CF_pct\": null,\n        \"pred_entities\": null,\n        \"pred_relations\": null,\n        \"source\": \"published (Li et al., ACL 2024)\"\n      },\n      {\n        \"method\": \"OntoCoDec (unc)\",\n        \"model\": \"Qwen-3-8B\",\n        \"setting\": \"FT\",\n        \"E_F1\": 66.43,\n        \"R_F1\": 43.79,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 1.95,\n        \"CF_pct\": 0.0,\n        \"pred_entities\": 1639,\n        \"pred_relations\": 1121\n      },\n      {\n        \"method\": \"OntoCoDec (S1)\",\n        \"model\": \"Qwen-3-8B\",\n        \"setting\": \"FT\",\n        \"E_F1\": 66.43,\n        \"R_F1\": 43.69,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 0.0,\n        \"CF_pct\": 0.45,\n        \"pred_entities\": 1639,\n        \"pred_relations\": 1121\n      },\n      {\n        \"method\": \"OntoCoDec (unc)\",\n        \"model\": \"Llama-3.1-8B\",\n        \"setting\": \"FT\",\n        \"E_F1\": 67.09,\n        \"R_F1\": 45.45,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 1.11,\n        \"CF_pct\": 0.0,\n        \"pred_entities\": 1605,\n        \"pred_relations\": 1071\n      },\n      {\n        \"method\": \"OntoCoDec (S1)\",\n        \"model\": \"Llama-3.1-8B\",\n        \"setting\": \"FT\",\n        \"E_F1\": 67.09,\n        \"R_F1\": 45.47,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 0.09,\n        \"CF_pct\": 0.23,\n        \"pred_entities\": 1605,\n        \"pred_relations\": 1070\n      }\n    ]\n  },\n\n  \"analysis\": {\n    \"key_findings\": [\n      \"GoLLIE-7B achieves perfect type-level compliance (ET=0%, RV=0%, DR=0%) through Python dataclass output format, but at catastrophic cost to extraction coverage: E-F1=9.17%, R-F1=0.0%. Only 241/1525 entities and 5/971 relations extracted.\",\n      \"OntoCoDec unconstrained (Qwen ZS) achieves 3.4x higher E-F1 (31.39%) and meaningful R-F1 (8.25%) despite having measurable violations (DR=15.37%, ET=0.4%, RV=1.39%).\",\n      \"OntoCoDec S1 constraints eliminate ET and RV violations completely while reducing DR from 15.37% to 0.93%, with no F1 degradation (actually +0.06 E-F1, +0.13 R-F1).\",\n      \"With fine-tuning, OntoCoDec (Llama FT+S1) achieves R-F1=45.47% -- surpassing KnowCoder's published 40.0% supervised result, while maintaining DR=0.09%.\",\n      \"GoLLIE's code-format approach and OntoCoDec's constrained decoding address schema compliance from opposite ends: GoLLIE constrains the output format (structural compliance), while OntoCoDec constrains the content generation (semantic compliance). GoLLIE eliminates type vocabulary violations by construction but cannot ensure domain-range validity or extraction coverage.\"\n    ],\n    \"complementarity_argument\": \"Schema-aware prompting (GoLLIE-style) and constrained decoding (OntoCoDec) are complementary approaches to schema compliance: (1) GoLLIE ensures structural compliance via output format but provides no coverage guarantee -- 45% of documents produce empty output. (2) OntoCoDec ensures semantic compliance via token-level constraints during generation, maintaining extraction coverage while eliminating violations. (3) In principle, combining both (schema-aware prompts + constrained decoding) could provide both structural and semantic guarantees, though adapting the constraint processor for Python-format output would require significant engineering.\",\n    \"caveats\": [\n      \"GoLLIE-7B uses CodeLlama-7B base; our models use Qwen-3-8B and Llama-3.1-8B. While similar in size, architecture differences may affect results.\",\n      \"GoLLIE was fine-tuned on 9 IE datasets (not including SciERC), so this is a zero-shot transfer evaluation, not a cold zero-shot.\",\n      \"GoLLIE processes entire documents while our model processes per-sentence. The document-level F1 evaluation reported here uses consistent methodology for both.\",\n      \"GoLLIE's published paper does not include SciERC results, so our GoLLIE-7B evaluation is an original experiment using their released model.\",\n      \"KnowCoder's R-F1=40.0 is a supervised result and uses a different relation extraction setup (may not be directly comparable).\"\n    ]\n  },\n\n  \"artifacts\": {\n    \"gollie_raw_outputs\": \"/root/schema_semantic_constrained_ie/outputs/gollie_scierc/raw_outputs.jsonl\",\n    \"gollie_violation_results\": \"/root/schema_semantic_constrained_ie/outputs/gollie_scierc/violation_results.json\",\n    \"gollie_f1_results\": \"/root/schema_semantic_constrained_ie/outputs/gollie_scierc/eval_f1_results.json\",\n    \"comparison_results\": \"/root/schema_semantic_constrained_ie/outputs/gollie_scierc/comparison_results.json\",\n    \"eval_script\": \"/root/schema_semantic_constrained_ie/scripts/eval_gollie_scierc.py\",\n    \"comparison_script\": \"/root/schema_semantic_constrained_ie/scripts/eval_gollie_comparison.py\"\n  }\n}\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "97f40bb7-6574-4093-b7ba-d5d34146900e",
+            "isSidechain": false,
+            "requestId": "req_011CbF2BQ5kqxz2t4JNGxmom",
+            "type": "assistant",
+            "uuid": "6a227e00-8291-4899-956f-ce46d76ce5ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "af44d132-4c61-4002-bf9c-78f13dc09c0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016hpLf6Yhu4PF9SqLhWP4RL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 502,
+                "cache_read_input_tokens": 95006,
+                "output_tokens": 3431,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 502,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 3431,
+                    "cache_read_input_tokens": 95006,
+                    "cache_creation_input_tokens": 502,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 502
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": "2026-05-21T03:42:43.486Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01PRQoLpnddpj5Wy22f3a5Js",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/r16_verification/task_d_gollie_comparison.json"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6a227e00-8291-4899-956f-ce46d76ce5ce",
+            "isSidechain": false,
+            "promptId": "035713e4-6ca6-4c40-96cf-de50e107eab8",
+            "type": "user",
+            "uuid": "f31859ac-f736-4a01-b44d-01246bb5e5ac",
+            "toolUseResult": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/r16_verification/task_d_gollie_comparison.json",
+              "content": "{\n  \"task\": \"D: GoLLIE Head-to-Head Comparison on SciERC\",\n  \"option_used\": 2,\n  \"option_decision_reasoning\": \"Option 1 (running GoLLIE prompt on our model with OntoCoDec constraints) is infeasible because: (1) GoLLIE outputs Python dataclass format (e.g., Task(span='...'), UsedFor(arg1='...', arg2='...')), while OntoCoDec's FSM-based constraint processor is built for JSON output format; adapting it would require rewriting the entire grammar/FSM. (2) We already have GoLLIE-7B experimental results from D063 (ran GoLLIE-7B natively on SciERC). Option 2 enhanced: we use our own GoLLIE-7B experiment data plus published numbers from GoLLIE and KnowCoder papers.\",\n\n  \"published_numbers_analysis\": {\n    \"gollie_paper\": {\n      \"source\": \"Sainz et al., ICLR 2024 - GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\",\n      \"scierc_evaluated\": false,\n      \"note\": \"GoLLIE does NOT evaluate on SciERC. SciERC is not among their 18 evaluation datasets. They evaluate on ACE05, BC5CDR, CoNLL03, DIANN, NCBIDisease, Ontonotes5, RAMS, TACRED, WNUT17 (training), and BroadTwitter, CASIE, CrossNER, E3C, FabNER, HarveyNER, MIT Movie/Restaurants, MultiNERD, WikiEvents (zero-shot).\",\n      \"published_zs_average_f1\": {\n        \"baseline_7B\": 42.3,\n        \"gollie_7B\": 55.3,\n        \"gollie_13B\": 56.0,\n        \"gollie_34B\": 57.2\n      },\n      \"schema_compliance\": \"Both parse failures and hallucinations occur in less than 1% of predictions across all zero-shot datasets (Table 8, Appendix C).\"\n    },\n    \"knowcoder_paper\": {\n      \"source\": \"Li et al., ACL 2024 - KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\",\n      \"scierc_re_f1_supervised\": 40.0,\n      \"model\": \"KnowCoder-7B (LLaMA2-7B base)\",\n      \"note\": \"Supervised (fine-tuned) result. Entity F1 on SciERC not reported. Previous SoTA was 37.4.\"\n    }\n  },\n\n  \"our_gollie_experiment\": {\n    \"experiment_id\": \"D063\",\n    \"setup\": {\n      \"model\": \"GoLLIE-7B (HiTZ/GoLLIE-7B, based on CodeLlama-7B)\",\n      \"dataset\": \"SciERC test set (100 documents, 551 sentences)\",\n      \"prompt_format\": \"Python dataclass definitions with docstring guidelines (GoLLIE native format)\",\n      \"decoding\": \"Greedy (num_beams=1, do_sample=False), max_new_tokens=512\",\n      \"setting\": \"Zero-shot (GoLLIE was fine-tuned on other IE datasets but NOT on SciERC)\"\n    },\n    \"results\": {\n      \"E_F1\": 9.17,\n      \"E_P\": 33.61,\n      \"E_R\": 5.31,\n      \"R_F1\": 0.0,\n      \"R_P\": 0.0,\n      \"R_R\": 0.0,\n      \"ET_pct\": 0.0,\n      \"RV_pct\": 0.0,\n      \"DR_pct\": 0.0,\n      \"CF_pct\": 0.83,\n      \"total_pred_entities\": 241,\n      \"total_pred_relations\": 5,\n      \"total_gold_entities\": 1525,\n      \"total_gold_relations\": 971,\n      \"docs_with_output\": 54,\n      \"docs_with_relations\": 2,\n      \"evaluation_granularity\": \"document-level (100 docs)\"\n    }\n  },\n\n  \"comparison_table_document_level\": {\n    \"note\": \"All rows evaluated at document level (100 docs) for consistent comparison. Violation rates (ET%, RV%, DR%, CF%) for OntoCoDec come from per-sentence d066 evaluation which includes DR% computation.\",\n    \"rows\": [\n      {\n        \"method\": \"GoLLIE\",\n        \"model\": \"CodeLlama-7B (GoLLIE-7B)\",\n        \"setting\": \"ZS\",\n        \"E_F1\": 9.17,\n        \"R_F1\": 0.0,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 0.0,\n        \"CF_pct\": 0.83,\n        \"pred_entities\": 241,\n        \"pred_relations\": 5\n      },\n      {\n        \"method\": \"OntoCoDec (unc)\",\n        \"model\": \"Qwen-3-8B\",\n        \"setting\": \"ZS\",\n        \"E_F1\": 31.39,\n        \"R_F1\": 8.25,\n        \"ET_pct\": 0.40,\n        \"RV_pct\": 1.39,\n        \"DR_pct\": 15.37,\n        \"CF_pct\": 0.04,\n        \"pred_entities\": 2342,\n        \"pred_relations\": 1721\n      },\n      {\n        \"method\": \"OntoCoDec (S1)\",\n        \"model\": \"Qwen-3-8B\",\n        \"setting\": \"ZS\",\n        \"E_F1\": 31.45,\n        \"R_F1\": 8.38,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 0.93,\n        \"CF_pct\": 1.62,\n        \"pred_entities\": 2342,\n        \"pred_relations\": 1726\n      },\n      {\n        \"method\": \"KnowCoder\",\n        \"model\": \"LLaMA2-7B (KnowCoder-7B)\",\n        \"setting\": \"FT\",\n        \"E_F1\": null,\n        \"R_F1\": 40.0,\n        \"ET_pct\": null,\n        \"RV_pct\": null,\n        \"DR_pct\": null,\n        \"CF_pct\": null,\n        \"pred_entities\": null,\n        \"pred_relations\": null,\n        \"source\": \"published (Li et al., ACL 2024)\"\n      },\n      {\n        \"method\": \"OntoCoDec (unc)\",\n        \"model\": \"Qwen-3-8B\",\n        \"setting\": \"FT\",\n        \"E_F1\": 66.43,\n        \"R_F1\": 43.79,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 1.95,\n        \"CF_pct\": 0.0,\n        \"pred_entities\": 1639,\n        \"pred_relations\": 1121\n      },\n      {\n        \"method\": \"OntoCoDec (S1)\",\n        \"model\": \"Qwen-3-8B\",\n        \"setting\": \"FT\",\n        \"E_F1\": 66.43,\n        \"R_F1\": 43.69,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 0.0,\n        \"CF_pct\": 0.45,\n        \"pred_entities\": 1639,\n        \"pred_relations\": 1121\n      },\n      {\n        \"method\": \"OntoCoDec (unc)\",\n        \"model\": \"Llama-3.1-8B\",\n        \"setting\": \"FT\",\n        \"E_F1\": 67.09,\n        \"R_F1\": 45.45,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 1.11,\n        \"CF_pct\": 0.0,\n        \"pred_entities\": 1605,\n        \"pred_relations\": 1071\n      },\n      {\n        \"method\": \"OntoCoDec (S1)\",\n        \"model\": \"Llama-3.1-8B\",\n        \"setting\": \"FT\",\n        \"E_F1\": 67.09,\n        \"R_F1\": 45.47,\n        \"ET_pct\": 0.0,\n        \"RV_pct\": 0.0,\n        \"DR_pct\": 0.09,\n        \"CF_pct\": 0.23,\n        \"pred_entities\": 1605,\n        \"pred_relations\": 1070\n      }\n    ]\n  },\n\n  \"analysis\": {\n    \"key_findings\": [\n      \"GoLLIE-7B achieves perfect type-level compliance (ET=0%, RV=0%, DR=0%) through Python dataclass output format, but at catastrophic cost to extraction coverage: E-F1=9.17%, R-F1=0.0%. Only 241/1525 entities and 5/971 relations extracted.\",\n      \"OntoCoDec unconstrained (Qwen ZS) achieves 3.4x higher E-F1 (31.39%) and meaningful R-F1 (8.25%) despite having measurable violations (DR=15.37%, ET=0.4%, RV=1.39%).\",\n      \"OntoCoDec S1 constraints eliminate ET and RV violations completely while reducing DR from 15.37% to 0.93%, with no F1 degradation (actually +0.06 E-F1, +0.13 R-F1).\",\n      \"With fine-tuning, OntoCoDec (Llama FT+S1) achieves R-F1=45.47% -- surpassing KnowCoder's published 40.0% supervised result, while maintaining DR=0.09%.\",\n      \"GoLLIE's code-format approach and OntoCoDec's constrained decoding address schema compliance from opposite ends: GoLLIE constrains the output format (structural compliance), while OntoCoDec constrains the content generation (semantic compliance). GoLLIE eliminates type vocabulary violations by construction but cannot ensure domain-range validity or extraction coverage.\"\n    ],\n    \"complementarity_argument\": \"Schema-aware prompting (GoLLIE-style) and constrained decoding (OntoCoDec) are complementary approaches to schema compliance: (1) GoLLIE ensures structural compliance via output format but provides no coverage guarantee -- 45% of documents produce empty output. (2) OntoCoDec ensures semantic compliance via token-level constraints during generation, maintaining extraction coverage while eliminating violations. (3) In principle, combining both (schema-aware prompts + constrained decoding) could provide both structural and semantic guarantees, though adapting the constraint processor for Python-format output would require significant engineering.\",\n    \"caveats\": [\n      \"GoLLIE-7B uses CodeLlama-7B base; our models use Qwen-3-8B and Llama-3.1-8B. While similar in size, architecture differences may affect results.\",\n      \"GoLLIE was fine-tuned on 9 IE datasets (not including SciERC), so this is a zero-shot transfer evaluation, not a cold zero-shot.\",\n      \"GoLLIE processes entire documents while our model processes per-sentence. The document-level F1 evaluation reported here uses consistent methodology for both.\",\n      \"GoLLIE's published paper does not include SciERC results, so our GoLLIE-7B evaluation is an original experiment using their released model.\",\n      \"KnowCoder's R-F1=40.0 is a supervised result and uses a different relation extraction setup (may not be directly comparable).\"\n    ]\n  },\n\n  \"artifacts\": {\n    \"gollie_raw_outputs\": \"/root/schema_semantic_constrained_ie/outputs/gollie_scierc/raw_outputs.jsonl\",\n    \"gollie_violation_results\": \"/root/schema_semantic_constrained_ie/outputs/gollie_scierc/violation_results.json\",\n    \"gollie_f1_results\": \"/root/schema_semantic_constrained_ie/outputs/gollie_scierc/eval_f1_results.json\",\n    \"comparison_results\": \"/root/schema_semantic_constrained_ie/outputs/gollie_scierc/comparison_results.json\",\n    \"eval_script\": \"/root/schema_semantic_constrained_ie/scripts/eval_gollie_scierc.py\",\n    \"comparison_script\": \"/root/schema_semantic_constrained_ie/scripts/eval_gollie_comparison.py\"\n  }\n}\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            },
+            "sourceToolAssistantUUID": "6a227e00-8291-4899-956f-ce46d76ce5ce",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "af44d132-4c61-4002-bf9c-78f13dc09c0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000172"
+        },
+        {
+          "source_line": 173,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "f31859ac-f736-4a01-b44d-01246bb5e5ac",
+                "sessionId": "af44d132-4c61-4002-bf9c-78f13dc09c0c"
+              }
+            }
+          ],
+          "id": "event-000173"
+        },
+        {
+          "source_line": 174,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Compare OntoCoDec with GoLLIE on SciERC",
+                "sessionId": "af44d132-4c61-4002-bf9c-78f13dc09c0c"
+              }
+            }
+          ],
+          "id": "event-000174"
+        },
+        {
+          "source_line": 175,
+          "timestamp": "2026-05-21T03:42:50.251Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JNccnWffsGB2xYkbtUn19A",
+              "name": "mcp__agent-ml-research__register_artifact",
+              "input": {
+                "name": "task_d_gollie_comparison",
+                "type": "report",
+                "description": "GoLLIE vs OntoCoDec head-to-head comparison on SciERC: F1 metrics, violation rates, and complementarity analysis. Option 2 used (GoLLIE-7B experiment + published numbers).",
+                "project": "schema_semantic_constrained_ie",
+                "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/r16_verification/task_d_gollie_comparison.json",
+                "tags": [
+                  "gollie",
+                  "comparison",
+                  "scierc",
+                  "r16",
+                  "verification"
+                ]
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f31859ac-f736-4a01-b44d-01246bb5e5ac",
+            "isSidechain": false,
+            "requestId": "req_011CbF2HRy2mVfLCFBzvAzh6",
+            "type": "assistant",
+            "uuid": "d2e36a52-129d-4275-b49a-512ff318b2ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "af44d132-4c61-4002-bf9c-78f13dc09c0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01QMqKKpaph16KebGCbvCrUd",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3496,
+                "cache_read_input_tokens": 95508,
+                "output_tokens": 282,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3496,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 282,
+                    "cache_read_input_tokens": 95508,
+                    "cache_creation_input_tokens": 3496,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3496
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000175"
+        },
+        {
+          "source_line": 176,
+          "timestamp": "2026-05-21T03:42:50.569Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JNccnWffsGB2xYkbtUn19A",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_d07353\\\", \\\"name\\\": \\\"task_d_gollie_comparison\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"GoLLIE vs OntoCoDec head-to-head comparison on SciERC: F1 metrics, violation rates, and complementarity analysis. Option 2 used (GoLLIE-7B experiment + published numbers).\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/report/task_d_gollie_comparison.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:42:50.261155+00:00\\\", \\\"tags\\\": [\\\"gollie\\\", \\\"comparison\\\", \\\"scierc\\\", \\\"r16\\\", \\\"verification\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d2e36a52-129d-4275-b49a-512ff318b2ea",
+            "isSidechain": false,
+            "promptId": "035713e4-6ca6-4c40-96cf-de50e107eab8",
+            "type": "user",
+            "uuid": "e37b60d4-f8fe-4dc8-8a25-42affbb7cef9",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260521_d07353\\\", \\\"name\\\": \\\"task_d_gollie_comparison\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"GoLLIE vs OntoCoDec head-to-head comparison on SciERC: F1 metrics, violation rates, and complementarity analysis. Option 2 used (GoLLIE-7B experiment + published numbers).\\\", \\\"path\\\": \\\"projects/schema_semantic_constrained_ie/artifacts/_project/report/task_d_gollie_comparison.json\\\", \\\"url\\\": null, \\\"project\\\": \\\"schema_semantic_constrained_ie\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-21T03:42:50.261155+00:00\\\", \\\"tags\\\": [\\\"gollie\\\", \\\"comparison\\\", \\\"scierc\\\", \\\"r16\\\", \\\"verification\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260521_d07353\", \"name\": \"task_d_gollie_comparison\", \"type\": \"report\", \"description\": \"GoLLIE vs OntoCoDec head-to-head comparison on SciERC: F1 metrics, violation rates, and complementarity analysis. Option 2 used (GoLLIE-7B experiment + published numbers).\", \"path\": \"projects/schema_semantic_constrained_ie/artifacts/_project/report/task_d_gollie_comparison.json\", \"url\": null, \"project\": \"schema_semantic_constrained_ie\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-21T03:42:50.261155+00:00\", \"tags\": [\"gollie\", \"comparison\", \"scierc\", \"r16\", \"verification\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "d2e36a52-129d-4275-b49a-512ff318b2ea",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "af44d132-4c61-4002-bf9c-78f13dc09c0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000176"
+        },
+        {
+          "source_line": 177,
+          "timestamp": "2026-05-21T03:43:04.294Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心结果：\n\n**Option 2 adopted** — GoLLIE prompt格式与OntoCoDec的JSON FSM约束不兼容，无法直接组合。改用已有的GoLLIE-7B实验数据(D063) + 论文公开数据。\n\n**关键对比 (document-level, SciERC):**\n\n| Method | Model | Setting | E-F1 | R-F1 | DR% | ET% |\n|--------|-------|---------|------|------|-----|-----|\n| GoLLIE | CodeLlama-7B | ZS | 9.17 | 0.0 | 0.0 | 0.0 |\n| OntoCoDec unc | Qwen-3-8B | ZS | 31.39 | 8.25 | 15.37 | 0.40 |\n| OntoCoDec S1 | Qwen-3-8B | ZS | 31.45 | 8.38 | 0.93 | 0.0 |\n| KnowCoder | LLaMA2-7B | FT | - | 40.0 | - | - |\n| OntoCoDec S1 | Llama-3.1-8B | FT | 67.09 | 45.47 | 0.09 | 0.0 |\n\n**核心发现：**\n- GoLLIE通过Python dataclass格式获得0%类型违规，但F1极低（E-F1=9.17%, R-F1=0%, 45%文档空输出）\n- OntoCoDec S1在保持F1的同时消除ET/RV违规，DR从15.37%降至0.93%\n- OntoCoDec FT+S1 (R-F1=45.47) 超过KnowCoder公开的40.0\n- 两种方法互补：GoLLIE约束输出格式（结构合规），OntoCoDec约束生成内容（语义合规）\n\nGoLLIE论文未评估SciERC，我们的GoLLIE-7B实验是原创数据。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e37b60d4-f8fe-4dc8-8a25-42affbb7cef9",
+            "isSidechain": false,
+            "requestId": "req_011CbF2Hx7kU5N7rfDBUyaJc",
+            "type": "assistant",
+            "uuid": "2fc83e28-17b2-4061-b8af-679c323357ac",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie",
+            "sessionId": "af44d132-4c61-4002-bf9c-78f13dc09c0c",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FWcrrFtnaQw2cYVeR6EZFP",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 598,
+                "cache_read_input_tokens": 99004,
+                "output_tokens": 575,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 598,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 575,
+                    "cache_read_input_tokens": 99004,
+                    "cache_creation_input_tokens": 598,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 598
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000177"
+        },
+        {
+          "source_line": 178,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "leafUuid": "2fc83e28-17b2-4061-b8af-679c323357ac",
+                "sessionId": "af44d132-4c61-4002-bf9c-78f13dc09c0c"
+              }
+            }
+          ],
+          "id": "event-000178"
+        },
+        {
+          "source_line": 179,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Compare OntoCoDec with GoLLIE on SciERC",
+                "sessionId": "af44d132-4c61-4002-bf9c-78f13dc09c0c"
+              }
+            }
+          ],
+          "id": "event-000179"
+        }
+      ]
+    }
+  ]
+}
