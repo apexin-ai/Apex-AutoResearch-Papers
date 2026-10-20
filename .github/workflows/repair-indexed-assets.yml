@@ -1,0 +1,33 @@
+name: Restore omitted indexed research files
+on:
+  workflow_dispatch:
+    inputs:
+      repair_manifest:
+        description: Expiring S3 URLs and verified source metadata for affected workspace archives
+        required: true
+        type: string
+permissions:
+  contents: write
+concurrency:
+  group: research-asset-release
+  cancel-in-progress: false
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /*
+            !/paper-assets/
+            !/research-snapshots/
+            !/supplementary/
+          persist-credentials: false
+      - name: Extract, verify, upload, and clean indexed files
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/repair_missing_indexed_assets.py
