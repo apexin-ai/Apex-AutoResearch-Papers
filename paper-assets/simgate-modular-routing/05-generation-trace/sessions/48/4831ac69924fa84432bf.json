@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4831ac69924fa84432bf",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp vllm resubmit v2",
+  "task_key": "worker_exp_vllm-resubmit-v2_20260513T071255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_vllm-resubmit-v2_20260513T071255_result.json",
+    "occurrence": 1,
+    "bytes": 643,
+    "sha256": "1fe89145a82a30c2801b058953651181aedc66961d8bed59a69ec70b36a620af"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n1. **GPU1 清理** — 成功。杀掉了旧 tmux 会话 `mvp-p1-gpu1` + 残留的 vLLM EngineCore 进程 (PID 145984, 占 27892 MiB)\n2. **vLLM 验证** — 通过。根因：`llm_agent.py:195` 用 `os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(self.gpu_id)` 覆盖了 shell 设的值。修复为 `os.environ.setdefault()`，改用 `CUDA_VISIBLE_DEVICES=1 + --gpu_id 0` 方案。1 episode / 5 steps 全部完成无 crash\n3. **提交后端** — **vLLM**（20 episodes × 2 tasks × 30 steps）\n4. **新 PID**: 162572 (主进程), 163319 (EngineCore on GPU1, 15352 MiB)；**tmux 会话**: `mvp-p1-gpu1-vllm`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-vllm-resubmit-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "006ce96fe3544681b14f",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "reviewer / loop_13.md",
+  "task_key": "loop_13",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_13.md",
+    "occurrence": 1,
+    "bytes": 4449,
+    "sha256": "5406c34e57179b26a0db9ba009c9a436971ce324bbf64984c0de8e942f21d512"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 13\nreason: max_wall_time\nupdated: '2026-05-16T18:45:30+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**仅 cuda:0, cuda:1**（westb-13313）。任何脚本 `--gpu_id` / `device_map` 只能是 0 或 1\n- 1.7B reference (47.1%) 使用旧训练配置，**不能与 plan-008-v4 训练的 0.6B/4B 做\"同配置 monotonic\"三点对比**——混淆变量未消除\n- **DAF 定义不一致未修正**：论文报 90.4%（全 episodes 公式）vs framework_draft.md 形式定义算出 63.5%（仅 det-preferred）。Direction A 形式化前必须统一公式，否则审稿人会复现出矛盾\n- guided-router LOTO \"learned\" variant 传入了 task_type 字符串 = 泄漏 task identity，不是真正 blind。不能报 \"LOTO=62.92%\"——只有 blind prior_majority=50% 是真 LOTO\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313 (root)，工作目录 `/root/autodl-tmp/simgate-modular-routing`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/`\n- 模型路径：`/root/autodl-tmp/models/Qwen/Qwen3-{0.6B,1.7B,4B}`，Llama `/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct`\n- Checkpoints：`/root/autodl-tmp/simgate-modular-routing/checkpoints/plan-008-v4-{0_6b,4b}-seed{42-45}/final_adapter`\n- 论文：`/root/autodl-tmp/simgate-modular-routing/paper/main.tex`（编译干净，PDF 406KB @ 22:29）\n- guided_router 代码+结果：`/root/autodl-tmp/simgate-modular-routing/guided_router/`\n- 活跃进程：**无**（全部实验 DONE，GPU 空闲）\n- W&B：未配置\n\n### 3. 📊 当前状态\n90 个实验全 DONE（含新增 loto/cross-model guided router）。进入 Direction A 框架形式化 + 论文修改阶段。\n\n**本轮完成的审查**：\n1. guided-router-framework: CRITICAL（数据泄漏 + oracle=learned identical + find-non-living-thing 逻辑错误）\n2. paper compilation: 从全面 broken → 干净编译（0 undefined warnings）\n3. LOTO eval: blind=50%=always-det，learned=62.92% 但 task identity 泄漏\n4. cross-model guided router: degenerate（Llama 0 int-preferred → trivially 100%）\n5. SCI computation: Gini=0.21，death signal 均匀分布（加强 C1）\n6. DAF bootstrap: **CRITICAL 不一致** 63.5% vs 论文 90.4%（公式定义域不同）\n7. 战略评估：推荐 Direction A（框架形式化 targeting Main，Findings 作 fallback）\n\n**等待 Director 决策**：\n- Direction A 是否正式启动\n- DAF 公式统一方案（推荐改 framework 定义匹配论文的 all-episodes 公式）\n- Llama 数据是否升级到正文（已推荐）\n\n### 4. 📋 待办\n- Director 确认 Direction A → 审查 framework_draft.md → LaTeX method section 写作质量审查\n- Paper Agent 提交 method section 草稿 → 按 5.1 维度审（特别关注 DAF 定义是否与 90.4% 一致、SCI 是否有实验支撑）\n- 如 Paper Agent 更新 abstract/experiments 引用 LOTO 数据 → 验证 claim 措辞不误导（不能把 learned 62.92% 当泛化性能）\n- registry 中 loto-guided-router-eval / cross-model-guided-router-eval 仍为 PREPARING → 确认 Agent 更新为 DONE + 正确 metrics\n- 如有新 paper section 提交审查 → 检查 Llama N=70 是否从 Limitations hedge 升级到正文 result\n\n### 5. 🎯 战略上下文\n- **论文核心 story**：C1 death avoidance dominates (DAF 90.4%, r=0.97) + C2 router negative (cross-split 47.1%, data scaling 无效, capacity 4B=59% but disproportionate) + C3 cross-model/cross-env\n- **Direction A 的关键**：把 episode-level counterfactual labeling + DAF 分解包装为通用诊断框架（\"pre-training diagnostic\"），定位 vs ITP-R/learned routing。不需新实验，纯 reframe + formalization。\n- **DDL**：EMNLP ARR May 25（~8 天）\n- **最容易判断错的事**：\n  1. DAF 63.5% vs 90.4% 不是 bug——是两个合法但不同的定义。论文用 all-episodes（更直觉），framework 用 det-preferred-only（更 rigorous）。必须选一个统一。推荐 all-episodes 因为数字更大且更好解释。\n  2. LOTO=50% 不是 negative result——是 positive evidence：\"DAF correctly predicts router failure, always-det is provably optimal without foreknowledge\"\n  3. Cross-model guided router 100% 是 degenerate（0 opposing class），不是 transfer 成功\n  4. 论文 abstract/conclusion 已更新（Llama 70eps, capacity 4B, penalty-independent 78.9%），但这些更新在 21:38 AFTER 最后编译 22:29——PDF 应已包含\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-13-copy-3.md"
+}

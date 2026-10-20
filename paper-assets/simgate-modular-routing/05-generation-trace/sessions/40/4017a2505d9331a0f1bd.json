@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4017a2505d9331a0f1bd",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code anon repo sync",
+  "task_key": "worker_code_anon-repo-sync_20260525T090540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_anon-repo-sync_20260525T090540_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "27282d7b4bef2ed500247d394e771bb4dab8cec641d9a585131c82da09c85a2e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n---\n\n## 报告\n\n**1. 推送时间戳**：2026-05-25 09:07 UTC，commit `eb5ff90`\n\n**2. 同步的文件（paper/）**：\n- TeX：`abstract.tex`, `conclusion.tex`, `discussion.tex`, `experiments.tex`, `introduction.tex`, `main.tex`, `method.tex`, `related_work.tex`, `responsibleNLPchecklist.tex`\n- 样式/引用：`acl.sty`, `acl_natbib.bst`, `references.bib`\n- Figures (PDF+PNG)：`fig1_daf_scatter`, `death_action_comparison`, `death_action_distribution`, `death_action_timeline`, `dose_response`, `label_decomposition`, `pipeline_overview`, `signal_reversal` + 历史版本 PNG\n- 生成脚本：`paper_style.py`, `gen_fig1.py`, `gen_fig2.py`, `gen_pipeline.py`, `gen_signal_reversal.py`, `gen_label_decomposition.py`, `gen_death_action_comparison.py`, `gen_death_action_distribution.py`, `gen_death_action_timeline.py`\n\n**3. 删除的文件**：\n- `guided_router/framework_draft.md`\n- `crafter_pilot/` （9 个文件）\n- `scripts/minihack/` （2 个文件）\n\n**4. 匿名性检查**：\n- 发现并修复 2 处泄露：\n  - `analysis/dose_response_figure.py:22`：服务器名 `westb-13313`/`westd-18266` → 替换为 `server-A`/`server-B`\n  - `scripts/launch_plan004.sh:19`：`AutoDL` → 替换为 `Network`\n- `references.bib` 中的 \"Cao, Yuan\" 是被引用论文作者（ReAct/ToT），非身份泄露\n- Git config：`Anonymous <anonymous@example.com>`\n\n**5. 验证结果**：全部通过 — 关键文件存在，冗余文件已删除。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-anon-repo-sync.md"
+}

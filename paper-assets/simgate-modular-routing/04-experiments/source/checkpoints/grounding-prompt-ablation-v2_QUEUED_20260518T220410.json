@@ -1,0 +1,16 @@
+{
+  "exp_id": "grounding-prompt-ablation-v2",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:02:00.493Z",
+    "updated_at": "2026-05-18T22:04:10.283Z",
+    "hypothesis": "Explicit prompt instruction warning against misuse of 'focus on' during exploration will reduce death rate below baseline 48.0%, testing whether death dominance is a trivially fixable prompt engineering problem. If DR drops significantly, death avoidance may be a shallow artifact; if DR remains high, it confirms structural vulnerability beyond prompt-level mitigation.",
+    "parent": "grounding-prompt-ablation"
+  },
+  "timestamp": "2026-05-18T22:04:10.502932+00:00",
+  "trigger": "update_registry"
+}

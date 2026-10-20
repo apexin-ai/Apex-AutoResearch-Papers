@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40eb608fe4da194a5454",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh retry crash diagnosis",
+  "task_key": "worker_ssh_retry-crash-diagnosis_20260518T053245",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_retry-crash-diagnosis_20260518T053245_result.json",
+    "occurrence": 1,
+    "bytes": 1655,
+    "sha256": "f4b3aadcd2b68a2995cfe97ecae50ce065c8f9839de2b2ddd6b9eda58204d17c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因找到了。\n\n## 诊断结果\n\n### 崩溃原因：GPU 驱动被宿主机卸载/损坏\n\n`/usr/bin/nvidia-smi` 是一个 **0 字节的空文件**（权限 0644，不可执行），最后修改时间 2026-05-17 19:35:26。这不是 OOM 或进程 kill，而是**云平台宿主机级别的 GPU 驱动异常**：\n- `/dev/nvidia*` 设备节点完全消失\n- `lsmod` 不存在（容器化环境），内核模块 `nvidia` 未加载\n- 内核日志、syslog 均为空（容器内无权限查看宿主机 dmesg）\n- 驱动版本文件 `/proc/driver/nvidia/version` 还在（595.58.03），但实际设备已不可用\n\n这是 AutoDL 平台侧问题（GPU 热迁移/宿主机维护/驱动重装），非代码 bug。\n\n### nvidia-smi 状态：**不可恢复**\n容器内无法自行修复 GPU 驱动。需要平台侧操作（重启实例或重新分配 GPU）。\n\n### 数据抢救\n| Task | Episodes 完成 | 状态 |\n|------|-------------|------|\n| chemistry-mix | 20/20 | **完整** (ep000-ep019) |\n| find-animal | 6/20 | **不完整** (ep000-ep005，ep006 正在跑时崩溃) |\n| 剩余 8 个 task | 0/20 | 未开始 |\n\n总计：**26/200 episodes** 已保存为 JSON 文件，数据可用。另外 `retry_dose_response_analysis.json` 包含之前 N=1 的完整 220 episode 分析结果。\n\n### 能否重跑\n**当前实例不可用**——GPU 已废。需要：\n1. 在 AutoDL 控制台重启此实例（可能恢复 GPU）\n2. 或开新实例，从已保存的 26 个 episode JSON 继续（跳过已完成的 chemistry-mix + find-animal 前 6 个 ep）\n\n建议开新实例跑，当前实例的 GPU 状态不可信。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-retry-crash-diagnosis.md"
+}

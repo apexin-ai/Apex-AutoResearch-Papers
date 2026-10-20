@@ -1,0 +1,85 @@
+{
+  "exp_id": "minihack-cross-env-pilot",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:15:20.064Z",
+    "updated_at": "2026-05-19T12:46:47.335Z",
+    "hypothesis": "In MiniHack permadeath navigation environments, episode-level counterfactual analysis will reveal death dominance (internal DR significantly > deterministic DR), validating the diagnostic framework's cross-environment applicability beyond ScienceWorld. This tests whether death avoidance as the dominant routing signal is a general phenomenon of LLM agents in irreversible-failure environments, not an artifact of ScienceWorld's specific task design.",
+    "parent": "plan-012-full",
+    "notes": "Reviewer 调整 (D122): (1) Det baseline 定义为 \"rule-based computation with ground-truth state access\" (BFS + 完整地图), 非 generic \"deterministic baseline\"; (2) N=100 per condition (200 total), 非 50+50; (3) Day 2 决策点: 10-ep pilot 后 DR<20% 或 >90% 立即切环境。westd-18266 四卡可用。",
+    "server": "westd-18266",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westd-18266",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T11:35:32.454Z"
+    },
+    "conclusion": "negative",
+    "spec": {
+      "command": "minihack_episode_runner.py + crafter_runner.py (pilot runs)",
+      "server": "westd-18266",
+      "gpu": [
+        "cuda:0"
+      ],
+      "data_path": "scripts/minihack/ + scripts/crafter/",
+      "data_count": "40 MiniHack eps + 25 Crafter eps",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (inference-only pilot)",
+      "eval_data": "MiniHack Room-5x5/15x15/Corridor-R3/R5/River + Crafter"
+    },
+    "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/scripts/minihack/results/ + /root/autodl-tmp/simgate-modular-routing/results/crafter_pilot_*.jsonl",
+    "log_path": "/root/autodl-tmp/simgate-modular-routing/scripts/minihack/results/",
+    "metrics": {
+      "minihack_navigation": {
+        "Room-5x5": {
+          "det_DR": 0,
+          "llm_DR": 0,
+          "det_goal_rate": 1,
+          "llm_goal_rate": 1,
+          "n_per_condition": 5
+        },
+        "Room-15x15": {
+          "det_DR": 0,
+          "llm_DR": 0,
+          "n_per_condition": 5
+        },
+        "Corridor-R3": {
+          "det_DR": 0,
+          "llm_DR": 0,
+          "n_per_condition": 5
+        },
+        "Corridor-R5": {
+          "det_DR": 0,
+          "llm_DR": 0,
+          "n_per_condition": 5
+        },
+        "River": {
+          "det_DR": 0,
+          "llm_DR": 0,
+          "n_per_condition": 5
+        }
+      },
+      "crafter": {
+        "random_DR": 1,
+        "det_DR": 1,
+        "llm_DR": 1,
+        "n_per_condition": 10,
+        "max_steps": 300,
+        "note": "100% death rate all agents, no death asymmetry"
+      },
+      "delta_DR_minihack": 0,
+      "delta_DR_crafter": 0,
+      "structural_finding": "MiniHack navigation tasks lack monster spawning, Crafter kills all agent types equally"
+    },
+    "failure_reason": "MiniHack navigation tasks (Room-5x5, Room-15x15, Corridor-R3, Corridor-R5, River) have no monster spawning mechanism in standard configurations, producing 0% death rate for both LLM and deterministic agents across all conditions. Crafter produces 100% death rate for all agent types (random, deterministic, LLM) within 300 steps, yielding zero death asymmetry (ΔDR=0). Neither environment is viable for cross-environment death dominance replication. Structural mismatch: MiniHack navigation is too safe, Crafter is too lethal.",
+    "completed_at": "2026-05-19T12:43:37.962Z"
+  },
+  "timestamp": "2026-05-19T12:46:47.571024+00:00",
+  "trigger": "update_registry"
+}

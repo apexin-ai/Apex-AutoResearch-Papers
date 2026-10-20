@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c89eb3b07cd427d09a9",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh regen fig1 d125",
+  "task_key": "worker_ssh_regen-fig1-d125_20260519T124728",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_regen-fig1-d125_20260519T124728_result.json",
+    "occurrence": 1,
+    "bytes": 185,
+    "sha256": "9c965accc81c1f86809e5df6b52940682fd815b77145c598afdbece59ed7fc22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`fig1_daf_scatter.pdf` 已生成（24322 bytes），位于 `docs/paper/figures/`。脚本数据全部硬编码，无需远程执行，本地直接生成即可。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-regen-fig1-d125.md"
+}

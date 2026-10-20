@@ -1,0 +1,40 @@
+{
+  "exp_id": "plan-012-penalty-sensitivity",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:57:37.159Z",
+    "updated_at": "2026-05-14T12:58:18.163Z",
+    "metrics": {
+      "N": 245,
+      "n_only_int_dies": 70,
+      "n_only_det_dies": 5,
+      "n_both_die": 35,
+      "n_neither_die": 135,
+      "delta": 0.2653,
+      "delta_nd": 3.07,
+      "delta_full_100": 29.6,
+      "DAF_P10": 46.4,
+      "DAF_P25": 68.4,
+      "DAF_P50": 81.2,
+      "DAF_P100": 89.6,
+      "DAF_P200": 94.5
+    },
+    "spec": {
+      "command": "analytical decomposition",
+      "server": "westb-13313",
+      "data_path": "results/plan_c/",
+      "data_count": 245,
+      "model_name": "n/a",
+      "seed": 0
+    },
+    "checkpoint_path": "n/a",
+    "log_path": "results/penalty_sensitivity.json",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T12:58:18.447435+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,61 @@
+{
+  "exp_id": "grounding-prompt-ablation-v2",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T22:02:00.493Z",
+    "updated_at": "2026-05-18T23:46:10.607Z",
+    "hypothesis": "Explicit prompt instruction warning against misuse of 'focus on' during exploration will reduce death rate below baseline 48.0%, testing whether death dominance is a trivially fixable prompt engineering problem. If DR drops significantly, death avoidance may be a shallow artifact; if DR remains high, it confirms structural vulnerability beyond prompt-level mitigation.",
+    "parent": "grounding-prompt-ablation",
+    "server": "westb-13313",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-13313",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-18T22:04:16.578Z",
+      "command": "echo \"Already running in tmux session grounding-prompt-ablation, PID 170164, cuda:0. This is a registry sync.\"",
+      "code_commit": "f02391d7b16717d00b25fcaa808296858eb115c8",
+      "finished_at": "2026-05-18T22:04:50.856Z",
+      "training_hours": 0.01
+    },
+    "spec": {
+      "command": "cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python src/run_grounding_prompt_ablation.py --task_types 'chemistry-mix,find-animal,freeze,grow-fruit,identify-life-stages-1,identify-life-stages-2,inclined-plane-determine-angle,lifespan-longest-lived,lifespan-longest-lived-then-shortest-lived,measure-melting-point-unknown-substance' --episodes 20 --gpu_id 0 --max_steps 30 --seed 42 --output_dir results/grounding_prompt_ablation/",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "170164",
+      "data_path": "10 death-prone ScienceWorld tasks",
+      "data_count": 200,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "pid": "unknown",
+    "log_path": "/root/autodl-tmp/simgate-modular-routing/results/grounding_prompt_ablation.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T22:04:55.004795+00:00"
+        }
+      ]
+    },
+    "notes": "Cron false alarm: allocate_and_submit echo command exited, not the actual experiment. Real experiment running in tmux grounding-prompt-ablation, PID 168847, cuda:0. Status should be RUNNING but state machine prevents ANALYZING→RUNNING. Will manually check completion in ~80-90 min. Initial signal: chemistry-mix 13/20 eps done, 0% death rate.",
+    "conclusion": "success",
+    "metrics": {
+      "total_episodes": 200,
+      "total_deaths": 74,
+      "death_rate": 0.37,
+      "delta_vs_baseline_pp": -5.9
+    },
+    "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/results/grounding_prompt_ablation/",
+    "completed_at": "2026-05-18T23:46:10.608Z"
+  },
+  "timestamp": "2026-05-18T23:46:10.842848+00:00",
+  "trigger": "update_registry"
+}

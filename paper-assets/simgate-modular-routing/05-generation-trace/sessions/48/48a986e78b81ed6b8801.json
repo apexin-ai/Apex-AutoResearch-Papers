@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "48a986e78b81ed6b8801",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ops kill gpu0 v6 start dryrun",
+  "task_key": "worker_ops_kill-gpu0-v6-start-dryrun_20260514T045117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-gpu0-v6-start-dryrun_20260514T045117.log",
+    "occurrence": 1,
+    "bytes": 846056,
+    "sha256": "1d345aa6848ba59473e99e4de74701b1168d548a2e67383b1571c1dbe273a69c"
+  },
+  "statistics": {
+    "messages": 478,
+    "user_turns": 0,
+    "tool_calls": 165,
+    "roles": {
+      "log": 1,
+      "system": 17,
+      "record": 2,
+      "assistant": 126,
+      "tool_call": 165,
+      "tool_result": 165,
+      "result": 2
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 478,
+      "chunks": [
+        {
+          "path": "48a986e78b81ed6b8801-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "48a986e78b81ed6b8801-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "48a986e78b81ed6b8801-part-0003.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-kill-gpu0-v6-start-dryrun.md"
+}

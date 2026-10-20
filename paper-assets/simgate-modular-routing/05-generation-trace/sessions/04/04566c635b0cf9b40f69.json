@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04566c635b0cf9b40f69",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research ref audit C",
+  "task_key": "worker_research_ref-audit-C_20260526T101534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-C_20260526T101534_result.json",
+    "occurrence": 1,
+    "bytes": 1009,
+    "sha256": "dad40166ca8cd90a780f3a52ac36a06e69a4ea211b0306a6eda5f86bb29a20c8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审核完成。报告已写入 `artifacts/ref-audit/audit_worker_C.md`。\n\n68 条 bib entry 中发现 9 条有问题：\n\n**硬错误（5）：**\n- `toolace-2025`：第一作者 \"Zhang, Weiwen\" → **Liu, Weiwen**\n- `automix-2024`：作者列表严重错误（3 个名字拼错 + 缺少 7 位作者 + 含 1 位非作者）\n- `agent-safetybench-2024`：作者列表错误（\"Junhao Yang\" → \"Junxiao Yang\"，含 3 名非作者，缺 \"Hongning Wang\"）\n- `salt-2026`：第三作者 \"David Yan\" → **Qiaojing Yan**\n- `reflexion-2023`：缺少作者 Edward Berman\n\n**中等问题（2）：**\n- `kadavath2022language`：作者 \"Eli Tran-Geesaman\" → **Eli Tran-Johnson**\n- `gajcin2023counterfactual`：实为 AAMAS 2023 Doctoral Consortium 论文，非正式论文\n\n**Venue 升级建议（2）：**\n- `routellm-2024`：arXiv → 已被 ICLR 2025 接收\n- `pona2025abstract`：arXiv → 已被 NeurIPS 2025 接收\n\n无 hallucinated paper，无引用上下文错配。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ref-audit-c.md"
+}

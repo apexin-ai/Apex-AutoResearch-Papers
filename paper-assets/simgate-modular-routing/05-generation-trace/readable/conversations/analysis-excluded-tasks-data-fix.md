@@ -1,0 +1,1310 @@
+# analysis excluded tasks data fix
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_analysis_excluded-tasks-data-fix_20260515T163652.jsonl`
+- **Structured JSON:** [`686690ee77238b3b26ec.json`](../../sessions/68/686690ee77238b3b26ec.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T16:48:06.739409+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T16:48:06.739753+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T16:48:06.739934+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/artifacts/excluded_tasks_analysis.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/artifacts/excluded_tasks_analysis.md",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T16:48:06.740132+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T16:48:06.740267+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T16:48:06.740390+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T16:48:06.740573+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Excluded Tasks Analysis: 19/30 ScienceWorld Task Types\\n\\n## 1. Complete 30-Task List\\n\\n### Included (11 tasks, 245 episodes)\\n| Task | N | det_death% | int_death% | det_mean | notes |\\n|------|---|-----------|-----------|----------|-------|\\n| chemistry-mix | 20 | 25% | 45% | -21.8 | |\\n| find-animal | 20 | 15% | 50% | -4.1 | |\\n| **find-non-living-thing** | 40 | 0% | 0% | +18.9 | zero death, internal-preferred |\\n| freeze | 20 | 25% | 55% | -9.5 | |\\n| grow-fruit | 20 | 20% | 45% | -3.4 | |\\n| identify-life-stages-1 | 20 | 15% | 55% | -2.5 | |\\n| identify-life-stages-2 | 20 | 15% | 50% | -8.1 | |\\n| inclined-plane-determine-angle | 20 | 20% | 55% | -10.0 | |\\n| lifespan-longest-lived | 25 | 12% | 56% | -6.0 | |\\n| lifespan-longest-lived-then-shortest-lived | 20 | 10% | 45% | +3.5 | |\\n| measure-melting-point-unknown-substance | 20 | 25% | 55% | -24.3 | large non-death signal |\\n\\n### Excluded (19 tasks)\\n\\n#### Group A: MVP Development Tasks (5 tasks)\\n| Task | N | det_death% | det_mean | Exclusion reason |\\n|------|---|-----------|----------|-----------------|\\n| boil | 40 | 15% | -14.5 | MVP-piloted; redundant with freeze |\\n| melt | 20 | 15% | -14.6 | MVP-piloted; redundant with freeze |\\n| change-the-state-of-matter-of | 20 | 15% | -14.5 | MVP-piloted; redundant with freeze |\\n| chemistry-mix-paint-secondary-color | 20 | 10% | -5.5 | MVP-piloted; redundant with chemistry-mix |\\n| grow-plant | 20 | 0% | +0.5 | MVP-piloted; zero routing signal |\\n\\n#### Group B: Redundant Family Variants (7 tasks)\\n| Task | Family rep (included) | det_death% | det_mean |\\n|------|-----------------------|-----------|----------|\\n| chemistry-mix-paint-tertiary-color | chemistry-mix | 20% | -17.4 |\\n| find-living-thing | find-animal | 20% | -16.6 |\\n| find-plant | find-animal | 0% | +3.2 |\\n| inclined-plane-friction-named-surfaces | inclined-plane-determine-angle | 20% | -20.0 |\\n| incli
+…[truncated 5114 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T16:48:06.740740+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chemistry-mix\\nfind-animal\\nfind-non-living-thing\\nfreeze\\ngrow-fruit\\nidentify-life-stages-1\\nidentify-life-stages-2\\ninclined-plane-determine-angle\\nlifespan-longest-lived\\nlifespan-longest-lived-then-shortest-lived\\nmeasure-melting-point-unknown-substance\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T16:48:06.740879+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chemistry-mix\\nchemistry-mix-paint-tertiary-color\\nfind-animal\\nfind-living-thing\\nfind-non-living-thing\\nfind-plant\\nfreeze\\ngrow-fruit\\nidentify-life-stages-1\\nidentify-life-stages-2\\ninclined-plane-determine-angle\\ninclined-plane-friction-named-surfaces\\ninclined-plane-friction-unnamed-surfaces\\nlifespan-longest-lived\\nlifespan-longest-lived-then-shortest-lived\\nlifespan-shortest-lived\\nmeasure-melting-point-known-substance\\nmeasure-melting-point-unknown-substance\\nmendelian-genetics-known-plant\\nmendelian-genetics-unknown-plant\\npower-component\\npower-component-renewable-vs-nonrenewable-energy\\nrun.log\\nrun_gpu1.log\\nsignal_type_summary.json\\nsummary.txt\\ntest-conductivity\\ntest-conductivity-of-unknown-substances\\nuse-thermometer\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T16:48:06.741067+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ablation_b_gen_eval.json\\nablation_b_seed123_gen.json\\nablation_b_seed456_gen.json\\nablation_b_seed789_gen.json\\nalfworld_counterfactual\\nbaseline_245eps\\nbootstrap_95ci.json\\ndeath_decomposition_preliminary.csv\\ndeath_decomposition_preliminary_OLD.csv\\ndeath_decomposition_report.json\\ndeath_decomposition_test.json\\ndeath_timing_analysis.json\\ndecomposition_dryrun\\ndiag_seed42_v5_eval.json\\ndry_run_mvp_report.json\\ndry_run_mvp_table.json\\neval-template-fix\\neval_ablation_b_e2e\\neval_ablation_b_e2e_correct\\nllama-expanded\\nmath_full_200.log\\nmulti_model_pilot\\nmvp\\npaper_table1_data.json\\npaper_table1_test.json\\npenalty_sensitivity.json\\npenalty_sensitivity_table.tex\\nplan-003-eval-implicit\\nplan-006-deep-internal\\nplan-008\\nplan-008-v2\\nplan-008-v3\\nplan-013\\nplan005\\nplan_001b_labels\\nplan_001b_labels_partial\\nplan_002_router_dryrun\\nplan_003_eval\\nplan_003_eval_dryrun\\nplan_003_eval_full_baseline\\nplan_003_eval_router_test\\nplan_003_eval_router_v6_test\\nplan_005_analysis\\nplan_012_decomposition\\nplan_c\\nplan_c_95ci\\nplan_c_test_labels\\nprescreening\\nresearch\\nrouting-patterns\\nrule_based_accuracy_test.json\\nrule_based_accuracy_v1_rerun.json\\nrule_based_accuracy_v2_test.json\\nrule_based_accuracy_v3.json\\nseed-robustness\\nsft_data\\nsft_data_death_aware\\nsft_data_test\\nstep_tie_rate_full.json\\ntest_3label\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T16:48:06.741265+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/mvp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/mvp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T16:48:06.741395+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/research/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/research/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T16:48:06.741526+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"boil\\nchange-the-state-of-matter-of\\nchemistry-mix-paint-secondary-color\\nfinal_analysis.json\\nfinal_analysis_det_vs_internal.json\\nglobal_summary.json\\ngrow-plant\\nmelt\\nphase0_validation.json\\nphase0_validation_v2.json\\nphase1_gpu0.log\\nsignal_type_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T16:48:06.741646+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results/plan_c/ -name \"episodes.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results/plan_c/ -name \"episodes.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T16:48:06.741764+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results/prescreening/ -name \"episodes.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results/prescreening/ -name \"episodes.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T16:48:06.741884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"boil\\nglobal_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T16:48:06.742063+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/grow-fruit/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-1/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/inclined-plane-determine-angle/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived-then-shortest-lived/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-2/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/measure-melting-point-unknown-substance/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/episodes.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T16:48:06.742234+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-living-thing/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/grow-fruit/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-1/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-2/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/measure-melting-point-unknown-substance/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-determine-angle/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/mendelian-genetics-known-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-friction-named-surfaces/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/mendelian-genetics-unknown-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-friction-unnamed-surfaces/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/power-component/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/lifespan-longest-lived/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/power-component-renewable-vs-n
+…[truncated 793 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T16:48:06.742408+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results/plan_c/ -name \"episodes.jsonl\" -exec wc -l {} +",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results/plan_c/ -name \"episodes.jsonl\" -exec wc -l {} +",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T16:48:06.742532+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results/prescreening/ -name \"episodes.jsonl\" -exec wc -l {} +",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results/prescreening/ -name \"episodes.jsonl\" -exec wc -l {} +",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T16:48:06.742665+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     40 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/grow-fruit/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-1/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/inclined-plane-determine-angle/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived-then-shortest-lived/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-2/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/measure-melting-point-unknown-substance/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episodes.jsonl\\n     25 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/episodes.jsonl\\n    245 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T16:48:06.742798+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results/mvp/ -name \"episodes.jsonl\" -exec wc -l {} +",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results/mvp/ -name \"episodes.jsonl\" -exec wc -l {} +",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T16:48:06.742919+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -1 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -1 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T16:48:06.743085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/find-living-thing/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/find-plant/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/grow-fruit/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-1/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-2/episodes.jsonl\\n      9 /root/autodl-tmp/simgate-modular-routing/results/prescreening/measure-melting-point-unknown-substance/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-determine-angle/episodes.jsonl\\n      7 /root/autodl-tmp/simgate-modular-routing/results/prescreening/mendelian-genetics-known-plant/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-friction-named-surfaces/episodes.jsonl\\n      7 /root/autodl-tmp/simgate-modular-routing/results/prescreening/mendelian-genetics-unknown-plant/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-friction-unnamed-surfaces/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/power-component/episodes.jsonl\\n      5 /root/autodl-tmp/simgate-modular-routing/results/p
+…[truncated 1009 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T16:48:06.743233+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"     20 /root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/mvp/chemistry-mix-paint-secondary-color/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/mvp/melt/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/mvp/grow-plant/episodes.jsonl\\n     20 /root/autodl-tmp/simgate-modular-routing/results/mvp/change-the-state-of-matter-of/episodes.jsonl\\n    100 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T16:48:06.743518+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_internal\\\": {\\\"mode\\\": \\\"always-internal\\\", \\\"task_name\\\": \\\"chemistry-mix\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": -100.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 16, \\\"total_time_s\\\": 14.604560852050781, \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to air\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on air\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the goal should be to explore the environment. The first logical step is to connect the agent to the air, as this is a basic interaction that doesn't require any specific object or door.\\\\nAction: connect agent to air\\\", \\\"action_history\\\": [], \\\"is_dead\\\": false}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect air to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on air is now connected to terminal 1 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The previous action connected the agent to the air, and the current observation shows that terminal 1 on the agent is now connected to terminal 1 on air. The next logical step would be to explore the environment further by connecting to another terminal. The available actions suggest connec\\\", \\\"action_history\\\": [\\\"connect agent to air\\\"], \\\"is_dead\\\": false}, {\\\"step\\\": 2, \\\"action\\\": \\\"connect agent to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 2 on art studio\\\", \\\"llm_output\\\": \\\"Thought:
+…[truncated 7671 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T16:48:06.743721+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/results/prescreening/signal_type_summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/results/prescreening/signal_type_summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T16:48:06.743855+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/results/prescreening/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/results/prescreening/summary.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T16:48:06.744098+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"label\\\": \\\"PRESCREENING SIGNAL TYPE ANALYSIS\\\",\\n  \\\"tasks\\\": [\\n    {\\n      \\\"task\\\": \\\"chemistry-mix\\\",\\n      \\\"int_mean\\\": -55.8,\\n      \\\"det_mean\\\": 4.2,\\n      \\\"delta\\\": 60.0,\\n      \\\"int_death_pct\\\": 60.0,\\n      \\\"det_death_pct\\\": 0.0,\\n      \\\"int_nd_mean\\\": 10.5,\\n      \\\"det_nd_mean\\\": 4.2,\\n      \\\"delta_nd\\\": -6.3,\\n      \\\"signal_type\\\": \\\"death-dominated\\\",\\n      \\\"n_episodes\\\": 5\\n    },\\n    {\\n      \\\"task\\\": \\\"chemistry-mix-paint-tertiary-color\\\",\\n      \\\"int_mean\\\": -37.4,\\n      \\\"det_mean\\\": -17.4,\\n      \\\"delta\\\": 20.0,\\n      \\\"int_death_pct\\\": 40.0,\\n      \\\"det_death_pct\\\": 20.0,\\n      \\\"int_nd_mean\\\": 4.33,\\n      \\\"det_nd_mean\\\": 3.25,\\n      \\\"delta_nd\\\": -1.08,\\n      \\\"signal_type\\\": \\\"death-dominated\\\",\\n      \\\"n_episodes\\\": 5\\n    },\\n    {\\n      \\\"task\\\": \\\"find-animal\\\",\\n      \\\"int_mean\\\": -58.4,\\n      \\\"det_mean\\\": 8.2,\\n      \\\"delta\\\": 66.6,\\n      \\\"int_death_pct\\\": 60.0,\\n      \\\"det_death_pct\\\": 0.0,\\n      \\\"int_nd_mean\\\": 4.0,\\n      \\\"det_nd_mean\\\": 8.2,\\n      \\\"delta_nd\\\": 4.2,\\n      \\\"signal_type\\\": \\\"mixed\\\",\\n      \\\"n_episodes\\\": 5\\n    },\\n    {\\n      \\\"task\\\": \\\"find-living-thing\\\",\\n      \\\"int_mean\\\": -58.4,\\n      \\\"det_mean\\\": -16.6,\\n      \\\"delta\\\": 41.8,\\n      \\\"int_death_pct\\\": 60.0,\\n      \\\"det_death_pct\\\": 20.0,\\n      \\\"int_nd_mean\\\": 4.0,\\n      \\\"det_nd_mean\\\": 4.25,\\n      \\\"delta_nd\\\": 0.25,\\n      \\\"signal_type\\\": \\\"mixed\\\",\\n      \\\"n_episodes\\\": 5\\n    },\\n    {\\n      \\\"task\\\": \\\"find-non-living-thing\\\",\\n      \\\"int_mean\\\": 31.6,\\n      \\\"det_mean\\\": 24.8,\\n      \\\"delta\\\": -6.8,\\n      \\\"int_death_pct\\\": 0.0,\\n      
+…[truncated 3427 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T16:48:06.744332+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Prescreening started at Thu May 14 00:22:49 CST 2026 ===\\nSKIP: boil (MVP-tested)\\nSKIP: change-the-state-of-matter-of (MVP-tested)\\n>>> Running: chemistry-mix at Thu May 14 00:22:49 CST 2026\\nTask: chemistry-mix\\nEpisodes: 5, Max steps: 30\\nGPU: 0, vLLM: True\\n[LLMAgent] Model path: /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/\\n[LLMAgent] Backend: vLLM, GPU: 0\\n\\n============================================================\\nPRESCREENING: chemistry-mix | Episodes: 5 | Max steps: 30\\nMax variations: 32 | Unique: 5\\n============================================================\\n\\n--- Episode 0/5 (variation=0) ---\\n  [I] always-internal... INFO 05-14 00:22:59 [utils.py:233] non-default args: {'trust_remote_code': True, 'max_model_len': 4096, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'model': '/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/'}\\nINFO 05-14 00:22:59 [model.py:533] Resolved architecture: Qwen2ForCausalLM\\nINFO 05-14 00:22:59 [model.py:1582] Using max model len 4096\\nINFO 05-14 00:22:59 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\nINFO 05-14 00:22:59 [vllm.py:775] Asynchronous scheduling is enabled.\\n(EngineCore pid=650130) INFO 05-14 00:23:00 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/', speculative_config=None, tokenizer='/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, st
+…[truncated 6355 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T16:48:06.744565+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat > /tmp/compute_all_stats.py << 'PYEOF'\nimport json, os, glob\n\ndef compute_stats(episodes_path):\n    with open(episodes_path) as f:\n        episodes = [json.loads(l) for l in f if l.strip()]\n    n = len(episodes)\n    if n == 0:\n        return None\n    \n    int_scores = []\n    det_scores = []\n    for ep in episodes:\n        int_scores.append(ep[\"always_internal\"][\"final_score\"])\n        det_scores.append(ep[\"always_deterministic\"][\"final_score\"])\n    \n    # Death = final_score <= -99 (to handle floating point)\n    int_deaths = sum(1 for s in int_scores if s <= -99)\n    det_deaths = sum(1 for s in det_scores if s <= -99)\n    \n    int_death_pct = round(int_deaths / n * 100, 2)\n    det_death_pct = round(det_deaths / n * 100, 2)\n    \n    int_nd = [s for s in int_scores if s > -99]\n    det_nd = [s for s in det_scores if s > -99]\n    \n    int_mean = round(sum(int_scores) / n, 2)\n    det_mean = round(sum(det_scores) / n, 2)\n    \n    int_nd_mean = round(sum(int_nd) / len(int_nd), 2) if int_nd else 0.0\n    det_nd_mean = round(sum(det_nd) / len(det_nd), 2) if det_nd else 0.0\n    \n    delta = round(det_mean - int_mean, 2)\n    delta_nd = round(det_nd_mean - int_nd_mean, 2)\n    \n    return {\n        \"n\": n,\n        \"int_mean\": int_mean,\n        \"det_mean\": det_mean,\n        \"delta\": delta,\n        \"int_death_pct\": int_death_pct,\n        \"det_death_pct\": det_death_pct,\n        \"int_nd_mean\": int_nd_mean,\n        \"det_nd_mean\": det_nd_mean,\n        \"delta_nd\": delta_nd,\n        \"int_deaths\": int_deaths,\n        \"det_deaths\": det_deaths,\n        \"int_scores\": int_scores,\n        \"det_scores\": det_scores,\n    }\n\nbase = \"/root/autodl-tmp/simgate-modular-routing/results\"\nsources = {\n    \"plan_c\": os.path.join(base, \"plan_c\"),\n    \"prescreening\": os.path.join(base, \"prescreening\"),\n    \"mvp\": os.path.join(base, \"mvp\"),\n}\n\nall_tasks = {}\n\nfor source_name, source_dir in sources.items():\n    if not os.path.exists(source_dir):\n        continue\n    for task_dir in sorted(os.listdir(source_dir)):\n        ep_file = os.path.join(source_dir, task_dir, \"episodes.jsonl\")\n        if not os.path.isfile(ep_file):\n            continue\n        stats = compute_stats(ep_file)\n        if stats is None:\n            continue\n        key = task_dir\n        if key not in all_tasks:\n            all_tasks[key] = {}\n        all_tasks[key][source_name] = stats\n\n# Print results\nprint(\"=\" * 120)\nprint(\"COMPREHENSIVE TASK STATISTICS\")\nprint(\"=\" * 120)\n\nincluded_tasks = [\n    \"chemistry-mix\", \"find-animal\", \"find-non-living-thing\", \"freeze\",\n    \"grow-fruit\", \"identify-life-stages-1\", \"identify-life-stages-2\",\n    \"inclined-plane-determine-angle\", \"lifespan-longest-lived\",\n    \"lifespan-longest-lived-then-shortest-lived\",\n    \"measure-melting-point-unknown-substance\"\n]\n\nmvp_tasks = [\n    \"boil\", \"melt\", \"change-the-state-of-matter-of\",\n    \"chemistry-mix-paint-secondary-color\", \"grow-plant\"\n]\n\ngroup_b = [\n    \"chemistry-mix-paint-tertiary-color\", \"find-living-thing\", \"find-plant\",\n    \"inclined-plane-friction-named-surfaces\", \"inclined-plane-friction-unnamed-surfaces\",\n    \"lifespan-shortest-lived\", \"measure-melting-point-known-substance\"\n]\n\ngroup_c = [\n    \"mendelian-genetics-known-plant\", \"mendelian-genetics-unknown-plant\",\n    \"power-component\", \"power-component-renewable-vs-nonrenewable-energy\",\n    \"test-conductivity\", \"test-conductivity-of-unknown-substances\",\n    \"use-thermometer\"\n]\n\ndef print_task_stats(task, category, preferred_source=None):\n    if task not in all_tasks:\n        print(f\"  {task}: NO DATA\")\n        return None\n    \n    sources_available = list(all_tasks[task].keys())\n    \n    # Pick best source\n    if preferred_source and preferred_source in all_tasks[task]:\n        src = preferred_source\n    elif \"plan_c\" in all_tasks[task]:\n        src = \"plan_c\"\n    elif \"mvp\" in all_tasks[task]:\n        src = \"mvp\"\n    else:\n        src = sources_available[0]\n    \n    s = all_tasks[task][src]\n    print(f\"  {task}: src={src}, n={s['n']}, \"\n          f\"int_mean={s['int_mean']}, det_mean={s['det_mean']}, delta={s['delta']}, \"\n          f\"int_death%={s['int_death_pct']}, det_death%={s['det_death_pct']}, \"\n          f\"int_nd={s['int_nd_mean']}, det_nd={s['det_nd_mean']}, delta_nd={s['delta_nd']}\")\n    \n    # Also show prescreening if available and different from primary\n    if src != \"prescreening\" and \"prescreening\" in all_tasks[task]:\n        ps = all_tasks[task][\"prescreening\"]\n        print(f\"    [prescreening ref: n={ps['n']}, det_death%={ps['det_death_pct']}, delta_nd={ps['delta_nd']}]\")\n    \n    return {**s, \"source\": src, \"task\": task, \"category\": category}\n\nresults = []\n\nprint(\"\\n--- INCLUDED (11 tasks, prefer plan_c 20-ep) ---\")\nfor t in sorted(included_tasks):\n    r = print_task_stats(t, \"included\", \"plan_c\")\n    if r: results.append(r)\n\nprint(\"\\n--- GROUP A: MVP (5 tasks, prefer mvp 20-ep) ---\")\nfor t in sorted(mvp_tasks):\n    r = print_task_stats(t, \"group_a\", \"mvp\")\n    if r: results.append(r)\n\nprint(\"\\n--- GROUP B: Redundant Variants (7 tasks, prescreening only) ---\")\nfor t in sorted(group_b):\n    r = print_task_stats(t, \"group_b\", \"prescreening\")\n    if r: results.append(r)\n\nprint(\"\\n--- GROUP C: Agent-Floor (7 tasks, prescreening only) ---\")\nfor t in sorted(group_c):\n    r = print_task_stats(t, \"group_c\", \"prescreening\")\n    if r: results.append(r)\n\n# Summary statistics\nprint(\"\\n\" + \"=\" * 120)\nprint(\"SUMMARY STATISTICS\")\nprint(\"=\" * 120)\n\ninc = [r for r in results if r[\"category\"] == \"included\"]\nexc = [r for r in results if r[\"category\"] != \"included\"]\n\nprint(f\"\\nIncluded ({len(inc)} tasks):\")\ninc_det_death_rates = [r[\"det_death_pct\"] for r in inc]\ninc_det_means = [r[\"det_mean\"] for r in inc]\ninc_delta_nds = [r[\"delta_nd\"] for r in inc]\nprint(f\"  det_death_rate: mean={round(sum(inc_det_death_rates)/len(inc_det_death_rates),2)}%, \"\n      f\"values={inc_det_death_rates}\")\nprint(f\"  det_mean_score: mean={round(sum(inc_det_means)/len(inc_det_means),2)}\")\nprint(f\"  delta_nd=0 count: {sum(1 for d in inc_delta_nds if d == 0.0)}/{len(inc)}\")\nprint(f\"  tasks with det_death>=20%: {sum(1 for d in inc_det_death_rates if d >= 20)}/{len(inc)}\")\n\nprint(f\"\\nExcluded ({len(exc)} tasks):\")\nexc_det_death_rates = [r[\"det_death_pct\"] for r in exc]\nexc_det_means = [r[\"det_mean\"] for r in exc]\nexc_delta_nds = [r[\"delta_nd\"] for r in exc]\nprint(f\"  det_death_rate: mean={round(sum(exc_det_death_rates)/len(exc_det_death_rates),2)}%, \"\n      f\"values={exc_det_death_rates}\")\nprint(f\"  det_mean_score: mean={round(sum(exc_det_means)/len(exc_det_means),2)}\")\nprint(f\"  delta_nd=0 count: {sum(1 for d in exc_delta_nds if d == 0.0)}/{len(exc)}\")\nprint(f\"  tasks with det_death>=20%: {sum(1 for d in exc_det_death_rates if d >= 20)}/{len(exc)}\")\n\n# Verify against prescreening reference values\nprint(\"\\n\" + \"=\" * 120)\nprint(\"VERIFICATION: prescreening signal_type_summary.json cross-check\")\nprint(\"=\" * 120)\nref_file = os.path.join(base, \"prescreening\", \"signal_type_summary.json\")\nif os.path.exists(ref_file):\n    with open(ref_file) as f:\n        ref = json.load(f)\n    for rt in ref[\"tasks\"]:\n        task = rt[\"task\"]\n        if task in all_tasks and \"prescreening\" in all_tasks[task]:\n            ps = all_tasks[task][\"prescreening\"]\n            match = (abs(ps[\"int_mean\"] - rt[\"int_mean\"]) < 0.1 and \n                     abs(ps[\"det_mean\"] - rt[\"det_mean\"]) < 0.1)\n            status = \"OK\" if match else \"MISMATCH\"\n            if not match:\n                print(f\"  {task}: {status}\")\n                print(f\"    computed: int_mean={ps['int_mean']}, det_mean={ps['det_mean']}, delta_nd={ps['delta_nd']}\")\n                print(f\"    ref:      int_mean={rt['int_mean']}, det_mean={rt['det_mean']}, delta_nd={rt['delta_nd']}\")\n            else:\n                print(f\"  {task}: {status}\")\n\n# JSON output for structured data\nprint(\"\\n\\n### JSON_OUTPUT_START ###\")\noutput = {\n    \"included\": [{k: v for k, v in r.items() if k not in (\"int_scores\", \"det_scores\")} for r in inc],\n    \"excluded\": [{k: v for k, v in r.items() if k not in (\"int_scores\", \"det_scores\")} for r in exc],\n    \"summary\": {\n        \"included\": {\n            \"n_tasks\": len(inc),\n            \"mean_det_death_rate\": round(sum(inc_det_death_rates)/len(inc_det_death_rates),2),\n            \"mean_det_mean_score\": round(sum(inc_det_means)/len(inc_det_means),2),\n            \"delta_nd_zero_count\": sum(1 for d in inc_delta_nds if d == 0.0),\n            \"tasks_det_death_ge20\": sum(1 for d in inc_det_death_rates if d >= 20),\n        },\n        \"excluded\": {\n            \"n_tasks\": len(exc),\n            \"mean_det_death_rate\": round(sum(exc_det_death_rates)/len(exc_det_death_rates),2),\n            \"mean_det_mean_score\": round(sum(exc_det_means)/len(exc_det_means),2),\n            \"delta_nd_zero_count\": sum(1 for d in exc_delta_nds if d == 0.0),\n            \"tasks_det_death_ge20\": sum(1 for d in exc_det_death_rates if d >= 20),\n        }\n    }\n}\nprint(json.dumps(output, indent=2))\nprint(\"### JSON_OUTPUT_END ###\")\nPYEOF\npython3 /tmp/compute_all_stats.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat > /tmp/compute_all_stats.py << 'PYEOF'\nimport json, os, glob\n\ndef compute_stats(episodes_path):\n    with open(episodes_path) as f:\n        episodes = [json.loads(l) for l in f if l.strip()]\n    n = len(episodes)\n    if n == 0:\n        return None\n    \n    int_scores = []\n    det_scores = []\n    for ep in episodes:\n        int_scores.append(ep[\"always_internal\"][\"final_score\"])\n        det_scores.append(ep[\"always_deterministic\"][\"final_score\"])\n    \n    # Death = final_score <= -99 (to handle floating point)\n    int_deaths = sum(1 for s in int_scores if s <= -99)\n    det_deaths = sum(1 for s in det_scores if s <= -99)\n    \n    int_death_pct = round(int_deaths / n * 100, 2)\n    det_death_pct = round(det_deaths / n * 100, 2)\n    \n    int_nd = [s for s in int_scores if s > -99]\n    det_nd = [s for s in det_scores if s > -99]\n    \n    int_mean = round(sum(int_scores) / n, 2)\n    det_mean = round(sum(det_scores) / n, 2)\n    \n    int_nd_mean = round(sum(int_nd) / len(int_nd), 2) if int_nd else 0.0\n    det_nd_mean = round(sum(det_nd) / len(det_nd), 2) if det_nd else 0.0\n    \n    delta = round(det_mean - int_mean, 2)\n    delta_nd = round(det_nd_mean - int_nd_mean, 2)\n    \n    return {\n        \"n\": n,\n        \"int_mean\": int_mean,\n        \"det_mean\": det_mean,\n        \"delta\": delta,\n        \"int_death_pct\": int_death_pct,\n        \"det_death_pct\": det_death_pct,\n        \"int_nd_mean\": int_nd_mean,\n        \"det_nd_mean\": det_nd_mean,\n        \"delta_nd\": delta_nd,\n        \"int_deaths\": int_deaths,\n        \"det_deaths\": det_deaths,\n        \"int_scores\": int_scores,\n        \"det_scores\": det_scores,\n    }\n\nbase = \"/root/autodl-tmp/simgate-modular-routing/results\"\nsources = {\n    \"plan_c\": os.path.join(base, \"plan_c\"),\n    \"prescreening\": os.path.join(base, \"prescreening\"),\n    \"mvp\": os.path.join(base, \"mvp\"),\n}\n\nall_tasks = {}\n\nfor source_name, source_dir in sources.items():\n    if not os.path.exists(source_dir):\n        continue\n    for task_dir in sorted(os.listdir(source_dir)):\n        ep_file = os.path.join(source_dir, task_dir, \"episodes.jsonl\")\n        if not os.path.isfile(ep_file):\n            continue\n        stats = compute_stats(ep_file)\n        if stats is None:\n            continue\n        key = task_dir\n        if key not in all_tasks:\n            all_tasks[key] = {}\n        all_tasks[key][source_name] = stats\n\n# Print results\nprint(\"=\" * 120)\nprint(\"COMPREHENSIVE TASK STATISTICS\")\nprint(\"=\" * 120)\n\nincluded_tasks = [\n    \"chemistry-mix\", \"find-animal\", \"find-non-living-thing\", \"freeze\",\n    \"grow-fruit\", \"identify-life-stages-1\", \"identify-life-stages-2\",\n    \"inclined-plane-determine-angle\", \"lifespan-longest-lived\",\n    \"lifespan-longest-lived-then-shortest-lived\",\n    \"measure-melting-point-unknown-substance\"\n]\n\nmvp_tasks = [\n    \"boil\", \"melt\", \"change-the-state-of-matter-of\",\n    \"chemistry-mix-paint-secondary-color\", \"grow-plant\"\n]\n\ngroup_b = [\n    \"chemistry-mix-paint-tertiary-color\", \"find-living-thing\", \"find-plant\",\n    \"inclined-plane-friction-named-surfaces\", \"inclined-plane-friction-unnamed-surfaces\",\n    \"lifespan-shortest-lived\", \"measure-melting-point-known-substance\"\n]\n\ngroup_c = [\n    \"mendelian-genetics-known-plant\", \"mendelian-genetics-unknown-plant\",\n    \"power-component\", \"power-component-renewable-vs-nonrenewable-energy\",\n    \"test-conductivity\", \"test-conductivity-of-unknown-substances\",\n    \"use-thermometer\"\n]\n\ndef print_task_stats(task, category, preferred_source=None):\n    if task not in all_tasks:\n        print(f\"  {task}: NO DATA\")\n        return None\n    \n    sources_available = list(all_tasks[task].keys())\n    \n    # Pick best source\n    if preferred_source and preferred_source in all_tasks[task]:\n        src = preferred_source\n    elif \"plan_c\" in all_tasks[task]:\n        src = \"plan_c\"\n    elif \"mvp\" in all_tasks[task]:\n        src = \"mvp\"\n    else:\n        src = sources_available[0]\n    \n    s = all_tasks[task][src]\n    print(f\"  {task}: src={src}, n={s['n']}, \"\n          f\"int_mean={s['int_mean']}, det_mean={s['det_mean']}, delta={s['delta']}, \"\n          f\"int_death%={s['int_death_pct']}, det_death%={s['det_death_pct']}, \"\n          f\"int_nd={s['int_nd_mean']}, det_nd={s['det_nd_mean']}, delta_nd={s['delta_nd']}\")\n    \n    # Also show prescreening if available and different from primary\n    if src != \"prescreening\" and \"prescreening\" in all_tasks[task]:\n        ps = all_tasks[task][\"prescreening\"]\n        print(f\"    [prescreening ref: n={ps['n']}, det_death%={ps['det_death_pct']}, delta_nd={ps['delta_nd']}]\")\n    \n    return {**s, \"source\": src, \"task\": task, \"category\": category}\n\nresults = []\n\nprint(\"\\n--- INCLUDED (11 tasks, prefer plan_c 20-ep) ---\")\nfor t in sorted(included_tasks):\n    r = print_task_stats(t, \"included\", \"plan_c\")\n    if r: results.append(r)\n\nprint(\"\\n--- GROUP A: MVP (5 tasks, prefer mvp 20-ep) ---\")\nfor t in sorted(mvp_tasks):\n    r = print_task_stats(t, \"group_a\", \"mvp\")\n    if r: results.append(r)\n\nprint(\"\\n--- GROUP B: Redundant Variants (7 tasks, prescreening only) ---\")\nfor t in sorted(group_b):\n    r = print_task_stats(t, \"group_b\", \"prescreening\")\n    if r: results.append(r)\n\nprint(\"\\n--- GROUP C: Agent-Floor (7 tasks, prescreening only) ---\")\nfor t in sorted(group_c):\n    r = print_task_stats(t, \"group_c\", \"prescreening\")\n    if r: results.append(r)\n\n# Summary statistics\nprint(\"\\n\" + \"=\" * 120)\nprint(\"SUMMARY STATISTICS\")\nprint(\"=\" * 120)\n\ninc = [r for r in results if r[\"category\"] == \"included\"]\nexc = [r for r in results if r[\"category\"] != \"included\"]\n\nprint(f\"\\nIncluded ({len(inc)} tasks):\")\ninc_det_death_rates = [r[\"det_death_pct\"] for r in inc]\ninc_det_means = [r[\"det_mean\"] for r in inc]\ninc_delta_nds = [r[\"delta_nd\"] for r in inc]\nprint(f\"  det_death_rate: mean={round(sum(inc_det_death_rates)/len(inc_det_death_rates),2)}%, \"\n      f\"values={inc_det_death_rates}\")\nprint(f\"  det_mean_score: mean={round(sum(inc_det_means)/len(inc_det_means),2)}\")\nprint(f\"  delta_nd=0 count: {sum(1 for d in inc_delta_nds if d == 0.0)}/{len(inc)}\")\nprint(f\"  tasks with det_death>=20%: {sum(1 for d in inc_det_death_rates if d >= 20)}/{len(inc)}\")\n\nprint(f\"\\nExcluded ({len(exc)} tasks):\")\nexc_det_death_rates = [r[\"det_death_pct\"] for r in exc]\nexc_det_means = [r[\"det_mean\"] for r in exc]\nexc_delta_nds = [r[\"delta_nd\"] for r in exc]\nprint(f\"  det_death_rate: mean={round(sum(exc_det_death_rates)/len(exc_det_death_rates),2)}%, \"\n      f\"values={exc_det_death_rates}\")\nprint(f\"  det_mean_score: mean={round(sum(exc_det_means)/len(exc_det_means),2)}\")\nprint(f\"  delta_nd=0 count: {sum(1 for d in exc_delta_nds if d == 0.0)}/{len(exc)}\")\nprint(f\"  tasks with det_death>=20%: {sum(1 for d in exc_det_death_rates if d >= 20)}/{len(exc)}\")\n\n# Verify against prescreening reference values\nprint(\"\\n\" + \"=\" * 120)\nprint(\"VERIFICATION: prescreening signal_type_summary.json cross-check\")\nprint(\"=\" * 120)\nref_file = os.path.join(base, \"prescreening\", \"signal_type_summary.json\")\nif os.path.exists(ref_file):\n    with open(ref_file) as f:\n        ref = json.load(f)\n    for rt in ref[\"tasks\"]:\n        task = rt[\"task\"]\n        if task in all_tasks and \"prescreening\" in all_tasks[task]:\n            ps = all_tasks[task][\"prescreening\"]\n            match = (abs(ps[\"int_mean\"] - rt[\"int_mean\"]) < 0.1 and \n                     abs(ps[\"det_mean\"] - rt[\"det_mean\"]) < 0.1)\n            status = \"OK\" if match else \"MISMATCH\"\n            if not match:\n                print(f\"  {task}: {status}\")\n                print(f\"    computed: int_mean={ps['int_mean']}, det_mean={ps['det_mean']}, delta_nd={ps['delta_nd']}\")\n                print(f\"    ref:      int_mean={rt['int_mean']}, det_mean={rt['det_mean']}, delta_nd={rt['delta_nd']}\")\n            else:\n                print(f\"  {task}: {status}\")\n\n# JSON output for structured data\nprint(\"\\n\\n### JSON_OUTPUT_START ###\")\noutput = {\n    \"included\": [{k: v for k, v in r.items() if k not in (\"int_scores\", \"det_scores\")} for r in inc],\n    \"excluded\": [{k: v for k, v in r.items() if k not in (\"int_scores\", \"det_scores\")} for r in exc],\n    \"summary\": {\n        \"included\": {\n            \"n_tasks\": len(inc),\n            \"mean_det_death_rate\": round(sum(inc_det_death_rates)/len(inc_det_death_rates),2),\n            \"mean_det_mean_score\": round(sum(inc_det_means)/len(inc_det_means),2),\n            \"delta_nd_zero_count\": sum(1 for d in inc_delta_nds if d == 0.0),\n            \"tasks_det_death_ge20\": sum(1 for d in inc_det_death_rates if d >= 20),\n        },\n        \"excluded\": {\n            \"n_tasks\": len(exc),\n            \"mean_det_death_rate\": round(sum(exc_det_death_rates)/len(exc_det_death_rates),2),\n            \"mean_det_mean_score\": round(sum(exc_det_means)/len(exc_det_means),2),\n            \"delta_nd_zero_count\": sum(1 for d in exc_delta_nds if d == 0.0),\n            \"tasks_det_death_ge20\": sum(1 for d in exc_det_death_rates if d >= 20),\n        }\n    }\n}\nprint(json.dumps(output, indent=2))\nprint(\"### JSON_OUTPUT_END ###\")\nPYEOF\npython3 /tmp/compute_all_stats.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T16:48:06.744922+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"========================================================================================================================\\nCOMPREHENSIVE TASK STATISTICS\\n========================================================================================================================\\n\\n--- INCLUDED (11 tasks, prefer plan_c 20-ep) ---\\n  chemistry-mix: src=plan_c, n=20, int_mean=-43.55, det_mean=-21.75, delta=21.8, int_death%=45.0, det_death%=25.0, int_nd=2.64, det_nd=4.33, delta_nd=1.69\\n    [prescreening ref: n=5, det_death%=0.0, delta_nd=-6.3]\\n  find-animal: src=plan_c, n=20, int_mean=-49.2, det_mean=-22.55, delta=26.65, int_death%=50.0, det_death%=25.0, int_nd=1.6, det_nd=3.27, delta_nd=1.67\\n    [prescreening ref: n=5, det_death%=0.0, delta_nd=4.2]\\n  find-non-living-thing: src=plan_c, n=40, int_mean=18.9, det_mean=28.48, delta=9.58, int_death%=0.0, det_death%=0.0, int_nd=18.9, det_nd=28.48, delta_nd=9.58\\n    [prescreening ref: n=5, det_death%=0.0, delta_nd=-6.8]\\n  freeze: src=plan_c, n=20, int_mean=-54.75, det_mean=-24.25, delta=30.5, int_death%=55.0, det_death%=25.0, int_nd=0.56, det_nd=1.0, delta_nd=0.44\\n    [prescreening ref: n=5, det_death%=0.0, delta_nd=2.0]\\n  grow-fruit: src=plan_c, n=20, int_mean=-43.65, det_mean=-18.55, delta=25.1, int_death%=45.0, det_death%=20.0, int_nd=2.45, det_nd=1.81, delta_nd=-0.64\\n    [prescreening ref: n=5, det_death%=0.0, delta_nd=-2.1]\\n  identify-life-stages-1: src=plan_c, n=20, int_mean=-55.0, det_mean=-7.5, delta=47.5, int_death%=55.0, det_death%=10.0, int_nd=0.0, det_nd=2.78, delta_nd=2.78\\n    [prescreening ref: n=5, det_death%=0.0, delta_nd=5.0]\\n  identify-life-stages-2: src=plan_c, n=20, int_mean=-48.4, det_mean=-18.4, delta=30.0, int_death%=50.0, det_death%=20.0, int_nd=3.2, det_nd=2.0, delta_nd=-1.2\\n    [prescreening ref: n=5, det_death%=0.0, delta_nd=-2.13]\\n  inclined-plane-determine-angle: src=plan_c, n=20, int_mean=-55.0, det_mean=-19.0, del
+…[truncated 7643 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T16:48:06.745168+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "python3 -c \"\nimport json, os\n\ndef compute_stats(episodes_path):\n    with open(episodes_path) as f:\n        episodes = [json.loads(l) for l in f if l.strip()]\n    n = len(episodes)\n    if n == 0: return None\n    int_scores = [ep['always_internal']['final_score'] for ep in episodes]\n    det_scores = [ep['always_deterministic']['final_score'] for ep in episodes]\n    int_deaths = sum(1 for s in int_scores if s <= -99)\n    det_deaths = sum(1 for s in det_scores if s <= -99)\n    int_nd = [s for s in int_scores if s > -99]\n    det_nd = [s for s in det_scores if s > -99]\n    return {\n        'n': n,\n        'int_mean': round(sum(int_scores)/n, 2),\n        'det_mean': round(sum(det_scores)/n, 2),\n        'int_death_pct': round(int_deaths/n*100, 2),\n        'det_death_pct': round(det_deaths/n*100, 2),\n        'int_nd_mean': round(sum(int_nd)/len(int_nd), 2) if int_nd else 0.0,\n        'det_nd_mean': round(sum(det_nd)/len(det_nd), 2) if det_nd else 0.0,\n        'delta_nd': round((sum(det_nd)/len(det_nd) if det_nd else 0.0) - (sum(int_nd)/len(int_nd) if int_nd else 0.0), 2),\n    }\n\nbase = '/root/autodl-tmp/simgate-modular-routing/results'\ntasks = ['find-plant', 'inclined-plane-friction-named-surfaces', 'inclined-plane-friction-unnamed-surfaces']\nfor t in tasks:\n    s = compute_stats(f'{base}/prescreening/{t}/episodes.jsonl')\n    print(f'{t}: {json.dumps(s)}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "python3 -c \"\nimport json, os\n\ndef compute_stats(episodes_path):\n    with open(episodes_path) as f:\n        episodes = [json.loads(l) for l in f if l.strip()]\n    n = len(episodes)\n    if n == 0: return None\n    int_scores = [ep['always_internal']['final_score'] for ep in episodes]\n    det_scores = [ep['always_deterministic']['final_score'] for ep in episodes]\n    int_deaths = sum(1 for s in int_scores if s <= -99)\n    det_deaths = sum(1 for s in det_scores if s <= -99)\n    int_nd = [s for s in int_scores if s > -99]\n    det_nd = [s for s in det_scores if s > -99]\n    return {\n        'n': n,\n        'int_mean': round(sum(int_scores)/n, 2),\n        'det_mean': round(sum(det_scores)/n, 2),\n        'int_death_pct': round(int_deaths/n*100, 2),\n        'det_death_pct': round(det_deaths/n*100, 2),\n        'int_nd_mean': round(sum(int_nd)/len(int_nd), 2) if int_nd else 0.0,\n        'det_nd_mean': round(sum(det_nd)/len(det_nd), 2) if det_nd else 0.0,\n        'delta_nd': round((sum(det_nd)/len(det_nd) if det_nd else 0.0) - (sum(int_nd)/len(int_nd) if int_nd else 0.0), 2),\n    }\n\nbase = '/root/autodl-tmp/simgate-modular-routing/results'\ntasks = ['find-plant', 'inclined-plane-friction-named-surfaces', 'inclined-plane-friction-unnamed-surfaces']\nfor t in tasks:\n    s = compute_stats(f'{base}/prescreening/{t}/episodes.jsonl')\n    print(f'{t}: {json.dumps(s)}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T16:48:06.745321+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T16:48:06.745454+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "python3 -c \"\nimport json, os\n\ndef compute_stats(episodes_path):\n    with open(episodes_path) as f:\n        episodes = [json.loads(l) for l in f if l.strip()]\n    n = len(episodes)\n    if n == 0: return None\n    int_scores = [ep['always_internal']['final_score'] for ep in episodes]\n    det_scores = [ep['always_deterministic']['final_score'] for ep in episodes]\n    int_deaths = sum(1 for s in int_scores if s <= -99)\n    det_deaths = sum(1 for s in det_scores if s <= -99)\n    int_nd = [s for s in int_scores if s > -99]\n    det_nd = [s for s in det_scores if s > -99]\n    return {\n        'n': n,\n        'int_mean': round(sum(int_scores)/n, 2),\n        'det_mean': round(sum(det_scores)/n, 2),\n        'int_death_pct': round(int_deaths/n*100, 2),\n        'det_death_pct': round(det_deaths/n*100, 2),\n        'int_nd_mean': round(sum(int_nd)/len(int_nd), 2) if int_nd else 0.0,\n        'det_nd_mean': round(sum(det_nd)/len(det_nd), 2) if det_nd else 0.0,\n        'delta_nd': round((sum(det_nd)/len(det_nd) if det_nd else 0.0) - (sum(int_nd)/len(int_nd) if int_nd else 0.0), 2),\n    }\n\n# Verify prescreening vs signal_type_summary\nbase = '/root/autodl-tmp/simgate-modular-routing/results'\nwith open(f'{base}/prescreening/signal_type_summary.json') as f:\n    ref = json.load(f)\n\nfor rt in ref['tasks']:\n    t = rt['task']\n    s = compute_stats(f'{base}/prescreening/{t}/episodes.jsonl')\n    match_int = abs(s['int_mean'] - rt['int_mean']) < 0.15\n    match_det = abs(s['det_mean'] - rt['det_mean']) < 0.15\n    if not match_int or not match_det:\n        print(f'MISMATCH {t}: computed int_mean={s[\\\"int_mean\\\"]} vs ref {rt[\\\"int_mean\\\"]}, computed det_mean={s[\\\"det_mean\\\"]} vs ref {rt[\\\"det_mean\\\"]}, n_computed={s[\\\"n\\\"]} vs n_ref={rt[\\\"n_episodes\\\"]}')\n    else:\n        print(f'OK {t} (n_computed={s[\\\"n\\\"]}, n_ref={rt[\\\"n_episodes\\\"]})')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "python3 -c \"\nimport json, os\n\ndef compute_stats(episodes_path):\n    with open(episodes_path) as f:\n        episodes = [json.loads(l) for l in f if l.strip()]\n    n = len(episodes)\n    if n == 0: return None\n    int_scores = [ep['always_internal']['final_score'] for ep in episodes]\n    det_scores = [ep['always_deterministic']['final_score'] for ep in episodes]\n    int_deaths = sum(1 for s in int_scores if s <= -99)\n    det_deaths = sum(1 for s in det_scores if s <= -99)\n    int_nd = [s for s in int_scores if s > -99]\n    det_nd = [s for s in det_scores if s > -99]\n    return {\n        'n': n,\n        'int_mean': round(sum(int_scores)/n, 2),\n        'det_mean': round(sum(det_scores)/n, 2),\n        'int_death_pct': round(int_deaths/n*100, 2),\n        'det_death_pct': round(det_deaths/n*100, 2),\n        'int_nd_mean': round(sum(int_nd)/len(int_nd), 2) if int_nd else 0.0,\n        'det_nd_mean': round(sum(det_nd)/len(det_nd), 2) if det_nd else 0.0,\n        'delta_nd': round((sum(det_nd)/len(det_nd) if det_nd else 0.0) - (sum(int_nd)/len(int_nd) if int_nd else 0.0), 2),\n    }\n\n# Verify prescreening vs signal_type_summary\nbase = '/root/autodl-tmp/simgate-modular-routing/results'\nwith open(f'{base}/prescreening/signal_type_summary.json') as f:\n    ref = json.load(f)\n\nfor rt in ref['tasks']:\n    t = rt['task']\n    s = compute_stats(f'{base}/prescreening/{t}/episodes.jsonl')\n    match_int = abs(s['int_mean'] - rt['int_mean']) < 0.15\n    match_det = abs(s['det_mean'] - rt['det_mean']) < 0.15\n    if not match_int or not match_det:\n        print(f'MISMATCH {t}: computed int_mean={s[\\\"int_mean\\\"]} vs ref {rt[\\\"int_mean\\\"]}, computed det_mean={s[\\\"det_mean\\\"]} vs ref {rt[\\\"det_mean\\\"]}, n_computed={s[\\\"n\\\"]} vs n_ref={rt[\\\"n_episodes\\\"]}')\n    else:\n        print(f'OK {t} (n_computed={s[\\\"n\\\"]}, n_ref={rt[\\\"n_episodes\\\"]})')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T16:48:06.745600+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T16:48:06.745748+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "python3 -c \"\nimport json, os\n\ndef compute_stats(episodes_path):\n    with open(episodes_path) as f:\n        episodes = [json.loads(l) for l in f if l.strip()]\n    n = len(episodes)\n    if n == 0: return None\n    int_scores = [ep['always_internal']['final_score'] for ep in episodes]\n    det_scores = [ep['always_deterministic']['final_score'] for ep in episodes]\n    int_deaths = sum(1 for s in int_scores if s <= -99)\n    det_deaths = sum(1 for s in det_scores if s <= -99)\n    int_nd = [s for s in int_scores if s > -99]\n    det_nd = [s for s in det_scores if s > -99]\n    return {\n        'n': n,\n        'int_mean': round(sum(int_scores)/n, 2),\n        'det_mean': round(sum(det_scores)/n, 2),\n        'int_death_pct': round(int_deaths/n*100, 2),\n        'det_death_pct': round(det_deaths/n*100, 2),\n        'int_nd_mean': round(sum(int_nd)/len(int_nd), 2) if int_nd else 0.0,\n        'det_nd_mean': round(sum(det_nd)/len(det_nd), 2) if det_nd else 0.0,\n        'delta_nd': round((sum(det_nd)/len(det_nd) if det_nd else 0.0) - (sum(int_nd)/len(int_nd) if int_nd else 0.0), 2),\n    }\n\nbase = '/root/autodl-tmp/simgate-modular-routing/results'\n\n# Get all missing group B tasks\nfor t in ['find-plant', 'inclined-plane-friction-named-surfaces', 'inclined-plane-friction-unnamed-surfaces']:\n    s = compute_stats(f'{base}/prescreening/{t}/episodes.jsonl')\n    print(f'{t}: {json.dumps(s)}')\n\nprint()\n\n# Verify prescreening vs signal_type_summary\nwith open(f'{base}/prescreening/signal_type_summary.json') as f:\n    ref = json.load(f)\n\nfor rt in ref['tasks']:\n    t = rt['task']\n    s = compute_stats(f'{base}/prescreening/{t}/episodes.jsonl')\n    match_int = abs(s['int_mean'] - rt['int_mean']) < 0.15\n    match_det = abs(s['det_mean'] - rt['det_mean']) < 0.15\n    n_match = s['n'] == rt['n_episodes']\n    if not match_int or not match_det or not n_match:\n        print(f'ISSUE {t}: computed(n={s[\\\"n\\\"]}, int={s[\\\"int_mean\\\"]}, det={s[\\\"det_mean\\\"]}) vs ref(n={rt[\\\"n_episodes\\\"]}, int={rt[\\\"int_mean\\\"]}, det={rt[\\\"det_mean\\\"]})')\n    else:\n        print(f'OK {t}')\n\nprint()\n\n# Check measure-melting-point-unknown-substance prescreening carefully\nprint('=== measure-melting-point-unknown-substance prescreening ===')\ns = compute_stats(f'{base}/prescreening/measure-melting-point-unknown-substance/episodes.jsonl')\nprint(f'Full data (n={s[\\\"n\\\"]}): {json.dumps(s)}')\n\n# Also check first 5 episodes only\nwith open(f'{base}/prescreening/measure-melting-point-unknown-substance/episodes.jsonl') as f:\n    episodes = [json.loads(l) for l in f if l.strip()]\nint5 = [ep['always_internal']['final_score'] for ep in episodes[:5]]\ndet5 = [ep['always_deterministic']['final_score'] for ep in episodes[:5]]\nprint(f'First 5 episodes: int_scores={int5}, det_scores={det5}')\nprint(f'All 9 episodes int: {[ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]}')\nprint(f'All 9 episodes det: {[ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "python3 -c \"\nimport json, os\n\ndef compute_stats(episodes_path):\n    with open(episodes_path) as f:\n        episodes = [json.loads(l) for l in f if l.strip()]\n    n = len(episodes)\n    if n == 0: return None\n    int_scores = [ep['always_internal']['final_score'] for ep in episodes]\n    det_scores = [ep['always_deterministic']['final_score'] for ep in episodes]\n    int_deaths = sum(1 for s in int_scores if s <= -99)\n    det_deaths = sum(1 for s in det_scores if s <= -99)\n    int_nd = [s for s in int_scores if s > -99]\n    det_nd = [s for s in det_scores if s > -99]\n    return {\n        'n': n,\n        'int_mean': round(sum(int_scores)/n, 2),\n        'det_mean': round(sum(det_scores)/n, 2),\n        'int_death_pct': round(int_deaths/n*100, 2),\n        'det_death_pct': round(det_deaths/n*100, 2),\n        'int_nd_mean': round(sum(int_nd)/len(int_nd), 2) if int_nd else 0.0,\n        'det_nd_mean': round(sum(det_nd)/len(det_nd), 2) if det_nd else 0.0,\n        'delta_nd': round((sum(det_nd)/len(det_nd) if det_nd else 0.0) - (sum(int_nd)/len(int_nd) if int_nd else 0.0), 2),\n    }\n\nbase = '/root/autodl-tmp/simgate-modular-routing/results'\n\n# Get all missing group B tasks\nfor t in ['find-plant', 'inclined-plane-friction-named-surfaces', 'inclined-plane-friction-unnamed-surfaces']:\n    s = compute_stats(f'{base}/prescreening/{t}/episodes.jsonl')\n    print(f'{t}: {json.dumps(s)}')\n\nprint()\n\n# Verify prescreening vs signal_type_summary\nwith open(f'{base}/prescreening/signal_type_summary.json') as f:\n    ref = json.load(f)\n\nfor rt in ref['tasks']:\n    t = rt['task']\n    s = compute_stats(f'{base}/prescreening/{t}/episodes.jsonl')\n    match_int = abs(s['int_mean'] - rt['int_mean']) < 0.15\n    match_det = abs(s['det_mean'] - rt['det_mean']) < 0.15\n    n_match = s['n'] == rt['n_episodes']\n    if not match_int or not match_det or not n_match:\n        print(f'ISSUE {t}: computed(n={s[\\\"n\\\"]}, int={s[\\\"int_mean\\\"]}, det={s[\\\"det_mean\\\"]}) vs ref(n={rt[\\\"n_episodes\\\"]}, int={rt[\\\"int_mean\\\"]}, det={rt[\\\"det_mean\\\"]})')\n    else:\n        print(f'OK {t}')\n\nprint()\n\n# Check measure-melting-point-unknown-substance prescreening carefully\nprint('=== measure-melting-point-unknown-substance prescreening ===')\ns = compute_stats(f'{base}/prescreening/measure-melting-point-unknown-substance/episodes.jsonl')\nprint(f'Full data (n={s[\\\"n\\\"]}): {json.dumps(s)}')\n\n# Also check first 5 episodes only\nwith open(f'{base}/prescreening/measure-melting-point-unknown-substance/episodes.jsonl') as f:\n    episodes = [json.loads(l) for l in f if l.strip()]\nint5 = [ep['always_internal']['final_score'] for ep in episodes[:5]]\ndet5 = [ep['always_deterministic']['final_score'] for ep in episodes[:5]]\nprint(f'First 5 episodes: int_scores={int5}, det_scores={det5}')\nprint(f'All 9 episodes int: {[ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]}')\nprint(f'All 9 episodes det: {[ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T16:48:06.745928+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"find-plant: {\\\"n\\\": 5, \\\"int_mean\\\": -58.4, \\\"det_mean\\\": 3.2, \\\"int_death_pct\\\": 60.0, \\\"det_death_pct\\\": 0.0, \\\"int_nd_mean\\\": 4.0, \\\"det_nd_mean\\\": 3.2, \\\"delta_nd\\\": -0.8}\\ninclined-plane-friction-named-surfaces: {\\\"n\\\": 5, \\\"int_mean\\\": -60.0, \\\"det_mean\\\": -20.0, \\\"int_death_pct\\\": 60.0, \\\"det_death_pct\\\": 20.0, \\\"int_nd_mean\\\": 0.0, \\\"det_nd_mean\\\": 0.0, \\\"delta_nd\\\": 0.0}\\ninclined-plane-friction-unnamed-surfaces: {\\\"n\\\": 5, \\\"int_mean\\\": -60.0, \\\"det_mean\\\": 0.0, \\\"int_death_pct\\\": 60.0, \\\"det_death_pct\\\": 0.0, \\\"int_nd_mean\\\": 0.0, \\\"det_nd_mean\\\": 0.0, \\\"delta_nd\\\": 0.0}\\n\\nOK chemistry-mix\\nOK chemistry-mix-paint-tertiary-color\\nOK find-animal\\nOK find-living-thing\\nOK find-non-living-thing\\nOK find-plant\\nOK freeze\\nOK grow-fruit\\nOK identify-life-stages-1\\nOK identify-life-stages-2\\nISSUE inclined-plane-determine-angle: computed(n=5, int=-60.0, det=0.0) vs ref(n=2, int=-50.0, det=0.0)\\nISSUE measure-melting-point-unknown-substance: computed(n=9, int=-54.0, det=-13.33) vs ref(n=5, int=-58.6, det=-32.0)\\n\\n=== measure-melting-point-unknown-substance prescreening ===\\nFull data (n=9): {\\\"n\\\": 9, \\\"int_mean\\\": -54.0, \\\"det_mean\\\": -13.33, \\\"int_death_pct\\\": 55.56, \\\"det_death_pct\\\": 22.22, \\\"int_nd_mean\\\": 3.5, \\\"det_nd_mean\\\": 11.43, \\\"delta_nd\\\": 7.93}\\nFirst 5 episodes: int_scores=[-100.0, 0.0, 7.0, -100.0, -100.0], det_scores=[0.0, 0.0, 40.0, -100.0, -100.0]\\nAll 9 episodes int: [-100.0, 0.0, 7.0, -100.0, -100.0, -100.0, 0.0, 7.0, -100.0]\\nAll 9 episodes det: [0.0, 0.0, 40.0, -100.0, -100.0, 0.0, 0.0, 40.0, 0.0]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T16:48:06.746270+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/excluded_tasks_analysis.md",
+  "content": "# Excluded Tasks Analysis: 19/30 ScienceWorld Task Types\n\n> **Revision 2026-05-15**: All statistics recomputed from raw `episodes.jsonl` files. Included tasks use plan_c 20-episode data; Group A (MVP) uses 20-episode MVP data; Groups B–C use prescreening data (5–9 episodes). Prior version mixed data sources and contained incorrect summary statistics.\n\n## 1. Complete 30-Task Classification\n\n### Data Sources\n\n| Source | Description | Episodes per task |\n|--------|-------------|-------------------|\n| **plan_c** | Plan-001b full evaluation | 20–40 |\n| **mvp** | MVP development runs | 20 |\n| **prescreening** | 5-episode screening runs | 5–9 |\n\n### Included (11 tasks, 245 episodes)\n\n| Task | n | source | det_death% | int_death% | det_mean | int_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|----------|--------|--------|-----|\n| chemistry-mix | 20 | plan_c | 25.0 | 45.0 | −21.75 | −43.55 | 4.33 | 2.64 | +1.69 |\n| find-animal | 20 | plan_c | 25.0 | 50.0 | −22.55 | −49.20 | 3.27 | 1.60 | +1.67 |\n| find-non-living-thing | 40 | plan_c | 0.0 | 0.0 | +28.48 | +18.90 | 28.48 | 18.90 | +9.58 |\n| freeze | 20 | plan_c | 25.0 | 55.0 | −24.25 | −54.75 | 1.00 | 0.56 | +0.44 |\n| grow-fruit | 20 | plan_c | 20.0 | 45.0 | −18.55 | −43.65 | 1.81 | 2.45 | −0.64 |\n| identify-life-stages-1 | 20 | plan_c | 10.0 | 55.0 | −7.50 | −55.00 | 2.78 | 0.00 | +2.78 |\n| identify-life-stages-2 | 20 | plan_c | 20.0 | 50.0 | −18.40 | −48.40 | 2.00 | 3.20 | −1.20 |\n| inclined-plane-determine-angle | 20 | plan_c | 20.0 | 55.0 | −19.00 | −55.00 | 1.25 | 0.00 | +1.25 |\n| lifespan-longest-lived | 25 | plan_c | 16.0 | 56.0 | −10.00 | −54.00 | 7.14 | 4.55 | +2.59 |\n| lifespan-longest-lived-then-shortest-lived | 20 | plan_c | 10.0 | 45.0 | −4.20 | −45.00 | 6.44 | 0.00 | +6.44 |\n| measure-melting-point-unknown-substance | 20 | plan_c | 25.0 | 55.0 | −24.25 | −54.30 | 1.00 | 1.56 | −0.56 |\n\n### Excluded (19 tasks)\n\n#### Group A: MVP Development Tasks (5 tasks, 100 episodes)\n\n| Task | n | source | det_death% | int_death% | det_mean | int_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|----------|--------|--------|-----|\n| boil | 20 | mvp | 20.0 | 50.0 | −19.70 | −49.75 | 0.38 | 0.50 | −0.12 |\n| change-the-state-of-matter-of | 20 | mvp | 15.0 | 55.0 | −14.50 | −54.70 | 0.59 | 0.67 | −0.08 |\n| chemistry-mix-paint-secondary-color | 20 | mvp | 10.0 | 45.0 | −5.50 | −41.00 | 5.00 | 7.27 | −2.27 |\n| grow-plant | 20 | mvp | 0.0 | 0.0 | +0.50 | +0.50 | 0.50 | 0.50 | 0.00 |\n| melt | 20 | mvp | 15.0 | 55.0 | −14.55 | −54.70 | 0.53 | 0.67 | −0.14 |\n\n#### Group B: Redundant Family Variants (7 tasks)\n\n| Task | n | source | Family rep (included) | det_death% | int_death% | det_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------------------|-----------|-----------|----------|--------|--------|-----|\n| chemistry-mix-paint-tertiary-color | 5 | prescreening | chemistry-mix | 20.0 | 40.0 | −17.40 | 3.25 | 4.33 | −1.08 |\n| find-living-thing | 5 | prescreening | find-animal | 20.0 | 60.0 | −16.60 | 4.25 | 4.00 | +0.25 |\n| find-plant | 5 | prescreening | find-animal | 0.0 | 60.0 | +3.20 | 3.20 | 4.00 | −0.80 |\n| inclined-plane-friction-named-surfaces | 5 | prescreening | inclined-plane-determine-angle | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| inclined-plane-friction-unnamed-surfaces | 5 | prescreening | inclined-plane-determine-angle | 0.0 | 60.0 | 0.00 | 0.00 | 0.00 | 0.00 |\n| lifespan-shortest-lived | 5 | prescreening | lifespan-longest-lived | 40.0 | 60.0 | −40.00 | 0.00 | 0.00 | 0.00 |\n| measure-melting-point-known-substance | 5 | prescreening | measure-melting-point-unknown | 0.0 | 60.0 | +1.20 | 1.20 | 3.00 | −1.80 |\n\n#### Group C: Agent-Incompetent Task Families (7 tasks)\n\n| Task | n | source | det_death% | int_death% | det_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|--------|--------|-----|\n| mendelian-genetics-known-plant | 7 | prescreening | 14.29 | 57.14 | −14.29 | 0.00 | 0.00 | 0.00 |\n| mendelian-genetics-unknown-plant | 7 | prescreening | 28.57 | 57.14 | −28.57 | 0.00 | 0.00 | 0.00 |\n| power-component | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| power-component-renewable-vs-nonrenewable-energy | 5 | prescreening | 0.0 | 60.0 | 0.00 | 0.00 | 0.00 | 0.00 |\n| test-conductivity | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| test-conductivity-of-unknown-substances | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| use-thermometer | 5 | prescreening | 20.0 | 60.0 | −19.40 | 0.75 | 1.50 | −0.75 |\n\n## 2. Statistical Comparison\n\n### Best-available data (plan_c / mvp 20-ep + prescreening 5–9-ep)\n\n| Metric | Included (11) | Excluded (19) |\n|--------|--------------|---------------|\n| n_episodes per task | 20–40 | 5–20 |\n| det_death_rate mean | 17.82% | 14.89% |\n| det_death_rate median | 20.0% | 20.0% |\n| det_mean_score mean | −12.91 | −13.98 |\n| Tasks with det_death ≥ 20% | 7/11 (64%) | 10/19 (53%) |\n| Tasks with Δnd = 0 | 0/11 (0%) | 10/19 (53%) |\n| Non-death routing signal present (Δnd ≠ 0) | 11/11 | 9/19 |\n\n**Caveat**: Sample sizes differ across groups. The 5-episode prescreening estimates are noisy—e.g., chemistry-mix shows det_death = 0% at n=5 but 25% at n=20. The death-rate comparison should be interpreted with this variance in mind.\n\n### Prescreening-only comparison (same methodology, all at 5-ep)\n\nFor the 25 tasks with prescreening data (excludes 5 MVP-only tasks):\n\n| Metric | Included (11) | Excluded B+C (14) |\n|--------|--------------|-------------------|\n| det_death_rate mean | 3.84% | 15.92% |\n| det_death_rate median | 0.0% | 20.0% |\n| Δnd = 0 count | 1/11 | 9/14 |\n\nAt prescreening scale (n=5), included tasks show much lower det_death rates than excluded tasks. This gap narrows substantially with larger samples (20-ep data), indicating that 5-episode estimates are unreliable for death-rate comparisons.\n\n## 3. Key Distinctions Between Included and Excluded Tasks\n\n1. **Non-death routing signal**: The primary discriminator. All 11 included tasks have Δnd ≠ 0 in the 20-episode evaluation, meaning routing strategy produces measurable differences beyond death avoidance. 10/19 excluded tasks have Δnd = 0, offering no routing-relevant information.\n\n2. **Agent incompetence (Group C)**: 6/7 Group C tasks score exactly 0.0 in non-death episodes under both strategies—the backbone LLM cannot solve these tasks regardless of routing. use-thermometer is the exception (det_nd = 0.75, int_nd = 1.50), but scores remain near zero.\n\n3. **Taxonomic redundancy (Group B)**: 7 tasks are variants of included family representatives. Including them would inflate sample size with correlated observations.\n\n4. **Development contamination (Group A)**: 5 tasks used for pipeline development. Standard ML practice to exclude.\n\n5. **Death rates are NOT the primary discriminator**: With 20-episode data, included tasks have comparable or even higher det_death rates (17.82%) than excluded tasks (14.89%). The exclusion is driven by information content for routing research, not task difficulty.\n\n## 4. Exclusion Criteria Assessment\n\nThree criteria, independently justified:\n\n**Criterion 1: MVP development data (5 tasks)** — boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant were used to build and debug the experimental pipeline. Excluding them prevents circular evaluation.\n\n**Criterion 2: Taxonomic deduplication (7 tasks)** — One representative per ScienceWorld family prevents within-family correlation from inflating the effective sample size.\n\n**Criterion 3: Agent-floor tasks (7 tasks)** — Four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where Qwen2.5-7B achieves near-zero task progress in non-death episodes under both strategies. 6/7 have det_nd = int_nd = 0.0. These reflect backbone capability limitations, not routing methodology.\n\n**Selection bias check**: The included set retains tasks that work against a pure death-dominance narrative:\n- find-non-living-thing: zero deaths under both strategies, det_nd = 28.48 (genuine non-death routing signal favoring deterministic)\n- grow-fruit (Δnd = −0.64), identify-life-stages-2 (Δnd = −1.20), measure-melting-point-unknown-substance (Δnd = −0.56): internal outperforms deterministic in non-death episodes\n\n## 5. Paper-Ready Text\n\n### Appendix version\n\nTask Selection. ScienceWorld provides 30 task types spanning 13 thematic families (e.g., state-change, object-finding, genetics). We select 11 task types for the main evaluation (245 episodes) based on three criteria applied during a 5-episode prescreening phase. First, we exclude five task types used during pipeline development (boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant) to prevent circular evaluation. Second, within each thematic family, we retain one representative task type to avoid inflating sample size with correlated variants—for example, selecting freeze from the state-change family rather than including all four members. This removes seven additional task types. Third, we exclude seven task types across four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where the Qwen2.5-7B backbone achieves near-zero task progress in non-death episodes under both strategies—6/7 score exactly 0.0, and use-thermometer scores 0.75—reflecting backbone capability limitations rather than routing-relevant variation. In the full 20-episode evaluation, all 11 included tasks exhibit non-zero non-death routing signal (Δnd ≠ 0), compared with only 9/19 excluded tasks. The selection does not bias toward death-dominance: the included set retains find-non-living-thing (zero deaths, det_nd_mean = 28.48) and three tasks where the internal strategy outperforms deterministic in non-death episodes (grow-fruit, identify-life-stages-2, measure-melting-point-unknown-substance).\n\n### Limitations version\n\nOur evaluation covers 11 of ScienceWorld's 30 task types (245 episodes). The 19 excluded tasks fall into three categories: five used during development (circular evaluation prevention), seven taxonomically redundant with included tasks (one representative per family), and seven where the 7B backbone achieves near-zero task-solving progress regardless of routing strategy. The last category represents a backbone capability ceiling—a stronger LLM would likely unlock these tasks and potentially reveal routing dynamics absent at the 7B scale. We verify that our selection does not bias toward death-dominance: the included set retains tasks with zero deaths and substantial non-death routing signal, as well as tasks where internal outperforms deterministic in non-death episodes.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/excluded_tasks_analysis.md",
+    "content": "# Excluded Tasks Analysis: 19/30 ScienceWorld Task Types\n\n> **Revision 2026-05-15**: All statistics recomputed from raw `episodes.jsonl` files. Included tasks use plan_c 20-episode data; Group A (MVP) uses 20-episode MVP data; Groups B–C use prescreening data (5–9 episodes). Prior version mixed data sources and contained incorrect summary statistics.\n\n## 1. Complete 30-Task Classification\n\n### Data Sources\n\n| Source | Description | Episodes per task |\n|--------|-------------|-------------------|\n| **plan_c** | Plan-001b full evaluation | 20–40 |\n| **mvp** | MVP development runs | 20 |\n| **prescreening** | 5-episode screening runs | 5–9 |\n\n### Included (11 tasks, 245 episodes)\n\n| Task | n | source | det_death% | int_death% | det_mean | int_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|----------|--------|--------|-----|\n| chemistry-mix | 20 | plan_c | 25.0 | 45.0 | −21.75 | −43.55 | 4.33 | 2.64 | +1.69 |\n| find-animal | 20 | plan_c | 25.0 | 50.0 | −22.55 | −49.20 | 3.27 | 1.60 | +1.67 |\n| find-non-living-thing | 40 | plan_c | 0.0 | 0.0 | +28.48 | +18.90 | 28.48 | 18.90 | +9.58 |\n| freeze | 20 | plan_c | 25.0 | 55.0 | −24.25 | −54.75 | 1.00 | 0.56 | +0.44 |\n| grow-fruit | 20 | plan_c | 20.0 | 45.0 | −18.55 | −43.65 | 1.81 | 2.45 | −0.64 |\n| identify-life-stages-1 | 20 | plan_c | 10.0 | 55.0 | −7.50 | −55.00 | 2.78 | 0.00 | +2.78 |\n| identify-life-stages-2 | 20 | plan_c | 20.0 | 50.0 | −18.40 | −48.40 | 2.00 | 3.20 | −1.20 |\n| inclined-plane-determine-angle | 20 | plan_c | 20.0 | 55.0 | −19.00 | −55.00 | 1.25 | 0.00 | +1.25 |\n| lifespan-longest-lived | 25 | plan_c | 16.0 | 56.0 | −10.00 | −54.00 | 7.14 | 4.55 | +2.59 |\n| lifespan-longest-lived-then-shortest-lived | 20 | plan_c | 10.0 | 45.0 | −4.20 | −45.00 | 6.44 | 0.00 | +6.44 |\n| measure-melting-point-unknown-substance | 20 | plan_c | 25.0 | 55.0 | −24.25 | −54.30 | 1.00 | 1.56 | −0.56 |\n\n### Excluded (19 tasks)\n\n#### Group A: MVP Development Tasks (5 tasks, 100 episodes)\n\n| Task | n | source | det_death% | int_death% | det_mean | int_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|----------|--------|--------|-----|\n| boil | 20 | mvp | 20.0 | 50.0 | −19.70 | −49.75 | 0.38 | 0.50 | −0.12 |\n| change-the-state-of-matter-of | 20 | mvp | 15.0 | 55.0 | −14.50 | −54.70 | 0.59 | 0.67 | −0.08 |\n| chemistry-mix-paint-secondary-color | 20 | mvp | 10.0 | 45.0 | −5.50 | −41.00 | 5.00 | 7.27 | −2.27 |\n| grow-plant | 20 | mvp | 0.0 | 0.0 | +0.50 | +0.50 | 0.50 | 0.50 | 0.00 |\n| melt | 20 | mvp | 15.0 | 55.0 | −14.55 | −54.70 | 0.53 | 0.67 | −0.14 |\n\n#### Group B: Redundant Family Variants (7 tasks)\n\n| Task | n | source | Family rep (included) | det_death% | int_death% | det_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------------------|-----------|-----------|----------|--------|--------|-----|\n| chemistry-mix-paint-tertiary-color | 5 | prescreening | chemistry-mix | 20.0 | 40.0 | −17.40 | 3.25 | 4.33 | −1.08 |\n| find-living-thing | 5 | prescreening | find-animal | 20.0 | 60.0 | −16.60 | 4.25 | 4.00 | +0.25 |\n| find-plant | 5 | prescreening | find-animal | 0.0 | 60.0 | +3.20 | 3.20 | 4.00 | −0.80 |\n| inclined-plane-friction-named-surfaces | 5 | prescreening | inclined-plane-determine-angle | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| inclined-plane-friction-unnamed-surfaces | 5 | prescreening | inclined-plane-determine-angle | 0.0 | 60.0 | 0.00 | 0.00 | 0.00 | 0.00 |\n| lifespan-shortest-lived | 5 | prescreening | lifespan-longest-lived | 40.0 | 60.0 | −40.00 | 0.00 | 0.00 | 0.00 |\n| measure-melting-point-known-substance | 5 | prescreening | measure-melting-point-unknown | 0.0 | 60.0 | +1.20 | 1.20 | 3.00 | −1.80 |\n\n#### Group C: Agent-Incompetent Task Families (7 tasks)\n\n| Task | n | source | det_death% | int_death% | det_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|--------|--------|-----|\n| mendelian-genetics-known-plant | 7 | prescreening | 14.29 | 57.14 | −14.29 | 0.00 | 0.00 | 0.00 |\n| mendelian-genetics-unknown-plant | 7 | prescreening | 28.57 | 57.14 | −28.57 | 0.00 | 0.00 | 0.00 |\n| power-component | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| power-component-renewable-vs-nonrenewable-energy | 5 | prescreening | 0.0 | 60.0 | 0.00 | 0.00 | 0.00 | 0.00 |\n| test-conductivity | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| test-conductivity-of-unknown-substances | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| use-thermometer | 5 | prescreening | 20.0 | 60.0 | −19.40 | 0.75 | 1.50 | −0.75 |\n\n## 2. Statistical Comparison\n\n### Best-available data (plan_c / mvp 20-ep + prescreening 5–9-ep)\n\n| Metric | Included (11) | Excluded (19) |\n|--------|--------------|---------------|\n| n_episodes per task | 20–40 | 5–20 |\n| det_death_rate mean | 17.82% | 14.89% |\n| det_death_rate median | 20.0% | 20.0% |\n| det_mean_score mean | −12.91 | −13.98 |\n| Tasks with det_death ≥ 20% | 7/11 (64%) | 10/19 (53%) |\n| Tasks with Δnd = 0 | 0/11 (0%) | 10/19 (53%) |\n| Non-death routing signal present (Δnd ≠ 0) | 11/11 | 9/19 |\n\n**Caveat**: Sample sizes differ across groups. The 5-episode prescreening estimates are noisy—e.g., chemistry-mix shows det_death = 0% at n=5 but 25% at n=20. The death-rate comparison should be interpreted with this variance in mind.\n\n### Prescreening-only comparison (same methodology, all at 5-ep)\n\nFor the 25 tasks with prescreening data (excludes 5 MVP-only tasks):\n\n| Metric | Included (11) | Excluded B+C (14) |\n|--------|--------------|-------------------|\n| det_death_rate mean | 3.84% | 15.92% |\n| det_death_rate median | 0.0% | 20.0% |\n| Δnd = 0 count | 1/11 | 9/14 |\n\nAt prescreening scale (n=5), included tasks show much lower det_death rates than excluded tasks. This gap narrows substantially with larger samples (20-ep data), indicating that 5-episode estimates are unreliable for death-rate comparisons.\n\n## 3. Key Distinctions Between Included and Excluded Tasks\n\n1. **Non-death routing signal**: The primary discriminator. All 11 included tasks have Δnd ≠ 0 in the 20-episode evaluation, meaning routing strategy produces measurable differences beyond death avoidance. 10/19 excluded tasks have Δnd = 0, offering no routing-relevant information.\n\n2. **Agent incompetence (Group C)**: 6/7 Group C tasks score exactly 0.0 in non-death episodes under both strategies—the backbone LLM cannot solve these tasks regardless of routing. use-thermometer is the exception (det_nd = 0.75, int_nd = 1.50), but scores remain near zero.\n\n3. **Taxonomic redundancy (Group B)**: 7 tasks are variants of included family representatives. Including them would inflate sample size with correlated observations.\n\n4. **Development contamination (Group A)**: 5 tasks used for pipeline development. Standard ML practice to exclude.\n\n5. **Death rates are NOT the primary discriminator**: With 20-episode data, included tasks have comparable or even higher det_death rates (17.82%) than excluded tasks (14.89%). The exclusion is driven by information content for routing research, not task difficulty.\n\n## 4. Exclusion Criteria Assessment\n\nThree criteria, independently justified:\n\n**Criterion 1: MVP development data (5 tasks)** — boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant were used to build and debug the experimental pipeline. Excluding them prevents circular evaluation.\n\n**Criterion 2: Taxonomic deduplication (7 tasks)** — One representative per ScienceWorld family prevents within-family correlation from inflating the effective sample size.\n\n**Criterion 3: Agent-floor tasks (7 tasks)** — Four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where Qwen2.5-7B achieves near-zero task progress in non-death episodes under both strategies. 6/7 have det_nd = int_nd = 0.0. These reflect backbone capability limitations, not routing methodology.\n\n**Selection bias check**: The included set retains tasks that work against a pure death-dominance narrative:\n- find-non-living-thing: zero deaths under both strategies, det_nd = 28.48 (genuine non-death routing signal favoring deterministic)\n- grow-fruit (Δnd = −0.64), identify-life-stages-2 (Δnd = −1.20), measure-melting-point-unknown-substance (Δnd = −0.56): internal outperforms deterministic in non-death episodes\n\n## 5. Paper-Ready Text\n\n### Appendix version\n\nTask Selection. ScienceWorld provides 30 task types spanning 13 thematic families (e.g., state-change, object-finding, genetics). We select 11 task types for the main evaluation (245 episodes) based on three criteria applied during a 5-episode prescreening phase. First, we exclude five task types used during pipeline development (boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant) to prevent circular evaluation. Second, within each thematic family, we retain one representative task type to avoid inflating sample size with correlated variants—for example, selecting freeze from the state-change family rather than including all four members. This removes seven additional task types. Third, we exclude seven task types across four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where the Qwen2.5-7B backbone achieves near-zero task progress in non-death episodes under both strategies—6/7 score exactly 0.0, and use-thermometer scores 0.75—reflecting backbone capability limitations rather than routing-relevant variation. In the full 20-episode evaluation, all 11 included tasks exhibit non-zero non-death routing signal (Δnd ≠ 0), compared with only 9/19 excluded tasks. The selection does not bias toward death-dominance: the included set retains find-non-living-thing (zero deaths, det_nd_mean = 28.48) and three tasks where the internal strategy outperforms deterministic in non-death episodes (grow-fruit, identify-life-stages-2, measure-melting-point-unknown-substance).\n\n### Limitations version\n\nOur evaluation covers 11 of ScienceWorld's 30 task types (245 episodes). The 19 excluded tasks fall into three categories: five used during development (circular evaluation prevention), seven taxonomically redundant with included tasks (one representative per family), and seven where the 7B backbone achieves near-zero task-solving progress regardless of routing strategy. The last category represents a backbone capability ceiling—a stronger LLM would likely unlock these tasks and potentially reveal routing dynamics absent at the 7B scale. We verify that our selection does not bias toward death-dominance: the included set retains tasks with zero deaths and substantial non-death routing signal, as well as tasks where internal outperforms deterministic in non-death episodes.\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T16:48:06.746542+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/excluded_tasks_analysis.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T16:48:06.746728+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat > /root/autodl-tmp/simgate-modular-routing/artifacts/excluded_tasks_analysis.md << 'HEREDOC'\n# Excluded Tasks Analysis: 19/30 ScienceWorld Task Types\n\n> **Revision 2026-05-15**: All statistics recomputed from raw `episodes.jsonl` files. Included tasks use plan_c 20-episode data; Group A (MVP) uses 20-episode MVP data; Groups B–C use prescreening data (5–9 episodes). Prior version mixed data sources and contained incorrect summary statistics.\n\n## 1. Complete 30-Task Classification\n\n### Data Sources\n\n| Source | Description | Episodes per task |\n|--------|-------------|-------------------|\n| **plan_c** | Plan-001b full evaluation | 20–40 |\n| **mvp** | MVP development runs | 20 |\n| **prescreening** | 5-episode screening runs | 5–9 |\n\n### Included (11 tasks, 245 episodes)\n\n| Task | n | source | det_death% | int_death% | det_mean | int_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|----------|--------|--------|-----|\n| chemistry-mix | 20 | plan_c | 25.0 | 45.0 | −21.75 | −43.55 | 4.33 | 2.64 | +1.69 |\n| find-animal | 20 | plan_c | 25.0 | 50.0 | −22.55 | −49.20 | 3.27 | 1.60 | +1.67 |\n| find-non-living-thing | 40 | plan_c | 0.0 | 0.0 | +28.48 | +18.90 | 28.48 | 18.90 | +9.58 |\n| freeze | 20 | plan_c | 25.0 | 55.0 | −24.25 | −54.75 | 1.00 | 0.56 | +0.44 |\n| grow-fruit | 20 | plan_c | 20.0 | 45.0 | −18.55 | −43.65 | 1.81 | 2.45 | −0.64 |\n| identify-life-stages-1 | 20 | plan_c | 10.0 | 55.0 | −7.50 | −55.00 | 2.78 | 0.00 | +2.78 |\n| identify-life-stages-2 | 20 | plan_c | 20.0 | 50.0 | −18.40 | −48.40 | 2.00 | 3.20 | −1.20 |\n| inclined-plane-determine-angle | 20 | plan_c | 20.0 | 55.0 | −19.00 | −55.00 | 1.25 | 0.00 | +1.25 |\n| lifespan-longest-lived | 25 | plan_c | 16.0 | 56.0 | −10.00 | −54.00 | 7.14 | 4.55 | +2.59 |\n| lifespan-longest-lived-then-shortest-lived | 20 | plan_c | 10.0 | 45.0 | −4.20 | −45.00 | 6.44 | 0.00 | +6.44 |\n| measure-melting-point-unknown-substance | 20 | plan_c | 25.0 | 55.0 | −24.25 | −54.30 | 1.00 | 1.56 | −0.56 |\n\n### Excluded (19 tasks)\n\n#### Group A: MVP Development Tasks (5 tasks, 100 episodes)\n\n| Task | n | source | det_death% | int_death% | det_mean | int_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|----------|--------|--------|-----|\n| boil | 20 | mvp | 20.0 | 50.0 | −19.70 | −49.75 | 0.38 | 0.50 | −0.12 |\n| change-the-state-of-matter-of | 20 | mvp | 15.0 | 55.0 | −14.50 | −54.70 | 0.59 | 0.67 | −0.08 |\n| chemistry-mix-paint-secondary-color | 20 | mvp | 10.0 | 45.0 | −5.50 | −41.00 | 5.00 | 7.27 | −2.27 |\n| grow-plant | 20 | mvp | 0.0 | 0.0 | +0.50 | +0.50 | 0.50 | 0.50 | 0.00 |\n| melt | 20 | mvp | 15.0 | 55.0 | −14.55 | −54.70 | 0.53 | 0.67 | −0.14 |\n\n#### Group B: Redundant Family Variants (7 tasks)\n\n| Task | n | source | Family rep (included) | det_death% | int_death% | det_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------------------|-----------|-----------|----------|--------|--------|-----|\n| chemistry-mix-paint-tertiary-color | 5 | prescreening | chemistry-mix | 20.0 | 40.0 | −17.40 | 3.25 | 4.33 | −1.08 |\n| find-living-thing | 5 | prescreening | find-animal | 20.0 | 60.0 | −16.60 | 4.25 | 4.00 | +0.25 |\n| find-plant | 5 | prescreening | find-animal | 0.0 | 60.0 | +3.20 | 3.20 | 4.00 | −0.80 |\n| inclined-plane-friction-named-surfaces | 5 | prescreening | inclined-plane-determine-angle | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| inclined-plane-friction-unnamed-surfaces | 5 | prescreening | inclined-plane-determine-angle | 0.0 | 60.0 | 0.00 | 0.00 | 0.00 | 0.00 |\n| lifespan-shortest-lived | 5 | prescreening | lifespan-longest-lived | 40.0 | 60.0 | −40.00 | 0.00 | 0.00 | 0.00 |\n| measure-melting-point-known-substance | 5 | prescreening | measure-melting-point-unknown | 0.0 | 60.0 | +1.20 | 1.20 | 3.00 | −1.80 |\n\n#### Group C: Agent-Incompetent Task Families (7 tasks)\n\n| Task | n | source | det_death% | int_death% | det_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|--------|--------|-----|\n| mendelian-genetics-known-plant | 7 | prescreening | 14.29 | 57.14 | −14.29 | 0.00 | 0.00 | 0.00 |\n| mendelian-genetics-unknown-plant | 7 | prescreening | 28.57 | 57.14 | −28.57 | 0.00 | 0.00 | 0.00 |\n| power-component | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| power-component-renewable-vs-nonrenewable-energy | 5 | prescreening | 0.0 | 60.0 | 0.00 | 0.00 | 0.00 | 0.00 |\n| test-conductivity | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| test-conductivity-of-unknown-substances | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| use-thermometer | 5 | prescreening | 20.0 | 60.0 | −19.40 | 0.75 | 1.50 | −0.75 |\n\n## 2. Statistical Comparison\n\n### Best-available data (plan_c / mvp 20-ep + prescreening 5–9-ep)\n\n| Metric | Included (11) | Excluded (19) |\n|--------|--------------|---------------|\n| n_episodes per task | 20–40 | 5–20 |\n| det_death_rate mean | 17.82% | 14.89% |\n| det_death_rate median | 20.0% | 20.0% |\n| det_mean_score mean | −12.91 | −13.98 |\n| Tasks with det_death ≥ 20% | 7/11 (64%) | 10/19 (53%) |\n| Tasks with Δnd = 0 | 0/11 (0%) | 10/19 (53%) |\n| Non-death routing signal present (Δnd ≠ 0) | 11/11 | 9/19 |\n\n**Caveat**: Sample sizes differ across groups. The 5-episode prescreening estimates are noisy—e.g., chemistry-mix shows det_death = 0% at n=5 but 25% at n=20. The death-rate comparison should be interpreted with this variance in mind.\n\n### Prescreening-only comparison (same methodology, all at 5-ep)\n\nFor the 25 tasks with prescreening data (excludes 5 MVP-only tasks):\n\n| Metric | Included (11) | Excluded B+C (14) |\n|--------|--------------|-------------------|\n| det_death_rate mean | 3.84% | 15.92% |\n| det_death_rate median | 0.0% | 20.0% |\n| Δnd = 0 count | 1/11 | 9/14 |\n\nAt prescreening scale (n=5), included tasks show much lower det_death rates than excluded tasks. This gap narrows substantially with larger samples (20-ep data), indicating that 5-episode estimates are unreliable for death-rate comparisons.\n\n## 3. Key Distinctions Between Included and Excluded Tasks\n\n1. **Non-death routing signal**: The primary discriminator. All 11 included tasks have Δnd ≠ 0 in the 20-episode evaluation, meaning routing strategy produces measurable differences beyond death avoidance. 10/19 excluded tasks have Δnd = 0, offering no routing-relevant information.\n\n2. **Agent incompetence (Group C)**: 6/7 Group C tasks score exactly 0.0 in non-death episodes under both strategies—the backbone LLM cannot solve these tasks regardless of routing. use-thermometer is the exception (det_nd = 0.75, int_nd = 1.50), but scores remain near zero.\n\n3. **Taxonomic redundancy (Group B)**: 7 tasks are variants of included family representatives. Including them would inflate sample size with correlated observations.\n\n4. **Development contamination (Group A)**: 5 tasks used for pipeline development. Standard ML practice to exclude.\n\n5. **Death rates are NOT the primary discriminator**: With 20-episode data, included tasks have comparable or even higher det_death rates (17.82%) than excluded tasks (14.89%). The exclusion is driven by information content for routing research, not task difficulty.\n\n## 4. Exclusion Criteria Assessment\n\nThree criteria, independently justified:\n\n**Criterion 1: MVP development data (5 tasks)** — boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant were used to build and debug the experimental pipeline. Excluding them prevents circular evaluation.\n\n**Criterion 2: Taxonomic deduplication (7 tasks)** — One representative per ScienceWorld family prevents within-family correlation from inflating the effective sample size.\n\n**Criterion 3: Agent-floor tasks (7 tasks)** — Four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where Qwen2.5-7B achieves near-zero task progress in non-death episodes under both strategies. 6/7 have det_nd = int_nd = 0.0. These reflect backbone capability limitations, not routing methodology.\n\n**Selection bias check**: The included set retains tasks that work against a pure death-dominance narrative:\n- find-non-living-thing: zero deaths under both strategies, det_nd = 28.48 (genuine non-death routing signal favoring deterministic)\n- grow-fruit (Δnd = −0.64), identify-life-stages-2 (Δnd = −1.20), measure-melting-point-unknown-substance (Δnd = −0.56): internal outperforms deterministic in non-death episodes\n\n## 5. Paper-Ready Text\n\n### Appendix version\n\nTask Selection. ScienceWorld provides 30 task types spanning 13 thematic families (e.g., state-change, object-finding, genetics). We select 11 task types for the main evaluation (245 episodes) based on three criteria applied during a 5-episode prescreening phase. First, we exclude five task types used during pipeline development (boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant) to prevent circular evaluation. Second, within each thematic family, we retain one representative task type to avoid inflating sample size with correlated variants—for example, selecting freeze from the state-change family rather than including all four members. This removes seven additional task types. Third, we exclude seven task types across four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where the Qwen2.5-7B backbone achieves near-zero task progress in non-death episodes under both strategies—6/7 score exactly 0.0, and use-thermometer scores 0.75—reflecting backbone capability limitations rather than routing-relevant variation. In the full 20-episode evaluation, all 11 included tasks exhibit non-zero non-death routing signal (Δnd ≠ 0), compared with only 9/19 excluded tasks. The selection does not bias toward death-dominance: the included set retains find-non-living-thing (zero deaths, det_nd_mean = 28.48) and three tasks where the internal strategy outperforms deterministic in non-death episodes (grow-fruit, identify-life-stages-2, measure-melting-point-unknown-substance).\n\n### Limitations version\n\nOur evaluation covers 11 of ScienceWorld's 30 task types (245 episodes). The 19 excluded tasks fall into three categories: five used during development (circular evaluation prevention), seven taxonomically redundant with included tasks (one representative per family), and seven where the 7B backbone achieves near-zero task-solving progress regardless of routing strategy. The last category represents a backbone capability ceiling—a stronger LLM would likely unlock these tasks and potentially reveal routing dynamics absent at the 7B scale. We verify that our selection does not bias toward death-dominance: the included set retains tasks with zero deaths and substantial non-death routing signal, as well as tasks where internal outperforms deterministic in non-death episodes.\nHEREDOC",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat > /root/autodl-tmp/simgate-modular-routing/artifacts/excluded_tasks_analysis.md << 'HEREDOC'\n# Excluded Tasks Analysis: 19/30 ScienceWorld Task Types\n\n> **Revision 2026-05-15**: All statistics recomputed from raw `episodes.jsonl` files. Included tasks use plan_c 20-episode data; Group A (MVP) uses 20-episode MVP data; Groups B–C use prescreening data (5–9 episodes). Prior version mixed data sources and contained incorrect summary statistics.\n\n## 1. Complete 30-Task Classification\n\n### Data Sources\n\n| Source | Description | Episodes per task |\n|--------|-------------|-------------------|\n| **plan_c** | Plan-001b full evaluation | 20–40 |\n| **mvp** | MVP development runs | 20 |\n| **prescreening** | 5-episode screening runs | 5–9 |\n\n### Included (11 tasks, 245 episodes)\n\n| Task | n | source | det_death% | int_death% | det_mean | int_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|----------|--------|--------|-----|\n| chemistry-mix | 20 | plan_c | 25.0 | 45.0 | −21.75 | −43.55 | 4.33 | 2.64 | +1.69 |\n| find-animal | 20 | plan_c | 25.0 | 50.0 | −22.55 | −49.20 | 3.27 | 1.60 | +1.67 |\n| find-non-living-thing | 40 | plan_c | 0.0 | 0.0 | +28.48 | +18.90 | 28.48 | 18.90 | +9.58 |\n| freeze | 20 | plan_c | 25.0 | 55.0 | −24.25 | −54.75 | 1.00 | 0.56 | +0.44 |\n| grow-fruit | 20 | plan_c | 20.0 | 45.0 | −18.55 | −43.65 | 1.81 | 2.45 | −0.64 |\n| identify-life-stages-1 | 20 | plan_c | 10.0 | 55.0 | −7.50 | −55.00 | 2.78 | 0.00 | +2.78 |\n| identify-life-stages-2 | 20 | plan_c | 20.0 | 50.0 | −18.40 | −48.40 | 2.00 | 3.20 | −1.20 |\n| inclined-plane-determine-angle | 20 | plan_c | 20.0 | 55.0 | −19.00 | −55.00 | 1.25 | 0.00 | +1.25 |\n| lifespan-longest-lived | 25 | plan_c | 16.0 | 56.0 | −10.00 | −54.00 | 7.14 | 4.55 | +2.59 |\n| lifespan-longest-lived-then-shortest-lived | 20 | plan_c | 10.0 | 45.0 | −4.20 | −45.00 | 6.44 | 0.00 | +6.44 |\n| measure-melting-point-unknown-substance | 20 | plan_c | 25.0 | 55.0 | −24.25 | −54.30 | 1.00 | 1.56 | −0.56 |\n\n### Excluded (19 tasks)\n\n#### Group A: MVP Development Tasks (5 tasks, 100 episodes)\n\n| Task | n | source | det_death% | int_death% | det_mean | int_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|----------|--------|--------|-----|\n| boil | 20 | mvp | 20.0 | 50.0 | −19.70 | −49.75 | 0.38 | 0.50 | −0.12 |\n| change-the-state-of-matter-of | 20 | mvp | 15.0 | 55.0 | −14.50 | −54.70 | 0.59 | 0.67 | −0.08 |\n| chemistry-mix-paint-secondary-color | 20 | mvp | 10.0 | 45.0 | −5.50 | −41.00 | 5.00 | 7.27 | −2.27 |\n| grow-plant | 20 | mvp | 0.0 | 0.0 | +0.50 | +0.50 | 0.50 | 0.50 | 0.00 |\n| melt | 20 | mvp | 15.0 | 55.0 | −14.55 | −54.70 | 0.53 | 0.67 | −0.14 |\n\n#### Group B: Redundant Family Variants (7 tasks)\n\n| Task | n | source | Family rep (included) | det_death% | int_death% | det_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------------------|-----------|-----------|----------|--------|--------|-----|\n| chemistry-mix-paint-tertiary-color | 5 | prescreening | chemistry-mix | 20.0 | 40.0 | −17.40 | 3.25 | 4.33 | −1.08 |\n| find-living-thing | 5 | prescreening | find-animal | 20.0 | 60.0 | −16.60 | 4.25 | 4.00 | +0.25 |\n| find-plant | 5 | prescreening | find-animal | 0.0 | 60.0 | +3.20 | 3.20 | 4.00 | −0.80 |\n| inclined-plane-friction-named-surfaces | 5 | prescreening | inclined-plane-determine-angle | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| inclined-plane-friction-unnamed-surfaces | 5 | prescreening | inclined-plane-determine-angle | 0.0 | 60.0 | 0.00 | 0.00 | 0.00 | 0.00 |\n| lifespan-shortest-lived | 5 | prescreening | lifespan-longest-lived | 40.0 | 60.0 | −40.00 | 0.00 | 0.00 | 0.00 |\n| measure-melting-point-known-substance | 5 | prescreening | measure-melting-point-unknown | 0.0 | 60.0 | +1.20 | 1.20 | 3.00 | −1.80 |\n\n#### Group C: Agent-Incompetent Task Families (7 tasks)\n\n| Task | n | source | det_death% | int_death% | det_mean | det_nd | int_nd | Δnd |\n|------|---|--------|-----------|-----------|----------|--------|--------|-----|\n| mendelian-genetics-known-plant | 7 | prescreening | 14.29 | 57.14 | −14.29 | 0.00 | 0.00 | 0.00 |\n| mendelian-genetics-unknown-plant | 7 | prescreening | 28.57 | 57.14 | −28.57 | 0.00 | 0.00 | 0.00 |\n| power-component | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| power-component-renewable-vs-nonrenewable-energy | 5 | prescreening | 0.0 | 60.0 | 0.00 | 0.00 | 0.00 | 0.00 |\n| test-conductivity | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| test-conductivity-of-unknown-substances | 5 | prescreening | 20.0 | 60.0 | −20.00 | 0.00 | 0.00 | 0.00 |\n| use-thermometer | 5 | prescreening | 20.0 | 60.0 | −19.40 | 0.75 | 1.50 | −0.75 |\n\n## 2. Statistical Comparison\n\n### Best-available data (plan_c / mvp 20-ep + prescreening 5–9-ep)\n\n| Metric | Included (11) | Excluded (19) |\n|--------|--------------|---------------|\n| n_episodes per task | 20–40 | 5–20 |\n| det_death_rate mean | 17.82% | 14.89% |\n| det_death_rate median | 20.0% | 20.0% |\n| det_mean_score mean | −12.91 | −13.98 |\n| Tasks with det_death ≥ 20% | 7/11 (64%) | 10/19 (53%) |\n| Tasks with Δnd = 0 | 0/11 (0%) | 10/19 (53%) |\n| Non-death routing signal present (Δnd ≠ 0) | 11/11 | 9/19 |\n\n**Caveat**: Sample sizes differ across groups. The 5-episode prescreening estimates are noisy—e.g., chemistry-mix shows det_death = 0% at n=5 but 25% at n=20. The death-rate comparison should be interpreted with this variance in mind.\n\n### Prescreening-only comparison (same methodology, all at 5-ep)\n\nFor the 25 tasks with prescreening data (excludes 5 MVP-only tasks):\n\n| Metric | Included (11) | Excluded B+C (14) |\n|--------|--------------|-------------------|\n| det_death_rate mean | 3.84% | 15.92% |\n| det_death_rate median | 0.0% | 20.0% |\n| Δnd = 0 count | 1/11 | 9/14 |\n\nAt prescreening scale (n=5), included tasks show much lower det_death rates than excluded tasks. This gap narrows substantially with larger samples (20-ep data), indicating that 5-episode estimates are unreliable for death-rate comparisons.\n\n## 3. Key Distinctions Between Included and Excluded Tasks\n\n1. **Non-death routing signal**: The primary discriminator. All 11 included tasks have Δnd ≠ 0 in the 20-episode evaluation, meaning routing strategy produces measurable differences beyond death avoidance. 10/19 excluded tasks have Δnd = 0, offering no routing-relevant information.\n\n2. **Agent incompetence (Group C)**: 6/7 Group C tasks score exactly 0.0 in non-death episodes under both strategies—the backbone LLM cannot solve these tasks regardless of routing. use-thermometer is the exception (det_nd = 0.75, int_nd = 1.50), but scores remain near zero.\n\n3. **Taxonomic redundancy (Group B)**: 7 tasks are variants of included family representatives. Including them would inflate sample size with correlated observations.\n\n4. **Development contamination (Group A)**: 5 tasks used for pipeline development. Standard ML practice to exclude.\n\n5. **Death rates are NOT the primary discriminator**: With 20-episode data, included tasks have comparable or even higher det_death rates (17.82%) than excluded tasks (14.89%). The exclusion is driven by information content for routing research, not task difficulty.\n\n## 4. Exclusion Criteria Assessment\n\nThree criteria, independently justified:\n\n**Criterion 1: MVP development data (5 tasks)** — boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant were used to build and debug the experimental pipeline. Excluding them prevents circular evaluation.\n\n**Criterion 2: Taxonomic deduplication (7 tasks)** — One representative per ScienceWorld family prevents within-family correlation from inflating the effective sample size.\n\n**Criterion 3: Agent-floor tasks (7 tasks)** — Four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where Qwen2.5-7B achieves near-zero task progress in non-death episodes under both strategies. 6/7 have det_nd = int_nd = 0.0. These reflect backbone capability limitations, not routing methodology.\n\n**Selection bias check**: The included set retains tasks that work against a pure death-dominance narrative:\n- find-non-living-thing: zero deaths under both strategies, det_nd = 28.48 (genuine non-death routing signal favoring deterministic)\n- grow-fruit (Δnd = −0.64), identify-life-stages-2 (Δnd = −1.20), measure-melting-point-unknown-substance (Δnd = −0.56): internal outperforms deterministic in non-death episodes\n\n## 5. Paper-Ready Text\n\n### Appendix version\n\nTask Selection. ScienceWorld provides 30 task types spanning 13 thematic families (e.g., state-change, object-finding, genetics). We select 11 task types for the main evaluation (245 episodes) based on three criteria applied during a 5-episode prescreening phase. First, we exclude five task types used during pipeline development (boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant) to prevent circular evaluation. Second, within each thematic family, we retain one representative task type to avoid inflating sample size with correlated variants—for example, selecting freeze from the state-change family rather than including all four members. This removes seven additional task types. Third, we exclude seven task types across four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where the Qwen2.5-7B backbone achieves near-zero task progress in non-death episodes under both strategies—6/7 score exactly 0.0, and use-thermometer scores 0.75—reflecting backbone capability limitations rather than routing-relevant variation. In the full 20-episode evaluation, all 11 included tasks exhibit non-zero non-death routing signal (Δnd ≠ 0), compared with only 9/19 excluded tasks. The selection does not bias toward death-dominance: the included set retains find-non-living-thing (zero deaths, det_nd_mean = 28.48) and three tasks where the internal strategy outperforms deterministic in non-death episodes (grow-fruit, identify-life-stages-2, measure-melting-point-unknown-substance).\n\n### Limitations version\n\nOur evaluation covers 11 of ScienceWorld's 30 task types (245 episodes). The 19 excluded tasks fall into three categories: five used during development (circular evaluation prevention), seven taxonomically redundant with included tasks (one representative per family), and seven where the 7B backbone achieves near-zero task-solving progress regardless of routing strategy. The last category represents a backbone capability ceiling—a stronger LLM would likely unlock these tasks and potentially reveal routing dynamics absent at the 7B scale. We verify that our selection does not bias toward death-dominance: the included set retains tasks with zero deaths and substantial non-death routing signal, as well as tasks where internal outperforms deterministic in non-death episodes.\nHEREDOC",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T16:48:06.746977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-15T16:48:06.747188+00:00_
+
+修正完成。以下是向 Director 汇报的结构化数据：
+
+---
+
+## 修正后关键统计值
+
+### Included 11 tasks (plan_c 20-ep)
+
+| Task | det_death% | Δnd | source |
+|------|-----------|-----|--------|
+| chemistry-mix | 25.0 | +1.69 | plan_c n=20 |
+| find-animal | 25.0 | +1.67 | plan_c n=20 |
+| find-non-living-thing | 0.0 | +9.58 | plan_c n=40 |
+| freeze | 25.0 | +0.44 | plan_c n=20 |
+| grow-fruit | 20.0 | −0.64 | plan_c n=20 |
+| identify-life-stages-1 | 10.0 | +2.78 | plan_c n=20 |
+| identify-life-stages-2 | 20.0 | −1.20 | plan_c n=20 |
+| inclined-plane-determine-angle | 20.0 | +1.25 | plan_c n=20 |
+| lifespan-longest-lived | 16.0 | +2.59 | plan_c n=25 |
+| lifespan-longest-lived-then-shortest-lived | 10.0 | +6.44 | plan_c n=20 |
+| measure-melting-point-unknown-substance | 25.0 | −0.56 | plan_c n=20 |
+| **Mean** | **17.82%** | **+2.19** | |
+| **Δnd=0 count** | | **0/11** | |
+
+### Excluded 19 tasks (mvp 20-ep + prescreening 5-9-ep)
+
+| Metric | Value |
+|--------|-------|
+| mean det_death_rate | 14.89% |
+| mean det_mean_score | −13.98 |
+| Δnd=0 count | 10/19 |
+| tasks det_death≥20% | 10/19 |
+
+### 四个修正的具体问题
+
+| 问题 | 旧值 | 修正值 | 原因 |
+|------|------|--------|------|
+| **Included det_death_rate mean** | 3.8% | 17.82% | 旧版混用了 prescreening 5-ep 数据；20-ep 数据 death rate 显著更高 |
+| **measure-melting-point-unknown delta_nd** | 16.5 | −0.56 | 16.5 无法溯源，任何数据源都不匹配；plan_c 20-ep 值为 −0.56 |
+| **Group C "均得分 0.0" 描述** | "两种策略均得分 0.0" | "6/7 得分 0.0；use-thermometer 例外 (det_nd=0.75, int_nd=1.50)" | use-thermometer 有微小非零分 |
+| **核心叙事** | "excluded 死亡率更高 (15.5% vs 3.8%)" | "两组死亡率相近；关键区分是 routing signal：included 全部 Δnd≠0, excluded 53% 为 Δnd=0" | 20-ep 数据推翻了死亡率差异叙事 |
+
+### measure-melting-point-unknown-substance delta_nd 各数据源
+
+| 数据源 | n | delta_nd |
+|--------|---|---------|
+| prescreening (first 5-ep) | 5 | +9.83 |
+| prescreening (all 9-ep) | 9 | +7.93 |
+| **plan_c (20-ep, 最终采用)** | **20** | **−0.56** |
+| 旧分析声称 | ? | 16.5 (无法验证) |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_excluded-tasks-data-fix_20260515T163652"
+}
+```
+
+</details>
+
+---

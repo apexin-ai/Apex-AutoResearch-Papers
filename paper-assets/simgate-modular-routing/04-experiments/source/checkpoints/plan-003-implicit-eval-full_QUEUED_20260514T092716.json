@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-003-implicit-eval-full",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:27:09.398Z",
+    "updated_at": "2026-05-14T09:27:16.416Z"
+  },
+  "timestamp": "2026-05-14T09:27:16.525071+00:00",
+  "trigger": "update_registry"
+}

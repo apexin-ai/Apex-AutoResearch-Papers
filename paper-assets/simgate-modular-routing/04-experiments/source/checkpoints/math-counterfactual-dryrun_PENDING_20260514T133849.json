@@ -1,0 +1,15 @@
+{
+  "exp_id": "math-counterfactual-dryrun",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:38:11.280Z",
+    "updated_at": "2026-05-14T13:38:49.878Z",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T13:38:49.998591+00:00",
+  "trigger": "update_registry"
+}

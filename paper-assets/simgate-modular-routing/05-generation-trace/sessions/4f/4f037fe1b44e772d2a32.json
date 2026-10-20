@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f037fe1b44e772d2a32",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh retry dose response setup",
+  "task_key": "worker_ssh_retry-dose-response-setup_20260518T030600",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_retry-dose-response-setup_20260518T030600_result.json",
+    "occurrence": 1,
+    "bytes": 1407,
+    "sha256": "480854ea9fda52db191e690cc12caef18f46d81532627d599c10cc4721e2139f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n### 1. Wrapper 脚本\n已写入 `/root/autodl-tmp/simgate-modular-routing/run_dose_response_full.sh`，权限 `-rwxr-xr-x`。注意：原始任务模板缺少 `source /root/miniconda3/bin/activate`，已补上。\n\n### 2. 验证检查结果\n\n| 检查项 | 结果 |\n|--------|------|\n| vllm 可导入 | vllm 0.21.0 |\n| port 8000 | 空闲 |\n| GPU 占用 | 4× RTX PRO 6000 Blackwell 96GB，全部 0 MiB / 0% 利用率 |\n| run_retry_dose_response.py 语法 | syntax OK |\n\n### 3. `run_retry_dose_response.py` 实际参数接口\n\n```\n--n-values          str, default=\"1,5,10\"     逗号分隔的 retry N 值\n--episodes-per-task int, default=20\n--max-steps         int, default=30\n--model             str, default=\"Qwen2.5-7B-Instruct\"\n--api-base          str, default=\"http://localhost:8000/v1\"\n--output-dir        str                        (有默认值，未完整显示)\n--seed              int, default=42\n--dry-run           flag\n```\n\nwrapper 脚本中的 `--n-values 1,5,10 --episodes-per-task 20` 完全匹配。\n\n### 4. 启动命令\n\n```bash\ncd /root/autodl-tmp/simgate-modular-routing && bash run_dose_response_full.sh\n```\n\n或用 nohup / submit_training_job：\n```bash\nnohup bash /root/autodl-tmp/simgate-modular-routing/run_dose_response_full.sh > /root/autodl-tmp/simgate-modular-routing/logs/wrapper.log 2>&1 &\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-retry-dose-response-setup.md"
+}

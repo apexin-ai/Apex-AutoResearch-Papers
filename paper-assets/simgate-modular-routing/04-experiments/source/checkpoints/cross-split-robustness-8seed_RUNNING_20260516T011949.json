@@ -1,0 +1,30 @@
+{
+  "exp_id": "cross-split-robustness-8seed",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:56:31.692Z",
+    "updated_at": "2026-05-16T01:19:48.827Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 python scripts/cross_split_eval.py --gpu_id 0\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "919592",
+      "log_path": "~/runs/simgate-modular-routing/cross-split-robustness-8seed.log",
+      "submitted_at": "2026-05-16T01:05:31.570Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "验证 8-seed router checkpoints 在独立 split（非训练 split）上的 balanced_acc 是否与 corrected_eval（55.7±5.0%）一致（Δ<2pp），确认 ga=8 训练 split-robust、论文数字可靠。",
+    "notes": "CRITICAL: Seed 42 adapter (checkpoints/plan-008-qwen3-1.7b/final_adapter/) 使用 episode-level stratified split (56 train / 10 val episodes)，而 seeds 43-49 使用 step-level stratified split (load_implicit_sft_data)。8-seed 汇总存在 split 方式不一致。cross-split eval 结果将进一步揭示影响程度。",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-16T01:19:49.027661+00:00",
+  "trigger": "update_registry"
+}

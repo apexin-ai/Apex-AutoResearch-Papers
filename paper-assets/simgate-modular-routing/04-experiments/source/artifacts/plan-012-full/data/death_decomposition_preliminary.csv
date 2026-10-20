@@ -1,0 +1,12 @@
+task_name,n_episodes,death_rate_int,death_rate_det,delta_full,delta_nd,delta_penalty_replaced,det_pref,int_pref,no_pref
+chemistry-mix,20,0.45,0.25,21.8,0.0,1.8,6,2,12
+find-animal,20,0.5,0.25,26.65,0.0,1.65,5,0,15
+find-non-living-thing,40,0.0,0.0,9.58,9.58,9.58,16,4,20
+freeze,20,0.55,0.25,30.5,0.0,0.5,6,0,14
+grow-fruit,20,0.45,0.2,25.1,0.0,0.1,6,1,13
+identify-life-stages-1,20,0.55,0.1,47.5,0.0,2.5,9,0,11
+identify-life-stages-2,20,0.5,0.2,30.0,0.0,0.0,6,0,14
+inclined-plane-determine-angle,20,0.55,0.2,36.0,0.0,1.0,7,0,13
+lifespan-longest-lived,25,0.56,0.16,44.0,0.0,4.0,11,1,13
+lifespan-longest-lived-then-shortest-lived,20,0.45,0.1,40.8,0.0,5.8,8,1,11
+measure-melting-point-unknown-substance,20,0.55,0.25,30.05,0.0,0.05,6,0,14

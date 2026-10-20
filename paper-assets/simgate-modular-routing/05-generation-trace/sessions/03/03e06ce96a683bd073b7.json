@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "03e06ce96a683bd073b7",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ssh r17 data lookup",
+  "task_key": "worker_ssh_r17-data-lookup_20260519T113613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_r17-data-lookup_20260519T113613.log",
+    "occurrence": 1,
+    "bytes": 910746,
+    "sha256": "b1b8238faab357e5332578fe161eacf18cf24b30eebe0ff75def157fc56583cd"
+  },
+  "statistics": {
+    "messages": 197,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 197,
+      "chunks": [
+        {
+          "path": "03e06ce96a683bd073b7-part-0001.json",
+          "message_count": 111
+        },
+        {
+          "path": "03e06ce96a683bd073b7-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-r17-data-lookup.md"
+}

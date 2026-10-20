@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f73cf96619616566e98",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "verify fig1 remote",
+  "task_key": "worker_verify_fig1-remote_20260514T140918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_fig1-remote_20260514T140918_result.json",
+    "occurrence": 1,
+    "bytes": 435,
+    "sha256": "ddda438ddf07fd76675c86d513c51ab5337ac614bb0256a01cca91f4a1253ffa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。\n\n## 结果\n\n| 项目 | 状态 |\n|------|------|\n| **Fig1** | 23,688 字节，字体修复已就位（DejaVu Sans + Type 42 TrueType 嵌入） |\n| **字体修复** | 脚本 `figures/gen_fig1.py` 已包含完整字体设置，无需额外修改 |\n| **LaTeX 编译** | 0 个错误，5 页，207,227 字节 |\n| **PDF 路径** | `/root/autodl-tmp/simgate-modular-routing/paper/latex_build/main.pdf` |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-fig1-remote.md"
+}

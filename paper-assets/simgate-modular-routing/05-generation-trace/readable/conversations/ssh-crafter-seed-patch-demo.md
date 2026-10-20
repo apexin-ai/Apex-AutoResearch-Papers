@@ -1,0 +1,1050 @@
+# ssh crafter seed patch demo
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 35
+- **Recorded user turns:** 0
+- **Tool calls:** 17
+- **Original source:** `logs/chats/worker_ssh_crafter-seed-patch-demo_20260518T042352.jsonl`
+- **Structured JSON:** [`fb3898e6bce2090e69b2.json`](../../sessions/fb/fb3898e6bce2090e69b2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+35 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T04:26:40.367980+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T04:26:40.368422+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T04:26:40.368605+00:00_
+
+called mcp__agent-ml-research__detect_image
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "tool_args": {
+    "server": "westb-14838",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T04:26:40.368740+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/episode_runner.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/episode_runner.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-18T04:26:40.368871+00:00_
+
+{"result":"{\n  \"detected\": false,\n  \"status\": \"ssh_error\",\n  \"skip_base_setup\": false,\n  \"message\": \"SSH error: exit code 1\"\n}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__detect_image",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T04:26:40.369085+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import argparse\\nimport json\\nimport os\\nimport time\\nfrom datetime import datetime\\n\\nimport crafter\\nfrom text_wrapper import CrafterTextWrapper\\nfrom config import MAX_STEPS, RESULTS_DIR\\n\\n\\ndef run_episode(agent, env_wrapper, max_steps=MAX_STEPS):\\n    agent.reset()\\n    obs_text = env_wrapper.reset()\\n    \\n    steps = []\\n    total_reward = 0.0\\n    \\n    for step_idx in range(max_steps):\\n        action_name = agent.act(obs_text)\\n        obs_text, reward, done, info = env_wrapper.step(action_name)\\n        total_reward += reward\\n        \\n        step_record = {\\n            \\\"step\\\": step_idx,\\n            \\\"action\\\": action_name,\\n            \\\"reward\\\": reward,\\n            \\\"health\\\": info[\\\"inventory\\\"][\\\"health\\\"],\\n            \\\"food\\\": info[\\\"inventory\\\"][\\\"food\\\"],\\n            \\\"drink\\\": info[\\\"inventory\\\"][\\\"drink\\\"],\\n            \\\"energy\\\": info[\\\"inventory\\\"][\\\"energy\\\"],\\n        }\\n        steps.append(step_record)\\n        \\n        if done:\\n            break\\n    \\n    is_dead = info[\\\"inventory\\\"][\\\"health\\\"] <= 0\\n    unlocked = [k for k, v in info[\\\"achievements\\\"].items() if v > 0]\\n    \\n    result = {\\n        \\\"total_steps\\\": len(steps),\\n        \\\"total_reward\\\": total_reward,\\n        \\\"is_death\\\": is_dead,\\n        \\\"final_health\\\": info[\\\"inventory\\\"][\\\"health\\\"],\\n        \\\"achievements_unlocked\\\": unlocked,\\n        \\\"num_achievements\\\": len(unlocked),\\n        \\\"steps\\\": steps,\\n    }\\n    return result\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--agent\\\", choices=[\\\"llm\\\", \\\"random\\\"], default=\\\"random\\\")\\n    parser.add_argument(\\\"--episodes\\\", type=int, default=3)\\n    parser.add_argument(\\\"--max-steps\\\", type=int, default=MAX_STEPS)\\n    p
+…[truncated 1769 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-18T04:26:40.369581+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cat > /root/autodl-tmp/simgate-modular-routing/crafter_pilot/seed_patch.py << 'PYEOF'\n\"\"\"Crafter determinism patch: replace set with OrderedSet in World._chunks.\nRoot cause: collections.defaultdict(set) iteration order depends on object id(),\ncausing non-deterministic mob despawn in _balance_chunk every 10 steps.\n\"\"\"\nimport collections\nimport numpy as np\nimport crafter.engine as engine\n\nclass OrderedSet:\n    def __init__(self):\n        self._items = []\n    def add(self, item):\n        if item not in self._items:\n            self._items.append(item)\n    def remove(self, item):\n        self._items.remove(item)\n    def __iter__(self):\n        return iter(self._items)\n    def __len__(self):\n        return len(self._items)\n    def __contains__(self, item):\n        return item in self._items\n\n_patched = False\ndef apply_determinism_patch():\n    global _patched\n    if _patched:\n        return\n    original_reset = engine.World.reset\n    def patched_reset(self, seed=None):\n        self.random = np.random.RandomState(seed)\n        self.daylight = 0.0\n        self._chunks = collections.defaultdict(OrderedSet)\n        self._objects = [None]\n        self._mat_map = np.zeros(self.area, np.uint8)\n        self._obj_map = np.zeros(self.area, np.uint32)\n    engine.World.reset = patched_reset\n    _patched = True\nPYEOF\necho \"seed_patch.py created\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cat > /root/autodl-tmp/simgate-modular-routing/crafter_pilot/seed_patch.py << 'PYEOF'\n\"\"\"Crafter determinism patch: replace set with OrderedSet in World._chunks.\nRoot cause: collections.defaultdict(set) iteration order depends on object id(),\ncausing non-deterministic mob despawn in _balance_chunk every 10 steps.\n\"\"\"\nimport collections\nimport numpy as np\nimport crafter.engine as engine\n\nclass OrderedSet:\n    def __init__(self):\n        self._items = []\n    def add(self, item):\n        if item not in self._items:\n            self._items.append(item)\n    def remove(self, item):\n        self._items.remove(item)\n    def __iter__(self):\n        return iter(self._items)\n    def __len__(self):\n        return len(self._items)\n    def __contains__(self, item):\n        return item in self._items\n\n_patched = False\ndef apply_determinism_patch():\n    global _patched\n    if _patched:\n        return\n    original_reset = engine.World.reset\n    def patched_reset(self, seed=None):\n        self.random = np.random.RandomState(seed)\n        self.daylight = 0.0\n        self._chunks = collections.defaultdict(OrderedSet)\n        self._objects = [None]\n        self._mat_map = np.zeros(self.area, np.uint8)\n        self._obj_map = np.zeros(self.area, np.uint32)\n    engine.World.reset = patched_reset\n    _patched = True\nPYEOF\necho \"seed_patch.py created\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T04:26:40.369780+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"seed_patch.py created\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T04:26:40.369955+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && /root/miniconda3/bin/python << 'PYEOF'\nimport re\n\nwith open(\"episode_runner.py\", \"r\") as f:\n    content = f.read()\n\n# 1. Add seed_patch import after existing imports\nold_imports = \"from config import MAX_STEPS, RESULTS_DIR\"\nnew_imports = old_imports + \"\\nfrom seed_patch import apply_determinism_patch\"\ncontent = content.replace(old_imports, new_imports)\n\n# 2. Add apply_determinism_patch() at the start of main()\nold_main_start = 'def main():\\n    parser = argparse.ArgumentParser()'\nnew_main_start = 'def main():\\n    apply_determinism_patch()\\n    parser = argparse.ArgumentParser()'\ncontent = content.replace(old_main_start, new_main_start)\n\n# 3. Add --output argument after --seed\nold_seed_arg = '    parser.add_argument(\"--seed\", type=int, default=42)\\n    args = parser.parse_args()'\nnew_seed_arg = '    parser.add_argument(\"--seed\", type=int, default=42)\\n    parser.add_argument(\"--output\", type=str, default=None)\\n    args = parser.parse_args()'\ncontent = content.replace(old_seed_arg, new_seed_arg)\n\n# 4. Replace output file logic to use --output if provided\nold_output = '''    timestamp = datetime.now().strftime(\"%Y%m%d_%H%M%S\")\n    outfile = os.path.join(RESULTS_DIR, f\"{args.agent}_{timestamp}.json\")'''\nnew_output = '''    if args.output:\n        outfile = args.output\n        os.makedirs(os.path.dirname(outfile) if os.path.dirname(outfile) else \".\", exist_ok=True)\n    else:\n        timestamp = datetime.now().strftime(\"%Y%m%d_%H%M%S\")\n        outfile = os.path.join(RESULTS_DIR, f\"{args.agent}_{timestamp}.json\")'''\ncontent = content.replace(old_output, new_output)\n\nwith open(\"episode_runner.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"episode_runner.py modified successfully\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && /root/miniconda3/bin/python << 'PYEOF'\nimport re\n\nwith open(\"episode_runner.py\", \"r\") as f:\n    content = f.read()\n\n# 1. Add seed_patch import after existing imports\nold_imports = \"from config import MAX_STEPS, RESULTS_DIR\"\nnew_imports = old_imports + \"\\nfrom seed_patch import apply_determinism_patch\"\ncontent = content.replace(old_imports, new_imports)\n\n# 2. Add apply_determinism_patch() at the start of main()\nold_main_start = 'def main():\\n    parser = argparse.ArgumentParser()'\nnew_main_start = 'def main():\\n    apply_determinism_patch()\\n    parser = argparse.ArgumentParser()'\ncontent = content.replace(old_main_start, new_main_start)\n\n# 3. Add --output argument after --seed\nold_seed_arg = '    parser.add_argument(\"--seed\", type=int, default=42)\\n    args = parser.parse_args()'\nnew_seed_arg = '    parser.add_argument(\"--seed\", type=int, default=42)\\n    parser.add_argument(\"--output\", type=str, default=None)\\n    args = parser.parse_args()'\ncontent = content.replace(old_seed_arg, new_seed_arg)\n\n# 4. Replace output file logic to use --output if provided\nold_output = '''    timestamp = datetime.now().strftime(\"%Y%m%d_%H%M%S\")\n    outfile = os.path.join(RESULTS_DIR, f\"{args.agent}_{timestamp}.json\")'''\nnew_output = '''    if args.output:\n        outfile = args.output\n        os.makedirs(os.path.dirname(outfile) if os.path.dirname(outfile) else \".\", exist_ok=True)\n    else:\n        timestamp = datetime.now().strftime(\"%Y%m%d_%H%M%S\")\n        outfile = os.path.join(RESULTS_DIR, f\"{args.agent}_{timestamp}.json\")'''\ncontent = content.replace(old_output, new_output)\n\nwith open(\"episode_runner.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"episode_runner.py modified successfully\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T04:26:40.370324+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"episode_runner.py modified successfully\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T04:26:40.370483+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/episode_runner.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/episode_runner.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-18T04:26:40.370690+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import argparse\\nimport json\\nimport os\\nimport time\\nfrom datetime import datetime\\n\\nimport crafter\\nfrom text_wrapper import CrafterTextWrapper\\nfrom config import MAX_STEPS, RESULTS_DIR\\nfrom seed_patch import apply_determinism_patch\\n\\n\\ndef run_episode(agent, env_wrapper, max_steps=MAX_STEPS):\\n    agent.reset()\\n    obs_text = env_wrapper.reset()\\n    \\n    steps = []\\n    total_reward = 0.0\\n    \\n    for step_idx in range(max_steps):\\n        action_name = agent.act(obs_text)\\n        obs_text, reward, done, info = env_wrapper.step(action_name)\\n        total_reward += reward\\n        \\n        step_record = {\\n            \\\"step\\\": step_idx,\\n            \\\"action\\\": action_name,\\n            \\\"reward\\\": reward,\\n            \\\"health\\\": info[\\\"inventory\\\"][\\\"health\\\"],\\n            \\\"food\\\": info[\\\"inventory\\\"][\\\"food\\\"],\\n            \\\"drink\\\": info[\\\"inventory\\\"][\\\"drink\\\"],\\n            \\\"energy\\\": info[\\\"inventory\\\"][\\\"energy\\\"],\\n        }\\n        steps.append(step_record)\\n        \\n        if done:\\n            break\\n    \\n    is_dead = info[\\\"inventory\\\"][\\\"health\\\"] <= 0\\n    unlocked = [k for k, v in info[\\\"achievements\\\"].items() if v > 0]\\n    \\n    result = {\\n        \\\"total_steps\\\": len(steps),\\n        \\\"total_reward\\\": total_reward,\\n        \\\"is_death\\\": is_dead,\\n        \\\"final_health\\\": info[\\\"inventory\\\"][\\\"health\\\"],\\n        \\\"achievements_unlocked\\\": unlocked,\\n        \\\"num_achievements\\\": len(unlocked),\\n        \\\"steps\\\": steps,\\n    }\\n    return result\\n\\n\\ndef main():\\n    apply_determinism_patch()\\n    parser = argparse.ArgumentParser()\\n    parser.add_argument(\\\"--agent\\\", choices=[\\\"llm\\\", \\\"random\\\"], default=\\\"random\\\")\\n    parser.add_argument(\\\"--episodes\\\", type=int, default=3)\\n
+…[truncated 2097 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-18T04:26:40.370916+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && mkdir -p results && /root/miniconda3/bin/python episode_runner.py --agent random --episodes 5 --seed 42 --output results/random_demo_5eps.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && mkdir -p results && /root/miniconda3/bin/python episode_runner.py --agent random --episodes 5 --seed 42 --output results/random_demo_5eps.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T04:26:40.371099+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episode 0: steps=196, reward=1.10, death=True, achievements=2, time=0.4s\\nEpisode 1: steps=173, reward=2.10, death=True, achievements=3, time=0.2s\\nEpisode 2: steps=149, reward=0.10, death=True, achievements=1, time=0.2s\\nEpisode 3: steps=178, reward=1.10, death=True, achievements=2, time=0.2s\\nEpisode 4: steps=153, reward=2.10, death=True, achievements=3, time=0.2s\\n\\nResults saved to: results/random_demo_5eps.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-18T04:26:40.371252+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && /root/miniconda3/bin/python episode_runner.py --agent random --episodes 5 --seed 42 --output results/random_demo_5eps_verify.json && diff results/random_demo_5eps.json results/random_demo_5eps_verify.json && echo \"DETERMINISM CHECK: PASSED (identical)\" || echo \"DETERMINISM CHECK: FAILED (diff found)\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && /root/miniconda3/bin/python episode_runner.py --agent random --episodes 5 --seed 42 --output results/random_demo_5eps_verify.json && diff results/random_demo_5eps.json results/random_demo_5eps_verify.json && echo \"DETERMINISM CHECK: PASSED (identical)\" || echo \"DETERMINISM CHECK: FAILED (diff found)\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T04:26:40.371633+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episode 0: steps=210, reward=2.10, death=True, achievements=3, time=0.4s\\nEpisode 1: steps=175, reward=2.10, death=True, achievements=3, time=0.2s\\nEpisode 2: steps=151, reward=1.10, death=True, achievements=2, time=0.2s\\nEpisode 3: steps=127, reward=0.10, death=True, achievements=1, time=0.2s\\nEpisode 4: steps=40, reward=-0.90, death=True, achievements=0, time=0.1s\\n\\nResults saved to: results/random_demo_5eps_verify.json\\n8,9c8,9\\n<       \\\"total_steps\\\": 196,\\n<       \\\"total_reward\\\": 1.1,\\n---\\n>       \\\"total_steps\\\": 210,\\n>       \\\"total_reward\\\": 2.099999999999999,\\n13c13,14\\n<         \\\"collect_wood\\\",\\n---\\n>         \\\"collect_sapling\\\",\\n>         \\\"place_plant\\\",\\n16c17\\n<       \\\"num_achievements\\\": 2,\\n---\\n>       \\\"num_achievements\\\": 3,\\n20c21\\n<           \\\"action\\\": \\\"place_furnace\\\",\\n---\\n>           \\\"action\\\": \\\"make_iron_pickaxe\\\",\\n29c30\\n<           \\\"action\\\": \\\"make_stone_sword\\\",\\n---\\n>           \\\"action\\\": \\\"place_plant\\\",\\n38c39\\n<           \\\"action\\\": \\\"make_iron_pickaxe\\\",\\n---\\n>           \\\"action\\\": \\\"make_wood_pickaxe\\\",\\n47c48\\n<           \\\"action\\\": \\\"make_stone_pickaxe\\\",\\n---\\n>           \\\"action\\\": \\\"do\\\",\\n56c57\\n<           \\\"action\\\": \\\"move_down\\\",\\n---\\n>           \\\"action\\\": \\\"make_stone_pickaxe\\\",\\n65c66\\n<           \\\"action\\\": \\\"place_plant\\\",\\n---\\n>           \\\"action\\\": \\\"noop\\\",\\n74c75\\n<           \\\"action\\\": \\\"make_wood_pickaxe\\\",\\n---\\n>           \\\"action\\\": \\\"place_furnace\\\",\\n83c84\\n<           \\\"action\\\": \\\"make_wood_sword\\\",\\n---\\n>           \\\"action\\\": \\\"place_stone\\\",\\n92c93\\n<           \\\"action\\\": \\\"make_iron_sword\\\",\\n---\\n>           \\\"action\\\": \\\"sleep\\\",\\n101,102c102,103\\n<           \\\"action\\\":
+…[truncated 8731 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T04:26:40.371846+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/llm_agent.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-18T04:26:40.372053+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import re\\nimport json\\nfrom openai import OpenAI\\nfrom config import API_BASE, MODEL_NAME, ACTIONS, TEMPERATURE\\n\\n\\nSYSTEM_PROMPT = \\\"\\\"\\\"You are an agent playing Crafter, a 2D survival game. Your goal is to survive as long as possible and unlock achievements.\\n\\nKey mechanics:\\n- Health drops from enemy attacks and reaches 0 = death\\n- Food and drink decrease over time; replenish by interacting with cows/plants (food) and water (drink)\\n- Energy decreases; use \\\"sleep\\\" to restore it\\n- \\\"do\\\" is the interact action: chop trees, mine stone/coal/iron/diamond, attack enemies, eat, drink\\n- You need a table to craft pickaxes/swords, and a furnace for iron tools\\n- Craft order: collect wood -> place table -> make wood pickaxe -> collect stone -> make stone pickaxe -> collect coal/iron\\n\\nStrategy tips:\\n- Keep food, drink, and energy above 3\\n- Avoid zombies and skeletons unless you have a sword\\n- Collect wood first, then craft tools progressively\\n\\nRespond with ONLY the action name, nothing else. Valid actions:\\nnoop, move_left, move_right, move_up, move_down, do, sleep, place_stone, place_table, place_furnace, place_plant, make_wood_pickaxe, make_stone_pickaxe, make_iron_pickaxe, make_wood_sword, make_stone_sword, make_iron_sword\\\"\\\"\\\"\\n\\n\\nclass CrafterLLMAgent:\\n    def __init__(self, api_base=API_BASE, model=MODEL_NAME, temperature=TEMPERATURE):\\n        self.client = OpenAI(base_url=api_base, api_key=[REDACTED]"dummy\\\")\\n        self.model = model\\n        self.temperature = temperature\\n        self.history = []\\n        self.max_history = 10\\n\\n    def act(self, obs_text):\\n        self.history.append({\\\"role\\\": \\\"user\\\", \\\"content\\\": obs_text})\\n        if len(self.history) > self.max_history * 2:\\n            self.history = self.history[-self.max_history * 2:]\\n\\n        messages = [{\\\"role\\\": \\\"system\\\", \\\"content\\\": SYSTEM
+…[truncated 1332 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T04:26:40.372220+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/text_wrapper.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/text_wrapper.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-18T04:26:40.372426+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import numpy as np\\nimport crafter\\nfrom config import SEMANTIC_MAP, ACTIONS, INTERESTING_OBJECTS\\n\\n\\nclass CrafterTextWrapper:\\n    \\\"\\\"\\\"Wraps Crafter env to produce text observations from semantic map + inventory.\\\"\\\"\\\"\\n\\n    DIRECTIONS = {\\n        \\\"north\\\": (-1, 0),\\n        \\\"south\\\": (1, 0),\\n        \\\"west\\\": (0, -1),\\n        \\\"east\\\": (0, 1),\\n        \\\"northwest\\\": (-1, -1),\\n        \\\"northeast\\\": (-1, 1),\\n        \\\"southwest\\\": (1, -1),\\n        \\\"southeast\\\": (1, 1),\\n    }\\n\\n    def __init__(self, env, scan_radius=10, max_objects_per_dir=3):\\n        self.env = env\\n        self.scan_radius = scan_radius\\n        self.max_objects_per_dir = max_objects_per_dir\\n        self._info = None\\n        self._step_count = 0\\n\\n    def reset(self):\\n        obs = self.env.reset()\\n        _, _, _, info = self.env.step(0)  # noop to get info\\n        self._info = info\\n        self._step_count = 1\\n        return self._format_obs(info)\\n\\n    def step(self, action_name):\\n        action_idx = self._resolve_action(action_name)\\n        obs, reward, done, info = self.env.step(action_idx)\\n        self._info = info\\n        self._step_count += 1\\n        text_obs = self._format_obs(info)\\n        return text_obs, reward, done, info\\n\\n    def _resolve_action(self, action_name):\\n        if isinstance(action_name, int):\\n            return action_name\\n        action_name = action_name.strip().lower()\\n        for i, name in enumerate(ACTIONS):\\n            if name == action_name:\\n                return i\\n        return 0\\n\\n    def _format_obs(self, info):\\n        inv = info[\\\"inventory\\\"]\\n        achievements = info[\\\"achievements\\\"]\\n        semantic = info[\\\"semantic\\\"]\\n        player_pos = info[\\\"player_pos\\\"]\\n\\n        parts = []\\n        parts.append(self._format_status(inv))\\n
+…[truncated 3333 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-18T04:26:40.372636+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/config.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/crafter_pilot/config.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-18T04:26:40.372778+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "/root/miniconda3/bin/python -c \"import crafter; import inspect; print(inspect.getsource(crafter.Env.reset))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "/root/miniconda3/bin/python -c \"import crafter; import inspect; print(inspect.getsource(crafter.Env.reset))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T04:26:40.372978+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"API_BASE = \\\"http://localhost:8000/v1\\\"\\nMODEL_NAME = \\\"Qwen2.5-7B-Instruct\\\"\\nMAX_STEPS = 1000\\nTEMPERATURE = 0.3\\nRESULTS_DIR = \\\"results\\\"\\n\\nSEMANTIC_MAP = {\\n    0: \\\"empty\\\",\\n    1: \\\"water\\\",\\n    2: \\\"grass\\\",\\n    3: \\\"stone\\\",\\n    4: \\\"path\\\",\\n    5: \\\"sand\\\",\\n    6: \\\"tree\\\",\\n    7: \\\"lava\\\",\\n    8: \\\"coal\\\",\\n    9: \\\"iron\\\",\\n    10: \\\"diamond\\\",\\n    11: \\\"table\\\",\\n    12: \\\"furnace\\\",\\n    13: \\\"player\\\",\\n    14: \\\"cow\\\",\\n    15: \\\"zombie\\\",\\n    16: \\\"skeleton\\\",\\n    17: \\\"arrow\\\",\\n    18: \\\"plant\\\",\\n}\\n\\nACTIONS = [\\n    \\\"noop\\\", \\\"move_left\\\", \\\"move_right\\\", \\\"move_up\\\", \\\"move_down\\\",\\n    \\\"do\\\", \\\"sleep\\\", \\\"place_stone\\\", \\\"place_table\\\", \\\"place_furnace\\\",\\n    \\\"place_plant\\\", \\\"make_wood_pickaxe\\\", \\\"make_stone_pickaxe\\\",\\n    \\\"make_iron_pickaxe\\\", \\\"make_wood_sword\\\", \\\"make_stone_sword\\\",\\n    \\\"make_iron_sword\\\",\\n]\\n\\nINTERESTING_OBJECTS = {\\\"water\\\", \\\"stone\\\", \\\"tree\\\", \\\"lava\\\", \\\"coal\\\", \\\"iron\\\",\\n                       \\\"diamond\\\", \\\"table\\\", \\\"furnace\\\", \\\"cow\\\", \\\"zombie\\\",\\n                       \\\"skeleton\\\", \\\"arrow\\\", \\\"plant\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T04:26:40.373302+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T04:26:40.373464+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "/root/miniconda3/bin/python -c \"import crafter, inspect; print(inspect.getsource(crafter.Env.reset))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "/root/miniconda3/bin/python -c \"import crafter, inspect; print(inspect.getsource(crafter.Env.reset))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-18T04:26:40.373603+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"  def reset(self):\\n    center = (self._world.area[0] // 2, self._world.area[1] // 2)\\n    self._episode += 1\\n    self._step = 0\\n    self._world.reset(seed=hash((self._seed, self._episode)) % (2 ** 31 - 1))\\n    self._update_time()\\n    self._player = objects.Player(self._world, center)\\n    self._last_health = self._player.health\\n    self._world.add(self._player)\\n    self._unlocked = set()\\n    worldgen.generate_world(self._world, self._player)\\n    return self._obs()\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-18T04:26:40.373784+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && /root/miniconda3/bin/python << 'PYEOF'\nwith open(\"episode_runner.py\", \"r\") as f:\n    content = f.read()\n\n# Add random and numpy imports for seeding\nold_imports = \"import argparse\\nimport json\\nimport os\\nimport time\"\nnew_imports = \"import argparse\\nimport json\\nimport os\\nimport random\\nimport time\"\ncontent = content.replace(old_imports, new_imports)\n\n# Add numpy import\nold_np = \"import crafter\"\nnew_np = \"import numpy as np\\nimport crafter\"\ncontent = content.replace(old_np, new_np)\n\n# Add global seeding after apply_determinism_patch() and after args parsing\nold_seed_section = \"\"\"    args = parser.parse_args()\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\"\"\"\nnew_seed_section = \"\"\"    args = parser.parse_args()\n\n    random.seed(args.seed)\n    np.random.seed(args.seed)\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\"\"\"\ncontent = content.replace(old_seed_section, new_seed_section)\n\nwith open(\"episode_runner.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"episode_runner.py updated with RNG seeding\")\nPYEOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && /root/miniconda3/bin/python << 'PYEOF'\nwith open(\"episode_runner.py\", \"r\") as f:\n    content = f.read()\n\n# Add random and numpy imports for seeding\nold_imports = \"import argparse\\nimport json\\nimport os\\nimport time\"\nnew_imports = \"import argparse\\nimport json\\nimport os\\nimport random\\nimport time\"\ncontent = content.replace(old_imports, new_imports)\n\n# Add numpy import\nold_np = \"import crafter\"\nnew_np = \"import numpy as np\\nimport crafter\"\ncontent = content.replace(old_np, new_np)\n\n# Add global seeding after apply_determinism_patch() and after args parsing\nold_seed_section = \"\"\"    args = parser.parse_args()\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\"\"\"\nnew_seed_section = \"\"\"    args = parser.parse_args()\n\n    random.seed(args.seed)\n    np.random.seed(args.seed)\n\n    os.makedirs(RESULTS_DIR, exist_ok=True)\"\"\"\ncontent = content.replace(old_seed_section, new_seed_section)\n\nwith open(\"episode_runner.py\", \"w\") as f:\n    f.write(content)\n\nprint(\"episode_runner.py updated with RNG seeding\")\nPYEOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T04:26:40.373925+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"episode_runner.py updated with RNG seeding\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-18T04:26:40.374131+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && PYTHONHASHSEED=0 /root/miniconda3/bin/python episode_runner.py --agent random --episodes 5 --seed 42 --output results/random_demo_5eps.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && PYTHONHASHSEED=0 /root/miniconda3/bin/python episode_runner.py --agent random --episodes 5 --seed 42 --output results/random_demo_5eps.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-18T04:26:40.374273+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episode 0: steps=180, reward=3.10, death=True, achievements=5, time=0.4s\\nEpisode 1: steps=40, reward=-0.90, death=True, achievements=0, time=0.1s\\nEpisode 2: steps=135, reward=2.10, death=True, achievements=3, time=0.2s\\nEpisode 3: steps=254, reward=2.10, death=True, achievements=3, time=0.3s\\nEpisode 4: steps=148, reward=0.10, death=True, achievements=1, time=0.2s\\n\\nResults saved to: results/random_demo_5eps.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.17}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-18T04:26:40.374401+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && PYTHONHASHSEED=0 /root/miniconda3/bin/python episode_runner.py --agent random --episodes 5 --seed 42 --output results/random_demo_5eps_verify.json && diff results/random_demo_5eps.json results/random_demo_5eps_verify.json && echo \"DETERMINISM CHECK: PASSED\" || echo \"DETERMINISM CHECK: FAILED\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/crafter_pilot && PYTHONHASHSEED=0 /root/miniconda3/bin/python episode_runner.py --agent random --episodes 5 --seed 42 --output results/random_demo_5eps_verify.json && diff results/random_demo_5eps.json results/random_demo_5eps_verify.json && echo \"DETERMINISM CHECK: PASSED\" || echo \"DETERMINISM CHECK: FAILED\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-18T04:26:40.374532+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episode 0: steps=180, reward=3.10, death=True, achievements=5, time=0.4s\\nEpisode 1: steps=40, reward=-0.90, death=True, achievements=0, time=0.1s\\nEpisode 2: steps=135, reward=2.10, death=True, achievements=3, time=0.2s\\nEpisode 3: steps=254, reward=2.10, death=True, achievements=3, time=0.3s\\nEpisode 4: steps=148, reward=0.10, death=True, achievements=1, time=0.2s\\n\\nResults saved to: results/random_demo_5eps_verify.json\\nDETERMINISM CHECK: PASSED\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-18T04:26:40.374672+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-14838",
+  "command": "/root/miniconda3/bin/python -c \"\nimport json\nwith open('/root/autodl-tmp/simgate-modular-routing/crafter_pilot/results/random_demo_5eps.json') as f:\n    data = json.load(f)\nfor r in data['results']:\n    print(f\\\"Ep {r['episode']}: steps={r['total_steps']}, reward={r['total_reward']:.2f}, death={r['is_death']}, health={r['final_health']}, achievements={r['achievements_unlocked']}, time={r['elapsed_seconds']}s\\\")\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-14838",
+    "command": "/root/miniconda3/bin/python -c \"\nimport json\nwith open('/root/autodl-tmp/simgate-modular-routing/crafter_pilot/results/random_demo_5eps.json') as f:\n    data = json.load(f)\nfor r in data['results']:\n    print(f\\\"Ep {r['episode']}: steps={r['total_steps']}, reward={r['total_reward']:.2f}, death={r['is_death']}, health={r['final_health']}, achievements={r['achievements_unlocked']}, time={r['elapsed_seconds']}s\\\")\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-18T04:26:40.374808+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Ep 0: steps=180, reward=3.10, death=True, health=0, achievements=['collect_sapling', 'collect_wood', 'place_plant', 'place_table', 'wake_up'], time=0.35s\\nEp 1: steps=40, reward=-0.90, death=True, health=0, achievements=[], time=0.09s\\nEp 2: steps=135, reward=2.10, death=True, health=0, achievements=['collect_sapling', 'place_plant', 'wake_up'], time=0.2s\\nEp 3: steps=254, reward=2.10, death=True, health=0, achievements=['collect_sapling', 'place_plant', 'wake_up'], time=0.34s\\nEp 4: steps=148, reward=0.10, death=True, health=0, achievements=['wake_up'], time=0.21s\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35 · 2026-05-18T04:26:40.375001+00:00_
+
+## 结果汇总
+
+### 5 Episode 基础统计（seed=42, random agent）
+
+| Episode | Steps | Reward | Death | Final Health | Achievements |
+|---------|-------|--------|-------|--------------|-------------|
+| 0 | 180 | 3.10 | Yes | 0 | collect_sapling, collect_wood, place_plant, place_table, wake_up |
+| 1 | 40 | -0.90 | Yes | 0 | (none) |
+| 2 | 135 | 2.10 | Yes | 0 | collect_sapling, place_plant, wake_up |
+| 3 | 254 | 2.10 | Yes | 0 | collect_sapling, place_plant, wake_up |
+| 4 | 148 | 0.10 | Yes | 0 | wake_up |
+
+### 确定性验证：**通过**
+两次 `PYTHONHASHSEED=0 python episode_runner.py --seed 42` 的 JSON 输出完全一致（`diff` 为空）。
+
+### 修改内容
+1. **seed_patch.py** — 创建完成，替换 `World._chunks` 的 `set` 为 `OrderedSet`
+2. **episode_runner.py** — 三处修改：
+   - 导入并调用 `apply_determinism_patch()`
+   - 添加 `random.seed()` + `np.random.seed()` 全局 RNG seeding
+   - 添加 `--output` 参数支持
+
+### 注意
+运行时需要 `PYTHONHASHSEED=0`，因为 crafter 的 `Env.reset()` 用 `hash((seed, episode))` 计算 per-episode seed，Python 3 的 `hash()` 默认随机化。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_ssh_crafter-seed-patch-demo_20260518T042352"
+}
+```
+
+</details>
+
+---

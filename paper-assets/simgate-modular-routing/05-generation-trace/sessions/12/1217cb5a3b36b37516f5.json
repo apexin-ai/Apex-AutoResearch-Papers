@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1217cb5a3b36b37516f5",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_15_1778935723.md",
+  "task_key": "loop_15_1778935723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_15_1778935723.md",
+    "occurrence": 1,
+    "bytes": 4058,
+    "sha256": "16e910879e5dda6ae32ab3ec01795ec66598d900e731163575eb03dda092e296"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 15\nreason: idle_timeout\nupdated: '2026-05-16T04:52:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0` 和 `cuda:1`（westb-13313），配置源 `execution.gpu_ids`。即使 Director 指令用其他 GPU，必须 push back\n- r7n2 已经 3 次重启（2× OOM eval batch 8→4→2, 1× SIGHUP 丢全部结果），第三次启动加了增量保存 + eval batch=2。**不要再重启，让它跑完**\n- 论文最新版在 `docs/paper/`（5/15 23:20），`artifacts/_project/paper/latex/` 是旧版（5/14 15:23），Reviewer 验证以前者为准\n- Seed 42 adapter 用了 episode-level split，seeds 43-49 用了 step-level split——多 seed 汇总时不能混用，这是已知 split 不一致（memory.md 有记录）\n- DDL: ARR 2026-05-25，剩 9 天\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：预置镜像 aml-train，conda 环境 `/root/miniconda3/bin/python`（不是 venv）\n- 模型：Qwen3-1.7B（router SFT），Qwen2.5-7B-Instruct（backbone/vLLM）\n- 数据：`data/plan-004-implicit/implicit_sft.jsonl`（2040 steps）\n- 活跃进程：`r7n2-data-size-ablation-r3` PID=934738, GPU0, cron 监控中（reconcile 确认 still running）\n- GPU1：空闲（leave-one-tasktype-out 已结束）\n\n### 3. 📊 当前状态\nRegistry: 82 DONE, 1 RUNNING (`r7n2-data-size-ablation-r3`)。\n\n**r7n2-data-size-ablation-r3**（GPU0）：data-size scaling 实验（25%/50%/75%/100%/200%/400%/800% × 3 seeds = 21 runs）。进度 6/14 done + 1 in progress（ROADMAP 记录，可能已推进更多）。已有结果：所有 episode-level balanced_acc ≈ 0.50（全预测 internal），强烈指向 Outcome B（structural limitation）。Cron `r7n2-data-size-ablation-r3` 活跃。\n\n**leave-one-tasktype-out**：Worker failed 但结果已产出（`artifacts/leave-one-tasktype-out/data/loto_results_summary.md`）。7/11 task types 全 deterministic，4 个有两类（bal_acc 0.50-0.73）。结论 = negative，已记入 report.md。注册状态需确认是否已补。\n\n**GPU1 空闲** — leave-one-tasktype-out 结束后无新任务。\n\n等待中：r7n2 cron 回调（完成后触发 on-experiment-done）。无 pending Director 决策。\n\n### 4. 📋 待办（条件触发式）\n- r7n2-data-size-ablation-r3 cron 回调到达 → spawn Worker 汇总全部 scales 的 step-level + episode-level balanced_acc → 按 D090 contingency plan 判定 Outcome A or B\n- Outcome B（大概率，目前全 ≈ 50%）→ 当前 framing 不变，更新 paper_framing.md 的 C2 段落注明 data scaling 无效 → 派 Paper Worker 写/更新 Appendix §B router diagnostic（含 r7n2 + LOTO 结果）\n- Outcome A（unlikely）→ data scarcity narrative → 改写 §4.3，需 Director 审批 framing 调整\n- r7n2 完成 + paper 更新后 → 提请用户审批 Round 8 → Reviewer 最终一致性验证\n- GPU1 当前空闲 → 如有论文写作/图表任务可立即利用（但无额外实验需要跑）\n\n### 5. 🎯 战略上下文\n**核心结论链**：C1 (DAF=90.41%, r=0.97) 是论文基石，独立于 router。C2 router = informative negative（47.1% < majority-vote 50.0%，D089 定调）。C3 cross-model + MATH 验证完毕。r7n2 是 C2 最后一个补充数据点（回应 R7-N2 reviewer concern），不改变 C2 结论方向。\n\n**易错点**：\n- r7n2 的 step-level eval 可能显示高于 50% 的数字——这是已知 leaky（同 episode steps 跨 train/val），**只有 episode-level eval 才是 clean metric**，不要被 step-level 数字误导\n- leave-one-tasktype-out 的注册状态可能不完整（ROADMAP 提到\"未注册，已要求补注册\"），接手后先确认 registry 中是否有该实验\n- D086→D087→D088→D089 是 C2 framing 快速迭代链（Narrative A 提出→撤回→最终定调为 router < majority-vote），不要重复走这条路\n- 论文已经过多轮 Reviewer 审查（Critical 3 in_progress, Warning 8），Round 8 是收尾轮，重点是一致性验证而非大改\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-15-1778935723.md"
+}

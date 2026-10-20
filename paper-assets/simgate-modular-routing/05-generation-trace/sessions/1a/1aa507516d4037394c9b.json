@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1aa507516d4037394c9b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis retry dose response",
+  "task_key": "worker_analysis_retry-dose-response_20260518T124459",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_retry-dose-response_20260518T124459_result.json",
+    "occurrence": 1,
+    "bytes": 910,
+    "sha256": "3211075f74fc8c1fc578c41294dfdd7555bb4a3bdcb5c18268ec46e3ffb8f2de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。Registry 已更新为 DONE/success。\n\n## 核心结果\n\n| 条件 | Death Rate |\n|------|-----------|\n| 7B Baseline (N=1) | 51.2% |\n| Retry (N=3) | 40.9% |\n| **Retry (N=5)** | **43.5%** |\n| Reflexion/72B | ~35% |\n| Deterministic | 16.3% |\n\n## 结论: **SUCCESS**\n\n- **Plateau confirmed**: N=5 vs N=3 差异 = +2.6pp（<3pp 阈值），且方向相反（N=5 更高）\n- **Death dominance 是结构性上限**: agent 平均消耗 4.66/5.0 次 retry 仍无法降低 death rate，说明是重复同样的致死错误\n- **与 hypothesis 的偏差**: plateau 水平在 ~42%，高于预测的 35-40%，且未收敛到 reflexion/72B 的 ~35%。但这反而强化核心论点: blind retry 连 reflection-based 方法都不如，问题在于 *how* not *how many times*\n\n**局限**: 实验只跑了 N=5，N=1/2/4 未在同一 run 收集；N=3 reference 来自另一实验。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-retry-dose-response.md"
+}

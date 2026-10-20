@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36d673bc6e8150f851fd",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 006 find pid",
+  "task_key": "worker_diagnose_plan-006-find-pid_20260515T144402",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-006-find-pid_20260515T144402_result.json",
+    "occurrence": 1,
+    "bytes": 261,
+    "sha256": "39b2574f96c4a7a6dba6e5af7eaf8814225e0fe050023360d8a3133e65bc5892"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **PID**: 485807（`python src/episode_level_collection.py --deep_internal --seed 42`，6 种任务类型，20 episodes）\n- **Cron**: `plan-006-deep-internal` 已注册，每 120 秒监控，日志 `/tmp/plan006_deep_internal.log`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-006-find-pid.md"
+}

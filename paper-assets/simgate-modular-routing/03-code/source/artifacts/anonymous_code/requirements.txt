@@ -1,0 +1,10 @@
+torch>=2.1.0
+transformers>=4.40.0
+peft>=0.10.0
+scienceworld==1.2.3
+numpy>=1.24.0
+scipy>=1.10.0
+scikit-learn>=1.3.0
+sympy>=1.12
+vllm>=0.4.0
+requests>=2.31.0

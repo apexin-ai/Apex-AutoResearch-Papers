@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "001300baef7db7330ab1",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "paper data consistency fixes",
+  "task_key": "worker_paper_data-consistency-fixes_20260521T094505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_data-consistency-fixes_20260521T094505.log",
+    "occurrence": 1,
+    "bytes": 633812,
+    "sha256": "28ddb01f0311e8d7bf80a696c5353f3387c894bdcc82c286d45fa86a552d38e1"
+  },
+  "statistics": {
+    "messages": 138,
+    "user_turns": 0,
+    "tool_calls": 51,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "assistant": 32,
+      "record": 1,
+      "tool_call": 51,
+      "tool_result": 51,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 138,
+      "chunks": [
+        {
+          "path": "001300baef7db7330ab1-part-0001.json",
+          "message_count": 128
+        },
+        {
+          "path": "001300baef7db7330ab1-part-0002.json",
+          "message_count": 10
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-data-consistency-fixes.md"
+}

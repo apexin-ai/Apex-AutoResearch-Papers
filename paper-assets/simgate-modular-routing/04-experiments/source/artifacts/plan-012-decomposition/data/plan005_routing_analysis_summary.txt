@@ -1,0 +1,8 @@
+Output files on server (westb-13313):
+- results/plan005/analysis/task_classification.json — 30 tasks classification + metrics
+- results/plan005/analysis/heatmap_data.csv — Figure 1 data matrix (DAF descending)
+- results/plan005/analysis/taxonomy_summary.json — classification stats + C1 claim analysis
+
+Summary: 25 death-dominated (83.3%), 3 genuine-det (10%), 2 internal-preferred (6.7%)
+Weighted mean DAF = 98.09%, 17/25 death-dominated tasks have DAF=1.0
+Internal deaths 144 vs deterministic 37 (3.89x ratio)

@@ -1,0 +1,49 @@
+{
+  "exp_id": "plan-002-formal-v4",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:22:49.207Z",
+    "updated_at": "2026-05-14T07:03:19.904Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v4 --seed 42\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "230992",
+      "log_path": "~/runs/simgate-modular-routing/plan-002-formal-v4.log",
+      "submitted_at": "2026-05-14T06:23:07.864Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "results/plan_c/ (11 tasks, all complete)",
+      "data_count": "2040 samples (train 1620: det=1440/int=180 | val 420: det=390/int=30)",
+      "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)",
+      "seed": 42,
+      "fixes_from_v3": [
+        "stratified val split via sklearn train_test_split(stratify=labels)",
+        "removed --upsample_minority, only --class_weights auto",
+        "mutual exclusion check: class_weights + upsample_minority triggers auto-disable of upsample"
+      ],
+      "wall_clock_seconds": 476.8,
+      "gpu_hours": 0.13
+    },
+    "server": "westb-13313",
+    "gpu": "cuda:0",
+    "pid": "230992",
+    "log_path": "~/runs/simgate-modular-routing/plan-002-formal-v4.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v4 --seed 42\""
+    },
+    "hypothesis": "Router SFT v4：三项修复——(1) stratified val split (sklearn train_test_split stratify=labels, val 有 30 internal + 390 det), (2) 移除 upsample_minority 只保留 class_weights auto [4.50, 0.5625], (3) 互斥检查防止过补偿。Qwen3-1.7B + LoRA r=16 (0.37% trainable), 3 epochs, batch_size=4 + grad_accum=8, 2040 samples (1830 det / 210 internal)。",
+    "conclusion": "negative",
+    "notes": "Director 紧急 kill。v4 重现 v3 训练异常（epoch 1 loss 5.13-7.91），三项修复（stratified split / 移除 upsample / 互斥检查）均无效。根因锁定：ModelScope 下载的 Qwen3-1.7B 与 Qwen3ForSequenceClassification 分类头组合有问题。dryrun 用 HF cache 版 loss 正常 (0.48-0.63)，plan-004 生成式训练 loss 正常 (0.36-0.71)，唯独 ModelScope + 分类头 loss 异常。诊断 Worker 已派出对比 config/tokenizer 差异。",
+    "completed_at": "2026-05-14T06:31:04.652Z"
+  },
+  "timestamp": "2026-05-14T07:03:20.028815+00:00",
+  "trigger": "update_registry"
+}

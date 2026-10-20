@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0bdf6182fec78bd84e08",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis math level split",
+  "task_key": "worker_analysis_math-level-split_20260517T055900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_math-level-split_20260517T055900_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "9c49fec38796c50ef0d6a6783977d665bc4031d4e1c09198009514310daff80a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n| | Level 4 (N=458) | Level 5 (N=502) | All (N=960) |\n|---|---|---|---|\n| internal_acc | 0.7576 (347/458) | 0.6474 (325/502) | 0.7000 (672/960) |\n| code_acc | 0.7576 (347/458) | 0.6474 (325/502) | 0.7000 (672/960) |\n| diff (int-code) | +0.00pp | +0.00pp | +0.00pp |\n| McNemar chi2 | 0.0000 | 0.0000 | 0.0000 |\n| p-value | 1.000000 | 1.000000 | 1.000000 |\n| discordant (int_only / code_only) | 39 / 39 | 61 / 61 | 100 / 100 |\n\n两个 level 的 internal 和 deterministic(code) 准确率完全相同，且 discordant pairs 对称（b=c），McNemar 统计量为 0，p=1。Level 5 的整体准确率比 Level 4 低约 11pp（0.6474 vs 0.7576），符合难度预期。数据集总量 960（不是文件名暗示的 800），Level 4/5 接近对半分（458/502）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-math-level-split.md"
+}

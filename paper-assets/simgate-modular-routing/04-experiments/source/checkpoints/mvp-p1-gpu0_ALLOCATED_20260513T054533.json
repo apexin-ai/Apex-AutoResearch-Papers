@@ -1,0 +1,19 @@
+{
+  "exp_id": "mvp-p1-gpu0",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T05:45:22.030Z",
+    "updated_at": "2026-05-13T05:45:33.303Z",
+    "spec": {
+      "hypothesis": "Oracle routing 在 strong task types（温度物理）上显著优于 always-internal",
+      "description": "Phase 1 GPU0: strong tasks (boil, melt, change-state-of-matter)",
+      "parent": "mvp-p0-forking"
+    }
+  },
+  "timestamp": "2026-05-13T05:45:33.312309+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "122c0a8beaa27b28d0d8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh gpu0 zombie cleanup",
+  "task_key": "worker_ssh_gpu0-zombie-cleanup_20260514T020425",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_gpu0-zombie-cleanup_20260514T020425_result.json",
+    "occurrence": 1,
+    "bytes": 138,
+    "sha256": "501edf04a1d162d98005869d85651c7aa667325fd18c094f2f77984cbc2bce06"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**GPU0 已完全释放** — 0MiB / 32607MiB，无任何进程占用。GPU1 未受影响（PID 558609 仍正常运行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-gpu0-zombie-cleanup.md"
+}

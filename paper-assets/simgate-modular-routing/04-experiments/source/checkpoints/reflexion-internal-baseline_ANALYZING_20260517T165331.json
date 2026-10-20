@@ -1,0 +1,42 @@
+{
+  "exp_id": "reflexion-internal-baseline",
+  "project": "simgate-modular-routing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:12.035Z",
+    "updated_at": "2026-05-17T16:53:31.632Z",
+    "hypothesis": "Reflexion 通过自我纠错降低 internal modality 的 death rate；如果 death rate 降至 <20%（接近 det 的 16.3%），则 death dominance 不再成立",
+    "parent": "plan-012-full",
+    "spec": {
+      "command": "/root/miniconda3/bin/python src/reflexion_baseline.py --mode reflexion --tasks chemistry-mix,find-animal,find-non-living-thing,freeze,grow-fruit,identify-life-stages-1 --api-base http://localhost:8000/v1 --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --output-dir results/reflexion_baseline_part1/ --episodes-per-task 20 --max-trials 3",
+      "server": "westb-14838",
+      "gpu": "cuda:2",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "data_path": "ScienceWorld environment (6 tasks: chemistry-mix, find-animal, find-non-living-thing, freeze, grow-fruit, identify-life-stages-1)",
+      "data_count": 120,
+      "seed": 42,
+      "pid": 20371,
+      "log_path": "/root/autodl-tmp/simgate-modular-routing/logs/reflexion_part1.log",
+      "checkpoint_source": "N/A (episode collection)",
+      "eval_data": "ScienceWorld environment interactive episodes"
+    },
+    "notes": "tmux路径=/root/miniconda3/bin/tmux; 模型需用完整路径/root/autodl-tmp/models/Qwen2.5-7B-Instruct; VLLM_USE_FLASHINFER_SAMPLER=0 for Blackwell; submit_training_job不可用(tmux不在PATH)",
+    "metrics": {
+      "death_rate": 0.314,
+      "death_rate_part1": 0.292,
+      "death_rate_part2": 0.34,
+      "success_rate": 0.173,
+      "t1_death_rate": 0.418,
+      "rescue_rate": 0.293,
+      "mean_score_all": -26.3,
+      "mean_score_alive": 7.4,
+      "episodes": 220
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T16:53:31.836153+00:00",
+  "trigger": "update_registry"
+}

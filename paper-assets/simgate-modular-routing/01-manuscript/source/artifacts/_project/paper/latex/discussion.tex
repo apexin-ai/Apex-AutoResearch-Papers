@@ -1,0 +1,8 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Cross-environment evidence.}
+The death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? An evaluation on 300 MATH Level~4--5 problems, using code interpreter as the deterministic modality, suggests not. Internal reasoning achieved 81.0\% accuracy versus 76.7\% for code interpreter (McNemar's test, $p=0.079$), with 84.3\% of problems showing no modality preference (label distribution: 17 deterministic-preferred, 30 internal-preferred, 253 no-preference). In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld.
+
+\paragraph{Scope and future directions.}
+Our analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation.

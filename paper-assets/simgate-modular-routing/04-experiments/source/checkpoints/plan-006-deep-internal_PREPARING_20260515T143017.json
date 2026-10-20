@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-006-deep-internal",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:30:17.277Z",
+    "updated_at": "2026-05-15T14:30:17.277Z"
+  },
+  "timestamp": "2026-05-15T14:30:17.408060+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,19 @@
+{
+  "exp_id": "mvp-p1-gpu0-vllm",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T09:18:47.128Z",
+    "updated_at": "2026-05-13T09:18:47.128Z",
+    "spec": {
+      "hypothesis": "vLLM 后端 + 新代码 (> tie-break, death filter 仅 det+oracle) 跑 melt + change-state，与 GPU1 v3 代码一致",
+      "description": "Phase 1 GPU0 vLLM — melt + change-state (新代码)",
+      "parent": "mvp-p1-gpu0"
+    }
+  },
+  "timestamp": "2026-05-13T09:18:47.143273+00:00",
+  "trigger": "update_registry"
+}

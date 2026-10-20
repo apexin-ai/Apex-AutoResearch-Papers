@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12ab486b814100f830c8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops check chem status launch",
+  "task_key": "worker_ops_check-chem-status-launch_20260514T051844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-chem-status-launch_20260514T051844_result.json",
+    "occurrence": 1,
+    "bytes": 1076,
+    "sha256": "d47883d9777a50784ac002aa451fe52afa3499a4c4e18d3e755cb4709ed2f19b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## chemistry-mix 状态: **RUNNING** (18/20 eps, 进程运行 2h7m)\n\n注意：`episodes_slim.jsonl` 不存在于任何 task，数据均在 `episodes.jsonl` 中。\n\n### 11 Task 完整度\n\n| Task | Episodes | 状态 |\n|------|----------|------|\n| chemistry-mix | 18 | ⏳ 运行中 |\n| find-animal | 20 | ✅ |\n| find-non-living-thing | 40 | ✅ (超额) |\n| freeze | 20 | ✅ |\n| grow-fruit | 20 | ✅ |\n| identify-life-stages-1 | 20 | ✅ |\n| identify-life-stages-2 | 20 | ✅ |\n| inclined-plane-determine-angle | 20 | ✅ |\n| lifespan-longest-lived | 25 | ✅ (超额) |\n| lifespan-longest-lived-then-shortest-lived | 20 | ✅ |\n| measure-melting-point-unknown-substance | 20 | ✅ |\n\n### GPU 状态\n- GPU 0: 0 MiB / 32607 MiB, 0% 利用率（空闲）\n- GPU 1: 28013 MiB / 32607 MiB, 0% 利用率（已分配，GPU util 瞬时为 0）\n\n### 磁盘\n- `/root/autodl-tmp/`: 55G / 250G 已用 (22%)\n\n### 结论\nchemistry-mix 还差 2 个 episode，进程存活中，预计很快完成。其余 10 个 task 全部达标（≥20 eps）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-chem-status-launch.md"
+}

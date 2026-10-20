@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ec323410342f968da1a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh crafter heuristic agent",
+  "task_key": "worker_ssh_crafter-heuristic-agent_20260518T041020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_crafter-heuristic-agent_20260518T041020_result.json",
+    "occurrence": 1,
+    "bytes": 1167,
+    "sha256": "7fd7c1258b5a07ba283c5e32eed2e97098072c4e01a8c1f81256fcbcefc2e9b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Server westb-14838 has been unreachable for an extended period. Here's the current status:\n\n**Progress:**\n- v8 agent tested: 5/5 deaths, avg 353 steps (up from 215 in v7). Best episode reached 811 steps.\n- v9 agent code is ready locally at `crafter_pilot/heuristic_agent.py` with three key fixes:\n  1. Flee ALL monsters within 4 tiles (prevents zombie swarm formation that killed in eps 1-3)\n  2. Sleep safety radius 12 with NO forced sleep at energy=0 (eliminates 7-damage sleep kills)\n  3. Water-biased flee + wider food search (addresses starvation in ep 0)\n\n**Critical Crafter mechanics discovered:**\n- Sleep duration = (9-energy) * 11 steps. Energy=0 sleep = 99 steps = certain death if any zombie within ~50 tiles\n- food=0 or drink=0 causes health decay (-1 hp every 15 steps)\n- Health regen requires food>0 AND drink>0 AND (energy>0 OR sleeping)\n\n**Pending when server returns:**\n1. Deploy v9 to server\n2. Run 5-episode test\n3. Iterate if needed (may need to experiment with never-sleep strategy, water-barrier positioning, or plant farming)\n4. Run random agent comparison (10 episodes)\n5. Produce final report + sync artifact"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-crafter-heuristic-agent.md"
+}

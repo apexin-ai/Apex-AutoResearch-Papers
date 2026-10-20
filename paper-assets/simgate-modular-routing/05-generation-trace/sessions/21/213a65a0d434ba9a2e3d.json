@@ -1,0 +1,75 @@
+{
+  "schema_version": "1.0",
+  "id": "213a65a0d434ba9a2e3d",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "research sighup root cause",
+  "task_key": "worker_research_sighup-root-cause_20260514T021418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_sighup-root-cause_20260514T021418.log",
+    "occurrence": 1,
+    "bytes": 1205183,
+    "sha256": "986bb3acea6c123e8be53bd451e67f6589e674e0bb15597ea3d6a5a924057c6f"
+  },
+  "statistics": {
+    "messages": 378,
+    "user_turns": 2,
+    "tool_calls": 133,
+    "roles": {
+      "system": 77,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 133,
+      "user": 2,
+      "tool_result": 133,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "213a65a0d434ba9a2e3d-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 122,
+      "chunks": [
+        {
+          "path": "213a65a0d434ba9a2e3d-part-0001.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 250,
+      "chunks": [
+        {
+          "path": "213a65a0d434ba9a2e3d-part-0001.json",
+          "message_count": 52
+        },
+        {
+          "path": "213a65a0d434ba9a2e3d-part-0002.json",
+          "message_count": 174
+        },
+        {
+          "path": "213a65a0d434ba9a2e3d-part-0003.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-sighup-root-cause.md"
+}

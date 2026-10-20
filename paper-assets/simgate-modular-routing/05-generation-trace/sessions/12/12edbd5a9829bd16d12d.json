@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12edbd5a9829bd16d12d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose math 200 fixed exit",
+  "task_key": "worker_diagnose_math-200-fixed-exit_20260514T144004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_math-200-fixed-exit_20260514T144004_result.json",
+    "occurrence": 1,
+    "bytes": 990,
+    "sha256": "0156bbd41b3d86f9d6723dcf83d4e71a4e7b127558871cab80d26ad7a7b8e4d5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。结果汇总：\n\n**math-200-fixed: FAILED — 在第 56/200 题崩溃**\n\n**崩溃原因**: vLLM 返回 HTTP 400 Bad Request (`localhost:8000/v1/chat/completions`)，发生在 problem 56 的 code interpreter 调用阶段。可能是该题的 prompt 触发了 vLLM 的输入校验错误（如 token 超长或格式异常）。\n\n**部分结果 (55 题)**:\n| 指标 | 值 |\n|---|---|\n| Internal accuracy | 44/55 = **80.0%** |\n| CodeInterp accuracy | 41/55 = **74.5%** |\n| Code execution rate | 44/55 = 80.0% (11 题 0 code rounds) |\n| no-preference | 45 (81.8%) |\n| internal-preferred | 7 (12.7%) |\n| det-preferred | 3 (5.5%) |\n| FILTERED | 11 |\n| Sandbox empty output | **0** (auto_print_last_expr 修复生效) |\n\n**后续建议**:\n1. 排查 problem 56 触发 400 的具体原因（可能是 context 过长），给 `_generate_api` 加异常重试或跳过逻辑\n2. 加 `--resume` 支持，从 offset=105 (50+55) 继续跑剩余 145 题"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-math-200-fixed-exit.md"
+}

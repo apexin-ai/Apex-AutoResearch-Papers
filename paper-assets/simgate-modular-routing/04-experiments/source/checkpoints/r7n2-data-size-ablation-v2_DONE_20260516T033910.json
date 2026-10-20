@@ -1,0 +1,31 @@
+{
+  "exp_id": "r7n2-data-size-ablation-v2",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:12:54.564Z",
+    "updated_at": "2026-05-16T03:39:10.551Z",
+    "spec": {
+      "command": "python src/ablation_data_size.py",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "930638",
+      "data_path": "/root/autodl-tmp/simgate-modular-routing/data/",
+      "data_count": 1735,
+      "model_name": "qwen",
+      "seed": "42,43,44",
+      "log_path": "~/runs/simgate-modular-routing/r7n2-data-size-ablation.log",
+      "note": "train batch=4, eval batch=2 (hardcoded, confirmed in code line 342). Dual eval: step-level + episode-level.",
+      "checkpoint_path": "N/A"
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-16T03:39:10.551Z"
+  },
+  "timestamp": "2026-05-16T03:39:10.713930+00:00",
+  "trigger": "update_registry"
+}

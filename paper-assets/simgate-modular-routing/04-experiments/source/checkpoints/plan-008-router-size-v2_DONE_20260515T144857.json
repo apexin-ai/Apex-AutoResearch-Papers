@@ -1,0 +1,54 @@
+{
+  "exp_id": "plan-008-router-size-v2",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:56:51.786Z",
+    "updated_at": "2026-05-15T14:48:57.426Z",
+    "hypothesis": "Router size ablation v2 (C2 lightweight claim): Qwen3 同家族对比 0.6B / 1.7B / 4B。修复 v1 的 3 个 bug：生成式评估（非 logit argmax）、同家族模型（非混合 Qwen2.5/3）、episode-level stratified split（与 seed-robustness 一致）。",
+    "parent": "plan-008-router-size",
+    "spec": {
+      "command": "python scripts/plan008_v2_router_size.py --epochs 3",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": 2040,
+      "model_name": "Qwen3-0.6B, Qwen3-1.7B, Qwen3-4B",
+      "seed": 42,
+      "gpu": "RTX 5090 32GB (cuda:0)",
+      "plan_id": "plan-008",
+      "description": "Router size ablation v2 — fixes eval method (generative), model family (all Qwen3), val split (episode-level stratified)",
+      "pid": 482010,
+      "log_path": "/tmp/plan008_full.log",
+      "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/checkpoints/plan-008-v2-*",
+      "checkpoint_source": "trained from scratch (LoRA SFT)",
+      "eval_data": "data/plan-004-implicit/implicit_sft.jsonl (episode-level stratified val split, 300 samples)"
+    },
+    "metrics": {
+      "qwen3_0.6b": {
+        "balanced_acc": 0.376,
+        "internal_recall": 0.4,
+        "det_recall": 0.352
+      },
+      "qwen3_1.7b": {
+        "balanced_acc": 0.419,
+        "internal_recall": 0.47,
+        "det_recall": 0.37
+      },
+      "qwen3_4b": {
+        "balanced_acc": 0.337,
+        "internal_recall": 0.43,
+        "det_recall": 0.241
+      },
+      "eval_method": "generative (generate + parse_output)",
+      "val_split": "episode-level stratified",
+      "finding": "All 3 models below random baseline (0.50). Models generate game action text instead of routing labels. Parser does heuristic [SIMULATE] prefix matching. 4B worst (inverse scaling). 1.7B=0.419 far below seed-robustness reference 0.554. Root cause: training/prompt template mismatch — v2 wrapper script differs from original implicit_router_sft.py pipeline."
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-15T14:48:57.426Z"
+  },
+  "timestamp": "2026-05-15T14:48:57.560169+00:00",
+  "trigger": "update_registry"
+}

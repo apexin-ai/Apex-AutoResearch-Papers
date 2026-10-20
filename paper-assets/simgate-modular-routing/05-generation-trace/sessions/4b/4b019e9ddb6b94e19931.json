@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b019e9ddb6b94e19931",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh 7b find nonliving death rate",
+  "task_key": "worker_ssh_7b-find-nonliving-death-rate_20260517T215819",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_7b-find-nonliving-death-rate_20260517T215819_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "45310b81186dad85cdbafb429daf879b3398e8d212fe86c5398ac9ed919ca13c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：\n\n**find-non-living-thing: 7B death rate = 0%**（65 episodes across 3 experiments, 0 deaths）\n\n这与 72B 一致，确认 find-non-living-thing 是天然 \"non-death-prone\" task——环境中根本不存在致死动作，与模型能力无关。\n\n7B 其他 task 的 death rate 在 40%-60%（整体均值 55.6%），唯独 find-non-living-thing 为 0%。\n\n结果已写入 `artifacts/7b_per_task_death_rate.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-7b-find-nonliving-death-rate.md"
+}

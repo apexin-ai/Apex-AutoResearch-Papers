@@ -1,0 +1,26 @@
+\begin{table*}[t]
+\centering
+\footnotesize
+\caption{Per-task death rate (\%) under Retry and Reflexion with varying maximum attempts $N$. Each task has 20 episodes. Bold indicates the lowest death rate within each strategy per task.}
+\label{tab:per-task-dose-response}
+\setlength{\tabcolsep}{3.5pt}
+\begin{tabular}{l|ccccc|ccccc}
+\toprule
+ & \multicolumn{5}{c|}{\textbf{Retry}} & \multicolumn{5}{c}{\textbf{Reflexion}} \\
+\textbf{Task} & $N$=1 & $N$=2 & $N$=3 & $N$=4 & $N$=5 & $N$=1 & $N$=2 & $N$=3 & $N$=4 & $N$=5 \\
+\midrule
+ChemMix          & 55 & 55 & \textbf{50} & \textbf{50} & \textbf{50} & 55 & 45 & 25 & 35 & \textbf{20} \\
+FindAnimal       & \textbf{50} & 55 & \textbf{50} & \textbf{50} & 55 & 50 & 40 & 45 & \textbf{30} & 45 \\
+Freeze           & 55 & 55 & 55 & \textbf{50} & \textbf{50} & 55 & \textbf{50} & \textbf{50} & \textbf{50} & 60 \\
+GrowFruit        & 45 & 50 & 45 & \textbf{40} & 50 & 50 & 35 & 30 & \textbf{25} & \textbf{25} \\
+IDLifeStages-1   & 35 & 30 & \textbf{25} & 30 & \textbf{25} & 35 & \textbf{30} & 35 & 35 & 35 \\
+IDLifeStages-2   & \textbf{25} & \textbf{25} & \textbf{25} & \textbf{25} & \textbf{25} & \textbf{25} & \textbf{25} & \textbf{25} & \textbf{25} & 30 \\
+InclinedPlane    & 55 & 55 & \textbf{45} & \textbf{45} & \textbf{45} & 50 & 40 & \textbf{20} & 30 & 35 \\
+LifespanLong     & 50 & 45 & 45 & \textbf{40} & 45 & 50 & \textbf{40} & 45 & \textbf{40} & \textbf{40} \\
+LifespanL\&S     & 55 & 45 & 45 & 45 & \textbf{35} & 55 & 45 & \textbf{30} & 45 & 35 \\
+MeltingPoint     & 55 & 55 & \textbf{50} & 55 & 55 & 50 & 50 & 35 & 50 & \textbf{25} \\
+\midrule
+\textbf{Overall} & 48.0 & 47.0 & 43.5 & \textbf{43.0} & 43.5 & 47.5 & 40.0 & \textbf{34.0} & 36.5 & 35.0 \\
+\bottomrule
+\end{tabular}
+\end{table*}

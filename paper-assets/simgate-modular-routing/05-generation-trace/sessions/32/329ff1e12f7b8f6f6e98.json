@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "329ff1e12f7b8f6f6e98",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 008 v2 result",
+  "task_key": "worker_diagnose_plan-008-v2-result_20260515T144454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-008-v2-result_20260515T144454_result.json",
+    "occurrence": 1,
+    "bytes": 898,
+    "sha256": "495da3ae1fa97bde966d2c3702bcccb868076a7bd5182f5604e72144ef6c26bd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，cron 已删除。\n\n**plan-008-router-size-v2 结果：DONE / negative**\n\n| Model | balanced_acc | internal_recall | det_recall |\n|-------|-------------|-----------------|------------|\n| 0.6B  | 0.376       | 0.40            | 0.352      |\n| 1.7B  | 0.419       | 0.47            | 0.370      |\n| 4B    | 0.337       | 0.43            | 0.241      |\n\n三模型全部低于随机基线 0.50，v2 生成式评估修复了 v1 的 det_recall=0 bug，但模型本身未学到分类——生成的是游戏动作文本（\"connect freezer to door\"）而非路由标签，parser 靠 `[SIMULATE]` 前缀做 heuristic 分类。4B 反而最差（反向缩放）。1.7B 的 0.419 远低于 seed-robustness 参考 0.554±0.052。\n\nrouter-size 对比无法得出有效结论——根本原因是训练目标/prompt 模板没有让模型学到输出分类标签。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-008-v2-result.md"
+}

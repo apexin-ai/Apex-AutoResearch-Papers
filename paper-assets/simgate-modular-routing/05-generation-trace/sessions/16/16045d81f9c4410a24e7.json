@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "16045d81f9c4410a24e7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops gpu0 kill cleanup restart",
+  "task_key": "worker_ops_gpu0-kill-cleanup-restart_20260514T041542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu0-kill-cleanup-restart_20260514T041542_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "eea5fb759d2a2112681a92358cec2f0868e3e40abb523daa13c5b44941e69209"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| Step | 结果 |\n|------|------|\n| **Step 1: Kill GPU0** | 原 PID 698985/699929 已不存在；实际运行的 PID 934571/935125 已 kill，GPU0 释放 |\n| **Step 2: 删除 150G 文件** | `results/plan_c/lifespan-longest-lived/` 整个目录已删除。df 未变化是因为 md0 是多容器共享设备；autodl-tmp 实际使用 19G |\n| **Step 3: 重启** | 通过 `submit_training_job` 提交 tmux session `gpu0-v6-lifespan`，运行 `SLIM_EPISODES=1` + `--start_episode 0` + `--episodes 20` |\n| **Step 4: 验证** | GPU0 利用率 100%，vLLM PID 37837 已加载，推理正在进行（~1000 toks/s input, ~96 toks/s output），ep0 数据收集已开始 |\n\nGPU1 进程（PID 789051, freeze/chemistry-mix）未受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu0-kill-cleanup-restart.md"
+}

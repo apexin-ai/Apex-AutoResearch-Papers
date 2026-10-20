@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3a8203eed14420c8a5fe",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval plan 004 v5 routing",
+  "task_key": "worker_eval_plan-004-v5-routing_20260514T082118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan-004-v5-routing_20260514T082118_result.json",
+    "occurrence": 1,
+    "bytes": 1188,
+    "sha256": "074fc1d1f20a682a7050a7d8b25a64908cc50baec944b5e6714cdc03996c87a0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n## 结果汇总\n\n**plan-004-v5 Generation-based Routing Eval**\n\n| 指标 | plan-004-v5 | ablation-b | 判定 |\n|------|------------|-----------|------|\n| accuracy | 53.3% | 65.4% | ❌ |\n| balanced_accuracy | 41.5% | 59.3% | ❌ |\n| **internal_recall** | **26.7%** | 51.5% | **❌ < 30%** |\n| det_recall | 56.3% | — | — |\n| internal_precision | 6.3% | — | — |\n\n**Confusion Matrix:**\n```\n             det    int\n  det       152    118\n  int        22      8\n```\n\n**结论：negative**。internal_recall=26.7% 低于 30% 判定线，全面落后 ablation-b。\n\n**关键发现：** Logit-level metrics（训练时 Trainer eval: internal_recall=84.9%）与 generation-based eval（26.7%）严重不一致。模型在 teacher-forcing 下能区分路由，但自回归生成时无法可靠输出 `[SIMULATE]` 前缀。三种 thinking 模式（on/off/strip）结果完全一致，排除 thinking mode 为根因。\n\n这与 plan-002-generative-v1 是相同的失败模式，说明 implicit router 的 generative routing 方案本身存在系统性问题。Registry 已更新（conclusion → negative，metrics 含两级 eval 数据）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-004-v5-routing.md"
+}

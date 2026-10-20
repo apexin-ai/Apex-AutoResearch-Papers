@@ -1,0 +1,17 @@
+{
+  "exp_id": "death-risk-routing-analysis",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:13.001Z",
+    "updated_at": "2026-05-17T09:08:50.488Z",
+    "hypothesis": "基于 task-type death risk 的简单 threshold routing 能否优于 always-det；如果能，说明 analytical framework 不只诊断问题还指向解决方案",
+    "parent": "plan-005-routing-patterns",
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-17T09:08:50.675094+00:00",
+  "trigger": "update_registry"
+}

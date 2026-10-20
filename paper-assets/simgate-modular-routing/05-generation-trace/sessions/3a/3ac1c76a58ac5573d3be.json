@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ac1c76a58ac5573d3be",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check plan 004 v4 status",
+  "task_key": "worker_check_plan-004-v4-status_20260514T071834",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_plan-004-v4-status_20260514T071834_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "6ee24c5cbb37af8b1dacd9f126ea6770699ccd6c378b0cb0efb7656698853f98"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。汇总：\n\n### plan-004-v4 状态\n\n**训练已完成** — 147/147 steps, 3 epochs, EXIT_CODE=0, 耗时 150s\n\n**关键发现：数据是根因**\n- v4 step 10 loss = **48.1538**，与 v2/v3 的 48.15 完全一致\n- 三者用同一数据文件 `results/plan_c_test_labels/implicit_sft.jsonl`（1814行）\n- ablation-b 用 `data/plan-004-implicit/`，loss 正常（0.36-0.71）\n- **确认：异常高 loss 由数据文件导致，非 class_weights**\n\n**Loss 走势**：48.15 → 42.0 → 26.1 → 13.7 → 8.5 → ... → 4.4（收敛但终态仍偏高）\n\n**Eval loss**：epoch 1=0.95, epoch 2=0.55, epoch 3=0.49（持续下降）\n\n**异常**：train loss 终态 ~4.4 vs eval loss 0.49，差距 ~9x，提示训练目标和评估目标可能不一致（如 class_weights 只影响训练 loss，eval 用原始 CE）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-plan-004-v4-status.md"
+}

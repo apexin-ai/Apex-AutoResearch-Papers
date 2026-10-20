@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e58cdfd8a3d90ce39da",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops gpu0 kill validate cleanup",
+  "task_key": "worker_ops_gpu0-kill-validate-cleanup_20260514T045152",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu0-kill-validate-cleanup_20260514T045152_result.json",
+    "occurrence": 1,
+    "bytes": 1181,
+    "sha256": "edfb50728370260c851cdb8499e5777c2f2d6d5deefc16e4292bcefc06eae920"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练成功启动并正在运行。\n\n---\n\n## 执行结果汇总\n\n| Step | 状态 | 详情 |\n|------|------|------|\n| **Step 1: Kill GPU0 v6** | ✓ 完成 | PID 36874 已自行结束。额外清理了两个残留进程 (PID 161201, 166392/166399) 和一个游离 tmux 父进程 (PID 544498, `plan-001b-gpu0-v3`)，该进程会反复在 GPU0 启动 router_sft_train |\n| **Step 2: 数据验证** | ✓ 干净 | 25 行全部可解析，19 个唯一 episode (0-18)，部分 episode 有 2 个 variation。≥20 条达标 |\n| **Step 3: 清理残留** | ✓ 释放 ~8G | 删除 `episodes_full.jsonl.gz` (6.9G, hardlink)、`episodes_full_844k.jsonl.bak` (8.3G)、`recovery_gz_hardlink.gz` (6.9G, 同一 hardlink)。磁盘 80% → 77% (可用 51G → 59G) |\n| **Step 4: plan-002 dry-run** | ✓ 运行中 | tmux session `plan002-dryrun`，GPU0 PID 171059 占用 29.8G。batch_size=4 (原 32 OOM)，1163 steps，当前 3% (40/1163)，~1.37 it/s，预计 ~14 分钟完成 |\n\n**注意**: `launch_plan002.sh` 里的 `--batch_size 32` 在此 GPU 上会 OOM，正式训练时需改为 batch_size=4 或 8，或加 gradient_accumulation_steps 补偿有效 batch size。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu0-kill-validate-cleanup.md"
+}

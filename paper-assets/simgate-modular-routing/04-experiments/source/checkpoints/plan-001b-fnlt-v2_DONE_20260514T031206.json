@@ -1,0 +1,54 @@
+{
+  "exp_id": "plan-001b-fnlt-v2",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:05:13.793Z",
+    "updated_at": "2026-05-14T03:12:06.616Z",
+    "hypothesis": "find-non-living-thing 追加收集 ep 21-39 (19 eps)，补齐到 40 eps 总量。唯一 0% 死亡率 task，是 ~99% death avoidance claim 的关键 counter-example。",
+    "spec": {
+      "command": "python src/episode_level_collection.py --task_types find-non-living-thing --episodes 40 --gpu_id 1",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "557852",
+      "log_path": "/tmp/plan-001b-gpu1-extra.log",
+      "submitted_at": "2026-05-14T01:59:00Z",
+      "data_path": "results/plan_c/find-non-living-thing/",
+      "data_count": 40,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "note": "Tracking original plan-001b-gpu1-extra process. 22/40 eps completed as of last check.",
+      "wall_clock_seconds": 4376.0,
+      "gpu_hours": 1.22
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_episodes": 40,
+      "ep_range": "0-39",
+      "unique": 40,
+      "duplicates": 0,
+      "extra_19eps_labels": {
+        "det-pref": 8,
+        "int-pref": 0,
+        "no-pref": 11
+      },
+      "extra_19eps_avg_score_gap_nontie": 40.5,
+      "combined_40eps_labels_estimated": {
+        "det-pref": 15,
+        "int-pref": 4,
+        "no-pref": 21
+      },
+      "note": "0% death rate task. Prescreening showed internal-preferred, 20eps showed tied, 40eps shows det-pref dominant (15 vs 4). Key counter-example for ~99% death avoidance claim."
+    },
+    "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/",
+    "log_path": "/tmp/plan-001b-gpu1-extra.log",
+    "completed_at": "2026-05-14T03:11:56.038Z"
+  },
+  "timestamp": "2026-05-14T03:12:06.695301+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42eaeccd758a10ef0c88",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh fix decomposition report",
+  "task_key": "worker_ssh_fix-decomposition-report_20260513T223615",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-decomposition-report_20260513T223615_result.json",
+    "occurrence": 1,
+    "bytes": 224,
+    "sha256": "be2d4da17163ffde7de6b7265047109ebdc9a6a063c8ab323716199e076fccfd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复完成。\n\n- **文件大小**: 30602 bytes（与 dryrun 一致）\n- **Tasks**: 30 个\n- **aggregate Δ_full**: 38.33\n- `correlation_r` 字段不存在于该报告中（可能用了其他字段名）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-decomposition-report.md"
+}

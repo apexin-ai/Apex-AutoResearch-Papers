@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-010-cross-task-transfer",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:32:20.843Z",
+    "updated_at": "2026-05-15T11:32:20.843Z"
+  },
+  "timestamp": "2026-05-15T11:32:20.965179+00:00",
+  "trigger": "update_registry"
+}

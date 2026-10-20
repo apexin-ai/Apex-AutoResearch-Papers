@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "389c1279c1552d60f6d0",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops kill llama expanded",
+  "task_key": "worker_ops_kill-llama-expanded_20260515T120900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-llama-expanded_20260515T120900_result.json",
+    "occurrence": 1,
+    "bytes": 458,
+    "sha256": "99c9843e3a8eead3cdb849f1b34fffad41cda03f018abec469729382da2b2243"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**报告：**\n- PID 440297 (run_llama_expanded.sh wrapper) — 已 kill（需 kill -9）\n- PID 440724 (vLLM EngineCore) — 已 kill\n- 额外发现并 kill 了同一实验的子进程树：440302 (run_llama_expanded.sh) → 470474 (episode_level_collection.py) → 470889 (vLLM EngineCore)\n- tmux session `llama-cross-model-expanded` 已不存在\n- **GPU 0 已完全释放**：0MiB / 32607MiB，0% 利用率，无进程占用"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-llama-expanded.md"
+}

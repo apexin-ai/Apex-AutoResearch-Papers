@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51b3d7dda317381d52f2",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_8_1778781428.md",
+  "task_key": "loop_8_1778781428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778781428.md",
+    "occurrence": 1,
+    "bytes": 4097,
+    "sha256": "eaf495c601ace4dd1a04fe6a9bc7c27c16901b61764a16dc87480d69e49ba28d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T17:53:57+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**cuda:0, cuda:1**（westb-13313），禁用其他 GPU\n- 论文 Table 1 数字只能来自 `eval_end_to_end.py`，禁用 `eval_implicit_router.py` 产出（数字有差异，D037）\n- Checkpoint 路径：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（正确）；`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败，勿混淆）\n- Qwen3 所有 eval 必须 `enable_thinking=False` + `re.sub` 清理 `<think>` tags\n- `data/plan-004-implicit/implicit_sft.jsonl` 是唯一可用训练数据（MD5: c9b59e04de78, 2040 samples）；`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏勿用\n- 论文 tie rate 全文统一为 **97.4%**（非 98.2%）\n- EMNLP 2026 ARR DDL: **2026-05-25**（剩 11 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-13313**，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 模型：Qwen2.5-7B backbone（vLLM serving）+ Qwen3-1.7B router（LoRA, batch_size=4 max on 32GB）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B：项目内 wandb 配置\n- 活跃进程：**无训练进程**，两张 GPU 均空闲\n- Worker 池：2 running（kill-vllm-and-sync-paper turn 9 / remote-compile-verify turn 12，均在做论文远程同步+编译验证）\n- Cron：0 active（reconcile 确认）\n\n### 3. 📊 当前状态\n**初稿 READY，进入 Review 迭代阶段。**\n\n所有核心实验已完成（22 success / 13 negative / 10 failed / 55 total）：\n- plan-012-full (DONE/success): death decomposition 核心分析，DAF=90.41%, r=0.9698\n- plan-003 (DONE/success): baseline evaluation，245 eps / 11 tasks\n- plan-011 (DONE/success): keyword heuristic 结构性失效\n- plan-013 (DONE/success): labeling quality 确认无 oracle circularity\n- plan-004 (DONE/negative): implicit router gen-eval gap，ga=1 过拟合是根因\n- alfworld-counterfactual-full (DONE/success): 135 games 跨环境泛化\n\n论文状态：正文 ≤4p，本地 pdflatex 编译 0 warnings / 0 undefined refs，20 bib 条目，Table 1 (95% CI) + Table 2 (per-task) + Figure 1 (DAF scatter) + Appendix A/B 齐全。\n\n等待中：\n- Worker `kill-vllm-and-sync-paper`：正在远程同步论文文件\n- Worker `remote-compile-verify`：正在远程编译验证（遇到项目目录非 git repo 问题，在排查）\n\n### 4. 📋 待办（条件触发式）\n- remote-compile-verify Worker 完成 → 确认远程 PDF 编译通过 → 提交 Review Director 启动审稿迭代\n- Review Director 返回审稿意见 → 按意见修改（5/15-22 迭代窗口）\n- 审稿迭代完成 → 终稿冻结 + ARR 提交（5/23-24）\n- 若 Review 期间需要补充分析 → cuda:0/cuda:1 空闲可用\n- remote-compile-verify Worker 报 git 问题 → 可能需要在远程初始化 git 或改用 rsync 同步策略\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 ~90% routing signal（D013 pivot）。论文贡献 = empirical finding + diagnostic methodology，非 router 架构（D033 Option B 定稿）。\n\n**决策链关键节点**：\n- D013: 从 method paper pivot 到 analysis paper\n- D025: Classification head 路线失败，pivot 到 generative SFT\n- D033: Framing 定稿 Option B（方法论贡献）\n- D041-D046: 两次方向 pivot（analysis→method→analysis），最终回归 analysis paper\n- D047: MATH-200 不恢复，105 题足够支撑 Discussion\n\n**易踩坑**：\n- plan-002/003 的 trained-router 是退化的（all-det 预测），论文已按 D033 将此定位为\"近随机=finding\"而非失败，不要试图修复\n- plan-004 v5 (ga=1) vs ablation-b (ga=8) 的差异是论文 §4.4 的核心 ablation 证据，ga 因果声明已有 4 重交叉验证（见 memory.md）\n- 远程服务器项目目录可能非 git repo（Worker 正在排查），同步策略可能需要调整\n- find-non-living-thing 是**正面案例**（零死亡仍有 Δ=+9.58），不是异常值，论文按两层展示\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778781428.md"
+}

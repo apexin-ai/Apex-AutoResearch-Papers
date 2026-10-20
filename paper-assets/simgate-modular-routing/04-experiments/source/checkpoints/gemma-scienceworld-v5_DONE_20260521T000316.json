@@ -1,0 +1,138 @@
+{
+  "exp_id": "gemma-scienceworld-v5",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:11:30.569Z",
+    "updated_at": "2026-05-21T00:03:15.956Z",
+    "hypothesis": "Gemma-2-9B-it replicates the death-avoidance dominance pattern observed in Qwen2.5-7B (DAF=90.4%) and Llama-3.1-8B (DAF=88.2%), confirming that high DAF is model-agnostic rather than an artifact of a specific backbone architecture",
+    "spec": {
+      "command": "bash scripts/run_gemma_gpu0_parallel.sh + bash scripts/run_gemma_gpu1_missing.sh",
+      "server": "westb-13313",
+      "data_path": "/root/autodl-tmp/simgate-modular-routing/results/gemma-9b-counterfactual/",
+      "data_count": 220,
+      "model_name": "Gemma-2-9B-it",
+      "seed": 42,
+      "gpu": "cuda:0,cuda:1",
+      "notes": "11 included tasks x 20 episodes. Dual GPU parallel. 8/11 done, 3 remaining on gpu0 + 1 on gpu1 completing."
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_episodes": 220,
+      "tasks": 11,
+      "labels": {
+        "det_preferred": 63,
+        "int_preferred": 7,
+        "no_preference": 150
+      },
+      "label_pct": {
+        "det_preferred": 28.6,
+        "int_preferred": 3.2,
+        "no_preference": 68.2
+      },
+      "internal_DR": 36.4,
+      "deterministic_DR": 14.1,
+      "delta_DR": 22.3,
+      "delta_full": -25.0091,
+      "delta_nd": -2.5882,
+      "n_nd": 136,
+      "DAF": 89.7,
+      "bootstrap_CI_95": {
+        "internal_DR": [
+          28.2,
+          41.8
+        ],
+        "deterministic_DR": [
+          9.5,
+          19.1
+        ],
+        "delta_DR": [
+          16.4,
+          27.7
+        ],
+        "DAF": [
+          68.8,
+          100
+        ]
+      },
+      "mean_internal_score": -33.73,
+      "mean_det_score": -8.72,
+      "per_task": {
+        "identify-life-stages-1": {
+          "int_DR": 40,
+          "det_DR": 10,
+          "det_pref": 7,
+          "int_pref": 1
+        },
+        "identify-life-stages-2": {
+          "int_DR": 35,
+          "det_DR": 10,
+          "det_pref": 5,
+          "int_pref": 0
+        },
+        "freeze": {
+          "int_DR": 35,
+          "det_DR": 10,
+          "det_pref": 5,
+          "int_pref": 0
+        },
+        "grow-fruit": {
+          "int_DR": 35,
+          "det_DR": 15,
+          "det_pref": 4,
+          "int_pref": 0
+        },
+        "measure-melting-point": {
+          "int_DR": 40,
+          "det_DR": 10,
+          "det_pref": 7,
+          "int_pref": 0
+        },
+        "lifespan-longest-lived": {
+          "int_DR": 40,
+          "det_DR": 25,
+          "det_pref": 4,
+          "int_pref": 1
+        },
+        "lifespan-l-then-s": {
+          "int_DR": 45,
+          "det_DR": 10,
+          "det_pref": 7,
+          "int_pref": 0
+        },
+        "chemistry-mix": {
+          "int_DR": 40,
+          "det_DR": 30,
+          "det_pref": 3,
+          "int_pref": 1
+        },
+        "inclined-plane": {
+          "int_DR": 40,
+          "det_DR": 15,
+          "det_pref": 6,
+          "int_pref": 1
+        },
+        "find-animal": {
+          "int_DR": 50,
+          "det_DR": 20,
+          "det_pref": 6,
+          "int_pref": 0
+        },
+        "find-non-living-thing": {
+          "int_DR": 0,
+          "det_DR": 0,
+          "det_pref": 9,
+          "int_pref": 3
+        }
+      }
+    },
+    "checkpoint_path": "results/gemma_scienceworld_counterfactual/",
+    "log_path": "results/gemma_scienceworld_counterfactual/analysis.json",
+    "completed_at": "2026-05-21T00:03:15.956Z"
+  },
+  "timestamp": "2026-05-21T00:03:16.197847+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "34f0905de4612dffbbea",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "critical eval template fix",
+  "task_key": "worker_critical_eval-template-fix_20260515T152346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_critical_eval-template-fix_20260515T152346.log",
+    "occurrence": 1,
+    "bytes": 659522,
+    "sha256": "476ed11bfb6a7b6912804128fff484d5fe9ac3e7228ed6853e66c25413969bcb"
+  },
+  "statistics": {
+    "messages": 192,
+    "user_turns": 0,
+    "tool_calls": 69,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 50,
+      "tool_call": 69,
+      "tool_result": 69,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 192,
+      "chunks": [
+        {
+          "path": "34f0905de4612dffbbea-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "34f0905de4612dffbbea-part-0002.json",
+          "message_count": 28
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/critical-eval-template-fix.md"
+}

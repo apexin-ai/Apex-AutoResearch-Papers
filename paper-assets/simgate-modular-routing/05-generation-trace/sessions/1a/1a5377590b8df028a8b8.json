@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a5377590b8df028a8b8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra gpu status boil analysis",
+  "task_key": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_gpu-status-boil-analysis_20260513T181135_result.json",
+    "occurrence": 1,
+    "bytes": 1217,
+    "sha256": "7c206c69109eed7226455666e7561a47416bc705b6fe94d89c6c86ba44c55dc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态汇总\n\n### GPU 状态\n| GPU | 利用率 | VRAM | 任务 |\n|-----|--------|------|------|\n| GPU0 | 0% (推理间歇) | 28/32 GB | 预筛 `find-plant` |\n| GPU1 | 58% | 28/32 GB | boil v3 (PID 650421, 已运行 1h49m) |\n\n**GPU1 不空闲，boil v3 仍在跑。**\n\n### Boil v3 进度：12/20 episodes\n\n中间结果 vs MVP 对比：\n\n| Mode | v3 (n=12) | MVP (n=20) | 变化 |\n|------|-----------|------------|------|\n| always_internal | **-41.17** | -49.75 | +8.6 |\n| always_deterministic | **0.92** | -19.70 | **+20.6** |\n| oracle_routing | **6.33** | -29.70 | **+36.0** |\n\nv3 各 mode 均大幅优于 MVP。oracle_routing 有一个 episode 达 70.0 分（variation 3），但方差很大。\n\n### 预筛进度（GPU0）\n- 30 总任务，跳过 5 个 MVP 已测\n- 已完成 5/25：chemistry-mix, chemistry-mix-paint-tertiary-color, find-animal, find-living-thing, find-non-living-thing\n- 正在跑第 6 个：find-plant\n- 剩余 19 个，每个约 20 min → 单 GPU 约需 6+ 小时\n\n### 下一步\nboil v3 预计还需 ~30 分钟完成（8 episodes × ~4 min/ep）。完成后 GPU1 空闲，可立即启动 GPU1 分担剩余预筛任务。需要等 boil v3 结束。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-gpu-status-boil-analysis.md"
+}

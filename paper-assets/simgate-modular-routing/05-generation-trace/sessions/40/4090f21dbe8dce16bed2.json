@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4090f21dbe8dce16bed2",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnosis melt final and close",
+  "task_key": "worker_diagnosis_melt-final-and-close_20260520T003552",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_melt-final-and-close_20260520T003552_result.json",
+    "occurrence": 1,
+    "bytes": 887,
+    "sha256": "2966d8691e7e395c7980ba7d02109b7a39bf4418ab5a2d80b9859a04e88644f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验已关闭。最终结果：\n\n**extended-task-validation → DONE (success)**\n\n| Task | n | Int DR | Det DR | ΔDR | D/I/N | DAF |\n|------|---|--------|--------|-----|-------|-----|\n| boil | 20 | 55% | 25% | +30 | 6/0/14 | 1.000 |\n| find-living-thing | 20 | 55% | 15% | +40 | 10/0/10 | 0.954 |\n| **melt** | **20** | **45%** | **20%** | **+25** | **7/2/11** | **1.000** |\n| power-component | 20 | 50% | 15% | +35 | 7/0/13 | 1.000 |\n| use-thermometer | 20 | 50% | 20% | +30 | 7/1/12 | 1.000 |\n| **Aggregate** | **100** | **51%** | **19%** | **+32** | **37/3/60** | **0.991** |\n\nMelt 是唯一出现 I=2 的 task（det 死了 int 没死），但 D 仍以 7:2 主导。5-task 聚合 DAF=0.991 证实性能差距几乎完全由 death asymmetry 解释。\n\n报告已写入 `artifacts/extended-task-validation/final_5task_report.md`，含完整 LaTeX 表格。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-melt-final-and-close.md"
+}

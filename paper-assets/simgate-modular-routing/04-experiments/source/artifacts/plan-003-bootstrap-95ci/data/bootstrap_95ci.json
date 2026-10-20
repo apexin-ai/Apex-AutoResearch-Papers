@@ -1,0 +1,32 @@
+{
+  "always-internal": {
+    "mean": -39.07,
+    "ci_low": -46.40,
+    "ci_high": -32.27,
+    "n": 245
+  },
+  "always-deterministic": {
+    "mean": -9.47,
+    "ci_low": -14.71,
+    "ci_high": -4.29,
+    "n": 245
+  },
+  "oracle": {
+    "mean": -6.58,
+    "ci_low": -11.54,
+    "ci_high": -1.70,
+    "n": 245
+  },
+  "random": {
+    "mean": -22.38,
+    "ci_low": -28.67,
+    "ci_high": -15.75,
+    "n": 245
+  },
+  "trained-router": {
+    "mean": -10.70,
+    "ci_low": -16.33,
+    "ci_high": -5.27,
+    "n": 245
+  }
+}

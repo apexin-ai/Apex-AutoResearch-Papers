@@ -1,0 +1,68 @@
+{
+  "exp_id": "backbone-scaling-70b",
+  "project": "simgate-modular-routing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:10.909Z",
+    "updated_at": "2026-05-17T22:18:37.960Z",
+    "hypothesis": "72B model 的 death rate 显著低于 7B (42.9%)，但 DAF 可能仍 dominant 因为 deterministic modality 的 death rate 也会降低",
+    "parent": "backbone-scaling-death-rate-0.5b",
+    "spec": {
+      "command": "bash scripts/run_72b_episodes.sh",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "607756",
+      "log_path": "~/runs/simgate-modular-routing/backbone-scaling-70b.log (13313)",
+      "submitted_at": "2026-05-17T08:49:13.759Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "results/backbone_72b/",
+      "data_count": "11 task types x 20 episodes = 220 episodes",
+      "model_name": "Qwen2.5-72B-Instruct-AWQ",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen2.5-72B-Instruct-AWQ (HuggingFace)",
+      "eval_data": "ScienceWorld 11 task types",
+      "checkpoint_path": "results/backbone_72b/ (13313: tasks 1-8, 14838: tasks 5-11)"
+    },
+    "metrics": {
+      "tasks_completed": 10,
+      "tasks_total": 11,
+      "episodes_analyzed": 216,
+      "episodes_target": 220,
+      "aggregate_death_rate": 0.333,
+      "aggregate_death_rate_ci95": [
+        0.269,
+        0.403
+      ],
+      "deaths": 72,
+      "delta_vs_7b": -0.096,
+      "delta_vs_deterministic": 0.17,
+      "per_task_death_rate": {
+        "chemistry-mix": 0.5,
+        "find-animal": 0.4,
+        "find-non-living-thing": 0,
+        "freeze": 0.45,
+        "grow-fruit": 0.4,
+        "identify-life-stages-1": 0.45,
+        "identify-life-stages-2": 0.3,
+        "inclined-plane-determine-angle": 0.45,
+        "lifespan-longest-lived": 0.25,
+        "lifespan-longest-lived-then-shortest-lived": 0.2,
+        "measure-melting-point-unknown-substance": 0.25
+      },
+      "missing": "measure-melting-point 16/20 (supplement ETA ~10 min)",
+      "data_sources": "13313 (tasks 1-4) + 14838 (tasks 5-11)",
+      "server": "westb-13313 + westb-14838"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-17T22:18:38.193513+00:00",
+  "trigger": "update_registry"
+}

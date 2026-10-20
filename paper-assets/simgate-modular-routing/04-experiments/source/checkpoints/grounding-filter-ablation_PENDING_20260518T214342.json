@@ -1,0 +1,14 @@
+{
+  "exp_id": "grounding-filter-ablation",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:43:42.441Z",
+    "updated_at": "2026-05-18T21:43:42.441Z"
+  },
+  "timestamp": "2026-05-18T21:43:42.639793+00:00",
+  "trigger": "update_registry"
+}

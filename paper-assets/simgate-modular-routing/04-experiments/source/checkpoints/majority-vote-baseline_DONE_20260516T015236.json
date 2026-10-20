@@ -1,0 +1,35 @@
+{
+  "exp_id": "majority-vote-baseline",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:42:20.661Z",
+    "updated_at": "2026-05-16T01:52:36.039Z",
+    "spec": {
+      "command": "python scripts/majority_vote_baseline.py",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": "2040 steps / 66 episodes",
+      "model_name": "N/A (baseline, no model)",
+      "seed": "split_seeds 42,123,456",
+      "checkpoint_path": "N/A",
+      "log_path": "results/majority_vote_baseline/results.json"
+    },
+    "conclusion": "negative",
+    "hypothesis": "Task-type majority-vote baseline 是否 ≈ router cross-split balanced_acc (47.1%)，确认 signal 完全在 task-type level。",
+    "metrics": {
+      "tt_majvote_bal_acc_seed42": 0.5,
+      "tt_majvote_bal_acc_seed123": 1,
+      "tt_majvote_bal_acc_seed456": 1,
+      "router_mean_bal_acc": 0.4711,
+      "train_det_pct": 91.4,
+      "note": "All 11 task_types majority=det. Seeds 123/456 val set 100% det (degenerate). Router < always-det baseline."
+    },
+    "completed_at": "2026-05-16T01:42:42.658Z"
+  },
+  "timestamp": "2026-05-16T01:52:36.235825+00:00",
+  "trigger": "update_registry"
+}

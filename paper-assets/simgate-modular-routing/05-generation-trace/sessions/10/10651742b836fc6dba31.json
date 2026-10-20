@@ -1,0 +1,89 @@
+{
+  "schema_version": "1.0",
+  "id": "10651742b836fc6dba31",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "infra setup vllm 14838",
+  "task_key": "worker_infra_setup-vllm-14838_20260517T121739",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_setup-vllm-14838_20260517T121739.log",
+    "occurrence": 1,
+    "bytes": 1984327,
+    "sha256": "591d570a4aeb1900632bcaf2de15dfa6b990dfa431e1915998524d15954e4f1f"
+  },
+  "statistics": {
+    "messages": 1579,
+    "user_turns": 1,
+    "tool_calls": 733,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 105,
+      "tool_call": 733,
+      "tool_result": 733,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 772,
+      "chunks": [
+        {
+          "path": "10651742b836fc6dba31-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "10651742b836fc6dba31-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "10651742b836fc6dba31-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "10651742b836fc6dba31-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "10651742b836fc6dba31-part-0005.json",
+          "message_count": 52
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 807,
+      "chunks": [
+        {
+          "path": "10651742b836fc6dba31-part-0005.json",
+          "message_count": 128
+        },
+        {
+          "path": "10651742b836fc6dba31-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "10651742b836fc6dba31-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "10651742b836fc6dba31-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "10651742b836fc6dba31-part-0009.json",
+          "message_count": 139
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-setup-vllm-14838.md"
+}

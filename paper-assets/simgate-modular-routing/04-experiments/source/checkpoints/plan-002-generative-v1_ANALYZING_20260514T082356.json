@@ -1,0 +1,84 @@
+{
+  "exp_id": "plan-002-generative-v1",
+  "project": "simgate-modular-routing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:24:07.881Z",
+    "updated_at": "2026-05-14T08:23:56.594Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/generative_router_sft.py train --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --output_dir checkpoints/plan-002-generative-v1 --seed 42 --gpu_id 0\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "247424",
+      "log_path": "~/runs/simgate-modular-routing/plan-002-generative-v1.log",
+      "submitted_at": "2026-05-14T07:59:25.033Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Generative router SFT: 基于 ablation-b 成功经验（internal_recall=51.5%），用修正数据 data/plan-004-implicit/（2040 samples, 11 tasks, no-preference 已丢弃），upsample_minority=true 平衡类别（internal 180→1560），generative token prediction 而非 classification head。Qwen3-1.7B + LoRA r=16, 3 epochs, batch_size=4, grad_accum=8。目标: internal_recall > 30% 且不退化。",
+    "server": "westb-13313",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-13313",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-14T07:33:07.703Z",
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/generative_router_sft.py train --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --output_dir checkpoints/plan-002-generative-v1 --seed 42 --gpu_id 0\"",
+      "finished_at": "2026-05-14T08:05:48.190Z",
+      "training_hours": 0.54
+    },
+    "pid": "247424",
+    "log_path": "~/runs/simgate-modular-routing/plan-002-generative-v1.log",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T08:05:49.828787+00:00"
+        }
+      ]
+    },
+    "notes": "Generative router eval 完成。internal_recall=51.85%（≈ablation-b 51.5%），eval_accuracy=75.49%（vs ablation-b 65.4%, +10.1pp），f1_macro=56.22%（vs 50.9%, +5.3pp）。模型非退化，双类均有预测。但 internal_precision 偏低（18.4%），模型过度预测 internal（76 vs GT 27），62 个 deterministic 样本被误判为 internal。det_recall=77.8% 偏低。Qwen3 thinking mode 激活但 SFT 抑制了思考内容（<think>\\n\\n</think>），不影响路由判断。结论：generative routing 可行，internal_recall 达标，整体性能优于 ablation-b，但需优化 precision-recall 平衡。",
+    "metrics": {
+      "routing_accuracy": 0.7067,
+      "balanced_accuracy": 0.4667,
+      "internal_recall": 0.1667,
+      "internal_precision": 0.0735,
+      "internal_f1": 0.102,
+      "det_recall": 0.7667,
+      "det_precision": 0.8922,
+      "det_f1": 0.8247,
+      "val_size": 300,
+      "val_label_dist": {
+        "internal": 30,
+        "deterministic": 270
+      },
+      "pred_dist": {
+        "deterministic": 232,
+        "internal": 68
+      },
+      "confusion_matrix": [
+        [
+          5,
+          25
+        ],
+        [
+          63,
+          207
+        ]
+      ],
+      "train_final_loss": 0.2,
+      "train_eval_loss": 0.26,
+      "note": "enable_thinking=False required for Qwen3 inference; with thinking mode, model outputs <think> tags causing all-internal parsing failure"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T08:23:56.693031+00:00",
+  "trigger": "update_registry"
+}

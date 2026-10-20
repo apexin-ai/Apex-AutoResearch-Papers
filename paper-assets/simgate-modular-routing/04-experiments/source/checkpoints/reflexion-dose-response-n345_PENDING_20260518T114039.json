@@ -1,0 +1,31 @@
+{
+  "exp_id": "reflexion-dose-response-n345",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T11:24:34.703Z",
+    "updated_at": "2026-05-18T11:40:39.017Z",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/simgate-modular-routing && bash run_reflexion_n345_wrapper.sh\"",
+      "server": "westd-18266",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2"
+      ],
+      "pid": "660720",
+      "log_path": "~/runs/simgate-modular-routing/reflexion-dose-response-n345.log",
+      "submitted_at": "2026-05-18T11:24:34.413Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Reflexion dose-response N=3/4/5 并行加速：与 westb-13313 上的 N=1(完成)/N=2(进行中) 合并，完成完整 N=1..5 曲线。验证 reflexion 在 N>3 后是否 plateau，与 retry 平坦曲线形成对比",
+    "parent": "reflexion-dose-response"
+  },
+  "timestamp": "2026-05-18T11:40:39.244508+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e8bab7db7e12c490ee9",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research method section recovery",
+  "task_key": "worker_research_method-section-recovery_20260519T110919",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_method-section-recovery_20260519T110919_result.json",
+    "occurrence": 1,
+    "bytes": 875,
+    "sha256": "304d6321391c1654b0350bb3bfb4bfb31f77d44b09127f4a474f8112740d632c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已保存到 `artifacts/method_recovery_and_decision_framework.md`。\n\n**Part 1 结论**: 4 项中 2 项值得恢复到正文（episode-level justification +0.15p, DAF decomposition derivation sketch +0.10p），1 项加 2-3 句（tie rate 机制解释 +0.05p），1 项保持现状（formal definitions 已充分）。总计 +0.30 页，可通过压缩 Discussion 现有 practitioner 段落和 Experiments 敏感性分析段落回收空间。\n\n**Part 2 结论**: Decision framework 以三级决策树结构化：ΔDR 阈值（15pp / 5pp）→ f_death 阈值（75% / 50%）→ per-step tie rate 阈值（90% / 70%）。所有阈值从实验数据反推并附推导依据。建议放 appendix（节省正文 0.15p 给 Method 恢复），Discussion 保留 2 句指针。用 ScienceWorld/MATH/Llama 四组数据做了回溯验证，预测全部命中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-method-section-recovery.md"
+}

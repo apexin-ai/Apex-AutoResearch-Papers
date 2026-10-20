@@ -1,0 +1,50 @@
+{
+  "exp_id": "plan-008-v4-4b",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "conclusion": "success",
+    "created_at": "2026-05-15T19:49:36.076Z",
+    "notes": "Sub-experiment of plan-008-router-size-v4; results consolidated into parent entry",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_path": "checkpoints/plan-008-v4-4b-seed{42,43}/",
+      "command": "python src/training/implicit_router_sft.py train (Qwen3-4B, seed 42→43 serial)",
+      "data_count": 2040,
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "gpu": "cuda:1",
+      "log_path": "~/runs/simgate-modular-routing/plan-008-v4-4b.log",
+      "model_name": "Qwen3-4B",
+      "pid": "893825",
+      "seed": "42,43",
+      "server": "westb-13313",
+      "steps_per_epoch": 165,
+      "submitted_at": "2026-05-15T19:49:35.872Z",
+      "submitted_via": "submit_training_job",
+      "tmux_session": "plan-008-v4-4b",
+      "trainable_params": "11.8M (0.29%)",
+      "vram_used": "17.5GB/32GB"
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-15T20:46:53.232Z",
+    "metrics": {
+      "seed42": {
+        "balanced_acc": 0.5889,
+        "internal_recall": 0.4667,
+        "eval_loss": 0.313
+      },
+      "seed43": {
+        "balanced_acc": 0.5352,
+        "internal_recall": 0.4,
+        "eval_loss": 0.2842
+      },
+      "mean_balanced_acc": 0.5621,
+      "std_balanced_acc": 0.038
+    }
+  },
+  "timestamp": "2026-05-15T20:46:53.381790+00:00",
+  "trigger": "update_registry"
+}

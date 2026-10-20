@@ -1,0 +1,2527 @@
+# code plan 012 analysis
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 52
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_code_plan-012-analysis_20260514T004217.log`
+- **Structured JSON:** [`8381059f6805e8a4f5a3.json`](../../sessions/83/8381059f6805e8a4f5a3.json)
+
+## Before a recorded user message
+
+52 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "63a4e74b-8b1f-4d67-88d3-53c4dbd6f7a2",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778721600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "075285d0-b478-4588-8c50-0a61fa60a974",
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by reading the existing death_decomposition.py script from the server to understand what it currently does.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "8af69a02-4400-4146-b59f-b73d13d26f61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hrar3G5fY2NvZer9SKwnue",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11942,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11942
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+读取服务器上现有的 `src/death_decomposition.py`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "f7549a49-4e3d-4057-857e-d5e114557455",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hrar3G5fY2NvZer9SKwnue",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11942,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11942
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01HZpaL5uJES7rmgwhJwvsih`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "88aefb8e-4197-45b0-807b-dad39c2001d2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hrar3G5fY2NvZer9SKwnue",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11942,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11942
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-14T00:42:31.182Z_
+
+<details><summary>↩ Tool result · `toolu_01HZpaL5uJES7rmgwhJwvsih`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "20e831a6-2ea6-4a9a-a097-ace28be1b111",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TF3TWSNNrdRQ2rHMLHQwv7`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "12498f69-3648-4a0f-aae7-1a9272433e0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HG9nxdjvPDk2RhVFf8QvC1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 23783,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Std6j945F3KoZMiVeTs9ej`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/prescreening/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "6fa7bf30-686f-4f29-a883-246ded4bb629",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HG9nxdjvPDk2RhVFf8QvC1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 23783,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MHCXVpRnkH33uswZDp16wb`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/research/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "c2ee0e96-c9e3-4b6c-8ea7-44db6328b773",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HG9nxdjvPDk2RhVFf8QvC1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 23783,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T00:42:36.534Z_
+
+<details><summary>↩ Tool result · `toolu_01TF3TWSNNrdRQ2rHMLHQwv7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-012 Death Decomposition Analysis (D013).\\n\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\nvs genuine score improvement.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Optional, Tuple\\n\\nDEATH_THRESHOLD = -100\\n\\n\\ndef is_dead(score: float) -> bool:\\n    return score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source).\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef safe_mean(values: List[float]) -> float:\\n    return statistics.mean(values) if values else float(\\\"nan\\\")\\n\\n\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\n    \\\"\\\"\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\"\\\"\\\"\\n    try:\\n        from scipy.stats import pearsonr as sp_pearsonr\\n        r, p = sp_pearsonr(x, y)\\n        return float(r), float(p)\\n    except ImportError:\\n        pass\\n    n = len(x)\\n    if n < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    mx, my = statistics.mean(x), statistics.mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    # t-test approximation for p-value\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\n    # Two-tailed p from t distribution (approximation)\\n    import subprocess\\n    try:\\n        result = subprocess.run(\\n            [\\\"python3\\\", \\\"-c\\\",\\n             f\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\"],\\n            capture_output=True, text=True, timeout=5)\\n        p = float(result.stdout.strip())\\n    except Exception:\\n        p = float(\\\"nan\\\")\\n    return r, p\\n\\n\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\n    \\\"\\\"\\\"Load episodes grouped by task_type from multiple data directories.\\\"\\\"\\\"\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\n\\n    for data_dir in data_dirs:\\n        if not os.path.isdir(data_dir):\\n            print(f\\\"  WARN: {data_dir} not found, skipping\\\")\\n            continue\\n        for task_name in sorted(os.listdir(data_dir)):\\n            task_dir = os.path.join(data_dir, task_name)\\n            ep_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n            if not os.path.isfile(ep_file):\\n                continue\\n            if task_filter and task_name not in task_filter:\\n                continue\\n            with open(ep_file) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    ep = json.loads(line)\\n                    if \\\"always_internal\\\" not in ep or \\\"always_deterministic\\\" not in ep:\\n                        continue\\n                    task_episodes[task_name].append(ep)\\n\\n    return dict(task_episodes)\\n\\n\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\n    \\\"\\\"\\\"Full death decomposition for one task.\\\"\\\"\\\"\\n    n = len(episodes)\\n    int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n    det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]\\n\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\n    d\\n\\n... [截断: 输出过长，省略 14047 字符] ...\\n\\n\\\"det_death_rate\\\"] * 100, 1),\\n            \\\"delta_no_death\\\": tr[\\\"delta_no_death\\\"],\\n            \\\"death_avoidance_pct\\\": round(tr[\\\"death_avoidance_fraction\\\"] * 100, 1) if tr[\\\"death_avoidance_fraction\\\"] is not None else None,\\n            \\\"delta_penalty_removed\\\": tr[\\\"delta_penalty_removed\\\"],\\n            \\\"det_preferred\\\": tr[\\\"label_distribution\\\"].get(\\\"det-preferred\\\", 0),\\n            \\\"internal_preferred\\\": tr[\\\"label_distribution\\\"].get(\\\"internal-preferred\\\", 0),\\n            \\\"no_preference\\\": tr[\\\"label_distribution\\\"].get(\\\"no-preference\\\", 0),\\n        })\\n\\n    agg_row = {\\n        \\\"task\\\": \\\"Overall\\\",\\n        \\\"n\\\": aggregate[\\\"n_episodes\\\"],\\n        \\\"int_mean\\\": aggregate[\\\"int_mean\\\"],\\n        \\\"det_mean\\\": aggregate[\\\"det_mean\\\"],\\n        \\\"delta\\\": aggregate[\\\"delta_full\\\"],\\n        \\\"int_death_pct\\\": round(aggregate[\\\"int_death_rate\\\"] * 100, 1),\\n        \\\"det_death_pct\\\": round(aggregate[\\\"det_death_rate\\\"] * 100, 1),\\n        \\\"delta_no_death\\\": aggregate.get(\\\"delta_no_death\\\"),\\n        \\\"death_avoidance_pct\\\": round(aggregate[\\\"death_avoidance_fraction\\\"] * 100, 1) if aggregate.get(\\\"death_avoidance_fraction\\\") is not None else None,\\n        \\\"delta_penalty_removed\\\": aggregate[\\\"delta_penalty_removed\\\"],\\n        \\\"det_preferred\\\": aggregate[\\\"label_distribution\\\"].get(\\\"det-preferred\\\", 0),\\n        \\\"internal_preferred\\\": aggregate[\\\"label_distribution\\\"].get(\\\"internal-preferred\\\", 0),\\n        \\\"no_preference\\\": aggregate[\\\"label_distribution\\\"].get(\\\"no-preference\\\", 0),\\n    }\\n\\n    corr = aggregate.get(\\\"correlation_death_rate_diff_vs_delta\\\", {})\\n\\n    return {\\n        \\\"rows\\\": rows,\\n        \\\"aggregate\\\": agg_row,\\n        \\\"correlation\\\": {\\n            \\\"pearson_r\\\": corr.get(\\\"pearson_r\\\"),\\n            \\\"p_value\\\": corr.get(\\\"p_value\\\"),\\n            \\\"n\\\": corr.get(\\\"n_tasks\\\"),\\n        },\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Plan-012 Death Decomposition Analysis\\\")\\n    parser.add_argument(\\\"--data_dirs\\\", required=True,\\n                        help=\\\"Comma-separated data directories (e.g. results/prescreening/,results/mvp/)\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/death_decomposition_report.json\\\",\\n                        help=\\\"Output JSON report path\\\")\\n    parser.add_argument(\\\"--paper_table\\\", default=\\\"results/paper_table1_data.json\\\",\\n                        help=\\\"Paper table data output path\\\")\\n    parser.add_argument(\\\"--tasks\\\", default=None,\\n                        help=\\\"Comma-separated task types to filter (default: all)\\\")\\n    args = parser.parse_args()\\n\\n    data_dirs = [d.strip() for d in args.data_dirs.split(\\\",\\\") if d.strip()]\\n    task_filter = [t.strip() for t in args.tasks.split(\\\",\\\")] if args.tasks else None\\n\\n    task_episodes = load_episodes(data_dirs, task_filter)\\n    if not task_episodes:\\n        print(\\\"ERROR: No episodes found in specified directories\\\")\\n        return\\n\\n    print(f\\\"Loaded {sum(len(v) for v in task_episodes.values())} episodes \\\"\\n          f\\\"across {len(task_episodes)} tasks from {len(data_dirs)} directories\\\")\\n\\n    # Per-task analysis\\n    task_results = []\\n    for task_name in sorted(task_episodes.keys()):\\n        result = analyze_task(task_name, task_episodes[task_name])\\n        task_results.append(result)\\n\\n    # Aggregate from raw scores (exact, not from per-task means)\\n    aggregate = aggregate_from_raw(data_dirs, task_filter)\\n\\n    # Terminal output\\n    print_table(task_results, aggregate)\\n\\n    # Save JSON report\\n    report = {\\n        \\\"per_task\\\": task_results,\\n        \\\"aggregate\\\": aggregate,\\n    }\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    print(f\\\"\\\\n[Saved report to {args.output}]\\\")\\n\\n    # Save paper table data\\n    paper_data = generate_paper_table_data(task_results, aggregate)\\n    os.makedirs(os.path.dirname(args.paper_table) or \\\".\\\", exist_ok=True)\\n    with open(args.paper_table, \\\"w\\\") as f:\\n        json.dump(paper_data, f, indent=2)\\n    print(f\\\"[Saved paper table data to {args.paper_table}]\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.81}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "52581ff1-756b-46b8-974f-e40d68432e62",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Plan-012 Death Decomposition Analysis (D013).\\\\n\\\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\\\nvs genuine score improvement.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport statistics\\\\nfrom collections import defaultdict\\\\nfrom typing import Dict, List, Optional, Tuple\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n\\\\ndef is_dead(score: float) -> bool:\\\\n    return score <= DEATH_THRESHOLD\\\\n\\\\n\\\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Returns (label, reason, signal_source).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    int_died = is_dead(int_score)\\\\n    det_died = is_dead(det_score)\\\\n\\\\n    if int_died and not det_died:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"int_died_det_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if det_died and not int_died:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"det_died_int_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if int_died and det_died:\\\\n        return \\\\\\\"no-preference\\\\\\\", \\\\\\\"both_died\\\\\\\", \\\\\\\"both_dead\\\\\\\"\\\\n    if det_score > int_score:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"both_alive_det_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    if int_score > det_score:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"both_alive_int_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    return \\\\\\\"no-preference\\\\\\\", \\\\\\\"tie\\\\\\\", \\\\\\\"tied_alive\\\\\\\"\\\\n\\\\n\\\\ndef safe_mean(values: List[float]) -> float:\\\\n    return statistics.mean(values) if values else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n\\\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        from scipy.stats import pearsonr as sp_pearsonr\\\\n        r, p = sp_pearsonr(x, y)\\\\n        return float(r), float(p)\\\\n    except ImportError:\\\\n        pass\\\\n    n = len(x)\\\\n    if n < 3:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    mx, my = statistics.mean(x), statistics.mean(y)\\\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\\\n    if sx == 0 or sy == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\\\n    # t-test approximation for p-value\\\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\\\n    # Two-tailed p from t distribution (approximation)\\\\n    import subprocess\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"python3\\\\\\\", \\\\\\\"-c\\\\\\\",\\\\n             f\\\\\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=5)\\\\n        p = float(result.stdout.strip())\\\\n    except Exception:\\\\n        p = float(\\\\\\\"nan\\\\\\\")\\\\n    return r, p\\\\n\\\\n\\\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load episodes grouped by task_type from multiple data directories.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\\\n\\\\n    for data_dir in data_dirs:\\\\n        if not os.path.isdir(data_dir):\\\\n            print(f\\\\\\\"  WARN: {data_dir} not found, skipping\\\\\\\")\\\\n            continue\\\\n        for task_name in sorted(os.listdir(data_dir)):\\\\n            task_dir = os.path.join(data_dir, task_name)\\\\n            ep_file = os.path.join(task_dir, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n            if not os.path.isfile(ep_file):\\\\n                continue\\\\n            if task_filter and task_name not in task_filter:\\\\n                continue\\\\n            with open(ep_file) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if not line:\\\\n                        continue\\\\n                    ep = json.loads(line)\\\\n                    if \\\\\\\"always_internal\\\\\\\" not in ep or \\\\\\\"always_deterministic\\\\\\\" not in ep:\\\\n                        continue\\\\n                    task_episodes[task_name].append(ep)\\\\n\\\\n    return dict(task_episodes)\\\\n\\\\n\\\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Full death decomposition for one task.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(episodes)\\\\n    int_scores = [ep[\\\\\\\"always_internal\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep in episodes]\\\\n    det_scores = [ep[\\\\\\\"always_deterministic\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep in episodes]\\\\n\\\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\\\n    d\\\\n\\\\n... [截断: 输出过长，省略 14047 字符] ...\\\\n\\\\n\\\\\\\"det_death_rate\\\\\\\"] * 100, 1),\\\\n            \\\\\\\"delta_no_death\\\\\\\": tr[\\\\\\\"delta_no_death\\\\\\\"],\\\\n            \\\\\\\"death_avoidance_pct\\\\\\\": round(tr[\\\\\\\"death_avoidance_fraction\\\\\\\"] * 100, 1) if tr[\\\\\\\"death_avoidance_fraction\\\\\\\"] is not None else None,\\\\n            \\\\\\\"delta_penalty_removed\\\\\\\": tr[\\\\\\\"delta_penalty_removed\\\\\\\"],\\\\n            \\\\\\\"det_preferred\\\\\\\": tr[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"det-preferred\\\\\\\", 0),\\\\n            \\\\\\\"internal_preferred\\\\\\\": tr[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"internal-preferred\\\\\\\", 0),\\\\n            \\\\\\\"no_preference\\\\\\\": tr[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"no-preference\\\\\\\", 0),\\\\n        })\\\\n\\\\n    agg_row = {\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Overall\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": aggregate[\\\\\\\"n_episodes\\\\\\\"],\\\\n        \\\\\\\"int_mean\\\\\\\": aggregate[\\\\\\\"int_mean\\\\\\\"],\\\\n        \\\\\\\"det_mean\\\\\\\": aggregate[\\\\\\\"det_mean\\\\\\\"],\\\\n        \\\\\\\"delta\\\\\\\": aggregate[\\\\\\\"delta_full\\\\\\\"],\\\\n        \\\\\\\"int_death_pct\\\\\\\": round(aggregate[\\\\\\\"int_death_rate\\\\\\\"] * 100, 1),\\\\n        \\\\\\\"det_death_pct\\\\\\\": round(aggregate[\\\\\\\"det_death_rate\\\\\\\"] * 100, 1),\\\\n        \\\\\\\"delta_no_death\\\\\\\": aggregate.get(\\\\\\\"delta_no_death\\\\\\\"),\\\\n        \\\\\\\"death_avoidance_pct\\\\\\\": round(aggregate[\\\\\\\"death_avoidance_fraction\\\\\\\"] * 100, 1) if aggregate.get(\\\\\\\"death_avoidance_fraction\\\\\\\") is not None else None,\\\\n        \\\\\\\"delta_penalty_removed\\\\\\\": aggregate[\\\\\\\"delta_penalty_removed\\\\\\\"],\\\\n        \\\\\\\"det_preferred\\\\\\\": aggregate[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"det-preferred\\\\\\\", 0),\\\\n        \\\\\\\"internal_preferred\\\\\\\": aggregate[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"internal-preferred\\\\\\\", 0),\\\\n        \\\\\\\"no_preference\\\\\\\": aggregate[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"no-preference\\\\\\\", 0),\\\\n    }\\\\n\\\\n    corr = aggregate.get(\\\\\\\"correlation_death_rate_diff_vs_delta\\\\\\\", {})\\\\n\\\\n    return {\\\\n        \\\\\\\"rows\\\\\\\": rows,\\\\n        \\\\\\\"aggregate\\\\\\\": agg_row,\\\\n        \\\\\\\"correlation\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": corr.get(\\\\\\\"pearson_r\\\\\\\"),\\\\n            \\\\\\\"p_value\\\\\\\": corr.get(\\\\\\\"p_value\\\\\\\"),\\\\n            \\\\\\\"n\\\\\\\": corr.get(\\\\\\\"n_tasks\\\\\\\"),\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Plan-012 Death Decomposition Analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dirs\\\\\\\", required=True,\\\\n                        help=\\\\\\\"Comma-separated data directories (e.g. results/prescreening/,results/mvp/)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/death_decomposition_report.json\\\\\\\",\\\\n                        help=\\\\\\\"Output JSON report path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--paper_table\\\\\\\", default=\\\\\\\"results/paper_table1_data.json\\\\\\\",\\\\n                        help=\\\\\\\"Paper table data output path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--tasks\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Comma-separated task types to filter (default: all)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    data_dirs = [d.strip() for d in args.data_dirs.split(\\\\\\\",\\\\\\\") if d.strip()]\\\\n    task_filter = [t.strip() for t in args.tasks.split(\\\\\\\",\\\\\\\")] if args.tasks else None\\\\n\\\\n    task_episodes = load_episodes(data_dirs, task_filter)\\\\n    if not task_episodes:\\\\n        print(\\\\\\\"ERROR: No episodes found in specified directories\\\\\\\")\\\\n        return\\\\n\\\\n    print(f\\\\\\\"Loaded {sum(len(v) for v in task_episodes.values())} episodes \\\\\\\"\\\\n          f\\\\\\\"across {len(task_episodes)} tasks from {len(data_dirs)} directories\\\\\\\")\\\\n\\\\n    # Per-task analysis\\\\n    task_results = []\\\\n    for task_name in sorted(task_episodes.keys()):\\\\n        result = analyze_task(task_name, task_episodes[task_name])\\\\n        task_results.append(result)\\\\n\\\\n    # Aggregate from raw scores (exact, not from per-task means)\\\\n    aggregate = aggregate_from_raw(data_dirs, task_filter)\\\\n\\\\n    # Terminal output\\\\n    print_table(task_results, aggregate)\\\\n\\\\n    # Save JSON report\\\\n    report = {\\\\n        \\\\\\\"per_task\\\\\\\": task_results,\\\\n        \\\\\\\"aggregate\\\\\\\": aggregate,\\\\n    }\\\\n    os.makedirs(os.path.dirname(args.output) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\n[Saved report to {args.output}]\\\\\\\")\\\\n\\\\n    # Save paper table data\\\\n    paper_data = generate_paper_table_data(task_results, aggregate)\\\\n    os.makedirs(os.path.dirname(args.paper_table) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    with open(args.paper_table, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(paper_data, f, indent=2)\\\\n    print(f\\\\\\\"[Saved paper table data to {args.paper_table}]\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.81}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-012 Death Decomposition Analysis (D013).\\n\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\nvs genuine score improvement.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Optional, Tuple\\n\\nDEATH_THRESHOLD = -100\\n\\n\\ndef is_dead(score: float) -> bool:\\n    return score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source).\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef safe_mean(values: List[float]) -> float:\\n    return statistics.mean(values) if values else float(\\\"nan\\\")\\n\\n\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\n    \\\"\\\"\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\"\\\"\\\"\\n    try:\\n        from scipy.stats import pearsonr as sp_pearsonr\\n        r, p = sp_pearsonr(x, y)\\n        return float(r), float(p)\\n    except ImportError:\\n        pass\\n    n = len(x)\\n    if n < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    mx, my = statistics.mean(x), statistics.mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    # t-test approximation for p-value\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\n    # Two-tailed p from t distribution (approximation)\\n    import subprocess\\n    try:\\n        result = subprocess.run(\\n            [\\\"python3\\\", \\\"-c\\\",\\n             f\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\"],\\n            capture_output=True, text=True, timeout=5)\\n        p = float(result.stdout.strip())\\n    except Exception:\\n        p = float(\\\"nan\\\")\\n    return r, p\\n\\n\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\n    \\\"\\\"\\\"Load episodes grouped by task_type from multiple data directories.\\\"\\\"\\\"\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\n\\n    for data_dir in data_dirs:\\n        if not os.path.isdir(data_dir):\\n            print(f\\\"  WARN: {data_dir} not found, skipping\\\")\\n            continue\\n        for task_name in sorted(os.listdir(data_dir)):\\n            task_dir = os.path.join(data_dir, task_name)\\n            ep_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n            if not os.path.isfile(ep_file):\\n                continue\\n            if task_filter and task_name not in task_filter:\\n                continue\\n            with open(ep_file) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    ep = json.loads(line)\\n                    if \\\"always_internal\\\" not in ep or \\\"always_deterministic\\\" not in ep:\\n                        continue\\n                    task_episodes[task_name].append(ep)\\n\\n    return dict(task_episodes)\\n\\n\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\n    \\\"\\\"\\\"Full death decomposition for one task.\\\"\\\"\\\"\\n    n = len(episodes)\\n    int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n    det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]\\n\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\n    d\\n\\n... [截断: 输出过长，省略 14047 字符] ...\\n\\n\\\"det_death_rate\\\"] * 100, 1),\\n            \\\"delta_no_death\\\": tr[\\\"delta_no_death\\\"],\\n            \\\"death_avoidance_pct\\\": round(tr[\\\"death_avoidance_fraction\\\"] * 100, 1) if tr[\\\"death_avoidance_fraction\\\"] is not None else None,\\n            \\\"delta_penalty_removed\\\": tr[\\\"delta_penalty_removed\\\"],\\n            \\\"det_preferred\\\": tr[\\\"label_distribution\\\"].get(\\\"det-preferred\\\", 0),\\n            \\\"internal_preferred\\\": tr[\\\"label_distribution\\\"].get(\\\"internal-preferred\\\", 0),\\n            \\\"no_preference\\\": tr[\\\"label_distribution\\\"].get(\\\"no-preference\\\", 0),\\n        })\\n\\n    agg_row = {\\n        \\\"task\\\": \\\"Overall\\\",\\n        \\\"n\\\": aggregate[\\\"n_episodes\\\"],\\n        \\\"int_mean\\\": aggregate[\\\"int_mean\\\"],\\n        \\\"det_mean\\\": aggregate[\\\"det_mean\\\"],\\n        \\\"delta\\\": aggregate[\\\"delta_full\\\"],\\n        \\\"int_death_pct\\\": round(aggregate[\\\"int_death_rate\\\"] * 100, 1),\\n        \\\"det_death_pct\\\": round(aggregate[\\\"det_death_rate\\\"] * 100, 1),\\n        \\\"delta_no_death\\\": aggregate.get(\\\"delta_no_death\\\"),\\n        \\\"death_avoidance_pct\\\": round(aggregate[\\\"death_avoidance_fraction\\\"] * 100, 1) if aggregate.get(\\\"death_avoidance_fraction\\\") is not None else None,\\n        \\\"delta_penalty_removed\\\": aggregate[\\\"delta_penalty_removed\\\"],\\n        \\\"det_preferred\\\": aggregate[\\\"label_distribution\\\"].get(\\\"det-preferred\\\", 0),\\n        \\\"internal_preferred\\\": aggregate[\\\"label_distribution\\\"].get(\\\"internal-preferred\\\", 0),\\n        \\\"no_preference\\\": aggregate[\\\"label_distribution\\\"].get(\\\"no-preference\\\", 0),\\n    }\\n\\n    corr = aggregate.get(\\\"correlation_death_rate_diff_vs_delta\\\", {})\\n\\n    return {\\n        \\\"rows\\\": rows,\\n        \\\"aggregate\\\": agg_row,\\n        \\\"correlation\\\": {\\n            \\\"pearson_r\\\": corr.get(\\\"pearson_r\\\"),\\n            \\\"p_value\\\": corr.get(\\\"p_value\\\"),\\n            \\\"n\\\": corr.get(\\\"n_tasks\\\"),\\n        },\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Plan-012 Death Decomposition Analysis\\\")\\n    parser.add_argument(\\\"--data_dirs\\\", required=True,\\n                        help=\\\"Comma-separated data directories (e.g. results/prescreening/,results/mvp/)\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/death_decomposition_report.json\\\",\\n                        help=\\\"Output JSON report path\\\")\\n    parser.add_argument(\\\"--paper_table\\\", default=\\\"results/paper_table1_data.json\\\",\\n                        help=\\\"Paper table data output path\\\")\\n    parser.add_argument(\\\"--tasks\\\", default=None,\\n                        help=\\\"Comma-separated task types to filter (default: all)\\\")\\n    args = parser.parse_args()\\n\\n    data_dirs = [d.strip() for d in args.data_dirs.split(\\\",\\\") if d.strip()]\\n    task_filter = [t.strip() for t in args.tasks.split(\\\",\\\")] if args.tasks else None\\n\\n    task_episodes = load_episodes(data_dirs, task_filter)\\n    if not task_episodes:\\n        print(\\\"ERROR: No episodes found in specified directories\\\")\\n        return\\n\\n    print(f\\\"Loaded {sum(len(v) for v in task_episodes.values())} episodes \\\"\\n          f\\\"across {len(task_episodes)} tasks from {len(data_dirs)} directories\\\")\\n\\n    # Per-task analysis\\n    task_results = []\\n    for task_name in sorted(task_episodes.keys()):\\n        result = analyze_task(task_name, task_episodes[task_name])\\n        task_results.append(result)\\n\\n    # Aggregate from raw scores (exact, not from per-task means)\\n    aggregate = aggregate_from_raw(data_dirs, task_filter)\\n\\n    # Terminal output\\n    print_table(task_results, aggregate)\\n\\n    # Save JSON report\\n    report = {\\n        \\\"per_task\\\": task_results,\\n        \\\"aggregate\\\": aggregate,\\n    }\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    print(f\\\"\\\\n[Saved report to {args.output}]\\\")\\n\\n    # Save paper table data\\n    paper_data = generate_paper_table_data(task_results, aggregate)\\n    os.makedirs(os.path.dirname(args.paper_table) or \\\".\\\", exist_ok=True)\\n    with open(args.paper_table, \\\"w\\\") as f:\\n        json.dump(paper_data, f, indent=2)\\n    print(f\\\"[Saved paper table data to {args.paper_table}]\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.81}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015k3eovftQZaMPvHH9Zb1Xv`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "44c3a9c6-9427-44d9-a912-e68dcd1849ed",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HG9nxdjvPDk2RhVFf8QvC1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1330,
+      "cache_read_input_tokens": 23783,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1330
+      },
+      "output_tokens": 73,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-14T00:42:37.419Z_
+
+<details><summary>↩ Tool result · `toolu_01Std6j945F3KoZMiVeTs9ej`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8636\\ndrwxr-xr-x 27 root root    4096 May 14 05:45 .\\ndrwxr-xr-x 13 root root    4096 May 14 07:42 ..\\ndrwxr-xr-x  2 root root      60 May 14 00:42 chemistry-mix\\ndrwxr-xr-x  2 root root      60 May 14 01:02 chemistry-mix-paint-tertiary-color\\ndrwxr-xr-x  2 root root      60 May 14 01:23 find-animal\\ndrwxr-xr-x  2 root root      60 May 14 01:42 find-living-thing\\ndrwxr-xr-x  2 root root      60 May 14 02:02 find-non-living-thing\\ndrwxr-xr-x  2 root root      60 May 14 02:22 find-plant\\ndrwxr-xr-x  2 root root      60 May 14 02:42 freeze\\ndrwxr-xr-x  2 root root      60 May 14 03:02 grow-fruit\\ndrwxr-xr-x  2 root root      60 May 14 03:21 identify-life-stages-1\\ndrwxr-xr-x  2 root root      60 May 14 03:44 identify-life-stages-2\\ndrwxr-xr-x  2 root root      60 May 14 04:03 inclined-plane-determine-angle\\ndrwxr-xr-x  2 root root      60 May 14 04:21 inclined-plane-friction-named-surfaces\\ndrwxr-xr-x  2 root root      60 May 14 04:41 inclined-plane-friction-unnamed-surfaces\\ndrwxr-xr-x  2 root root      60 May 14 04:59 lifespan-longest-lived\\ndrwxr-xr-x  2 root root      60 May 14 05:19 lifespan-longest-lived-then-shortest-lived\\ndrwxr-xr-x  2 root root      60 May 14 05:36 lifespan-shortest-lived\\ndrwxr-xr-x  2 root root      60 May 14 05:56 measure-melting-point-known-substance\\ndrwxr-xr-x  2 root root      60 May 14 03:53 measure-melting-point-unknown-substance\\ndrwxr-xr-x  2 root root      60 May 14 04:12 mendelian-genetics-known-plant\\ndrwxr-xr-x  2 root root      60 May 14 04:30 mendelian-genetics-unknown-plant\\ndrwxr-xr-x  2 root root      60 May 14 04:48 power-component\\ndrwxr-xr-x  2 root root      60 May 14 05:07 power-component-renewable-vs-nonrenewable-energy\\n-rw-r--r--  1 root root 3669867 May 14 06:31 run.log\\n-rw-r--r--  1 root root 1474829 May 14 06:03 run_gpu1.log\\n-rw-r--r--  1 root root    3944 May 14 03:55 signal_type_summary.json\\n-rw-r--r--  1 root root 3671413 May 14 06:31 summary.txt\\ndrwxr-xr-x  2 root root      60 May 14 05:26 test-conductivity\\ndrwxr-xr-x  2 root root      60 May 14 05:45 test-conductivity-of-unknown-substances\\ndrwxr-xr-x  2 root root      60 May 14 06:03 use-thermometer\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "2159cf2f-4281-4a9b-8c5e-d3081f873bf1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8636\\\\ndrwxr-xr-x 27 root root    4096 May 14 05:45 .\\\\ndrwxr-xr-x 13 root root    4096 May 14 07:42 ..\\\\ndrwxr-xr-x  2 root root      60 May 14 00:42 chemistry-mix\\\\ndrwxr-xr-x  2 root root      60 May 14 01:02 chemistry-mix-paint-tertiary-color\\\\ndrwxr-xr-x  2 root root      60 May 14 01:23 find-animal\\\\ndrwxr-xr-x  2 root root      60 May 14 01:42 find-living-thing\\\\ndrwxr-xr-x  2 root root      60 May 14 02:02 find-non-living-thing\\\\ndrwxr-xr-x  2 root root      60 May 14 02:22 find-plant\\\\ndrwxr-xr-x  2 root root      60 May 14 02:42 freeze\\\\ndrwxr-xr-x  2 root root      60 May 14 03:02 grow-fruit\\\\ndrwxr-xr-x  2 root root      60 May 14 03:21 identify-life-stages-1\\\\ndrwxr-xr-x  2 root root      60 May 14 03:44 identify-life-stages-2\\\\ndrwxr-xr-x  2 root root      60 May 14 04:03 inclined-plane-determine-angle\\\\ndrwxr-xr-x  2 root root      60 May 14 04:21 inclined-plane-friction-named-surfaces\\\\ndrwxr-xr-x  2 root root      60 May 14 04:41 inclined-plane-friction-unnamed-surfaces\\\\ndrwxr-xr-x  2 root root      60 May 14 04:59 lifespan-longest-lived\\\\ndrwxr-xr-x  2 root root      60 May 14 05:19 lifespan-longest-lived-then-shortest-lived\\\\ndrwxr-xr-x  2 root root      60 May 14 05:36 lifespan-shortest-lived\\\\ndrwxr-xr-x  2 root root      60 May 14 05:56 measure-melting-point-known-substance\\\\ndrwxr-xr-x  2 root root      60 May 14 03:53 measure-melting-point-unknown-substance\\\\ndrwxr-xr-x  2 root root      60 May 14 04:12 mendelian-genetics-known-plant\\\\ndrwxr-xr-x  2 root root      60 May 14 04:30 mendelian-genetics-unknown-plant\\\\ndrwxr-xr-x  2 root root      60 May 14 04:48 power-component\\\\ndrwxr-xr-x  2 root root      60 May 14 05:07 power-component-renewable-vs-nonrenewable-energy\\\\n-rw-r--r--  1 root root 3669867 May 14 06:31 run.log\\\\n-rw-r--r--  1 root root 1474829 May 14 06:03 run_gpu1.log\\\\n-rw-r--r--  1 root root    3944 May 14 03:55 signal_type_summary.json\\\\n-rw-r--r--  1 root root 3671413 May 14 06:31 summary.txt\\\\ndrwxr-xr-x  2 root root      60 May 14 05:26 test-conductivity\\\\ndrwxr-xr-x  2 root root      60 May 14 05:45 test-conductivity-of-unknown-substances\\\\ndrwxr-xr-x  2 root root      60 May 14 06:03 use-thermometer\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8636\\ndrwxr-xr-x 27 root root    4096 May 14 05:45 .\\ndrwxr-xr-x 13 root root    4096 May 14 07:42 ..\\ndrwxr-xr-x  2 root root      60 May 14 00:42 chemistry-mix\\ndrwxr-xr-x  2 root root      60 May 14 01:02 chemistry-mix-paint-tertiary-color\\ndrwxr-xr-x  2 root root      60 May 14 01:23 find-animal\\ndrwxr-xr-x  2 root root      60 May 14 01:42 find-living-thing\\ndrwxr-xr-x  2 root root      60 May 14 02:02 find-non-living-thing\\ndrwxr-xr-x  2 root root      60 May 14 02:22 find-plant\\ndrwxr-xr-x  2 root root      60 May 14 02:42 freeze\\ndrwxr-xr-x  2 root root      60 May 14 03:02 grow-fruit\\ndrwxr-xr-x  2 root root      60 May 14 03:21 identify-life-stages-1\\ndrwxr-xr-x  2 root root      60 May 14 03:44 identify-life-stages-2\\ndrwxr-xr-x  2 root root      60 May 14 04:03 inclined-plane-determine-angle\\ndrwxr-xr-x  2 root root      60 May 14 04:21 inclined-plane-friction-named-surfaces\\ndrwxr-xr-x  2 root root      60 May 14 04:41 inclined-plane-friction-unnamed-surfaces\\ndrwxr-xr-x  2 root root      60 May 14 04:59 lifespan-longest-lived\\ndrwxr-xr-x  2 root root      60 May 14 05:19 lifespan-longest-lived-then-shortest-lived\\ndrwxr-xr-x  2 root root      60 May 14 05:36 lifespan-shortest-lived\\ndrwxr-xr-x  2 root root      60 May 14 05:56 measure-melting-point-known-substance\\ndrwxr-xr-x  2 root root      60 May 14 03:53 measure-melting-point-unknown-substance\\ndrwxr-xr-x  2 root root      60 May 14 04:12 mendelian-genetics-known-plant\\ndrwxr-xr-x  2 root root      60 May 14 04:30 mendelian-genetics-unknown-plant\\ndrwxr-xr-x  2 root root      60 May 14 04:48 power-component\\ndrwxr-xr-x  2 root root      60 May 14 05:07 power-component-renewable-vs-nonrenewable-energy\\n-rw-r--r--  1 root root 3669867 May 14 06:31 run.log\\n-rw-r--r--  1 root root 1474829 May 14 06:03 run_gpu1.log\\n-rw-r--r--  1 root root    3944 May 14 03:55 signal_type_summary.json\\n-rw-r--r--  1 root root 3671413 May 14 06:31 summary.txt\\ndrwxr-xr-x  2 root root      60 May 14 05:26 test-conductivity\\ndrwxr-xr-x  2 root root      60 May 14 05:45 test-conductivity-of-unknown-substances\\ndrwxr-xr-x  2 root root      60 May 14 06:03 use-thermometer\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-14T00:42:38.290Z_
+
+<details><summary>↩ Tool result · `toolu_01MHCXVpRnkH33uswZDp16wb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  3 root root   57 May 14 03:05 .\\ndrwxr-xr-x 13 root root 4096 May 14 07:42 ..\\ndrwxr-xr-x  2 root root   60 May 14 03:05 boil\\n-rw-r--r--  1 root root 2055 May 14 03:05 global_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "ea8072cc-f8bb-4a7f-9362-04cd8f6373f1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x  3 root root   57 May 14 03:05 .\\\\ndrwxr-xr-x 13 root root 4096 May 14 07:42 ..\\\\ndrwxr-xr-x  2 root root   60 May 14 03:05 boil\\\\n-rw-r--r--  1 root root 2055 May 14 03:05 global_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  3 root root   57 May 14 03:05 .\\ndrwxr-xr-x 13 root root 4096 May 14 07:42 ..\\ndrwxr-xr-x  2 root root   60 May 14 03:05 boil\\n-rw-r--r--  1 root root 2055 May 14 03:05 global_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T00:42:39.162Z_
+
+<details><summary>↩ Tool result · `toolu_015k3eovftQZaMPvHH9Zb1Xv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  8 root root 4096 May 14 08:20 .\\ndrwxr-xr-x 13 root root 4096 May 14 07:42 ..\\ndrwxr-xr-x  2 root root  132 May 14 07:26 find-animal\\ndrwxr-xr-x  2 root root  132 May 14 07:08 find-non-living-thing\\ndrwxr-xr-x  2 root root  132 May 14 08:00 grow-fruit\\ndrwxr-xr-x  2 root root  132 May 14 08:20 identify-life-stages-1\\ndrwxr-xr-x  2 root root  100 May 14 08:04 inclined-plane-determine-angle\\ndrwxr-xr-x  2 root root  100 May 14 08:23 lifespan-longest-lived-then-shortest-lived\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "a23fd0c4-6316-4c22-8ff8-d59fe8cddff0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 8\\\\ndrwxr-xr-x  8 root root 4096 May 14 08:20 .\\\\ndrwxr-xr-x 13 root root 4096 May 14 07:42 ..\\\\ndrwxr-xr-x  2 root root  132 May 14 07:26 find-animal\\\\ndrwxr-xr-x  2 root root  132 May 14 07:08 find-non-living-thing\\\\ndrwxr-xr-x  2 root root  132 May 14 08:00 grow-fruit\\\\ndrwxr-xr-x  2 root root  132 May 14 08:20 identify-life-stages-1\\\\ndrwxr-xr-x  2 root root  100 May 14 08:04 inclined-plane-determine-angle\\\\ndrwxr-xr-x  2 root root  100 May 14 08:23 lifespan-longest-lived-then-shortest-lived\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 8\\ndrwxr-xr-x  8 root root 4096 May 14 08:20 .\\ndrwxr-xr-x 13 root root 4096 May 14 07:42 ..\\ndrwxr-xr-x  2 root root  132 May 14 07:26 find-animal\\ndrwxr-xr-x  2 root root  132 May 14 07:08 find-non-living-thing\\ndrwxr-xr-x  2 root root  132 May 14 08:00 grow-fruit\\ndrwxr-xr-x  2 root root  132 May 14 08:20 identify-life-stages-1\\ndrwxr-xr-x  2 root root  100 May 14 08:04 inclined-plane-determine-angle\\ndrwxr-xr-x  2 root root  100 May 14 08:23 lifespan-longest-lived-then-shortest-lived\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The output was truncated. I need to see the full script. Let me read it in parts. The script was cut off at about line 100. Let me get the full content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "fd3e503e-387f-4392-beb4-1f1b75e00b68",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RAgroGbB9SKKkTZWR694uz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5522,
+      "cache_read_input_tokens": 25113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17_
+
+输出被截断了，分段读取完整脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "b3d06efb-24e6-45bc-9b07-56dd5224238e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RAgroGbB9SKKkTZWR694uz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5522,
+      "cache_read_input_tokens": 25113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EXhUW99tGYHrSAjppZo5v2`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "wc -l /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "b9dffd1c-9348-4c08-a80c-3e29db967a1c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RAgroGbB9SKKkTZWR694uz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5522,
+      "cache_read_input_tokens": 25113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019bTb4QSLDaRZkejiugEZqN`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -200 /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "5571d6d5-818d-4849-b2c3-0d365622f7dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RAgroGbB9SKKkTZWR694uz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5522,
+      "cache_read_input_tokens": 25113,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5522
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-14T00:42:45.730Z_
+
+<details><summary>↩ Tool result · `toolu_01EXhUW99tGYHrSAjppZo5v2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"519 /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "316a0974-963c-4da4-912e-bc789807b66d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"519 /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"519 /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T00:42:46.611Z_
+
+<details><summary>↩ Tool result · `toolu_019bTb4QSLDaRZkejiugEZqN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-012 Death Decomposition Analysis (D013).\\n\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\nvs genuine score improvement.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Optional, Tuple\\n\\nDEATH_THRESHOLD = -100\\n\\n\\ndef is_dead(score: float) -> bool:\\n    return score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source).\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef safe_mean(values: List[float]) -> float:\\n    return statistics.mean(values) if values else float(\\\"nan\\\")\\n\\n\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\n    \\\"\\\"\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\"\\\"\\\"\\n    try:\\n        from scipy.stats import pearsonr as sp_pearsonr\\n        r, p = sp_pearsonr(x, y)\\n        return float(r), float(p)\\n    except ImportError:\\n        pass\\n    n = len(x)\\n    if n < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    mx, my = statistics.mean(x), statistics.mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    # t-test approximation for p-value\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\n    # Two-tailed p from t distribution (approximation)\\n    import subprocess\\n    try:\\n        result = subprocess.run(\\n            [\\\"python3\\\", \\\"-c\\\",\\n             f\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\"],\\n            capture_output=True, text=True, timeout=5)\\n        p = float(result.stdout.strip())\\n    except Exception:\\n        p = float(\\\"nan\\\")\\n    return r, p\\n\\n\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\n    \\\"\\\"\\\"Load episodes grouped by task_type from multiple data directories.\\\"\\\"\\\"\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\n\\n    for data_dir in data_dirs:\\n        if not os.path.isdir(data_dir):\\n            print(f\\\"  WARN: {data_dir} not found, skipping\\\")\\n            continue\\n        for task_name in sorted(os.listdir(data_dir)):\\n            task_dir = os.path.join(data_dir, task_name)\\n            ep_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n            if not os.path.isfile(ep_file):\\n                continue\\n            if task_filter and task_name not in task_filter:\\n                continue\\n            with open(ep_file) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    ep = json.loads(line)\\n                    if \\\"always_internal\\\" not in ep or \\\"always_deterministic\\\" not in ep:\\n                        continue\\n                    task_episodes[task_name].append(ep)\\n\\n    return dict(task_episodes)\\n\\n\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\n    \\\"\\\"\\\"Full death decomposition for one task.\\\"\\\"\\\"\\n    n = len(episodes)\\n    int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n    det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]\\n\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\n    det_deaths = sum(1 for s in det_scores if is_dead(s))\\n    int_death_rate = int_deaths / n\\n    det_death_rate = det_deaths / n\\n\\n    # --- A. Basic stats ---\\n    int_mean = safe_mean(int_scores)\\n    det_mean = safe_mean(det_scores)\\n    delta_full = det_mean - int_mean\\n\\n    # No-death subset: exclude episodes where EITHER mode died\\n    nd_int_scores = []\\n    nd_det_scores = []\\n    for i_s, d_s in zip(int_scores, det_scores):\\n        if not is_dead(i_s) and not is_dead(d_s):\\n            nd_int_scores.append(i_s)\\n            nd_det_scores.append(d_s)\\n\\n    int_mean_nd = safe_mean(nd_int_scores)\\n    det_mean_nd = safe_mean(nd_det_scores)\\n    delta_no_death = det_mean_nd - int_mean_nd if nd_int_scores else float(\\\"nan\\\")\\n\\n    # Penalty-removed: replace -100 with 0\\n    int_scores_pr = [0.0 if is_dead(s) else s for s in int_scores]\\n    det_scores_pr = [0.0 if is_dead(s) else s for s in det_scores]\\n    int_mean_pr = safe_mean(int_scores_pr)\\n    det_mean_pr = safe_mean(det_scores_pr)\\n    delta_penalty_removed = det_mean_pr - int_mean_pr\\n\\n    # Death avoidance fraction\\n    if not math.isnan(delta_no_death) and delta_full != 0:\\n        death_avoidance_frac = (delta_full - delta_no_death) / delta_full\\n    else:\\n        death_avoidance_frac = float(\\\"nan\\\")\\n\\n    # --- C. Label distribution ---\\n    label_counts = defaultdict(int)\\n    signal_counts = defaultdict(int)\\n    label_signal_cross = defaultdict(lambda: defaultdict(int))\\n    for i_s, d_s in zip(int_scores, det_scores):\\n        label, reason, signal_source = classify_episode(i_s, d_s)\\n        label_counts[label] += 1\\n        signal_counts[signal_source] += 1\\n        label_signal_cross[label][signal_source] += 1\\n\\n    return {\\n        \\\"task\\\": task_name,\\n        \\\"n_episodes\\\": n,\\n        \\\"int_death_count\\\": int_deaths,\\n        \\\"det_death_count\\\": det_deaths,\\n        \\\"int_death_rate\\\": round(int_death_rate, 4),\\n        \\\"det_death_rate\\\": round(det_death_rate, 4),\\n        \\\"int_mean\\\": round(int_mean, 2),\\n        \\\"det_mean\\\": round(det_mean, 2),\\n        \\\"delta_full\\\": round(delta_full, 2),\\n        \\\"int_mean_no_death\\\": round(int_mean_nd, 2) if not math.isnan(int_mean_nd) else None,\\n        \\\"det_mean_no_death\\\": round(det_mean_nd, 2) if not math.isnan(det_mean_nd) else None,\\n        \\\"delta_no_death\\\": round(delta_no_death, 2) if not math.isnan(delta_no_death) else None,\\n        \\\"death_avoidance_fraction\\\": round(death_avoidance_frac, 4) if not math.isnan(death_avoidance_frac) else None,\\n        \\\"int_mean_penalty_removed\\\": round(int_mean_pr, 2),\\n        \\\"det_mean_penalty_removed\\\": round(det_mean_pr, 2),\\n        \\\"delta_penalty_removed\\\": round(delta_penalty_removed, 2),\\n        \\\"n_no_death_episodes\\\": len(nd_int_scores),\\n        \\\"label_distribution\\\": {\\n            \\\"det-preferred\\\": label_counts.get(\\\"det-preferred\\\", 0),\\n            \\\"internal-preferred\\\": label_counts.get(\\\"internal-preferred\\\", 0),\\n            \\\"no-preference\\\": label_counts.get(\\\"no-preference\\\", 0),\\n        },\\n        \\\"signal_source_distribution\\\": dict(signal_counts),\\n        \\\"label_signal_cross\\\": {k: dict(v) for k, v in label_signal_cross.items()},\\n    }\\n\\n\\ndef aggregate_results(task_results: List[dict]) -> dict:\\n    \\\"\\\"\\\"Compute aggregate statistics across all tasks.\\\"\\\"\\\"\\n    all_int, all_det = [], []\\n    all_int_nd, all_det_nd = [], []\\n    all_int_pr, all_det_pr = [], []\\n    total_label = defaultdict(int)\\n    total_signal = defaultdict(int)\\n    total_label_signal = defaultdict(lambda: defaultdict(int))\\n\\n    # For correlation: per-task death rate vs delta\\n    task_death_rates = []\\n    task_deltas = []\\n\\n    for tr in task_results:\\n        n = tr[\\\"n_episodes\\\"]\\n        int_death_rate = tr[\\\"int_death_rate\\\"]\\n        det_death_rate = tr[\\\"det_death_rate\\\"]\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "0e919b99-9d93-4c35-b8e7-9aeee18baf19",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Plan-012 Death Decomposition Analysis (D013).\\\\n\\\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\\\nvs genuine score improvement.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport statistics\\\\nfrom collections import defaultdict\\\\nfrom typing import Dict, List, Optional, Tuple\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n\\\\ndef is_dead(score: float) -> bool:\\\\n    return score <= DEATH_THRESHOLD\\\\n\\\\n\\\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Returns (label, reason, signal_source).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    int_died = is_dead(int_score)\\\\n    det_died = is_dead(det_score)\\\\n\\\\n    if int_died and not det_died:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"int_died_det_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if det_died and not int_died:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"det_died_int_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if int_died and det_died:\\\\n        return \\\\\\\"no-preference\\\\\\\", \\\\\\\"both_died\\\\\\\", \\\\\\\"both_dead\\\\\\\"\\\\n    if det_score > int_score:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"both_alive_det_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    if int_score > det_score:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"both_alive_int_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    return \\\\\\\"no-preference\\\\\\\", \\\\\\\"tie\\\\\\\", \\\\\\\"tied_alive\\\\\\\"\\\\n\\\\n\\\\ndef safe_mean(values: List[float]) -> float:\\\\n    return statistics.mean(values) if values else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n\\\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        from scipy.stats import pearsonr as sp_pearsonr\\\\n        r, p = sp_pearsonr(x, y)\\\\n        return float(r), float(p)\\\\n    except ImportError:\\\\n        pass\\\\n    n = len(x)\\\\n    if n < 3:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    mx, my = statistics.mean(x), statistics.mean(y)\\\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\\\n    if sx == 0 or sy == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\\\n    # t-test approximation for p-value\\\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\\\n    # Two-tailed p from t distribution (approximation)\\\\n    import subprocess\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"python3\\\\\\\", \\\\\\\"-c\\\\\\\",\\\\n             f\\\\\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=5)\\\\n        p = float(result.stdout.strip())\\\\n    except Exception:\\\\n        p = float(\\\\\\\"nan\\\\\\\")\\\\n    return r, p\\\\n\\\\n\\\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load episodes grouped by task_type from multiple data directories.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\\\n\\\\n    for data_dir in data_dirs:\\\\n        if not os.path.isdir(data_dir):\\\\n            print(f\\\\\\\"  WARN: {data_dir} not found, skipping\\\\\\\")\\\\n            continue\\\\n        for task_name in sorted(os.listdir(data_dir)):\\\\n            task_dir = os.path.join(data_dir, task_name)\\\\n            ep_file = os.path.join(task_dir, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n            if not os.path.isfile(ep_file):\\\\n                continue\\\\n            if task_filter and task_name not in task_filter:\\\\n                continue\\\\n            with open(ep_file) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if not line:\\\\n                        continue\\\\n                    ep = json.loads(line)\\\\n                    if \\\\\\\"always_internal\\\\\\\" not in ep or \\\\\\\"always_deterministic\\\\\\\" not in ep:\\\\n                        continue\\\\n                    task_episodes[task_name].append(ep)\\\\n\\\\n    return dict(task_episodes)\\\\n\\\\n\\\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Full death decomposition for one task.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(episodes)\\\\n    int_scores = [ep[\\\\\\\"always_internal\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep in episodes]\\\\n    det_scores = [ep[\\\\\\\"always_deterministic\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep in episodes]\\\\n\\\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\\\n    det_deaths = sum(1 for s in det_scores if is_dead(s))\\\\n    int_death_rate = int_deaths / n\\\\n    det_death_rate = det_deaths / n\\\\n\\\\n    # --- A. Basic stats ---\\\\n    int_mean = safe_mean(int_scores)\\\\n    det_mean = safe_mean(det_scores)\\\\n    delta_full = det_mean - int_mean\\\\n\\\\n    # No-death subset: exclude episodes where EITHER mode died\\\\n    nd_int_scores = []\\\\n    nd_det_scores = []\\\\n    for i_s, d_s in zip(int_scores, det_scores):\\\\n        if not is_dead(i_s) and not is_dead(d_s):\\\\n            nd_int_scores.append(i_s)\\\\n            nd_det_scores.append(d_s)\\\\n\\\\n    int_mean_nd = safe_mean(nd_int_scores)\\\\n    det_mean_nd = safe_mean(nd_det_scores)\\\\n    delta_no_death = det_mean_nd - int_mean_nd if nd_int_scores else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    # Penalty-removed: replace -100 with 0\\\\n    int_scores_pr = [0.0 if is_dead(s) else s for s in int_scores]\\\\n    det_scores_pr = [0.0 if is_dead(s) else s for s in det_scores]\\\\n    int_mean_pr = safe_mean(int_scores_pr)\\\\n    det_mean_pr = safe_mean(det_scores_pr)\\\\n    delta_penalty_removed = det_mean_pr - int_mean_pr\\\\n\\\\n    # Death avoidance fraction\\\\n    if not math.isnan(delta_no_death) and delta_full != 0:\\\\n        death_avoidance_frac = (delta_full - delta_no_death) / delta_full\\\\n    else:\\\\n        death_avoidance_frac = float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    # --- C. Label distribution ---\\\\n    label_counts = defaultdict(int)\\\\n    signal_counts = defaultdict(int)\\\\n    label_signal_cross = defaultdict(lambda: defaultdict(int))\\\\n    for i_s, d_s in zip(int_scores, det_scores):\\\\n        label, reason, signal_source = classify_episode(i_s, d_s)\\\\n        label_counts[label] += 1\\\\n        signal_counts[signal_source] += 1\\\\n        label_signal_cross[label][signal_source] += 1\\\\n\\\\n    return {\\\\n        \\\\\\\"task\\\\\\\": task_name,\\\\n        \\\\\\\"n_episodes\\\\\\\": n,\\\\n        \\\\\\\"int_death_count\\\\\\\": int_deaths,\\\\n        \\\\\\\"det_death_count\\\\\\\": det_deaths,\\\\n        \\\\\\\"int_death_rate\\\\\\\": round(int_death_rate, 4),\\\\n        \\\\\\\"det_death_rate\\\\\\\": round(det_death_rate, 4),\\\\n        \\\\\\\"int_mean\\\\\\\": round(int_mean, 2),\\\\n        \\\\\\\"det_mean\\\\\\\": round(det_mean, 2),\\\\n        \\\\\\\"delta_full\\\\\\\": round(delta_full, 2),\\\\n        \\\\\\\"int_mean_no_death\\\\\\\": round(int_mean_nd, 2) if not math.isnan(int_mean_nd) else None,\\\\n        \\\\\\\"det_mean_no_death\\\\\\\": round(det_mean_nd, 2) if not math.isnan(det_mean_nd) else None,\\\\n        \\\\\\\"delta_no_death\\\\\\\": round(delta_no_death, 2) if not math.isnan(delta_no_death) else None,\\\\n        \\\\\\\"death_avoidance_fraction\\\\\\\": round(death_avoidance_frac, 4) if not math.isnan(death_avoidance_frac) else None,\\\\n        \\\\\\\"int_mean_penalty_removed\\\\\\\": round(int_mean_pr, 2),\\\\n        \\\\\\\"det_mean_penalty_removed\\\\\\\": round(det_mean_pr, 2),\\\\n        \\\\\\\"delta_penalty_removed\\\\\\\": round(delta_penalty_removed, 2),\\\\n        \\\\\\\"n_no_death_episodes\\\\\\\": len(nd_int_scores),\\\\n        \\\\\\\"label_distribution\\\\\\\": {\\\\n            \\\\\\\"det-preferred\\\\\\\": label_counts.get(\\\\\\\"det-preferred\\\\\\\", 0),\\\\n            \\\\\\\"internal-preferred\\\\\\\": label_counts.get(\\\\\\\"internal-preferred\\\\\\\", 0),\\\\n            \\\\\\\"no-preference\\\\\\\": label_counts.get(\\\\\\\"no-preference\\\\\\\", 0),\\\\n        },\\\\n        \\\\\\\"signal_source_distribution\\\\\\\": dict(signal_counts),\\\\n        \\\\\\\"label_signal_cross\\\\\\\": {k: dict(v) for k, v in label_signal_cross.items()},\\\\n    }\\\\n\\\\n\\\\ndef aggregate_results(task_results: List[dict]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute aggregate statistics across all tasks.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    all_int, all_det = [], []\\\\n    all_int_nd, all_det_nd = [], []\\\\n    all_int_pr, all_det_pr = [], []\\\\n    total_label = defaultdict(int)\\\\n    total_signal = defaultdict(int)\\\\n    total_label_signal = defaultdict(lambda: defaultdict(int))\\\\n\\\\n    # For correlation: per-task death rate vs delta\\\\n    task_death_rates = []\\\\n    task_deltas = []\\\\n\\\\n    for tr in task_results:\\\\n        n = tr[\\\\\\\"n_episodes\\\\\\\"]\\\\n        int_death_rate = tr[\\\\\\\"int_death_rate\\\\\\\"]\\\\n        det_death_rate = tr[\\\\\\\"det_death_rate\\\\\\\"]\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-012 Death Decomposition Analysis (D013).\\n\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\nvs genuine score improvement.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Optional, Tuple\\n\\nDEATH_THRESHOLD = -100\\n\\n\\ndef is_dead(score: float) -> bool:\\n    return score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source).\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef safe_mean(values: List[float]) -> float:\\n    return statistics.mean(values) if values else float(\\\"nan\\\")\\n\\n\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\n    \\\"\\\"\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\"\\\"\\\"\\n    try:\\n        from scipy.stats import pearsonr as sp_pearsonr\\n        r, p = sp_pearsonr(x, y)\\n        return float(r), float(p)\\n    except ImportError:\\n        pass\\n    n = len(x)\\n    if n < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    mx, my = statistics.mean(x), statistics.mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    # t-test approximation for p-value\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\n    # Two-tailed p from t distribution (approximation)\\n    import subprocess\\n    try:\\n        result = subprocess.run(\\n            [\\\"python3\\\", \\\"-c\\\",\\n             f\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\"],\\n            capture_output=True, text=True, timeout=5)\\n        p = float(result.stdout.strip())\\n    except Exception:\\n        p = float(\\\"nan\\\")\\n    return r, p\\n\\n\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\n    \\\"\\\"\\\"Load episodes grouped by task_type from multiple data directories.\\\"\\\"\\\"\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\n\\n    for data_dir in data_dirs:\\n        if not os.path.isdir(data_dir):\\n            print(f\\\"  WARN: {data_dir} not found, skipping\\\")\\n            continue\\n        for task_name in sorted(os.listdir(data_dir)):\\n            task_dir = os.path.join(data_dir, task_name)\\n            ep_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n            if not os.path.isfile(ep_file):\\n                continue\\n            if task_filter and task_name not in task_filter:\\n                continue\\n            with open(ep_file) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    ep = json.loads(line)\\n                    if \\\"always_internal\\\" not in ep or \\\"always_deterministic\\\" not in ep:\\n                        continue\\n                    task_episodes[task_name].append(ep)\\n\\n    return dict(task_episodes)\\n\\n\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\n    \\\"\\\"\\\"Full death decomposition for one task.\\\"\\\"\\\"\\n    n = len(episodes)\\n    int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n    det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]\\n\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\n    det_deaths = sum(1 for s in det_scores if is_dead(s))\\n    int_death_rate = int_deaths / n\\n    det_death_rate = det_deaths / n\\n\\n    # --- A. Basic stats ---\\n    int_mean = safe_mean(int_scores)\\n    det_mean = safe_mean(det_scores)\\n    delta_full = det_mean - int_mean\\n\\n    # No-death subset: exclude episodes where EITHER mode died\\n    nd_int_scores = []\\n    nd_det_scores = []\\n    for i_s, d_s in zip(int_scores, det_scores):\\n        if not is_dead(i_s) and not is_dead(d_s):\\n            nd_int_scores.append(i_s)\\n            nd_det_scores.append(d_s)\\n\\n    int_mean_nd = safe_mean(nd_int_scores)\\n    det_mean_nd = safe_mean(nd_det_scores)\\n    delta_no_death = det_mean_nd - int_mean_nd if nd_int_scores else float(\\\"nan\\\")\\n\\n    # Penalty-removed: replace -100 with 0\\n    int_scores_pr = [0.0 if is_dead(s) else s for s in int_scores]\\n    det_scores_pr = [0.0 if is_dead(s) else s for s in det_scores]\\n    int_mean_pr = safe_mean(int_scores_pr)\\n    det_mean_pr = safe_mean(det_scores_pr)\\n    delta_penalty_removed = det_mean_pr - int_mean_pr\\n\\n    # Death avoidance fraction\\n    if not math.isnan(delta_no_death) and delta_full != 0:\\n        death_avoidance_frac = (delta_full - delta_no_death) / delta_full\\n    else:\\n        death_avoidance_frac = float(\\\"nan\\\")\\n\\n    # --- C. Label distribution ---\\n    label_counts = defaultdict(int)\\n    signal_counts = defaultdict(int)\\n    label_signal_cross = defaultdict(lambda: defaultdict(int))\\n    for i_s, d_s in zip(int_scores, det_scores):\\n        label, reason, signal_source = classify_episode(i_s, d_s)\\n        label_counts[label] += 1\\n        signal_counts[signal_source] += 1\\n        label_signal_cross[label][signal_source] += 1\\n\\n    return {\\n        \\\"task\\\": task_name,\\n        \\\"n_episodes\\\": n,\\n        \\\"int_death_count\\\": int_deaths,\\n        \\\"det_death_count\\\": det_deaths,\\n        \\\"int_death_rate\\\": round(int_death_rate, 4),\\n        \\\"det_death_rate\\\": round(det_death_rate, 4),\\n        \\\"int_mean\\\": round(int_mean, 2),\\n        \\\"det_mean\\\": round(det_mean, 2),\\n        \\\"delta_full\\\": round(delta_full, 2),\\n        \\\"int_mean_no_death\\\": round(int_mean_nd, 2) if not math.isnan(int_mean_nd) else None,\\n        \\\"det_mean_no_death\\\": round(det_mean_nd, 2) if not math.isnan(det_mean_nd) else None,\\n        \\\"delta_no_death\\\": round(delta_no_death, 2) if not math.isnan(delta_no_death) else None,\\n        \\\"death_avoidance_fraction\\\": round(death_avoidance_frac, 4) if not math.isnan(death_avoidance_frac) else None,\\n        \\\"int_mean_penalty_removed\\\": round(int_mean_pr, 2),\\n        \\\"det_mean_penalty_removed\\\": round(det_mean_pr, 2),\\n        \\\"delta_penalty_removed\\\": round(delta_penalty_removed, 2),\\n        \\\"n_no_death_episodes\\\": len(nd_int_scores),\\n        \\\"label_distribution\\\": {\\n            \\\"det-preferred\\\": label_counts.get(\\\"det-preferred\\\", 0),\\n            \\\"internal-preferred\\\": label_counts.get(\\\"internal-preferred\\\", 0),\\n            \\\"no-preference\\\": label_counts.get(\\\"no-preference\\\", 0),\\n        },\\n        \\\"signal_source_distribution\\\": dict(signal_counts),\\n        \\\"label_signal_cross\\\": {k: dict(v) for k, v in label_signal_cross.items()},\\n    }\\n\\n\\ndef aggregate_results(task_results: List[dict]) -> dict:\\n    \\\"\\\"\\\"Compute aggregate statistics across all tasks.\\\"\\\"\\\"\\n    all_int, all_det = [], []\\n    all_int_nd, all_det_nd = [], []\\n    all_int_pr, all_det_pr = [], []\\n    total_label = defaultdict(int)\\n    total_signal = defaultdict(int)\\n    total_label_signal = defaultdict(lambda: defaultdict(int))\\n\\n    # For correlation: per-task death rate vs delta\\n    task_death_rates = []\\n    task_deltas = []\\n\\n    for tr in task_results:\\n        n = tr[\\\"n_episodes\\\"]\\n        int_death_rate = tr[\\\"int_death_rate\\\"]\\n        det_death_rate = tr[\\\"det_death_rate\\\"]\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RHyqEJZ5ExPGAqoEfVQoyP`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -n +200 /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "3283def9-fb06-48aa-8252-34cfe53e2216",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015sUwDB5vTeZRY8Cy46YWsn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3630,
+      "cache_read_input_tokens": 30635,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3630
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T00:42:50.339Z_
+
+<details><summary>↩ Tool result · `toolu_01RHyqEJZ5ExPGAqoEfVQoyP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n        # Reconstruct per-episode scores from means for aggregate\\n        # (approximate; for exact we'd need raw scores)\\n        # Instead, weight by n_episodes\\n        all_int.extend([tr[\\\"int_mean\\\"]] * n)\\n        all_det.extend([tr[\\\"det_mean\\\"]] * n)\\n\\n        n_nd = tr[\\\"n_no_death_episodes\\\"]\\n        if tr[\\\"int_mean_no_death\\\"] is not None and n_nd > 0:\\n            all_int_nd.extend([tr[\\\"int_mean_no_death\\\"]] * n_nd)\\n            all_det_nd.extend([tr[\\\"det_mean_no_death\\\"]] * n_nd)\\n\\n        all_int_pr.extend([tr[\\\"int_mean_penalty_removed\\\"]] * n)\\n        all_det_pr.extend([tr[\\\"det_mean_penalty_removed\\\"]] * n)\\n\\n        for lbl, cnt in tr[\\\"label_distribution\\\"].items():\\n            total_label[lbl] += cnt\\n        for sig, cnt in tr[\\\"signal_source_distribution\\\"].items():\\n            total_signal[sig] += cnt\\n        for lbl, sigs in tr[\\\"label_signal_cross\\\"].items():\\n            for sig, cnt in sigs.items():\\n                total_label_signal[lbl][sig] += cnt\\n\\n        # Per-task correlation data\\n        avg_death_rate = (int_death_rate + det_death_rate) / 2\\n        death_rate_diff = int_death_rate - det_death_rate\\n        task_death_rates.append(death_rate_diff)\\n        task_deltas.append(tr[\\\"delta_full\\\"])\\n\\n    # Weighted aggregate means\\n    agg_int_mean = safe_mean(all_int)\\n    agg_det_mean = safe_mean(all_det)\\n    agg_delta_full = agg_det_mean - agg_int_mean\\n\\n    agg_int_nd = safe_mean(all_int_nd) if all_int_nd else float(\\\"nan\\\")\\n    agg_det_nd = safe_mean(all_det_nd) if all_det_nd else float(\\\"nan\\\")\\n    agg_delta_nd = (agg_det_nd - agg_int_nd) if all_int_nd else float(\\\"nan\\\")\\n\\n    agg_int_pr = safe_mean(all_int_pr)\\n    agg_det_pr = safe_mean(all_det_pr)\\n    agg_delta_pr = agg_det_pr - agg_int_pr\\n\\n    if not math.isnan(agg_delta_nd) and agg_delta_full != 0:\\n        agg_death_frac = (agg_delta_full - agg_delta_nd) / agg_delta_full\\n    else:\\n        agg_death_frac = float(\\\"nan\\\")\\n\\n    # Correlation: death_rate_diff vs delta\\n    r, p = pearsonr(task_death_rates, task_deltas)\\n\\n    total_episodes = sum(tr[\\\"n_episodes\\\"] for tr in task_results)\\n    total_int_deaths = sum(tr[\\\"int_death_count\\\"] for tr in task_results)\\n    total_det_deaths = sum(tr[\\\"det_death_count\\\"] for tr in task_results)\\n\\n    return {\\n        \\\"n_tasks\\\": len(task_results),\\n        \\\"n_episodes\\\": total_episodes,\\n        \\\"int_death_rate\\\": round(total_int_deaths / total_episodes, 4) if total_episodes else None,\\n        \\\"det_death_rate\\\": round(total_det_deaths / total_episodes, 4) if total_episodes else None,\\n        \\\"int_mean\\\": round(agg_int_mean, 2),\\n        \\\"det_mean\\\": round(agg_det_mean, 2),\\n        \\\"delta_full\\\": round(agg_delta_full, 2),\\n        \\\"delta_no_death\\\": round(agg_delta_nd, 2) if not math.isnan(agg_delta_nd) else None,\\n        \\\"death_avoidance_fraction\\\": round(agg_death_frac, 4) if not math.isnan(agg_death_frac) else None,\\n        \\\"delta_penalty_removed\\\": round(agg_delta_pr, 2),\\n        \\\"correlation_death_rate_diff_vs_delta\\\": {\\n            \\\"pearson_r\\\": round(r, 4) if not math.isnan(r) else None,\\n            \\\"p_value\\\": round(p, 6) if not math.isnan(p) else None,\\n            \\\"n_tasks\\\": len(task_death_rates),\\n        },\\n        \\\"label_distribution\\\": dict(total_label),\\n        \\\"signal_source_distribution\\\": dict(total_signal),\\n        \\\"label_signal_cross\\\": {k: dict(v) for k, v in total_label_signal.items()},\\n    }\\n\\n\\ndef aggregate_from_raw(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> dict:\\n    \\\"\\\"\\\"Re-aggregate from raw episode scores for exact results.\\\"\\\"\\\"\\n    task_episodes = load_episodes(data_dirs, task_filter)\\n    all_int, all_det = [], []\\n    all_int_nd, all_det_nd = [], []\\n\\n    task_death_rates = []\\n    task_deltas = []\\n    total_label = defaultdict(int)\\n    total_signal = defaultdict(int)\\n    total_label_signal = defaultdict(lambda: defaultdict(int))\\n\\n    for task_name, episodes in task_episodes.items():\\n        int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n        det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep \\n\\n... [截断: 输出过长，省略 6362 字符] ...\\n\\n\\\"det_death_rate\\\"] * 100, 1),\\n            \\\"delta_no_death\\\": tr[\\\"delta_no_death\\\"],\\n            \\\"death_avoidance_pct\\\": round(tr[\\\"death_avoidance_fraction\\\"] * 100, 1) if tr[\\\"death_avoidance_fraction\\\"] is not None else None,\\n            \\\"delta_penalty_removed\\\": tr[\\\"delta_penalty_removed\\\"],\\n            \\\"det_preferred\\\": tr[\\\"label_distribution\\\"].get(\\\"det-preferred\\\", 0),\\n            \\\"internal_preferred\\\": tr[\\\"label_distribution\\\"].get(\\\"internal-preferred\\\", 0),\\n            \\\"no_preference\\\": tr[\\\"label_distribution\\\"].get(\\\"no-preference\\\", 0),\\n        })\\n\\n    agg_row = {\\n        \\\"task\\\": \\\"Overall\\\",\\n        \\\"n\\\": aggregate[\\\"n_episodes\\\"],\\n        \\\"int_mean\\\": aggregate[\\\"int_mean\\\"],\\n        \\\"det_mean\\\": aggregate[\\\"det_mean\\\"],\\n        \\\"delta\\\": aggregate[\\\"delta_full\\\"],\\n        \\\"int_death_pct\\\": round(aggregate[\\\"int_death_rate\\\"] * 100, 1),\\n        \\\"det_death_pct\\\": round(aggregate[\\\"det_death_rate\\\"] * 100, 1),\\n        \\\"delta_no_death\\\": aggregate.get(\\\"delta_no_death\\\"),\\n        \\\"death_avoidance_pct\\\": round(aggregate[\\\"death_avoidance_fraction\\\"] * 100, 1) if aggregate.get(\\\"death_avoidance_fraction\\\") is not None else None,\\n        \\\"delta_penalty_removed\\\": aggregate[\\\"delta_penalty_removed\\\"],\\n        \\\"det_preferred\\\": aggregate[\\\"label_distribution\\\"].get(\\\"det-preferred\\\", 0),\\n        \\\"internal_preferred\\\": aggregate[\\\"label_distribution\\\"].get(\\\"internal-preferred\\\", 0),\\n        \\\"no_preference\\\": aggregate[\\\"label_distribution\\\"].get(\\\"no-preference\\\", 0),\\n    }\\n\\n    corr = aggregate.get(\\\"correlation_death_rate_diff_vs_delta\\\", {})\\n\\n    return {\\n        \\\"rows\\\": rows,\\n        \\\"aggregate\\\": agg_row,\\n        \\\"correlation\\\": {\\n            \\\"pearson_r\\\": corr.get(\\\"pearson_r\\\"),\\n            \\\"p_value\\\": corr.get(\\\"p_value\\\"),\\n            \\\"n\\\": corr.get(\\\"n_tasks\\\"),\\n        },\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Plan-012 Death Decomposition Analysis\\\")\\n    parser.add_argument(\\\"--data_dirs\\\", required=True,\\n                        help=\\\"Comma-separated data directories (e.g. results/prescreening/,results/mvp/)\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/death_decomposition_report.json\\\",\\n                        help=\\\"Output JSON report path\\\")\\n    parser.add_argument(\\\"--paper_table\\\", default=\\\"results/paper_table1_data.json\\\",\\n                        help=\\\"Paper table data output path\\\")\\n    parser.add_argument(\\\"--tasks\\\", default=None,\\n                        help=\\\"Comma-separated task types to filter (default: all)\\\")\\n    args = parser.parse_args()\\n\\n    data_dirs = [d.strip() for d in args.data_dirs.split(\\\",\\\") if d.strip()]\\n    task_filter = [t.strip() for t in args.tasks.split(\\\",\\\")] if args.tasks else None\\n\\n    task_episodes = load_episodes(data_dirs, task_filter)\\n    if not task_episodes:\\n        print(\\\"ERROR: No episodes found in specified directories\\\")\\n        return\\n\\n    print(f\\\"Loaded {sum(len(v) for v in task_episodes.values())} episodes \\\"\\n          f\\\"across {len(task_episodes)} tasks from {len(data_dirs)} directories\\\")\\n\\n    # Per-task analysis\\n    task_results = []\\n    for task_name in sorted(task_episodes.keys()):\\n        result = analyze_task(task_name, task_episodes[task_name])\\n        task_results.append(result)\\n\\n    # Aggregate from raw scores (exact, not from per-task means)\\n    aggregate = aggregate_from_raw(data_dirs, task_filter)\\n\\n    # Terminal output\\n    print_table(task_results, aggregate)\\n\\n    # Save JSON report\\n    report = {\\n        \\\"per_task\\\": task_results,\\n        \\\"aggregate\\\": aggregate,\\n    }\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    print(f\\\"\\\\n[Saved report to {args.output}]\\\")\\n\\n    # Save paper table data\\n    paper_data = generate_paper_table_data(task_results, aggregate)\\n    os.makedirs(os.path.dirname(args.paper_table) or \\\".\\\", exist_ok=True)\\n    with open(args.paper_table, \\\"w\\\") as f:\\n        json.dump(paper_data, f, indent=2)\\n    print(f\\\"[Saved paper table data to {args.paper_table}]\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "c988d51c-f54e-4f7d-81c7-fb2733b5dc95",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n        # Reconstruct per-episode scores from means for aggregate\\\\n        # (approximate; for exact we'd need raw scores)\\\\n        # Instead, weight by n_episodes\\\\n        all_int.extend([tr[\\\\\\\"int_mean\\\\\\\"]] * n)\\\\n        all_det.extend([tr[\\\\\\\"det_mean\\\\\\\"]] * n)\\\\n\\\\n        n_nd = tr[\\\\\\\"n_no_death_episodes\\\\\\\"]\\\\n        if tr[\\\\\\\"int_mean_no_death\\\\\\\"] is not None and n_nd > 0:\\\\n            all_int_nd.extend([tr[\\\\\\\"int_mean_no_death\\\\\\\"]] * n_nd)\\\\n            all_det_nd.extend([tr[\\\\\\\"det_mean_no_death\\\\\\\"]] * n_nd)\\\\n\\\\n        all_int_pr.extend([tr[\\\\\\\"int_mean_penalty_removed\\\\\\\"]] * n)\\\\n        all_det_pr.extend([tr[\\\\\\\"det_mean_penalty_removed\\\\\\\"]] * n)\\\\n\\\\n        for lbl, cnt in tr[\\\\\\\"label_distribution\\\\\\\"].items():\\\\n            total_label[lbl] += cnt\\\\n        for sig, cnt in tr[\\\\\\\"signal_source_distribution\\\\\\\"].items():\\\\n            total_signal[sig] += cnt\\\\n        for lbl, sigs in tr[\\\\\\\"label_signal_cross\\\\\\\"].items():\\\\n            for sig, cnt in sigs.items():\\\\n                total_label_signal[lbl][sig] += cnt\\\\n\\\\n        # Per-task correlation data\\\\n        avg_death_rate = (int_death_rate + det_death_rate) / 2\\\\n        death_rate_diff = int_death_rate - det_death_rate\\\\n        task_death_rates.append(death_rate_diff)\\\\n        task_deltas.append(tr[\\\\\\\"delta_full\\\\\\\"])\\\\n\\\\n    # Weighted aggregate means\\\\n    agg_int_mean = safe_mean(all_int)\\\\n    agg_det_mean = safe_mean(all_det)\\\\n    agg_delta_full = agg_det_mean - agg_int_mean\\\\n\\\\n    agg_int_nd = safe_mean(all_int_nd) if all_int_nd else float(\\\\\\\"nan\\\\\\\")\\\\n    agg_det_nd = safe_mean(all_det_nd) if all_det_nd else float(\\\\\\\"nan\\\\\\\")\\\\n    agg_delta_nd = (agg_det_nd - agg_int_nd) if all_int_nd else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    agg_int_pr = safe_mean(all_int_pr)\\\\n    agg_det_pr = safe_mean(all_det_pr)\\\\n    agg_delta_pr = agg_det_pr - agg_int_pr\\\\n\\\\n    if not math.isnan(agg_delta_nd) and agg_delta_full != 0:\\\\n        agg_death_frac = (agg_delta_full - agg_delta_nd) / agg_delta_full\\\\n    else:\\\\n        agg_death_frac = float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    # Correlation: death_rate_diff vs delta\\\\n    r, p = pearsonr(task_death_rates, task_deltas)\\\\n\\\\n    total_episodes = sum(tr[\\\\\\\"n_episodes\\\\\\\"] for tr in task_results)\\\\n    total_int_deaths = sum(tr[\\\\\\\"int_death_count\\\\\\\"] for tr in task_results)\\\\n    total_det_deaths = sum(tr[\\\\\\\"det_death_count\\\\\\\"] for tr in task_results)\\\\n\\\\n    return {\\\\n        \\\\\\\"n_tasks\\\\\\\": len(task_results),\\\\n        \\\\\\\"n_episodes\\\\\\\": total_episodes,\\\\n        \\\\\\\"int_death_rate\\\\\\\": round(total_int_deaths / total_episodes, 4) if total_episodes else None,\\\\n        \\\\\\\"det_death_rate\\\\\\\": round(total_det_deaths / total_episodes, 4) if total_episodes else None,\\\\n        \\\\\\\"int_mean\\\\\\\": round(agg_int_mean, 2),\\\\n        \\\\\\\"det_mean\\\\\\\": round(agg_det_mean, 2),\\\\n        \\\\\\\"delta_full\\\\\\\": round(agg_delta_full, 2),\\\\n        \\\\\\\"delta_no_death\\\\\\\": round(agg_delta_nd, 2) if not math.isnan(agg_delta_nd) else None,\\\\n        \\\\\\\"death_avoidance_fraction\\\\\\\": round(agg_death_frac, 4) if not math.isnan(agg_death_frac) else None,\\\\n        \\\\\\\"delta_penalty_removed\\\\\\\": round(agg_delta_pr, 2),\\\\n        \\\\\\\"correlation_death_rate_diff_vs_delta\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": round(r, 4) if not math.isnan(r) else None,\\\\n            \\\\\\\"p_value\\\\\\\": round(p, 6) if not math.isnan(p) else None,\\\\n            \\\\\\\"n_tasks\\\\\\\": len(task_death_rates),\\\\n        },\\\\n        \\\\\\\"label_distribution\\\\\\\": dict(total_label),\\\\n        \\\\\\\"signal_source_distribution\\\\\\\": dict(total_signal),\\\\n        \\\\\\\"label_signal_cross\\\\\\\": {k: dict(v) for k, v in total_label_signal.items()},\\\\n    }\\\\n\\\\n\\\\ndef aggregate_from_raw(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Re-aggregate from raw episode scores for exact results.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_episodes = load_episodes(data_dirs, task_filter)\\\\n    all_int, all_det = [], []\\\\n    all_int_nd, all_det_nd = [], []\\\\n\\\\n    task_death_rates = []\\\\n    task_deltas = []\\\\n    total_label = defaultdict(int)\\\\n    total_signal = defaultdict(int)\\\\n    total_label_signal = defaultdict(lambda: defaultdict(int))\\\\n\\\\n    for task_name, episodes in task_episodes.items():\\\\n        int_scores = [ep[\\\\\\\"always_internal\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep in episodes]\\\\n        det_scores = [ep[\\\\\\\"always_deterministic\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep \\\\n\\\\n... [截断: 输出过长，省略 6362 字符] ...\\\\n\\\\n\\\\\\\"det_death_rate\\\\\\\"] * 100, 1),\\\\n            \\\\\\\"delta_no_death\\\\\\\": tr[\\\\\\\"delta_no_death\\\\\\\"],\\\\n            \\\\\\\"death_avoidance_pct\\\\\\\": round(tr[\\\\\\\"death_avoidance_fraction\\\\\\\"] * 100, 1) if tr[\\\\\\\"death_avoidance_fraction\\\\\\\"] is not None else None,\\\\n            \\\\\\\"delta_penalty_removed\\\\\\\": tr[\\\\\\\"delta_penalty_removed\\\\\\\"],\\\\n            \\\\\\\"det_preferred\\\\\\\": tr[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"det-preferred\\\\\\\", 0),\\\\n            \\\\\\\"internal_preferred\\\\\\\": tr[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"internal-preferred\\\\\\\", 0),\\\\n            \\\\\\\"no_preference\\\\\\\": tr[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"no-preference\\\\\\\", 0),\\\\n        })\\\\n\\\\n    agg_row = {\\\\n        \\\\\\\"task\\\\\\\": \\\\\\\"Overall\\\\\\\",\\\\n        \\\\\\\"n\\\\\\\": aggregate[\\\\\\\"n_episodes\\\\\\\"],\\\\n        \\\\\\\"int_mean\\\\\\\": aggregate[\\\\\\\"int_mean\\\\\\\"],\\\\n        \\\\\\\"det_mean\\\\\\\": aggregate[\\\\\\\"det_mean\\\\\\\"],\\\\n        \\\\\\\"delta\\\\\\\": aggregate[\\\\\\\"delta_full\\\\\\\"],\\\\n        \\\\\\\"int_death_pct\\\\\\\": round(aggregate[\\\\\\\"int_death_rate\\\\\\\"] * 100, 1),\\\\n        \\\\\\\"det_death_pct\\\\\\\": round(aggregate[\\\\\\\"det_death_rate\\\\\\\"] * 100, 1),\\\\n        \\\\\\\"delta_no_death\\\\\\\": aggregate.get(\\\\\\\"delta_no_death\\\\\\\"),\\\\n        \\\\\\\"death_avoidance_pct\\\\\\\": round(aggregate[\\\\\\\"death_avoidance_fraction\\\\\\\"] * 100, 1) if aggregate.get(\\\\\\\"death_avoidance_fraction\\\\\\\") is not None else None,\\\\n        \\\\\\\"delta_penalty_removed\\\\\\\": aggregate[\\\\\\\"delta_penalty_removed\\\\\\\"],\\\\n        \\\\\\\"det_preferred\\\\\\\": aggregate[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"det-preferred\\\\\\\", 0),\\\\n        \\\\\\\"internal_preferred\\\\\\\": aggregate[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"internal-preferred\\\\\\\", 0),\\\\n        \\\\\\\"no_preference\\\\\\\": aggregate[\\\\\\\"label_distribution\\\\\\\"].get(\\\\\\\"no-preference\\\\\\\", 0),\\\\n    }\\\\n\\\\n    corr = aggregate.get(\\\\\\\"correlation_death_rate_diff_vs_delta\\\\\\\", {})\\\\n\\\\n    return {\\\\n        \\\\\\\"rows\\\\\\\": rows,\\\\n        \\\\\\\"aggregate\\\\\\\": agg_row,\\\\n        \\\\\\\"correlation\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": corr.get(\\\\\\\"pearson_r\\\\\\\"),\\\\n            \\\\\\\"p_value\\\\\\\": corr.get(\\\\\\\"p_value\\\\\\\"),\\\\n            \\\\\\\"n\\\\\\\": corr.get(\\\\\\\"n_tasks\\\\\\\"),\\\\n        },\\\\n    }\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"Plan-012 Death Decomposition Analysis\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dirs\\\\\\\", required=True,\\\\n                        help=\\\\\\\"Comma-separated data directories (e.g. results/prescreening/,results/mvp/)\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", default=\\\\\\\"results/death_decomposition_report.json\\\\\\\",\\\\n                        help=\\\\\\\"Output JSON report path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--paper_table\\\\\\\", default=\\\\\\\"results/paper_table1_data.json\\\\\\\",\\\\n                        help=\\\\\\\"Paper table data output path\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--tasks\\\\\\\", default=None,\\\\n                        help=\\\\\\\"Comma-separated task types to filter (default: all)\\\\\\\")\\\\n    args = parser.parse_args()\\\\n\\\\n    data_dirs = [d.strip() for d in args.data_dirs.split(\\\\\\\",\\\\\\\") if d.strip()]\\\\n    task_filter = [t.strip() for t in args.tasks.split(\\\\\\\",\\\\\\\")] if args.tasks else None\\\\n\\\\n    task_episodes = load_episodes(data_dirs, task_filter)\\\\n    if not task_episodes:\\\\n        print(\\\\\\\"ERROR: No episodes found in specified directories\\\\\\\")\\\\n        return\\\\n\\\\n    print(f\\\\\\\"Loaded {sum(len(v) for v in task_episodes.values())} episodes \\\\\\\"\\\\n          f\\\\\\\"across {len(task_episodes)} tasks from {len(data_dirs)} directories\\\\\\\")\\\\n\\\\n    # Per-task analysis\\\\n    task_results = []\\\\n    for task_name in sorted(task_episodes.keys()):\\\\n        result = analyze_task(task_name, task_episodes[task_name])\\\\n        task_results.append(result)\\\\n\\\\n    # Aggregate from raw scores (exact, not from per-task means)\\\\n    aggregate = aggregate_from_raw(data_dirs, task_filter)\\\\n\\\\n    # Terminal output\\\\n    print_table(task_results, aggregate)\\\\n\\\\n    # Save JSON report\\\\n    report = {\\\\n        \\\\\\\"per_task\\\\\\\": task_results,\\\\n        \\\\\\\"aggregate\\\\\\\": aggregate,\\\\n    }\\\\n    os.makedirs(os.path.dirname(args.output) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    with open(args.output, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(report, f, indent=2)\\\\n    print(f\\\\\\\"\\\\\\\\n[Saved report to {args.output}]\\\\\\\")\\\\n\\\\n    # Save paper table data\\\\n    paper_data = generate_paper_table_data(task_results, aggregate)\\\\n    os.makedirs(os.path.dirname(args.paper_table) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    with open(args.paper_table, \\\\\\\"w\\\\\\\") as f:\\\\n        json.dump(paper_data, f, indent=2)\\\\n    print(f\\\\\\\"[Saved paper table data to {args.paper_table}]\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n        # Reconstruct per-episode scores from means for aggregate\\n        # (approximate; for exact we'd need raw scores)\\n        # Instead, weight by n_episodes\\n        all_int.extend([tr[\\\"int_mean\\\"]] * n)\\n        all_det.extend([tr[\\\"det_mean\\\"]] * n)\\n\\n        n_nd = tr[\\\"n_no_death_episodes\\\"]\\n        if tr[\\\"int_mean_no_death\\\"] is not None and n_nd > 0:\\n            all_int_nd.extend([tr[\\\"int_mean_no_death\\\"]] * n_nd)\\n            all_det_nd.extend([tr[\\\"det_mean_no_death\\\"]] * n_nd)\\n\\n        all_int_pr.extend([tr[\\\"int_mean_penalty_removed\\\"]] * n)\\n        all_det_pr.extend([tr[\\\"det_mean_penalty_removed\\\"]] * n)\\n\\n        for lbl, cnt in tr[\\\"label_distribution\\\"].items():\\n            total_label[lbl] += cnt\\n        for sig, cnt in tr[\\\"signal_source_distribution\\\"].items():\\n            total_signal[sig] += cnt\\n        for lbl, sigs in tr[\\\"label_signal_cross\\\"].items():\\n            for sig, cnt in sigs.items():\\n                total_label_signal[lbl][sig] += cnt\\n\\n        # Per-task correlation data\\n        avg_death_rate = (int_death_rate + det_death_rate) / 2\\n        death_rate_diff = int_death_rate - det_death_rate\\n        task_death_rates.append(death_rate_diff)\\n        task_deltas.append(tr[\\\"delta_full\\\"])\\n\\n    # Weighted aggregate means\\n    agg_int_mean = safe_mean(all_int)\\n    agg_det_mean = safe_mean(all_det)\\n    agg_delta_full = agg_det_mean - agg_int_mean\\n\\n    agg_int_nd = safe_mean(all_int_nd) if all_int_nd else float(\\\"nan\\\")\\n    agg_det_nd = safe_mean(all_det_nd) if all_det_nd else float(\\\"nan\\\")\\n    agg_delta_nd = (agg_det_nd - agg_int_nd) if all_int_nd else float(\\\"nan\\\")\\n\\n    agg_int_pr = safe_mean(all_int_pr)\\n    agg_det_pr = safe_mean(all_det_pr)\\n    agg_delta_pr = agg_det_pr - agg_int_pr\\n\\n    if not math.isnan(agg_delta_nd) and agg_delta_full != 0:\\n        agg_death_frac = (agg_delta_full - agg_delta_nd) / agg_delta_full\\n    else:\\n        agg_death_frac = float(\\\"nan\\\")\\n\\n    # Correlation: death_rate_diff vs delta\\n    r, p = pearsonr(task_death_rates, task_deltas)\\n\\n    total_episodes = sum(tr[\\\"n_episodes\\\"] for tr in task_results)\\n    total_int_deaths = sum(tr[\\\"int_death_count\\\"] for tr in task_results)\\n    total_det_deaths = sum(tr[\\\"det_death_count\\\"] for tr in task_results)\\n\\n    return {\\n        \\\"n_tasks\\\": len(task_results),\\n        \\\"n_episodes\\\": total_episodes,\\n        \\\"int_death_rate\\\": round(total_int_deaths / total_episodes, 4) if total_episodes else None,\\n        \\\"det_death_rate\\\": round(total_det_deaths / total_episodes, 4) if total_episodes else None,\\n        \\\"int_mean\\\": round(agg_int_mean, 2),\\n        \\\"det_mean\\\": round(agg_det_mean, 2),\\n        \\\"delta_full\\\": round(agg_delta_full, 2),\\n        \\\"delta_no_death\\\": round(agg_delta_nd, 2) if not math.isnan(agg_delta_nd) else None,\\n        \\\"death_avoidance_fraction\\\": round(agg_death_frac, 4) if not math.isnan(agg_death_frac) else None,\\n        \\\"delta_penalty_removed\\\": round(agg_delta_pr, 2),\\n        \\\"correlation_death_rate_diff_vs_delta\\\": {\\n            \\\"pearson_r\\\": round(r, 4) if not math.isnan(r) else None,\\n            \\\"p_value\\\": round(p, 6) if not math.isnan(p) else None,\\n            \\\"n_tasks\\\": len(task_death_rates),\\n        },\\n        \\\"label_distribution\\\": dict(total_label),\\n        \\\"signal_source_distribution\\\": dict(total_signal),\\n        \\\"label_signal_cross\\\": {k: dict(v) for k, v in total_label_signal.items()},\\n    }\\n\\n\\ndef aggregate_from_raw(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> dict:\\n    \\\"\\\"\\\"Re-aggregate from raw episode scores for exact results.\\\"\\\"\\\"\\n    task_episodes = load_episodes(data_dirs, task_filter)\\n    all_int, all_det = [], []\\n    all_int_nd, all_det_nd = [], []\\n\\n    task_death_rates = []\\n    task_deltas = []\\n    total_label = defaultdict(int)\\n    total_signal = defaultdict(int)\\n    total_label_signal = defaultdict(lambda: defaultdict(int))\\n\\n    for task_name, episodes in task_episodes.items():\\n        int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n        det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep \\n\\n... [截断: 输出过长，省略 6362 字符] ...\\n\\n\\\"det_death_rate\\\"] * 100, 1),\\n            \\\"delta_no_death\\\": tr[\\\"delta_no_death\\\"],\\n            \\\"death_avoidance_pct\\\": round(tr[\\\"death_avoidance_fraction\\\"] * 100, 1) if tr[\\\"death_avoidance_fraction\\\"] is not None else None,\\n            \\\"delta_penalty_removed\\\": tr[\\\"delta_penalty_removed\\\"],\\n            \\\"det_preferred\\\": tr[\\\"label_distribution\\\"].get(\\\"det-preferred\\\", 0),\\n            \\\"internal_preferred\\\": tr[\\\"label_distribution\\\"].get(\\\"internal-preferred\\\", 0),\\n            \\\"no_preference\\\": tr[\\\"label_distribution\\\"].get(\\\"no-preference\\\", 0),\\n        })\\n\\n    agg_row = {\\n        \\\"task\\\": \\\"Overall\\\",\\n        \\\"n\\\": aggregate[\\\"n_episodes\\\"],\\n        \\\"int_mean\\\": aggregate[\\\"int_mean\\\"],\\n        \\\"det_mean\\\": aggregate[\\\"det_mean\\\"],\\n        \\\"delta\\\": aggregate[\\\"delta_full\\\"],\\n        \\\"int_death_pct\\\": round(aggregate[\\\"int_death_rate\\\"] * 100, 1),\\n        \\\"det_death_pct\\\": round(aggregate[\\\"det_death_rate\\\"] * 100, 1),\\n        \\\"delta_no_death\\\": aggregate.get(\\\"delta_no_death\\\"),\\n        \\\"death_avoidance_pct\\\": round(aggregate[\\\"death_avoidance_fraction\\\"] * 100, 1) if aggregate.get(\\\"death_avoidance_fraction\\\") is not None else None,\\n        \\\"delta_penalty_removed\\\": aggregate[\\\"delta_penalty_removed\\\"],\\n        \\\"det_preferred\\\": aggregate[\\\"label_distribution\\\"].get(\\\"det-preferred\\\", 0),\\n        \\\"internal_preferred\\\": aggregate[\\\"label_distribution\\\"].get(\\\"internal-preferred\\\", 0),\\n        \\\"no_preference\\\": aggregate[\\\"label_distribution\\\"].get(\\\"no-preference\\\", 0),\\n    }\\n\\n    corr = aggregate.get(\\\"correlation_death_rate_diff_vs_delta\\\", {})\\n\\n    return {\\n        \\\"rows\\\": rows,\\n        \\\"aggregate\\\": agg_row,\\n        \\\"correlation\\\": {\\n            \\\"pearson_r\\\": corr.get(\\\"pearson_r\\\"),\\n            \\\"p_value\\\": corr.get(\\\"p_value\\\"),\\n            \\\"n\\\": corr.get(\\\"n_tasks\\\"),\\n        },\\n    }\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"Plan-012 Death Decomposition Analysis\\\")\\n    parser.add_argument(\\\"--data_dirs\\\", required=True,\\n                        help=\\\"Comma-separated data directories (e.g. results/prescreening/,results/mvp/)\\\")\\n    parser.add_argument(\\\"--output\\\", default=\\\"results/death_decomposition_report.json\\\",\\n                        help=\\\"Output JSON report path\\\")\\n    parser.add_argument(\\\"--paper_table\\\", default=\\\"results/paper_table1_data.json\\\",\\n                        help=\\\"Paper table data output path\\\")\\n    parser.add_argument(\\\"--tasks\\\", default=None,\\n                        help=\\\"Comma-separated task types to filter (default: all)\\\")\\n    args = parser.parse_args()\\n\\n    data_dirs = [d.strip() for d in args.data_dirs.split(\\\",\\\") if d.strip()]\\n    task_filter = [t.strip() for t in args.tasks.split(\\\",\\\")] if args.tasks else None\\n\\n    task_episodes = load_episodes(data_dirs, task_filter)\\n    if not task_episodes:\\n        print(\\\"ERROR: No episodes found in specified directories\\\")\\n        return\\n\\n    print(f\\\"Loaded {sum(len(v) for v in task_episodes.values())} episodes \\\"\\n          f\\\"across {len(task_episodes)} tasks from {len(data_dirs)} directories\\\")\\n\\n    # Per-task analysis\\n    task_results = []\\n    for task_name in sorted(task_episodes.keys()):\\n        result = analyze_task(task_name, task_episodes[task_name])\\n        task_results.append(result)\\n\\n    # Aggregate from raw scores (exact, not from per-task means)\\n    aggregate = aggregate_from_raw(data_dirs, task_filter)\\n\\n    # Terminal output\\n    print_table(task_results, aggregate)\\n\\n    # Save JSON report\\n    report = {\\n        \\\"per_task\\\": task_results,\\n        \\\"aggregate\\\": aggregate,\\n    }\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    with open(args.output, \\\"w\\\") as f:\\n        json.dump(report, f, indent=2)\\n    print(f\\\"\\\\n[Saved report to {args.output}]\\\")\\n\\n    # Save paper table data\\n    paper_data = generate_paper_table_data(task_results, aggregate)\\n    os.makedirs(os.path.dirname(args.paper_table) or \\\".\\\", exist_ok=True)\\n    with open(args.paper_table, \\\"w\\\") as f:\\n        json.dump(paper_data, f, indent=2)\\n    print(f\\\"[Saved paper table data to {args.paper_table}]\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still truncated. Let me get the middle section I'm missing (lines 290-380 approximately).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "f4a79bc4-22be-463e-a5c9-767d5f7c94a1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ByaqWnhgZ3oTGSKH88JmBP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3648,
+      "cache_read_input_tokens": 34265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3648
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+中间部分被截断了，继续读取。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "5d021ad9-73e6-4455-afdf-0ec78d3096e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ByaqWnhgZ3oTGSKH88JmBP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3648,
+      "cache_read_input_tokens": 34265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3648
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011bkZ3N1fUvM619YbUUos9d`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -380 /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "86c4e5d6-523c-4f2c-aa1f-911441ebea7b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ByaqWnhgZ3oTGSKH88JmBP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3648,
+      "cache_read_input_tokens": 34265,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3648
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-14T00:42:55.598Z_
+
+<details><summary>↩ Tool result · `toolu_011bkZ3N1fUvM619YbUUos9d`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-012 Death Decomposition Analysis (D013).\\n\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\nvs genuine score improvement.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Optional, Tuple\\n\\nDEATH_THRESHOLD = -100\\n\\n\\ndef is_dead(score: float) -> bool:\\n    return score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source).\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef safe_mean(values: List[float]) -> float:\\n    return statistics.mean(values) if values else float(\\\"nan\\\")\\n\\n\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\n    \\\"\\\"\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\"\\\"\\\"\\n    try:\\n        from scipy.stats import pearsonr as sp_pearsonr\\n        r, p = sp_pearsonr(x, y)\\n        return float(r), float(p)\\n    except ImportError:\\n        pass\\n    n = len(x)\\n    if n < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    mx, my = statistics.mean(x), statistics.mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    # t-test approximation for p-value\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\n    # Two-tailed p from t distribution (approximation)\\n    import subprocess\\n    try:\\n        result = subprocess.run(\\n            [\\\"python3\\\", \\\"-c\\\",\\n             f\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\"],\\n            capture_output=True, text=True, timeout=5)\\n        p = float(result.stdout.strip())\\n    except Exception:\\n        p = float(\\\"nan\\\")\\n    return r, p\\n\\n\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\n    \\\"\\\"\\\"Load episodes grouped by task_type from multiple data directories.\\\"\\\"\\\"\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\n\\n    for data_dir in data_dirs:\\n        if not os.path.isdir(data_dir):\\n            print(f\\\"  WARN: {data_dir} not found, skipping\\\")\\n            continue\\n        for task_name in sorted(os.listdir(data_dir)):\\n            task_dir = os.path.join(data_dir, task_name)\\n            ep_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n            if not os.path.isfile(ep_file):\\n                continue\\n            if task_filter and task_name not in task_filter:\\n                continue\\n            with open(ep_file) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    ep = json.loads(line)\\n                    if \\\"always_internal\\\" not in ep or \\\"always_deterministic\\\" not in ep:\\n                        continue\\n                    task_episodes[task_name].append(ep)\\n\\n    return dict(task_episodes)\\n\\n\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\n    \\\"\\\"\\\"Full death decomposition for one task.\\\"\\\"\\\"\\n    n = len(episodes)\\n    int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n    det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]\\n\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\n    d\\n\\n... [截断: 输出过长，省略 7716 字符] ...\\n\\ntend(int_scores)\\n        all_det.extend(det_scores)\\n\\n        n = len(int_scores)\\n        int_dr = sum(1 for s in int_scores if is_dead(s)) / n\\n        det_dr = sum(1 for s in det_scores if is_dead(s)) / n\\n        delta = safe_mean(det_scores) - safe_mean(int_scores)\\n        task_death_rates.append(int_dr - det_dr)\\n        task_deltas.append(delta)\\n\\n        for i_s, d_s in zip(int_scores, det_scores):\\n            if not is_dead(i_s) and not is_dead(d_s):\\n                all_int_nd.append(i_s)\\n                all_det_nd.append(d_s)\\n            label, _, signal_source = classify_episode(i_s, d_s)\\n            total_label[label] += 1\\n            total_signal[signal_source] += 1\\n            total_label_signal[label][signal_source] += 1\\n\\n    n_total = len(all_int)\\n    int_mean = safe_mean(all_int)\\n    det_mean = safe_mean(all_det)\\n    delta_full = det_mean - int_mean\\n\\n    int_nd_mean = safe_mean(all_int_nd) if all_int_nd else float(\\\"nan\\\")\\n    det_nd_mean = safe_mean(all_det_nd) if all_det_nd else float(\\\"nan\\\")\\n    delta_nd = (det_nd_mean - int_nd_mean) if all_int_nd else float(\\\"nan\\\")\\n\\n    int_pr = safe_mean([0.0 if is_dead(s) else s for s in all_int])\\n    det_pr = safe_mean([0.0 if is_dead(s) else s for s in all_det])\\n    delta_pr = det_pr - int_pr\\n\\n    if not math.isnan(delta_nd) and delta_full != 0:\\n        death_frac = (delta_full - delta_nd) / delta_full\\n    else:\\n        death_frac = float(\\\"nan\\\")\\n\\n    r, p = pearsonr(task_death_rates, task_deltas)\\n\\n    return {\\n        \\\"n_tasks\\\": len(task_episodes),\\n        \\\"n_episodes\\\": n_total,\\n        \\\"int_death_rate\\\": round(sum(1 for s in all_int if is_dead(s)) / n_total, 4),\\n        \\\"det_death_rate\\\": round(sum(1 for s in all_det if is_dead(s)) / n_total, 4),\\n        \\\"int_mean\\\": round(int_mean, 2),\\n        \\\"det_mean\\\": round(det_mean, 2),\\n        \\\"delta_full\\\": round(delta_full, 2),\\n        \\\"int_mean_no_death\\\": round(int_nd_mean, 2) if not math.isnan(int_nd_mean) else None,\\n        \\\"det_mean_no_death\\\": round(det_nd_mean, 2) if not math.isnan(det_nd_mean) else None,\\n        \\\"delta_no_death\\\": round(delta_nd, 2) if not math.isnan(delta_nd) else None,\\n        \\\"death_avoidance_fraction\\\": round(death_frac, 4) if not math.isnan(death_frac) else None,\\n        \\\"delta_penalty_removed\\\": round(delta_pr, 2),\\n        \\\"correlation_death_rate_diff_vs_delta\\\": {\\n            \\\"pearson_r\\\": round(r, 4) if not math.isnan(r) else None,\\n            \\\"p_value\\\": round(p, 6) if not math.isnan(p) else None,\\n            \\\"n_tasks\\\": len(task_episodes),\\n        },\\n        \\\"label_distribution\\\": dict(total_label),\\n        \\\"signal_source_distribution\\\": dict(total_signal),\\n        \\\"label_signal_cross\\\": {k: dict(v) for k, v in total_label_signal.items()},\\n    }\\n\\n\\ndef print_table(task_results: List[dict], aggregate: dict):\\n    \\\"\\\"\\\"Print Director-format table.\\\"\\\"\\\"\\n    hdr = (f\\\"| {'Task':<42} | {'N':>4} | {'Int':>7} | {'Det':>7} | {'Δ':>7} \\\"\\n           f\\\"| {'I_d%':>5} | {'D_d%':>5} \\\"\\n           f\\\"| {'Δ_nd':>7} | {'D_frac':>7} | {'Δ_pr':>7} \\\"\\n           f\\\"| {'det':>4} {'int':>4} {'no':>4} |\\\")\\n    sep = \\\"-\\\" * len(hdr)\\n\\n    print(sep)\\n    print(hdr)\\n    print(sep)\\n\\n    for tr in task_results:\\n        dnd = f\\\"{tr['delta_no_death']:+.1f}\\\" if tr[\\\"delta_no_death\\\"] is not None else \\\"N/A\\\"\\n        dfr = f\\\"{tr['death_avoidance_fraction']:.0%}\\\" if tr[\\\"death_avoidance_fraction\\\"] is not None else \\\"N/A\\\"\\n        dpr = f\\\"{tr['delta_penalty_removed']:+.1f}\\\"\\n        ld = tr[\\\"label_distribution\\\"]\\n        print(f\\\"| {tr['task']:<42} | {tr['n_episodes']:>4} \\\"\\n              f\\\"| {tr['int_mean']:>7.1f} | {tr['det_mean']:>7.1f} | {tr['delta_full']:>+7.1f} \\\"\\n              f\\\"| {tr['int_death_rate']*100:>4.0f}% | {tr['det_death_rate']*100:>4.0f}% \\\"\\n              f\\\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \\\"\\n              f\\\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\\\")\\n\\n    print(sep)\\n    # Aggregate row\\n    agg = aggregate\\n    dnd = f\\\"{agg['delta_no_death']:+.1f}\\\" if agg.get(\\\"delta_no_death\\\") is not None else \\\"N/A\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "48fd1dce-dc4d-4d1f-9139-7a4e46fed42d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Plan-012 Death Decomposition Analysis (D013).\\\\n\\\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\\\nvs genuine score improvement.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport statistics\\\\nfrom collections import defaultdict\\\\nfrom typing import Dict, List, Optional, Tuple\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n\\\\ndef is_dead(score: float) -> bool:\\\\n    return score <= DEATH_THRESHOLD\\\\n\\\\n\\\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Returns (label, reason, signal_source).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    int_died = is_dead(int_score)\\\\n    det_died = is_dead(det_score)\\\\n\\\\n    if int_died and not det_died:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"int_died_det_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if det_died and not int_died:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"det_died_int_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if int_died and det_died:\\\\n        return \\\\\\\"no-preference\\\\\\\", \\\\\\\"both_died\\\\\\\", \\\\\\\"both_dead\\\\\\\"\\\\n    if det_score > int_score:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"both_alive_det_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    if int_score > det_score:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"both_alive_int_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    return \\\\\\\"no-preference\\\\\\\", \\\\\\\"tie\\\\\\\", \\\\\\\"tied_alive\\\\\\\"\\\\n\\\\n\\\\ndef safe_mean(values: List[float]) -> float:\\\\n    return statistics.mean(values) if values else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n\\\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        from scipy.stats import pearsonr as sp_pearsonr\\\\n        r, p = sp_pearsonr(x, y)\\\\n        return float(r), float(p)\\\\n    except ImportError:\\\\n        pass\\\\n    n = len(x)\\\\n    if n < 3:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    mx, my = statistics.mean(x), statistics.mean(y)\\\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\\\n    if sx == 0 or sy == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\\\n    # t-test approximation for p-value\\\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\\\n    # Two-tailed p from t distribution (approximation)\\\\n    import subprocess\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"python3\\\\\\\", \\\\\\\"-c\\\\\\\",\\\\n             f\\\\\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=5)\\\\n        p = float(result.stdout.strip())\\\\n    except Exception:\\\\n        p = float(\\\\\\\"nan\\\\\\\")\\\\n    return r, p\\\\n\\\\n\\\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load episodes grouped by task_type from multiple data directories.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\\\n\\\\n    for data_dir in data_dirs:\\\\n        if not os.path.isdir(data_dir):\\\\n            print(f\\\\\\\"  WARN: {data_dir} not found, skipping\\\\\\\")\\\\n            continue\\\\n        for task_name in sorted(os.listdir(data_dir)):\\\\n            task_dir = os.path.join(data_dir, task_name)\\\\n            ep_file = os.path.join(task_dir, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n            if not os.path.isfile(ep_file):\\\\n                continue\\\\n            if task_filter and task_name not in task_filter:\\\\n                continue\\\\n            with open(ep_file) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if not line:\\\\n                        continue\\\\n                    ep = json.loads(line)\\\\n                    if \\\\\\\"always_internal\\\\\\\" not in ep or \\\\\\\"always_deterministic\\\\\\\" not in ep:\\\\n                        continue\\\\n                    task_episodes[task_name].append(ep)\\\\n\\\\n    return dict(task_episodes)\\\\n\\\\n\\\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Full death decomposition for one task.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(episodes)\\\\n    int_scores = [ep[\\\\\\\"always_internal\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep in episodes]\\\\n    det_scores = [ep[\\\\\\\"always_deterministic\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep in episodes]\\\\n\\\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\\\n    d\\\\n\\\\n... [截断: 输出过长，省略 7716 字符] ...\\\\n\\\\ntend(int_scores)\\\\n        all_det.extend(det_scores)\\\\n\\\\n        n = len(int_scores)\\\\n        int_dr = sum(1 for s in int_scores if is_dead(s)) / n\\\\n        det_dr = sum(1 for s in det_scores if is_dead(s)) / n\\\\n        delta = safe_mean(det_scores) - safe_mean(int_scores)\\\\n        task_death_rates.append(int_dr - det_dr)\\\\n        task_deltas.append(delta)\\\\n\\\\n        for i_s, d_s in zip(int_scores, det_scores):\\\\n            if not is_dead(i_s) and not is_dead(d_s):\\\\n                all_int_nd.append(i_s)\\\\n                all_det_nd.append(d_s)\\\\n            label, _, signal_source = classify_episode(i_s, d_s)\\\\n            total_label[label] += 1\\\\n            total_signal[signal_source] += 1\\\\n            total_label_signal[label][signal_source] += 1\\\\n\\\\n    n_total = len(all_int)\\\\n    int_mean = safe_mean(all_int)\\\\n    det_mean = safe_mean(all_det)\\\\n    delta_full = det_mean - int_mean\\\\n\\\\n    int_nd_mean = safe_mean(all_int_nd) if all_int_nd else float(\\\\\\\"nan\\\\\\\")\\\\n    det_nd_mean = safe_mean(all_det_nd) if all_det_nd else float(\\\\\\\"nan\\\\\\\")\\\\n    delta_nd = (det_nd_mean - int_nd_mean) if all_int_nd else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    int_pr = safe_mean([0.0 if is_dead(s) else s for s in all_int])\\\\n    det_pr = safe_mean([0.0 if is_dead(s) else s for s in all_det])\\\\n    delta_pr = det_pr - int_pr\\\\n\\\\n    if not math.isnan(delta_nd) and delta_full != 0:\\\\n        death_frac = (delta_full - delta_nd) / delta_full\\\\n    else:\\\\n        death_frac = float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n    r, p = pearsonr(task_death_rates, task_deltas)\\\\n\\\\n    return {\\\\n        \\\\\\\"n_tasks\\\\\\\": len(task_episodes),\\\\n        \\\\\\\"n_episodes\\\\\\\": n_total,\\\\n        \\\\\\\"int_death_rate\\\\\\\": round(sum(1 for s in all_int if is_dead(s)) / n_total, 4),\\\\n        \\\\\\\"det_death_rate\\\\\\\": round(sum(1 for s in all_det if is_dead(s)) / n_total, 4),\\\\n        \\\\\\\"int_mean\\\\\\\": round(int_mean, 2),\\\\n        \\\\\\\"det_mean\\\\\\\": round(det_mean, 2),\\\\n        \\\\\\\"delta_full\\\\\\\": round(delta_full, 2),\\\\n        \\\\\\\"int_mean_no_death\\\\\\\": round(int_nd_mean, 2) if not math.isnan(int_nd_mean) else None,\\\\n        \\\\\\\"det_mean_no_death\\\\\\\": round(det_nd_mean, 2) if not math.isnan(det_nd_mean) else None,\\\\n        \\\\\\\"delta_no_death\\\\\\\": round(delta_nd, 2) if not math.isnan(delta_nd) else None,\\\\n        \\\\\\\"death_avoidance_fraction\\\\\\\": round(death_frac, 4) if not math.isnan(death_frac) else None,\\\\n        \\\\\\\"delta_penalty_removed\\\\\\\": round(delta_pr, 2),\\\\n        \\\\\\\"correlation_death_rate_diff_vs_delta\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": round(r, 4) if not math.isnan(r) else None,\\\\n            \\\\\\\"p_value\\\\\\\": round(p, 6) if not math.isnan(p) else None,\\\\n            \\\\\\\"n_tasks\\\\\\\": len(task_episodes),\\\\n        },\\\\n        \\\\\\\"label_distribution\\\\\\\": dict(total_label),\\\\n        \\\\\\\"signal_source_distribution\\\\\\\": dict(total_signal),\\\\n        \\\\\\\"label_signal_cross\\\\\\\": {k: dict(v) for k, v in total_label_signal.items()},\\\\n    }\\\\n\\\\n\\\\ndef print_table(task_results: List[dict], aggregate: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print Director-format table.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    hdr = (f\\\\\\\"| {'Task':<42} | {'N':>4} | {'Int':>7} | {'Det':>7} | {'Δ':>7} \\\\\\\"\\\\n           f\\\\\\\"| {'I_d%':>5} | {'D_d%':>5} \\\\\\\"\\\\n           f\\\\\\\"| {'Δ_nd':>7} | {'D_frac':>7} | {'Δ_pr':>7} \\\\\\\"\\\\n           f\\\\\\\"| {'det':>4} {'int':>4} {'no':>4} |\\\\\\\")\\\\n    sep = \\\\\\\"-\\\\\\\" * len(hdr)\\\\n\\\\n    print(sep)\\\\n    print(hdr)\\\\n    print(sep)\\\\n\\\\n    for tr in task_results:\\\\n        dnd = f\\\\\\\"{tr['delta_no_death']:+.1f}\\\\\\\" if tr[\\\\\\\"delta_no_death\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        dfr = f\\\\\\\"{tr['death_avoidance_fraction']:.0%}\\\\\\\" if tr[\\\\\\\"death_avoidance_fraction\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        dpr = f\\\\\\\"{tr['delta_penalty_removed']:+.1f}\\\\\\\"\\\\n        ld = tr[\\\\\\\"label_distribution\\\\\\\"]\\\\n        print(f\\\\\\\"| {tr['task']:<42} | {tr['n_episodes']:>4} \\\\\\\"\\\\n              f\\\\\\\"| {tr['int_mean']:>7.1f} | {tr['det_mean']:>7.1f} | {tr['delta_full']:>+7.1f} \\\\\\\"\\\\n              f\\\\\\\"| {tr['int_death_rate']*100:>4.0f}% | {tr['det_death_rate']*100:>4.0f}% \\\\\\\"\\\\n              f\\\\\\\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \\\\\\\"\\\\n              f\\\\\\\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\\\\\\\")\\\\n\\\\n    print(sep)\\\\n    # Aggregate row\\\\n    agg = aggregate\\\\n    dnd = f\\\\\\\"{agg['delta_no_death']:+.1f}\\\\\\\" if agg.get(\\\\\\\"delta_no_death\\\\\\\") is not None else \\\\\\\"N/A\\\\\\\"\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-012 Death Decomposition Analysis (D013).\\n\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\nvs genuine score improvement.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Optional, Tuple\\n\\nDEATH_THRESHOLD = -100\\n\\n\\ndef is_dead(score: float) -> bool:\\n    return score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source).\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef safe_mean(values: List[float]) -> float:\\n    return statistics.mean(values) if values else float(\\\"nan\\\")\\n\\n\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\n    \\\"\\\"\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\"\\\"\\\"\\n    try:\\n        from scipy.stats import pearsonr as sp_pearsonr\\n        r, p = sp_pearsonr(x, y)\\n        return float(r), float(p)\\n    except ImportError:\\n        pass\\n    n = len(x)\\n    if n < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    mx, my = statistics.mean(x), statistics.mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    # t-test approximation for p-value\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\n    # Two-tailed p from t distribution (approximation)\\n    import subprocess\\n    try:\\n        result = subprocess.run(\\n            [\\\"python3\\\", \\\"-c\\\",\\n             f\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\"],\\n            capture_output=True, text=True, timeout=5)\\n        p = float(result.stdout.strip())\\n    except Exception:\\n        p = float(\\\"nan\\\")\\n    return r, p\\n\\n\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\n    \\\"\\\"\\\"Load episodes grouped by task_type from multiple data directories.\\\"\\\"\\\"\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\n\\n    for data_dir in data_dirs:\\n        if not os.path.isdir(data_dir):\\n            print(f\\\"  WARN: {data_dir} not found, skipping\\\")\\n            continue\\n        for task_name in sorted(os.listdir(data_dir)):\\n            task_dir = os.path.join(data_dir, task_name)\\n            ep_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n            if not os.path.isfile(ep_file):\\n                continue\\n            if task_filter and task_name not in task_filter:\\n                continue\\n            with open(ep_file) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    ep = json.loads(line)\\n                    if \\\"always_internal\\\" not in ep or \\\"always_deterministic\\\" not in ep:\\n                        continue\\n                    task_episodes[task_name].append(ep)\\n\\n    return dict(task_episodes)\\n\\n\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\n    \\\"\\\"\\\"Full death decomposition for one task.\\\"\\\"\\\"\\n    n = len(episodes)\\n    int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n    det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]\\n\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\n    d\\n\\n... [截断: 输出过长，省略 7716 字符] ...\\n\\ntend(int_scores)\\n        all_det.extend(det_scores)\\n\\n        n = len(int_scores)\\n        int_dr = sum(1 for s in int_scores if is_dead(s)) / n\\n        det_dr = sum(1 for s in det_scores if is_dead(s)) / n\\n        delta = safe_mean(det_scores) - safe_mean(int_scores)\\n        task_death_rates.append(int_dr - det_dr)\\n        task_deltas.append(delta)\\n\\n        for i_s, d_s in zip(int_scores, det_scores):\\n            if not is_dead(i_s) and not is_dead(d_s):\\n                all_int_nd.append(i_s)\\n                all_det_nd.append(d_s)\\n            label, _, signal_source = classify_episode(i_s, d_s)\\n            total_label[label] += 1\\n            total_signal[signal_source] += 1\\n            total_label_signal[label][signal_source] += 1\\n\\n    n_total = len(all_int)\\n    int_mean = safe_mean(all_int)\\n    det_mean = safe_mean(all_det)\\n    delta_full = det_mean - int_mean\\n\\n    int_nd_mean = safe_mean(all_int_nd) if all_int_nd else float(\\\"nan\\\")\\n    det_nd_mean = safe_mean(all_det_nd) if all_det_nd else float(\\\"nan\\\")\\n    delta_nd = (det_nd_mean - int_nd_mean) if all_int_nd else float(\\\"nan\\\")\\n\\n    int_pr = safe_mean([0.0 if is_dead(s) else s for s in all_int])\\n    det_pr = safe_mean([0.0 if is_dead(s) else s for s in all_det])\\n    delta_pr = det_pr - int_pr\\n\\n    if not math.isnan(delta_nd) and delta_full != 0:\\n        death_frac = (delta_full - delta_nd) / delta_full\\n    else:\\n        death_frac = float(\\\"nan\\\")\\n\\n    r, p = pearsonr(task_death_rates, task_deltas)\\n\\n    return {\\n        \\\"n_tasks\\\": len(task_episodes),\\n        \\\"n_episodes\\\": n_total,\\n        \\\"int_death_rate\\\": round(sum(1 for s in all_int if is_dead(s)) / n_total, 4),\\n        \\\"det_death_rate\\\": round(sum(1 for s in all_det if is_dead(s)) / n_total, 4),\\n        \\\"int_mean\\\": round(int_mean, 2),\\n        \\\"det_mean\\\": round(det_mean, 2),\\n        \\\"delta_full\\\": round(delta_full, 2),\\n        \\\"int_mean_no_death\\\": round(int_nd_mean, 2) if not math.isnan(int_nd_mean) else None,\\n        \\\"det_mean_no_death\\\": round(det_nd_mean, 2) if not math.isnan(det_nd_mean) else None,\\n        \\\"delta_no_death\\\": round(delta_nd, 2) if not math.isnan(delta_nd) else None,\\n        \\\"death_avoidance_fraction\\\": round(death_frac, 4) if not math.isnan(death_frac) else None,\\n        \\\"delta_penalty_removed\\\": round(delta_pr, 2),\\n        \\\"correlation_death_rate_diff_vs_delta\\\": {\\n            \\\"pearson_r\\\": round(r, 4) if not math.isnan(r) else None,\\n            \\\"p_value\\\": round(p, 6) if not math.isnan(p) else None,\\n            \\\"n_tasks\\\": len(task_episodes),\\n        },\\n        \\\"label_distribution\\\": dict(total_label),\\n        \\\"signal_source_distribution\\\": dict(total_signal),\\n        \\\"label_signal_cross\\\": {k: dict(v) for k, v in total_label_signal.items()},\\n    }\\n\\n\\ndef print_table(task_results: List[dict], aggregate: dict):\\n    \\\"\\\"\\\"Print Director-format table.\\\"\\\"\\\"\\n    hdr = (f\\\"| {'Task':<42} | {'N':>4} | {'Int':>7} | {'Det':>7} | {'Δ':>7} \\\"\\n           f\\\"| {'I_d%':>5} | {'D_d%':>5} \\\"\\n           f\\\"| {'Δ_nd':>7} | {'D_frac':>7} | {'Δ_pr':>7} \\\"\\n           f\\\"| {'det':>4} {'int':>4} {'no':>4} |\\\")\\n    sep = \\\"-\\\" * len(hdr)\\n\\n    print(sep)\\n    print(hdr)\\n    print(sep)\\n\\n    for tr in task_results:\\n        dnd = f\\\"{tr['delta_no_death']:+.1f}\\\" if tr[\\\"delta_no_death\\\"] is not None else \\\"N/A\\\"\\n        dfr = f\\\"{tr['death_avoidance_fraction']:.0%}\\\" if tr[\\\"death_avoidance_fraction\\\"] is not None else \\\"N/A\\\"\\n        dpr = f\\\"{tr['delta_penalty_removed']:+.1f}\\\"\\n        ld = tr[\\\"label_distribution\\\"]\\n        print(f\\\"| {tr['task']:<42} | {tr['n_episodes']:>4} \\\"\\n              f\\\"| {tr['int_mean']:>7.1f} | {tr['det_mean']:>7.1f} | {tr['delta_full']:>+7.1f} \\\"\\n              f\\\"| {tr['int_death_rate']*100:>4.0f}% | {tr['det_death_rate']*100:>4.0f}% \\\"\\n              f\\\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \\\"\\n              f\\\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\\\")\\n\\n    print(sep)\\n    # Aggregate row\\n    agg = aggregate\\n    dnd = f\\\"{agg['delta_no_death']:+.1f}\\\" if agg.get(\\\"delta_no_death\\\") is not None else \\\"N/A\\\"\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Still getting truncated. Let me get the specific lines I'm missing. I've seen lines 1-200 and the tail section. The middle section (around lines 280-380) is missing. Let me also check what's around line 290 which seems to be in the `aggregate_from_raw` function.
+
+Actually, let me think about what I've already collected:
+
+1. Lines 1-200: Full code from `is_dead` through `analyze_task` through `aggregate_results` partial
+2. Lines 200-519: Rest of `aggregate_results`, `aggregate_from_raw`, `print_table`, `generate_paper_table_data`, `main`
+
+
+3. Now I'm seeing the key functions: `is_dead` checks if a score is critically low, `classify_episode` categorizes episodes with reasoning, `safe_mean` handles averaging, `pearsonr` computes correlation with a scipy fallback, `load_episodes` pulls data from multiple directories with optional filtering, `analyze_task` breaks down per-task metrics, and `aggregate_results` combines those metrics across tasks, with `aggregate_from_raw` handling the raw data aggregation.
+
+4. Looking at what's implemented versus what's needed: death-risk episode gains are tracked, non-death gains are separated, the three-label distribution is captured, per-task death rate correlations are computed, there's a penalty-removed variant that replaces the -100 threshold with 0, and death avoidance fraction is calculated as the ratio of full delta minus no-death delta to full delta. Bootstrap confidence intervals aren't yet implemented.
+
+5. I'm spotting several issues: the script is missing bootstrap CI entirely, the CLI expects space-separated data directories but the code parses comma-separated values, output is configured for a single file rather than a directory path, the aggregation method uses an approximate approach when an exact method exists, the Pearson correlation fallback relies on a subprocess call to scipy which feels fragile, and the death-only episode gains calculation needs verification.
+
+Now I need to check the actual data structure—the script is looking for `ep["always_internal"]["final_score"]` and `ep["always_deterministic"]["final_score"]`, but the task description suggests these fields might be at the top level as `internal_score` and `deterministic_score` instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "a7d63de4-fff2-4e8c-b19c-937b5ba49286",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mq8MzjAwzkNVRcqZEF2QBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3698,
+      "cache_read_input_tokens": 37913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3698
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+需要看一下实际数据格式和缺失的中间部分代码。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "c99a27bf-b427-4c7a-818c-7b8aa9e918b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mq8MzjAwzkNVRcqZEF2QBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3698,
+      "cache_read_input_tokens": 37913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3698
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RMo2ySgiEyTC7gTRJt5E5M`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "90030256-f717-4a9d-914a-7787db16234c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mq8MzjAwzkNVRcqZEF2QBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3698,
+      "cache_read_input_tokens": 37913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3698
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01YHJUTKx3q4ZcbWrAJsQyFH`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "1745af6e-9837-4047-919d-e9bb9dcac383",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mq8MzjAwzkNVRcqZEF2QBq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3698,
+      "cache_read_input_tokens": 37913,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3698
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-14T00:43:17.989Z_
+
+<details><summary>↩ Tool result · `toolu_01RMo2ySgiEyTC7gTRJt5E5M`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_internal\\\": {\\\"mode\\\": \\\"always-internal\\\", \\\"task_name\\\": \\\"chemistry-mix\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": -100.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 17, \\\"total_time_s\\\": 40.495187520980835, \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to air\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on air\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the task is not specified. A good first step is to connect the agent to the air, as this is a basic interaction that can provide information about the air quality or simply confirm the agent's presence in the environment.\\\\nAction: connect agent to a\\\"}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect agent to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 1 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is already connected to the air, so the next logical step would be to explore the environment by connecting to other locations. Since the current observation mentions that the terminal 1 on the agent is now connected to terminal 1 on air, it implies that the agent is in a location\\\"}, {\\\"step\\\": 2, \\\"action\\\": \\\"connect air to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on air is now connected to terminal 2 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is now connected to the art studio, and we need to establish an air connection to the art studio to allow air to flow into it. This will help in maintaining a good environment inside the art studio.\\\\nAction: connect air to art studio\\\"}, {\\\"step\\\": 3, \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on bedroom\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that the art studio is now connected to the air. To progress, I should connect the art studio door to one of the available locations. The most logical choice would be to connect it to the bedroom, as it is a common room in a house and would allow for easier mov\\\"}, {\\\"step\\\": 4, \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on door is now connected to terminal 2 on bedroom\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that terminal 1 on the door is now connected to terminal 1 on the bedroom. This means the door to the bedroom is already connected to the art studio door. The next logical step would be to connect the art studio door to another room or object to create more con\\\"}, {\\\"step\\\": 5, \\\"action\\\": \\\"connect bedroom door to door to living room\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on door\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that terminal 2 on the door is now connected to terminal 2 on the bedroom. This suggests that the bedroom door is already connected to the bedroom. The next logical step would be to connect the bedroom door to another room to create a path for the agent to move\\\"}, {\\\"step\\\": 6, \\\"action\\\": \\\"connect door to greenhouse to bedroom door\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 2 on door\\\", \\\"llm_output\\\": \\\"Thought: The previous actions have connected the bedroom door to the living room. The next logical step would be to connect the door to the greenhouse, as it is a common room to connect to for creating pathways in the house.\\\\nAction: connect door to greenhouse to bedroom door\\\"}, {\\\"step\\\": 7, \\\"action\\\": \\\"connect door to gre\\n\\n... [截断: 输出过长，省略 59922 字符] ...\\n\\nrministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to inventory\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}, {\\\"step\\\": 28, \\\"action\\\": \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"modality\\\": \\\"deterministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint in wood cup to cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint in wood cup to drawer\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}, {\\\"step\\\": 29, \\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"modality\\\": \\\"deterministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to inventory\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}], \\\"action_history\\\": [\\\"connect agent to table\\\", \\\"connect agent to cup containing blue paint in art studio\\\", \\\"connect air to paint in wood cup\\\", \\\"0\\\", \\\"connect air to yellow paint in wood cup\\\", \\\"connect art studio to cup containing yellow paint in art studio\\\", \\\"connect art studio to paint in wood cup\\\", \\\"1\\\", \\\"connect blue paint on cup containing blue paint to bowl\\\", \\\"connect bowl to blue paint on wood cup\\\", \\\"connect blue paint on cup containing blue paint to cup containing blue paint in art studio\\\", \\\"connect cup containing yellow paint in art studio to cup containing red paint in cupboard\\\", \\\"connect bowl to cup containing yellow paint in art studio\\\", \\\"connect cup containing blue paint in art studio to blue paint in wood cup\\\", \\\"connect blue paint in cup containing blue paint to cup containing blue paint in art studio\\\", \\\"connect cup containing blue paint in art studio to cupboard\\\", \\\"connect cup containing blue paint in cupboard to paint in wood cup containing yellow paint\\\", \\\"connect blue paint in wood cup containing blue paint to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect blue paint on wood cup to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect blue paint in cup containing blue paint to cup containing red paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect blue paint on wood cup to cup containing blue paint in cupboard\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\"]}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "95967ffb-cf8a-4d24-827c-365997984e00",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"episode_idx\\\\\\\": 0, \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"always_internal\\\\\\\": {\\\\\\\"mode\\\\\\\": \\\\\\\"always-internal\\\\\\\", \\\\\\\"task_name\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"final_score\\\\\\\": -100.0, \\\\\\\"initial_score\\\\\\\": 0.0, \\\\\\\"num_steps\\\\\\\": 17, \\\\\\\"total_time_s\\\\\\\": 40.495187520980835, \\\\\\\"steps\\\\\\\": [{\\\\\\\"step\\\\\\\": 0, \\\\\\\"action\\\\\\\": \\\\\\\"connect agent to air\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on agent is now connected to terminal 1 on air\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is currently in the hallway, and the task is not specified. A good first step is to connect the agent to the air, as this is a basic interaction that can provide information about the air quality or simply confirm the agent's presence in the environment.\\\\\\\\nAction: connect agent to a\\\\\\\"}, {\\\\\\\"step\\\\\\\": 1, \\\\\\\"action\\\\\\\": \\\\\\\"connect agent to art studio\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on agent is now connected to terminal 1 on art studio\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is already connected to the air, so the next logical step would be to explore the environment by connecting to other locations. Since the current observation mentions that the terminal 1 on the agent is now connected to terminal 1 on air, it implies that the agent is in a location\\\\\\\"}, {\\\\\\\"step\\\\\\\": 2, \\\\\\\"action\\\\\\\": \\\\\\\"connect air to art studio\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on air is now connected to terminal 2 on art studio\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is now connected to the art studio, and we need to establish an air connection to the art studio to allow air to flow into it. This will help in maintaining a good environment inside the art studio.\\\\\\\\nAction: connect air to art studio\\\\\\\"}, {\\\\\\\"step\\\\\\\": 3, \\\\\\\"action\\\\\\\": \\\\\\\"connect art studio door to bedroom\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on door is now connected to terminal 1 on bedroom\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The current observation shows that the art studio is now connected to the air. To progress, I should connect the art studio door to one of the available locations. The most logical choice would be to connect it to the bedroom, as it is a common room in a house and would allow for easier mov\\\\\\\"}, {\\\\\\\"step\\\\\\\": 4, \\\\\\\"action\\\\\\\": \\\\\\\"connect art studio door to bedroom\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on door is now connected to terminal 2 on bedroom\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The current observation shows that terminal 1 on the door is now connected to terminal 1 on the bedroom. This means the door to the bedroom is already connected to the art studio door. The next logical step would be to connect the art studio door to another room or object to create more con\\\\\\\"}, {\\\\\\\"step\\\\\\\": 5, \\\\\\\"action\\\\\\\": \\\\\\\"connect bedroom door to door to living room\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on door is now connected to terminal 1 on door\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The current observation shows that terminal 2 on the door is now connected to terminal 2 on the bedroom. This suggests that the bedroom door is already connected to the bedroom. The next logical step would be to connect the bedroom door to another room to create a path for the agent to move\\\\\\\"}, {\\\\\\\"step\\\\\\\": 6, \\\\\\\"action\\\\\\\": \\\\\\\"connect door to greenhouse to bedroom door\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on door is now connected to terminal 2 on door\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The previous actions have connected the bedroom door to the living room. The next logical step would be to connect the door to the greenhouse, as it is a common room to connect to for creating pathways in the house.\\\\\\\\nAction: connect door to greenhouse to bedroom door\\\\\\\"}, {\\\\\\\"step\\\\\\\": 7, \\\\\\\"action\\\\\\\": \\\\\\\"connect door to gre\\\\n\\\\n... [截断: 输出过长，省略 59922 字符] ...\\\\n\\\\nrministic\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"candidates\\\\\\\": [{\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to inventory\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}], \\\\\\\"observation\\\\\\\": \\\\\\\"No known action matches that input.\\\\\\\"}, {\\\\\\\"step\\\\\\\": 28, \\\\\\\"action\\\\\\\": \\\\\\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"candidates\\\\\\\": [{\\\\\\\"action\\\\\\\": \\\\\\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect blue paint in wood cup to cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect blue paint in wood cup to drawer\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}], \\\\\\\"observation\\\\\\\": \\\\\\\"No known action matches that input.\\\\\\\"}, {\\\\\\\"step\\\\\\\": 29, \\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"candidates\\\\\\\": [{\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to inventory\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}], \\\\\\\"observation\\\\\\\": \\\\\\\"No known action matches that input.\\\\\\\"}], \\\\\\\"action_history\\\\\\\": [\\\\\\\"connect agent to table\\\\\\\", \\\\\\\"connect agent to cup containing blue paint in art studio\\\\\\\", \\\\\\\"connect air to paint in wood cup\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"connect air to yellow paint in wood cup\\\\\\\", \\\\\\\"connect art studio to cup containing yellow paint in art studio\\\\\\\", \\\\\\\"connect art studio to paint in wood cup\\\\\\\", \\\\\\\"1\\\\\\\", \\\\\\\"connect blue paint on cup containing blue paint to bowl\\\\\\\", \\\\\\\"connect bowl to blue paint on wood cup\\\\\\\", \\\\\\\"connect blue paint on cup containing blue paint to cup containing blue paint in art studio\\\\\\\", \\\\\\\"connect cup containing yellow paint in art studio to cup containing red paint in cupboard\\\\\\\", \\\\\\\"connect bowl to cup containing yellow paint in art studio\\\\\\\", \\\\\\\"connect cup containing blue paint in art studio to blue paint in wood cup\\\\\\\", \\\\\\\"connect blue paint in cup containing blue paint to cup containing blue paint in art studio\\\\\\\", \\\\\\\"connect cup containing blue paint in art studio to cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to paint in wood cup containing yellow paint\\\\\\\", \\\\\\\"connect blue paint in wood cup containing blue paint to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\\\\\", \\\\\\\"connect blue paint on wood cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\\\\\", \\\\\\\"connect blue paint in cup containing blue paint to cup containing red paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\\\\\", \\\\\\\"connect blue paint on wood cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\\\\\", \\\\\\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\\\\\"]}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.97}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_internal\\\": {\\\"mode\\\": \\\"always-internal\\\", \\\"task_name\\\": \\\"chemistry-mix\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": -100.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 17, \\\"total_time_s\\\": 40.495187520980835, \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to air\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on air\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the task is not specified. A good first step is to connect the agent to the air, as this is a basic interaction that can provide information about the air quality or simply confirm the agent's presence in the environment.\\\\nAction: connect agent to a\\\"}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect agent to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 1 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is already connected to the air, so the next logical step would be to explore the environment by connecting to other locations. Since the current observation mentions that the terminal 1 on the agent is now connected to terminal 1 on air, it implies that the agent is in a location\\\"}, {\\\"step\\\": 2, \\\"action\\\": \\\"connect air to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on air is now connected to terminal 2 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is now connected to the art studio, and we need to establish an air connection to the art studio to allow air to flow into it. This will help in maintaining a good environment inside the art studio.\\\\nAction: connect air to art studio\\\"}, {\\\"step\\\": 3, \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on bedroom\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that the art studio is now connected to the air. To progress, I should connect the art studio door to one of the available locations. The most logical choice would be to connect it to the bedroom, as it is a common room in a house and would allow for easier mov\\\"}, {\\\"step\\\": 4, \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on door is now connected to terminal 2 on bedroom\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that terminal 1 on the door is now connected to terminal 1 on the bedroom. This means the door to the bedroom is already connected to the art studio door. The next logical step would be to connect the art studio door to another room or object to create more con\\\"}, {\\\"step\\\": 5, \\\"action\\\": \\\"connect bedroom door to door to living room\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on door\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that terminal 2 on the door is now connected to terminal 2 on the bedroom. This suggests that the bedroom door is already connected to the bedroom. The next logical step would be to connect the bedroom door to another room to create a path for the agent to move\\\"}, {\\\"step\\\": 6, \\\"action\\\": \\\"connect door to greenhouse to bedroom door\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 2 on door\\\", \\\"llm_output\\\": \\\"Thought: The previous actions have connected the bedroom door to the living room. The next logical step would be to connect the door to the greenhouse, as it is a common room to connect to for creating pathways in the house.\\\\nAction: connect door to greenhouse to bedroom door\\\"}, {\\\"step\\\": 7, \\\"action\\\": \\\"connect door to gre\\n\\n... [截断: 输出过长，省略 59922 字符] ...\\n\\nrministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to inventory\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}, {\\\"step\\\": 28, \\\"action\\\": \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"modality\\\": \\\"deterministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint in wood cup to cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint in wood cup to drawer\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}, {\\\"step\\\": 29, \\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"modality\\\": \\\"deterministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to inventory\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}], \\\"action_history\\\": [\\\"connect agent to table\\\", \\\"connect agent to cup containing blue paint in art studio\\\", \\\"connect air to paint in wood cup\\\", \\\"0\\\", \\\"connect air to yellow paint in wood cup\\\", \\\"connect art studio to cup containing yellow paint in art studio\\\", \\\"connect art studio to paint in wood cup\\\", \\\"1\\\", \\\"connect blue paint on cup containing blue paint to bowl\\\", \\\"connect bowl to blue paint on wood cup\\\", \\\"connect blue paint on cup containing blue paint to cup containing blue paint in art studio\\\", \\\"connect cup containing yellow paint in art studio to cup containing red paint in cupboard\\\", \\\"connect bowl to cup containing yellow paint in art studio\\\", \\\"connect cup containing blue paint in art studio to blue paint in wood cup\\\", \\\"connect blue paint in cup containing blue paint to cup containing blue paint in art studio\\\", \\\"connect cup containing blue paint in art studio to cupboard\\\", \\\"connect cup containing blue paint in cupboard to paint in wood cup containing yellow paint\\\", \\\"connect blue paint in wood cup containing blue paint to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect blue paint on wood cup to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect blue paint in cup containing blue paint to cup containing red paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect blue paint on wood cup to cup containing blue paint in cupboard\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in art studio\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\"]}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.97}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-14T00:43:18.870Z_
+
+<details><summary>↩ Tool result · `toolu_01YHJUTKx3q4ZcbWrAJsQyFH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_internal\\\": {\\\"mode\\\": \\\"always-internal\\\", \\\"task_name\\\": \\\"find-animal\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": -100.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 17, \\\"total_time_s\\\": 41.181230306625366, \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to air\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on air\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the task is not specified. A good first step is to connect the agent to the air, as this is a basic interaction that can provide information about the air quality or simply confirm the agent's presence in the environment.\\\\nAction: connect agent to a\\\"}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect agent to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 1 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is already connected to the air, so the next logical step would be to explore the environment by connecting to other locations. Since the current observation mentions that the terminal 1 on the agent is now connected to terminal 1 on air, it implies that the agent is in a location\\\"}, {\\\"step\\\": 2, \\\"action\\\": \\\"connect air to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on air is now connected to terminal 2 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is now connected to the art studio, and we need to establish an air connection to the art studio to allow air to flow into it. This will help in maintaining a good environment inside the art studio.\\\\nAction: connect air to art studio\\\"}, {\\\"step\\\": 3, \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on bedroom\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that the art studio is now connected to the air. To progress, I should connect the art studio door to one of the available locations. The most logical choice would be to connect it to the bedroom, as it is a common room in a house and would allow for easier mov\\\"}, {\\\"step\\\": 4, \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on door is now connected to terminal 2 on bedroom\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that terminal 1 on the door is now connected to terminal 1 on the bedroom. This means the door to the bedroom is already connected to the art studio door. The next logical step would be to connect the art studio door to another room or object to create more con\\\"}, {\\\"step\\\": 5, \\\"action\\\": \\\"connect bedroom door to door to living room\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on door\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that terminal 2 on the door is now connected to terminal 2 on the bedroom. This suggests that the bedroom door is already connected to the bedroom. The next logical step would be to connect the bedroom door to another room to create a path for the agent to move\\\"}, {\\\"step\\\": 6, \\\"action\\\": \\\"connect door to greenhouse to bedroom door\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 2 on door\\\", \\\"llm_output\\\": \\\"Thought: The previous actions have connected the bedroom door to the living room. The next logical step would be to connect the door to the greenhouse, as it is a common room to connect to for creating pathways in the house.\\\\nAction: connect door to greenhouse to bedroom door\\\"}, {\\\"step\\\": 7, \\\"action\\\": \\\"connect door to green\\n\\n... [截断: 输出过长，省略 60801 字符] ...\\n\\nnt to cup containing yellow paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint in cup containing blue paint to cup containing yellow paint in art studio\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}, {\\\"step\\\": 28, \\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"modality\\\": \\\"deterministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to paint in wood cup containing red paint\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to red paint in wood cup\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}, {\\\"step\\\": 29, \\\"action\\\": \\\"connect blue paint on wood cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"modality\\\": \\\"deterministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect blue paint on wood cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint on wood cup containing blue paint to cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint on wood cup containing blue paint to drawer\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}], \\\"action_history\\\": [\\\"connect air to agent\\\", \\\"connect agent to air\\\", \\\"connect art studio to cup containing blue paint in art studio\\\", \\\"connect art studio to cup containing red paint in art studio\\\", \\\"connect blue paint on cup to cup containing blue paint in art studio\\\", \\\"connect blue paint on cup containing blue paint to blue paint on wood cup containing blue paint\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect blue paint in wood cup containing blue paint to cup containing red paint in art studio\\\", \\\"connect blue paint to paint on wood cup\\\", \\\"0\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect bowl to yellow paint\\\", \\\"connect blue paint in cup to bowl\\\", \\\"connect blue paint on wood cup to bowl\\\", \\\"connect cup containing red paint in cupboard to bowl\\\", \\\"connect bowl to yellow paint\\\", \\\"connect blue paint on cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect blue paint in cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to blue paint on wood cup\\\", \\\"connect blue paint on cup to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect blue paint in cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect blue paint in cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"connect blue paint on wood cup containing blue paint to cup containing yellow paint in cupboard\\\"]}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "eeff4e48-67e8-45b7-85e5-5d4626a30b75",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"episode_idx\\\\\\\": 0, \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"always_internal\\\\\\\": {\\\\\\\"mode\\\\\\\": \\\\\\\"always-internal\\\\\\\", \\\\\\\"task_name\\\\\\\": \\\\\\\"find-animal\\\\\\\", \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"final_score\\\\\\\": -100.0, \\\\\\\"initial_score\\\\\\\": 0.0, \\\\\\\"num_steps\\\\\\\": 17, \\\\\\\"total_time_s\\\\\\\": 41.181230306625366, \\\\\\\"steps\\\\\\\": [{\\\\\\\"step\\\\\\\": 0, \\\\\\\"action\\\\\\\": \\\\\\\"connect agent to air\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on agent is now connected to terminal 1 on air\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is currently in the hallway, and the task is not specified. A good first step is to connect the agent to the air, as this is a basic interaction that can provide information about the air quality or simply confirm the agent's presence in the environment.\\\\\\\\nAction: connect agent to a\\\\\\\"}, {\\\\\\\"step\\\\\\\": 1, \\\\\\\"action\\\\\\\": \\\\\\\"connect agent to art studio\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on agent is now connected to terminal 1 on art studio\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is already connected to the air, so the next logical step would be to explore the environment by connecting to other locations. Since the current observation mentions that the terminal 1 on the agent is now connected to terminal 1 on air, it implies that the agent is in a location\\\\\\\"}, {\\\\\\\"step\\\\\\\": 2, \\\\\\\"action\\\\\\\": \\\\\\\"connect air to art studio\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on air is now connected to terminal 2 on art studio\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is now connected to the art studio, and we need to establish an air connection to the art studio to allow air to flow into it. This will help in maintaining a good environment inside the art studio.\\\\\\\\nAction: connect air to art studio\\\\\\\"}, {\\\\\\\"step\\\\\\\": 3, \\\\\\\"action\\\\\\\": \\\\\\\"connect art studio door to bedroom\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on door is now connected to terminal 1 on bedroom\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The current observation shows that the art studio is now connected to the air. To progress, I should connect the art studio door to one of the available locations. The most logical choice would be to connect it to the bedroom, as it is a common room in a house and would allow for easier mov\\\\\\\"}, {\\\\\\\"step\\\\\\\": 4, \\\\\\\"action\\\\\\\": \\\\\\\"connect art studio door to bedroom\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on door is now connected to terminal 2 on bedroom\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The current observation shows that terminal 1 on the door is now connected to terminal 1 on the bedroom. This means the door to the bedroom is already connected to the art studio door. The next logical step would be to connect the art studio door to another room or object to create more con\\\\\\\"}, {\\\\\\\"step\\\\\\\": 5, \\\\\\\"action\\\\\\\": \\\\\\\"connect bedroom door to door to living room\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on door is now connected to terminal 1 on door\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The current observation shows that terminal 2 on the door is now connected to terminal 2 on the bedroom. This suggests that the bedroom door is already connected to the bedroom. The next logical step would be to connect the bedroom door to another room to create a path for the agent to move\\\\\\\"}, {\\\\\\\"step\\\\\\\": 6, \\\\\\\"action\\\\\\\": \\\\\\\"connect door to greenhouse to bedroom door\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on door is now connected to terminal 2 on door\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The previous actions have connected the bedroom door to the living room. The next logical step would be to connect the door to the greenhouse, as it is a common room to connect to for creating pathways in the house.\\\\\\\\nAction: connect door to greenhouse to bedroom door\\\\\\\"}, {\\\\\\\"step\\\\\\\": 7, \\\\\\\"action\\\\\\\": \\\\\\\"connect door to green\\\\n\\\\n... [截断: 输出过长，省略 60801 字符] ...\\\\n\\\\nnt to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect blue paint in cup containing blue paint to cup containing yellow paint in art studio\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}], \\\\\\\"observation\\\\\\\": \\\\\\\"No known action matches that input.\\\\\\\"}, {\\\\\\\"step\\\\\\\": 28, \\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"candidates\\\\\\\": [{\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to paint in wood cup containing red paint\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect cup containing blue paint in cupboard to red paint in wood cup\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}], \\\\\\\"observation\\\\\\\": \\\\\\\"No known action matches that input.\\\\\\\"}, {\\\\\\\"step\\\\\\\": 29, \\\\\\\"action\\\\\\\": \\\\\\\"connect blue paint on wood cup containing blue paint to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"candidates\\\\\\\": [{\\\\\\\"action\\\\\\\": \\\\\\\"connect blue paint on wood cup containing blue paint to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect blue paint on wood cup containing blue paint to cupboard\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}, {\\\\\\\"action\\\\\\\": \\\\\\\"connect blue paint on wood cup containing blue paint to drawer\\\\\\\", \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"lethal\\\\\\\": false}], \\\\\\\"observation\\\\\\\": \\\\\\\"No known action matches that input.\\\\\\\"}], \\\\\\\"action_history\\\\\\\": [\\\\\\\"connect air to agent\\\\\\\", \\\\\\\"connect agent to air\\\\\\\", \\\\\\\"connect art studio to cup containing blue paint in art studio\\\\\\\", \\\\\\\"connect art studio to cup containing red paint in art studio\\\\\\\", \\\\\\\"connect blue paint on cup to cup containing blue paint in art studio\\\\\\\", \\\\\\\"connect blue paint on cup containing blue paint to blue paint on wood cup containing blue paint\\\\\\\", \\\\\\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"connect blue paint in wood cup containing blue paint to cup containing red paint in art studio\\\\\\\", \\\\\\\"connect blue paint to paint on wood cup\\\\\\\", \\\\\\\"0\\\\\\\", \\\\\\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"connect bowl to yellow paint\\\\\\\", \\\\\\\"connect blue paint in cup to bowl\\\\\\\", \\\\\\\"connect blue paint on wood cup to bowl\\\\\\\", \\\\\\\"connect cup containing red paint in cupboard to bowl\\\\\\\", \\\\\\\"connect bowl to yellow paint\\\\\\\", \\\\\\\"connect blue paint on cup containing blue paint to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"connect blue paint in cup containing blue paint to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to blue paint on wood cup\\\\\\\", \\\\\\\"connect blue paint on cup to cup containing blue paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"connect blue paint in cup containing blue paint to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"connect blue paint in cup containing blue paint to cup containing yellow paint in cupboard\\\\\\\", \\\\\\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\\\\\", \\\\\\\"connect blue paint on wood cup containing blue paint to cup containing yellow paint in cupboard\\\\\\\"]}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_internal\\\": {\\\"mode\\\": \\\"always-internal\\\", \\\"task_name\\\": \\\"find-animal\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": -100.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 17, \\\"total_time_s\\\": 41.181230306625366, \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to air\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on air\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the task is not specified. A good first step is to connect the agent to the air, as this is a basic interaction that can provide information about the air quality or simply confirm the agent's presence in the environment.\\\\nAction: connect agent to a\\\"}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect agent to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 1 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is already connected to the air, so the next logical step would be to explore the environment by connecting to other locations. Since the current observation mentions that the terminal 1 on the agent is now connected to terminal 1 on air, it implies that the agent is in a location\\\"}, {\\\"step\\\": 2, \\\"action\\\": \\\"connect air to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on air is now connected to terminal 2 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is now connected to the art studio, and we need to establish an air connection to the art studio to allow air to flow into it. This will help in maintaining a good environment inside the art studio.\\\\nAction: connect air to art studio\\\"}, {\\\"step\\\": 3, \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on bedroom\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that the art studio is now connected to the air. To progress, I should connect the art studio door to one of the available locations. The most logical choice would be to connect it to the bedroom, as it is a common room in a house and would allow for easier mov\\\"}, {\\\"step\\\": 4, \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on door is now connected to terminal 2 on bedroom\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that terminal 1 on the door is now connected to terminal 1 on the bedroom. This means the door to the bedroom is already connected to the art studio door. The next logical step would be to connect the art studio door to another room or object to create more con\\\"}, {\\\"step\\\": 5, \\\"action\\\": \\\"connect bedroom door to door to living room\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on door\\\", \\\"llm_output\\\": \\\"Thought: The current observation shows that terminal 2 on the door is now connected to terminal 2 on the bedroom. This suggests that the bedroom door is already connected to the bedroom. The next logical step would be to connect the bedroom door to another room to create a path for the agent to move\\\"}, {\\\"step\\\": 6, \\\"action\\\": \\\"connect door to greenhouse to bedroom door\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 2 on door\\\", \\\"llm_output\\\": \\\"Thought: The previous actions have connected the bedroom door to the living room. The next logical step would be to connect the door to the greenhouse, as it is a common room to connect to for creating pathways in the house.\\\\nAction: connect door to greenhouse to bedroom door\\\"}, {\\\"step\\\": 7, \\\"action\\\": \\\"connect door to green\\n\\n... [截断: 输出过长，省略 60801 字符] ...\\n\\nnt to cup containing yellow paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint in cup containing blue paint to cup containing yellow paint in art studio\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}, {\\\"step\\\": 28, \\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"modality\\\": \\\"deterministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to paint in wood cup containing red paint\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect cup containing blue paint in cupboard to red paint in wood cup\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}, {\\\"step\\\": 29, \\\"action\\\": \\\"connect blue paint on wood cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"modality\\\": \\\"deterministic\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"candidates\\\": [{\\\"action\\\": \\\"connect blue paint on wood cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint on wood cup containing blue paint to cupboard\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}, {\\\"action\\\": \\\"connect blue paint on wood cup containing blue paint to drawer\\\", \\\"score_delta\\\": 0.0, \\\"score\\\": 0.0, \\\"lethal\\\": false}], \\\"observation\\\": \\\"No known action matches that input.\\\"}], \\\"action_history\\\": [\\\"connect air to agent\\\", \\\"connect agent to air\\\", \\\"connect art studio to cup containing blue paint in art studio\\\", \\\"connect art studio to cup containing red paint in art studio\\\", \\\"connect blue paint on cup to cup containing blue paint in art studio\\\", \\\"connect blue paint on cup containing blue paint to blue paint on wood cup containing blue paint\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect blue paint in wood cup containing blue paint to cup containing red paint in art studio\\\", \\\"connect blue paint to paint on wood cup\\\", \\\"0\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect blue paint in wood cup to cup containing blue paint in cupboard\\\", \\\"connect bowl to yellow paint\\\", \\\"connect blue paint in cup to bowl\\\", \\\"connect blue paint on wood cup to bowl\\\", \\\"connect cup containing red paint in cupboard to bowl\\\", \\\"connect bowl to yellow paint\\\", \\\"connect blue paint on cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect blue paint in cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to blue paint on wood cup\\\", \\\"connect blue paint on cup to cup containing blue paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect blue paint in cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing yellow paint in cupboard\\\", \\\"connect blue paint in cup containing blue paint to cup containing yellow paint in cupboard\\\", \\\"connect cup containing blue paint in cupboard to cup containing red paint in cupboard\\\", \\\"connect blue paint on wood cup containing blue paint to cup containing yellow paint in cupboard\\\"]}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a good understanding. The data format uses `ep["always_internal"]["final_score"]` and `ep["always_deterministic"]["final_score"]` which matches what the script expects. Good.
+
+Now let me identify the issues:
+
+1. **No bootstrap 95% CI** - Missing feature
+2. **`--data_dirs` uses comma-separated** - Task wants space-separated (`--data_dirs results/plan_c results/prescreening results/research`). Need to change to `nargs='+'`
+3. **`--output` expects a file path, not directory** - Task wants `--output results/decomposition_final/` (a directory). Need to handle this
+
+
+4. **Death-only episode Δ isn't explicitly shown** - The script calculates delta_full and delta_no_death to derive death_avoidance_fraction, but doesn't directly output the death-only delta value
+5. **Pearson correlation p-value calculation relies on subprocess** - This is fragile and should use a pure Python approximation instead
+6. **Aggregation logic is split between two functions** - `aggregate_results` does approximate aggregation while `aggregate_from_raw` is more accurate, but `main()` calls both without clearly using the right one for each purpose
+
+Now I'm mapping out the improvements needed: bootstrap confidence intervals for the metrics, CLI argument handling for space-separated directories and output paths, explicit death-only delta calculation, removing the subprocess dependency for p-values, and general code cleanup. I also need to check the middle section of the script around lines 280-380 to understand what's happening there before rewriting the full version.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "50427f57-57ae-4387-a8da-ee116ba10cce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhVcUHsJL4vb9kc6g5BYmD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7289,
+      "cache_read_input_tokens": 41611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7289
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+需要看中间被截断的部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "2fd892dc-8f8b-48d2-9765-0f95f3d711dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhVcUHsJL4vb9kc6g5BYmD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7289,
+      "cache_read_input_tokens": 41611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7289
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011sT53nZLJtS1Q4Me2Dd9qv`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -n 420 /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "84605e30-54bf-4954-9da4-25fe08ac6fff",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhVcUHsJL4vb9kc6g5BYmD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7289,
+      "cache_read_input_tokens": 41611,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7289
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-14T00:43:38.273Z_
+
+<details><summary>↩ Tool result · `toolu_011sT53nZLJtS1Q4Me2Dd9qv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-012 Death Decomposition Analysis (D013).\\n\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\nvs genuine score improvement.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Optional, Tuple\\n\\nDEATH_THRESHOLD = -100\\n\\n\\ndef is_dead(score: float) -> bool:\\n    return score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source).\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef safe_mean(values: List[float]) -> float:\\n    return statistics.mean(values) if values else float(\\\"nan\\\")\\n\\n\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\n    \\\"\\\"\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\"\\\"\\\"\\n    try:\\n        from scipy.stats import pearsonr as sp_pearsonr\\n        r, p = sp_pearsonr(x, y)\\n        return float(r), float(p)\\n    except ImportError:\\n        pass\\n    n = len(x)\\n    if n < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    mx, my = statistics.mean(x), statistics.mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    # t-test approximation for p-value\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\n    # Two-tailed p from t distribution (approximation)\\n    import subprocess\\n    try:\\n        result = subprocess.run(\\n            [\\\"python3\\\", \\\"-c\\\",\\n             f\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\"],\\n            capture_output=True, text=True, timeout=5)\\n        p = float(result.stdout.strip())\\n    except Exception:\\n        p = float(\\\"nan\\\")\\n    return r, p\\n\\n\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\n    \\\"\\\"\\\"Load episodes grouped by task_type from multiple data directories.\\\"\\\"\\\"\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\n\\n    for data_dir in data_dirs:\\n        if not os.path.isdir(data_dir):\\n            print(f\\\"  WARN: {data_dir} not found, skipping\\\")\\n            continue\\n        for task_name in sorted(os.listdir(data_dir)):\\n            task_dir = os.path.join(data_dir, task_name)\\n            ep_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n            if not os.path.isfile(ep_file):\\n                continue\\n            if task_filter and task_name not in task_filter:\\n                continue\\n            with open(ep_file) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    ep = json.loads(line)\\n                    if \\\"always_internal\\\" not in ep or \\\"always_deterministic\\\" not in ep:\\n                        continue\\n                    task_episodes[task_name].append(ep)\\n\\n    return dict(task_episodes)\\n\\n\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\n    \\\"\\\"\\\"Full death decomposition for one task.\\\"\\\"\\\"\\n    n = len(episodes)\\n    int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n    det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]\\n\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\n    d\\n\\n... [截断: 输出过长，省略 9756 字符] ...\\n\\n \\\"delta_no_death\\\": round(delta_nd, 2) if not math.isnan(delta_nd) else None,\\n        \\\"death_avoidance_fraction\\\": round(death_frac, 4) if not math.isnan(death_frac) else None,\\n        \\\"delta_penalty_removed\\\": round(delta_pr, 2),\\n        \\\"correlation_death_rate_diff_vs_delta\\\": {\\n            \\\"pearson_r\\\": round(r, 4) if not math.isnan(r) else None,\\n            \\\"p_value\\\": round(p, 6) if not math.isnan(p) else None,\\n            \\\"n_tasks\\\": len(task_episodes),\\n        },\\n        \\\"label_distribution\\\": dict(total_label),\\n        \\\"signal_source_distribution\\\": dict(total_signal),\\n        \\\"label_signal_cross\\\": {k: dict(v) for k, v in total_label_signal.items()},\\n    }\\n\\n\\ndef print_table(task_results: List[dict], aggregate: dict):\\n    \\\"\\\"\\\"Print Director-format table.\\\"\\\"\\\"\\n    hdr = (f\\\"| {'Task':<42} | {'N':>4} | {'Int':>7} | {'Det':>7} | {'Δ':>7} \\\"\\n           f\\\"| {'I_d%':>5} | {'D_d%':>5} \\\"\\n           f\\\"| {'Δ_nd':>7} | {'D_frac':>7} | {'Δ_pr':>7} \\\"\\n           f\\\"| {'det':>4} {'int':>4} {'no':>4} |\\\")\\n    sep = \\\"-\\\" * len(hdr)\\n\\n    print(sep)\\n    print(hdr)\\n    print(sep)\\n\\n    for tr in task_results:\\n        dnd = f\\\"{tr['delta_no_death']:+.1f}\\\" if tr[\\\"delta_no_death\\\"] is not None else \\\"N/A\\\"\\n        dfr = f\\\"{tr['death_avoidance_fraction']:.0%}\\\" if tr[\\\"death_avoidance_fraction\\\"] is not None else \\\"N/A\\\"\\n        dpr = f\\\"{tr['delta_penalty_removed']:+.1f}\\\"\\n        ld = tr[\\\"label_distribution\\\"]\\n        print(f\\\"| {tr['task']:<42} | {tr['n_episodes']:>4} \\\"\\n              f\\\"| {tr['int_mean']:>7.1f} | {tr['det_mean']:>7.1f} | {tr['delta_full']:>+7.1f} \\\"\\n              f\\\"| {tr['int_death_rate']*100:>4.0f}% | {tr['det_death_rate']*100:>4.0f}% \\\"\\n              f\\\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \\\"\\n              f\\\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\\\")\\n\\n    print(sep)\\n    # Aggregate row\\n    agg = aggregate\\n    dnd = f\\\"{agg['delta_no_death']:+.1f}\\\" if agg.get(\\\"delta_no_death\\\") is not None else \\\"N/A\\\"\\n    dfr = f\\\"{agg['death_avoidance_fraction']:.0%}\\\" if agg.get(\\\"death_avoidance_fraction\\\") is not None else \\\"N/A\\\"\\n    dpr = f\\\"{agg['delta_penalty_removed']:+.1f}\\\"\\n    ld = agg[\\\"label_distribution\\\"]\\n    print(f\\\"| {'AGGREGATE':<42} | {agg['n_episodes']:>4} \\\"\\n          f\\\"| {agg['int_mean']:>7.1f} | {agg['det_mean']:>7.1f} | {agg['delta_full']:>+7.1f} \\\"\\n          f\\\"| {agg['int_death_rate']*100:>4.0f}% | {agg['det_death_rate']*100:>4.0f}% \\\"\\n          f\\\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \\\"\\n          f\\\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\\\")\\n    print(sep)\\n\\n    # Correlation\\n    corr = agg.get(\\\"correlation_death_rate_diff_vs_delta\\\", {})\\n    r = corr.get(\\\"pearson_r\\\")\\n    p = corr.get(\\\"p_value\\\")\\n    r_str = f\\\"{r:.3f}\\\" if r is not None else \\\"N/A\\\"\\n    p_str = f\\\"{p:.4f}\\\" if p is not None else \\\"N/A\\\"\\n    print(f\\\"\\\\nCorrelation (death_rate_diff vs Δ): r={r_str}, p={p_str}, n={corr.get('n_tasks', 0)} tasks\\\")\\n\\n    # Signal source breakdown\\n    print(f\\\"\\\\nSignal source distribution:\\\")\\n    for src in [\\\"death_asymmetry\\\", \\\"both_dead\\\", \\\"score_comparison\\\", \\\"tied_alive\\\"]:\\n        cnt = agg[\\\"signal_source_distribution\\\"].get(src, 0)\\n        pct = cnt / agg[\\\"n_episodes\\\"] * 100 if agg[\\\"n_episodes\\\"] else 0\\n        print(f\\\"  {src}: {cnt} ({pct:.1f}%)\\\")\\n\\n    # Cross table\\n    print(f\\\"\\\\nLabel × Signal source cross table:\\\")\\n    print(f\\\"  {'Label':<20} | {'death_asym':>10} | {'both_dead':>10} | {'score_cmp':>10} | {'tied_alive':>10} |\\\")\\n    cross = agg.get(\\\"label_signal_cross\\\", {})\\n    for lbl in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n        row = cross.get(lbl, {})\\n        print(f\\\"  {lbl:<20} | {row.get('death_asymmetry',0):>10} | {row.get('both_dead',0):>10} \\\"\\n              f\\\"| {row.get('score_comparison',0):>10} | {row.get('tied_alive',0):>10} |\\\")\\n\\n\\ndef generate_paper_table_data(task_results: List[dict], aggregate: dict) -> dict:\\n    \\\"\\\"\\\"Generate data structured for LaTeX table generation.\\\"\\\"\\\"\\n    rows = []\\n    for tr in task_results:\\n        rows.append({\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "39371531-e455-40cc-902e-c397c1b5c19d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Plan-012 Death Decomposition Analysis (D013).\\\\n\\\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\\\nvs genuine score improvement.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport math\\\\nimport os\\\\nimport statistics\\\\nfrom collections import defaultdict\\\\nfrom typing import Dict, List, Optional, Tuple\\\\n\\\\nDEATH_THRESHOLD = -100\\\\n\\\\n\\\\ndef is_dead(score: float) -> bool:\\\\n    return score <= DEATH_THRESHOLD\\\\n\\\\n\\\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Returns (label, reason, signal_source).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    int_died = is_dead(int_score)\\\\n    det_died = is_dead(det_score)\\\\n\\\\n    if int_died and not det_died:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"int_died_det_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if det_died and not int_died:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"det_died_int_alive\\\\\\\", \\\\\\\"death_asymmetry\\\\\\\"\\\\n    if int_died and det_died:\\\\n        return \\\\\\\"no-preference\\\\\\\", \\\\\\\"both_died\\\\\\\", \\\\\\\"both_dead\\\\\\\"\\\\n    if det_score > int_score:\\\\n        return \\\\\\\"det-preferred\\\\\\\", \\\\\\\"both_alive_det_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    if int_score > det_score:\\\\n        return \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"both_alive_int_wins\\\\\\\", \\\\\\\"score_comparison\\\\\\\"\\\\n    return \\\\\\\"no-preference\\\\\\\", \\\\\\\"tie\\\\\\\", \\\\\\\"tied_alive\\\\\\\"\\\\n\\\\n\\\\ndef safe_mean(values: List[float]) -> float:\\\\n    return statistics.mean(values) if values else float(\\\\\\\"nan\\\\\\\")\\\\n\\\\n\\\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    try:\\\\n        from scipy.stats import pearsonr as sp_pearsonr\\\\n        r, p = sp_pearsonr(x, y)\\\\n        return float(r), float(p)\\\\n    except ImportError:\\\\n        pass\\\\n    n = len(x)\\\\n    if n < 3:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    mx, my = statistics.mean(x), statistics.mean(y)\\\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\\\n    if sx == 0 or sy == 0:\\\\n        return float(\\\\\\\"nan\\\\\\\"), float(\\\\\\\"nan\\\\\\\")\\\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\\\n    # t-test approximation for p-value\\\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\\\n    # Two-tailed p from t distribution (approximation)\\\\n    import subprocess\\\\n    try:\\\\n        result = subprocess.run(\\\\n            [\\\\\\\"python3\\\\\\\", \\\\\\\"-c\\\\\\\",\\\\n             f\\\\\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\\\\\"],\\\\n            capture_output=True, text=True, timeout=5)\\\\n        p = float(result.stdout.strip())\\\\n    except Exception:\\\\n        p = float(\\\\\\\"nan\\\\\\\")\\\\n    return r, p\\\\n\\\\n\\\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load episodes grouped by task_type from multiple data directories.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\\\n\\\\n    for data_dir in data_dirs:\\\\n        if not os.path.isdir(data_dir):\\\\n            print(f\\\\\\\"  WARN: {data_dir} not found, skipping\\\\\\\")\\\\n            continue\\\\n        for task_name in sorted(os.listdir(data_dir)):\\\\n            task_dir = os.path.join(data_dir, task_name)\\\\n            ep_file = os.path.join(task_dir, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n            if not os.path.isfile(ep_file):\\\\n                continue\\\\n            if task_filter and task_name not in task_filter:\\\\n                continue\\\\n            with open(ep_file) as f:\\\\n                for line in f:\\\\n                    line = line.strip()\\\\n                    if not line:\\\\n                        continue\\\\n                    ep = json.loads(line)\\\\n                    if \\\\\\\"always_internal\\\\\\\" not in ep or \\\\\\\"always_deterministic\\\\\\\" not in ep:\\\\n                        continue\\\\n                    task_episodes[task_name].append(ep)\\\\n\\\\n    return dict(task_episodes)\\\\n\\\\n\\\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Full death decomposition for one task.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    n = len(episodes)\\\\n    int_scores = [ep[\\\\\\\"always_internal\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep in episodes]\\\\n    det_scores = [ep[\\\\\\\"always_deterministic\\\\\\\"][\\\\\\\"final_score\\\\\\\"] for ep in episodes]\\\\n\\\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\\\n    d\\\\n\\\\n... [截断: 输出过长，省略 9756 字符] ...\\\\n\\\\n \\\\\\\"delta_no_death\\\\\\\": round(delta_nd, 2) if not math.isnan(delta_nd) else None,\\\\n        \\\\\\\"death_avoidance_fraction\\\\\\\": round(death_frac, 4) if not math.isnan(death_frac) else None,\\\\n        \\\\\\\"delta_penalty_removed\\\\\\\": round(delta_pr, 2),\\\\n        \\\\\\\"correlation_death_rate_diff_vs_delta\\\\\\\": {\\\\n            \\\\\\\"pearson_r\\\\\\\": round(r, 4) if not math.isnan(r) else None,\\\\n            \\\\\\\"p_value\\\\\\\": round(p, 6) if not math.isnan(p) else None,\\\\n            \\\\\\\"n_tasks\\\\\\\": len(task_episodes),\\\\n        },\\\\n        \\\\\\\"label_distribution\\\\\\\": dict(total_label),\\\\n        \\\\\\\"signal_source_distribution\\\\\\\": dict(total_signal),\\\\n        \\\\\\\"label_signal_cross\\\\\\\": {k: dict(v) for k, v in total_label_signal.items()},\\\\n    }\\\\n\\\\n\\\\ndef print_table(task_results: List[dict], aggregate: dict):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Print Director-format table.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    hdr = (f\\\\\\\"| {'Task':<42} | {'N':>4} | {'Int':>7} | {'Det':>7} | {'Δ':>7} \\\\\\\"\\\\n           f\\\\\\\"| {'I_d%':>5} | {'D_d%':>5} \\\\\\\"\\\\n           f\\\\\\\"| {'Δ_nd':>7} | {'D_frac':>7} | {'Δ_pr':>7} \\\\\\\"\\\\n           f\\\\\\\"| {'det':>4} {'int':>4} {'no':>4} |\\\\\\\")\\\\n    sep = \\\\\\\"-\\\\\\\" * len(hdr)\\\\n\\\\n    print(sep)\\\\n    print(hdr)\\\\n    print(sep)\\\\n\\\\n    for tr in task_results:\\\\n        dnd = f\\\\\\\"{tr['delta_no_death']:+.1f}\\\\\\\" if tr[\\\\\\\"delta_no_death\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        dfr = f\\\\\\\"{tr['death_avoidance_fraction']:.0%}\\\\\\\" if tr[\\\\\\\"death_avoidance_fraction\\\\\\\"] is not None else \\\\\\\"N/A\\\\\\\"\\\\n        dpr = f\\\\\\\"{tr['delta_penalty_removed']:+.1f}\\\\\\\"\\\\n        ld = tr[\\\\\\\"label_distribution\\\\\\\"]\\\\n        print(f\\\\\\\"| {tr['task']:<42} | {tr['n_episodes']:>4} \\\\\\\"\\\\n              f\\\\\\\"| {tr['int_mean']:>7.1f} | {tr['det_mean']:>7.1f} | {tr['delta_full']:>+7.1f} \\\\\\\"\\\\n              f\\\\\\\"| {tr['int_death_rate']*100:>4.0f}% | {tr['det_death_rate']*100:>4.0f}% \\\\\\\"\\\\n              f\\\\\\\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \\\\\\\"\\\\n              f\\\\\\\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\\\\\\\")\\\\n\\\\n    print(sep)\\\\n    # Aggregate row\\\\n    agg = aggregate\\\\n    dnd = f\\\\\\\"{agg['delta_no_death']:+.1f}\\\\\\\" if agg.get(\\\\\\\"delta_no_death\\\\\\\") is not None else \\\\\\\"N/A\\\\\\\"\\\\n    dfr = f\\\\\\\"{agg['death_avoidance_fraction']:.0%}\\\\\\\" if agg.get(\\\\\\\"death_avoidance_fraction\\\\\\\") is not None else \\\\\\\"N/A\\\\\\\"\\\\n    dpr = f\\\\\\\"{agg['delta_penalty_removed']:+.1f}\\\\\\\"\\\\n    ld = agg[\\\\\\\"label_distribution\\\\\\\"]\\\\n    print(f\\\\\\\"| {'AGGREGATE':<42} | {agg['n_episodes']:>4} \\\\\\\"\\\\n          f\\\\\\\"| {agg['int_mean']:>7.1f} | {agg['det_mean']:>7.1f} | {agg['delta_full']:>+7.1f} \\\\\\\"\\\\n          f\\\\\\\"| {agg['int_death_rate']*100:>4.0f}% | {agg['det_death_rate']*100:>4.0f}% \\\\\\\"\\\\n          f\\\\\\\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \\\\\\\"\\\\n          f\\\\\\\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\\\\\\\")\\\\n    print(sep)\\\\n\\\\n    # Correlation\\\\n    corr = agg.get(\\\\\\\"correlation_death_rate_diff_vs_delta\\\\\\\", {})\\\\n    r = corr.get(\\\\\\\"pearson_r\\\\\\\")\\\\n    p = corr.get(\\\\\\\"p_value\\\\\\\")\\\\n    r_str = f\\\\\\\"{r:.3f}\\\\\\\" if r is not None else \\\\\\\"N/A\\\\\\\"\\\\n    p_str = f\\\\\\\"{p:.4f}\\\\\\\" if p is not None else \\\\\\\"N/A\\\\\\\"\\\\n    print(f\\\\\\\"\\\\\\\\nCorrelation (death_rate_diff vs Δ): r={r_str}, p={p_str}, n={corr.get('n_tasks', 0)} tasks\\\\\\\")\\\\n\\\\n    # Signal source breakdown\\\\n    print(f\\\\\\\"\\\\\\\\nSignal source distribution:\\\\\\\")\\\\n    for src in [\\\\\\\"death_asymmetry\\\\\\\", \\\\\\\"both_dead\\\\\\\", \\\\\\\"score_comparison\\\\\\\", \\\\\\\"tied_alive\\\\\\\"]:\\\\n        cnt = agg[\\\\\\\"signal_source_distribution\\\\\\\"].get(src, 0)\\\\n        pct = cnt / agg[\\\\\\\"n_episodes\\\\\\\"] * 100 if agg[\\\\\\\"n_episodes\\\\\\\"] else 0\\\\n        print(f\\\\\\\"  {src}: {cnt} ({pct:.1f}%)\\\\\\\")\\\\n\\\\n    # Cross table\\\\n    print(f\\\\\\\"\\\\\\\\nLabel × Signal source cross table:\\\\\\\")\\\\n    print(f\\\\\\\"  {'Label':<20} | {'death_asym':>10} | {'both_dead':>10} | {'score_cmp':>10} | {'tied_alive':>10} |\\\\\\\")\\\\n    cross = agg.get(\\\\\\\"label_signal_cross\\\\\\\", {})\\\\n    for lbl in [\\\\\\\"det-preferred\\\\\\\", \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"no-preference\\\\\\\"]:\\\\n        row = cross.get(lbl, {})\\\\n        print(f\\\\\\\"  {lbl:<20} | {row.get('death_asymmetry',0):>10} | {row.get('both_dead',0):>10} \\\\\\\"\\\\n              f\\\\\\\"| {row.get('score_comparison',0):>10} | {row.get('tied_alive',0):>10} |\\\\\\\")\\\\n\\\\n\\\\ndef generate_paper_table_data(task_results: List[dict], aggregate: dict) -> dict:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Generate data structured for LaTeX table generation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    rows = []\\\\n    for tr in task_results:\\\\n        rows.append({\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-012 Death Decomposition Analysis (D013).\\n\\nQuantifies how much of the Δ(Det-Internal) gap comes from death avoidance\\nvs genuine score improvement.\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport math\\nimport os\\nimport statistics\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Optional, Tuple\\n\\nDEATH_THRESHOLD = -100\\n\\n\\ndef is_dead(score: float) -> bool:\\n    return score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source).\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef safe_mean(values: List[float]) -> float:\\n    return statistics.mean(values) if values else float(\\\"nan\\\")\\n\\n\\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\\n    \\\"\\\"\\\"Pearson correlation with p-value. Falls back to scipy if available.\\\"\\\"\\\"\\n    try:\\n        from scipy.stats import pearsonr as sp_pearsonr\\n        r, p = sp_pearsonr(x, y)\\n        return float(r), float(p)\\n    except ImportError:\\n        pass\\n    n = len(x)\\n    if n < 3:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    mx, my = statistics.mean(x), statistics.mean(y)\\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\\n    if sx == 0 or sy == 0:\\n        return float(\\\"nan\\\"), float(\\\"nan\\\")\\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\\n    # t-test approximation for p-value\\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\\n    # Two-tailed p from t distribution (approximation)\\n    import subprocess\\n    try:\\n        result = subprocess.run(\\n            [\\\"python3\\\", \\\"-c\\\",\\n             f\\\"from scipy.stats import t as tdist; print(2*tdist.sf(abs({t}),{n-2}))\\\"],\\n            capture_output=True, text=True, timeout=5)\\n        p = float(result.stdout.strip())\\n    except Exception:\\n        p = float(\\\"nan\\\")\\n    return r, p\\n\\n\\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\\n    \\\"\\\"\\\"Load episodes grouped by task_type from multiple data directories.\\\"\\\"\\\"\\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\\n\\n    for data_dir in data_dirs:\\n        if not os.path.isdir(data_dir):\\n            print(f\\\"  WARN: {data_dir} not found, skipping\\\")\\n            continue\\n        for task_name in sorted(os.listdir(data_dir)):\\n            task_dir = os.path.join(data_dir, task_name)\\n            ep_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n            if not os.path.isfile(ep_file):\\n                continue\\n            if task_filter and task_name not in task_filter:\\n                continue\\n            with open(ep_file) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if not line:\\n                        continue\\n                    ep = json.loads(line)\\n                    if \\\"always_internal\\\" not in ep or \\\"always_deterministic\\\" not in ep:\\n                        continue\\n                    task_episodes[task_name].append(ep)\\n\\n    return dict(task_episodes)\\n\\n\\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\\n    \\\"\\\"\\\"Full death decomposition for one task.\\\"\\\"\\\"\\n    n = len(episodes)\\n    int_scores = [ep[\\\"always_internal\\\"][\\\"final_score\\\"] for ep in episodes]\\n    det_scores = [ep[\\\"always_deterministic\\\"][\\\"final_score\\\"] for ep in episodes]\\n\\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\\n    d\\n\\n... [截断: 输出过长，省略 9756 字符] ...\\n\\n \\\"delta_no_death\\\": round(delta_nd, 2) if not math.isnan(delta_nd) else None,\\n        \\\"death_avoidance_fraction\\\": round(death_frac, 4) if not math.isnan(death_frac) else None,\\n        \\\"delta_penalty_removed\\\": round(delta_pr, 2),\\n        \\\"correlation_death_rate_diff_vs_delta\\\": {\\n            \\\"pearson_r\\\": round(r, 4) if not math.isnan(r) else None,\\n            \\\"p_value\\\": round(p, 6) if not math.isnan(p) else None,\\n            \\\"n_tasks\\\": len(task_episodes),\\n        },\\n        \\\"label_distribution\\\": dict(total_label),\\n        \\\"signal_source_distribution\\\": dict(total_signal),\\n        \\\"label_signal_cross\\\": {k: dict(v) for k, v in total_label_signal.items()},\\n    }\\n\\n\\ndef print_table(task_results: List[dict], aggregate: dict):\\n    \\\"\\\"\\\"Print Director-format table.\\\"\\\"\\\"\\n    hdr = (f\\\"| {'Task':<42} | {'N':>4} | {'Int':>7} | {'Det':>7} | {'Δ':>7} \\\"\\n           f\\\"| {'I_d%':>5} | {'D_d%':>5} \\\"\\n           f\\\"| {'Δ_nd':>7} | {'D_frac':>7} | {'Δ_pr':>7} \\\"\\n           f\\\"| {'det':>4} {'int':>4} {'no':>4} |\\\")\\n    sep = \\\"-\\\" * len(hdr)\\n\\n    print(sep)\\n    print(hdr)\\n    print(sep)\\n\\n    for tr in task_results:\\n        dnd = f\\\"{tr['delta_no_death']:+.1f}\\\" if tr[\\\"delta_no_death\\\"] is not None else \\\"N/A\\\"\\n        dfr = f\\\"{tr['death_avoidance_fraction']:.0%}\\\" if tr[\\\"death_avoidance_fraction\\\"] is not None else \\\"N/A\\\"\\n        dpr = f\\\"{tr['delta_penalty_removed']:+.1f}\\\"\\n        ld = tr[\\\"label_distribution\\\"]\\n        print(f\\\"| {tr['task']:<42} | {tr['n_episodes']:>4} \\\"\\n              f\\\"| {tr['int_mean']:>7.1f} | {tr['det_mean']:>7.1f} | {tr['delta_full']:>+7.1f} \\\"\\n              f\\\"| {tr['int_death_rate']*100:>4.0f}% | {tr['det_death_rate']*100:>4.0f}% \\\"\\n              f\\\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \\\"\\n              f\\\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\\\")\\n\\n    print(sep)\\n    # Aggregate row\\n    agg = aggregate\\n    dnd = f\\\"{agg['delta_no_death']:+.1f}\\\" if agg.get(\\\"delta_no_death\\\") is not None else \\\"N/A\\\"\\n    dfr = f\\\"{agg['death_avoidance_fraction']:.0%}\\\" if agg.get(\\\"death_avoidance_fraction\\\") is not None else \\\"N/A\\\"\\n    dpr = f\\\"{agg['delta_penalty_removed']:+.1f}\\\"\\n    ld = agg[\\\"label_distribution\\\"]\\n    print(f\\\"| {'AGGREGATE':<42} | {agg['n_episodes']:>4} \\\"\\n          f\\\"| {agg['int_mean']:>7.1f} | {agg['det_mean']:>7.1f} | {agg['delta_full']:>+7.1f} \\\"\\n          f\\\"| {agg['int_death_rate']*100:>4.0f}% | {agg['det_death_rate']*100:>4.0f}% \\\"\\n          f\\\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \\\"\\n          f\\\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\\\")\\n    print(sep)\\n\\n    # Correlation\\n    corr = agg.get(\\\"correlation_death_rate_diff_vs_delta\\\", {})\\n    r = corr.get(\\\"pearson_r\\\")\\n    p = corr.get(\\\"p_value\\\")\\n    r_str = f\\\"{r:.3f}\\\" if r is not None else \\\"N/A\\\"\\n    p_str = f\\\"{p:.4f}\\\" if p is not None else \\\"N/A\\\"\\n    print(f\\\"\\\\nCorrelation (death_rate_diff vs Δ): r={r_str}, p={p_str}, n={corr.get('n_tasks', 0)} tasks\\\")\\n\\n    # Signal source breakdown\\n    print(f\\\"\\\\nSignal source distribution:\\\")\\n    for src in [\\\"death_asymmetry\\\", \\\"both_dead\\\", \\\"score_comparison\\\", \\\"tied_alive\\\"]:\\n        cnt = agg[\\\"signal_source_distribution\\\"].get(src, 0)\\n        pct = cnt / agg[\\\"n_episodes\\\"] * 100 if agg[\\\"n_episodes\\\"] else 0\\n        print(f\\\"  {src}: {cnt} ({pct:.1f}%)\\\")\\n\\n    # Cross table\\n    print(f\\\"\\\\nLabel × Signal source cross table:\\\")\\n    print(f\\\"  {'Label':<20} | {'death_asym':>10} | {'both_dead':>10} | {'score_cmp':>10} | {'tied_alive':>10} |\\\")\\n    cross = agg.get(\\\"label_signal_cross\\\", {})\\n    for lbl in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n        row = cross.get(lbl, {})\\n        print(f\\\"  {lbl:<20} | {row.get('death_asymmetry',0):>10} | {row.get('both_dead',0):>10} \\\"\\n              f\\\"| {row.get('score_comparison',0):>10} | {row.get('tied_alive',0):>10} |\\\")\\n\\n\\ndef generate_paper_table_data(task_results: List[dict], aggregate: dict) -> dict:\\n    \\\"\\\"\\\"Generate data structured for LaTeX table generation.\\\"\\\"\\\"\\n    rows = []\\n    for tr in task_results:\\n        rows.append({\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 38_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I still haven't been able to see the middle section that's truncated, specifically lines around 108-200 which are in `analyze_task`. Let me look specifically at the truncated section.
+
+Actually, looking at the truncated outputs, I have all the pieces now. Let me reconstruct what I know:
+
+**Lines 1-107**: Imports, `is_dead`, `classify_episode`, `safe_mean`, `pearsonr`, `load_episodes`, and the beginning of `analyze_task` (through `int_deaths = sum(...)` and then `d` which is clearly `det_deaths = ...`)
+
+
+**Lines ~108-200**: The rest of `analyze_task` computes death rates and basic statistics, filters for episodes without deaths, adjusts penalty values, calculates death avoidance fractions, and builds label and signal distributions before returning the results dictionary.
+**Lines ~200-280**: `aggregate_results` function
+**Lines ~280-370**: `aggregate_from`
+
+Now I'm seeing what's actually missing from the implementation. Bootstrap confidence intervals aren't computed anywhere, and the death-only episode delta would need to be derived from the existing metrics. The CLI argument parsing has issues too—`--data_dirs` should accept multiple space-separated paths instead of comma-separated, and `--output` should point to a directory rather than a file. There's also a fragile workaround using subprocess to call scipy's pearsonr, which feels like it's working around a missing import.
+
+I notice `aggregate_results` isn't even being called in main, so that's just dead weight. My approach will be to add proper bootstrap confidence intervals for the key metrics, compute the death-only delta explicitly, fix the CLI argument handling, replace the subprocess hack with a pure Python p-value calculation using the beta distribution, strip out the unused function, and add CSV output support.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "a32e59da-2088-4d4e-a843-9e652ed972fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7vbyhu8KGPwf4pTcWm1ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4384,
+      "cache_read_input_tokens": 48900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4384
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+现在我已充分理解整个脚本。总结关键缺陷和需要补充的功能：
+
+**缺失功能：**
+1. Bootstrap 95% CI — 完全没有
+2. Death-only episodes 的 Δ — 没有显式计算
+3. CSV/LaTeX 输出 — 只有 JSON
+
+**CLI 问题：**
+- `--data_dirs` 是逗号分隔，任务要求空格分隔（`nargs='+'`）
+- `--output` 期望文件路径，任务要求目录
+
+**代码问题：**
+- `pearsonr` fallback 用 subprocess 调 python3 — 脆弱且循环
+- `aggregate_results` 是死代码（`main` 只用 `aggregate_from_raw`）
+
+开始编写修复后的完整脚本。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "ac3650e5-5a0d-442b-9292-9c211d208ab2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7vbyhu8KGPwf4pTcWm1ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4384,
+      "cache_read_input_tokens": 48900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4384
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Rz61LrFiSVYkWLrkA9LQfv`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat > /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py << 'PYTHON_EOF'\n\"\"\"Plan-012 Death Decomposition Analysis.\n\nQuantifies how much of the Det-Internal gap comes from death avoidance\nvs genuine score improvement. Core evidence for the paper.\n\nInput:  results/{prescreening,research,plan_c}/{task_name}/episodes.jsonl\nOutput: JSON report, paper table JSON, CSV summary (all in --output dir)\n\nDependencies: Python 3.8+ stdlib only (scipy optional for exact p-values)\n\"\"\"\n\nimport argparse\nimport csv\nimport json\nimport math\nimport os\nimport random\nimport statistics\nfrom collections import defaultdict\nfrom typing import Dict, List, Optional, Tuple\n\nDEATH_THRESHOLD = -100\nBOOTSTRAP_N = 10000\nBOOTSTRAP_CI = 0.95\nBOOTSTRAP_SEED = 42\n\n\ndef is_dead(score: float) -> bool:\n    return score <= DEATH_THRESHOLD\n\n\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\n    \"\"\"Returns (label, reason, signal_source).\"\"\"\n    int_died = is_dead(int_score)\n    det_died = is_dead(det_score)\n\n    if int_died and not det_died:\n        return \"det-preferred\", \"int_died_det_alive\", \"death_asymmetry\"\n    if det_died and not int_died:\n        return \"internal-preferred\", \"det_died_int_alive\", \"death_asymmetry\"\n    if int_died and det_died:\n        return \"no-preference\", \"both_died\", \"both_dead\"\n    if det_score > int_score:\n        return \"det-preferred\", \"both_alive_det_wins\", \"score_comparison\"\n    if int_score > det_score:\n        return \"internal-preferred\", \"both_alive_int_wins\", \"score_comparison\"\n    return \"no-preference\", \"tie\", \"tied_alive\"\n\n\ndef safe_mean(values: List[float]) -> float:\n    return statistics.mean(values) if values else float(\"nan\")\n\n\ndef _betacf(a: float, b: float, x: float) -> float:\n    \"\"\"Continued fraction for incomplete beta (Lentz's method).\"\"\"\n    max_iter = 200\n    eps = 3e-12\n    qab = a + b\n    qap = a + 1.0\n    qam = a - 1.0\n    c = 1.0\n    d = 1.0 - qab * x / qap\n    if abs(d) < 1e-30:\n        d = 1e-30\n    d = 1.0 / d\n    h = d\n    for m in range(1, max_iter + 1):\n        m2 = 2 * m\n        aa = m * (b - m) * x / ((qam + m2) * (a + m2))\n        d = 1.0 + aa * d\n        if abs(d) < 1e-30:\n            d = 1e-30\n        c = 1.0 + aa / c\n        if abs(c) < 1e-30:\n            c = 1e-30\n        d = 1.0 / d\n        h *= d * c\n        aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2))\n        d = 1.0 + aa * d\n        if abs(d) < 1e-30:\n            d = 1e-30\n        c = 1.0 + aa / c\n        if abs(c) < 1e-30:\n            c = 1e-30\n        d = 1.0 / d\n        delta = d * c\n        h *= delta\n        if abs(delta - 1.0) < eps:\n            return h\n    return h\n\n\ndef _betai(a: float, b: float, x: float) -> float:\n    \"\"\"Regularized incomplete beta function I_x(a, b).\"\"\"\n    if x < 0 or x > 1:\n        return float(\"nan\")\n    if x == 0 or x == 1:\n        return x\n    ln_beta = math.lgamma(a) + math.lgamma(b) - math.lgamma(a + b)\n    front = math.exp(math.log(x) * a + math.log(1 - x) * b - ln_beta)\n    if x < (a + 1) / (a + b + 2):\n        return front * _betacf(a, b, x) / a\n    else:\n        return 1 - front * _betacf(b, a, 1 - x) / b\n\n\ndef _t_sf(t_val: float, df: float) -> float:\n    \"\"\"Survival function for Student's t-distribution (pure Python).\"\"\"\n    x = df / (df + t_val * t_val)\n    p = 0.5 * _betai(df / 2.0, 0.5, x)\n    return p\n\n\ndef pearsonr(x: List[float], y: List[float]) -> Tuple[float, float]:\n    \"\"\"Pearson correlation with two-tailed p-value.\"\"\"\n    try:\n        from scipy.stats import pearsonr as sp_pearsonr\n        r, p = sp_pearsonr(x, y)\n        return float(r), float(p)\n    except ImportError:\n        pass\n    n = len(x)\n    if n < 3:\n        return float(\"nan\"), float(\"nan\")\n    mx, my = statistics.mean(x), statistics.mean(y)\n    sx = math.sqrt(sum((xi - mx) ** 2 for xi in x) / (n - 1))\n    sy = math.sqrt(sum((yi - my) ** 2 for yi in y) / (n - 1))\n    if sx == 0 or sy == 0:\n        return float(\"nan\"), float(\"nan\")\n    r = sum((xi - mx) * (yi - my) for xi, yi in zip(x, y)) / ((n - 1) * sx * sy)\n    r = max(-1.0, min(1.0, r))\n    t = r * math.sqrt((n - 2) / (1 - r * r + 1e-15))\n    p = 2 * _t_sf(abs(t), n - 2)\n    return r, p\n\n\ndef bootstrap_ci(values: List[float], stat_fn=safe_mean,\n                 n_boot: int = BOOTSTRAP_N, ci: float = BOOTSTRAP_CI,\n                 seed: int = BOOTSTRAP_SEED) -> Tuple[float, float]:\n    \"\"\"Bootstrap confidence interval for a statistic.\"\"\"\n    if len(values) < 2:\n        return float(\"nan\"), float(\"nan\")\n    rng = random.Random(seed)\n    n = len(values)\n    boots = []\n    for _ in range(n_boot):\n        sample = [values[rng.randint(0, n - 1)] for _ in range(n)]\n        boots.append(stat_fn(sample))\n    boots.sort()\n    alpha = 1 - ci\n    lo = boots[int(n_boot * alpha / 2)]\n    hi = boots[int(n_boot * (1 - alpha / 2))]\n    return lo, hi\n\n\ndef bootstrap_delta_ci(int_scores: List[float], det_scores: List[float],\n                       n_boot: int = BOOTSTRAP_N, ci: float = BOOTSTRAP_CI,\n                       seed: int = BOOTSTRAP_SEED) -> Tuple[float, float]:\n    \"\"\"Bootstrap CI for mean(det) - mean(int), resampling paired episodes.\"\"\"\n    if len(int_scores) < 2:\n        return float(\"nan\"), float(\"nan\")\n    rng = random.Random(seed)\n    n = len(int_scores)\n    boots = []\n    for _ in range(n_boot):\n        idxs = [rng.randint(0, n - 1) for _ in range(n)]\n        d = statistics.mean([det_scores[i] for i in idxs]) - statistics.mean([int_scores[i] for i in idxs])\n        boots.append(d)\n    boots.sort()\n    alpha = 1 - ci\n    return boots[int(n_boot * alpha / 2)], boots[int(n_boot * (1 - alpha / 2))]\n\n\ndef load_episodes(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> Dict[str, List[dict]]:\n    \"\"\"Load episodes grouped by task_name from multiple data directories.\"\"\"\n    task_episodes: Dict[str, List[dict]] = defaultdict(list)\n\n    for data_dir in data_dirs:\n        if not os.path.isdir(data_dir):\n            print(f\"  WARN: {data_dir} not found, skipping\")\n            continue\n        for task_name in sorted(os.listdir(data_dir)):\n            task_dir = os.path.join(data_dir, task_name)\n            ep_file = os.path.join(task_dir, \"episodes.jsonl\")\n            if not os.path.isfile(ep_file):\n                continue\n            if task_filter and task_name not in task_filter:\n                continue\n            with open(ep_file) as f:\n                for line in f:\n                    line = line.strip()\n                    if not line:\n                        continue\n                    ep = json.loads(line)\n                    if \"always_internal\" not in ep or \"always_deterministic\" not in ep:\n                        continue\n                    task_episodes[task_name].append(ep)\n\n    return dict(task_episodes)\n\n\ndef analyze_task(task_name: str, episodes: List[dict]) -> dict:\n    \"\"\"Full death decomposition for one task.\"\"\"\n    n = len(episodes)\n    int_scores = [ep[\"always_internal\"][\"final_score\"] for ep in episodes]\n    det_scores = [ep[\"always_deterministic\"][\"final_score\"] for ep in episodes]\n\n    int_deaths = sum(1 for s in int_scores if is_dead(s))\n    det_deaths = sum(1 for s in det_scores if is_dead(s))\n    int_death_rate = int_deaths / n\n    det_death_rate = det_deaths / n\n\n    int_mean = safe_mean(int_scores)\n    det_mean = safe_mean(det_scores)\n    delta_full = det_mean - int_mean\n\n    # No-death subset: exclude episodes where EITHER mode died\n    nd_int, nd_det = [], []\n    # Death subset: episodes where at least one mode died\n    d_int, d_det = [], []\n    for i_s, d_s in zip(int_scores, det_scores):\n        if not is_dead(i_s) and not is_dead(d_s):\n            nd_int.append(i_s)\n            nd_det.append(d_s)\n        else:\n            d_int.append(i_s)\n            d_det.append(d_s)\n\n    delta_no_death = (safe_mean(nd_det) - safe_mean(nd_int)) if nd_int else float(\"nan\")\n    delta_death_only = (safe_mean(d_det) - safe_mean(d_int)) if d_int else float(\"nan\")\n\n    # Penalty-removed: replace -100 with 0\n    int_scores_pr = [0.0 if is_dead(s) else s for s in int_scores]\n    det_scores_pr = [0.0 if is_dead(s) else s for s in det_scores]\n    delta_penalty_removed = safe_mean(det_scores_pr) - safe_mean(int_scores_pr)\n\n    # Death avoidance fraction\n    if not math.isnan(delta_no_death) and delta_full != 0:\n        death_avoidance_frac = (delta_full - delta_no_death) / delta_full\n    else:\n        death_avoidance_frac = float(\"nan\")\n\n    # Label distribution\n    label_counts = defaultdict(int)\n    signal_counts = defaultdict(int)\n    label_signal_cross = defaultdict(lambda: defaultdict(int))\n    for i_s, d_s in zip(int_scores, det_scores):\n        label, reason, signal_source = classify_episode(i_s, d_s)\n        label_counts[label] += 1\n        signal_counts[signal_source] += 1\n        label_signal_cross[label][signal_source] += 1\n\n    # Bootstrap CIs\n    ci_delta_full = bootstrap_delta_ci(int_scores, det_scores)\n    ci_delta_nd = bootstrap_delta_ci(nd_int, nd_det) if nd_int else (float(\"nan\"), float(\"nan\"))\n\n    def _round_or_none(v, d=2):\n        return round(v, d) if not math.isnan(v) else None\n\n    return {\n        \"task\": task_name,\n        \"n_episodes\": n,\n        \"int_death_count\": int_deaths,\n        \"det_death_count\": det_deaths,\n        \"int_death_rate\": round(int_death_rate, 4),\n        \"det_death_rate\": round(det_death_rate, 4),\n        \"int_mean\": round(int_mean, 2),\n        \"det_mean\": round(det_mean, 2),\n        \"delta_full\": round(delta_full, 2),\n        \"delta_full_ci\": [_round_or_none(ci_delta_full[0]), _round_or_none(ci_delta_full[1])],\n        \"delta_no_death\": _round_or_none(delta_no_death),\n        \"delta_no_death_ci\": [_round_or_none(ci_delta_nd[0]), _round_or_none(ci_delta_nd[1])],\n        \"n_no_death_episodes\": len(nd_int),\n        \"delta_death_only\": _round_or_none(delta_death_only),\n        \"n_death_episodes\": len(d_int),\n        \"death_avoidance_fraction\": _round_or_none(death_avoidance_frac, 4),\n        \"delta_penalty_removed\": round(delta_penalty_removed, 2),\n        \"label_distribution\": {\n            \"det-preferred\": label_counts.get(\"det-preferred\", 0),\n            \"internal-preferred\": label_counts.get(\"internal-preferred\", 0),\n            \"no-preference\": label_counts.get(\"no-preference\", 0),\n        },\n        \"signal_source_distribution\": dict(signal_counts),\n        \"label_signal_cross\": {k: dict(v) for k, v in label_signal_cross.items()},\n    }\n\n\ndef aggregate_from_raw(data_dirs: List[str], task_filter: Optional[List[str]] = None) -> dict:\n    \"\"\"Aggregate from raw episode scores for exact results.\"\"\"\n    task_episodes = load_episodes(data_dirs, task_filter)\n    all_int, all_det = [], []\n    all_int_nd, all_det_nd = [], []\n    all_int_d, all_det_d = [], []\n\n    task_death_rates = []\n    task_deltas = []\n    total_label = defaultdict(int)\n    total_signal = defaultdict(int)\n    total_label_signal = defaultdict(lambda: defaultdict(int))\n\n    for task_name, episodes in task_episodes.items():\n        int_scores = [ep[\"always_internal\"][\"final_score\"] for ep in episodes]\n        det_scores = [ep[\"always_deterministic\"][\"final_score\"] for ep in episodes]\n        all_int.extend(int_scores)\n        all_det.extend(det_scores)\n\n        n = len(int_scores)\n        int_dr = sum(1 for s in int_scores if is_dead(s)) / n\n        det_dr = sum(1 for s in det_scores if is_dead(s)) / n\n        delta = safe_mean(det_scores) - safe_mean(int_scores)\n        task_death_rates.append(int_dr - det_dr)\n        task_deltas.append(delta)\n\n        for i_s, d_s in zip(int_scores, det_scores):\n            if not is_dead(i_s) and not is_dead(d_s):\n                all_int_nd.append(i_s)\n                all_det_nd.append(d_s)\n            else:\n                all_int_d.append(i_s)\n                all_det_d.append(d_s)\n            label, _, signal_source = classify_episode(i_s, d_s)\n            total_label[label] += 1\n            total_signal[signal_source] += 1\n            total_label_signal[label][signal_source] += 1\n\n    n_total = len(all_int)\n    if n_total == 0:\n        return {\"error\": \"no episodes\"}\n\n    int_mean = safe_mean(all_int)\n    det_mean = safe_mean(all_det)\n    delta_full = det_mean - int_mean\n\n    int_nd_mean = safe_mean(all_int_nd) if all_int_nd else float(\"nan\")\n    det_nd_mean = safe_mean(all_det_nd) if all_det_nd else float(\"nan\")\n    delta_nd = (det_nd_mean - int_nd_mean) if all_int_nd else float(\"nan\")\n\n    delta_death_only = (safe_mean(all_det_d) - safe_mean(all_int_d)) if all_int_d else float(\"nan\")\n\n    int_pr = safe_mean([0.0 if is_dead(s) else s for s in all_int])\n    det_pr = safe_mean([0.0 if is_dead(s) else s for s in all_det])\n    delta_pr = det_pr - int_pr\n\n    if not math.isnan(delta_nd) and delta_full != 0:\n        death_frac = (delta_full - delta_nd) / delta_full\n    else:\n        death_frac = float(\"nan\")\n\n    r, p = pearsonr(task_death_rates, task_deltas)\n\n    # Bootstrap CIs on aggregate\n    ci_delta_full = bootstrap_delta_ci(all_int, all_det)\n    ci_delta_nd = bootstrap_delta_ci(all_int_nd, all_det_nd) if all_int_nd else (float(\"nan\"), float(\"nan\"))\n\n    # Bootstrap CI for death_avoidance_fraction\n    if all_int_nd and delta_full != 0:\n        rng = random.Random(BOOTSTRAP_SEED)\n        n_ep = len(all_int)\n        daf_boots = []\n        for _ in range(BOOTSTRAP_N):\n            idxs = [rng.randint(0, n_ep - 1) for _ in range(n_ep)]\n            b_int = [all_int[i] for i in idxs]\n            b_det = [all_det[i] for i in idxs]\n            b_df = safe_mean(b_det) - safe_mean(b_int)\n            b_int_nd = [b_int[j] for j in range(n_ep) if not is_dead(b_int[j]) and not is_dead(b_det[j])]\n            b_det_nd = [b_det[j] for j in range(n_ep) if not is_dead(b_int[j]) and not is_dead(b_det[j])]\n            b_dnd = (safe_mean(b_det_nd) - safe_mean(b_int_nd)) if b_int_nd else 0\n            daf = (b_df - b_dnd) / b_df if b_df != 0 else float(\"nan\")\n            if not math.isnan(daf):\n                daf_boots.append(daf)\n        daf_boots.sort()\n        alpha = 1 - BOOTSTRAP_CI\n        ci_daf = (\n            daf_boots[int(len(daf_boots) * alpha / 2)] if daf_boots else float(\"nan\"),\n            daf_boots[int(len(daf_boots) * (1 - alpha / 2))] if daf_boots else float(\"nan\"),\n        )\n    else:\n        ci_daf = (float(\"nan\"), float(\"nan\"))\n\n    def _round_or_none(v, d=2):\n        return round(v, d) if not math.isnan(v) else None\n\n    return {\n        \"n_tasks\": len(task_episodes),\n        \"n_episodes\": n_total,\n        \"int_death_rate\": round(sum(1 for s in all_int if is_dead(s)) / n_total, 4),\n        \"det_death_rate\": round(sum(1 for s in all_det if is_dead(s)) / n_total, 4),\n        \"int_mean\": round(int_mean, 2),\n        \"det_mean\": round(det_mean, 2),\n        \"delta_full\": round(delta_full, 2),\n        \"delta_full_ci\": [_round_or_none(ci_delta_full[0]), _round_or_none(ci_delta_full[1])],\n        \"delta_no_death\": _round_or_none(delta_nd),\n        \"delta_no_death_ci\": [_round_or_none(ci_delta_nd[0]), _round_or_none(ci_delta_nd[1])],\n        \"delta_death_only\": _round_or_none(delta_death_only),\n        \"n_death_episodes\": len(all_int_d),\n        \"n_no_death_episodes\": len(all_int_nd),\n        \"death_avoidance_fraction\": _round_or_none(death_frac, 4),\n        \"death_avoidance_fraction_ci\": [_round_or_none(ci_daf[0], 4), _round_or_none(ci_daf[1], 4)],\n        \"delta_penalty_removed\": round(delta_pr, 2),\n        \"correlation_death_rate_diff_vs_delta\": {\n            \"pearson_r\": round(r, 4) if not math.isnan(r) else None,\n            \"p_value\": round(p, 6) if not math.isnan(p) else None,\n            \"n_tasks\": len(task_episodes),\n        },\n        \"label_distribution\": dict(total_label),\n        \"signal_source_distribution\": dict(total_signal),\n        \"label_signal_cross\": {k: dict(v) for k, v in total_label_signal.items()},\n    }\n\n\ndef print_table(task_results: List[dict], aggregate: dict):\n    \"\"\"Print terminal-format summary table.\"\"\"\n    hdr = (f\"| {'Task':<42} | {'N':>4} | {'Int':>7} | {'Det':>7} | {'D':>7} \"\n           f\"| {'I_d%':>5} | {'D_d%':>5} \"\n           f\"| {'D_nd':>7} | {'D_frac':>7} | {'D_pr':>7} \"\n           f\"| {'det':>4} {'int':>4} {'no':>4} |\")\n    sep = \"-\" * len(hdr)\n\n    print(sep)\n    print(hdr)\n    print(sep)\n\n    for tr in task_results:\n        dnd = f\"{tr['delta_no_death']:+.1f}\" if tr[\"delta_no_death\"] is not None else \"N/A\"\n        dfr = f\"{tr['death_avoidance_fraction']:.0%}\" if tr[\"death_avoidance_fraction\"] is not None else \"N/A\"\n        dpr = f\"{tr['delta_penalty_removed']:+.1f}\"\n        ld = tr[\"label_distribution\"]\n        print(f\"| {tr['task']:<42} | {tr['n_episodes']:>4} \"\n              f\"| {tr['int_mean']:>7.1f} | {tr['det_mean']:>7.1f} | {tr['delta_full']:>+7.1f} \"\n              f\"| {tr['int_death_rate']*100:>4.0f}% | {tr['det_death_rate']*100:>4.0f}% \"\n              f\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \"\n              f\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\")\n\n    print(sep)\n    agg = aggregate\n    dnd = f\"{agg['delta_no_death']:+.1f}\" if agg.get(\"delta_no_death\") is not None else \"N/A\"\n    dfr = f\"{agg['death_avoidance_fraction']:.0%}\" if agg.get(\"death_avoidance_fraction\") is not None else \"N/A\"\n    dpr = f\"{agg['delta_penalty_removed']:+.1f}\"\n    ld = agg[\"label_distribution\"]\n    print(f\"| {'AGGREGATE':<42} | {agg['n_episodes']:>4} \"\n          f\"| {agg['int_mean']:>7.1f} | {agg['det_mean']:>7.1f} | {agg['delta_full']:>+7.1f} \"\n          f\"| {agg['int_death_rate']*100:>4.0f}% | {agg['det_death_rate']*100:>4.0f}% \"\n          f\"| {dnd:>7s} | {dfr:>7s} | {dpr:>7s} \"\n          f\"| {ld.get('det-preferred',0):>4} {ld.get('internal-preferred',0):>4} {ld.get('no-preference',0):>4} |\")\n    print(sep)\n\n    # Bootstrap CIs\n    ci_f = agg.get(\"delta_full_ci\", [None, None])\n    ci_nd = agg.get(\"delta_no_death_ci\", [None, None])\n    ci_daf = agg.get(\"death_avoidance_fraction_ci\", [None, None])\n    print(f\"\\nDelta_full = {agg['delta_full']:+.2f}  95% CI [{ci_f[0]}, {ci_f[1]}]\")\n    print(f\"Delta_nd   = {agg.get('delta_no_death', 'N/A')}  95% CI [{ci_nd[0]}, {ci_nd[1]}]\")\n    print(f\"Delta_death= {agg.get('delta_death_only', 'N/A')}\")\n    print(f\"Death frac = {dfr}  95% CI [{ci_daf[0]}, {ci_daf[1]}]\")\n    print(f\"Delta_pr   = {agg['delta_penalty_removed']:+.2f}\")\n\n    # Correlation\n    corr = agg.get(\"correlation_death_rate_diff_vs_delta\", {})\n    r = corr.get(\"pearson_r\")\n    p = corr.get(\"p_value\")\n    r_str = f\"{r:.3f}\" if r is not None else \"N/A\"\n    p_str = f\"{p:.6f}\" if p is not None else \"N/A\"\n    print(f\"\\nCorrelation (death_rate_diff vs Delta): r={r_str}, p={p_str}, n={corr.get('n_tasks', 0)} tasks\")\n\n    # Signal source breakdown\n    print(f\"\\nSignal source distribution:\")\n    for src in [\"death_asymmetry\", \"both_dead\", \"score_comparison\", \"tied_alive\"]:\n        cnt = agg[\"signal_source_distribution\"].get(src, 0)\n        pct = cnt / agg[\"n_episodes\"] * 100 if agg[\"n_episodes\"] else 0\n        print(f\"  {src}: {cnt} ({pct:.1f}%)\")\n\n    # Cross table\n    print(f\"\\nLabel x Signal cross table:\")\n    print(f\"  {'Label':<20} | {'death_asym':>10} | {'both_dead':>10} | {'score_cmp':>10} | {'tied_alive':>10} |\")\n    cross = agg.get(\"label_signal_cross\", {})\n    for lbl in [\"det-preferred\", \"internal-preferred\", \"no-preference\"]:\n        row = cross.get(lbl, {})\n        print(f\"  {lbl:<20} | {row.get('death_asymmetry',0):>10} | {row.get('both_dead',0):>10} \"\n              f\"| {row.get('score_comparison',0):>10} | {row.get('tied_alive',0):>10} |\")\n\n\ndef generate_paper_table_data(task_results: List[dict], aggregate: dict) -> dict:\n    \"\"\"Generate data structured for LaTeX table generation.\"\"\"\n    rows = []\n    for tr in task_results:\n        rows.append({\n            \"task\": tr[\"task\"],\n            \"n\": tr[\"n_episodes\"],\n            \"int_mean\": tr[\"int_mean\"],\n            \"det_mean\": tr[\"det_mean\"],\n            \"delta\": tr[\"delta_full\"],\n            \"delta_ci\": tr.get(\"delta_full_ci\"),\n            \"int_death_pct\": round(tr[\"int_death_rate\"] * 100, 1),\n            \"det_death_pct\": round(tr[\"det_death_rate\"] * 100, 1),\n            \"delta_no_death\": tr[\"delta_no_death\"],\n            \"delta_death_only\": tr.get(\"delta_death_only\"),\n            \"death_avoidance_pct\": round(tr[\"death_avoidance_fraction\"] * 100, 1) if tr[\"death_avoidance_fraction\"] is not None else None,\n            \"delta_penalty_removed\": tr[\"delta_penalty_removed\"],\n            \"det_preferred\": tr[\"label_distribution\"].get(\"det-preferred\", 0),\n            \"internal_preferred\": tr[\"label_distribution\"].get(\"internal-preferred\", 0),\n            \"no_preference\": tr[\"label_distribution\"].get(\"no-preference\", 0),\n        })\n\n    agg_row = {\n        \"task\": \"Overall\",\n        \"n\": aggregate[\"n_episodes\"],\n        \"int_mean\": aggregate[\"int_mean\"],\n        \"det_mean\": aggregate[\"det_mean\"],\n        \"delta\": aggregate[\"delta_full\"],\n        \"delta_ci\": aggregate.get(\"delta_full_ci\"),\n        \"int_death_pct\": round(aggregate[\"int_death_rate\"] * 100, 1),\n        \"det_death_pct\": round(aggregate[\"det_death_rate\"] * 100, 1),\n        \"delta_no_death\": aggregate.get(\"delta_no_death\"),\n        \"delta_death_only\": aggregate.get(\"delta_death_only\"),\n        \"death_avoidance_pct\": round(aggregate[\"death_avoidance_fraction\"] * 100, 1) if aggregate.get(\"death_avoidance_fraction\") is not None else None,\n        \"death_avoidance_fraction_ci\": aggregate.get(\"death_avoidance_fraction_ci\"),\n        \"delta_penalty_removed\": aggregate[\"delta_penalty_removed\"],\n        \"det_preferred\": aggregate[\"label_distribution\"].get(\"det-preferred\", 0),\n        \"internal_preferred\": aggregate[\"label_distribution\"].get(\"internal-preferred\", 0),\n        \"no_preference\": aggregate[\"label_distribution\"].get(\"no-preference\", 0),\n    }\n\n    corr = aggregate.get(\"correlation_death_rate_diff_vs_delta\", {})\n\n    return {\n        \"rows\": rows,\n        \"aggregate\": agg_row,\n        \"correlation\": {\n            \"pearson_r\": corr.get(\"pearson_r\"),\n            \"p_value\": corr.get(\"p_value\"),\n            \"n\": corr.get(\"n_tasks\"),\n        },\n    }\n\n\ndef write_csv(task_results: List[dict], aggregate: dict, path: str):\n    \"\"\"Write per-task summary CSV.\"\"\"\n    fields = [\n        \"task\", \"n_episodes\", \"int_mean\", \"det_mean\", \"delta_full\",\n        \"int_death_rate\", \"det_death_rate\",\n        \"delta_no_death\", \"delta_death_only\", \"death_avoidance_fraction\",\n        \"delta_penalty_removed\",\n        \"det_preferred\", \"internal_preferred\", \"no_preference\",\n    ]\n    with open(path, \"w\", newline=\"\") as f:\n        w = csv.DictWriter(f, fieldnames=fields)\n        w.writeheader()\n        for tr in task_results:\n            row = {k: tr.get(k) for k in fields}\n            row[\"det_preferred\"] = tr[\"label_distribution\"].get(\"det-preferred\", 0)\n            row[\"internal_preferred\"] = tr[\"label_distribution\"].get(\"internal-preferred\", 0)\n            row[\"no_preference\"] = tr[\"label_distribution\"].get(\"no-preference\", 0)\n            w.writerow(row)\n        # Aggregate row\n        agg_row = {\n            \"task\": \"AGGREGATE\",\n            \"n_episodes\": aggregate[\"n_episodes\"],\n            \"int_mean\": aggregate[\"int_mean\"],\n            \"det_mean\": aggregate[\"det_mean\"],\n            \"delta_full\": aggregate[\"delta_full\"],\n            \"int_death_rate\": aggregate[\"int_death_rate\"],\n            \"det_death_rate\": aggregate[\"det_death_rate\"],\n            \"delta_no_death\": aggregate.get(\"delta_no_death\"),\n            \"delta_death_only\": aggregate.get(\"delta_death_only\"),\n            \"death_avoidance_fraction\": aggregate.get(\"death_avoidance_fraction\"),\n            \"delta_penalty_removed\": aggregate[\"delta_penalty_removed\"],\n            \"det_preferred\": aggregate[\"label_distribution\"].get(\"det-preferred\", 0),\n            \"internal_preferred\": aggregate[\"label_distribution\"].get(\"internal-preferred\", 0),\n            \"no_preference\": aggregate[\"label_distribution\"].get(\"no-preference\", 0),\n        }\n        w.writerow(agg_row)\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"Plan-012 Death Decomposition Analysis\")\n    parser.add_argument(\"--data_dirs\", nargs=\"+\", required=True,\n                        help=\"Data directories (e.g. results/prescreening results/plan_c)\")\n    parser.add_argument(\"--output\", default=\"results/decomposition_final\",\n                        help=\"Output directory for all result files\")\n    parser.add_argument(\"--tasks\", default=None,\n                        help=\"Comma-separated task types to filter (default: all)\")\n    parser.add_argument(\"--no-bootstrap\", action=\"store_true\",\n                        help=\"Skip bootstrap CI computation (faster)\")\n    args = parser.parse_args()\n\n    if args.no_bootstrap:\n        global BOOTSTRAP_N\n        BOOTSTRAP_N = 0\n\n    task_filter = [t.strip() for t in args.tasks.split(\",\")] if args.tasks else None\n\n    task_episodes = load_episodes(args.data_dirs, task_filter)\n    if not task_episodes:\n        print(\"ERROR: No episodes found in specified directories\")\n        return\n\n    print(f\"Loaded {sum(len(v) for v in task_episodes.values())} episodes \"\n          f\"across {len(task_episodes)} tasks from {len(args.data_dirs)} directories\")\n\n    # Per-task analysis\n    task_results = []\n    for task_name in sorted(task_episodes.keys()):\n        result = analyze_task(task_name, task_episodes[task_name])\n        task_results.append(result)\n\n    # Aggregate from raw scores (exact)\n    aggregate = aggregate_from_raw(args.data_dirs, task_filter)\n\n    # Terminal output\n    print_table(task_results, aggregate)\n\n    # Save outputs\n    os.makedirs(args.output, exist_ok=True)\n\n    report_path = os.path.join(args.output, \"report.json\")\n    report = {\"per_task\": task_results, \"aggregate\": aggregate}\n    with open(report_path, \"w\") as f:\n        json.dump(report, f, indent=2)\n    print(f\"\\n[Saved report to {report_path}]\")\n\n    paper_path = os.path.join(args.output, \"paper_table.json\")\n    paper_data = generate_paper_table_data(task_results, aggregate)\n    with open(paper_path, \"w\") as f:\n        json.dump(paper_data, f, indent=2)\n    print(f\"[Saved paper table to {paper_path}]\")\n\n    csv_path = os.path.join(args.output, \"summary.csv\")\n    write_csv(task_results, aggregate, csv_path)\n    print(f\"[Saved CSV to {csv_path}]\")\n\n\nif __name__ == \"__main__\":\n    main()\nPYTHON_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "dbd01283-aff7-4302-b667-b93506bf07a5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7vbyhu8KGPwf4pTcWm1ok",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4384,
+      "cache_read_input_tokens": 48900,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4384
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-14T00:45:37.306Z_
+
+<details><summary>↩ Tool result · `toolu_01Rz61LrFiSVYkWLrkA9LQfv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "d4b860c2-755a-4491-8e86-ebe6166cc9bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.85}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.85}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+脚本已写入。现在用现有预筛数据 dry-run 验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "cd85089f-2ec9-49d4-b474-f93e25e2fed1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L5wmkLdF7GPwu9npL9cixv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10478,
+      "cache_read_input_tokens": 53284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10478
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01S8pv6dN3pPQaxGCvh34YWj`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/death_decomposition.py --data_dirs results/prescreening results/research --output /tmp/decomp_test/ 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "142067c9-39c0-40e2-b1a9-ba9946600fb5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L5wmkLdF7GPwu9npL9cixv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10478,
+      "cache_read_input_tokens": 53284,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10478
+      },
+      "output_tokens": 4,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-14T00:45:52.598Z_
+
+<details><summary>↩ Tool result · `toolu_01S8pv6dN3pPQaxGCvh34YWj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 153 episodes across 26 tasks from 2 directories\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\n| Task                                       |    N |     Int |     Det |       D |  I_d% |  D_d% |    D_nd |  D_frac |    D_pr |  det  int   no |\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\n| boil                                       |   20 |   -44.7 |    -9.3 |   +35.4 |   45% |   10% |    +0.0 |    100% |    +0.4 |    7    0   13 |\\n| chemistry-mix                              |    5 |   -55.8 |     4.2 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| chemistry-mix-paint-tertiary-color         |    5 |   -37.4 |   -17.4 |   +20.0 |   40% |   20% |    +0.0 |    100% |    +0.0 |    1    0    4 |\\n| find-animal                                |    5 |   -58.4 |     8.2 |   +66.6 |   60% |    0% |    +0.0 |    100% |    +6.6 |    3    0    2 |\\n| find-living-thing                          |    5 |   -58.4 |   -16.6 |   +41.8 |   60% |   20% |    +4.5 |     89% |    +1.8 |    3    0    2 |\\n| find-non-living-thing                      |    5 |    31.6 |    24.8 |    -6.8 |    0% |    0% |    -6.8 |     -0% |    -6.8 |    2    1    2 |\\n| find-plant                                 |    5 |   -58.4 |     3.2 |   +61.6 |   60% |    0% |    +4.0 |     94% |    +1.6 |    4    0    1 |\\n| freeze                                     |    5 |   -60.0 |     2.0 |   +62.0 |   60% |    0% |    +0.0 |    100% |    +2.0 |    3    0    2 |\\n| grow-fruit                                 |    5 |   -58.6 |     1.4 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| identify-life-stages-1                     |    5 |   -60.0 |     5.0 |   +65.0 |   60% |    0% |    +0.0 |    100% |    +5.0 |    3    0    2 |\\n| identify-life-stages-2                     |    5 |   -36.8 |     3.2 |   +40.0 |   40% |    0% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| inclined-plane-determine-angle             |    5 |   -60.0 |     0.0 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| inclined-plane-friction-named-surfaces     |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| inclined-plane-friction-unnamed-surfaces   |    5 |   -60.0 |     0.0 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| lifespan-longest-lived                     |    5 |   -60.0 |   -10.0 |   +50.0 |   60% |   20% |    +0.0 |    100% |   +10.0 |    2    0    3 |\\n| lifespan-longest-lived-then-shortest-lived |    5 |   -60.0 |    10.0 |   +70.0 |   60% |    0% |    +0.0 |    100% |   +10.0 |    3    0    2 |\\n| lifespan-shortest-lived                    |    5 |   -60.0 |   -40.0 |   +20.0 |   60% |   40% |    +0.0 |    100% |    +0.0 |    1    0    4 |\\n| measure-melting-point-known-substance      |    5 |   -58.8 |     1.2 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| measure-melting-point-unknown-substance    |    9 |   -54.0 |   -13.3 |   +40.7 |   56% |   22% |   +16.5 |     59% |    +7.3 |    5    0    4 |\\n| mendelian-genetics-known-plant             |    7 |   -57.1 |   -14.3 |   +42.9 |   57% |   14% |    +0.0 |    100% |    +0.0 |    3    0    4 |\\n| mendelian-genetics-unknown-plant           |    7 |   -57.1 |   -28.6 |   +28.6 |   57% |   29% |    +0.0 |    100% |    +0.0 |    2    0    5 |\\n| power-component                            |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| power-component-renewable-vs-nonrenewable-energy |    5 |   -60.0 |     0.0 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| test-conductivity                          |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| test-conductivity-of-unknown-substances    |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| use-thermometer                            |    5 |   -59.4 |   -19.4 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\n| AGGREGATE                                  |  153 |   -52.5 |    -7.9 |   +44.6 |   54% |   11% |    +0.7 |     98% |    +1.5 |   72    1   80 |\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\n\\nDelta_full = +44.61  95% CI [36.37, 52.75]\\nDelta_nd   = 0.7  95% CI [-1.33, 2.6]\\nDelta_death= 81.64\\nDeath frac = 98%  95% CI [0.9421, 1.0308]\\nDelta_pr   = +1.47\\n\\nCorrelation (death_rate_diff vs Delta): r=0.982, p=0.000000, n=26 tasks\\n\\nSignal source distribution:\\n  death_asymmetry: 66 (43.1%)\\n  both_dead: 17 (11.1%)\\n  score_comparison: 7 (4.6%)\\n  tied_alive: 63 (41.2%)\\n\\nLabel x Signal cross table:\\n  Label                | death_asym |  both_dead |  score_cmp | tied_alive |\\n  det-preferred        |         66 |          0 |          6 |          0 |\\n  internal-preferred   |          0 |          0 |          1 |          0 |\\n  no-preference        |          0 |         17 |          0 |         63 |\\n\\n[Saved report to /tmp/decomp_test/report.json]\\n[Saved paper table to /tmp/decomp_test/paper_table.json]\\n[Saved CSV to /tmp/decomp_test/summary.csv]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.7}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "a1396fd7-629c-4da9-b25e-3050a349c9a0",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 153 episodes across 26 tasks from 2 directories\\\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\\\n| Task                                       |    N |     Int |     Det |       D |  I_d% |  D_d% |    D_nd |  D_frac |    D_pr |  det  int   no |\\\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\\\n| boil                                       |   20 |   -44.7 |    -9.3 |   +35.4 |   45% |   10% |    +0.0 |    100% |    +0.4 |    7    0   13 |\\\\n| chemistry-mix                              |    5 |   -55.8 |     4.2 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\\\n| chemistry-mix-paint-tertiary-color         |    5 |   -37.4 |   -17.4 |   +20.0 |   40% |   20% |    +0.0 |    100% |    +0.0 |    1    0    4 |\\\\n| find-animal                                |    5 |   -58.4 |     8.2 |   +66.6 |   60% |    0% |    +0.0 |    100% |    +6.6 |    3    0    2 |\\\\n| find-living-thing                          |    5 |   -58.4 |   -16.6 |   +41.8 |   60% |   20% |    +4.5 |     89% |    +1.8 |    3    0    2 |\\\\n| find-non-living-thing                      |    5 |    31.6 |    24.8 |    -6.8 |    0% |    0% |    -6.8 |     -0% |    -6.8 |    2    1    2 |\\\\n| find-plant                                 |    5 |   -58.4 |     3.2 |   +61.6 |   60% |    0% |    +4.0 |     94% |    +1.6 |    4    0    1 |\\\\n| freeze                                     |    5 |   -60.0 |     2.0 |   +62.0 |   60% |    0% |    +0.0 |    100% |    +2.0 |    3    0    2 |\\\\n| grow-fruit                                 |    5 |   -58.6 |     1.4 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\\\n| identify-life-stages-1                     |    5 |   -60.0 |     5.0 |   +65.0 |   60% |    0% |    +0.0 |    100% |    +5.0 |    3    0    2 |\\\\n| identify-life-stages-2                     |    5 |   -36.8 |     3.2 |   +40.0 |   40% |    0% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\\\n| inclined-plane-determine-angle             |    5 |   -60.0 |     0.0 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\\\n| inclined-plane-friction-named-surfaces     |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\\\n| inclined-plane-friction-unnamed-surfaces   |    5 |   -60.0 |     0.0 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\\\n| lifespan-longest-lived                     |    5 |   -60.0 |   -10.0 |   +50.0 |   60% |   20% |    +0.0 |    100% |   +10.0 |    2    0    3 |\\\\n| lifespan-longest-lived-then-shortest-lived |    5 |   -60.0 |    10.0 |   +70.0 |   60% |    0% |    +0.0 |    100% |   +10.0 |    3    0    2 |\\\\n| lifespan-shortest-lived                    |    5 |   -60.0 |   -40.0 |   +20.0 |   60% |   40% |    +0.0 |    100% |    +0.0 |    1    0    4 |\\\\n| measure-melting-point-known-substance      |    5 |   -58.8 |     1.2 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\\\n| measure-melting-point-unknown-substance    |    9 |   -54.0 |   -13.3 |   +40.7 |   56% |   22% |   +16.5 |     59% |    +7.3 |    5    0    4 |\\\\n| mendelian-genetics-known-plant             |    7 |   -57.1 |   -14.3 |   +42.9 |   57% |   14% |    +0.0 |    100% |    +0.0 |    3    0    4 |\\\\n| mendelian-genetics-unknown-plant           |    7 |   -57.1 |   -28.6 |   +28.6 |   57% |   29% |    +0.0 |    100% |    +0.0 |    2    0    5 |\\\\n| power-component                            |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\\\n| power-component-renewable-vs-nonrenewable-energy |    5 |   -60.0 |     0.0 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\\\n| test-conductivity                          |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\\\n| test-conductivity-of-unknown-substances    |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\\\n| use-thermometer                            |    5 |   -59.4 |   -19.4 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\\\n| AGGREGATE                                  |  153 |   -52.5 |    -7.9 |   +44.6 |   54% |   11% |    +0.7 |     98% |    +1.5 |   72    1   80 |\\\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\\\n\\\\nDelta_full = +44.61  95% CI [36.37, 52.75]\\\\nDelta_nd   = 0.7  95% CI [-1.33, 2.6]\\\\nDelta_death= 81.64\\\\nDeath frac = 98%  95% CI [0.9421, 1.0308]\\\\nDelta_pr   = +1.47\\\\n\\\\nCorrelation (death_rate_diff vs Delta): r=0.982, p=0.000000, n=26 tasks\\\\n\\\\nSignal source distribution:\\\\n  death_asymmetry: 66 (43.1%)\\\\n  both_dead: 17 (11.1%)\\\\n  score_comparison: 7 (4.6%)\\\\n  tied_alive: 63 (41.2%)\\\\n\\\\nLabel x Signal cross table:\\\\n  Label                | death_asym |  both_dead |  score_cmp | tied_alive |\\\\n  det-preferred        |         66 |          0 |          6 |          0 |\\\\n  internal-preferred   |          0 |          0 |          1 |          0 |\\\\n  no-preference        |          0 |         17 |          0 |         63 |\\\\n\\\\n[Saved report to /tmp/decomp_test/report.json]\\\\n[Saved paper table to /tmp/decomp_test/paper_table.json]\\\\n[Saved CSV to /tmp/decomp_test/summary.csv]\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 9.7}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 153 episodes across 26 tasks from 2 directories\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\n| Task                                       |    N |     Int |     Det |       D |  I_d% |  D_d% |    D_nd |  D_frac |    D_pr |  det  int   no |\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\n| boil                                       |   20 |   -44.7 |    -9.3 |   +35.4 |   45% |   10% |    +0.0 |    100% |    +0.4 |    7    0   13 |\\n| chemistry-mix                              |    5 |   -55.8 |     4.2 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| chemistry-mix-paint-tertiary-color         |    5 |   -37.4 |   -17.4 |   +20.0 |   40% |   20% |    +0.0 |    100% |    +0.0 |    1    0    4 |\\n| find-animal                                |    5 |   -58.4 |     8.2 |   +66.6 |   60% |    0% |    +0.0 |    100% |    +6.6 |    3    0    2 |\\n| find-living-thing                          |    5 |   -58.4 |   -16.6 |   +41.8 |   60% |   20% |    +4.5 |     89% |    +1.8 |    3    0    2 |\\n| find-non-living-thing                      |    5 |    31.6 |    24.8 |    -6.8 |    0% |    0% |    -6.8 |     -0% |    -6.8 |    2    1    2 |\\n| find-plant                                 |    5 |   -58.4 |     3.2 |   +61.6 |   60% |    0% |    +4.0 |     94% |    +1.6 |    4    0    1 |\\n| freeze                                     |    5 |   -60.0 |     2.0 |   +62.0 |   60% |    0% |    +0.0 |    100% |    +2.0 |    3    0    2 |\\n| grow-fruit                                 |    5 |   -58.6 |     1.4 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| identify-life-stages-1                     |    5 |   -60.0 |     5.0 |   +65.0 |   60% |    0% |    +0.0 |    100% |    +5.0 |    3    0    2 |\\n| identify-life-stages-2                     |    5 |   -36.8 |     3.2 |   +40.0 |   40% |    0% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| inclined-plane-determine-angle             |    5 |   -60.0 |     0.0 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| inclined-plane-friction-named-surfaces     |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| inclined-plane-friction-unnamed-surfaces   |    5 |   -60.0 |     0.0 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| lifespan-longest-lived                     |    5 |   -60.0 |   -10.0 |   +50.0 |   60% |   20% |    +0.0 |    100% |   +10.0 |    2    0    3 |\\n| lifespan-longest-lived-then-shortest-lived |    5 |   -60.0 |    10.0 |   +70.0 |   60% |    0% |    +0.0 |    100% |   +10.0 |    3    0    2 |\\n| lifespan-shortest-lived                    |    5 |   -60.0 |   -40.0 |   +20.0 |   60% |   40% |    +0.0 |    100% |    +0.0 |    1    0    4 |\\n| measure-melting-point-known-substance      |    5 |   -58.8 |     1.2 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| measure-melting-point-unknown-substance    |    9 |   -54.0 |   -13.3 |   +40.7 |   56% |   22% |   +16.5 |     59% |    +7.3 |    5    0    4 |\\n| mendelian-genetics-known-plant             |    7 |   -57.1 |   -14.3 |   +42.9 |   57% |   14% |    +0.0 |    100% |    +0.0 |    3    0    4 |\\n| mendelian-genetics-unknown-plant           |    7 |   -57.1 |   -28.6 |   +28.6 |   57% |   29% |    +0.0 |    100% |    +0.0 |    2    0    5 |\\n| power-component                            |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| power-component-renewable-vs-nonrenewable-energy |    5 |   -60.0 |     0.0 |   +60.0 |   60% |    0% |    +0.0 |    100% |    +0.0 |    3    0    2 |\\n| test-conductivity                          |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| test-conductivity-of-unknown-substances    |    5 |   -60.0 |   -20.0 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n| use-thermometer                            |    5 |   -59.4 |   -19.4 |   +40.0 |   60% |   20% |    +0.0 |    100% |    +0.0 |    2    0    3 |\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\n| AGGREGATE                                  |  153 |   -52.5 |    -7.9 |   +44.6 |   54% |   11% |    +0.7 |     98% |    +1.5 |   72    1   80 |\\n--------------------------------------------------------------------------------------------------------------------------------------------------\\n\\nDelta_full = +44.61  95% CI [36.37, 52.75]\\nDelta_nd   = 0.7  95% CI [-1.33, 2.6]\\nDelta_death= 81.64\\nDeath frac = 98%  95% CI [0.9421, 1.0308]\\nDelta_pr   = +1.47\\n\\nCorrelation (death_rate_diff vs Delta): r=0.982, p=0.000000, n=26 tasks\\n\\nSignal source distribution:\\n  death_asymmetry: 66 (43.1%)\\n  both_dead: 17 (11.1%)\\n  score_comparison: 7 (4.6%)\\n  tied_alive: 63 (41.2%)\\n\\nLabel x Signal cross table:\\n  Label                | death_asym |  both_dead |  score_cmp | tied_alive |\\n  det-preferred        |         66 |          0 |          6 |          0 |\\n  internal-preferred   |          0 |          0 |          1 |          0 |\\n  no-preference        |          0 |         17 |          0 |         63 |\\n\\n[Saved report to /tmp/decomp_test/report.json]\\n[Saved paper table to /tmp/decomp_test/paper_table.json]\\n[Saved CSV to /tmp/decomp_test/summary.csv]\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 9.7}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The script ran successfully. Let me verify the outputs look correct:
+
+1. **153 episodes across 26 tasks** - loaded from prescreening + research
+2. **Delta_full = +44.61, 95% CI [36.37, 52.75]** - significant positive gap
+3. **Delta_nd = 0.7, 95% CI [-1.33, 2.6]** - near zero when deaths excluded
+4. **Delta_death = 81.64** - huge gap in death episodes
+5. **Death frac = 98%, CI [0.9421, 1.0308]** - death avoidance dominates
+
+
+6. **Correlation r=0.982, p=0.000000** - extremely strong relationship between the metrics
+7. **Labels: 72 det-preferred, 1 internal-preferred, 80 no-preference** - clear preference distribution
+8. All three output files saved successfully
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "de92da45-4ebf-45fd-b02c-1f6f3e33d433",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyaVMKRLAY4XQ7Cbv94ssv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2763,
+      "cache_read_input_tokens": 63762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2763
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+干净运行，结果合理。验证输出文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "98f698e8-4989-46e0-83ce-6ad22f4a600c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyaVMKRLAY4XQ7Cbv94ssv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2763,
+      "cache_read_input_tokens": 63762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2763
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01G9ESEyy8xQitqQLrKJhrkT`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /tmp/decomp_test/summary.csv",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "07bbae7b-96af-4e97-bf46-e1c6a4b21a13",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyaVMKRLAY4XQ7Cbv94ssv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2763,
+      "cache_read_input_tokens": 63762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2763
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N5EeifeWgFZmhNwiCXVHGs`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -30 /tmp/decomp_test/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "3c035897-07cf-4eca-b822-ae7906fcc5e0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LyaVMKRLAY4XQ7Cbv94ssv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2763,
+      "cache_read_input_tokens": 63762,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2763
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-14T00:46:01.121Z_
+
+<details><summary>↩ Tool result · `toolu_01G9ESEyy8xQitqQLrKJhrkT`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"task,n_episodes,int_mean,det_mean,delta_full,int_death_rate,det_death_rate,delta_no_death,delta_death_only,death_avoidance_fraction,delta_penalty_removed,det_preferred,internal_preferred,no_preference\\r\\nboil,20,-44.7,-9.3,35.4,0.45,0.1,0.0,78.67,1.0,0.4,7,0,13\\r\\nchemistry-mix,5,-55.8,4.2,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\nchemistry-mix-paint-tertiary-color,5,-37.4,-17.4,20.0,0.4,0.2,0.0,50.0,1.0,0.0,1,0,4\\r\\nfind-animal,5,-58.4,8.2,66.6,0.6,0.0,0.0,111.0,1.0,6.6,3,0,2\\r\\nfind-living-thing,5,-58.4,-16.6,41.8,0.6,0.2,4.5,66.67,0.8923,1.8,3,0,2\\r\\nfind-non-living-thing,5,31.6,24.8,-6.8,0.0,0.0,-6.8,,-0.0,-6.8,2,1,2\\r\\nfind-plant,5,-58.4,3.2,61.6,0.6,0.0,4.0,100.0,0.9351,1.6,4,0,1\\r\\nfreeze,5,-60.0,2.0,62.0,0.6,0.0,0.0,103.33,1.0,2.0,3,0,2\\r\\ngrow-fruit,5,-58.6,1.4,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\nidentify-life-stages-1,5,-60.0,5.0,65.0,0.6,0.0,0.0,108.33,1.0,5.0,3,0,2\\r\\nidentify-life-stages-2,5,-36.8,3.2,40.0,0.4,0.0,0.0,100.0,1.0,0.0,2,0,3\\r\\ninclined-plane-determine-angle,5,-60.0,0.0,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\ninclined-plane-friction-named-surfaces,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\ninclined-plane-friction-unnamed-surfaces,5,-60.0,0.0,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\nlifespan-longest-lived,5,-60.0,-10.0,50.0,0.6,0.2,0.0,83.33,1.0,10.0,2,0,3\\r\\nlifespan-longest-lived-then-shortest-lived,5,-60.0,10.0,70.0,0.6,0.0,0.0,116.67,1.0,10.0,3,0,2\\r\\nlifespan-shortest-lived,5,-60.0,-40.0,20.0,0.6,0.4,0.0,33.33,1.0,0.0,1,0,4\\r\\nmeasure-melting-point-known-substance,5,-58.8,1.2,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\nmeasure-melting-point-unknown-substance,9,-54.0,-13.33,40.67,0.5556,0.2222,16.5,60.0,0.5943,7.33,5,0,4\\r\\nmendelian-genetics-known-plant,7,-57.14,-14.29,42.86,0.5714,0.1429,0.0,75.0,1.0,0.0,3,0,4\\r\\nmendelian-genetics-unknown-plant,7,-57.14,-28.57,28.57,0.5714,0.2857,0.0,50.0,1.0,0.0,2,0,5\\r\\npower-component,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\npower-component-renewable-vs-nonrenewable-energy,5,-60.0,0.0,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\ntest-conductivity,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\ntest-conductivity-of-unknown-substances,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\nuse-thermometer,5,-59.4,-19.4,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\nAGGREGATE,153,-52.5,-7.89,44.61,0.5425,0.1111,0.7,81.64,0.9843,1.47,72,1,80\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "f27836d7-ed2d-4161-af8a-41939dc74ff5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"task,n_episodes,int_mean,det_mean,delta_full,int_death_rate,det_death_rate,delta_no_death,delta_death_only,death_avoidance_fraction,delta_penalty_removed,det_preferred,internal_preferred,no_preference\\\\r\\\\nboil,20,-44.7,-9.3,35.4,0.45,0.1,0.0,78.67,1.0,0.4,7,0,13\\\\r\\\\nchemistry-mix,5,-55.8,4.2,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\\\r\\\\nchemistry-mix-paint-tertiary-color,5,-37.4,-17.4,20.0,0.4,0.2,0.0,50.0,1.0,0.0,1,0,4\\\\r\\\\nfind-animal,5,-58.4,8.2,66.6,0.6,0.0,0.0,111.0,1.0,6.6,3,0,2\\\\r\\\\nfind-living-thing,5,-58.4,-16.6,41.8,0.6,0.2,4.5,66.67,0.8923,1.8,3,0,2\\\\r\\\\nfind-non-living-thing,5,31.6,24.8,-6.8,0.0,0.0,-6.8,,-0.0,-6.8,2,1,2\\\\r\\\\nfind-plant,5,-58.4,3.2,61.6,0.6,0.0,4.0,100.0,0.9351,1.6,4,0,1\\\\r\\\\nfreeze,5,-60.0,2.0,62.0,0.6,0.0,0.0,103.33,1.0,2.0,3,0,2\\\\r\\\\ngrow-fruit,5,-58.6,1.4,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\\\r\\\\nidentify-life-stages-1,5,-60.0,5.0,65.0,0.6,0.0,0.0,108.33,1.0,5.0,3,0,2\\\\r\\\\nidentify-life-stages-2,5,-36.8,3.2,40.0,0.4,0.0,0.0,100.0,1.0,0.0,2,0,3\\\\r\\\\ninclined-plane-determine-angle,5,-60.0,0.0,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\\\r\\\\ninclined-plane-friction-named-surfaces,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\\\r\\\\ninclined-plane-friction-unnamed-surfaces,5,-60.0,0.0,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\\\r\\\\nlifespan-longest-lived,5,-60.0,-10.0,50.0,0.6,0.2,0.0,83.33,1.0,10.0,2,0,3\\\\r\\\\nlifespan-longest-lived-then-shortest-lived,5,-60.0,10.0,70.0,0.6,0.0,0.0,116.67,1.0,10.0,3,0,2\\\\r\\\\nlifespan-shortest-lived,5,-60.0,-40.0,20.0,0.6,0.4,0.0,33.33,1.0,0.0,1,0,4\\\\r\\\\nmeasure-melting-point-known-substance,5,-58.8,1.2,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\\\r\\\\nmeasure-melting-point-unknown-substance,9,-54.0,-13.33,40.67,0.5556,0.2222,16.5,60.0,0.5943,7.33,5,0,4\\\\r\\\\nmendelian-genetics-known-plant,7,-57.14,-14.29,42.86,0.5714,0.1429,0.0,75.0,1.0,0.0,3,0,4\\\\r\\\\nmendelian-genetics-unknown-plant,7,-57.14,-28.57,28.57,0.5714,0.2857,0.0,50.0,1.0,0.0,2,0,5\\\\r\\\\npower-component,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\\\r\\\\npower-component-renewable-vs-nonrenewable-energy,5,-60.0,0.0,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\\\r\\\\ntest-conductivity,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\\\r\\\\ntest-conductivity-of-unknown-substances,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\\\r\\\\nuse-thermometer,5,-59.4,-19.4,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\\\r\\\\nAGGREGATE,153,-52.5,-7.89,44.61,0.5425,0.1111,0.7,81.64,0.9843,1.47,72,1,80\\\\r\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"task,n_episodes,int_mean,det_mean,delta_full,int_death_rate,det_death_rate,delta_no_death,delta_death_only,death_avoidance_fraction,delta_penalty_removed,det_preferred,internal_preferred,no_preference\\r\\nboil,20,-44.7,-9.3,35.4,0.45,0.1,0.0,78.67,1.0,0.4,7,0,13\\r\\nchemistry-mix,5,-55.8,4.2,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\nchemistry-mix-paint-tertiary-color,5,-37.4,-17.4,20.0,0.4,0.2,0.0,50.0,1.0,0.0,1,0,4\\r\\nfind-animal,5,-58.4,8.2,66.6,0.6,0.0,0.0,111.0,1.0,6.6,3,0,2\\r\\nfind-living-thing,5,-58.4,-16.6,41.8,0.6,0.2,4.5,66.67,0.8923,1.8,3,0,2\\r\\nfind-non-living-thing,5,31.6,24.8,-6.8,0.0,0.0,-6.8,,-0.0,-6.8,2,1,2\\r\\nfind-plant,5,-58.4,3.2,61.6,0.6,0.0,4.0,100.0,0.9351,1.6,4,0,1\\r\\nfreeze,5,-60.0,2.0,62.0,0.6,0.0,0.0,103.33,1.0,2.0,3,0,2\\r\\ngrow-fruit,5,-58.6,1.4,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\nidentify-life-stages-1,5,-60.0,5.0,65.0,0.6,0.0,0.0,108.33,1.0,5.0,3,0,2\\r\\nidentify-life-stages-2,5,-36.8,3.2,40.0,0.4,0.0,0.0,100.0,1.0,0.0,2,0,3\\r\\ninclined-plane-determine-angle,5,-60.0,0.0,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\ninclined-plane-friction-named-surfaces,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\ninclined-plane-friction-unnamed-surfaces,5,-60.0,0.0,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\nlifespan-longest-lived,5,-60.0,-10.0,50.0,0.6,0.2,0.0,83.33,1.0,10.0,2,0,3\\r\\nlifespan-longest-lived-then-shortest-lived,5,-60.0,10.0,70.0,0.6,0.0,0.0,116.67,1.0,10.0,3,0,2\\r\\nlifespan-shortest-lived,5,-60.0,-40.0,20.0,0.6,0.4,0.0,33.33,1.0,0.0,1,0,4\\r\\nmeasure-melting-point-known-substance,5,-58.8,1.2,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\nmeasure-melting-point-unknown-substance,9,-54.0,-13.33,40.67,0.5556,0.2222,16.5,60.0,0.5943,7.33,5,0,4\\r\\nmendelian-genetics-known-plant,7,-57.14,-14.29,42.86,0.5714,0.1429,0.0,75.0,1.0,0.0,3,0,4\\r\\nmendelian-genetics-unknown-plant,7,-57.14,-28.57,28.57,0.5714,0.2857,0.0,50.0,1.0,0.0,2,0,5\\r\\npower-component,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\npower-component-renewable-vs-nonrenewable-energy,5,-60.0,0.0,60.0,0.6,0.0,0.0,100.0,1.0,0.0,3,0,2\\r\\ntest-conductivity,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\ntest-conductivity-of-unknown-substances,5,-60.0,-20.0,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\nuse-thermometer,5,-59.4,-19.4,40.0,0.6,0.2,0.0,66.67,1.0,0.0,2,0,3\\r\\nAGGREGATE,153,-52.5,-7.89,44.61,0.5425,0.1111,0.7,81.64,0.9843,1.47,72,1,80\\r\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-14T00:46:01.986Z_
+
+<details><summary>↩ Tool result · `toolu_01N5EeifeWgFZmhNwiCXVHGs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_task\\\": [\\n    {\\n      \\\"task\\\": \\\"boil\\\",\\n      \\\"n_episodes\\\": 20,\\n      \\\"int_death_count\\\": 9,\\n      \\\"det_death_count\\\": 2,\\n      \\\"int_death_rate\\\": 0.45,\\n      \\\"det_death_rate\\\": 0.1,\\n      \\\"int_mean\\\": -44.7,\\n      \\\"det_mean\\\": -9.3,\\n      \\\"delta_full\\\": 35.4,\\n      \\\"delta_full_ci\\\": [\\n        15.0,\\n        56.05\\n      ],\\n      \\\"delta_no_death\\\": 0.0,\\n      \\\"delta_no_death_ci\\\": [\\n        0.0,\\n        0.0\\n      ],\\n      \\\"n_no_death_episodes\\\": 11,\\n      \\\"delta_death_only\\\": 78.67,\\n      \\\"n_death_episodes\\\": 9,\\n      \\\"death_avoidance_fraction\\\": 1.0,\\n      \\\"delta_penalty_removed\\\": 0.4,\\n      \\\"label_distribution\\\": {\\n        \\\"det-preferred\\\": 7,\\n        \\\"internal-preferred\\\": 0,\\n        \\\"no-preference\\\": 13\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "866ba3bf-ad21-4f17-80cd-0a089f4615b5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_task\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"boil\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"int_death_count\\\\\\\": 9,\\\\n      \\\\\\\"det_death_count\\\\\\\": 2,\\\\n      \\\\\\\"int_death_rate\\\\\\\": 0.45,\\\\n      \\\\\\\"det_death_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"int_mean\\\\\\\": -44.7,\\\\n      \\\\\\\"det_mean\\\\\\\": -9.3,\\\\n      \\\\\\\"delta_full\\\\\\\": 35.4,\\\\n      \\\\\\\"delta_full_ci\\\\\\\": [\\\\n        15.0,\\\\n        56.05\\\\n      ],\\\\n      \\\\\\\"delta_no_death\\\\\\\": 0.0,\\\\n      \\\\\\\"delta_no_death_ci\\\\\\\": [\\\\n        0.0,\\\\n        0.0\\\\n      ],\\\\n      \\\\\\\"n_no_death_episodes\\\\\\\": 11,\\\\n      \\\\\\\"delta_death_only\\\\\\\": 78.67,\\\\n      \\\\\\\"n_death_episodes\\\\\\\": 9,\\\\n      \\\\\\\"death_avoidance_fraction\\\\\\\": 1.0,\\\\n      \\\\\\\"delta_penalty_removed\\\\\\\": 0.4,\\\\n      \\\\\\\"label_distribution\\\\\\\": {\\\\n        \\\\\\\"det-preferred\\\\\\\": 7,\\\\n        \\\\\\\"internal-preferred\\\\\\\": 0,\\\\n        \\\\\\\"no-preference\\\\\\\": 13\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.84}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_task\\\": [\\n    {\\n      \\\"task\\\": \\\"boil\\\",\\n      \\\"n_episodes\\\": 20,\\n      \\\"int_death_count\\\": 9,\\n      \\\"det_death_count\\\": 2,\\n      \\\"int_death_rate\\\": 0.45,\\n      \\\"det_death_rate\\\": 0.1,\\n      \\\"int_mean\\\": -44.7,\\n      \\\"det_mean\\\": -9.3,\\n      \\\"delta_full\\\": 35.4,\\n      \\\"delta_full_ci\\\": [\\n        15.0,\\n        56.05\\n      ],\\n      \\\"delta_no_death\\\": 0.0,\\n      \\\"delta_no_death_ci\\\": [\\n        0.0,\\n        0.0\\n      ],\\n      \\\"n_no_death_episodes\\\": 11,\\n      \\\"delta_death_only\\\": 78.67,\\n      \\\"n_death_episodes\\\": 9,\\n      \\\"death_avoidance_fraction\\\": 1.0,\\n      \\\"delta_penalty_removed\\\": 0.4,\\n      \\\"label_distribution\\\": {\\n        \\\"det-preferred\\\": 7,\\n        \\\"internal-preferred\\\": 0,\\n        \\\"no-preference\\\": 13\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.84}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51_
+
+全部通过。脚本运行正常，输出完整。
+
+**修改总结：**
+
+| 项目 | 旧版 | 新版 |
+|------|------|------|
+| Bootstrap 95% CI | 无 | delta_full, delta_nd, death_avoidance_fraction 均有 |
+| Death-only Δ | 不计算 | `delta_death_only` = 81.64 (聚合) |
+| CLI `--data_dirs` | 逗号分隔 | 空格分隔 `nargs='+'` |
+| CLI `--output` | 单文件路径 | 输出目录（含 report.json + paper_table.json + summary.csv） |
+| CSV 输出 | 无 | summary.csv |
+| pearsonr fallback | subprocess 调 python3（脆弱） | 纯 Python 实现（regularized incomplete beta） |
+| 死代码 `aggregate_results` | 保留 | 删除 |
+
+**Dry-run 结果（26 tasks, 153 episodes）：**
+- Δ_full = +44.61, 95% CI [36.37, 52.75]
+- Δ_nd = +0.7, 95% CI [-1.33, 2.6]
+- Death avoidance fraction = 98%, CI [94.2%, 103.1%]
+- Pearson r = 0.982, p < 0.000001
+- 一键命令可用：`python src/death_decomposition.py --data_dirs results/plan_c results/prescreening results/research --output results/decomposition_final/`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "uuid": "70704b53-e10d-4da0-b579-1969e8d345bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XuN1P6KdXAFF76bHbU6JrZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2657,
+      "cache_read_input_tokens": 66525,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2657
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 52_
+
+全部通过。脚本运行正常，输出完整。
+
+**修改总结：**
+
+| 项目 | 旧版 | 新版 |
+|------|------|------|
+| Bootstrap 95% CI | 无 | delta_full, delta_nd, death_avoidance_fraction 均有 |
+| Death-only Δ | 不计算 | `delta_death_only` = 81.64 (聚合) |
+| CLI `--data_dirs` | 逗号分隔 | 空格分隔 `nargs='+'` |
+| CLI `--output` | 单文件路径 | 输出目录（含 report.json + paper_table.json + summary.csv） |
+| CSV 输出 | 无 | summary.csv |
+| pearsonr fallback | subprocess 调 python3（脆弱） | 纯 Python 实现（regularized incomplete beta） |
+| 死代码 `aggregate_results` | 保留 | 删除 |
+
+**Dry-run 结果（26 tasks, 153 episodes）：**
+- Δ_full = +44.61, 95% CI [36.37, 52.75]
+- Δ_nd = +0.7, 95% CI [-1.33, 2.6]
+- Death avoidance fraction = 98%, CI [94.2%, 103.1%]
+- Pearson r = 0.982, p < 0.000001
+- 一键命令可用：`python src/death_decomposition.py --data_dirs results/plan_c results/prescreening results/research --output results/decomposition_final/`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 226126,
+  "duration_api_ms": 208828,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "94e6d89b-5a1b-4ccf-b55d-1fa6dccf18f5",
+  "total_cost_usd": 0.9457952499999999,
+  "usage": {
+    "input_tokens": 15,
+    "cache_creation_input_tokens": 57341,
+    "cache_read_input_tokens": 437632,
+    "output_tokens": 14668,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 57341,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 432,
+        "cache_read_input_tokens": 66525,
+        "cache_creation_input_tokens": 2657,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2657
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1748,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001823,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 15,
+      "outputTokens": 14668,
+      "cacheReadInputTokens": 437632,
+      "cacheCreationInputTokens": 57341,
+      "webSearchRequests": 0,
+      "costUSD": 0.9439722499999998,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "290bc839-d5d0-45d5-9c72-c00e5f9290c3"
+}
+```
+
+</details>
+
+---

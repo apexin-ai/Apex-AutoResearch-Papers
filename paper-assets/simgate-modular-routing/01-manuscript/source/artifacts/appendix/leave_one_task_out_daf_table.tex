@@ -1,0 +1,28 @@
+\begin{table}[h]
+\centering
+\small
+\caption{Leave-one-task-out DAF sensitivity. Among the 10 death-prone tasks, removing any single task changes DAF by at most 3.0\,pp (range: 75.9\%--78.9\%). Removing \emph{Find Non-Living Thing}, the sole death-free task that contributes all 20 score-comparison episodes, raises DAF to 100\% by construction.}
+\label{tab:loto-daf}
+\begin{tabular}{lrrr}
+\toprule
+Removed Task & $N_\text{rem}$ & DAF (\%) & $\Delta$ (pp) \\
+\midrule
+(none, full) & 245 & 78.9 & --- \\
+\midrule
+Find Non-Living$^\dagger$ & 205 & 100.0 & +21.1 \\
+Lifespan Longest & 220 & 75.9 & $-$3.0 \\
+Life Stages 1 & 225 & 76.7 & $-$2.2 \\
+Lifespan Long+Short & 225 & 76.7 & $-$2.2 \\
+Chemistry Mix & 225 & 77.0 & $-$1.9 \\
+Grow Fruit & 225 & 77.3 & $-$1.7 \\
+Inclined Plane Angle & 225 & 77.3 & $-$1.7 \\
+Freeze & 225 & 77.5 & $-$1.4 \\
+Life Stages 2 & 225 & 77.5 & $-$1.4 \\
+Melt Pt Unknown & 225 & 77.5 & $-$1.4 \\
+Find Animal & 225 & 77.8 & $-$1.2 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2pt}
+{\footnotesize $^\dagger$Only death-free task; contributes all score-comparison labels. Sorted by $|\Delta|$ descending.}
+\end{table}

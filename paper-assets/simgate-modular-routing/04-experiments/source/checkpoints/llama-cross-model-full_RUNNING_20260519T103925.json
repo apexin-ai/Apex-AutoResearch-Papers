@@ -1,0 +1,220 @@
+{
+  "exp_id": "llama-cross-model-full",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:39:54.695Z",
+    "updated_at": "2026-05-19T10:39:25.100Z",
+    "hypothesis": "Death dominance mechanism (DAF ~78.9% on Qwen-7B) generalizes across model families: Llama-3.1-8B-Instruct on the same 11 ScienceWorld tasks will show (1) DAF direction consistent with Qwen, (2) similar death-prone vs non-death-prone task pattern, and (3) high per-task death rate correlation with Qwen. This validates C3's cross-model generality claim beyond the limited pilot (7 tasks, 70 eps).",
+    "parent": "plan-012-full",
+    "server": "westb-13313",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-13313",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-19T02:04:28.366Z",
+      "finished_at": null,
+      "training_hours": null
+    },
+    "spec": {
+      "command": "bash scripts/run_llama_full_gpu0.sh (cuda:0, 6 tasks) + bash scripts/run_llama_full_gpu1.sh (cuda:1, 5 tasks)",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "data_path": "11 ScienceWorld tasks (10 death-prone + find-non-living-thing)",
+      "data_count": 220,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (inference-only, counterfactual data collection)",
+      "eval_data": "11 ScienceWorld tasks × 20 episodes × 2 conditions (always-internal + always-deterministic)",
+      "pid_gpu0": "277224",
+      "pid_gpu1": "277468",
+      "tmux_sessions": [
+        "llama-full-gpu0",
+        "llama-full-gpu1"
+      ],
+      "model_path": "/root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct",
+      "temperature": 0.3,
+      "max_steps": 30
+    },
+    "notes": "09:29 UTC: 10/11 tasks DONE. GPU 1 finished all 5 tasks. GPU 0: 5/6 done, identify-life-stages-1 in progress (4/20 eps). ETA ~10:30 UTC. GPU 0 VRAM occupied (28GB vLLM), util 0% normal during ScienceWorld interaction phase.",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-19T04:26:20.711329+00:00",
+          "note": "false alarm - cron PID mismatch, manually reverted to RUNNING"
+        }
+      ]
+    },
+    "metrics": {
+      "total_episodes": 220,
+      "tasks": 11,
+      "internal_death_rate": 0.4136,
+      "det_death_rate": 0.1136,
+      "delta_dr_pp": 30,
+      "both_dead": 22,
+      "det_preferred": 83,
+      "int_preferred": 3,
+      "no_preference": 134,
+      "delta_full": 33.17,
+      "delta_nd": 3.9,
+      "daf": 88.2,
+      "per_task": {
+        "chemistry-mix": {
+          "n": 20,
+          "int_dr": 45,
+          "det_dr": 20,
+          "int_deaths": 9,
+          "det_deaths": 4,
+          "both_dead": 4,
+          "det_pref": 5,
+          "int_pref": 0,
+          "tie": 15,
+          "int_avg": -43.2,
+          "det_avg": -17.1
+        },
+        "find-animal": {
+          "n": 20,
+          "int_dr": 40,
+          "det_dr": 25,
+          "int_deaths": 8,
+          "det_deaths": 5,
+          "both_dead": 3,
+          "det_pref": 6,
+          "int_pref": 2,
+          "tie": 12,
+          "int_avg": -39.2,
+          "det_avg": -23
+        },
+        "find-non-living-thing": {
+          "n": 20,
+          "int_dr": 0,
+          "det_dr": 0,
+          "int_deaths": 0,
+          "det_deaths": 0,
+          "both_dead": 0,
+          "det_pref": 10,
+          "int_pref": 0,
+          "tie": 10,
+          "int_avg": 22,
+          "det_avg": 41.2
+        },
+        "freeze": {
+          "n": 20,
+          "int_dr": 45,
+          "det_dr": 0,
+          "int_deaths": 9,
+          "det_deaths": 0,
+          "both_dead": 0,
+          "det_pref": 9,
+          "int_pref": 0,
+          "tie": 11,
+          "int_avg": -44.8,
+          "det_avg": 0.8
+        },
+        "grow-fruit": {
+          "n": 20,
+          "int_dr": 45,
+          "det_dr": 5,
+          "int_deaths": 9,
+          "det_deaths": 1,
+          "both_dead": 1,
+          "det_pref": 8,
+          "int_pref": 0,
+          "tie": 12,
+          "int_avg": -43.7,
+          "det_avg": -3.7
+        },
+        "identify-life-stages-1": {
+          "n": 20,
+          "int_dr": 55,
+          "det_dr": 10,
+          "int_deaths": 11,
+          "det_deaths": 2,
+          "both_dead": 2,
+          "det_pref": 9,
+          "int_pref": 0,
+          "tie": 11,
+          "int_avg": -55,
+          "det_avg": -7.5
+        },
+        "identify-life-stages-2": {
+          "n": 20,
+          "int_dr": 45,
+          "det_dr": 5,
+          "int_deaths": 9,
+          "det_deaths": 1,
+          "both_dead": 1,
+          "det_pref": 8,
+          "int_pref": 0,
+          "tie": 12,
+          "int_avg": -43.4,
+          "det_avg": -3.4
+        },
+        "inclined-plane-determine-angle": {
+          "n": 20,
+          "int_dr": 45,
+          "det_dr": 20,
+          "int_deaths": 9,
+          "det_deaths": 4,
+          "both_dead": 4,
+          "det_pref": 6,
+          "int_pref": 0,
+          "tie": 14,
+          "int_avg": -44,
+          "det_avg": -14.5
+        },
+        "lifespan-longest-lived": {
+          "n": 20,
+          "int_dr": 35,
+          "det_dr": 5,
+          "int_deaths": 7,
+          "det_deaths": 1,
+          "both_dead": 0,
+          "det_pref": 7,
+          "int_pref": 1,
+          "tie": 12,
+          "int_avg": -30,
+          "det_avg": 2.5
+        },
+        "lifespan-longest-lived-then-shortest-lived": {
+          "n": 20,
+          "int_dr": 50,
+          "det_dr": 20,
+          "int_deaths": 10,
+          "det_deaths": 4,
+          "both_dead": 4,
+          "det_pref": 6,
+          "int_pref": 0,
+          "tie": 14,
+          "int_avg": -48.4,
+          "det_avg": -15.1
+        },
+        "measure-melting-point-unknown-substance": {
+          "n": 20,
+          "int_dr": 50,
+          "det_dr": 15,
+          "int_deaths": 10,
+          "det_deaths": 3,
+          "both_dead": 3,
+          "det_pref": 9,
+          "int_pref": 0,
+          "tie": 11,
+          "int_avg": -49.3,
+          "det_avg": -14.2
+        }
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-19T10:39:25.331220+00:00",
+  "trigger": "update_registry"
+}

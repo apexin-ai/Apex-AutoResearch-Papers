@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1397f87c45feca5a6b02",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval plan 004 v5 corrected",
+  "task_key": "worker_eval_plan-004-v5-corrected_20260516T000126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan-004-v5-corrected_20260516T000126_result.json",
+    "occurrence": 1,
+    "bytes": 1479,
+    "sha256": "0b3f5844c4be6cc5decaf7f1bda433d4465731622e12340a81edb51c3bf6f5f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果对比：\n\n### plan-004-v5 Corrected Eval 结果\n\n| 指标 | 旧值 (错误 split, n=300) | 新值 (corrected split, n=305) |\n|------|--------------------------|-------------------------------|\n| **Balanced Accuracy** | 0.4148 | **0.7533** |\n| n_val | 300 | 305 |\n\n### Corrected 详细指标\n\n| 指标 | 值 |\n|------|-----|\n| Accuracy | 68.8% |\n| **Balanced Accuracy** | **75.3%** |\n| Internal Recall | 83.3% |\n| Internal Precision | 21.7% |\n| Det Recall | 67.3% |\n| Det Precision | 97.4% |\n\n### Confusion Matrix (rows=true, cols=pred)\n\n|  | pred det | pred int |\n|--|----------|----------|\n| **true det** | 185 | 90 |\n| **true int** | 5 | 25 |\n\nGT 分布: det=275, int=30 | Pred 分布: det=190, int=115\n\n### 分析\n\n旧 balanced_acc=0.4148 → 新 balanced_acc=0.7533，**差异巨大 (+0.3385)**。旧 eval 用了与训练不匹配的 sklearn episode-level split（n_val=300），导致 train/val 数据重叠（contamination）或分布偏移，产出了严重失真的低分。\n\nCorrected eval 使用训练代码的 exact split function（per-task_type step-level stratified, seed=42），val set 与训练集无重叠。模型实际表现远好于之前报告的数字。\n\n模型特点：internal recall 高（83.3%，30 个中找到 25 个），但 internal precision 低（21.7%），说明模型倾向于过度预测 internal（115 个 pred vs 30 个 GT），将大量 deterministic 误判为 internal。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-004-v5-corrected.md"
+}

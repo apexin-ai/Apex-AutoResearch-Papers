@@ -1,0 +1,19 @@
+Plan-012 dry-run outputs (30 tasks, 249 episodes):
+
+Aggregate: Δ_full=+38.33, Δ_nd=+0.48, death_fraction=98.75%, r=0.986
+Labels: det-preferred=102, no-preference=146, internal-preferred=1
+
+Figures generated:
+- fig1_death_scatter.pdf/png — X=death_rate_diff, Y=Δ(D-I), regression line + r
+- fig2_label_distribution.pdf/png — per-task stacked bar
+- fig3_death_avoidance.pdf/png — per-task DAF, red highlight <95%
+
+Data: paper_table1_data.json (LaTeX-ready), death_decomposition_report.json (full)
+
+DAF outliers (<95%):
+- measure-melting-point-unknown: 59.4%, Δ_nd=+16.5
+- find-living-thing: 89.2%, Δ_nd=+4.5
+- find-plant: 93.5%, Δ_nd=+4.0
+- find-non-living-thing: 0%, Δ_nd=-6.8
+
+Server path: /root/autodl-tmp/simgate-modular-routing/results/decomposition_dryrun/

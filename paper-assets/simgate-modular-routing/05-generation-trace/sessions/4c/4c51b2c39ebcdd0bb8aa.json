@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c51b2c39ebcdd0bb8aa",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper introduction expansion",
+  "task_key": "worker_paper_introduction-expansion_20260515T101918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_introduction-expansion_20260515T101918_result.json",
+    "occurrence": 1,
+    "bytes": 885,
+    "sha256": "a41898bcb6d99c315ca8afb68d81486fcef3fa6fceadafc0fd762dc1f9624b2c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Introduction 已扩写完成。主要变更：\n\n- **Motivation**: 展开了 LLM agent routing 问题的背景，明确指出现有方法假设 routing signal 来源多样但从未系统验证\n- **Research question**: 显式提出 \"what actually drives the value of routing decisions?\"，并预告 ~90% death avoidance 的结论\n- **Approach**: 解释了 step-level oracle 退化的问题，引出 episode-level counterfactual 方法论\n- **Key findings**: 保留了所有关键数字（245 episodes, DAF=90.41%, 78.9%, r=0.97, MATH +4.3pp）\n- **Contributions**: 从 2 条扩展为 5 条（C1-C5），覆盖 routing signal decomposition、death dominance、cross-environment contrast、cross-model pilot、router diagnostic\n- **Paper structure**: 末尾添加了 section 导读\n- MATH 和 Llama pilot 的 claim 强度控制为 \"directional\" / \"preliminary\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-introduction-expansion.md"
+}

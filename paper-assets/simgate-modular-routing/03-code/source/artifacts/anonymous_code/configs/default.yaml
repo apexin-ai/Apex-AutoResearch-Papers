@@ -1,0 +1,60 @@
+# Default experiment configuration
+
+# ScienceWorld task types for counterfactual analysis
+tasks:
+  - freeze
+  - find-animal
+  - identify-life-stages-1
+  - identify-life-stages-2
+  - inclined-plane-determine-angle
+  - lifespan-longest-lived
+  - lifespan-longest-lived-then-shortest-lived
+  - measure-melting-point-unknown-substance
+  - grow-fruit
+  - chemistry-mix
+  - find-non-living-thing
+
+# Counterfactual collection
+counterfactual:
+  n_episodes_per_task: 30
+  lookahead_steps: 5
+  max_steps_per_episode: 30
+  n_candidates: 3
+  seed: 42
+
+# Death decomposition
+decomposition:
+  death_threshold: -100
+  bootstrap_n: 10000
+  bootstrap_ci: 0.95
+
+# Router SFT training
+router_training:
+  model_name: "Qwen/Qwen3-1.7B"
+  lora_r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  epochs: 3
+  batch_size: 32
+  lr: 2.0e-5
+  max_seq_len: 2048
+  warmup_ratio: 0.1
+  weight_decay: 0.01
+  early_stopping_patience: 2
+
+# Generative router training
+generative_router:
+  model_name: "Qwen/Qwen3-1.7B"
+  lora_r: 16
+  lora_alpha: 32
+  epochs: 3
+  batch_size: 4
+  grad_accum: 8
+  lr: 2.0e-5
+  upsample_ratio: 0.3
+
+# LLM agent
+agent:
+  model: "Qwen/Qwen2.5-7B-Instruct"
+  max_new_tokens: 512
+  temperature: 0.0

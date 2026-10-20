@@ -1,0 +1,16 @@
+{
+  "exp_id": "reflexion-internal-baseline-b",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T13:57:51.606Z",
+    "updated_at": "2026-05-17T13:57:57.667Z",
+    "hypothesis": "Reflexion baseline Part 2 (tasks 7-11): 与 part 1 并行收集，验证 reflexion 对 death rate 的影响",
+    "parent": "reflexion-internal-baseline"
+  },
+  "timestamp": "2026-05-17T13:57:57.884152+00:00",
+  "trigger": "update_registry"
+}

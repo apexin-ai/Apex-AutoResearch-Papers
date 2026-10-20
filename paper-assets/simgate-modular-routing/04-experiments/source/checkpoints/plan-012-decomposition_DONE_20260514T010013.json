@@ -1,0 +1,47 @@
+{
+  "exp_id": "plan-012-decomposition",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:50:01.170Z",
+    "updated_at": "2026-05-14T01:00:13.916Z",
+    "hypothesis": "Death decomposition 中间分析：30 tasks / 249 episodes 上验证 death avoidance 占 ~99% routing signal（预分析，plan-001b 完整数据后将重跑最终版）",
+    "spec": {
+      "command": "python src/death_decomposition.py --data_dirs results/plan_c results/prescreening results/research --output results/decomposition_final/",
+      "server": "westb-13313",
+      "data_path": "results/plan_c/ + results/prescreening/ + results/research/ (30 ScienceWorld task types)",
+      "data_count": 249,
+      "model_name": "N/A (analysis only)",
+      "seed": "N/A",
+      "script_path": "src/death_decomposition.py",
+      "task_count": 30,
+      "checkpoint_path": "N/A (analysis only)",
+      "log_path": "results/plan_c/death_decomposition/"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "delta_full": 37.9,
+      "delta_nd": 0.2,
+      "death_avoidance_fraction": 0.99,
+      "pearson_r": 0.989,
+      "pearson_p": "<0.0001",
+      "label_dist": {
+        "det_preferred": "41%",
+        "internal_preferred": "0.5%",
+        "no_preference": "59%"
+      },
+      "delta_penalty_removed": 0.9,
+      "tasks": 30,
+      "episodes": 249,
+      "note": "预分析（prescreening 5ep/task + MVP 20ep/task），plan-001b 全量数据后将重跑最终版"
+    },
+    "checkpoint_path": "results/death_decomposition_report.json",
+    "log_path": "results/decomposition_final/",
+    "completed_at": "2026-05-14T01:00:13.916Z"
+  },
+  "timestamp": "2026-05-14T01:00:13.946109+00:00",
+  "trigger": "update_registry"
+}

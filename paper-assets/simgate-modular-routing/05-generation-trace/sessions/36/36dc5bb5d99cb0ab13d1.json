@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36dc5bb5d99cb0ab13d1",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper table1 ci fix",
+  "task_key": "worker_paper_table1-ci-fix_20260514T145609",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_table1-ci-fix_20260514T145609_result.json",
+    "occurrence": 1,
+    "bytes": 618,
+    "sha256": "4d7b0f381169c46dfbd603bb76eb413204f99055ec9c3c56671a8d8da6768c9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。变更汇总：\n\n**`docs/paper/experiments.tex`**（3 处修改）：\n1. **表头** `90\\% CI` → `95\\% CI`\n2. **表格 5 行数据**全部替换为 registry plan-003-bootstrap-95ci 的值\n3. **caption** `90\\% confidence intervals computed via bootstrap` → `95\\% Bootstrap CIs`\n4. **正文 End-to-end evaluation 段落**中两处内联 CI 值和标注从 90% 更新为 95%\n\n**`artifacts/_project/paper/latex/experiments.tex`** — 已经是 95% CI + 正确数值，无需修改。\n\nDeath % 列两处均为 42.9/16.3/27.8/14.3/17.6%，一致。全文已无 90% CI 残留。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-table1-ci-fix.md"
+}

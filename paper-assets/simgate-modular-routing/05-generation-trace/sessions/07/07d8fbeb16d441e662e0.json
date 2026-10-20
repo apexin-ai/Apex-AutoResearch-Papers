@@ -1,0 +1,1366 @@
+{
+  "schema_version": "1.0",
+  "id": "07d8fbeb16d441e662e0",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "fix tie rate 98 to 97",
+  "task_key": "worker_fix_tie-rate-98-to-97_20260514T123338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_fix_tie-rate-98-to-97_20260514T123338.jsonl",
+    "occurrence": 1,
+    "bytes": 51621,
+    "sha256": "068b8b7bccfeca0685354825e72438966d573519e11489cd88bb9678935b15f7"
+  },
+  "statistics": {
+    "messages": 67,
+    "user_turns": 0,
+    "tool_calls": 33,
+    "roles": {
+      "tool_call": 33,
+      "tool_result": 33,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T12:36:15.449651+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T12:36:15.450007+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T12:36:15.450189+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"98\\.2\" /root/autodl-tmp/simgate-modular-routing/paper/*.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T12:36:15.450358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/paper/introduction.tex:5:Existing routing approaches \\\\\\\\cite{toolformer-2024,art-2023,chameleon-2024} frame tool selection as a capability or efficiency decision---matching subtasks to tools that can solve them. This framing ignores a potentially dominant signal: routing to \\\\\\\\emph{avoid catastrophic failure}. Understanding what routing actually learns requires counterfactual analysis, but the standard per-step oracle approach degenerates under sparse rewards. On ScienceWorld, where non-zero reward arrives only at episode termination, 98.2\\\\\\\\% of steps produce tied intermediate scores under both strategies across 245 episodes---no step-level signal exists to train a router (\\\\\\\\S\\\\\\\\ref{sec:collection}).\\\\n/root/autodl-tmp/simgate-modular-routing/paper/main.tex:25:Existing routing approaches \\\\\\\\cite{toolformer-2024,art-2023,chameleon-2024} frame tool selection as a capability or efficiency decision---matching subtasks to tools that can solve them. This framing ignores a potentially dominant signal: routing to \\\\\\\\emph{avoid catastrophic failure}. Understanding what routing actually learns requires counterfactual analysis, but the standard per-step oracle approach degenerates under sparse rewards. On ScienceWorld, where non-zero reward arrives only at episode termination, 98.2\\\\\\\\% of steps produce identical scores regardless of modality---no step-level signal exists to train a router (\\\\\\\\S\\\\\\\\ref{sec:collection}). Keyword-based heuristics (\\\\\\\\S\\\\\\\\ref{sec:rule}) also fail structurally: ScienceWorld actions use generic verbs (\\\\\\\\texttt{pour}, \\\\\\\\texttt{move}, \\\\\\\\texttt{activate}) rather than science-specific terminology, providing no lexical basis for routing decisions.\\\\n/root/autodl-tmp/simgate-modular-routing/paper/main.tex:31:\\\\\\\\item \\\\\\\\textbf{Episode-level counterfactual methodology with death avoidance decomposition.} We introduce a framework that generat\n…[truncated 1262 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T12:36:15.450562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"input\\|include\\|begin{abstract}\\|begin{document}\" /root/autodl-tmp/simgate-modular-routing/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T12:36:15.450716+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T12:36:15.450864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"98\\|97\\.4\\|tie.rate\\|step.*tie\" /root/autodl-tmp/simgate-modular-routing/paper/abstract.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T12:36:15.451021+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T12:36:15.451153+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"98\\|97\\.4\\|tie.rate\\|step.*tie\" /root/autodl-tmp/simgate-modular-routing/paper/conclusion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T12:36:15.451275+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T12:36:15.451405+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"input\\|include\" /root/autodl-tmp/simgate-modular-routing/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T12:36:15.451525+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T12:36:15.451642+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"98\\|tie\" /root/autodl-tmp/simgate-modular-routing/paper/abstract.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T12:36:15.451760+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T12:36:15.451873+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"98\\|tie\" /root/autodl-tmp/simgate-modular-routing/paper/conclusion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T12:36:15.452004+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T12:36:15.452149+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -nE \"input|include\" /root/autodl-tmp/simgate-modular-routing/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T12:36:15.452266+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T12:36:15.452386+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/paper/abstract.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T12:36:15.452500+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/paper/conclusion.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T12:36:15.452624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\begin{abstract}\\\\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\\\\\\\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 98\\\\\\\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Applying this methodology to 245 episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, we find that death avoidance accounts for approximately 90\\\\\\\\% of the routing signal (Death Avoidance Factor), with per-task death rate differentials correlating near-perfectly with routing benefit. The oracle router agrees with always-deterministic on 96.2\\\\\\\\% of decisions, and a trained router achieves near-random balanced accuracy. These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\\\\n\\\\\\\\end{abstract}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-14T12:36:15.452759+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Conclusion}\\\\n\\\\nWe presented episode-level counterfactual analysis for diagnosing routing behavior in modular LLM agents. Applied to 245 episodes across 11 ScienceWorld task types, death avoidance accounts for 90.41\\\\\\\\% of the routing signal ($\\\\\\\\Delta_\\\\\\\\text{full}$ = +29.60 vs.\\\\\\\\ $\\\\\\\\Delta_\\\\\\\\text{nd}$ = +2.84), corroborated by near-perfect cross-task correlation ($r$ = 0.9698), oracle degeneracy (96.2\\\\\\\\% agreement with always-deterministic), and near-random trained-router accuracy (58.1\\\\\\\\%).\\\\n\\\\n\\\\\\\\paragraph{Limitations.} Our analysis uses a single benchmark (ScienceWorld) with one LLM backbone (Qwen2.5-7B-Instruct); the $-100$ death penalty may amplify DAF. The router trains on pure-strategy trajectories but deploys in mixed-strategy settings, introducing distribution shift \\\\\\\\cite{dagger-2011}. Future work should extend to step-level labeling, diverse failure modes, and stronger backbones.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-14T12:36:15.452912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -n \"input\" /root/autodl-tmp/simgate-modular-routing/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-14T12:36:15.453053+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -50 /root/autodl-tmp/simgate-modular-routing/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-14T12:36:15.453175+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-14T12:36:15.453358+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\documentclass[11pt]{article}\\\\n\\\\\\\\usepackage[review]{acl}\\\\n\\\\\\\\usepackage{times}\\\\n\\\\\\\\usepackage{latexsym}\\\\n\\\\\\\\usepackage{graphicx}\\\\n\\\\\\\\usepackage{booktabs}\\\\n\\\\\\\\usepackage{amsmath}\\\\n\\\\\\\\usepackage{url}\\\\n\\\\n\\\\\\\\title{Death Avoidance Dominates the Routing Signal in Modular LLM Agents}\\\\n\\\\\\\\author{Anonymous ACL Submission}\\\\n\\\\\\\\date{}\\\\n\\\\n\\\\\\\\begin{document}\\\\n\\\\\\\\maketitle\\\\n\\\\n\\\\\\\\begin{abstract}\\\\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\\\\\\\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 98\\\\\\\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Applying this methodology to 245 episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, we find that death avoidance accounts for 90.41\\\\\\\\% of the routing signal (Death Avoidance Factor). Per-task death rate differentials correlate near-perfectly with routing benefit ($r$ = 0.9698, $p$ = 8.12$\\\\\\\\times$10$^{-7}$). The oracle router agrees with always-deterministic on 96.2\\\\\\\\% of decisions, and a trained router achieves only 58.1\\\\\\\\% balanced accuracy---near random. These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\\\\n\\\\\\\\end{abstract}\\\\n\\\\n\\\\\\\\section{Introduction}\\\\n\\\\nWhen a Qwen2.5-7B-Instruct agent attempts to boil water in ScienceWorld \\\\\\\\cite{scienceworld-2022}, it must track temperature thresholds, container states, and heat source interactions across dozens of steps. Internal LLM reasoning hallucinates these state transitions---predicting wa\n…[truncated 5615 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-14T12:36:15.453559+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cd /root/autodl-tmp/simgate-modular-routing/paper && sed -i 's/98\\.2\\\\%/97.4\\\\%/g' main.tex introduction.tex method.tex && sed -i 's/98\\\\% of steps/97\\\\% of steps/g' main.tex abstract.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-14T12:36:15.453694+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.15}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-14T12:36:15.453835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"98\" /root/autodl-tmp/simgate-modular-routing/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-14T12:36:15.454050+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"97\\.4\" /root/autodl-tmp/simgate-modular-routing/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-14T12:36:15.454228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"18:Modular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\\\\\\\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97\\\\\\\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Applying this methodology to 245 episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, we find that death avoidance accounts for 90.41\\\\\\\\% of the routing signal (Death Avoidance Factor). Per-task death rate differentials correlate near-perfectly with routing benefit ($r$ = 0.9698, $p$ = 8.12$\\\\\\\\times$10$^{-7}$). The oracle router agrees with always-deterministic on 96.2\\\\\\\\% of decisions, and a trained router achieves only 58.1\\\\\\\\% balanced accuracy---near random. These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\\\\n27:We propose \\\\\\\\emph{episode-level counterfactual analysis}: run complete episodes under pure-internal (ReAct~\\\\\\\\cite{react-2023}) and pure-deterministic strategies, then compare episode outcomes to generate routing labels (\\\\\\\\S\\\\\\\\ref{sec:collection}). Across 11 ScienceWorld task types (245 episodes), the full deterministic advantage is $\\\\\\\\Delta_{\\\\\\\\text{full}} = +29.60$ points. Excluding episodes where either strategy causes agent death, this gap collapses to $\\\\\\\\Delta_{\\\\\\\\text{no\\\\\\\\_death}} = +2.84$---a Death Avoidance Factor (DAF; \\\\\\\\S\\\\\\\\ref{sec:daf}) of 90.41\\\\\\\\%. The per-task correlation between death rate differential and performance gap is $r = 0.9698$ ($p = 8.12 \\\\\\\\times 10^{-7}$), confirming that death avoidance is the pr\n…[truncated 1589 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-14T12:36:15.454375+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"97\" /root/autodl-tmp/simgate-modular-routing/paper/abstract.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-14T12:36:15.454521+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"25:Existing routing approaches \\\\\\\\cite{toolformer-2024,art-2023,chameleon-2024} frame tool selection as a capability or efficiency decision---matching subtasks to tools that can solve them. This framing ignores a potentially dominant signal: routing to \\\\\\\\emph{avoid catastrophic failure}. Understanding what routing actually learns requires counterfactual analysis, but the standard per-step oracle approach degenerates under sparse rewards. On ScienceWorld, where non-zero reward arrives only at episode termination, 97.4\\\\\\\\% of steps produce identical scores regardless of modality---no step-level signal exists to train a router (\\\\\\\\S\\\\\\\\ref{sec:collection}). Keyword-based heuristics (\\\\\\\\S\\\\\\\\ref{sec:rule}) also fail structurally: ScienceWorld actions use generic verbs (\\\\\\\\texttt{pour}, \\\\\\\\texttt{move}, \\\\\\\\texttt{activate}) rather than science-specific terminology, providing no lexical basis for routing decisions.\\\\n31:\\\\\\\\item \\\\\\\\textbf{Episode-level counterfactual methodology with death avoidance decomposition.} We introduce a framework that generates routing labels from episode-level outcome comparisons and decomposes the routing signal via the DAF metric and death-aware labeling (\\\\\\\\S\\\\\\\\ref{sec:collection}, \\\\\\\\S\\\\\\\\ref{sec:daf}). This overcomes per-step oracle degeneracy (97.4\\\\\\\\% tie rate) in sparse-reward environments.\\\\n40:Per-step oracle labeling assigns routing labels by comparing single-step outcomes under each computation modality. Under sparse terminal rewards, this approach degenerates: on ScienceWorld \\\\\\\\cite{scienceworld-2022}, 97.4\\\\\\\\% of steps produce identical intermediate scores regardless of modality, yielding no routing signal. We instead perform episode-level counterfactual analysis.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.26}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-14T12:36:15.454655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"97\\.4\" /root/autodl-tmp/simgate-modular-routing/paper/introduction.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-14T12:36:15.454810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"97\\.4\" /root/autodl-tmp/simgate-modular-routing/paper/method.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-14T12:36:15.454945+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"2:Modular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\\\\\\\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97\\\\\\\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Applying this methodology to 245 episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, we find that death avoidance accounts for approximately 90\\\\\\\\% of the routing signal (Death Avoidance Factor), with per-task death rate differentials correlating near-perfectly with routing benefit. The oracle router agrees with always-deterministic on 96.2\\\\\\\\% of decisions, and a trained router achieves near-random balanced accuracy. These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.27}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-14T12:36:15.455110+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"5:Existing routing approaches \\\\\\\\cite{toolformer-2024,art-2023,chameleon-2024} frame tool selection as a capability or efficiency decision---matching subtasks to tools that can solve them. This framing ignores a potentially dominant signal: routing to \\\\\\\\emph{avoid catastrophic failure}. Understanding what routing actually learns requires counterfactual analysis, but the standard per-step oracle approach degenerates under sparse rewards. On ScienceWorld, where non-zero reward arrives only at episode termination, 97.4\\\\\\\\% of steps produce tied intermediate scores under both strategies across 245 episodes---no step-level signal exists to train a router (\\\\\\\\S\\\\\\\\ref{sec:collection}).\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-14T12:36:15.455240+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"6:Per-step oracle labeling assigns routing labels by comparing single-step outcomes under each modality. Under sparse terminal rewards, this degenerates: on ScienceWorld \\\\\\\\cite{scienceworld-2022}, 97.4\\\\\\\\% of steps produce identical intermediate scores regardless of modality, yielding no routing signal. We instead perform episode-level counterfactual analysis.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-14T12:36:15.455400+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"98\\.2\" /root/autodl-tmp/simgate-modular-routing/paper/*.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-14T12:36:15.455527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-14T12:36:15.455660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cd /root/autodl-tmp/simgate-modular-routing/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-14T12:36:15.455796+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Underfull \\\\\\\\hbox (badness 1168) in paragraph at lines 41--46\\\\n\\\\\\\\OT1/ptm/m/n/10 Roberta Raileanu, Maria Lomeli, Eric Ham-bro,\\\\n) [5] (./main.aux) )\\\\n(see the transcript file for additional information){/usr/share/texlive/texmf-d\\\\nist/fonts/enc/dvips/base/8r.enc}</usr/share/texlive/texmf-dist/fonts/type1/publ\\\\nic/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams\\\\nfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\\\\nm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.\\\\npfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></us\\\\nr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/share/\\\\ntexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texliv\\\\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf\\\\n-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/f\\\\nonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/ty\\\\npe1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve\\\\ntic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>\\\\n</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/tex\\\\nlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (5 pages, 204847 bytes).\\\\nTranscript written on main.log.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.06}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-14T12:36:15.455947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/paper/main.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-14T12:36:15.456188+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\documentclass[11pt]{article}\\\\n\\\\\\\\usepackage[review]{acl}\\\\n\\\\\\\\usepackage{times}\\\\n\\\\\\\\usepackage{latexsym}\\\\n\\\\\\\\usepackage{graphicx}\\\\n\\\\\\\\usepackage{booktabs}\\\\n\\\\\\\\usepackage{amsmath}\\\\n\\\\\\\\usepackage{url}\\\\n\\\\n\\\\\\\\title{Death Avoidance Dominates the Routing Signal in Modular LLM Agents}\\\\n\\\\\\\\author{Anonymous ACL Submission}\\\\n\\\\\\\\date{}\\\\n\\\\n\\\\\\\\begin{document}\\\\n\\\\\\\\maketitle\\\\n\\\\n\\\\\\\\begin{abstract}\\\\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\\\\\\\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97\\\\\\\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Applying this methodology to 245 episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, we find that death avoidance accounts for 90.41\\\\\\\\% of the routing signal (Death Avoidance Factor). Per-task death rate differentials correlate near-perfectly with routing benefit ($r$ = 0.9698, $p$ = 8.12$\\\\\\\\times$10$^{-7}$). The oracle router agrees with always-deterministic on 96.2\\\\\\\\% of decisions, and a trained router achieves only 58.1\\\\\\\\% balanced accuracy---near random. These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\\\\n\\\\\\\\end{abstract}\\\\n\\\\n\\\\\\\\section{Introduction}\\\\n\\\\nWhen a Qwen2.5-7B-Instruct agent attempts to boil water in ScienceWorld \\\\\\\\cite{scienceworld-2022}, it must track temperature thresholds, container states, and heat source interactions across dozens of steps. Internal LLM reasoning hallucinates these state transitions---predicting wa\n…[truncated 6609 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-14T12:36:15.456349+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/paper/abstract.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-14T12:36:15.456475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/paper/introduction.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-14T12:36:15.456593+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/paper/method.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-14T12:36:15.456723+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\begin{abstract}\\\\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\\\\\\\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97\\\\\\\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Applying this methodology to 245 episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, we find that death avoidance accounts for approximately 90\\\\\\\\% of the routing signal (Death Avoidance Factor), with per-task death rate differentials correlating near-perfectly with routing benefit. The oracle router agrees with always-deterministic on 96.2\\\\\\\\% of decisions, and a trained router achieves near-random balanced accuracy. These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\\\\n\\\\\\\\end{abstract}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-14T12:36:15.456878+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Introduction}\\\\n\\\\nWhen a Qwen2.5-7B-Instruct agent attempts to boil water in ScienceWorld \\\\\\\\cite{scienceworld-2022}, it must track temperature thresholds, container states, and heat source interactions across dozens of steps. Internal LLM reasoning hallucinates these state transitions---predicting water has boiled when the stove was never activated---triggering agent death with a $-100$ penalty. Deterministic external computation (environment simulators, code interpreters) eliminates such hallucinations by executing exact state transitions. The natural question: when should an agent route computation externally versus reasoning internally?\\\\n\\\\nExisting routing approaches \\\\\\\\cite{toolformer-2024,art-2023,chameleon-2024} frame tool selection as a capability or efficiency decision---matching subtasks to tools that can solve them. This framing ignores a potentially dominant signal: routing to \\\\\\\\emph{avoid catastrophic failure}. Understanding what routing actually learns requires counterfactual analysis, but the standard per-step oracle approach degenerates under sparse rewards. On ScienceWorld, where non-zero reward arrives only at episode termination, 97.4\\\\\\\\% of steps produce tied intermediate scores under both strategies across 245 episodes---no step-level signal exists to train a router (\\\\\\\\S\\\\\\\\ref{sec:collection}).\\\\n\\\\nWe propose \\\\\\\\emph{episode-level counterfactual analysis}: run complete episodes under pure-internal (ReAct~\\\\\\\\cite{react-2023}) and pure-deterministic strategies, then compare episode outcomes to generate routing labels (\\\\\\\\S\\\\\\\\ref{sec:collection}). Across 11 ScienceWorld task types (245 episodes), the full deterministic advantage is $\\\\\\\\Delta_{\\\\\\\\text{full}} = +29.60$ points. Excluding death episodes, this gap collapses to $\\\\\\\\Delta_{\\\\\\\\text{no\\\\\\\\_death}} = +2.84$---a Death Avoidance Factor (DAF; \\\\\\\\S\\\\\\\\ref{sec:daf}) of 90.41\\\\\\\\%. The per-task correlation bet\n…[truncated 1338 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-14T12:36:15.457081+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Method}\\\\n\\\\n\\\\\\\\subsection{Counterfactual Episode Collection}\\\\n\\\\\\\\label{sec:collection}\\\\n\\\\nPer-step oracle labeling assigns routing labels by comparing single-step outcomes under each modality. Under sparse terminal rewards, this degenerates: on ScienceWorld \\\\\\\\cite{scienceworld-2022}, 97.4\\\\\\\\% of steps produce identical intermediate scores regardless of modality, yielding no routing signal. We instead perform episode-level counterfactual analysis.\\\\n\\\\nFor each task instance, we execute two complete episodes under identical initial conditions. The \\\\\\\\emph{pure-internal} episode follows the ReAct paradigm \\\\\\\\cite{react-2023}, where the LLM interleaves chain-of-thought reasoning with environment actions. The \\\\\\\\emph{pure-deterministic} episode uses the environment simulator to compute exact state transitions. In both cases the LLM selects which action to take; deterministic computation replaces only the state-transition prediction---equivalent to giving the agent a perfect world model.\\\\n\\\\nEach episode pair produces a tuple $(s^{\\\\\\\\text{int}}, s^{\\\\\\\\text{det}}, d^{\\\\\\\\text{int}}, d^{\\\\\\\\text{det}})$, where $s$ denotes the terminal score and $d \\\\\\\\in \\\\\\\\{0,1\\\\\\\\}$ indicates agent death. Episodes are capped at 30 steps. The LLM backbone is Qwen2.5-7B-Instruct served via vLLM. ScienceWorld spans 30 task types with a $-100$ death penalty; after prescreening, we collect 245 episode pairs across 11 task types (20--40 per type).\\\\n\\\\n\\\\\\\\subsection{Death-Aware Labeling}\\\\n\\\\\\\\label{sec:labeling}\\\\n\\\\nEach counterfactual pair receives an episode-level routing label based on $(s^{\\\\\\\\text{int}}, s^{\\\\\\\\text{det}}, d^{\\\\\\\\text{int}}, d^{\\\\\\\\text{det}})$. Scores are integer-valued, so we use exact (in)equality. The label is assigned by four mutually exclusive cases:\\\\n\\\\n\\\\\\\\begin{enumerate}\\\\n    \\\\\\\\item \\\\\\\\textbf{Death asymmetry}: $d^{\\\\\\\\text{int}} \\\\\\\\neq d^{\\\\\\\\text{det}}$ $\\\\\\\\rightarrow$\n…[truncated 1286 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-14T12:36:15.457265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-14T12:36:15.457389+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/latex/main.tex\nartifacts/_project/paper/latex/abstract.tex\nartifacts/_project/paper/latex/introduction.tex\nartifacts/_project/paper/latex/method.tex\nartifacts/_project/paper/latex/experiments.tex\nartifacts/_project/paper/latex/related_work.tex\nartifacts/_project/paper/latex/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-14T12:36:15.457533+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/main.tex"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-14T12:36:15.457660+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\\usepackage[review]{acl}\n3\t\\usepackage{times}\n4\t\\usepackage{latexsym}\n5\t\\usepackage{amsmath}\n6\t\\usepackage{amssymb}\n7\t\\usepackage{graphicx}\n8\t\\usepackage{booktabs}\n9\t\n10\t\\title{Death Avoidance Accounts for 90\\% of the Routing Signal in LLM Agent Tool Use}\n11\t\n12\t\\author{Anonymous ACL submission}\n13\t\n14\t\\begin{document}\n15\t\\maketitle\n16\t\\input{abstract}\n17\t\\input{introduction}\n18\t\\input{method}\n19\t\\input{experiments}\n20\t\\input{related_work}\n21\t\\input{conclusion}\n22\t\n23\t\\bibliography{references}\n24\t\n25\t\\end{document}\n26\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-14T12:36:15.457779+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/abstract.tex"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-14T12:36:15.457896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 98\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Applying this methodology to 245 episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, we find that death avoidance accounts for approximately 90\\% of the routing signal (Death Avoidance Factor), with per-task death rate differentials correlating near-perfectly with routing benefit. The oracle router agrees with always-deterministic on 96.2\\% of decisions, and a trained router achieves near-random balanced accuracy. These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-14T12:36:15.458034+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/introduction.tex"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-14T12:36:15.458173+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\tWhen a Qwen2.5-7B-Instruct agent attempts to boil water in ScienceWorld \\cite{scienceworld-2022}, it must track temperature thresholds, container states, and heat source interactions across dozens of steps. Internal LLM reasoning hallucinates these state transitions---predicting water has boiled when the stove was never activated---triggering agent death with a $-100$ penalty. Deterministic external computation (environment simulators, code interpreters) eliminates such hallucinations by executing exact state transitions. The natural question: when should an agent route computation externally versus reasoning internally?\n4\t\n5\tExisting routing approaches \\cite{toolformer-2024,art-2023,chameleon-2024} frame tool selection as a capability or efficiency decision---matching subtasks to tools that can solve them. This framing ignores a potentially dominant signal: routing to \\emph{avoid catastrophic failure}. Understanding what routing actually learns requires counterfactual analysis, but the standard per-step oracle approach degenerates under sparse rewards. On ScienceWorld, where non-zero reward arrives only at episode termination, 98.2\\% of steps produce tied intermediate scores under both strategies across 245 episodes---no step-level signal exists to train a router (\\S\\ref{sec:collection}).\n6\t\n7\tWe propose \\emph{episode-level counterfactual analysis}: run complete episodes under pure-internal (ReAct~\\cite{react-2023}) and pure-deterministic strategies, then compare episode outcomes to generate routing labels (\\S\\ref{sec:collection}). Across 11 ScienceWorld task types (245 episodes), the full deterministic advantage is $\\Delta_{\\text{full}} = +29.60$ points. Excluding death episodes, this gap collapses to $\\Delta_{\\text{no\\_death}} = +2.84$---a Death Avoidance Factor (DAF; \\S\\ref{sec:daf}) of 90.41\\%. The per-task correlation between death rate differential and performance gap is $r = 0.9698$ ($p = 8.12 \\times 10^{-7}$), confirming death \n…[truncated 1048 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-14T12:36:15.458316+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/method.tex"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-14T12:36:15.458455+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\n3\t\\subsection{Counterfactual Episode Collection}\n4\t\\label{sec:collection}\n5\t\n6\tPer-step oracle labeling assigns routing labels by comparing single-step outcomes under each modality. Under sparse terminal rewards, this degenerates: on ScienceWorld \\cite{scienceworld-2022}, 98.2\\% of steps produce identical intermediate scores regardless of modality, yielding no routing signal. We instead perform episode-level counterfactual analysis.\n7\t\n8\tFor each task instance, we execute two complete episodes under identical initial conditions. The \\emph{pure-internal} episode follows the ReAct paradigm \\cite{react-2023}, where the LLM interleaves chain-of-thought reasoning with environment actions. The \\emph{pure-deterministic} episode uses the environment simulator to compute exact state transitions. In both cases the LLM selects which action to take; deterministic computation replaces only the state-transition prediction---equivalent to giving the agent a perfect world model.\n9\t\n10\tEach episode pair produces a tuple $(s^{\\text{int}}, s^{\\text{det}}, d^{\\text{int}}, d^{\\text{det}})$, where $s$ denotes the terminal score and $d \\in \\{0,1\\}$ indicates agent death. Episodes are capped at 30 steps. The LLM backbone is Qwen2.5-7B-Instruct served via vLLM. ScienceWorld spans 30 task types with a $-100$ death penalty; after prescreening, we collect 245 episode pairs across 11 task types (20--40 per type).\n11\t\n12\t\\subsection{Death-Aware Labeling}\n13\t\\label{sec:labeling}\n14\t\n15\tEach counterfactual pair receives an episode-level routing label based on $(s^{\\text{int}}, s^{\\text{det}}, d^{\\text{int}}, d^{\\text{det}})$. Scores are integer-valued, so we use exact (in)equality. The label is assigned by four mutually exclusive cases:\n16\t\n17\t\\begin{enumerate}\n18\t    \\item \\textbf{Death asymmetry}: $d^{\\text{int}} \\neq d^{\\text{det}}$ $\\rightarrow$ surviving strategy preferred.\n19\t    \\item \\textbf{Both dead}: $d^{\\text{int}} = d^{\\text{det}} = 1$ $\\rightarrow$ \\texttt{no\\_p\n…[truncated 944 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-14T12:36:15.458635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/abstract.tex",
+              "old_string": "98\\% of steps yield tied outcomes",
+              "new_string": "97\\% of steps yield tied outcomes"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-14T12:36:15.458805+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/abstract.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-14T12:36:15.458929+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/introduction.tex",
+              "old_string": "98.2\\% of steps produce tied intermediate scores",
+              "new_string": "97.4\\% of steps produce tied intermediate scores"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-14T12:36:15.459115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/introduction.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-14T12:36:15.459236+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/method.tex",
+              "old_string": "98.2\\% of steps produce identical intermediate scores",
+              "new_string": "97.4\\% of steps produce identical intermediate scores"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-14T12:36:15.459371+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/method.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-14T12:36:15.459534+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。汇总：\n\n**服务器端**（已替换 + 编译通过，5 页）：\n| 文件 | 位置 | 旧值 | 新值 |\n|------|------|------|------|\n| main.tex:18 (Abstract) | `98\\%` | `97\\%` |\n| main.tex:25 (Introduction) | `98.2\\%` | `97.4\\%` |\n| main.tex:31 (Contributions) | `98.2\\%` | `97.4\\%` |\n| main.tex:40 (Method §3.1) | `98.2\\%` | `97.4\\%` |\n| abstract.tex:2 | `98\\%` | `97\\%` |\n| introduction.tex:5 | `98.2\\%` | `97.4\\%` |\n| method.tex:6 | `98.2\\%` | `97.4\\%` |\n\n**本地端**（已同步）：abstract.tex、introduction.tex、method.tex 均已更新。\n\n**Conclusion 无 tie rate 数字**，无需修改。grep 确认 `98.2` 零残留。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_fix_tie-rate-98-to-97_20260514T123338"
+          },
+          "id": "event-000067"
+        }
+      ],
+      "message_count": 67
+    }
+  ],
+  "readable_path": "readable/conversations/fix-tie-rate-98-to-97.md"
+}

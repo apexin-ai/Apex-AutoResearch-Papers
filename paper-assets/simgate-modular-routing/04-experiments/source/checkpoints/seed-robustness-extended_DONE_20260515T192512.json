@@ -1,0 +1,79 @@
+{
+  "exp_id": "seed-robustness-extended",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "account": "root",
+    "completed_at": "2026-05-15T19:08:17.165Z",
+    "created_at": "2026-05-15T19:03:15.593Z",
+    "extra": {
+      "previous_failure": {
+        "conclusion": "killed"
+      }
+    },
+    "gpu": "cuda:0,cuda:1",
+    "hypothesis": "追加 4 个新 seed (46/47/48/49) 重训 router，与 seed-robustness-core 的 4 seed (42-45) 合并为 8-seed 汇总统计。验证 cross-split balanced_acc 的 55.4±5.2% 在更大样本下是否稳定。同一训练 protocol（Qwen3-1.7B LoRA, same hyperparams, episode-level stratified split）。",
+    "parent": "seed-robustness-core",
+    "reproduce": {
+      "gpu": "cuda:0,cuda:1",
+      "server": "westb-13313",
+      "started_at": "2026-05-15T19:04:14.228Z",
+      "finished_at": "2026-05-15T19:25:11.705Z",
+      "training_hours": 0.35
+    },
+    "retry_count": 1,
+    "server": "westb-13313",
+    "spec": {
+      "checkpoint_path": "checkpoints/seed-robustness-seed{46,47,48,49}/",
+      "checkpoint_source": "n/a (training from scratch, not eval)",
+      "command": "GPU0: implicit_router_sft.py --seed 46 then --seed 47 | GPU1: implicit_router_sft.py --seed 48 then --seed 49",
+      "data_count": 2040,
+      "data_path": "data/plan-004-implicit/ + results/plan_c/",
+      "eval_data": "n/a (training experiment, eval is part of train script)",
+      "gpu": "cuda:0 + cuda:1 (RTX 5090 32GB)",
+      "gpu0_pid": 890486,
+      "gpu1_pid": 890629,
+      "hyperparams": {
+        "batch_size": 4,
+        "effective_batch_size": 32,
+        "epochs": 3,
+        "gradient_accumulation_steps": 8,
+        "lora_r": 16,
+        "lr": 2e-05,
+        "upsample_minority": true
+      },
+      "log_path": "~/runs/simgate-modular-routing/seed-robustness-ext-gpu{0,1}.log",
+      "model_name": "Qwen3-1.7B",
+      "seed": "46,47,48,49",
+      "server": "westb-13313"
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-15T19:25:12.788Z",
+    "metrics": {
+      "training_complete": true,
+      "seeds": [
+        46,
+        47,
+        48,
+        49
+      ],
+      "eval_loss_training": {
+        "seed46": 0.3679,
+        "seed47": 0.3749,
+        "seed48": 0.3468,
+        "seed49": 0.371
+      },
+      "mean_eval_loss_training": 0.3652,
+      "std_eval_loss_training": 0.0127,
+      "router_eval_pending": true,
+      "note": "balanced_acc and internal_recall not yet computed — need to run router eval on seeds 46-49 like was done for core seeds 42-45"
+    },
+    "checkpoint_path": "checkpoints/seed-robustness-seed{46,47,48,49}/final_adapter/",
+    "log_path": "~/runs/simgate-modular-routing/seed-robustness-ext-gpu{0,1}.log",
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-15T19:25:12.934452+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "plan-012-penalty-sensitivity",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:57:37.159Z",
+    "updated_at": "2026-05-14T12:57:51.322Z",
+    "metrics": {
+      "N": 245,
+      "n_only_int_dies": 70,
+      "n_only_det_dies": 5,
+      "n_both_die": 35,
+      "n_neither_die": 135,
+      "delta": 0.2653,
+      "delta_nd": 3.07,
+      "delta_full_100": 29.6,
+      "DAF_P10": 46.4,
+      "DAF_P25": 68.4,
+      "DAF_P50": 81.2,
+      "DAF_P100": 89.6,
+      "DAF_P200": 94.5
+    }
+  },
+  "timestamp": "2026-05-14T12:57:51.433874+00:00",
+  "trigger": "update_registry"
+}

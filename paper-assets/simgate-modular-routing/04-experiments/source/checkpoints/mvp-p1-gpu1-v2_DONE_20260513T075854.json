@@ -1,0 +1,39 @@
+{
+  "exp_id": "mvp-p1-gpu1-v2",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:44:48.498Z",
+    "updated_at": "2026-05-13T07:58:54.134Z",
+    "spec": {
+      "command": "python src/phase1_signal.py --task_types 'chemistry-mix-paint-secondary-color,grow-plant' --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --use_vllm",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "282176",
+      "log_path": "~/runs/simgate-modular-routing/mvp-p1-gpu1-v2.log",
+      "submitted_at": "2026-05-13T07:56:59.044Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ScienceWorld",
+      "data_count": 0,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "wall_clock_seconds": 115.1,
+      "gpu_hours": 0.03
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T07:58:53.050Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T07:58:54.134Z"
+  },
+  "timestamp": "2026-05-13T07:58:54.146081+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,28 @@
+{
+  "exp_id": "mvp-p0-forking",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T04:50:05.057Z",
+    "updated_at": "2026-05-13T05:10:13.526Z",
+    "spec": {
+      "hypothesis": "ScienceWorld action-replay state forking 可行：fork 成功率≥80%，单次 fork 延迟<5s",
+      "description": "Phase 0 工程可行性验证 - ScienceWorld state forking",
+      "checkpoint_path": "N/A",
+      "log_path": "/root/autodl-tmp/simgate-modular-routing/results/mvp/phase0_validation.json",
+      "command": "python src/phase0_validate_forking.py",
+      "server": "westb-13313",
+      "data_path": "N/A",
+      "data_count": 10,
+      "model_name": "N/A",
+      "seed": 0
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-13T05:10:13.526Z"
+  },
+  "timestamp": "2026-05-13T05:10:13.532950+00:00",
+  "trigger": "update_registry"
+}

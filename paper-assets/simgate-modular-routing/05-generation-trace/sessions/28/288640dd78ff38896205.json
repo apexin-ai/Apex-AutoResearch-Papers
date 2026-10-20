@@ -1,0 +1,441 @@
+{
+  "schema_version": "1.0",
+  "id": "288640dd78ff38896205",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "paper reference audit and sync",
+  "task_key": "worker_paper_reference-audit-and-sync_20260514T144920",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_reference-audit-and-sync_20260514T144920.jsonl",
+    "occurrence": 1,
+    "bytes": 23501,
+    "sha256": "eb5739e24bf6a9812eb0378fc16bced350714003aac450220ad5d318398ce75a"
+  },
+  "statistics": {
+    "messages": 21,
+    "user_turns": 0,
+    "tool_calls": 10,
+    "roles": {
+      "tool_call": 10,
+      "tool_result": 10,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-14T14:51:20.731452+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/references.bib"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-14T14:51:20.732026+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t@inproceedings{scienceworld-2022,\n2\t  title={ScienceWorld: Is Your Agent Smarter Than a 5th Grader?},\n3\t  author={Wang, Ruoyao and Jansen, Peter and C{\\^o}t{\\'e}, Marc-Alexandre and Ammanabrolu, Prithviraj},\n4\t  booktitle={Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing},\n5\t  year={2022}\n6\t}\n7\t\n8\t@inproceedings{toolformer-2024,\n9\t  title={Toolformer: Language Models Can Teach Themselves to Use Tools},\n10\t  author={Schick, Timo and Dwivedi-Yu, Jane and Dess{\\`i}, Roberto and Raileanu, Roberta and Lomeli, Maria and Hambro, Eric and Zettlemoyer, Luke and Cancedda, Nicola and Scialom, Thomas},\n11\t  booktitle={Advances in Neural Information Processing Systems},\n12\t  year={2023}\n13\t}\n14\t\n15\t@inproceedings{art-2023,\n16\t  title={{ART}: Automatic Multi-step Reasoning and Tool-use for Large Language Models},\n17\t  author={Paranjape, Bhargavi and Lundberg, Scott and Singh, Sameer and Hajishirzi, Hannaneh and Zettlemoyer, Luke and Ribeiro, Marco Tulio},\n18\t  booktitle={arXiv preprint arXiv:2303.09014},\n19\t  year={2023}\n20\t}\n21\t\n22\t@inproceedings{chameleon-2024,\n23\t  title={Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models},\n24\t  author={Lu, Pan and Peng, Baolin and Cheng, Hao and Galley, Michel and Chang, Kai-Wei and Wu, Ying Nian and Zhu, Song-Chun and Gao, Jianfeng},\n25\t  booktitle={Advances in Neural Information Processing Systems},\n26\t  year={2023}\n27\t}\n28\t\n29\t@inproceedings{retool-2026,\n30\t  title={{ReTool}: Reinforcement Learning for Strategic Tool Use in {LLM}s},\n31\t  author={Feng, Yutong and Qian, Shengjie and Luo, Boyu and Shi, Yibo and Yang, Ke and Ma, Liang and Zheng, Ling},\n32\t  booktitle={arXiv preprint arXiv:2504.11536},\n33\t  year={2025}\n34\t}\n35\t\n36\t@inproceedings{react-2023,\n37\t  title={{ReAct}: Synergizing Reasoning and Acting in Language Models},\n38\t  author={Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Narasimhan, Karthik and Cao, Yuan},\n39\t  booktitle={Internati\n…[truncated 2019 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-14T14:51:20.732384+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\cite\\{[^}]+\\}",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "head_limit": "0"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-14T14:51:20.732635+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/latex/related_work.tex:4:Toolformer \\cite{toolformer-2024} inserts API calls via self-supervised filtering;\nartifacts/_project/paper/latex/related_work.tex:5:ART \\cite{art-2023} delegates tool selection to LLM reasoning chains;\nartifacts/_project/paper/latex/related_work.tex:6:Chameleon \\cite{chameleon-2024} composes modules under LLM-as-planner orchestration;\nartifacts/_project/paper/latex/related_work.tex:7:ReTool \\cite{retool-2026} applies RL for implicit code-interpreter invocation.\nartifacts/_project/paper/latex/related_work.tex:12:CogRouter \\cite{cogrouter-2026} achieves 82.3\\% on ScienceWorld (success rate, different evaluation protocol) via cognitive depth routing.\nartifacts/_project/paper/latex/related_work.tex:13:ARES \\cite{ares-2026} reduces token cost by 52.7\\% with per-step reasoning effort selection.\nartifacts/_project/paper/latex/related_work.tex:14:Mixture-of-Recursions \\cite{mixture-of-recursions-2025} applies adaptive depth via per-token recursive routing.\nartifacts/_project/paper/latex/related_work.tex:18:ITP \\cite{itp-2026} augments agents with LLM-based world model lookahead;\nartifacts/_project/paper/latex/related_work.tex:19:Dyna-Think \\cite{dynathink-2025} integrates world model simulation into reasoning, matching 685B performance with 32B at half the token cost.\nartifacts/_project/paper/latex/related_work.tex:24:ReAct \\cite{react-2023} interleaves reasoning and acting and serves as our internal-reasoning baseline.\nartifacts/_project/paper/latex/related_work.tex:25:MTRouter \\cite{mtrouter-2026} routes between LLMs for cost optimization on ScienceWorld.\nartifacts/_project/paper/latex/experiments.tex:6:We evaluate on ScienceWorld \\cite{scienceworld-2022}, a text-based interactive environment for elementary science tasks with sparse terminal rewards and a $-100$ death penalty. Using the methodology in \\S\\ref{sec:collection}, we collect 245 episode pairs across 11 task types (20--40 per type). The LLM backbone is Qwen2.5-7\n…[truncated 1192 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-14T14:51:20.732882+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-14T14:51:20.737225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/_project/paper/latex/abstract.tex\nartifacts/_project/paper/latex/related_work.tex\nartifacts/_project/paper/latex/discussion.tex\nartifacts/_project/paper/latex/main.tex\nartifacts/_project/paper/latex/introduction.tex\nartifacts/_project/paper/latex/method.tex\nartifacts/_project/paper/latex/experiments.tex\nartifacts/_project/paper/latex/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Glob",
+            "elapsed_ms": 4
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-14T14:51:20.737456+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-14T14:51:20.737668+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex\ndocs/paper/main.tex\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/method.tex\ndocs/paper/experiments.tex\ndocs/paper/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-14T14:51:20.737870+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "*",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-14T14:51:20.738111+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/SETUP_NOTES.md\ndocs/paper/acl.sty\ndocs/paper/acl_natbib.bst\ndocs/paper/related_work.tex\ndocs/paper/references.bib\ndocs/paper/main.tex\ndocs/paper/main.fls\ndocs/paper/main.fdb_latexmk\ndocs/paper/_pdf_images/main_p1.png\ndocs/paper/_pdf_images/main_p2.png\ndocs/paper/_pdf_images/main_p3.png\ndocs/paper/_pdf_images/main_p5.png\ndocs/paper/_pdf_images/main_p4.png\ndocs/paper/main.blg\ndocs/paper/main.bbl\ndocs/paper/main.aux\ndocs/paper/main.out\ndocs/paper/main.log\ndocs/paper/main.pdf\ndocs/paper/figures/fig1_daf_scatter.pdf\ndocs/paper/abstract.tex\ndocs/paper/introduction.tex\ndocs/paper/method.tex\ndocs/paper/experiments.tex\ndocs/paper/conclusion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-14T14:51:20.738385+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/introduction.tex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-14T14:51:20.738646+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\tWhen a Qwen2.5-7B-Instruct agent attempts to boil water in ScienceWorld \\cite{scienceworld-2022}, it must track temperature thresholds, container states, and heat source interactions across dozens of steps. Internal LLM reasoning hallucinates these state transitions---predicting water has boiled when the stove was never activated---triggering agent death with a $-100$ penalty. Deterministic external computation (environment simulators, code interpreters) eliminates such hallucinations by executing exact state transitions. The natural question: when should an agent route computation externally versus reasoning internally?\n4\t\n5\tExisting routing approaches \\cite{toolformer-2024,art-2023,chameleon-2024} frame tool selection as a capability or efficiency decision---matching subtasks to tools that can solve them. This framing ignores a potentially dominant signal: routing to \\emph{avoid catastrophic failure}. Understanding what routing actually learns requires counterfactual analysis, but the standard per-step oracle approach degenerates under sparse rewards. On ScienceWorld, where non-zero reward arrives only at episode termination, 97.4\\% of steps produce tied intermediate scores under both strategies across 245 episodes---no step-level signal exists to train a router (\\S\\ref{sec:collection}).\n6\t\n7\tWe propose \\emph{episode-level counterfactual analysis}: run complete episodes under pure-internal (ReAct~\\cite{react-2023}) and pure-deterministic strategies, then compare episode outcomes to generate routing labels (\\S\\ref{sec:collection}). Across 11 ScienceWorld task types (245 episodes), the full deterministic advantage is $\\Delta_{\\text{full}} = +29.60$ points. Excluding death episodes, this gap collapses to $\\Delta_{\\text{nd}} = +2.84$---a Death Avoidance Factor (DAF; \\S\\ref{sec:daf}) of 90.41\\%. The per-task correlation between death rate differential and performance gap is $r = 0.9698$ ($p = 8.12 \\times 10^{-7}$), confirming death avoidan\n…[truncated 1034 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-14T14:51:20.738913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/method.tex"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-14T14:51:20.743236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\n3\t\\subsection{Counterfactual Episode Collection}\n4\t\\label{sec:collection}\n5\t\n6\tPer-step oracle labeling assigns routing labels by comparing single-step outcomes under each modality. Under sparse terminal rewards, this degenerates: on ScienceWorld \\cite{scienceworld-2022}, 97.4\\% of steps produce identical intermediate scores regardless of modality, yielding no routing signal. We instead perform episode-level counterfactual analysis.\n7\t\n8\tFor each task instance, we execute two complete episodes under identical initial conditions. The \\emph{pure-internal} episode follows the ReAct paradigm \\cite{react-2023}, where the LLM interleaves chain-of-thought reasoning with environment actions. The \\emph{pure-deterministic} episode uses the environment simulator to compute exact state transitions. In both cases the LLM selects which action to take; deterministic computation replaces only the state-transition prediction---equivalent to giving the agent a perfect world model.\n9\t\n10\tEach episode pair produces a tuple $(s^{\\text{int}}, s^{\\text{det}}, d^{\\text{int}}, d^{\\text{det}})$, where $s$ denotes the terminal score and $d \\in \\{0,1\\}$ indicates agent death. Episodes are capped at 30 steps. The LLM backbone is Qwen2.5-7B-Instruct served via vLLM. ScienceWorld spans 30 task types with a $-100$ death penalty; after prescreening, we collect 245 episode pairs across 11 task types (20--40 per type).\n11\t\n12\t\\subsection{Death-Aware Labeling}\n13\t\\label{sec:labeling}\n14\t\n15\tEach counterfactual pair receives an episode-level routing label based on $(s^{\\text{int}}, s^{\\text{det}}, d^{\\text{int}}, d^{\\text{det}})$. Scores are integer-valued, so we use exact (in)equality. The label is assigned by four mutually exclusive cases:\n16\t\n17\t\\begin{enumerate}\n18\t    \\item \\textbf{Death asymmetry}: $d^{\\text{int}} \\neq d^{\\text{det}}$ $\\rightarrow$ surviving strategy preferred.\n19\t    \\item \\textbf{Both dead}: $d^{\\text{int}} = d^{\\text{det}} = 1$ $\\rightarrow$ \\texttt{no\\_p\n…[truncated 930 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "elapsed_ms": 4
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-14T14:51:20.743491+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/latex/discussion.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-14T14:51:20.743684+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Cross-environment evidence.}\n5\tThe death-avoidance finding in ScienceWorld raises a natural question: does routing signal persist in environments without catastrophic failure? A preliminary 50-problem pilot on MATH Level~4--5, using code interpreter as the deterministic modality, suggests not. Internal reasoning achieved 80\\% accuracy versus 72\\% for code interpreter, with 88\\% of problems showing no modality preference (label distribution: 1 deterministic-preferred, 5 internal-preferred, 44 no-preference). In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver of the deterministic strategy's advantage observed in ScienceWorld. A larger-scale replication with improved code execution (addressing sandbox limitations in the pilot) is in progress.\n6\t\n7\t% TODO: Replace pilot-50 numbers with math-200-fixed results when available\n8\t\n9\t\\paragraph{Scope and future directions.}\n10\tOur analysis is grounded in a single interactive environment with a specific failure mode (the $-100$ death penalty). Extending the counterfactual methodology to environments with graded failure costs, embodied agents with continuous action spaces, or multi-turn dialogue systems would clarify how broadly death avoidance---or analogous catastrophic-failure avoidance---accounts for apparent routing signal. Step-level counterfactual labeling, rather than episode-level, is a complementary direction that could reveal finer-grained routing structure masked by our current aggregation.\n11\t\n12\t% TODO: ALFWorld results pending; add cross-environment comparison if signal emerges\n13\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-14T14:51:20.743960+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "for f in abstract.tex introduction.tex method.tex experiments.tex related_work.tex conclusion.tex main.tex references.bib; do echo \"=== $f ===\" ; diff \"artifacts/_project/paper/latex/$f\" \"docs/paper/$f\" 2>&1 || true; echo; done",
+              "description": "Diff all shared files between latex/ and docs/paper/"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-14T14:51:20.744338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<persisted-output>\nOutput too large (40.1KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/87e7d2fa-3544-463f-a483-079969decfa9/tool-results/b2rmqqghl.txt\n\nPreview (first 2KB):\n=== abstract.tex ===\n2,3c2,3\n< Modular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97.4\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Across 245 episodes with a Qwen2.5-7B-Instruct backbone, death avoidance accounts for approximately 90\\% of the routing signal (Death Avoidance Factor), with near-perfect cross-task correlation ($r = 0.97$). These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\n< \\end{abstract}\n---\n> LLM agents in rule-governed interactive environments face catastrophic failures when internal reasoning hallucinates state transitions. Deterministic external computation (environment simulators, code interpreters) can prevent such failures, but what does routing between these modalities actually learn? Per-step oracle labeling degenerates under sparse rewards---on ScienceWorld, 97.4\\% of steps produce identical scores regardless of modality. We propose episode-level counterfactual analysis: running complete episodes under pure-internal and pure-deterministic strategies to generate routing labels from episode outcomes. Across 11 ScienceWorld task types (245 episodes), we find that death avoidance accounts for 90.41\\% of the routing signal between Qwen2.5-7B\n…[truncated 300 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-14T14:51:20.744600+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/87e7d2fa-3544-463f-a483-079969decfa9/tool-results/b2rmqqghl.txt"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-14T14:51:20.749236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t=== abstract.tex ===\n2\t2,3c2,3\n3\t< Modular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97.4\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Across 245 episodes with a Qwen2.5-7B-Instruct backbone, death avoidance accounts for approximately 90\\% of the routing signal (Death Avoidance Factor), with near-perfect cross-task correlation ($r = 0.97$). These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\n4\t< \\end{abstract}\n5\t---\n6\t> LLM agents in rule-governed interactive environments face catastrophic failures when internal reasoning hallucinates state transitions. Deterministic external computation (environment simulators, code interpreters) can prevent such failures, but what does routing between these modalities actually learn? Per-step oracle labeling degenerates under sparse rewards---on ScienceWorld, 97.4\\% of steps produce identical scores regardless of modality. We propose episode-level counterfactual analysis: running complete episodes under pure-internal and pure-deterministic strategies to generate routing labels from episode outcomes. Across 11 ScienceWorld task types (245 episodes), we find that death avoidance accounts for 90.41\\% of the routing signal between Qwen2.5-7B-Instruct internal reasoning and deterministic computation ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; Pearson $r = 0.9698$, $p = 8.12 \\times 10^{-7}$ across task types). When neither strategy causes agent death, the performance gap is small bu\n…[truncated 40473 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920",
+            "tool": "Read",
+            "elapsed_ms": 4
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-14T14:51:20.749678+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。在执行同步前，需要先报告一个重要发现。\n\n---\n\n## 1. 引用审计报告\n\n### 引用完整性\n\n| 检查项 | 结果 |\n|--------|------|\n| ❌ 论文中 cite 了但 bib 中不存在的 | **无** — 所有 12 个被引用的 key 均存在于 bib 中 |\n| ⚠️ bib 中存在但论文中未 cite 的 | **`dagger-2011`** (Ross et al., 2011, DAgger) |\n\n被引用的 12 个 key: `scienceworld-2022`, `toolformer-2024`, `art-2023`, `chameleon-2024`, `retool-2026`, `react-2023`, `cogrouter-2026`, `ares-2026`, `mixture-of-recursions-2025`, `itp-2026`, `dynathink-2025`, `mtrouter-2026`\n\n### Bib entry 质量问题\n\n**Key 与 year 字段不匹配（3 个）：**\n| Key | key 中的年份 | year 字段 |\n|-----|------------|-----------|\n| `toolformer-2024` | 2024 | 2023 |\n| `chameleon-2024` | 2024 | 2023 |\n| `retool-2026` | 2026 | 2025 |\n\n**Entry type 错误（8 个）：** 以下 arXiv 预印本使用了 `@inproceedings` + `booktitle`，应改为 `@article` + `journal`：\n`art-2023`, `retool-2026`, `cogrouter-2026`, `ares-2026`, `mixture-of-recursions-2025`, `itp-2026`, `dynathink-2025`, `mtrouter-2026`\n\n**缺失字段：** 无。所有 entry 均有 title, author, year。\n\n---\n\n## 2. 同步：重要警告\n\n**逐文件 diff 显示 `docs/paper/` 很可能是更新的版本，`artifacts/_project/paper/latex/` 是旧版本。** 具体证据：\n\n| 文件 | artifacts (主) | docs (副) | 差异 |\n|------|---------------|-----------|------|\n| `abstract.tex` | 更短，约 3 行 | 更详细，含具体数值 | docs 更完整 |\n| `introduction.tex` | 枚举式 contributions | 压缩为 1 段 + 引用 §rule | docs 增加了 keyword baseline 引用 |\n| `method.tex` | 3 小节 | 4 小节（多了 Rule-Based Baseline §rule） | docs 新增内容 |\n| `experiments.tex` | 有独立 Setup 小节；router 分析简略 | Setup 移走；增加 classification head / implicit router / cross-seed / end-to-end / labeling quality 段落 | docs 大幅扩充 |\n| `conclusion.tex` | 1 段 | 3 段（含 labeling quality + limitations） | docs 大幅扩充 |\n| `main.tex` | 含 `\\input{discussion}` + Limitations + Ethics 节 | 不含 discussion；限制移入 conclusion | 结构不同 |\n| `related_work.tex` | 分段引用，较松散 | 合并压缩，更紧凑 | docs 更精炼 |\n| `references.bib` | @inproceedings 用于 arXiv | 已修正为 @article + venue 缩写 | docs 质量更高 |\n| `discussion.tex` | 存在 | **缺失** | 需要复制 |\n\n**如果按原计划用 artifacts 覆盖 docs，会丢失 docs 中的大量改进（实验分析扩充、bib 修正、结构重组等）。**\n\n### 建议\n\n反向同步更合理：以 `docs/paper/` 为准更新 `artifacts/_project/paper/latex/`，并将 `discussion.tex` 复制到 docs。\n\n是否按原计划执行（artifacts → docs 覆盖），还是反向同步（docs → artifacts + 补 discussion.tex）？"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_reference-audit-and-sync_20260514T144920"
+          },
+          "id": "event-000021"
+        }
+      ],
+      "message_count": 21
+    }
+  ],
+  "readable_path": "readable/conversations/paper-reference-audit-and-sync.md"
+}

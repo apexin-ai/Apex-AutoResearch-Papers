@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3af86909de90071bbbb5",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp r7n2 data size ablation",
+  "task_key": "worker_exp_r7n2-data-size-ablation_20260516T005713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r7n2-data-size-ablation_20260516T005713_result.json",
+    "occurrence": 1,
+    "bytes": 687,
+    "sha256": "a04f12387945c57d50a48875bb9c92fb8940d533a8168cd2c7d943a92ebf1f9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中。Scale 25pct / seed 42: 进度 2/42 steps (~1.3s/it)。\n\n7 scales × 3 seeds = 21 次训练，预计 2-3 小时完成。任务已提交:\n\n- **exp_id**: `r7n2-data-size-ablation`\n- **服务器**: westb-13313, GPU 0\n- **tmux session**: `r7n2-data-size-ablation`\n- **日志**: `~/runs/simgate-modular-routing/r7n2-data-size-ablation.log`\n- **输出**: `results/ablation_data_size/summary.json`\n- **配置**: 7 scales (25%-800%) × 3 seeds (42/43/44), Qwen3-1.7B LoRA r=16, lr=2e-5, epochs=3, effective_batch=32\n\n完成后需检查 `summary.json` 中各 scale 的 balanced_acc mean±std，确认 100% 后是否饱和（improvement < 1pp）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r7n2-data-size-ablation.md"
+}

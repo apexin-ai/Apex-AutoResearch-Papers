@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "100830b025a6b8db0936",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval 8seed corrected eval",
+  "task_key": "worker_eval_8seed-corrected-eval_20260515T225550",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_8seed-corrected-eval_20260515T225550_result.json",
+    "occurrence": 1,
+    "bytes": 83,
+    "sha256": "6df88f1adc9ca15b0aba6a85d319540871609ef88006735364949a2398869176"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两组 eval 正在并行运行中。2 分钟后回来检查进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-8seed-corrected-eval.md"
+}

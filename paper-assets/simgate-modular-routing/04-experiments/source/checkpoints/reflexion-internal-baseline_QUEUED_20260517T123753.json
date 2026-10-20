@@ -1,0 +1,16 @@
+{
+  "exp_id": "reflexion-internal-baseline",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:12.035Z",
+    "updated_at": "2026-05-17T12:37:53.201Z",
+    "hypothesis": "Reflexion 通过自我纠错降低 internal modality 的 death rate；如果 death rate 降至 <20%（接近 det 的 16.3%），则 death dominance 不再成立",
+    "parent": "plan-012-full"
+  },
+  "timestamp": "2026-05-17T12:37:53.410319+00:00",
+  "trigger": "update_registry"
+}

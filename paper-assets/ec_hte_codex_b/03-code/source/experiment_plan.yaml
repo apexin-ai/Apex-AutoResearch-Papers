@@ -1,0 +1,272 @@
+experiments:
+- id: plan-e010
+  registry_id: e010_selector_seed_threshold_sensitivity
+  claim: C1
+  priority: P0
+  deps:
+  - e009_regime_aware_estimator_selection
+  description: 'Seed and threshold sensitivity validation for the e009 deployable
+    regime-aware Stage 1 selector. Stress-test whether the pilot-proxy rules remain
+    near the best fixed partial-or-independent estimator across independent seed blocks
+    and reasonable correlation/severity threshold perturbations.
+
+    '
+  hypothesis: 'If the e009 deployable regime-aware selector is a stable Stage 1 rule
+    rather than threshold/seed overfit, then across independent seeds and reasonable
+    pilot threshold perturbations it should retain near-best fixed-estimator RMSE,
+    keep negative-correlation failures rare, and preserve zero or near-zero loss in
+    high-severity positive-correlation cells.
+
+    '
+  gpu_budget_hours: 4
+  metrics:
+  - win/tie/loss versus best fixed partial-or-independent by seed and threshold
+  - negative-correlation failure rate
+  - high-severity positive-correlation loss count
+  - mean and median delta versus fixed partial-pooling and best fixed estimator
+  - worst seed/threshold/cell
+  notes: 'Director-approved D011 follow-up. Use `/root/ec_hte`, python `/root/miniconda3/bin/python`,
+    whitelist GPU `seetacloud-11934:cuda:0`, seeds=5, corr thresholds {-0.05,-0.10,-0.20},
+    severity thresholds {0.20,0.25,0.30}, and `submit_training_job` only. Do not cherry-pick
+    threshold/seed cells; conclusion must summarize all combinations.
+
+    '
+- id: plan-e009
+  registry_id: e009_regime_aware_estimator_selection
+  claim: C1
+  priority: P0
+  deps:
+  - e008_stage1_dgp_robustness
+  description: 'Regime-aware Stage 1 estimator selection after e008 mixed/condition-specific
+    robustness. Convert e008 boundary conditions into deployable pilot-proxy rules
+    that choose between independent subgroup confusion estimation and partial-pooling
+    rather than fixing a single estimator.
+
+    '
+  hypothesis: 'A pilot-proxy regime-aware selector that chooses independent estimation
+    in negative CATE-error correlation regimes and partial-pooling otherwise can improve
+    downstream CATE RMSE win rate over fixed partial-pooling and fixed independent
+    across the e008 DGP grid, while retaining partial-pooling gains in high-severity
+    positive-correlation cells.
+
+    '
+  gpu_budget_hours: 3
+  metrics:
+  - overall CATE RMSE
+  - selector regret vs oracle best-of-partial-independent
+  - win count/rate across grid-budget tests
+  - failure slices
+  - selector decision accuracy for negative-correlation cells
+  - high-positive slice performance
+  notes: 'Director-approved D010 follow-up. Use `/root/ec_hte`, python `/root/miniconda3/bin/python`,
+    whitelist GPU `seetacloud-11934:cuda:0`, and `submit_training_job` only. Selector
+    rules must use finite expert-label/pilot-derived quantities, not true DGP regime
+    labels.
+
+    '
+- id: plan-e008
+  registry_id: e008_stage1_dgp_robustness
+  claim: C1
+  priority: P0
+  deps:
+  - e002_budgeted_confusion_estimation
+  description: 'Stage 1 DGP robustness after closing the allocation branch. Test whether
+    partial-pooling confusion estimation improves downstream subgroup CATE RMSE relative
+    to global pooled and independent subgroup estimators across subgroup counts, misclassification
+    severities, and CATE-error correlation regimes.
+
+    '
+  hypothesis: 'Hierarchical/partial-pooling confusion estimation reduces downstream
+    subgroup CATE RMSE relative to global pooled and independent per-subgroup estimation
+    across DGP regimes with heterogeneous subgroup misclassification; the advantage
+    should be strongest under high misclassification severity and positive CATE-error
+    correlation, and may shrink under low severity or weak heterogeneity.
+
+    '
+  gpu_budget_hours: 3
+  metrics:
+  - CATE RMSE by grid cell/B/method
+  - subgroup bias max/mean by grid cell/B/method
+  - confusion recovery RMSE by grid cell/B/method
+  - partial-global and partial-independent deltas
+  - win rate across cells
+  - failure slices where partial is not best
+  notes: 'Director-approved D009 Stage 1 robustness. Use `/root/ec_hte`, python `/root/miniconda3/bin/python`,
+    and whitelist GPU `seetacloud-11934:cuda:0`.
+
+    '
+- id: plan-e007
+  registry_id: e007_allocation_stability_multiseed
+  claim: C1
+  priority: P0
+  deps:
+  - e006_capped_hybrid_allocation
+  description: 'Stability diagnostic after e006 negative/mixed. Test whether the e005
+    targeted allocation gains are stable across independent random seed blocks or
+    seed/spec sensitive. Focus on B={1000,2000}; lower budgets are omitted to keep
+    the 10-seed diagnostic fast on the single allocated GPU.
+
+    '
+  hypothesis: 'If targeted allocation is a robust Stage 1 mitigation, cate_error_product
+    and capped/hybrid variants should show positive mean group5 coverage/bias gains
+    over uniform across independent random seeds, with bounded overall CATE RMSE penalty;
+    if gains change sign across seeds, the e005 claim must be weakened to seed-sensitive
+    tradeoff.
+
+    '
+  gpu_budget_hours: 2
+  metrics:
+  - mean/std group5 coverage delta vs uniform by seed
+  - sign consistency of group5 coverage delta
+  - mean/std group5 bias delta vs uniform by seed
+  - mean/std overall CATE RMSE delta vs uniform by seed
+  - target pass rate
+  notes: 'Director-approved D008 stability diagnostic. Use `/root/ec_hte`, python
+    `/root/miniconda3/bin/python`, and whitelist GPU `seetacloud-11934:cuda:0`.
+
+    '
+- id: plan-e006
+  registry_id: e006_capped_hybrid_allocation
+  claim: C1
+  priority: P0
+  deps:
+  - e005_targeted_expert_allocation
+  description: 'Capped/hybrid allocation follow-up to e005 success-with-tradeoff.
+    Test whether single-subgroup allocation caps or uniform/targeted hybrids retain
+    group5 coverage/bias gains while reducing overall CATE RMSE cost.
+
+    '
+  hypothesis: 'A capped or hybrid uniform+cate-error allocation can retain most group5
+    coverage/bias improvement from cate_error_product while reducing the overall CATE
+    RMSE penalty relative to uncapped targeted allocation.
+
+    '
+  gpu_budget_hours: 2
+  metrics:
+  - group5 empirical 95% coverage
+  - group5 CATE bias
+  - overall CATE RMSE
+  - group5 allocation count
+  - coverage gain per RMSE cost
+  notes: 'D007 follow-up completed as negative/mixed. All B2000 target checks were
+    false; capped/hybrid variants reduced some RMSE cost but did not retain group5
+    coverage gain. This entry was added after execution to link registry provenance.
+
+    '
+- id: plan-e005
+  registry_id: e005_targeted_expert_allocation
+  claim: C1
+  priority: P0
+  deps:
+  - e004_coverage_bias_decomposition
+  description: 'Allocation follow-up to e004. Test whether reallocating finite expert-label
+    budget toward high-error/high-CATE subgroups closes the estimated-vs-oracle confusion
+    gap and improves group5 coverage/bias more reliably than post-hoc interval widening
+    or the failed bootstrap bias correction.
+
+    '
+  hypothesis: 'At fixed total expert-label budget, targeted allocation toward high-error/high-CATE
+    subgroups reduces group5 negative CATE bias and improves group5 empirical 95%
+    coverage relative to uniform allocation, while preserving overall CATE RMSE.
+
+    '
+  gpu_budget_hours: 3
+  metrics:
+  - group5 empirical 95% coverage
+  - group5 CATE bias
+  - overall CATE RMSE
+  - allocation counts by subgroup
+  - estimated-vs-oracle group5 coverage gap
+  notes: 'Director-approved after D006. Compare uniform, error-proportional, CATE-error-product,
+    and oracle-targeted allocation at B={100,500,1000,2000}. Use `/root/ec_hte` and
+    whitelist GPU `seetacloud-11934:cuda:0`.
+
+    '
+- id: plan-e004
+  registry_id: e004_coverage_bias_decomposition
+  claim: C1
+  priority: P0
+  deps:
+  - e003_inference_coverage_ablation
+  description: 'Diagnostic follow-up to e003 negative. Decompose subgroup undercoverage
+    into point-estimate bias versus variance/interval construction by comparing oracle
+    confusion matrices, estimated partial-pooling confusion matrices, raw CATE estimates,
+    bias-corrected CATE estimates, and subgroup-wise coverage patterns.
+
+    '
+  hypothesis: 'The e003 undercoverage is driven primarily by negative point-estimate
+    bias in the high CATE/high annotation-error subgroup rather than missing variance
+    alone; oracle confusion or explicit bias correction should improve group5 coverage
+    more than variance-only interval widening.
+
+    '
+  gpu_budget_hours: 3
+  metrics:
+  - subgroup empirical 95% coverage
+  - subgroup CATE bias
+  - mean CI width
+  - miss distance by subgroup
+  - oracle-vs-estimated confusion coverage gap
+  notes: 'Director-approved diagnostic after e003 negative (D004). Use `/root/ec_hte`
+    and whitelist GPU `seetacloud-11934:cuda:0`. Do not claim a new CI method unless
+    this diagnosis identifies a robust fix.
+
+    '
+- id: plan-e003
+  registry_id: e003_inference_coverage_ablation
+  claim: C1
+  priority: P0
+  deps:
+  - e002_budgeted_confusion_estimation
+  description: 'Stage 2 inference coverage ablation. Using the same synthetic DGP
+    and finite-budget confusion-estimation setting as e002, compare uncertainty intervals
+    for subgroup CATE estimates: naive intervals without Stage 1 nuisance uncertainty,
+    bootstrap intervals, and sandwich-style adjusted intervals.
+
+    '
+  hypothesis: 'Propagating Stage 1 confusion-estimation uncertainty via bootstrap
+    or sandwich-style adjustment improves empirical 95% subgroup CATE coverage relative
+    to naive intervals, while maintaining narrower intervals than a conservative full
+    bootstrap at moderate and large expert-label budgets.
+
+    '
+  gpu_budget_hours: 3
+  metrics:
+  - empirical 95% coverage
+  - mean CI width
+  - coverage-width tradeoff
+  - subgroup CATE bias
+  notes: 'Follow-up to e002 success. Use project execution path `/root/ec_hte` and
+    whitelist GPU `seetacloud-11934:cuda:0`.
+
+    '
+- id: plan-e002
+  registry_id: e002_budgeted_confusion_estimation
+  claim: C1
+  priority: P0
+  deps:
+  - e001_global_correction_smoke
+  description: 'Budgeted confusion-matrix estimation following the e001 oracle smoke
+    test. Replace oracle subgroup transition matrices with finite expert-label subsamples
+    under B={100,500,1000,2000}. Compare global pooled estimation, independent per-subgroup
+    estimation, and hierarchical/partial-pooling estimation on the same synthetic
+    DGP family.
+
+    '
+  hypothesis: 'Under finite expert-label budgets, hierarchical/partial-pooling confusion
+    estimation reduces subgroup CATE RMSE relative to global pooled correction, and
+    is more stable than independent per-subgroup estimation at small B.
+
+    '
+  gpu_budget_hours: 2
+  metrics:
+  - CATE RMSE
+  - subgroup CATE bias
+  - confusion matrix recovery error
+  - budget curve by B
+  notes: 'Canonical planned e002 result is `e002_budgeted_confusion_estimation` (n=5000,
+    reps=200). `e002_budgeted_confusion_estimation_r1` repeated the same spec after
+    infrastructure fixes; `e002_budgeted_confusion_estimation_retry1` is an extra
+    larger robustness run (n=10000, reps=300), not the primary plan target.
+
+    '

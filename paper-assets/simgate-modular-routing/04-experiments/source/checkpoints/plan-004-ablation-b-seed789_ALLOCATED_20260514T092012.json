@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-004-ablation-b-seed789",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:19:57.342Z",
+    "updated_at": "2026-05-14T09:20:12.112Z",
+    "hypothesis": "ablation-b seed 变体 (seed=789)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。"
+  },
+  "timestamp": "2026-05-14T09:20:12.219629+00:00",
+  "trigger": "update_registry"
+}

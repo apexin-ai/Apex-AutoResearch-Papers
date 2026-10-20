@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d20426498744cb8699a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research death avoidance literature",
+  "task_key": "worker_research_death-avoidance-literature_20260513T205941",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_death-avoidance-literature_20260513T205941_result.json",
+    "occurrence": 1,
+    "bytes": 2643,
+    "sha256": "7ae9f4b143b21549e45bd1a0e992f60d0cbde6926336599632e85f9ed3b30e0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "调研完成。核心结论：\n\n## \"~93% death avoidance\" 发现没有直接先例\n\n没有找到任何论文量化过 \"tool invocation / modality routing 的收益中 failure prevention vs positive guidance 各占多少\"。这是 novel finding。\n\n## 最接近的 5 篇论文\n\n| 论文 | 关系 | 差异 |\n|------|------|------|\n| **\"Check Yourself Before You Wreck Yourself\"** (NeurIPS 2025 WS) | selective quitting for safety | 放弃任务 vs 切换modality继续完成；没有benefit decomposition |\n| **Dead-Ends Avoidance** (ICRA 2024) | safe RL dead-end detection | continuous control robotics；没做收益分解 |\n| **Intrinsic Fear** (Lipton 2016) | death avoidance in RL 的先驱 | 传统RL，不是LLM agent |\n| **SwiftSage** (NeurIPS 2023) | ScienceWorld 双模块路由，84.7分 | 没分析路由收益来源 |\n| **ReTool** (ICLR 2026) | RL学when to use code interpreter | implicit routing，没做failure vs positive分解 |\n\n## Novelty claim 安全\n\n- **强 novelty**: 首次量化 modality routing benefit decomposition\n- **中等 novelty**: Episode-level counterfactual labeling 方法论\n- **主要攻击面**: \"trivial → just always-det\"，回应：contribution 是 finding 不是 method；always-det 是强 baseline 正是 finding 的核心\n\n完整调研已写入 `artifacts/literature_survey_death_avoidance.md`，涵盖 22 篇论文，附建议引用列表。\n\nSources:\n- [SwiftSage](https://arxiv.org/abs/2305.17390)\n- [Check Yourself Before You Wreck Yourself](https://arxiv.org/abs/2510.16492)\n- [Safe RL with Dead-Ends Avoidance](https://arxiv.org/abs/2306.13944)\n- [Intrinsic Fear](https://arxiv.org/abs/1611.01211)\n- [ReTool](https://arxiv.org/abs/2504.11536)\n- [Toolformer](https://arxiv.org/abs/2302.04761)\n- [MTRouter](https://arxiv.org/abs/2604.23530)\n- [Where LLM Agents Fail](https://arxiv.org/abs/2509.25370)\n- [Towards Verifiably Safe Tool Use](https://arxiv.org/abs/2601.08012)\n- [Avoiding Death through Fear](https://arxiv.org/abs/2506.05529)\n- [ToolRLA](https://arxiv.org/html/2603.01620v3)\n- [ScienceWorld](https://arxiv.org/abs/2203.07540)\n- [ARES](https://arxiv.org/pdf/2603.07915)\n- [Router-R1](https://arxiv.org/abs/2506.09033)\n- [How Do LLMs Fail in Agentic Scenarios](https://arxiv.org/pdf/2512.07497)\n- [BEACON](https://arxiv.org/html/2605.06078)\n- [Learning How Hard to Think](https://openreview.net/forum?id=6qUUgw9bAZ)\n- [Safe RL Survey (Garcia & Fernandez)](https://www.jmlr.org/papers/volume16/garcia15a/garcia15a.pdf)\n- [SafeHarbor](https://arxiv.org/html/2605.05704)\n- [AgentMath](https://arxiv.org/pdf/2512.20745)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-death-avoidance-literature.md"
+}

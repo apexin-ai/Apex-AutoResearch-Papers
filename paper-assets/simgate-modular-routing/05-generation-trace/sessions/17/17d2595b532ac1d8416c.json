@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17d2595b532ac1d8416c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check loto completion",
+  "task_key": "worker_check_loto-completion_20260516T033309",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_loto-completion_20260516T033309_result.json",
+    "occurrence": 1,
+    "bytes": 1672,
+    "sha256": "4da457a5e70554522b1a1a031d39d4e571621208af718daf13329155fc88d819"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新，cron 无需清除（不存在）。\n\n---\n\n## LOTO 实验结果\n\n### 数据分布\n- 11 个 task types，总样本 2040\n- **4 个 task types 有 det+internal 两类**（可计算 balanced_acc）\n- **7 个 task types 全为 deterministic**（balanced_acc 退化，N/A）\n\n### 2-class task types（balanced_acc, 8 seeds mean±std）\n\n| Task Type | Mean bal_acc | Per-seed range | Majority-vote |\n|-----------|:---:|:---:|:---:|\n| chemistry-mix | **0.5503** | 0.508–0.586 | 0.50 |\n| find-non-living-thing | **0.5986** | 0.564–0.638 | 0.50 |\n| grow-fruit | **0.6715** | 0.567–0.733 | 0.50 |\n| lifespan-longest-lived-then-shortest-lived | **0.5700** | 0.437–0.687 | 0.50 |\n\n### 汇总\n\n| Metric | Value |\n|--------|-------|\n| Grand mean bal_acc (2-class) | **0.5976 ± 0.0184** |\n| Majority-vote baseline | 0.5000 |\n| Cross-split reference | 0.4711 ± 0.0221 |\n\n### 单类 task types（全 deterministic，bal_acc N/A）\nfind-animal, freeze, identify-life-stages-1, identify-life-stages-2, inclined-plane-determine-angle, lifespan-longest-lived, measure-melting-point-unknown-substance\n\n### 结论\n\n原假设\"router 在未见 task type 上 ≈ 50%（随机）\"**未被支持**。LOTO bal_acc = 59.76% 显著高于 majority-vote baseline（50%）和 cross-split reference（47.1%）。Router 在 task-type 内表现出非平凡的泛化能力，routing signal 并非纯粹的 task-type 分类——存在跨样本迁移的特征学习。\n\n不过需注意：7/11 task types 全为 deterministic（单类），只有 4 个 task type 能提供有效的 balanced_acc 评估，结论的覆盖面有限。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-loto-completion.md"
+}

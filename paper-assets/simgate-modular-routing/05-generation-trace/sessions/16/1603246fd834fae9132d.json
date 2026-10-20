@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1603246fd834fae9132d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diag plan 002 v6 crash",
+  "task_key": "worker_diag_plan-002-v6-crash_20260514T070357",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diag_plan-002-v6-crash_20260514T070357_result.json",
+    "occurrence": 1,
+    "bytes": 1458,
+    "sha256": "a572d9b1c7f45df33df7c3cfafab336a8cf169ed2965baa13e95767a0893a925"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n### 根因\n\n**CUDA OOM，GPU 0 内存争抢。** v6 训练首次启动时（~14:59），GPU 0 上已有另一个进程占用大量显存。Qwen3-1.7B LoRA 训练单独运行需要 ~30GB（当前重启后使用 29848/32607 MiB），两个进程共存必然 OOM。\n\n### 完整错误信息\n\n日志因 stderr/stdout 交错而混乱，实际致命错误是：\n```\nTerminated\n[...] iB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large \ntry setting PYTORCH_ALLOC_CONF=expandable_segments:True to avoid fragmentation.\nEXIT_CODE=1\nEXIT_CODE=129\n```\n\n训练跑了 30/153 步（~2:54）后被 OOM 杀死。日志中看到的 `WeightedCETrainer` traceback 是 stderr 与 stdout 进度条交错的产物，不是独立的代码错误。\n\n### 当前状态\n\n**训练已被重新启动**（PID 240633，15:03 启动），目前正常运行在 GPU 0，进度 73/153 步（48%，epoch 2）。\n\nepoch 1 eval 结果：\n- accuracy=0.929, f1_macro=0.481\n- **f1_internal=0.0**（recall_internal=0.0）— 模型把所有样本都预测为 deterministic\n\n### 修复方案\n\n**不需要改代码。** 崩溃是 GPU 资源争抢问题，不是代码 bug。\n\n但 epoch 1 的 f1_internal=0.0 值得注意：去掉 `--class_weights` 后，模型在 89.7%/10.3% 的不平衡数据上完全忽略了 minority class。这正是 v6 实验的预期对照——验证 class_weights 的必要性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diag-plan-002-v6-crash.md"
+}

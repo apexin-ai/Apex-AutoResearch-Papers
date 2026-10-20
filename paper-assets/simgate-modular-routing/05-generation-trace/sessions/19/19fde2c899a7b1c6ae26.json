@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "19fde2c899a7b1c6ae26",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ssh death taxonomy 245eps",
+  "task_key": "worker_ssh_death-taxonomy-245eps_20260518T092635",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_death-taxonomy-245eps_20260518T092635.log",
+    "occurrence": 1,
+    "bytes": 611831,
+    "sha256": "38288912270528f33e2069c851a8741872bbb79a87aeb45dd5f22220b648a345"
+  },
+  "statistics": {
+    "messages": 219,
+    "user_turns": 0,
+    "tool_calls": 78,
+    "roles": {
+      "log": 1,
+      "system": 5,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 78,
+      "tool_result": 78,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 219,
+      "chunks": [
+        {
+          "path": "19fde2c899a7b1c6ae26-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "19fde2c899a7b1c6ae26-part-0002.json",
+          "message_count": 39
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-death-taxonomy-245eps.md"
+}

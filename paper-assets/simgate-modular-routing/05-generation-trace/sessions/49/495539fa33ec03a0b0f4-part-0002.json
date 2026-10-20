@@ -1,0 +1,317 @@
+{
+  "schema_version": "1.0",
+  "session_id": "495539fa33ec03a0b0f4",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-14T03:57:51.524Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Nszf7sUsfRUzUj58AFToD8",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Plan-011: Rule-based routing baseline.\\\\n\\\\nPre-registered keyword list decides routing per step:\\\\n  - keyword match in obs/actions → deterministic (fork-based simulator evaluation)\\\\n  - no match → internal (LLM ReAct reasoning)\\\\n\\\\nUsage:\\\\n  python src/rule_based_routing.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport hashlib\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom typing import Dict, Any, List, Optional, Tuple\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n    STRONG_TASKS, MEDIUM_TASKS, WEAK_TASKS, ALL_MVP_TASKS,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\n\\\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\\\nSLIM_EPISODES = os.environ.get(\\\\\\\"SLIM_EPISODES\\\\\\\", \\\\\\\"1\\\\\\\") == \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\ndef _slim_episode_data(ep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not SLIM_EPISODES:\\\\n        return ep\\\\n    result = {k: v for k, v in ep.items() if k != \\\\\\\"steps\\\\\\\"}\\\\n    if \\\\\\\"steps\\\\\\\" in ep:\\\\n        result[\\\\\\\"steps\\\\\\\"] = [\\\\n            {k: v for k, v in s.items()\\\\n             if k not in (\\\\\\\"llm_output\\\\\\\", \\\\\\\"action_history\\\\\\\", \\\\\\\"candidates\\\\\\\",\\\\n                          \\\\\\\"available_actions\\\\\\\")}\\\\n            for s in ep[\\\\\\\"steps\\\\\\\"]\\\\n        ]\\\\n    return result\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef load_keywords(keyword_file: str) -> List[str]:\\\\n    with open(keyword_file, \\\\\\\"r\\\\\\\") as f:\\\\n        data = json.load(f)\\\\n    if \\\\\\\"keywords\\\\\\\" in data:\\\\n        return data[\\\\\\\"keywords\\\\\\\"]\\\\n    return data[\\\\\\\"route_to_simulator\\\\\\\"]\\\\n\\\\n\\\\ndef get_keywords_version(keyword_file: str) -> str:\\\\n    with open(keyword_file, \\\\\\\"r\\\\\\\") as f:\\\\n        data = json.load(f)\\\\n    if \\\\\\\"_meta\\\\\\\" in data and \\\\\\\"version\\\\\\\" in data[\\\\\\\"_meta\\\\\\\"]:\\\\n        return data[\\\\\\\"_meta\\\\\\\"][\\\\\\\"version\\\\\\\"]\\\\n    return \\\\\\\"v1\\\\\\\"\\\\n\\\\n\\\\ndef keyword_file_md5(keyword_file: str) -> str:\\\\n    with open(keyword_file, \\\\\\\"rb\\\\\\\") as f:\\\\n        return hashlib.md5(f.read()).hexdigest()\\\\n\\\\n\\\\ndef route_by_keywords(\\\\n    observation: str,\\\\n    action_candidates: List[str],\\\\n    keywords: List[str],\\\\n) -> Tuple[str, Optional[str]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return (route_decision, matched_keyword_or_None).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    text = (observation + \\\\\\\" \\\\\\\" + \\\\\\\" \\\\\\\".join(action_candidates)).lower()\\\\n    for kw in keywords:\\\\n        if kw.lower() in text:\\\\n            return \\\\\\\"deterministic\\\\\\\", kw\\\\n    return \\\\\\\"internal\\\\\\\", None\\\\n\\\\n\\\\ndef run_episode_rule_based(\\\\n    agent: LLMAgent,\\\\n    task_name: str,\\\\n    variation_idx: int,\\\\n    max_steps: int,\\\\n    keywords: List[str],\\\\n    n_candidates: int = 3,\\\\n) -> Dict[str, Any]:\\\\n    env = create_env(task_name, variation_idx)\\\\n    obs, _ = reset_env(env)\\\\n    initial_score = get_score(env)\\\\n\\\\n    steps = []\\\\n    action_history = []\\\\n    history_dicts = []\\\\n    routing_counts = Counter()\\\\n    keyword_hits = Counter()\\\\n    t0 = time.time()\\\\n\\\\n    for step_idx in range(max_steps):\\\\n        valid_actions = get_valid_actions(env)\\\\n        if not valid_actions:\\\\n            break\\\\n\\\\n        route, matched_kw = route_by_keywords(obs, valid_actions, keywords)\\\\n        routing_counts[route] += 1\\\\n        if matched_kw:\\\\n            keyword_hits[matched_kw] += 1\\\\n\\\\n        score_before = get_score(env)\\\\n\\\\n        if route == \\\\\\\"deterministic\\\\\\\":\\\\n            candidates, raw_output = agent.generate_candidate_actions(\\\\n                obs, valid_actions, history_dicts, n=n_candidates\\\\n            )\\\\n            best_a\\\\n\\\\n... [截断: 输出过长，省略 377 字符] ...\\\\n\\\\n              \\\\\\\"action\\\\\\\": cand,\\\\n                    \\\\\\\"score_delta\\\\\\\": fr[\\\\\\\"score_delta\\\\\\\"],\\\\n                    \\\\\\\"score\\\\\\\": fr[\\\\\\\"score\\\\\\\"],\\\\n                    \\\\\\\"lethal\\\\\\\": lethal,\\\\n                })\\\\n                if fr[\\\\\\\"score_delta\\\\\\\"] > best_delta_fallback:\\\\n                    best_delta_fallback = fr[\\\\\\\"score_delta\\\\\\\"]\\\\n                    best_action_fallback = cand\\\\n                if not lethal and fr[\\\\\\\"score_delta\\\\\\\"] > best_delta:\\\\n                    best_delta = fr[\\\\\\\"score_delta\\\\\\\"]\\\\n                    best_action = cand\\\\n\\\\n            if best_action is None:\\\\n                best_action = best_action_fallback if best_action_fallback else valid_actions[0]\\\\n\\\\n            action = best_action\\\\n            llm_output = raw_output[:300]\\\\n        else:\\\\n            action, raw_output = agent.select_action_react(obs, valid_actions, history_dicts)\\\\n            llm_output = raw_output[:300]\\\\n\\\\n        obs_new, reward, done, info = step_env(env, action)\\\\n        score_after = get_score(env)\\\\n\\\\n        step_record = {\\\\n            \\\\\\\"step\\\\\\\": step_idx,\\\\n            \\\\\\\"observation\\\\\\\": obs[:500],\\\\n            \\\\\\\"action\\\\\\\": action,\\\\n            \\\\\\\"route_decision\\\\\\\": route,\\\\n            \\\\\\\"keyword_matched\\\\\\\": matched_kw,\\\\n            \\\\\\\"score_before\\\\\\\": score_before,\\\\n            \\\\\\\"score_after\\\\\\\": score_after,\\\\n            \\\\\\\"score_delta\\\\\\\": score_after - score_before,\\\\n            \\\\\\\"llm_output\\\\\\\": llm_output,\\\\n        }\\\\n        steps.append(step_record)\\\\n        action_history.append(action)\\\\n        history_dicts.append({\\\\n            \\\\\\\"action\\\\\\\": action,\\\\n            \\\\\\\"observation\\\\\\\": obs_new[:200],\\\\n            \\\\\\\"score\\\\\\\": score_after,\\\\n        })\\\\n        obs = obs_new\\\\n\\\\n        if done:\\\\n            break\\\\n\\\\n    final_score = get_score(env)\\\\n    close_env(env)\\\\n\\\\n    return {\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"rule_based_routing\\\\\\\",\\\\n        \\\\\\\"task_name\\\\\\\": task_name,\\\\n        \\\\\\\"variation_idx\\\\\\\": variation_idx,\\\\n        \\\\\\\"final_score\\\\\\\": final_score,\\\\n        \\\\\\\"initial_score\\\\\\\": initial_score,\\\\n        \\\\\\\"num_steps\\\\\\\": len(steps),\\\\n        \\\\\\\"total_time_s\\\\\\\": time.time() - t0,\\\\n        \\\\\\\"routing_stats\\\\\\\": dict(routing_counts),\\\\n        \\\\\\\"keyword_hits\\\\\\\": dict(keyword_hits),\\\\n        \\\\\\\"steps\\\\\\\": steps,\\\\n        \\\\\\\"action_history\\\\\\\": action_history,\\\\n    }\\\\n\\\\n\\\\ndef run_task_type(\\\\n    agent: LLMAgent,\\\\n    task_name: str,\\\\n    n_episodes: int,\\\\n    max_steps: int,\\\\n    keywords: List[str],\\\\n    output_dir: str,\\\\n    n_candidates: int = 3,\\\\n) -> Dict[str, Any]:\\\\n    task_dir = os.path.join(output_dir, task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    os.makedirs(task_dir, exist_ok=True)\\\\n    episodes_file = os.path.join(task_dir, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n\\\\n    all_episodes = []\\\\n    max_var = get_max_variations(task_name)\\\\n    actual_unique = min(n_episodes, max_var)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"RULE-BASED ROUTING: {task_name}\\\\\\\")\\\\n    print(f\\\\\\\"Episodes: {n_episodes} | Max steps: {max_steps}\\\\\\\")\\\\n    print(f\\\\\\\"Max variations: {max_var} | Unique: {actual_unique}\\\\\\\")\\\\n    print(f\\\\\\\"Keywords: {len(keywords)}\\\\\\\")\\\\n    if actual_unique < n_episodes:\\\\n        print(f\\\\\\\"  WARNING: {n_episodes} episodes > {max_var} variations, some will repeat\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    total_routing = Counter()\\\\n    total_kw_hits = Counter()\\\\n\\\\n    for ep_idx in range(n_episodes):\\\\n        variation_idx = ep_idx % max_var\\\\n        print(f\\\\\\\"\\\\\\\\n--- Episode {ep_idx}/{n_episodes} (variation={variation_idx}) ---\\\\\\\", flush=True)\\\\n\\\\n        t = time.time()\\\\n        result = run_episode_rule_based(\\\\n            agent, task_name, variation_idx, max_steps, keywords, n_candidates\\\\n        )\\\\n        rs = result[\\\\\\\"routing_stats\\\\\\\"]\\\\n        det_n = rs.get(\\\\\\\"deterministic\\\\\\\", 0)\\\\n        int_n = rs.get(\\\\\\\"internal\\\\\\\", 0)\\\\n        print(f\\\\\\\"  score={result['final_score']:.1f} det={det_n} int={int_n} ({time.time()-t:.0f}s)\\\\\\\")\\\\n\\\\n        episode_record = {\\\\n            \\\\\\\"episode\\\\\\\": ep_idx,\\\\n            \\\\\\\"variation\\\\\\\": variation_idx,\\\\n            **result,\\\\n        }\\\\n        all_episodes.append(episode_record)\\\\n\\\\n        with open(episodes_file, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(episode_record, default=str) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        total_routing.update(result[\\\\\\\"routing_stats\\\\\\\"])\\\\n        total_kw_hits.update(result[\\\\\\\"keyword_hits\\\\\\\"])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "34cb789d-d737-4e60-bb8a-42c544201df6",
+            "uuid": "47d19094-b2cf-44de-81bd-0f8ffc115957",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Plan-011: Rule-based routing baseline.\\\\n\\\\nPre-registered keyword list decides routing per step:\\\\n  - keyword match in obs/actions → deterministic (fork-based simulator evaluation)\\\\n  - no match → internal (LLM ReAct reasoning)\\\\n\\\\nUsage:\\\\n  python src/rule_based_routing.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport hashlib\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom typing import Dict, Any, List, Optional, Tuple\\\\n\\\\nimport numpy as np\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n    STRONG_TASKS, MEDIUM_TASKS, WEAK_TASKS, ALL_MVP_TASKS,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\n\\\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\\\nSLIM_EPISODES = os.environ.get(\\\\\\\"SLIM_EPISODES\\\\\\\", \\\\\\\"1\\\\\\\") == \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\ndef _slim_episode_data(ep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not SLIM_EPISODES:\\\\n        return ep\\\\n    result = {k: v for k, v in ep.items() if k != \\\\\\\"steps\\\\\\\"}\\\\n    if \\\\\\\"steps\\\\\\\" in ep:\\\\n        result[\\\\\\\"steps\\\\\\\"] = [\\\\n            {k: v for k, v in s.items()\\\\n             if k not in (\\\\\\\"llm_output\\\\\\\", \\\\\\\"action_history\\\\\\\", \\\\\\\"candidates\\\\\\\",\\\\n                          \\\\\\\"available_actions\\\\\\\")}\\\\n            for s in ep[\\\\\\\"steps\\\\\\\"]\\\\n        ]\\\\n    return result\\\\n\\\\n\\\\ndef resolve_task_type(name: str) -> str:\\\\n    try:\\\\n        available = get_task_types()\\\\n    except Exception:\\\\n        return name\\\\n    if name in available:\\\\n        return name\\\\n    matches = [t for t in available if name.lower() in t.lower()]\\\\n    if matches:\\\\n        return matches[0]\\\\n    return name\\\\n\\\\n\\\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\\\n    if fr[\\\\\\\"done\\\\\\\"] and fr[\\\\\\\"score\\\\\\\"] < 0:\\\\n        return True\\\\n    if fr[\\\\\\\"score\\\\\\\"] <= -100:\\\\n        return True\\\\n    return False\\\\n\\\\n\\\\ndef load_keywords(keyword_file: str) -> List[str]:\\\\n    with open(keyword_file, \\\\\\\"r\\\\\\\") as f:\\\\n        data = json.load(f)\\\\n    if \\\\\\\"keywords\\\\\\\" in data:\\\\n        return data[\\\\\\\"keywords\\\\\\\"]\\\\n    return data[\\\\\\\"route_to_simulator\\\\\\\"]\\\\n\\\\n\\\\ndef get_keywords_version(keyword_file: str) -> str:\\\\n    with open(keyword_file, \\\\\\\"r\\\\\\\") as f:\\\\n        data = json.load(f)\\\\n    if \\\\\\\"_meta\\\\\\\" in data and \\\\\\\"version\\\\\\\" in data[\\\\\\\"_meta\\\\\\\"]:\\\\n        return data[\\\\\\\"_meta\\\\\\\"][\\\\\\\"version\\\\\\\"]\\\\n    return \\\\\\\"v1\\\\\\\"\\\\n\\\\n\\\\ndef keyword_file_md5(keyword_file: str) -> str:\\\\n    with open(keyword_file, \\\\\\\"rb\\\\\\\") as f:\\\\n        return hashlib.md5(f.read()).hexdigest()\\\\n\\\\n\\\\ndef route_by_keywords(\\\\n    observation: str,\\\\n    action_candidates: List[str],\\\\n    keywords: List[str],\\\\n) -> Tuple[str, Optional[str]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return (route_decision, matched_keyword_or_None).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    text = (observation + \\\\\\\" \\\\\\\" + \\\\\\\" \\\\\\\".join(action_candidates)).lower()\\\\n    for kw in keywords:\\\\n        if kw.lower() in text:\\\\n            return \\\\\\\"deterministic\\\\\\\", kw\\\\n    return \\\\\\\"internal\\\\\\\", None\\\\n\\\\n\\\\ndef run_episode_rule_based(\\\\n    agent: LLMAgent,\\\\n    task_name: str,\\\\n    variation_idx: int,\\\\n    max_steps: int,\\\\n    keywords: List[str],\\\\n    n_candidates: int = 3,\\\\n) -> Dict[str, Any]:\\\\n    env = create_env(task_name, variation_idx)\\\\n    obs, _ = reset_env(env)\\\\n    initial_score = get_score(env)\\\\n\\\\n    steps = []\\\\n    action_history = []\\\\n    history_dicts = []\\\\n    routing_counts = Counter()\\\\n    keyword_hits = Counter()\\\\n    t0 = time.time()\\\\n\\\\n    for step_idx in range(max_steps):\\\\n        valid_actions = get_valid_actions(env)\\\\n        if not valid_actions:\\\\n            break\\\\n\\\\n        route, matched_kw = route_by_keywords(obs, valid_actions, keywords)\\\\n        routing_counts[route] += 1\\\\n        if matched_kw:\\\\n            keyword_hits[matched_kw] += 1\\\\n\\\\n        score_before = get_score(env)\\\\n\\\\n        if route == \\\\\\\"deterministic\\\\\\\":\\\\n            candidates, raw_output = agent.generate_candidate_actions(\\\\n                obs, valid_actions, history_dicts, n=n_candidates\\\\n            )\\\\n            best_a\\\\n\\\\n... [截断: 输出过长，省略 377 字符] ...\\\\n\\\\n              \\\\\\\"action\\\\\\\": cand,\\\\n                    \\\\\\\"score_delta\\\\\\\": fr[\\\\\\\"score_delta\\\\\\\"],\\\\n                    \\\\\\\"score\\\\\\\": fr[\\\\\\\"score\\\\\\\"],\\\\n                    \\\\\\\"lethal\\\\\\\": lethal,\\\\n                })\\\\n                if fr[\\\\\\\"score_delta\\\\\\\"] > best_delta_fallback:\\\\n                    best_delta_fallback = fr[\\\\\\\"score_delta\\\\\\\"]\\\\n                    best_action_fallback = cand\\\\n                if not lethal and fr[\\\\\\\"score_delta\\\\\\\"] > best_delta:\\\\n                    best_delta = fr[\\\\\\\"score_delta\\\\\\\"]\\\\n                    best_action = cand\\\\n\\\\n            if best_action is None:\\\\n                best_action = best_action_fallback if best_action_fallback else valid_actions[0]\\\\n\\\\n            action = best_action\\\\n            llm_output = raw_output[:300]\\\\n        else:\\\\n            action, raw_output = agent.select_action_react(obs, valid_actions, history_dicts)\\\\n            llm_output = raw_output[:300]\\\\n\\\\n        obs_new, reward, done, info = step_env(env, action)\\\\n        score_after = get_score(env)\\\\n\\\\n        step_record = {\\\\n            \\\\\\\"step\\\\\\\": step_idx,\\\\n            \\\\\\\"observation\\\\\\\": obs[:500],\\\\n            \\\\\\\"action\\\\\\\": action,\\\\n            \\\\\\\"route_decision\\\\\\\": route,\\\\n            \\\\\\\"keyword_matched\\\\\\\": matched_kw,\\\\n            \\\\\\\"score_before\\\\\\\": score_before,\\\\n            \\\\\\\"score_after\\\\\\\": score_after,\\\\n            \\\\\\\"score_delta\\\\\\\": score_after - score_before,\\\\n            \\\\\\\"llm_output\\\\\\\": llm_output,\\\\n        }\\\\n        steps.append(step_record)\\\\n        action_history.append(action)\\\\n        history_dicts.append({\\\\n            \\\\\\\"action\\\\\\\": action,\\\\n            \\\\\\\"observation\\\\\\\": obs_new[:200],\\\\n            \\\\\\\"score\\\\\\\": score_after,\\\\n        })\\\\n        obs = obs_new\\\\n\\\\n        if done:\\\\n            break\\\\n\\\\n    final_score = get_score(env)\\\\n    close_env(env)\\\\n\\\\n    return {\\\\n        \\\\\\\"mode\\\\\\\": \\\\\\\"rule_based_routing\\\\\\\",\\\\n        \\\\\\\"task_name\\\\\\\": task_name,\\\\n        \\\\\\\"variation_idx\\\\\\\": variation_idx,\\\\n        \\\\\\\"final_score\\\\\\\": final_score,\\\\n        \\\\\\\"initial_score\\\\\\\": initial_score,\\\\n        \\\\\\\"num_steps\\\\\\\": len(steps),\\\\n        \\\\\\\"total_time_s\\\\\\\": time.time() - t0,\\\\n        \\\\\\\"routing_stats\\\\\\\": dict(routing_counts),\\\\n        \\\\\\\"keyword_hits\\\\\\\": dict(keyword_hits),\\\\n        \\\\\\\"steps\\\\\\\": steps,\\\\n        \\\\\\\"action_history\\\\\\\": action_history,\\\\n    }\\\\n\\\\n\\\\ndef run_task_type(\\\\n    agent: LLMAgent,\\\\n    task_name: str,\\\\n    n_episodes: int,\\\\n    max_steps: int,\\\\n    keywords: List[str],\\\\n    output_dir: str,\\\\n    n_candidates: int = 3,\\\\n) -> Dict[str, Any]:\\\\n    task_dir = os.path.join(output_dir, task_name.replace(\\\\\\\" \\\\\\\", \\\\\\\"_\\\\\\\"))\\\\n    os.makedirs(task_dir, exist_ok=True)\\\\n    episodes_file = os.path.join(task_dir, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n\\\\n    all_episodes = []\\\\n    max_var = get_max_variations(task_name)\\\\n    actual_unique = min(n_episodes, max_var)\\\\n\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*60}\\\\\\\")\\\\n    print(f\\\\\\\"RULE-BASED ROUTING: {task_name}\\\\\\\")\\\\n    print(f\\\\\\\"Episodes: {n_episodes} | Max steps: {max_steps}\\\\\\\")\\\\n    print(f\\\\\\\"Max variations: {max_var} | Unique: {actual_unique}\\\\\\\")\\\\n    print(f\\\\\\\"Keywords: {len(keywords)}\\\\\\\")\\\\n    if actual_unique < n_episodes:\\\\n        print(f\\\\\\\"  WARNING: {n_episodes} episodes > {max_var} variations, some will repeat\\\\\\\")\\\\n    print(f\\\\\\\"{'='*60}\\\\\\\")\\\\n\\\\n    total_routing = Counter()\\\\n    total_kw_hits = Counter()\\\\n\\\\n    for ep_idx in range(n_episodes):\\\\n        variation_idx = ep_idx % max_var\\\\n        print(f\\\\\\\"\\\\\\\\n--- Episode {ep_idx}/{n_episodes} (variation={variation_idx}) ---\\\\\\\", flush=True)\\\\n\\\\n        t = time.time()\\\\n        result = run_episode_rule_based(\\\\n            agent, task_name, variation_idx, max_steps, keywords, n_candidates\\\\n        )\\\\n        rs = result[\\\\\\\"routing_stats\\\\\\\"]\\\\n        det_n = rs.get(\\\\\\\"deterministic\\\\\\\", 0)\\\\n        int_n = rs.get(\\\\\\\"internal\\\\\\\", 0)\\\\n        print(f\\\\\\\"  score={result['final_score']:.1f} det={det_n} int={int_n} ({time.time()-t:.0f}s)\\\\\\\")\\\\n\\\\n        episode_record = {\\\\n            \\\\\\\"episode\\\\\\\": ep_idx,\\\\n            \\\\\\\"variation\\\\\\\": variation_idx,\\\\n            **result,\\\\n        }\\\\n        all_episodes.append(episode_record)\\\\n\\\\n        with open(episodes_file, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(episode_record, default=str) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        total_routing.update(result[\\\\\\\"routing_stats\\\\\\\"])\\\\n        total_kw_hits.update(result[\\\\\\\"keyword_hits\\\\\\\"])\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-011: Rule-based routing baseline.\\n\\nPre-registered keyword list decides routing per step:\\n  - keyword match in obs/actions → deterministic (fork-based simulator evaluation)\\n  - no match → internal (LLM ReAct reasoning)\\n\\nUsage:\\n  python src/rule_based_routing.py --task_types \\\"boil,melt\\\" --episodes 20 --gpu_id 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport hashlib\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom typing import Dict, Any, List, Optional, Tuple\\n\\nimport numpy as np\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n    STRONG_TASKS, MEDIUM_TASKS, WEAK_TASKS, ALL_MVP_TASKS,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\n\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\nSLIM_EPISODES = os.environ.get(\\\"SLIM_EPISODES\\\", \\\"1\\\") == \\\"1\\\"\\n\\n\\ndef _slim_episode_data(ep):\\n    \\\"\\\"\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\"\\\"\\\"\\n    if not SLIM_EPISODES:\\n        return ep\\n    result = {k: v for k, v in ep.items() if k != \\\"steps\\\"}\\n    if \\\"steps\\\" in ep:\\n        result[\\\"steps\\\"] = [\\n            {k: v for k, v in s.items()\\n             if k not in (\\\"llm_output\\\", \\\"action_history\\\", \\\"candidates\\\",\\n                          \\\"available_actions\\\")}\\n            for s in ep[\\\"steps\\\"]\\n        ]\\n    return result\\n\\n\\ndef resolve_task_type(name: str) -> str:\\n    try:\\n        available = get_task_types()\\n    except Exception:\\n        return name\\n    if name in available:\\n        return name\\n    matches = [t for t in available if name.lower() in t.lower()]\\n    if matches:\\n        return matches[0]\\n    return name\\n\\n\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\n    if fr[\\\"done\\\"] and fr[\\\"score\\\"] < 0:\\n        return True\\n    if fr[\\\"score\\\"] <= -100:\\n        return True\\n    return False\\n\\n\\ndef load_keywords(keyword_file: str) -> List[str]:\\n    with open(keyword_file, \\\"r\\\") as f:\\n        data = json.load(f)\\n    if \\\"keywords\\\" in data:\\n        return data[\\\"keywords\\\"]\\n    return data[\\\"route_to_simulator\\\"]\\n\\n\\ndef get_keywords_version(keyword_file: str) -> str:\\n    with open(keyword_file, \\\"r\\\") as f:\\n        data = json.load(f)\\n    if \\\"_meta\\\" in data and \\\"version\\\" in data[\\\"_meta\\\"]:\\n        return data[\\\"_meta\\\"][\\\"version\\\"]\\n    return \\\"v1\\\"\\n\\n\\ndef keyword_file_md5(keyword_file: str) -> str:\\n    with open(keyword_file, \\\"rb\\\") as f:\\n        return hashlib.md5(f.read()).hexdigest()\\n\\n\\ndef route_by_keywords(\\n    observation: str,\\n    action_candidates: List[str],\\n    keywords: List[str],\\n) -> Tuple[str, Optional[str]]:\\n    \\\"\\\"\\\"Return (route_decision, matched_keyword_or_None).\\\"\\\"\\\"\\n    text = (observation + \\\" \\\" + \\\" \\\".join(action_candidates)).lower()\\n    for kw in keywords:\\n        if kw.lower() in text:\\n            return \\\"deterministic\\\", kw\\n    return \\\"internal\\\", None\\n\\n\\ndef run_episode_rule_based(\\n    agent: LLMAgent,\\n    task_name: str,\\n    variation_idx: int,\\n    max_steps: int,\\n    keywords: List[str],\\n    n_candidates: int = 3,\\n) -> Dict[str, Any]:\\n    env = create_env(task_name, variation_idx)\\n    obs, _ = reset_env(env)\\n    initial_score = get_score(env)\\n\\n    steps = []\\n    action_history = []\\n    history_dicts = []\\n    routing_counts = Counter()\\n    keyword_hits = Counter()\\n    t0 = time.time()\\n\\n    for step_idx in range(max_steps):\\n        valid_actions = get_valid_actions(env)\\n        if not valid_actions:\\n            break\\n\\n        route, matched_kw = route_by_keywords(obs, valid_actions, keywords)\\n        routing_counts[route] += 1\\n        if matched_kw:\\n            keyword_hits[matched_kw] += 1\\n\\n        score_before = get_score(env)\\n\\n        if route == \\\"deterministic\\\":\\n            candidates, raw_output = agent.generate_candidate_actions(\\n                obs, valid_actions, history_dicts, n=n_candidates\\n            )\\n            best_a\\n\\n... [截断: 输出过长，省略 377 字符] ...\\n\\n              \\\"action\\\": cand,\\n                    \\\"score_delta\\\": fr[\\\"score_delta\\\"],\\n                    \\\"score\\\": fr[\\\"score\\\"],\\n                    \\\"lethal\\\": lethal,\\n                })\\n                if fr[\\\"score_delta\\\"] > best_delta_fallback:\\n                    best_delta_fallback = fr[\\\"score_delta\\\"]\\n                    best_action_fallback = cand\\n                if not lethal and fr[\\\"score_delta\\\"] > best_delta:\\n                    best_delta = fr[\\\"score_delta\\\"]\\n                    best_action = cand\\n\\n            if best_action is None:\\n                best_action = best_action_fallback if best_action_fallback else valid_actions[0]\\n\\n            action = best_action\\n            llm_output = raw_output[:300]\\n        else:\\n            action, raw_output = agent.select_action_react(obs, valid_actions, history_dicts)\\n            llm_output = raw_output[:300]\\n\\n        obs_new, reward, done, info = step_env(env, action)\\n        score_after = get_score(env)\\n\\n        step_record = {\\n            \\\"step\\\": step_idx,\\n            \\\"observation\\\": obs[:500],\\n            \\\"action\\\": action,\\n            \\\"route_decision\\\": route,\\n            \\\"keyword_matched\\\": matched_kw,\\n            \\\"score_before\\\": score_before,\\n            \\\"score_after\\\": score_after,\\n            \\\"score_delta\\\": score_after - score_before,\\n            \\\"llm_output\\\": llm_output,\\n        }\\n        steps.append(step_record)\\n        action_history.append(action)\\n        history_dicts.append({\\n            \\\"action\\\": action,\\n            \\\"observation\\\": obs_new[:200],\\n            \\\"score\\\": score_after,\\n        })\\n        obs = obs_new\\n\\n        if done:\\n            break\\n\\n    final_score = get_score(env)\\n    close_env(env)\\n\\n    return {\\n        \\\"mode\\\": \\\"rule_based_routing\\\",\\n        \\\"task_name\\\": task_name,\\n        \\\"variation_idx\\\": variation_idx,\\n        \\\"final_score\\\": final_score,\\n        \\\"initial_score\\\": initial_score,\\n        \\\"num_steps\\\": len(steps),\\n        \\\"total_time_s\\\": time.time() - t0,\\n        \\\"routing_stats\\\": dict(routing_counts),\\n        \\\"keyword_hits\\\": dict(keyword_hits),\\n        \\\"steps\\\": steps,\\n        \\\"action_history\\\": action_history,\\n    }\\n\\n\\ndef run_task_type(\\n    agent: LLMAgent,\\n    task_name: str,\\n    n_episodes: int,\\n    max_steps: int,\\n    keywords: List[str],\\n    output_dir: str,\\n    n_candidates: int = 3,\\n) -> Dict[str, Any]:\\n    task_dir = os.path.join(output_dir, task_name.replace(\\\" \\\", \\\"_\\\"))\\n    os.makedirs(task_dir, exist_ok=True)\\n    episodes_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n\\n    all_episodes = []\\n    max_var = get_max_variations(task_name)\\n    actual_unique = min(n_episodes, max_var)\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"RULE-BASED ROUTING: {task_name}\\\")\\n    print(f\\\"Episodes: {n_episodes} | Max steps: {max_steps}\\\")\\n    print(f\\\"Max variations: {max_var} | Unique: {actual_unique}\\\")\\n    print(f\\\"Keywords: {len(keywords)}\\\")\\n    if actual_unique < n_episodes:\\n        print(f\\\"  WARNING: {n_episodes} episodes > {max_var} variations, some will repeat\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    total_routing = Counter()\\n    total_kw_hits = Counter()\\n\\n    for ep_idx in range(n_episodes):\\n        variation_idx = ep_idx % max_var\\n        print(f\\\"\\\\n--- Episode {ep_idx}/{n_episodes} (variation={variation_idx}) ---\\\", flush=True)\\n\\n        t = time.time()\\n        result = run_episode_rule_based(\\n            agent, task_name, variation_idx, max_steps, keywords, n_candidates\\n        )\\n        rs = result[\\\"routing_stats\\\"]\\n        det_n = rs.get(\\\"deterministic\\\", 0)\\n        int_n = rs.get(\\\"internal\\\", 0)\\n        print(f\\\"  score={result['final_score']:.1f} det={det_n} int={int_n} ({time.time()-t:.0f}s)\\\")\\n\\n        episode_record = {\\n            \\\"episode\\\": ep_idx,\\n            \\\"variation\\\": variation_idx,\\n            **result,\\n        }\\n        all_episodes.append(episode_record)\\n\\n        with open(episodes_file, \\\"a\\\") as f:\\n            f.write(json.dumps(episode_record, default=str) + \\\"\\\\n\\\")\\n\\n        total_routing.update(result[\\\"routing_stats\\\"])\\n        total_kw_hits.update(result[\\\"keyword_hits\\\"])\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"
+              }
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "For `rule_based_routing.py`, the `episode_record` uses `**result` to spread the result dict. The `result` dict contains `steps` directly. So I need to apply `_slim_episode_data` to `result` before spreading. Let me patch it.\n\n```python\n        episode_record = {\n            \"episode\": ep_idx,\n            \"variation\": variation_idx,\n            **result,\n        }\n```\n\nShould become:\n```python\n        episode_record = {\n            \"episode\": ep_idx,\n            \"variation\": variation_idx,\n            **_slim_episode_data(result),\n        }\n```",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "34cb789d-d737-4e60-bb8a-42c544201df6",
+            "uuid": "7c63f687-b04a-4fe9-a6a1-78b0d8d0b111",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgGzysQttRStDeC4V3dNvb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3377,
+                "cache_read_input_tokens": 94061,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3377
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`rule_based_routing.py` 的写入点用 `**result` 展开，需要把 `_slim_episode_data` 包在 `result` 上。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "34cb789d-d737-4e60-bb8a-42c544201df6",
+            "uuid": "a15c2611-9d30-40de-92ca-11aa7bc128ea",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgGzysQttRStDeC4V3dNvb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3377,
+                "cache_read_input_tokens": 94061,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3377
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DHiYGJZJtznTPcWB4mipd1",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cat > /tmp/patch_rb.py << 'PYEOF'\nfp = '/root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py'\nwith open(fp) as f:\n    c = f.read()\n\nold = '''        episode_record = {\n            \"episode\": ep_idx,\n            \"variation\": variation_idx,\n            **result,\n        }'''\nnew = '''        episode_record = {\n            \"episode\": ep_idx,\n            \"variation\": variation_idx,\n            **_slim_episode_data(result),\n        }'''\n\nassert old in c, \"rule_based_routing.py: write pattern not found\"\nc = c.replace(old, new, 1)\n\nwith open(fp, 'w') as f:\n    f.write(c)\n\nimport ast\nast.parse(c)\nprint(\"OK: rule_based_routing.py patched + syntax verified\")\nPYEOF\n/root/miniconda3/bin/python3 /tmp/patch_rb.py",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "34cb789d-d737-4e60-bb8a-42c544201df6",
+            "uuid": "9e43cdaf-33c7-4d41-b7bb-2673ed822ec2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01DgGzysQttRStDeC4V3dNvb",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3377,
+                "cache_read_input_tokens": 94061,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3377
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-14T03:58:04.023Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DHiYGJZJtznTPcWB4mipd1",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: rule_based_routing.py patched + syntax verified\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "34cb789d-d737-4e60-bb8a-42c544201df6",
+            "uuid": "af01bf6c-c083-417e-a3dd-e398b644b6f9",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"OK: rule_based_routing.py patched + syntax verified\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.79}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"OK: rule_based_routing.py patched + syntax verified\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.79}}"
+              }
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结修改：\n\n**修改了 5 个文件**，统一添加 `SLIM_EPISODES` 环境变量控制：\n\n| 文件 | 输出文件 | 修改点 |\n|------|---------|--------|\n| `episode_level_collection.py` | `episodes.jsonl` (plan_c) | 写入时 slim `r_int` / `r_det` |\n| `phase1_signal.py` | `episodes.jsonl` (mvp/research) | 写入时 slim `r_internal` / `r_det` / `r_oracle` |\n| `signal_prescreening.py` | `episodes.jsonl` (prescreening) | 写入时 slim `r_int` / `r_det` |\n| `rule_based_routing.py` | `episodes.jsonl` | 写入时 slim `result` |\n| `collect_trajectories.py` | `raw_episodes.jsonl` | 写入时 slim `ep` |\n\n**精简逻辑**：\n- 默认 `SLIM_EPISODES=1`，每步剥离 `llm_output`、`action_history`（per-step 冗余）、`candidates`、`available_actions`\n- 保留：`step`、`action`、`modality`、`score_before/after/delta`、`observation`、`is_dead` 等核心字段\n- 顶层 `action_history` 和所有元数据不变\n- 设 `SLIM_EPISODES=0` 恢复完整 debug 输出\n- 预估减少 ~70% 文件体积，下次实验启动自动生效"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "34cb789d-d737-4e60-bb8a-42c544201df6",
+            "uuid": "38ba7459-5b43-45f9-abc0-defbd5bc4e6e",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YZ2EeUBaDHpz421MbL3GWG",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 653,
+                "cache_read_input_tokens": 97438,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 653
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结修改：\n\n**修改了 5 个文件**，统一添加 `SLIM_EPISODES` 环境变量控制：\n\n| 文件 | 输出文件 | 修改点 |\n|------|---------|--------|\n| `episode_level_collection.py` | `episodes.jsonl` (plan_c) | 写入时 slim `r_int` / `r_det` |\n| `phase1_signal.py` | `episodes.jsonl` (mvp/research) | 写入时 slim `r_internal` / `r_det` / `r_oracle` |\n| `signal_prescreening.py` | `episodes.jsonl` (prescreening) | 写入时 slim `r_int` / `r_det` |\n| `rule_based_routing.py` | `episodes.jsonl` | 写入时 slim `result` |\n| `collect_trajectories.py` | `raw_episodes.jsonl` | 写入时 slim `ep` |\n\n**精简逻辑**：\n- 默认 `SLIM_EPISODES=1`，每步剥离 `llm_output`、`action_history`（per-step 冗余）、`candidates`、`available_actions`\n- 保留：`step`、`action`、`modality`、`score_before/after/delta`、`observation`、`is_dead` 等核心字段\n- 顶层 `action_history` 和所有元数据不变\n- 设 `SLIM_EPISODES=0` 恢复完整 debug 输出\n- 预估减少 ~70% 文件体积，下次实验启动自动生效"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 552616,
+            "duration_api_ms": 459939,
+            "num_turns": 66,
+            "stop_reason": "end_turn",
+            "session_id": "34cb789d-d737-4e60-bb8a-42c544201df6",
+            "total_cost_usd": 2.4641045,
+            "usage": {
+              "input_tokens": 49,
+              "cache_creation_input_tokens": 86250,
+              "cache_read_input_tokens": 2718474,
+              "output_tokens": 22564,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 86250,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 445,
+                  "cache_read_input_tokens": 97438,
+                  "cache_creation_input_tokens": 653,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 653
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1370,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00146,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 49,
+                "outputTokens": 22564,
+                "cacheReadInputTokens": 2718474,
+                "cacheCreationInputTokens": 86250,
+                "webSearchRequests": 0,
+                "costUSD": 2.4626444999999997,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "98c15df0-65ed-4396-8f7c-d2454874efc9"
+          },
+          "id": "event-000171"
+        }
+      ]
+    }
+  ]
+}

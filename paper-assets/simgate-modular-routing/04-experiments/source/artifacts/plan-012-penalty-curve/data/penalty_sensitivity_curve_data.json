@@ -1,0 +1,21 @@
+{
+  "N": 245,
+  "delta_nd": 2.837,
+  "n_internal_died": 105,
+  "n_det_died": 40,
+  "n_only_int_dies": 70,
+  "n_only_det_dies": 5,
+  "n_both_die": 35,
+  "n_neither_dies": 135,
+  "death_rate_internal": 0.4286,
+  "death_rate_det": 0.1633,
+  "results": [
+    {"P": 0, "delta_full": 3.0653, "delta_nd": 2.837, "DAF": 7.45, "DAF_CI_lower": -36.7, "DAF_CI_upper": 83.14},
+    {"P": 10, "delta_full": 5.7184, "delta_nd": 2.837, "DAF": 50.39, "DAF_CI_lower": 19.79, "DAF_CI_upper": 94.48},
+    {"P": 25, "delta_full": 9.698, "delta_nd": 2.837, "DAF": 70.75, "DAF_CI_lower": 48.54, "DAF_CI_upper": 97.08},
+    {"P": 50, "delta_full": 16.3306, "delta_nd": 2.837, "DAF": 82.63, "DAF_CI_lower": 67.63, "DAF_CI_upper": 98.37},
+    {"P": 100, "delta_full": 29.5959, "delta_nd": 2.837, "DAF": 90.41, "DAF_CI_lower": 81.46, "DAF_CI_upper": 99.13},
+    {"P": 200, "delta_full": 56.1265, "delta_nd": 2.837, "DAF": 94.95, "DAF_CI_lower": 89.96, "DAF_CI_upper": 99.55},
+    {"P": 500, "delta_full": 135.7184, "delta_nd": 2.837, "DAF": 97.91, "DAF_CI_lower": 95.79, "DAF_CI_upper": 99.82}
+  ]
+}

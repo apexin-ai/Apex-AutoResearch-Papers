@@ -1,0 +1,14 @@
+{
+  "exp_id": "multi-model-pilot",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:59:50.510Z",
+    "updated_at": "2026-05-15T06:59:50.510Z"
+  },
+  "timestamp": "2026-05-15T06:59:50.642748+00:00",
+  "trigger": "update_registry"
+}

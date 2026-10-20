@@ -1,0 +1,52 @@
+{
+  "exp_id": "plan-002-formal-v5",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:37:37.792Z",
+    "updated_at": "2026-05-14T06:58:59.934Z",
+    "hypothesis": "Router SFT v5：pad_token_id fix。v3/v4 loss 异常根因确认为 model.config.pad_token_id=None（ModelScope 下载的 Qwen3-1.7B 未设置 pad_token_id，导致分类头 loss 计算错误）。Fix：模型加载后立即设 model.config.pad_token_id = tokenizer.pad_token_id (151643)。其余配置与 v4 相同：stratified split + 无 upsample + class_weights auto + 互斥检查。Qwen3-1.7B + LoRA r=16 (0.37% trainable), 3 epochs, batch_size=4 + grad_accum=8, 2040 samples (1830 det / 210 internal)。",
+    "parent": "plan-002-formal-v4",
+    "server": "westb-13313",
+    "gpu": "cuda:0",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v5 --seed 42\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "235437",
+      "log_path": "~/runs/simgate-modular-routing/plan-002-formal-v5.log",
+      "submitted_at": "2026-05-14T06:40:45Z",
+      "submitted_via": "submit_on_allocated",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "results/plan_c/ (11 tasks, all complete)",
+      "data_count": "2040 samples (train 1620: det=1440/int=180 | val 420: det=390/int=30)",
+      "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)",
+      "seed": 42,
+      "fixes_from_v4": [
+        "assert tokenizer.pad_token_id is not None (line 306)",
+        "torch_dtype→dtype deprecated fix (line 303)",
+        "pad_token_id already existed at line 305 — this run confirms whether it's effective"
+      ],
+      "inherits_from_v4": [
+        "stratified val split",
+        "no upsample_minority",
+        "class_weights auto only",
+        "mutual exclusion check"
+      ]
+    },
+    "pid": "235437",
+    "log_path": "~/runs/simgate-modular-routing/plan-002-formal-v5.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v5 --seed 42\""
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-14T06:59:00.099755+00:00",
+  "trigger": "update_registry"
+}

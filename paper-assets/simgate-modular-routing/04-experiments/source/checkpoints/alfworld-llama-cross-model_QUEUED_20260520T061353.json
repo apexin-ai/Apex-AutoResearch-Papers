@@ -1,0 +1,15 @@
+{
+  "exp_id": "alfworld-llama-cross-model",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T05:58:27.343Z",
+    "updated_at": "2026-05-20T06:13:53.115Z",
+    "hypothesis": "Llama-3.1-8B on ALFWorld will show information asymmetry (not death) as the dominant routing mechanism, consistent with Qwen2.5-7B findings (25.9% det-preferred, DAF=0%), confirming the framework diagnoses environment-specific mechanisms regardless of model family."
+  },
+  "timestamp": "2026-05-20T06:13:53.490512+00:00",
+  "trigger": "update_registry"
+}

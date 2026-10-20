@@ -1,0 +1,26 @@
+{
+    "_meta": {
+        "version": "v2",
+        "registered_date": "2026-05-13",
+        "reason": "D014: v1 中 connect/disconnect 是 ScienceWorld 通用动作（命中 3662 次），导致 keyword router 退化为 always-det。v2 只保留科学操作/状态变化动词。注册后锁定，plan-011 正式实验不可再改。"
+    },
+    "keywords": [
+        "heat",
+        "cool",
+        "boil",
+        "melt",
+        "freeze",
+        "burn",
+        "mix",
+        "pour",
+        "react",
+        "dissolve",
+        "activate",
+        "change state",
+        "ignite",
+        "combust",
+        "evaporate",
+        "condense",
+        "oxidize"
+    ]
+}

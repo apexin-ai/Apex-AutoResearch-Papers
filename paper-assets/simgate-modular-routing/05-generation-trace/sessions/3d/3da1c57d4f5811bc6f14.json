@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3da1c57d4f5811bc6f14",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis plan 002 generative v1",
+  "task_key": "worker_analysis_plan-002-generative-v1_20260514T080716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-002-generative-v1_20260514T080716_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "c78276e9f78d230261e00bfa9384db6c093f4050225dc2573d1945a4c290b14a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，结果已写入 `artifacts/plan-002-generative-v1-analysis.md`。\n\n**核心发现**:\n\n1. **训练成功完成**，loss 收敛健康：5.44 → 0.20，eval_loss 持续下降（0.39 → 0.28 → 0.26），无过拟合\n2. **Checkpoint 完整**：final_adapter (25.7MB) + 2 个中间 checkpoint\n3. **⚠️ 关键缺陷：internal_recall 未知**。`compute_metrics` 函数已定义但**未传入 Trainer**，训练期间只输出了 eval_loss，没有 routing_acc / internal_recall / det_recall\n4. **结论: PENDING** — 无法判定 success/negative，需要单独跑 eval 子命令\n\n**下一步**: 需要运行 `python src/training/generative_router_sft.py eval --adapter_path checkpoints/plan-002-generative-v1/final_adapter ...` 来获取实际路由指标，与 ablation-b (internal_recall=51.5%) 对比。是否现在跑 eval？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-002-generative-v1.md"
+}

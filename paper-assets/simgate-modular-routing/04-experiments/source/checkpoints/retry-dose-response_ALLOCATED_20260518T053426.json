@@ -1,0 +1,29 @@
+{
+  "exp_id": "retry-dose-response",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:58:01.903Z",
+    "updated_at": "2026-05-18T05:34:26.691Z",
+    "hypothesis": "Death rate在retry trials增加时plateau在~35-40%（N=5时与N=3差异<3pp），与reflexion/72B的convergence一致，证明death dominance是结构性上限而非retry机会不足",
+    "parent": "retry-control-baseline",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/simgate-modular-routing && mkdir -p logs && VLLM_USE_FLASHINFER_SAMPLER=0 /root/miniconda3/bin/python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --served-model-name Qwen2.5-7B-Instruct --port 8000 --gpu-memory-utilization 0.9 --trust-remote-code > logs/vllm-dose-n5.log 2>&1 & VLLM_PID=\\$! && trap 'kill \\$VLLM_PID 2>/dev/null; wait \\$VLLM_PID 2>/dev/null' EXIT && echo 'Waiting for vLLM...' && for i in \\$(seq 1 60); do curl -s http://localhost:8000/v1/models 2>/dev/null | grep -q Qwen && echo 'vLLM ready' && break; if ! kill -0 \\$VLLM_PID 2>/dev/null; then echo 'vLLM died'; exit 1; fi; sleep 10; done && curl -s http://localhost:8000/v1/models 2>/dev/null | grep -q Qwen || { echo 'vLLM failed to start'; exit 1; } && echo 'Starting N=5 dose-response...' && /root/miniconda3/bin/python run_retry_dose_response.py --n-values 5 --episodes-per-task 20 --max-steps 30 --model Qwen2.5-7B-Instruct --api-base http://localhost:8000/v1 --seed 42 2>&1 | tee logs/dose_response_n5.log\"",
+      "server": "westb-14838",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "105602",
+      "log_path": "~/runs/simgate-modular-routing/retry-dose-response.log",
+      "submitted_at": "2026-05-18T04:21:35.940Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T05:34:26.904331+00:00",
+  "trigger": "update_registry"
+}

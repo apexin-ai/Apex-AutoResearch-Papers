@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "510e0be52dc59f975bea",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh server migration westd18266",
+  "task_key": "worker_ssh_server-migration-westd18266_20260518T060123",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_server-migration-westd18266_20260518T060123_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "1410e0d85a1c901b60fbdff329cf48b649c2077c1e6ee707b639cb90b521cab7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 迁移汇报\n\n| 项目 | 状态 |\n|------|------|\n| **GPU** | 4× RTX PRO 6000 Blackwell, SM 12.0, Driver 580.95.05, CUDA 13.0, 每卡 ~96GB |\n| **代码迁移** | 完整 (729 files, src/, crafter_pilot/, 全部脚本) |\n| **模型迁移** | 完整 (Qwen2.5-7B-Instruct, 15.2GB) |\n| **数据迁移** | 完整 (results/ 下所有实验 JSON: backbone_72b, reflexion_baseline, retry_dose_response) |\n| **Python 环境** | Python 3.12.3, vLLM 0.21.0, torch 2.11.0, transformers 5.8.1, crafter 1.8.3, scienceworld 1.2.3 |\n| **dry-run** | 通过。10 个 task × 1 episode × 5 steps 全部正常完成 |\n| **额外安装** | Java JRE (ScienceWorld 依赖), scienceworld 包 |\n| **注意事项** | Blackwell GPU 需要 `VLLM_USE_FLASHINFER_SAMPLER=0` |\n\n全量实验未启动，环境已就绪。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-server-migration-westd18266.md"
+}

@@ -1,0 +1,44 @@
+{
+  "exp_id": "plan-003-e2e-ablation-b",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:02:31.160Z",
+    "updated_at": "2026-05-14T09:03:24.374Z",
+    "spec": {
+      "command": "python src/eval_end_to_end.py --router_type generative --router_checkpoint checkpoints/plan-002-generative-v1/final_adapter --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --data_dir results/plan_c/ --output_dir results/eval_ablation_b_e2e/ --conditions trained-router --gpu_id 0",
+      "server": "westb-13313",
+      "data_path": "results/plan_c/",
+      "data_count": 245,
+      "model_name": "Qwen3-1.7B + LoRA (plan-002-generative-v1)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan-002-generative-v1/final_adapter",
+      "eval_data": "results/plan_c/ (245 eps, 11 tasks)",
+      "checkpoint_path": "checkpoints/plan-002-generative-v1/final_adapter",
+      "log_path": "/tmp/eval_ablation_b.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "score_mean": -11.11,
+      "score_ci_low": -15.93,
+      "score_ci_high": -6.7,
+      "death_rate": 0.1796,
+      "success_rate": 0.2367,
+      "sim_ratio": 0.9607,
+      "fallback_rate": 0.706,
+      "n_episodes": 245,
+      "n_tasks": 11,
+      "baseline_always_det": -9.47,
+      "baseline_oracle": -6.58,
+      "delta_vs_always_det": -1.64
+    },
+    "hypothesis": "End-to-end eval of trained generative router (plan-002-generative-v1, internal_recall=51.5%) on 245 episodes / 11 tasks. Test C1: trained-router > always-det.",
+    "notes": "NEGATIVE: trained-router (-11.11) worse than always-det (-9.47) by 1.64 pts. CI [-15.93, -6.70] includes -9.47 so not statistically significant but point estimate is worse. sim_ratio=96.1% (almost always-det). 70.6% episodes used fallback (no step data = no-preference episodes, fallback doesn't bias since internal_final==det_final for these). Router routes 4% to internal but those choices hurt (extra deaths). C1 not supported. Per-task: only find-non-living-thing shows positive score (+28.68). Most tasks show death_rate 15-30%.",
+    "completed_at": "2026-05-14T09:03:24.374Z"
+  },
+  "timestamp": "2026-05-14T09:03:24.478852+00:00",
+  "trigger": "update_registry"
+}

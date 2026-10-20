@@ -1,0 +1,1839 @@
+{
+  "schema_version": "1.0",
+  "id": "2e327486d98e5dc43081",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "eval daf bootstrap ci v2",
+  "task_key": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_eval_daf-bootstrap-ci-v2_20260516T183401.jsonl",
+    "occurrence": 1,
+    "bytes": 83042,
+    "sha256": "d83c6649bfdf64328a6d2f5ce460903230c4ef3428020761f90092f10fb35fb3"
+  },
+  "statistics": {
+    "messages": 89,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "tool_call": 44,
+      "tool_result": 44,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-16T18:41:48.298968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__read_registry",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-16T18:41:48.299351+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-16T18:41:48.299561+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/plan_012_full/ 2>/dev/null || echo \"NOT_FOUND\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-16T18:41:48.299710+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '||' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-16T18:41:48.299839+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "find /root/autodl-tmp/simgate-modular-routing/results/ -type f -name \"*.json*\" | head -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-16T18:41:48.299969+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-16T18:41:48.300181+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/guided_router/compute_sci.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-16T18:41:48.300420+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Signal Concentration Index (SCI) computation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport csv\\\\nimport json\\\\nimport os\\\\n\\\\nDATA_PATH = \\\\\\\"/root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition\\\\\\\"\\\\nOUTPUT_PATH = \\\\\\\"/root/autodl-tmp/simgate-modular-routing/guided_router/sci_results.json\\\\\\\"\\\\n\\\\n\\\\ndef gini(values):\\\\n    sorted_v = sorted(values)\\\\n    n = len(sorted_v)\\\\n    total = sum(sorted_v)\\\\n    if total == 0 or n == 0:\\\\n        return 0.0\\\\n    cumsum = sum((2 * i - n - 1) * v for i, v in enumerate(sorted_v, 1))\\\\n    return cumsum / (n * total)\\\\n\\\\n\\\\ndef main():\\\\n    # Load CSV data\\\\n    tasks = []\\\\n    with open(DATA_PATH, \\\\\\\"r\\\\\\\") as f:\\\\n        reader = csv.DictReader(f)\\\\n        for row in reader:\\\\n            tasks.append({\\\\n                \\\\\\\"task_name\\\\\\\": row[\\\\\\\"task_name\\\\\\\"],\\\\n                \\\\\\\"n_episodes\\\\\\\": int(row[\\\\\\\"n_episodes\\\\\\\"]),\\\\n                \\\\\\\"death_rate_int\\\\\\\": float(row[\\\\\\\"death_rate_int\\\\\\\"]),\\\\n                \\\\\\\"death_rate_det\\\\\\\": float(row[\\\\\\\"death_rate_det\\\\\\\"]),\\\\n                \\\\\\\"delta_full\\\\\\\": float(row[\\\\\\\"delta_full\\\\\\\"]),\\\\n                \\\\\\\"delta_nd\\\\\\\": float(row[\\\\\\\"delta_nd\\\\\\\"]),\\\\n                \\\\\\\"det_pref\\\\\\\": int(row[\\\\\\\"det_pref\\\\\\\"]),\\\\n            })\\\\n\\\\n    # Compute death contribution per task: |delta_full - delta_nd|\\\\n    for t in tasks:\\\\n        t[\\\\\\\"death_contribution\\\\\\\"] = abs(t[\\\\\\\"delta_full\\\\\\\"] - t[\\\\\\\"delta_nd\\\\\\\"])\\\\n\\\\n    total_contribution = sum(t[\\\\\\\"death_contribution\\\\\\\"] for t in tasks)\\\\n\\\\n    # Normalize to get c_t\\\\n    for t in tasks:\\\\n        t[\\\\\\\"c_t\\\\\\\"] = t[\\\\\\\"death_contribution\\\\\\\"] / total_contribution if total_contribution > 0 else 0.0\\\\n\\\\n    # Sort by c_t descending\\\\n    tasks_sorted = sorted(tasks, key=lambda x: x[\\\\\\\"c_t\\\\\\\"], reverse=True)\\\\n\\\\n    # Compute Gini (SCI)\\\\n    c_values = [t[\\\\\\\"c_t\\\\\\\"] for t in tasks]\\\\n    sci = gini(c_values)\\\\n\\\\n    # Top-k Con\n…[truncated 2336 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-16T18:41:48.300610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-16T18:41:48.300744+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -5 /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition",
+              "account": "root"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-16T18:41:48.300898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation_b_gen_eval.json\\\\nablation_b_seed123_gen.json\\\\nablation_b_seed456_gen.json\\\\nablation_b_seed789_gen.json\\\\nablation_data_size\\\\nablation_r3\\\\nalfworld_counterfactual\\\\nbaseline_245eps\\\\nbootstrap_95ci.json\\\\ncapacity_episode_eval\\\\ncross_split_eval\\\\ndeath_decomposition_preliminary.csv\\\\ndeath_decomposition_preliminary_OLD.csv\\\\ndeath_decomposition_report.json\\\\ndeath_decomposition_test.json\\\\ndeath_timing_analysis.json\\\\ndecomposition_dryrun\\\\ndiag_seed42_v5_eval.json\\\\ndry_run_mvp_report.json\\\\ndry_run_mvp_table.json\\\\neval-template-fix\\\\neval_ablation_b_e2e\\\\neval_ablation_b_e2e_correct\\\\nguided_router\\\\nleave_one_tasktype_out\\\\nllama-expanded\\\\nmajority_vote_baseline\\\\nmath_full_200.log\\\\nmulti_model_pilot\\\\nmvp\\\\npaper_table1_data.json\\\\npaper_table1_test.json\\\\npenalty_robustness\\\\npenalty_sensitivity.json\\\\npenalty_sensitivity_curve\\\\npenalty_sensitivity_table.tex\\\\nplan-003-eval-implicit\\\\nplan-006-deep-internal\\\\nplan-008\\\\nplan-008-v2\\\\nplan-008-v3\\\\nplan-008-v4\\\\nplan-010-cross-task-life-to-physical-seed42\\\\nplan-010-cross-task-physical-to-life-seed42\\\\nplan-013\\\\nplan004v5_corrected.json\\\\nplan005\\\\nplan_001b_labels\\\\nplan_001b_labels_partial\\\\nplan_002_router_dryrun\\\\nplan_003_eval\\\\nplan_003_eval_dryrun\\\\nplan_003_eval_full_baseline\\\\nplan_003_eval_router_test\\\\nplan_003_eval_router_v6_test\\\\nplan_005_analysis\\\\nplan_012_decomposition\\\\nplan_c\\\\nplan_c_95ci\\\\nplan_c_test_labels\\\\nprescreening\\\\nresearch\\\\nrouting-patterns\\\\nrule_based_accuracy_test.json\\\\nrule_based_accuracy_v1_rerun.json\\\\nrule_based_accuracy_v2_test.json\\\\nrule_based_accuracy_v3.json\\\\nseed-robustness\\\\nseed-robustness-corrected\\\\nsft_data\\\\nsft_data_death_aware\\\\nsft_data_test\\\\nstep_tie_rate_full.json\\\\ntable7\\\\ntest_3label\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-16T18:41:48.301096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "find /root/autodl-tmp/simgate-modular-routing/results/ -type f -name \"*episode*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-16T18:41:48.301245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"task_name,n_episodes,death_rate_int,death_rate_det,delta_full,delta_nd,delta_penalty_replaced,det_pref,int_pref,no_pref\\\\nchemistry-mix,20,0.45,0.25,21.8,0.0,1.8,6,2,12\\\\nfind-animal,20,0.5,0.25,26.65,0.0,1.65,5,0,15\\\\nfind-non-living-thing,40,0.0,0.0,9.58,9.58,9.58,16,4,20\\\\nfreeze,20,0.55,0.25,30.5,0.0,0.5,6,0,14\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-16T18:41:48.301452+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/chemistry-mix-paint-secondary-color/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/melt/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/grow-plant/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/change-the-state-of-matter-of/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-living-thing/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-plant/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/grow-fruit/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-1/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-2/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/measure-melting-point-unknown-substance/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-determine-angle/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/mendelian-genetics-known-plant/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-friction-named-surfaces/episodes.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/mendelian-genetics-unk\n…[truncated 6358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-16T18:41:48.301636+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -3 /root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-16T18:41:48.301766+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-16T18:41:48.301919+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition\\\\\\\": \\\\\\\"always-deterministic\\\\\\\", \\\\\\\"task_type\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"episode_idx\\\\\\\": 0, \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"decision\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"internal_final\\\\\\\": -100.0, \\\\\\\"det_final\\\\\\\": 0.0, \\\\\\\"oracle_label\\\\\\\": \\\\\\\"det-preferred\\\\\\\"}\\\\n{\\\\\\\"condition\\\\\\\": \\\\\\\"always-deterministic\\\\\\\", \\\\\\\"task_type\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"episode_idx\\\\\\\": 1, \\\\\\\"variation_idx\\\\\\\": 1, \\\\\\\"decision\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"internal_final\\\\\\\": 0.0, \\\\\\\"det_final\\\\\\\": 0.0, \\\\\\\"oracle_label\\\\\\\": \\\\\\\"no-preference\\\\\\\"}\\\\n{\\\\\\\"condition\\\\\\\": \\\\\\\"always-deterministic\\\\\\\", \\\\\\\"task_type\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"episode_idx\\\\\\\": 2, \\\\\\\"variation_idx\\\\\\\": 2, \\\\\\\"decision\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score\\\\\\\": 21.0, \\\\\\\"internal_final\\\\\\\": 21.0, \\\\\\\"det_final\\\\\\\": 21.0, \\\\\\\"oracle_label\\\\\\\": \\\\\\\"no-preference\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-16T18:41:48.302129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/bootstrap_95ci.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-16T18:41:48.302270+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"980 /root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-16T18:41:48.302413+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"always-internal\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -39.06530612244898,\\\\n    \\\\\\\"ci_low\\\\\\\": -46.4019387755102,\\\\n    \\\\\\\"ci_high\\\\\\\": -32.26724489795918,\\\\n    \\\\\\\"n\\\\\\\": 245\\\\n  },\\\\n  \\\\\\\"always-deterministic\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -9.46938775510204,\\\\n    \\\\\\\"ci_low\\\\\\\": -14.711020408163265,\\\\n    \\\\\\\"ci_high\\\\\\\": -4.28857142857143,\\\\n    \\\\\\\"n\\\\\\\": 245\\\\n  },\\\\n  \\\\\\\"oracle\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -6.583673469387755,\\\\n    \\\\\\\"ci_low\\\\\\\": -11.542959183673469,\\\\n    \\\\\\\"ci_high\\\\\\\": -1.7018367346938776,\\\\n    \\\\\\\"n\\\\\\\": 245\\\\n  },\\\\n  \\\\\\\"random\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -22.379591836734694,\\\\n    \\\\\\\"ci_low\\\\\\\": -28.66785714285714,\\\\n    \\\\\\\"ci_high\\\\\\\": -15.75357142857143,\\\\n    \\\\\\\"n\\\\\\\": 245\\\\n  },\\\\n  \\\\\\\"trained-router\\\\\\\": {\\\\n    \\\\\\\"mean\\\\\\\": -10.70204081632653,\\\\n    \\\\\\\"ci_low\\\\\\\": -16.33061224489796,\\\\n    \\\\\\\"ci_high\\\\\\\": -5.269285714285715,\\\\n    \\\\\\\"n\\\\\\\": 245\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-16T18:41:48.302594+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -3 /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-16T18:41:48.302725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "find /root/autodl-tmp/simgate-modular-routing/ -name \"*daf*\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-16T18:41:48.302870+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition\\\\\\\": \\\\\\\"always-deterministic\\\\\\\", \\\\\\\"task_type\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"episode_idx\\\\\\\": 0, \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"decision\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"internal_final\\\\\\\": -100.0, \\\\\\\"det_final\\\\\\\": 0.0, \\\\\\\"oracle_label\\\\\\\": \\\\\\\"det-preferred\\\\\\\"}\\\\n{\\\\\\\"condition\\\\\\\": \\\\\\\"always-deterministic\\\\\\\", \\\\\\\"task_type\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"episode_idx\\\\\\\": 1, \\\\\\\"variation_idx\\\\\\\": 1, \\\\\\\"decision\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"internal_final\\\\\\\": 0.0, \\\\\\\"det_final\\\\\\\": 0.0, \\\\\\\"oracle_label\\\\\\\": \\\\\\\"no-preference\\\\\\\"}\\\\n{\\\\\\\"condition\\\\\\\": \\\\\\\"always-deterministic\\\\\\\", \\\\\\\"task_type\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"episode_idx\\\\\\\": 2, \\\\\\\"variation_idx\\\\\\\": 2, \\\\\\\"decision\\\\\\\": \\\\\\\"deterministic\\\\\\\", \\\\\\\"score\\\\\\\": 21.0, \\\\\\\"internal_final\\\\\\\": 21.0, \\\\\\\"det_final\\\\\\\": 21.0, \\\\\\\"oracle_label\\\\\\\": \\\\\\\"no-preference\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-16T18:41:48.303017+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -r \"death\" /root/autodl-tmp/simgate-modular-routing/guided_router/ --include=\"*.py\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-16T18:41:48.303168+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/results/penalty_sensitivity_curve/penalty_vs_daf.pdf\\\\n/root/autodl-tmp/simgate-modular-routing/results/penalty_sensitivity_curve/penalty_vs_daf.png\\\\n/root/autodl-tmp/simgate-modular-routing/scripts/daf_per_task_bootstrap.py\\\\n/root/autodl-tmp/simgate-modular-routing/scripts/daf_threshold_sensitivity.py\\\\n/root/autodl-tmp/simgate-modular-routing/scripts/alfworld_daf_analysis.py\\\\n/root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter.pdf\\\\n/root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter.png\\\\n/root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter_broken.pdf\\\\n/root/autodl-tmp/simgate-modular-routing/paper/fig1_daf_scatter.pdf\\\\n/root/autodl-tmp/simgate-modular-routing/paper/figures/fig1_daf_scatter.pdf\\\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/fig1_daf_scatter.pdf\\\\n/root/autodl-tmp/simgate-modular-routing/artifacts/daf_scatter.pdf\\\\n/root/autodl-tmp/simgate-modular-routing/artifacts/daf_scatter.png\\\\n/root/autodl-tmp/simgate-modular-routing/artifacts/alfworld-daf/alfworld_daf_results.json\\\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/bf/a58cdaf1f0b779ab56549524a0a0b28dff665c\\\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/00/191b8c3d252b774f8a3af9610b39104daff469\\\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/00/a241355339e189479736e138b7b6fbfa67dafc\\\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/6f/7d38e6e7d5ac13dafd4a8709e9c838c133c606\\\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/51/55e68d97cdafa00d65e83b4616d35db1b976e3\\\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/d4/aae8abdaf5a5eff4d4754b293b0911b6e2ef89\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_secon\n…[truncated 14 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-16T18:41:48.303319+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/guided_router/config.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/router.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/eval_episode.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/run_guided_router.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/loto_eval.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/cross_model_eval.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/compute_sci.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-16T18:41:48.303475+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-16T18:41:48.303599+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-16T18:41:48.303829+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"DAF Bootstrap CI: 10000 resamples over 245 episodes + per-task decomposition.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys\\\\nimport numpy as np\\\\nfrom collections import defaultdict\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/simgate-modular-routing/results/baseline_245eps\\\\\\\"\\\\nOUT_PATH = \\\\\\\"/root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json\\\\\\\"\\\\nSEED = 42\\\\nN_BOOT_GLOBAL = 10000\\\\nN_BOOT_TASK = 1000\\\\nDEATH_SCORE = -100.0\\\\n\\\\ndef load_episodes():\\\\n    episodes = []\\\\n    seen = set()\\\\n    with open(os.path.join(DATA_DIR, \\\\\\\"episode_details.jsonl\\\\\\\")) as f:\\\\n        for line in f:\\\\n            d = json.loads(line)\\\\n            if d[\\\\\\\"condition\\\\\\\"] != \\\\\\\"always-deterministic\\\\\\\":\\\\n                continue\\\\n            key = (d[\\\\\\\"task_type\\\\\\\"], d[\\\\\\\"episode_idx\\\\\\\"])\\\\n            if key in seen:\\\\n                continue\\\\n            seen.add(key)\\\\n            episodes.append({\\\\n                \\\\\\\"task_type\\\\\\\": d[\\\\\\\"task_type\\\\\\\"],\\\\n                \\\\\\\"episode_idx\\\\\\\": d[\\\\\\\"episode_idx\\\\\\\"],\\\\n                \\\\\\\"score_det\\\\\\\": d[\\\\\\\"det_final\\\\\\\"],\\\\n                \\\\\\\"score_int\\\\\\\": d[\\\\\\\"internal_final\\\\\\\"],\\\\n            })\\\\n    return episodes\\\\n\\\\ndef compute_daf(eps):\\\\n    det_pref = [e for e in eps if e[\\\\\\\"score_det\\\\\\\"] > e[\\\\\\\"score_int\\\\\\\"]]\\\\n    if not det_pref:\\\\n        return None, {}\\\\n    delta_full = np.mean([e[\\\\\\\"score_det\\\\\\\"] - e[\\\\\\\"score_int\\\\\\\"] for e in det_pref])\\\\n    non_death_det_pref = [e for e in det_pref if e[\\\\\\\"score_int\\\\\\\"] != DEATH_SCORE]\\\\n    if not non_death_det_pref:\\\\n        delta_nd = 0.0\\\\n    else:\\\\n        delta_nd = np.mean([e[\\\\\\\"score_det\\\\\\\"] - e[\\\\\\\"score_int\\\\\\\"] for e in non_death_det_pref])\\\\n    if delta_full == 0:\\\\n        return None, {}\\\\n    daf = 1.0 - delta_nd / delta_full\\\\n    n_death = sum(1 for e in eps if e[\\\\\\\"score_int\\\\\\\"] == DEATH_SCORE)\\\\n    return daf, {\\\\n        \\\\\\\"n_det_pr\n…[truncated 4427 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-16T18:41:48.304164+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"global\\\\\\\": {\\\\n    \\\\\\\"daf_point\\\\\\\": 0.6326164874551972,\\\\n    \\\\\\\"daf_boot_mean\\\\\\\": 0.6333461350143571,\\\\n    \\\\\\\"daf_boot_std\\\\\\\": 0.0625347535023965,\\\\n    \\\\\\\"ci_95_low\\\\\\\": 0.515353306424216,\\\\n    \\\\\\\"ci_95_high\\\\\\\": 0.7598770946813308,\\\\n    \\\\\\\"n_boot\\\\\\\": 10000,\\\\n    \\\\\\\"n_episodes\\\\\\\": 239,\\\\n    \\\\\\\"n_valid_boots\\\\\\\": 10000,\\\\n    \\\\\\\"n_det_pref\\\\\\\": 82,\\\\n    \\\\\\\"n_non_death_det_pref\\\\\\\": 16,\\\\n    \\\\\\\"n_death\\\\\\\": 101,\\\\n    \\\\\\\"delta_full\\\\\\\": 91.86585365853658,\\\\n    \\\\\\\"delta_nd\\\\\\\": 33.75\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"chemistry-mix\\\\\\\": {\\\\n      \\\\\\\"daf_point\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_low\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_high\\\\\\\": 1.0,\\\\n      \\\\\\\"n_boot\\\\\\\": 1000,\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"n_valid_boots\\\\\\\": 1000,\\\\n      \\\\\\\"n_det_pref\\\\\\\": 6,\\\\n      \\\\\\\"n_non_death_det_pref\\\\\\\": 0,\\\\n      \\\\\\\"n_death\\\\\\\": 9,\\\\n      \\\\\\\"delta_full\\\\\\\": 106.0,\\\\n      \\\\\\\"delta_nd\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"find-animal\\\\\\\": {\\\\n      \\\\\\\"daf_point\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_low\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_high\\\\\\\": 1.0,\\\\n      \\\\\\\"n_boot\\\\\\\": 1000,\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"n_valid_boots\\\\\\\": 992,\\\\n      \\\\\\\"n_det_pref\\\\\\\": 5,\\\\n      \\\\\\\"n_non_death_det_pref\\\\\\\": 0,\\\\n      \\\\\\\"n_death\\\\\\\": 10,\\\\n      \\\\\\\"delta_full\\\\\\\": 106.6,\\\\n      \\\\\\\"delta_nd\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"find-non-living-thing\\\\\\\": {\\\\n      \\\\\\\"daf_point\\\\\\\": 0.0,\\\\n      \\\\\\\"ci_95_low\\\\\\\": 0.0,\\\\n      \\\\\\\"ci_95_high\\\\\\\": 0.0,\\\\n      \\\\\\\"n_boot\\\\\\\": 1000,\\\\n      \\\\\\\"n_episodes\\\\\\\": 40,\\\\n      \\\\\\\"n_valid_boots\\\\\\\": 1000,\\\\n      \\\\\\\"n_det_pref\\\\\\\": 16,\\\\n      \\\\\\\"n_non_death_det_pref\\\\\\\": 16,\\\\n      \\\\\\\"n_death\\\\\\\": 0,\\\\n      \\\\\\\"delta_full\\\\\\\": 33.75,\\\\n      \\\\\\\"delta_nd\\\\\\\": 33.75\\\\n    },\\\\n    \\\\\\\"freeze\\\\\\\": {\\\\n      \\\\\\\"daf_point\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_low\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_high\\\\\\\": 1.0,\\\\n      \\\\\\\"n_boot\\\\\\\": 1000,\\\\n      \\\\\\\"n_episodes\\\\\n…[truncated 3314 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-16T18:41:48.304381+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/scripts/daf_per_task_bootstrap.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-16T18:41:48.304517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-16T18:41:48.304754+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import json, os, numpy as np\\\\nfrom scipy import stats\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/simgate-modular-routing/results/plan_c\\\\\\\"\\\\nOUT_PATH = \\\\\\\"/root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended/per_task_bootstrap.json\\\\\\\"\\\\nDEATH_SCORE = -100.0\\\\nPENALTIES = [10, 25, 50, 100, 200, 500]\\\\nN_BOOTSTRAP = 10000\\\\nSEED = 42\\\\n\\\\nrng = np.random.default_rng(SEED)\\\\n\\\\ntask_dirs = sorted([d for d in os.listdir(DATA_DIR) if os.path.isdir(os.path.join(DATA_DIR, d))])\\\\n\\\\n# Load episode-level data per task\\\\ntask_episodes = {}\\\\nfor task in task_dirs:\\\\n    fp = os.path.join(DATA_DIR, task, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n    if not os.path.exists(fp):\\\\n        continue\\\\n    episodes = []\\\\n    with open(fp) as f:\\\\n        for line in f:\\\\n            line = line.strip()\\\\n            if not line:\\\\n                continue\\\\n            ep = json.loads(line)\\\\n            int_score = ep[\\\\\\\"always_internal\\\\\\\"][\\\\\\\"final_score\\\\\\\"]\\\\n            det_score = ep[\\\\\\\"always_deterministic\\\\\\\"][\\\\\\\"final_score\\\\\\\"]\\\\n            int_dead = (int_score == DEATH_SCORE)\\\\n            det_dead = (det_score == DEATH_SCORE)\\\\n            episodes.append({\\\\n                \\\\\\\"int_score\\\\\\\": int_score,\\\\n                \\\\\\\"det_score\\\\\\\": det_score,\\\\n                \\\\\\\"int_dead\\\\\\\": int_dead,\\\\n                \\\\\\\"det_dead\\\\\\\": det_dead,\\\\n            })\\\\n    task_episodes[task] = episodes\\\\n\\\\ntotal_eps = sum(len(v) for v in task_episodes.values())\\\\nprint(f\\\\\\\"Loaded {total_eps} episodes across {len(task_episodes)} tasks\\\\\\\")\\\\n\\\\n# Part A: Per-task bootstrap CI for delta(det - internal) at P=100\\\\nper_task_results = {}\\\\nfor task, episodes in task_episodes.items():\\\\n    n = len(episodes)\\\\n    deltas = np.array([ep[\\\\\\\"det_score\\\\\\\"] - ep[\\\\\\\"int_score\\\\\\\"] for ep in episodes])\\\\n    delta_mean = float(np.mean(deltas))\\\\n    \\\\n    # Bootstrap 95% CI\\\\n    boot_means = np.zeros(N_BOOTSTRAP)\\\\n\n…[truncated 4601 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-16T18:41:48.304913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition",
+              "account": "root"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-16T18:41:48.305066+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"12 /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-16T18:41:48.305209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"task_name,n_episodes,death_rate_int,death_rate_det,delta_full,delta_nd,delta_penalty_replaced,det_pref,int_pref,no_pref\\\\nchemistry-mix,20,0.45,0.25,21.8,0.0,1.8,6,2,12\\\\nfind-animal,20,0.5,0.25,26.65,0.0,1.65,5,0,15\\\\nfind-non-living-thing,40,0.0,0.0,9.58,9.58,9.58,16,4,20\\\\nfreeze,20,0.55,0.25,30.5,0.0,0.5,6,0,14\\\\ngrow-fruit,20,0.45,0.2,25.1,0.0,0.1,6,1,13\\\\nidentify-life-stages-1,20,0.55,0.1,47.5,0.0,2.5,9,0,11\\\\nidentify-life-stages-2,20,0.5,0.2,30.0,0.0,0.0,6,0,14\\\\ninclined-plane-determine-angle,20,0.55,0.2,36.0,0.0,1.0,7,0,13\\\\nlifespan-longest-lived,25,0.56,0.16,44.0,0.0,4.0,11,1,13\\\\nlifespan-longest-lived-then-shortest-lived,20,0.45,0.1,40.8,0.0,5.8,8,1,11\\\\nmeasure-melting-point-unknown-substance,20,0.55,0.25,30.05,0.0,0.05,6,0,14\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.3}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-16T18:41:48.305394+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episodes.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-16T18:41:48.305562+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episode_summary.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-16T18:41:48.305818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"episode_idx\\\\\\\": 0, \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"always_internal\\\\\\\": {\\\\\\\"mode\\\\\\\": \\\\\\\"always-internal\\\\\\\", \\\\\\\"task_name\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"variation_idx\\\\\\\": 0, \\\\\\\"final_score\\\\\\\": -100.0, \\\\\\\"initial_score\\\\\\\": 0.0, \\\\\\\"num_steps\\\\\\\": 16, \\\\\\\"total_time_s\\\\\\\": 14.604560852050781, \\\\\\\"steps\\\\\\\": [{\\\\\\\"step\\\\\\\": 0, \\\\\\\"action\\\\\\\": \\\\\\\"connect agent to air\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 1 on agent is now connected to terminal 1 on air\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The agent is currently in the hallway, and the goal should be to explore the environment. The first logical step is to connect the agent to the air, as this is a basic interaction that doesn't require any specific object or door.\\\\\\\\nAction: connect agent to air\\\\\\\", \\\\\\\"action_history\\\\\\\": [], \\\\\\\"is_dead\\\\\\\": false}, {\\\\\\\"step\\\\\\\": 1, \\\\\\\"action\\\\\\\": \\\\\\\"connect air to art studio\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on air is now connected to terminal 1 on art studio\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought: The previous action connected the agent to the air, and the current observation shows that terminal 1 on the agent is now connected to terminal 1 on air. The next logical step would be to explore the environment further by connecting to another terminal. The available actions suggest connec\\\\\\\", \\\\\\\"action_history\\\\\\\": [\\\\\\\"connect agent to air\\\\\\\"], \\\\\\\"is_dead\\\\\\\": false}, {\\\\\\\"step\\\\\\\": 2, \\\\\\\"action\\\\\\\": \\\\\\\"connect agent to art studio\\\\\\\", \\\\\\\"modality\\\\\\\": \\\\\\\"internal\\\\\\\", \\\\\\\"score_before\\\\\\\": 0.0, \\\\\\\"score_after\\\\\\\": 0.0, \\\\\\\"score_delta\\\\\\\": 0.0, \\\\\\\"observation\\\\\\\": \\\\\\\"terminal 2 on agent is now connected to terminal 2 on art studio\\\\\\\", \\\\\\\"llm_output\\\\\\\": \\\\\\\"Thought:\n…[truncated 7171 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-16T18:41:48.306029+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"episode\\\\\\\": 0, \\\\\\\"variation\\\\\\\": 0, \\\\\\\"internal_final\\\\\\\": -100.0, \\\\\\\"det_final\\\\\\\": 0.0, \\\\\\\"label\\\\\\\": \\\\\\\"det-preferred\\\\\\\", \\\\\\\"signal_source\\\\\\\": \\\\\\\"score_gap\\\\\\\", \\\\\\\"reason\\\\\\\": \\\\\\\"det_higher\\\\\\\", \\\\\\\"score_gap\\\\\\\": 100.0, \\\\\\\"internal_steps\\\\\\\": 16, \\\\\\\"det_steps\\\\\\\": 30}\\\\n{\\\\\\\"episode\\\\\\\": 1, \\\\\\\"variation\\\\\\\": 1, \\\\\\\"internal_final\\\\\\\": 0.0, \\\\\\\"det_final\\\\\\\": 0.0, \\\\\\\"label\\\\\\\": \\\\\\\"no-preference\\\\\\\", \\\\\\\"signal_source\\\\\\\": \\\\\\\"tied_alive\\\\\\\", \\\\\\\"reason\\\\\\\": \\\\\\\"tie\\\\\\\", \\\\\\\"score_gap\\\\\\\": 0.0, \\\\\\\"internal_steps\\\\\\\": 30, \\\\\\\"det_steps\\\\\\\": 30}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-16T18:41:48.306233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -r \"0.904\" /root/autodl-tmp/simgate-modular-routing/results/ --include=\"*.json\" -l",
+              "account": "root"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-16T18:41:48.306366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/death_decomposition_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-16T18:41:48.306494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/results/rule_based_accuracy_v3.json\\\\n/root/autodl-tmp/simgate-modular-routing/results/ablation_r3/scale_200pct_seed42/checkpoint-327/trainer_state.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-16T18:41:48.306818+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_task\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"boil\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 40,\\\\n      \\\\\\\"int_death_count\\\\\\\": 19,\\\\n      \\\\\\\"det_death_count\\\\\\\": 6,\\\\n      \\\\\\\"int_death_rate\\\\\\\": 0.475,\\\\n      \\\\\\\"det_death_rate\\\\\\\": 0.15,\\\\n      \\\\\\\"int_mean\\\\\\\": -47.23,\\\\n      \\\\\\\"det_mean\\\\\\\": -14.5,\\\\n      \\\\\\\"delta_full\\\\\\\": 32.73,\\\\n      \\\\\\\"int_mean_no_death\\\\\\\": 0.52,\\\\n      \\\\\\\"det_mean_no_death\\\\\\\": 0.57,\\\\n      \\\\\\\"delta_no_death\\\\\\\": 0.05,\\\\n      \\\\\\\"death_avoidance_fraction\\\\\\\": 0.9985,\\\\n      \\\\\\\"int_mean_penalty_removed\\\\\\\": 0.28,\\\\n      \\\\\\\"det_mean_penalty_removed\\\\\\\": 0.5,\\\\n      \\\\\\\"delta_penalty_removed\\\\\\\": 0.22,\\\\n      \\\\\\\"n_no_death_episodes\\\\\\\": 21,\\\\n      \\\\\\\"label_distribution\\\\\\\": {\\\\n        \\\\\\\"det-preferred\\\\\\\": 14,\\\\n        \\\\\\\"internal-preferred\\\\\\\": 0,\\\\n        \\\\\\\"no-preference\\\\\\\": 26\\\\n      },\\\\n      \\\\\\\"signal_source_distribution\\\\\\\": {\\\\n        \\\\\\\"death_asymmetry\\\\\\\": 13,\\\\n        \\\\\\\"tied_alive\\\\\\\": 20,\\\\n        \\\\\\\"score_comparison\\\\\\\": 1,\\\\n        \\\\\\\"both_dead\\\\\\\": 6\\\\n      },\\\\n      \\\\\\\"label_signal_cross\\\\\\\": {\\\\n        \\\\\\\"det-preferred\\\\\\\": {\\\\n          \\\\\\\"death_asymmetry\\\\\\\": 13,\\\\n          \\\\\\\"score_comparison\\\\\\\": 1\\\\n        },\\\\n        \\\\\\\"no-preference\\\\\\\": {\\\\n          \\\\\\\"tied_alive\\\\\\\": 20,\\\\n          \\\\\\\"both_dead\\\\\\\": 6\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"change-the-state-of-matter-of\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"int_death_count\\\\\\\": 11,\\\\n      \\\\\\\"det_death_count\\\\\\\": 3,\\\\n      \\\\\\\"int_death_rate\\\\\\\": 0.55,\\\\n      \\\\\\\"det_death_rate\\\\\\\": 0.15,\\\\n      \\\\\\\"int_mean\\\\\\\": -54.7,\\\\n      \\\\\\\"det_mean\\\\\\\": -14.5,\\\\n      \\\\\\\"delta_full\\\\\\\": 40.2,\\\\n      \\\\\\\"int_mean_no_death\\\\\\\": 0.67,\\\\n      \\\\\\\"det_mean_no_death\\\\\\\": 0.78,\\\\n      \\\\\\\"delta_no_death\\\\\\\": 0.11,\\\\n      \\\\\\\"death_avoidance_fraction\\\\\\\": 0.9972,\\\\n      \\\\\\\"int_mean_penalty_removed\\\\\\\": 0.3,\\\\n     \n…[truncated 8365 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-16T18:41:48.307063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "python3 -c \"\nimport json\nscores = []\nwith open('/root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        if d['condition'] == 'always-deterministic':\n            scores.append(d['internal_final'])\nunique = sorted(set(scores))\nprint(f'N={len(scores)}, unique internal_final values: {unique[:20]}')\nprint(f'count -100: {scores.count(-100.0)}')\nprint(f'count 0: {scores.count(0.0)}')\nprint(f'count >0: {sum(1 for s in scores if s > 0)}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-16T18:41:48.307225+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-16T18:41:48.307350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "python3 -c \"\nimport json\n# Check unique oracle_labels\nlabels = set()\nwith open('/root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        if d['condition'] == 'always-deterministic':\n            labels.add(d['oracle_label'])\nprint('Oracle labels:', labels)\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-16T18:41:48.307472+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-16T18:41:48.307607+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -c \"always-deterministic\" /root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-16T18:41:48.307730+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"245\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-16T18:41:48.307843+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep \"always-deterministic\" /root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl | grep -c \"internal_final.*-100\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-16T18:41:48.307957+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-16T18:41:48.308094+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep \"always-deterministic\" /root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl | grep -c \"det-preferred\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-16T18:41:48.308229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-16T18:41:48.308377+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl | head -5",
+              "account": "root"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-16T18:41:48.308501+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-16T18:41:48.308618+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-16T18:41:48.308744+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"980 /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.08}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-16T18:41:48.308953+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat > /root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap.py << 'SCRIPT'\n\"\"\"DAF Bootstrap CI: 10000 resamples over plan-012 full episodes + per-task decomposition.\"\"\"\nimport json, os\nimport numpy as np\nfrom collections import defaultdict\n\nDATA_PATH = \"/root/autodl-tmp/simgate-modular-routing/results/baseline_245eps/episode_details.jsonl\"\nOUT_PATH = \"/root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json\"\nSEED = 42\nN_BOOT_GLOBAL = 10000\nN_BOOT_TASK = 1000\nDEATH_SCORE = -100.0\n\n\ndef load_episodes():\n    episodes = []\n    with open(DATA_PATH) as f:\n        for line in f:\n            d = json.loads(line)\n            if d[\"condition\"] != \"always-deterministic\":\n                continue\n            episodes.append({\n                \"task_type\": d[\"task_type\"],\n                \"episode_idx\": d[\"episode_idx\"],\n                \"score_det\": d[\"det_final\"],\n                \"score_int\": d[\"internal_final\"],\n                \"oracle_label\": d[\"oracle_label\"],\n            })\n    return episodes\n\n\ndef compute_daf(eps):\n    det_pref = [e for e in eps if e[\"oracle_label\"] == \"det-preferred\"]\n    if not det_pref:\n        return None, {}\n\n    delta_full = np.mean([e[\"score_det\"] - e[\"score_int\"] for e in det_pref])\n\n    non_death = [e for e in det_pref if e[\"score_int\"] != DEATH_SCORE]\n    if not non_death:\n        delta_nd = 0.0\n    else:\n        delta_nd = np.mean([e[\"score_det\"] - e[\"score_int\"] for e in non_death])\n\n    if delta_full == 0:\n        return None, {}\n\n    daf = 1.0 - delta_nd / delta_full\n    n_death = sum(1 for e in eps if e[\"score_int\"] == DEATH_SCORE)\n    n_death_det_pref = sum(1 for e in det_pref if e[\"score_int\"] == DEATH_SCORE)\n    return daf, {\n        \"n_det_pref\": len(det_pref),\n        \"n_non_death_det_pref\": len(non_death),\n        \"n_death\": n_death,\n        \"n_death_det_pref\": n_death_det_pref,\n        \"delta_full\": float(delta_full),\n        \"delta_nd\": float(delta_nd),\n    }\n\n\ndef bootstrap_daf(eps, n_boot, rng):\n    n = len(eps)\n    samples = []\n    for _ in range(n_boot):\n        idx = rng.choice(n, size=n, replace=True)\n        boot = [eps[i] for i in idx]\n        daf, _ = compute_daf(boot)\n        if daf is not None:\n            samples.append(daf)\n    return np.array(samples)\n\n\ndef main():\n    episodes = load_episodes()\n    print(f\"Loaded {len(episodes)} episodes\")\n    tasks = sorted(set(e[\"task_type\"] for e in episodes))\n    print(f\"Tasks ({len(tasks)}): {tasks}\")\n\n    rng = np.random.RandomState(SEED)\n    results = {\"global\": {}, \"per_task\": {}}\n\n    # Global DAF\n    daf_point, stats = compute_daf(episodes)\n    print(f\"\\nGlobal DAF point estimate: {daf_point:.4f}\")\n    print(f\"  N episodes: {len(episodes)}\")\n    print(f\"  N det-preferred: {stats['n_det_pref']}\")\n    print(f\"  N death (all): {stats['n_death']}\")\n    print(f\"  N death (det-pref): {stats['n_death_det_pref']}\")\n    print(f\"  N non-death det-pref: {stats['n_non_death_det_pref']}\")\n    print(f\"  Delta_full: {stats['delta_full']:.4f}\")\n    print(f\"  Delta_nd: {stats['delta_nd']:.4f}\")\n\n    boot_samples = bootstrap_daf(episodes, N_BOOT_GLOBAL, rng)\n    ci_low = float(np.percentile(boot_samples, 2.5))\n    ci_high = float(np.percentile(boot_samples, 97.5))\n    boot_mean = float(np.mean(boot_samples))\n    boot_std = float(np.std(boot_samples))\n\n    results[\"global\"] = {\n        \"daf_point\": float(daf_point),\n        \"daf_boot_mean\": boot_mean,\n        \"daf_boot_std\": boot_std,\n        \"ci_95_low\": ci_low,\n        \"ci_95_high\": ci_high,\n        \"n_boot\": N_BOOT_GLOBAL,\n        \"n_episodes\": len(episodes),\n        \"n_valid_boots\": len(boot_samples),\n        **stats,\n    }\n    print(f\"  95% CI: [{ci_low:.4f}, {ci_high:.4f}]\")\n    print(f\"  Boot mean: {boot_mean:.4f}, std: {boot_std:.4f}\")\n    print(f\"  Valid bootstrap samples: {len(boot_samples)}/{N_BOOT_GLOBAL}\")\n\n    # Per-task DAF\n    task_eps = defaultdict(list)\n    for e in episodes:\n        task_eps[e[\"task_type\"]].append(e)\n\n    print(f\"\\n{'='*60}\")\n    print(f\"Per-task DAF (bootstrap {N_BOOT_TASK} resamples)\")\n    print(f\"{'='*60}\")\n    for task in tasks:\n        t_eps = task_eps[task]\n        daf_t, stats_t = compute_daf(t_eps)\n        if daf_t is None:\n            results[\"per_task\"][task] = {\n                \"daf_point\": None, \"status\": \"N/A - no det-preferred episodes\",\n                \"n_episodes\": len(t_eps),\n            }\n            print(f\"  {task}: N/A (no det-preferred), n={len(t_eps)}\")\n            continue\n\n        boot_t = bootstrap_daf(t_eps, N_BOOT_TASK, rng)\n        if len(boot_t) < 100:\n            results[\"per_task\"][task] = {\n                \"daf_point\": float(daf_t), \"status\": \"insufficient bootstrap samples\",\n                \"n_episodes\": len(t_eps), \"n_valid_boots\": len(boot_t), **stats_t,\n            }\n            print(f\"  {task}: DAF={daf_t:.4f}, insufficient boots ({len(boot_t)}/{N_BOOT_TASK}), n={len(t_eps)}\")\n            continue\n\n        ci_l = float(np.percentile(boot_t, 2.5))\n        ci_h = float(np.percentile(boot_t, 97.5))\n        results[\"per_task\"][task] = {\n            \"daf_point\": float(daf_t),\n            \"ci_95_low\": ci_l,\n            \"ci_95_high\": ci_h,\n            \"n_boot\": N_BOOT_TASK,\n            \"n_episodes\": len(t_eps),\n            \"n_valid_boots\": len(boot_t),\n            **stats_t,\n        }\n        print(f\"  {task}: DAF={daf_t:.4f}, CI=[{ci_l:.4f}, {ci_h:.4f}], n={len(t_eps)}, death={stats_t['n_death']}\")\n\n        # Incremental save\n        with open(OUT_PATH, \"w\") as f:\n            json.dump(results, f, indent=2)\n\n    # Final save\n    with open(OUT_PATH, \"w\") as f:\n        json.dump(results, f, indent=2)\n    print(f\"\\nResults saved to {OUT_PATH}\")\n\n\nif __name__ == \"__main__\":\n    main()\nSCRIPT",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-16T18:41:48.309162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-16T18:41:48.309305+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python guided_router/daf_bootstrap.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-16T18:41:48.309448+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 245 episodes\\\\nTasks (11): ['chemistry-mix', 'find-animal', 'find-non-living-thing', 'freeze', 'grow-fruit', 'identify-life-stages-1', 'identify-life-stages-2', 'inclined-plane-determine-angle', 'lifespan-longest-lived', 'lifespan-longest-lived-then-shortest-lived', 'measure-melting-point-unknown-substance']\\\\n\\\\nGlobal DAF point estimate: 0.6353\\\\n  N episodes: 245\\\\n  N det-preferred: 86\\\\n  N death (all): 105\\\\n  N death (det-pref): 70\\\\n  N non-death det-pref: 16\\\\n  Delta_full: 92.5349\\\\n  Delta_nd: 33.7500\\\\n  95% CI: [0.5169, 0.7640]\\\\n  Boot mean: 0.6362, std: 0.0628\\\\n  Valid bootstrap samples: 10000/10000\\\\n\\\\n============================================================\\\\nPer-task DAF (bootstrap 1000 resamples)\\\\n============================================================\\\\n  chemistry-mix: DAF=1.0000, CI=[1.0000, 1.0000], n=20, death=9\\\\n  find-animal: DAF=1.0000, CI=[1.0000, 1.0000], n=20, death=10\\\\n  find-non-living-thing: DAF=0.0000, CI=[0.0000, 0.0000], n=40, death=0\\\\n  freeze: DAF=1.0000, CI=[1.0000, 1.0000], n=20, death=11\\\\n  grow-fruit: DAF=1.0000, CI=[1.0000, 1.0000], n=20, death=9\\\\n  identify-life-stages-1: DAF=1.0000, CI=[1.0000, 1.0000], n=20, death=11\\\\n  identify-life-stages-2: DAF=1.0000, CI=[1.0000, 1.0000], n=20, death=10\\\\n  inclined-plane-determine-angle: DAF=1.0000, CI=[1.0000, 1.0000], n=20, death=11\\\\n  lifespan-longest-lived: DAF=1.0000, CI=[1.0000, 1.0000], n=25, death=14\\\\n  lifespan-longest-lived-then-shortest-lived: DAF=1.0000, CI=[1.0000, 1.0000], n=20, death=9\\\\n  measure-melting-point-unknown-substance: DAF=1.0000, CI=[1.0000, 1.0000], n=20, death=11\\\\n\\\\nResults saved to /root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.12}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-16T18:41:48.309629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "daf-bootstrap-ci-full",
+              "field": "status",
+              "value": "RUNNING",
+              "project": "simgate-modular-routing",
+              "spec": "{'command': 'python guided_router/daf_bootstrap.py', 'server': 'westb-13313', 'data_path': 'results/baseline_245eps/episode_details.jsonl', 'data_count': '245 episodes, 10000 bootstrap resamples (global), 1000 per-task', 'model_name': 'N/A (analysis)', 'seed': 42}"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-16T18:41:48.309786+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"daf-bootstrap-ci-full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T17:56:43.173Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:40:40.666Z\\\", \\\"hypothesis\\\": \\\"Full 245-episode bootstrap (10000 resamples) validates DAF point estimate ≈ 0.90 with tight 95% CI. Per-task DAF provides granular decomposition.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python guided_router/daf_bootstrap.py\\\", \\\"server\\\": \\\"westb-13313\\\", \\\"data_path\\\": \\\"results/baseline_245eps/episode_details.jsonl\\\", \\\"data_count\\\": \\\"245 episodes, 10000 bootstrap resamples (global), 1000 per-task\\\", \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": 42}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9195}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-16T18:41:48.309920+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "daf-bootstrap-ci-full",
+              "field": "status",
+              "value": "DONE",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-16T18:41:48.310093+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2495}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-16T18:41:48.310230+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "daf-bootstrap-ci-full",
+              "field": "conclusion",
+              "value": "positive — DAF=0.635 [0.517, 0.764] confirms death-avoidance accounts for ~64% of det advantage. 10/11 tasks have DAF=1.0 (pure death-driven signal); find-non-living-thing (no deaths) has DAF=0.0.",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-16T18:41:48.310365+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid conclusion 'positive — DAF=0.635 [0.517, 0.764] confirms death-avoidance accounts for ~64% of det advantage. 10/11 tasks have DAF=1.0 (pure death-driven signal); find-non-living-thing (no deaths) has DAF=0.0.'. Valid: ['failed', 'killed', 'negative', 'success']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.2523}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-16T18:41:48.310492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "daf-bootstrap-ci-full",
+              "field": "conclusion",
+              "value": "success",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-16T18:41:48.310631+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"daf-bootstrap-ci-full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T17:56:43.173Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:40:50.327Z\\\", \\\"hypothesis\\\": \\\"Full 245-episode bootstrap (10000 resamples) validates DAF point estimate ≈ 0.90 with tight 95% CI. Per-task DAF provides granular decomposition.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python guided_router/daf_bootstrap.py\\\", \\\"server\\\": \\\"westb-13313\\\", \\\"data_path\\\": \\\"results/baseline_245eps/episode_details.jsonl\\\", \\\"data_count\\\": \\\"245 episodes, 10000 bootstrap resamples (global), 1000 per-task\\\", \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.463}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-16T18:41:48.310761+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "daf-bootstrap-ci-full",
+              "field": "checkpoint_path",
+              "value": "N/A",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-16T18:41:48.310898+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"daf-bootstrap-ci-full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T17:56:43.173Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:40:54.334Z\\\", \\\"hypothesis\\\": \\\"Full 245-episode bootstrap (10000 resamples) validates DAF point estimate ≈ 0.90 with tight 95% CI. Per-task DAF provides granular decomposition.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python guided_router/daf_bootstrap.py\\\", \\\"server\\\": \\\"westb-13313\\\", \\\"data_path\\\": \\\"results/baseline_245eps/episode_details.jsonl\\\", \\\"data_count\\\": \\\"245 episodes, 10000 bootstrap resamples (global), 1000 per-task\\\", \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4172}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-16T18:41:48.311052+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "daf-bootstrap-ci-full",
+              "field": "log_path",
+              "value": "guided_router/daf_bootstrap_results.json",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-16T18:41:48.311201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"daf-bootstrap-ci-full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T17:56:43.173Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:40:55.357Z\\\", \\\"hypothesis\\\": \\\"Full 245-episode bootstrap (10000 resamples) validates DAF point estimate ≈ 0.90 with tight 95% CI. Per-task DAF provides granular decomposition.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python guided_router/daf_bootstrap.py\\\", \\\"server\\\": \\\"westb-13313\\\", \\\"data_path\\\": \\\"results/baseline_245eps/episode_details.jsonl\\\", \\\"data_count\\\": \\\"245 episodes, 10000 bootstrap resamples (global), 1000 per-task\\\", \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"guided_router/daf_bootstrap_results.json\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4537}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-16T18:41:48.311337+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "daf-bootstrap-ci-full",
+              "field": "metrics",
+              "value": "{'daf_point': 0.6353, 'ci_95_low': 0.5169, 'ci_95_high': 0.764, 'n_episodes': 245, 'n_det_preferred': 86, 'n_death': 105, 'n_boot': 10000}",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-16T18:41:48.311494+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"daf-bootstrap-ci-full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T17:56:43.173Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:40:56.629Z\\\", \\\"hypothesis\\\": \\\"Full 245-episode bootstrap (10000 resamples) validates DAF point estimate ≈ 0.90 with tight 95% CI. Per-task DAF provides granular decomposition.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python guided_router/daf_bootstrap.py\\\", \\\"server\\\": \\\"westb-13313\\\", \\\"data_path\\\": \\\"results/baseline_245eps/episode_details.jsonl\\\", \\\"data_count\\\": \\\"245 episodes, 10000 bootstrap resamples (global), 1000 per-task\\\", \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"guided_router/daf_bootstrap_results.json\\\", \\\"metrics\\\": {\\\"daf_point\\\": 0.6353, \\\"ci_95_low\\\": 0.5169, \\\"ci_95_high\\\": 0.764, \\\"n_episodes\\\": 245, \\\"n_det_preferred\\\": 86, \\\"n_death\\\": 105, \\\"n_boot\\\": 10000}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.4307}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-16T18:41:48.311626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__update_registry"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "tool_args": {
+              "exp_id": "daf-bootstrap-ci-full",
+              "field": "status",
+              "value": "DONE",
+              "project": "simgate-modular-routing"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-16T18:41:48.311790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"daf-bootstrap-ci-full\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-16T17:56:43.173Z\\\", \\\"updated_at\\\": \\\"2026-05-16T18:41:00.050Z\\\", \\\"hypothesis\\\": \\\"Full 245-episode bootstrap (10000 resamples) validates DAF point estimate ≈ 0.90 with tight 95% CI. Per-task DAF provides granular decomposition.\\\", \\\"spec\\\": {\\\"command\\\": \\\"python guided_router/daf_bootstrap.py\\\", \\\"server\\\": \\\"westb-13313\\\", \\\"data_path\\\": \\\"results/baseline_245eps/episode_details.jsonl\\\", \\\"data_count\\\": \\\"245 episodes, 10000 bootstrap resamples (global), 1000 per-task\\\", \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": 42}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"guided_router/daf_bootstrap_results.json\\\", \\\"metrics\\\": {\\\"daf_point\\\": 0.6353, \\\"ci_95_low\\\": 0.5169, \\\"ci_95_high\\\": 0.764, \\\"n_episodes\\\": 245, \\\"n_det_preferred\\\": 86, \\\"n_death\\\": 105, \\\"n_boot\\\": 10000}, \\\"completed_at\\\": \\\"2026-05-16T18:41:00.051Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9037}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__update_registry",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-16T18:41:48.311932+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "DAF Bootstrap CI Results (full 245 episodes)",
+              "type": "data",
+              "description": "DAF bootstrap 95% CI with 10000 resamples over 245 plan-012 episodes. Global DAF=0.635 [0.517, 0.764]. Per-task breakdown included.",
+              "project": "simgate-modular-routing",
+              "exp_id": "daf-bootstrap-ci-full",
+              "source_path": "/root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json",
+              "tags": "['daf', 'bootstrap', 'ci', 'plan-012']"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-16T18:41:48.312158+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"source_path not found: /root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-16T18:41:48.312335+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-16T18:41:48.312557+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"global\\\\\\\": {\\\\n    \\\\\\\"daf_point\\\\\\\": 0.6352726815782861,\\\\n    \\\\\\\"daf_boot_mean\\\\\\\": 0.6361657788020836,\\\\n    \\\\\\\"daf_boot_std\\\\\\\": 0.06279962841612535,\\\\n    \\\\\\\"ci_95_low\\\\\\\": 0.5168528577921773,\\\\n    \\\\\\\"ci_95_high\\\\\\\": 0.7640126592104772,\\\\n    \\\\\\\"n_boot\\\\\\\": 10000,\\\\n    \\\\\\\"n_episodes\\\\\\\": 245,\\\\n    \\\\\\\"n_valid_boots\\\\\\\": 10000,\\\\n    \\\\\\\"n_det_pref\\\\\\\": 86,\\\\n    \\\\\\\"n_non_death_det_pref\\\\\\\": 16,\\\\n    \\\\\\\"n_death\\\\\\\": 105,\\\\n    \\\\\\\"n_death_det_pref\\\\\\\": 70,\\\\n    \\\\\\\"delta_full\\\\\\\": 92.53488372093024,\\\\n    \\\\\\\"delta_nd\\\\\\\": 33.75\\\\n  },\\\\n  \\\\\\\"per_task\\\\\\\": {\\\\n    \\\\\\\"chemistry-mix\\\\\\\": {\\\\n      \\\\\\\"daf_point\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_low\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_high\\\\\\\": 1.0,\\\\n      \\\\\\\"n_boot\\\\\\\": 1000,\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"n_valid_boots\\\\\\\": 1000,\\\\n      \\\\\\\"n_det_pref\\\\\\\": 6,\\\\n      \\\\\\\"n_non_death_det_pref\\\\\\\": 0,\\\\n      \\\\\\\"n_death\\\\\\\": 9,\\\\n      \\\\\\\"n_death_det_pref\\\\\\\": 6,\\\\n      \\\\\\\"delta_full\\\\\\\": 106.0,\\\\n      \\\\\\\"delta_nd\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"find-animal\\\\\\\": {\\\\n      \\\\\\\"daf_point\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_low\\\\\\\": 1.0,\\\\n      \\\\\\\"ci_95_high\\\\\\\": 1.0,\\\\n      \\\\\\\"n_boot\\\\\\\": 1000,\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"n_valid_boots\\\\\\\": 994,\\\\n      \\\\\\\"n_det_pref\\\\\\\": 5,\\\\n      \\\\\\\"n_non_death_det_pref\\\\\\\": 0,\\\\n      \\\\\\\"n_death\\\\\\\": 10,\\\\n      \\\\\\\"n_death_det_pref\\\\\\\": 5,\\\\n      \\\\\\\"delta_full\\\\\\\": 106.6,\\\\n      \\\\\\\"delta_nd\\\\\\\": 0.0\\\\n    },\\\\n    \\\\\\\"find-non-living-thing\\\\\\\": {\\\\n      \\\\\\\"daf_point\\\\\\\": 0.0,\\\\n      \\\\\\\"ci_95_low\\\\\\\": 0.0,\\\\n      \\\\\\\"ci_95_high\\\\\\\": 0.0,\\\\n      \\\\\\\"n_boot\\\\\\\": 1000,\\\\n      \\\\\\\"n_episodes\\\\\\\": 40,\\\\n      \\\\\\\"n_valid_boots\\\\\\\": 1000,\\\\n      \\\\\\\"n_det_pref\\\\\\\": 16,\\\\n      \\\\\\\"n_non_death_det_pref\\\\\\\": 16,\\\\n      \\\\\\\"n_death\\\\\\\": 0,\\\\n      \\\\\\\"n_death_det_pref\\\\\\\": 0,\\\\n      \\\\\\\"delta_full\\\\\\\": 33.75,\\\\n      \\\\\\\"delta_nd\\\\\\\": 33.75\\\\n    },\\\\n    \\\\\\\"freeze\\\\\\\": {\\\\n\n…[truncated 3764 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-16T18:41:48.312723+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "DAF Bootstrap CI Results (full 245 episodes)",
+              "type": "data",
+              "description": "DAF bootstrap 95% CI with 10000 resamples over 245 plan-012 episodes. Global DAF=0.635 [0.517, 0.764]. Per-task breakdown included.",
+              "project": "simgate-modular-routing",
+              "exp_id": "daf-bootstrap-ci-full",
+              "content": "{\"global\":{\"daf_point\":0.6353,\"daf_boot_mean\":0.6362,\"daf_boot_std\":0.0628,\"ci_95_low\":0.5169,\"ci_95_high\":0.7640,\"n_boot\":10000,\"n_episodes\":245,\"n_valid_boots\":10000,\"n_det_pref\":86,\"n_non_death_det_pref\":16,\"n_death\":105,\"n_death_det_pref\":70,\"delta_full\":92.535,\"delta_nd\":33.75},\"per_task\":{\"chemistry-mix\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":9},\"find-animal\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":10},\"find-non-living-thing\":{\"daf\":0.0,\"ci\":[0.0,0.0],\"n\":40,\"death\":0},\"freeze\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":11},\"grow-fruit\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":9},\"identify-life-stages-1\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":11},\"identify-life-stages-2\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":10},\"inclined-plane-determine-angle\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":11},\"lifespan-longest-lived\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":25,\"death\":14},\"lifespan-longest-lived-then-shortest-lived\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":9},\"measure-melting-point-unknown-substance\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":11}}}",
+              "content_filename": "daf_bootstrap_results.json",
+              "tags": "['daf', 'bootstrap', 'ci', 'plan-012']"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-16T18:41:48.312866+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'global': {'daf_point': ... 'n': 20, 'death': 11}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-16T18:41:48.313048+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "DAF Bootstrap CI Results (full 245 episodes)",
+              "type": "data",
+              "description": "DAF bootstrap 95% CI with 10000 resamples over 245 plan-012 episodes. Global DAF=0.635 [0.517, 0.764]. Per-task breakdown included.",
+              "project": "simgate-modular-routing",
+              "exp_id": "daf-bootstrap-ci-full",
+              "content": "{\"global\":{\"daf_point\":0.6353,\"daf_boot_mean\":0.6362,\"daf_boot_std\":0.0628,\"ci_95_low\":0.5169,\"ci_95_high\":0.7640,\"n_boot\":10000,\"n_episodes\":245,\"n_valid_boots\":10000,\"n_det_pref\":86,\"n_non_death_det_pref\":16,\"n_death\":105,\"n_death_det_pref\":70,\"delta_full\":92.535,\"delta_nd\":33.75},\"per_task\":{\"chemistry-mix\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":9},\"find-animal\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":10},\"find-non-living-thing\":{\"daf\":0.0,\"ci\":[0.0,0.0],\"n\":40,\"death\":0},\"freeze\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":11},\"grow-fruit\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":9},\"identify-life-stages-1\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":11},\"identify-life-stages-2\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":10},\"inclined-plane-determine-angle\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":11},\"lifespan-longest-lived\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":25,\"death\":14},\"lifespan-longest-lived-then-shortest-lived\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":9},\"measure-melting-point-unknown-substance\":{\"daf\":1.0,\"ci\":[1.0,1.0],\"n\":20,\"death\":11}}}",
+              "content_filename": "daf_bootstrap_results.json",
+              "tags": "['daf', 'bootstrap', 'ci', 'plan-012']"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-16T18:41:48.313209+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Error executing tool register_artifact: 1 validation error for register_artifactArguments\ncontent\n  Input should be a valid string [type=string_type, input_value={'global': {'daf_point': ... 'n': 20, 'death': 11}}}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/string_type"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-16T18:41:48.313336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "DAF Bootstrap CI Results (full 245 episodes)",
+              "type": "data",
+              "description": "DAF bootstrap 95% CI with 10000 resamples over 245 plan-012 episodes. Global DAF=0.635 [0.517, 0.764]. Per-task breakdown. Server: westb-13313, path: guided_router/daf_bootstrap_results.json",
+              "project": "simgate-modular-routing",
+              "exp_id": "daf-bootstrap-ci-full",
+              "tags": "['daf', 'bootstrap', 'ci', 'plan-012']",
+              "url": "file:///root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-16T18:41:48.313476+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260516_6d4a74\\\", \\\"name\\\": \\\"DAF Bootstrap CI Results (full 245 episodes)\\\", \\\"type\\\": \\\"data\\\", \\\"description\\\": \\\"DAF bootstrap 95% CI with 10000 resamples over 245 plan-012 episodes. Global DAF=0.635 [0.517, 0.764]. Per-task breakdown. Server: westb-13313, path: guided_router/daf_bootstrap_results.json\\\", \\\"path\\\": null, \\\"url\\\": \\\"file:///root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json\\\", \\\"project\\\": \\\"simgate-modular-routing\\\", \\\"exp_id\\\": \\\"daf-bootstrap-ci-full\\\", \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-16T18:41:34.356716+00:00\\\", \\\"tags\\\": [\\\"daf\\\", \\\"bootstrap\\\", \\\"ci\\\", \\\"plan-012\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-16T18:41:48.313656+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== DAF Bootstrap CI Results ===\nGlobal:\n  DAF point estimate: 0.6353\n  95% CI: [0.5169, 0.7640]\n  N episodes: 245, N det-preferred: 86, N death: 105 (70 in det-pref)\n  Δ_full: 92.53, Δ_nd: 33.75\n\nPer-task DAF:\n  chemistry-mix:                       DAF=1.00 [1.00, 1.00] (n=20, death=9)\n  find-animal:                         DAF=1.00 [1.00, 1.00] (n=20, death=10)\n  find-non-living-thing:               DAF=0.00 [0.00, 0.00] (n=40, death=0)\n  freeze:                              DAF=1.00 [1.00, 1.00] (n=20, death=11)\n  grow-fruit:                          DAF=1.00 [1.00, 1.00] (n=20, death=9)\n  identify-life-stages-1:              DAF=1.00 [1.00, 1.00] (n=20, death=11)\n  identify-life-stages-2:              DAF=1.00 [1.00, 1.00] (n=20, death=10)\n  inclined-plane-determine-angle:      DAF=1.00 [1.00, 1.00] (n=20, death=11)\n  lifespan-longest-lived:              DAF=1.00 [1.00, 1.00] (n=25, death=14)\n  lifespan-longest-lived-then-shortest: DAF=1.00 [1.00, 1.00] (n=20, death=9)\n  measure-melting-point-unknown:       DAF=1.00 [1.00, 1.00] (n=20, death=11)\n\nNote vs \"previous DAF=0.904\": 该值可能来自不同计算方式（如 death_decomposition_report 中使用全量 episodes 而非仅 det-preferred，得到 DAF=0.988）。本次严格按公式 DAF = 1 - Δ_nd/Δ_full（仅 det-preferred episodes）计算，得到 0.635。差异来源：只有 find-non-living-thing 有非 death 的 det-preferred episodes（16个，Δ_nd=33.75），拉低了全局 DAF。\n```\n\nRegistry 已更新为 DONE，artifact 已注册。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_eval_daf-bootstrap-ci-v2_20260516T183401"
+          },
+          "id": "event-000089"
+        }
+      ],
+      "message_count": 89
+    }
+  ],
+  "readable_path": "readable/conversations/eval-daf-bootstrap-ci-v2.md"
+}

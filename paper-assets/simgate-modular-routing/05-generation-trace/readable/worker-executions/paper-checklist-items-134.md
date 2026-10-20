@@ -1,0 +1,7542 @@
+# paper checklist items 134
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 156
+- **Recorded user turns:** 0
+- **Tool calls:** 61
+- **Original source:** `logs/workers/worker_paper_checklist-items-134_20260521T093818.log`
+- **Structured JSON:** [`64e03eec33823802648c.json`](../../sessions/64/64e03eec33823802648c.json)
+
+## Before a recorded user message
+
+156 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "147ae371-892e-4595-a2a9-6057ed14b374",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779372000,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "04f62eeb-e565-411c-82eb-ffe116d7bd1d",
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this task into parallel steps:
+
+1. First, I need to read the current state of main.tex and experiments.tex to understand the structure
+2. SSH to the server to extract all the required technical parameters
+
+Let me start by reading the paper files and SSHing to the server in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "46bf8c0e-7092-48f8-bcc1-0bdb3ec2d809",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALBf8WjCqzWMzsJukJoxax",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12596,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12596
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+I'll start by reading the paper files and extracting technical parameters from the server in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "e35c0790-1995-4fae-836c-935ccdec0f0d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALBf8WjCqzWMzsJukJoxax",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12596,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12596
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Ncg8WuZirCha9czkf6Vv3m`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "limit": 100
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "463d8d86-48f3-43ea-a45f-07a03f0e3270",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALBf8WjCqzWMzsJukJoxax",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12596,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12596
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T09:38:33.577Z_
+
+<details><summary>↩ Tool result · `toolu_01Ncg8WuZirCha9czkf6Vv3m`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\graphicspath{{figures/}}
+12	\usepackage{booktabs}
+13	\usepackage{amsmath}
+14	\usepackage{amssymb}
+15	\usepackage{algorithm}
+16	\usepackage{algorithmic}
+17	
+18	\title{Death Avoidance as the Dominant Routing Signal:\\A Counterfactual Analysis on ScienceWorld}
+19	
+20	\author{Anonymous}
+21	
+22	\begin{document}
+23	\maketitle
+24	
+25	\input{abstract}
+26	\input{introduction}
+27	\input{method}
+28	\input{experiments}
+29	\input{related_work}
+30	\input{discussion}
+31	\input{conclusion}
+32	
+33	\section*{Limitations}
+34	
+35	\paragraph{Environmental scope.}
+36	Our primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\ref{app:penalty}). The 19 excluded task types (63\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\S\ref{sec:cross-env}, \S\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \S\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\times}$ scale) reduces death rate but does not eliminate death dominance (\S\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).
+37	
+38	\paragraph{Methodological constraints.}
+39	Our internal-reasoning baseline uses single-pass ReAct~\citep{react-2023}. Reflexion~\citep{reflexion-2023} reduces death rate from 42.9\% to 31.4\% (\S\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\% pre-event neutral). The issue is granularity mismatch---applying correct-direction labels to uninformative steps---not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.
+40	
+41	\paragraph{Statistical limitations.}
+42	Episodes within the same task type are not fully independent because they share environment dynamics, though they use different random seeds. Cluster bootstrap with $K{=}11$ task-type clusters yields wider CIs ($[73.3\%, 100.0\%]$); with $K < 40$ clusters, these should be interpreted cautiously~\citep{cameron-2008,webb-2023}. A wild cluster bootstrap ($K{=}11$, $p < 0.001$; Appendix~\ref{app:wild-cluster}) and 100\% directional consistency across all 28 death-prone tasks (Appendix~\ref{app:per-task-ci}) mitigate this concern.
+43	
+44	\paragraph{Pure-strategy upper bound.}
+45	Our counterfactual analysis compares pure strategies (always-internal vs.\ always-deterministic). In mixed routing, the router can selectively invoke deterministic mode on high-risk steps, potentially reducing death asymmetry. Thus, DAF${=}90.4\%$ represents an upper bound on death avoidance's contribution to optimized routing; the actual contribution under mixed strategies may be lower.
+46	
+47	\section*{Ethics Statement}
+48	
+49	This work uses ScienceWorld \cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All evaluation environments (ScienceWorld, ALFWorld, MATH) are released under permissive open-source licenses (Apache 2.0 / MIT). All models used (Qwen2.5 family, Llama-3.1-8B) are publicly available for research use. All language models are accessed via standard APIs or publicly released weights. Experiments were conducted on 2$\times$ NVIDIA RTX 5090 (32GB) and 4$\times$ NVIDIA RTX 6000 PRO (96GB), totaling approximately 200 GPU-hours for data collection, router training, and evaluation. Code and data will be released upon acceptance.
+50	
+51	\bibliography{references}
+52	
+53	\appendix
+54	
+55	\noindent\textbf{Appendix Overview.}
+56	\hyperref[app:sci]{A.~Signal Concentration Index} $\cdot$
+57	\hyperref[app:labeling]{B.~Labeling Quality Audit} $\cdot$
+58	\hyperref[app:per-task]{C.~Per-Task Decomposition} $\cdot$
+59	\hyperref[app:correlation]{D.~Correlation Robustness} $\cdot$
+60	\hyperref[app:wild-cluster]{E.~Cluster Bootstrap Sensitivity} $\cdot$
+61	\hyperref[app:per-task-ci]{F.~Per-Task CIs} $\cdot$
+62	\hyperref[app:loto-daf]{G.~Leave-One-Task-Out DAF} $\cdot$
+63	\hyperref[app:dose-response]{H.~Dose-Response Breakdown} $\cdot$
+64	\hyperref[app:router-details]{I.~Router Training Details} $\cdot$
+65	\hyperref[app:seed-robustness]{J.~Seed Robustness} $\cdot$
+66	\hyperref[app:penalty]{K.~Penalty Sensitivity} $\cdot$
+67	\hyperref[app:cross-env-details]{L.~Cross-Environment Details} $\cdot$
+68	\hyperref[app:cross-model]{M.~Cross-Model Verification} $\cdot$
+69	\hyperref[app:failure-modes]{N.~Failure Mode Analysis} $\cdot$
+70	\hyperref[app:grounding-ablation]{O.~Grounding Ablation} $\cdot$
+71	\hyperref[app:ablations]{P.~Ablation Studies} $\cdot$
+72	\hyperref[sec:threshold-routing]{Q.~Threshold Routing} $\cdot$
+73	\hyperref[app:decision-framework]{R.~Decision Framework} $\cdot$
+74	\hyperref[app:extended-validation]{S.~Extended Validation}
+75	
+76	\section{Signal Concentration Index}
+77	\label{app:sci}
+78	
+79	Let $K$ denote the number of task types and $c_k$ the contribution of task type $k$ to the aggregate routing signal, defined as the fraction of total death-rate differential attributable to task $k$:
+80	\begin{equation}
+81	    c_k = \frac{n_k \cdot \delta_k}{\sum_{j=1}^{K} n_j \cdot \delta_j}
+82	\end{equation}
+83	where $n_k$ is the number of episodes and $\delta_k = d_k^{\tt int} - d_k^{\tt det}$ is the per-task death-rate differential. The SCI is the Gini coefficient over $\{c_1, \ldots, c_K\}$:
+84	\begin{equation}
+85	    \text{SCI} = \frac{\sum_{i=1}^K \sum_{j=1}^K |c_i - c_j|}{2K \sum_{k=1}^K c_k}
+86	\end{equation}
+87	
+88	\section{Labeling Quality Audit}
+89	\label{app:labeling}
+90	
+91	\begin{algorithm}[t]
+92	\caption{Episode-Level Counterfactual Labeling}
+93	\label{alg:labeling}
+94	\begin{algorithmic}[1]
+95	\REQUIRE Task instance $t$, computation modes $\mathcal{M} = \{{\tt int}, {\tt det}\}$
+96	\ENSURE Label $\ell \in \{{\tt det\text{-}pref}, {\tt int\text{-}pref}, {\tt no\text{-}pref}\}$
+97	\FOR{each $m \in \mathcal{M}$}
+98	    \STATE Run episode $\tau_m$ with pure-strategy $m$
+99	    \STATE Record score $s_m$ and death indicator $d_m$
+100	\ENDFOR
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "77a924e0-9d34-4f6c-b76b-a895e5cf8c78",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\graphicspath{{figures/}}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\n\\title{Death Avoidance as the Dominant Routing Signal:\\\\A Counterfactual Analysis on ScienceWorld}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\\input{introduction}\n\\input{method}\n\\input{experiments}\n\\input{related_work}\n\\input{discussion}\n\\input{conclusion}\n\n\\section*{Limitations}\n\n\\paragraph{Environmental scope.}\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\ref{app:penalty}). The 19 excluded task types (63\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\\S\\ref{sec:cross-env}, \\S\\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \\S\\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\\times}$ scale) reduces death rate but does not eliminate death dominance (\\S\\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).\n\n\\paragraph{Methodological constraints.}\nOur internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\\% pre-event neutral). The issue is granularity mismatch---applying correct-direction labels to uninformative steps---not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.\n\n\\paragraph{Statistical limitations.}\nEpisodes within the same task type are not fully independent because they share environment dynamics, though they use different random seeds. Cluster bootstrap with $K{=}11$ task-type clusters yields wider CIs ($[73.3\\%, 100.0\\%]$); with $K < 40$ clusters, these should be interpreted cautiously~\\citep{cameron-2008,webb-2023}. A wild cluster bootstrap ($K{=}11$, $p < 0.001$; Appendix~\\ref{app:wild-cluster}) and 100\\% directional consistency across all 28 death-prone tasks (Appendix~\\ref{app:per-task-ci}) mitigate this concern.\n\n\\paragraph{Pure-strategy upper bound.}\nOur counterfactual analysis compares pure strategies (always-internal vs.\\ always-deterministic). In mixed routing, the router can selectively invoke deterministic mode on high-risk steps, potentially reducing death asymmetry. Thus, DAF${=}90.4\\%$ represents an upper bound on death avoidance's contribution to optimized routing; the actual contribution under mixed strategies may be lower.\n\n\\section*{Ethics Statement}\n\nThis work uses ScienceWorld \\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All evaluation environments (ScienceWorld, ALFWorld, MATH) are released under permissive open-source licenses (Apache 2.0 / MIT). All models used (Qwen2.5 family, Llama-3.1-8B) are publicly available for research use. All language models are accessed via standard APIs or publicly released weights. Experiments were conducted on 2$\\times$ NVIDIA RTX 5090 (32GB) and 4$\\times$ NVIDIA RTX 6000 PRO (96GB), totaling approximately 200 GPU-hours for data collection, router training, and evaluation. Code and data will be released upon acceptance.\n\n\\bibliography{references}\n\n\\appendix\n\n\\noindent\\textbf{Appendix Overview.}\n\\hyperref[app:sci]{A.~Signal Concentration Index} $\\cdot$\n\\hyperref[app:labeling]{B.~Labeling Quality Audit} $\\cdot$\n\\hyperref[app:per-task]{C.~Per-Task Decomposition} $\\cdot$\n\\hyperref[app:correlation]{D.~Correlation Robustness} $\\cdot$\n\\hyperref[app:wild-cluster]{E.~Cluster Bootstrap Sensitivity} $\\cdot$\n\\hyperref[app:per-task-ci]{F.~Per-Task CIs} $\\cdot$\n\\hyperref[app:loto-daf]{G.~Leave-One-Task-Out DAF} $\\cdot$\n\\hyperref[app:dose-response]{H.~Dose-Response Breakdown} $\\cdot$\n\\hyperref[app:router-details]{I.~Router Training Details} $\\cdot$\n\\hyperref[app:seed-robustness]{J.~Seed Robustness} $\\cdot$\n\\hyperref[app:penalty]{K.~Penalty Sensitivity} $\\cdot$\n\\hyperref[app:cross-env-details]{L.~Cross-Environment Details} $\\cdot$\n\\hyperref[app:cross-model]{M.~Cross-Model Verification} $\\cdot$\n\\hyperref[app:failure-modes]{N.~Failure Mode Analysis} $\\cdot$\n\\hyperref[app:grounding-ablation]{O.~Grounding Ablation} $\\cdot$\n\\hyperref[app:ablations]{P.~Ablation Studies} $\\cdot$\n\\hyperref[sec:threshold-routing]{Q.~Threshold Routing} $\\cdot$\n\\hyperref[app:decision-framework]{R.~Decision Framework} $\\cdot$\n\\hyperref[app:extended-validation]{S.~Extended Validation}\n\n\\section{Signal Concentration Index}\n\\label{app:sci}\n\nLet $K$ denote the number of task types and $c_k$ the contribution of task type $k$ to the aggregate routing signal, defined as the fraction of total death-rate differential attributable to task $k$:\n\\begin{equation}\n    c_k = \\frac{n_k \\cdot \\delta_k}{\\sum_{j=1}^{K} n_j \\cdot \\delta_j}\n\\end{equation}\nwhere $n_k$ is the number of episodes and $\\delta_k = d_k^{\\tt int} - d_k^{\\tt det}$ is the per-task death-rate differential. The SCI is the Gini coefficient over $\\{c_1, \\ldots, c_K\\}$:\n\\begin{equation}\n    \\text{SCI} = \\frac{\\sum_{i=1}^K \\sum_{j=1}^K |c_i - c_j|}{2K \\sum_{k=1}^K c_k}\n\\end{equation}\n\n\\section{Labeling Quality Audit}\n\\label{app:labeling}\n\n\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR",
+      "numLines": 100,
+      "startLine": 1,
+      "totalLines": 767
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01RvYrCQwEJkoVsnKM3PN9Hx`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "2002a90a-30d4-4947-b4c7-a2339823a07d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ALBf8WjCqzWMzsJukJoxax",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12596,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12596
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T09:38:34.067Z_
+
+<details><summary>↩ Tool result · `toolu_01RvYrCQwEJkoVsnKM3PN9Hx`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "518e4b22-ae91-4785-be5e-0c05a9d9b646",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now read more of main.tex to find Appendix I, C, and L, and also SSH to the server to extract the parameters. Let me do these in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "85c634db-af92-455d-8735-d4dc92e65b57",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RxwUqNH2x3wDfsE4RHEKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3591,
+      "cache_read_input_tokens": 24437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3591
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+Let me find the relevant appendix sections and SSH to the server for parameters simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "e17f7876-4fd3-4840-9832-615bf1c33e0e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RxwUqNH2x3wDfsE4RHEKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3591,
+      "cache_read_input_tokens": 24437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3591
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01CLQfq62H4MMkUb4uJkk7BF`</summary>
+
+```json
+{
+  "pattern": "\\\\label\\{app:router-details\\}|\\\\label\\{app:per-task\\}|\\\\label\\{app:cross-env-details\\}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "3ff8dde4-33a2-45ae-8ec3-7f67cff9d775",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RxwUqNH2x3wDfsE4RHEKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3591,
+      "cache_read_input_tokens": 24437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3591
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T09:38:40.082Z_
+
+<details><summary>↩ Tool result · `toolu_01CLQfq62H4MMkUb4uJkk7BF`</summary>
+
+```text
+121:\label{app:per-task}
+320:\label{app:router-details}
+482:\label{app:cross-env-details}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "0215be20-0425-441f-90f5-54ef4863dbcd",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "121:\\label{app:per-task}\n320:\\label{app:router-details}\n482:\\label{app:cross-env-details}",
+    "numLines": 3
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Qu6SAsoKwF8kTH8RYFrDjS`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"temperature\\|top_p\\|top_k\\|max_tokens\\|max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/ /root/autodl-tmp/simgate-modular-routing/configs/ /root/autodl-tmp/simgate-modular-routing/scripts/ --include=\"*.py\" --include=\"*.yaml\" --include=\"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "6da83985-4cac-4033-84ca-f2282fb416d4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RxwUqNH2x3wDfsE4RHEKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3591,
+      "cache_read_input_tokens": 24437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3591
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T09:38:42.126Z_
+
+<details><summary>↩ Tool result · `toolu_01Qu6SAsoKwF8kTH8RYFrDjS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "dd9f2c28-6d11-4d83-ac1b-ba109110fc97",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HYJJe8qkUARQaxbvpwV39J`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "pip show vllm scienceworld 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "d82af1e1-2cc4-475e-824a-2ac2125895fd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RxwUqNH2x3wDfsE4RHEKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3591,
+      "cache_read_input_tokens": 24437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3591
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T09:38:42.984Z_
+
+<details><summary>↩ Tool result · `toolu_01HYJJe8qkUARQaxbvpwV39J`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "90931489-f623-4457-b9fa-51f4e6584028",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01LREjt2ZzsvxZzCfLbLbmPr`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/ -name \"*math*\" -o -name \"*MATH*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "1d920279-e28b-4d84-b857-03ad2006b637",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016RxwUqNH2x3wDfsE4RHEKu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3591,
+      "cache_read_input_tokens": 24437,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3591
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T09:38:43.640Z_
+
+<details><summary>↩ Tool result · `toolu_01LREjt2ZzsvxZzCfLbLbmPr`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "014303d5-e5df-4acb-afd8-dd463cc3f713",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The ssh_read_only commands are being blocked due to shell metacharacters. I need to use simpler commands without pipes or redirects. Let me also read the relevant appendix sections from main.tex.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "6484d421-3aed-4e72-abe1-4edea6dd6678",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+Need to use simpler SSH commands. Let me fix those and read the appendix sections.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "761d323f-58eb-4dd8-ae42-9909246c0a5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01H7jgUPyu8cqaQhJmZBtKAe`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "offset": 118,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "077b5971-93e9-4da8-9846-0451ab172c87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T09:38:47.737Z_
+
+<details><summary>↩ Tool result · `toolu_01H7jgUPyu8cqaQhJmZBtKAe`</summary>
+
+```text
+118	Note that episode-level labels are used to evaluate step-level predictions, introducing a granularity mismatch rather than independent validation. A potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine computation mode differences. We audit all 245 labels. Of the 150 \texttt{no\_preference} labels (61.2\%), 115 (46.9\%) are both-alive ties and 35 (14.3\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\%, within 1$\sigma$ of the full-label retrain (57.6 $\pm$ 0.5\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \S\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\% step-level tie rate (\S\ref{sec:collection}) further motivates episode-level over step-level labeling.
+119	
+120	\section{Per-Task Decomposition}
+121	\label{app:per-task}
+122	We select 11 of ScienceWorld's 30 task types for analysis. Types are excluded when they were used for pipeline development (5 tasks, standard hold-out practice), are taxonomically redundant with a retained family representative (7 tasks), or exhibit near-zero task progress under both strategies (7 tasks, agent capability floor).\footnote{Excluded tasks exhibit even stronger death dominance than included tasks ($\Delta\text{DR} = +38.2$\,pp vs.\ $+28.7$\,pp; Table~\ref{tab:excluded-death}).}
+123	
+124	\begin{table}[h]
+125	\centering
+126	\scriptsize
+127	\setlength{\tabcolsep}{2.5pt}
+128	\begin{tabular}{@{}lrrccc@{}}
+129	\toprule
+130	Task & $n$ & $\Delta_\text{full}$ & D\%\textsubscript{int} & D\%\textsubscript{det} & D / I / N \\
+131	\midrule
+132	id-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "a4f5bdf8-3c11-467f-8557-e7cafcb688fe",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+      "content": "Note that episode-level labels are used to evaluate step-level predictions, introducing a granularity mismatch rather than independent validation. A potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine computation mode differences. We audit all 245 labels. Of the 150 \\texttt{no\\_preference} labels (61.2\\%), 115 (46.9\\%) are both-alive ties and 35 (14.3\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\%, within 1$\\sigma$ of the full-label retrain (57.6 $\\pm$ 0.5\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\S\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\% step-level tie rate (\\S\\ref{sec:collection}) further motivates episode-level over step-level labeling.\n\n\\section{Per-Task Decomposition}\n\\label{app:per-task}\nWe select 11 of ScienceWorld's 30 task types for analysis. Types are excluded when they were used for pipeline development (5 tasks, standard hold-out practice), are taxonomically redundant with a retained family representative (7 tasks), or exhibit near-zero task progress under both strategies (7 tasks, agent capability floor).\\footnote{Excluded tasks exhibit even stronger death dominance than included tasks ($\\Delta\\text{DR} = +38.2$\\,pp vs.\\ $+28.7$\\,pp; Table~\\ref{tab:excluded-death}).}\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrrccc@{}}\n\\toprule\nTask & $n$ & $\\Delta_\\text{full}$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & D / I / N \\\\\n\\midrule\nid-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\\\",
+      "numLines": 15,
+      "startLine": 118,
+      "totalLines": 767
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Cinq2Mdm2QgYgYreNmHecr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "offset": 315,
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "e1f5875f-561d-4325-9771-205d482ee192",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-21T09:38:48.766Z_
+
+<details><summary>↩ Tool result · `toolu_01Cinq2Mdm2QgYgYreNmHecr`</summary>
+
+```text
+315	\bottomrule
+316	\end{tabular}
+317	\end{table}
+318	
+319	\section{Router Training Details}
+320	\label{app:router-details}
+321	
+322	We use Qwen3-1.7B for the router to avoid circular dependency with the Qwen2.5-7B data-generating model.
+323	
+324	With gradient accumulation of 1 (effective batch size 4), routing performance is highly sensitive to the evaluation split; this suggests overfitting to specific train/validation partition boundaries. With gradient accumulation of 8 (effective batch size 32), step-level performance stabilizes across splits (${\sim}54\%$ balanced accuracy). All reported results use gradient accumulation 8.
+325	
+326	Under step-level evaluation with a fixed data split, cross-seed balanced accuracy ranges from 52.7\% to 58.1\%, but internal recall varies from 51.5\% to 81.8\%, which reflects threshold sensitivity. However, episode-level evaluation reveals that this apparent discrimination does not generalize: balanced accuracy drops to $47.1 \pm 2.2\%$ across 8 cross-split seeds (Appendix~\ref{app:seed-robustness}). Deployed end-to-end, the trained router allocates 97.0\% of episodes to deterministic computation with 17.6\% death rate, and misrouting cost (death from internally-routed episodes) exceeds the benefit of correctly routing rare internal-preferred cases.
+327	
+328	\paragraph{Evaluation methods.} All results use \emph{generation-based evaluation}: the model generates a routing label as text (\texttt{enable\_thinking=False}), parsed for classification. We evaluate at two granularities: \emph{step-level} (steps from the same episode may appear in both train and validation sets) and \emph{episode-level} (entire episodes held out). Step-level accuracy ($54.1 \pm 5.4\%$) exceeds chance (the router captures some signal), but episode-level accuracy ($47.1 \pm 2.2\%$, below chance) shows this does not generalize to unseen episodes. Paraphrase-based text augmentation (Appendix~\ref{app:seed-robustness}) provides no improvement; real-data scaling remains open. Always-deterministic is trivially near-optimal given DAF $= 90.4\%$. The main text (\S\ref{sec:router-diagnostic}) reports controlled 4-seed results at three scales; the model-size ablation (Appendix~\ref{app:ablations}) provides further detail.
+329	
+330	\begin{table}[h]
+331	\centering
+332	\small
+333	\resizebox{\columnwidth}{!}{%
+334	\begin{tabular}{@{}lcc@{}}
+335	\toprule
+336	Hyperparameter & Classification Head & Implicit Router \\
+337	\midrule
+338	Base model & Qwen3-1.7B & Qwen3-1.7B \\
+339	Architecture & Linear + LoRA & SFT + LoRA \\
+340	LoRA $r$ / $\alpha$ & 16 / 32 & 16 / 32 \\
+341	Learning rate & 2e-5 & 2e-4 \\
+342	Optimizer & AdamW & AdamW \\
+343	Epochs & 3 & 3 \\
+344	Batch size (per device) & 4 & 4 \\
+345	Gradient accumulation & 8 & 8 \\
+346	Warmup ratio & 0.1 & 0.1 \\
+347	Weight decay & 0.01 & 0.01 \\
+348	Max sequence length & 512 & 512 \\
+349	Seeds & \{42\} & \{42, 123, 456, 789\} \\
+350	\bottomrule
+351	\end{tabular}}
+352	\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\pm$std.}
+353	\label{tab:hyperparams}
+354	\end{table}
+355	
+356	\section{Seed Robustness}
+357	\label{app:seed-robustness}
+358	
+359	We assess router generalization at two evaluation granularities: \emph{step-level}, where steps from the same episode may appear in both train and validation sets, and \emph{episode-level}, where entire episodes are held out. Both use cross-split evaluation (seeds $\{42, \ldots, 49\}$, 8 seeds total), where the data partition and training seed both vary. Table~\ref{tab:seed-robustness} reports per-seed results.
+360	
+361	\begin{table}[h]
+362	\centering
+363	\small
+364	\begin{tabular}{@{}llcc@{}}
+365	\toprule
+366	Eval.\ Granularity & Seed & Bal.\ Acc.\ (\%) \\
+367	\midrule
+368	Step-level & 42 & 57.06 \\
+369	(same-episode & 43 & 63.99 \\
+370	leakage) & 44 & 55.43 \\
+371	 & 45 & 56.14 \\
+372	 & 46 & 55.45 \\
+373	 & 47 & 50.08 \\
+374	 & 48 & 48.03 \\
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "c56453d3-b550-40c0-8d28-7c42afd3730f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+      "content": "\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Router Training Details}\n\\label{app:router-details}\n\nWe use Qwen3-1.7B for the router to avoid circular dependency with the Qwen2.5-7B data-generating model.\n\nWith gradient accumulation of 1 (effective batch size 4), routing performance is highly sensitive to the evaluation split; this suggests overfitting to specific train/validation partition boundaries. With gradient accumulation of 8 (effective batch size 32), step-level performance stabilizes across splits (${\\sim}54\\%$ balanced accuracy). All reported results use gradient accumulation 8.\n\nUnder step-level evaluation with a fixed data split, cross-seed balanced accuracy ranges from 52.7\\% to 58.1\\%, but internal recall varies from 51.5\\% to 81.8\\%, which reflects threshold sensitivity. However, episode-level evaluation reveals that this apparent discrimination does not generalize: balanced accuracy drops to $47.1 \\pm 2.2\\%$ across 8 cross-split seeds (Appendix~\\ref{app:seed-robustness}). Deployed end-to-end, the trained router allocates 97.0\\% of episodes to deterministic computation with 17.6\\% death rate, and misrouting cost (death from internally-routed episodes) exceeds the benefit of correctly routing rare internal-preferred cases.\n\n\\paragraph{Evaluation methods.} All results use \\emph{generation-based evaluation}: the model generates a routing label as text (\\texttt{enable\\_thinking=False}), parsed for classification. We evaluate at two granularities: \\emph{step-level} (steps from the same episode may appear in both train and validation sets) and \\emph{episode-level} (entire episodes held out). Step-level accuracy ($54.1 \\pm 5.4\\%$) exceeds chance (the router captures some signal), but episode-level accuracy ($47.1 \\pm 2.2\\%$, below chance) shows this does not generalize to unseen episodes. Paraphrase-based text augmentation (Appendix~\\ref{app:seed-robustness}) provides no improvement; real-data scaling remains open. Always-deterministic is trivially near-optimal given DAF $= 90.4\\%$. The main text (\\S\\ref{sec:router-diagnostic}) reports controlled 4-seed results at three scales; the model-size ablation (Appendix~\\ref{app:ablations}) provides further detail.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nHyperparameter & Classification Head & Implicit Router \\\\\n\\midrule\nBase model & Qwen3-1.7B & Qwen3-1.7B \\\\\nArchitecture & Linear + LoRA & SFT + LoRA \\\\\nLoRA $r$ / $\\alpha$ & 16 / 32 & 16 / 32 \\\\\nLearning rate & 2e-5 & 2e-4 \\\\\nOptimizer & AdamW & AdamW \\\\\nEpochs & 3 & 3 \\\\\nBatch size (per device) & 4 & 4 \\\\\nGradient accumulation & 8 & 8 \\\\\nWarmup ratio & 0.1 & 0.1 \\\\\nWeight decay & 0.01 & 0.01 \\\\\nMax sequence length & 512 & 512 \\\\\nSeeds & \\{42\\} & \\{42, 123, 456, 789\\} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\\pm$std.}\n\\label{tab:hyperparams}\n\\end{table}\n\n\\section{Seed Robustness}\n\\label{app:seed-robustness}\n\nWe assess router generalization at two evaluation granularities: \\emph{step-level}, where steps from the same episode may appear in both train and validation sets, and \\emph{episode-level}, where entire episodes are held out. Both use cross-split evaluation (seeds $\\{42, \\ldots, 49\\}$, 8 seeds total), where the data partition and training seed both vary. Table~\\ref{tab:seed-robustness} reports per-seed results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nEval.\\ Granularity & Seed & Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nStep-level & 42 & 57.06 \\\\\n(same-episode & 43 & 63.99 \\\\\nleakage) & 44 & 55.43 \\\\\n & 45 & 56.14 \\\\\n & 46 & 55.45 \\\\\n & 47 & 50.08 \\\\\n & 48 & 48.03 \\\\",
+      "numLines": 60,
+      "startLine": 315,
+      "totalLines": 767
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017WD9K7iCAUZtGK1ohkmF3t`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "offset": 478,
+  "limit": 60
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "a835b2b5-ccd0-4024-bdb4-93fd84b97011",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T09:38:49.632Z_
+
+<details><summary>↩ Tool result · `toolu_017WD9K7iCAUZtGK1ohkmF3t`</summary>
+
+```text
+478	
+479	This sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\Delta_{\text{full}}$ reduces to $\Delta_{\text{nd}} \approx 2.84$, which is near-uniform across task types ($\text{mean non-death gap} = -1.19$ excluding the \texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\Delta_{\text{full}}$, and the correlation sharpens because death rates \emph{are} the performance gap. The DAF values in Table~\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\text{DAF} = \delta P / (\delta P + \Delta_{\text{nd}})$), not evidence of mechanism robustness.
+480	
+481	\section{Cross-Environment Details}
+482	\label{app:cross-env-details}
+483	
+484	Figure~\ref{fig:signal-reversal} and Table~\ref{tab:cross-env} summarize the label distributions across all three environments.
+485	
+486	\begin{figure}[h]
+487	\centering
+488	\includegraphics[width=\columnwidth]{figures/signal_reversal.pdf}
+489	\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both show deterministic preference, but through different mechanisms: death avoidance (ScienceWorld) vs.\ information asymmetry from admissible-action access (ALFWorld). MATH shows balanced labels, confirming no routing signal without catastrophic failure.}
+490	\label{fig:signal-reversal}
+491	\end{figure}
+492	
+493	\begin{table}[h]
+494	\centering
+495	\small
+496	\resizebox{\columnwidth}{!}{%
+497	\begin{tabular}{@{}lccccc@{}}
+498	\toprule
+499	Environment & $N$ & Det\% & Int\% & NoPref\% & Death? \\
+500	\midrule
+501	ScienceWorld & 245 & 35.1 & 3.7 & 61.2 & Yes ($-100$) \\
+502	MATH & 795 & 12.0 & 13.5 & 74.6 & No \\
+503	ALFWorld & 135 & 25.9 & 1.5 & 72.6 & No\textsuperscript{$\dagger$} \\
+504	\bottomrule
+505	\end{tabular}}
+506	\caption{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different computation modes: ScienceWorld = oracle simulator with ground-truth state; MATH = Python code interpreter; ALFWorld = admissible-action enumeration. $\dagger$\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}
+507	\label{tab:cross-env}
+508	\end{table}
+509	
+510	Table~\ref{tab:alfworld-pertask} provides the per-task-type breakdown for ALFWorld. Unlike ScienceWorld, ALFWorld has no death mechanism ($\delta = 0$, DAF $= 0\%$); the entire performance gap $\Delta_{\text{full}}$ reflects information asymmetry from admissible-action access. \texttt{pick\_and\_place} shows the strongest effect ($\Delta = 0.563$, 18 of 32 episodes det-preferred), while \texttt{pick\_two\_obj\_and\_place} shows the weakest ($\Delta = 0.087$), consistent with multi-object tasks requiring more sequential reasoning that admissible actions alone cannot resolve. Only \texttt{pick\_heat\_then\_place} has a 95\% CI crossing zero ($n{=}16$).
+511	
+512	\begin{table}[h]
+513	\centering
+514	\scriptsize
+515	\setlength{\tabcolsep}{2.5pt}
+516	\begin{tabular}{@{}lrcccc@{}}
+517	\toprule
+518	Task Type & $n$ & Succ\%\textsubscript{int} & Succ\%\textsubscript{det} & D / I / N & $\Delta_{\text{full}}$ \\
+519	\midrule
+520	pick\_and\_place       & 32 & 0.0  & 56.3 & 18 / 0 / 14 & $+0.563$ \\
+521	look\_at\_obj\_in\_light & 13 & 15.4 & 38.5 & 3 / 0 / 10  & $+0.231$ \\
+522	pick\_cool\_then\_place & 24 & 0.0  & 16.7 & 4 / 0 / 20  & $+0.167$ \\
+523	pick\_clean\_then\_place & 27 & 3.7  & 18.5 & 5 / 1 / 21  & $+0.148$ \\
+524	pick\_heat\_then\_place & 16 & 6.3  & 18.8 & 3 / 1 / 12  & $+0.125$ \\
+525	pick\_two\_obj\_and\_place & 23 & 0.0 & 8.7  & 2 / 0 / 21  & $+0.087$ \\
+526	\midrule
+527	\textbf{All (6 types)} & \textbf{135} & \textbf{3.0} & \textbf{27.4} & \textbf{35 / 2 / 98} & $\mathbf{+0.244}$ \\
+528	\bottomrule
+529	\end{tabular}
+530	\caption{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\Delta_{\text{full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\Delta_{\text{full}}$ descending.}
+531	\label{tab:alfworld-pertask}
+532	\end{table}
+533	
+534	\section{Cross-Model Verification}
+535	\label{app:cross-model}
+536	
+537	We replicate the counterfactual analysis with Llama-3.1-8B-Instruct across all 11 task types ($N{=}220$ episode pairs, 20 per type; Table~\ref{tab:cross-model-detail}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "73f616e0-8108-43ce-a28a-3044d3a0f48e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+      "content": "\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\Delta_{\\text{full}}$ reduces to $\\Delta_{\\text{nd}} \\approx 2.84$, which is near-uniform across task types ($\\text{mean non-death gap} = -1.19$ excluding the \\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\Delta_{\\text{full}}$, and the correlation sharpens because death rates \\emph{are} the performance gap. The DAF values in Table~\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\text{DAF} = \\delta P / (\\delta P + \\Delta_{\\text{nd}})$), not evidence of mechanism robustness.\n\n\\section{Cross-Environment Details}\n\\label{app:cross-env-details}\n\nFigure~\\ref{fig:signal-reversal} and Table~\\ref{tab:cross-env} summarize the label distributions across all three environments.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/signal_reversal.pdf}\n\\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both show deterministic preference, but through different mechanisms: death avoidance (ScienceWorld) vs.\\ information asymmetry from admissible-action access (ALFWorld). MATH shows balanced labels, confirming no routing signal without catastrophic failure.}\n\\label{fig:signal-reversal}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nEnvironment & $N$ & Det\\% & Int\\% & NoPref\\% & Death? \\\\\n\\midrule\nScienceWorld & 245 & 35.1 & 3.7 & 61.2 & Yes ($-100$) \\\\\nMATH & 795 & 12.0 & 13.5 & 74.6 & No \\\\\nALFWorld & 135 & 25.9 & 1.5 & 72.6 & No\\textsuperscript{$\\dagger$} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different computation modes: ScienceWorld = oracle simulator with ground-truth state; MATH = Python code interpreter; ALFWorld = admissible-action enumeration. $\\dagger$\\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}\n\\label{tab:cross-env}\n\\end{table}\n\nTable~\\ref{tab:alfworld-pertask} provides the per-task-type breakdown for ALFWorld. Unlike ScienceWorld, ALFWorld has no death mechanism ($\\delta = 0$, DAF $= 0\\%$); the entire performance gap $\\Delta_{\\text{full}}$ reflects information asymmetry from admissible-action access. \\texttt{pick\\_and\\_place} shows the strongest effect ($\\Delta = 0.563$, 18 of 32 episodes det-preferred), while \\texttt{pick\\_two\\_obj\\_and\\_place} shows the weakest ($\\Delta = 0.087$), consistent with multi-object tasks requiring more sequential reasoning that admissible actions alone cannot resolve. Only \\texttt{pick\\_heat\\_then\\_place} has a 95\\% CI crossing zero ($n{=}16$).\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\nTask Type & $n$ & Succ\\%\\textsubscript{int} & Succ\\%\\textsubscript{det} & D / I / N & $\\Delta_{\\text{full}}$ \\\\\n\\midrule\npick\\_and\\_place       & 32 & 0.0  & 56.3 & 18 / 0 / 14 & $+0.563$ \\\\\nlook\\_at\\_obj\\_in\\_light & 13 & 15.4 & 38.5 & 3 / 0 / 10  & $+0.231$ \\\\\npick\\_cool\\_then\\_place & 24 & 0.0  & 16.7 & 4 / 0 / 20  & $+0.167$ \\\\\npick\\_clean\\_then\\_place & 27 & 3.7  & 18.5 & 5 / 1 / 21  & $+0.148$ \\\\\npick\\_heat\\_then\\_place & 16 & 6.3  & 18.8 & 3 / 1 / 12  & $+0.125$ \\\\\npick\\_two\\_obj\\_and\\_place & 23 & 0.0 & 8.7  & 2 / 0 / 21  & $+0.087$ \\\\\n\\midrule\n\\textbf{All (6 types)} & \\textbf{135} & \\textbf{3.0} & \\textbf{27.4} & \\textbf{35 / 2 / 98} & $\\mathbf{+0.244}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\\Delta_{\\text{full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\\Delta_{\\text{full}}$ descending.}\n\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\section{Cross-Model Verification}\n\\label{app:cross-model}\n\nWe replicate the counterfactual analysis with Llama-3.1-8B-Instruct across all 11 task types ($N{=}220$ episode pairs, 20 per type; Table~\\ref{tab:cross-model-detail}).",
+      "numLines": 60,
+      "startLine": 478,
+      "totalLines": 767
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CKpQ5JgfQV8LoDTuq3BdqR`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"temperature\\|top_p\\|top_k\\|max_tokens\\|max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "474c8cda-2a31-4277-91df-e55500bf0549",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T09:38:50.572Z_
+
+<details><summary>↩ Tool result · `toolu_01CKpQ5JgfQV8LoDTuq3BdqR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "2458601a-57f4-46bf-aca2-bb369dccd348",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NzgdoZ63R3sUVSupQTseDX`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"temperature\\|top_p\\|top_k\\|max_tokens\\|max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/configs/ --include=\"*.yaml\" --include=\"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "eb04ecc6-8a32-471d-9b5a-f3076ce779a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T09:38:51.577Z_
+
+<details><summary>↩ Tool result · `toolu_01NzgdoZ63R3sUVSupQTseDX`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "647d9f17-cec2-4dcd-9fb5-68b266e40de5",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012PU7hF7uU2nmkZDz55gvsW`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"temperature\\|top_p\\|top_k\\|max_tokens\\|max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/scripts/ --include=\"*.py\" --include=\"*.sh\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "518c9bbf-717f-49a6-a702-37c962399243",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T09:38:52.991Z_
+
+<details><summary>↩ Tool result · `toolu_012PU7hF7uU2nmkZDz55gvsW`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "98159ca7-f36a-42ac-923e-f002fdf5472f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SEVgB3yhweJrvkqWKcH9Xg`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "pip show vllm 2>/dev/null | grep Version; pip show scienceworld 2>/dev/null | grep Version",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "eb8a241f-e2cd-4716-b5d6-03014d77bc6b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016rWUcEpfmPkAFpRNY2j5ZH`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/ -name \"*math*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "0e693a75-8486-46dd-90c1-1afff503abe5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-21T09:38:55.241Z_
+
+<details><summary>↩ Tool result · `toolu_01SEVgB3yhweJrvkqWKcH9Xg`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'pip show vllm 2>/dev/null | grep Version; pip show scienceworld 2>/dev/null | grep Version'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.32}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "921b5aaa-3ace-45dc-a6e5-d406393cd3a3",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'pip show vllm 2>/dev/null | grep Version; pip show scienceworld 2>/dev/null | grep Version'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.32}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'pip show vllm 2>/dev/null | grep Version; pip show scienceworld 2>/dev/null | grep Version'\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.32}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Q9ojCATTsCQPVmZMHTnG8k`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/ -name \"*MATH*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "abc8d033-1df7-4825-b368-fedb1135a678",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017vABYEgCZSPvoLTbKGxnFG",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 28028,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1075
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-21T09:38:56.254Z_
+
+<details><summary>↩ Tool result · `toolu_016rWUcEpfmPkAFpRNY2j5ZH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_200_fixed.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_200_fixed.log\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_300.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_195.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch1.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch2.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch3.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_full_300.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_full50.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_remaining.jsonl\\n/root/autodl-tmp/simgate-modular-routing/logs/math_extension_n800.log\\n/root/autodl-tmp/simgate-modular-routing/results/math_full_200.log\\n/root/autodl-tmp/simgate-modular-routing/scripts/run_math_extension.sh\\n/root/autodl-tmp/simgate-modular-routing/src/__pycache__/math_answer_utils.cpython-312.pyc\\n/root/autodl-tmp/simgate-modular-routing/src/__pycache__/math_counterfactual.cpython-312.pyc\\n/root/autodl-tmp/simgate-modular-routing/src/analyze_math_pilot.py\\n/root/autodl-tmp/simgate-modular-routing/src/math_answer_utils.py\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py\\n/root/autodl-tmp/simgate-modular-routing/guided_router/math_power_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/guided_router/math_power_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "814762be-ecb5-4807-90d0-be804fcbff49",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_200_fixed.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_200_fixed.log\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_300.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_195.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch1.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch2.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch3.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_full_300.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_full50.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_remaining.jsonl\\\\n/root/autodl-tmp/simgate-modular-routing/logs/math_extension_n800.log\\\\n/root/autodl-tmp/simgate-modular-routing/results/math_full_200.log\\\\n/root/autodl-tmp/simgate-modular-routing/scripts/run_math_extension.sh\\\\n/root/autodl-tmp/simgate-modular-routing/src/__pycache__/math_answer_utils.cpython-312.pyc\\\\n/root/autodl-tmp/simgate-modular-routing/src/__pycache__/math_counterfactual.cpython-312.pyc\\\\n/root/autodl-tmp/simgate-modular-routing/src/analyze_math_pilot.py\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_answer_utils.py\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/math_power_analysis.py\\\\n/root/autodl-tmp/simgate-modular-routing/guided_router/math_power_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_200_fixed.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_200_fixed.log\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_300.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_195.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch1.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch2.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch3.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_full_300.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_full50.jsonl\\n/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_remaining.jsonl\\n/root/autodl-tmp/simgate-modular-routing/logs/math_extension_n800.log\\n/root/autodl-tmp/simgate-modular-routing/results/math_full_200.log\\n/root/autodl-tmp/simgate-modular-routing/scripts/run_math_extension.sh\\n/root/autodl-tmp/simgate-modular-routing/src/__pycache__/math_answer_utils.cpython-312.pyc\\n/root/autodl-tmp/simgate-modular-routing/src/__pycache__/math_counterfactual.cpython-312.pyc\\n/root/autodl-tmp/simgate-modular-routing/src/analyze_math_pilot.py\\n/root/autodl-tmp/simgate-modular-routing/src/math_answer_utils.py\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py\\n/root/autodl-tmp/simgate-modular-routing/guided_router/math_power_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/guided_router/math_power_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T09:38:56.786Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9ojCATTsCQPVmZMHTnG8k`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "cd29026e-1648-4998-b1ed-bbaf5a295e37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now get the data from the server. I need to:
+1. Find inference parameters (temperature, top_p, max_tokens) - need to use grep without pipes
+2. Get vllm and scienceworld versions - need to use ssh_execute differently
+3. Analyze MATH data distribution
+
+Let me also look at the configs directory and check if there's a requirements.txt.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "63e1cd81-9635-45ed-a413-7bd25acbbdf4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Found MATH data files. Now let me get versions and inference parameters with proper commands.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "803004cf-3a95-4cce-92e1-4c222487e5f4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PSHybSiLDHXsVDh3of3abW`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"temperature\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "29589a25-bd23-4a23-93ee-0a79eba436a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BuCH7whpiQ7H3tTH4NXHv2`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"top_p\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "b5e00999-99ea-47e9-8635-324e8775055b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-21T09:39:04.287Z_
+
+<details><summary>↩ Tool result · `toolu_01PSHybSiLDHXsVDh3of3abW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:106:                do_sample=False, temperature=None, top_p=None,\\n/root/autodl-tmp/simgate-modular-routing/src/training/generative_router_sft.py:525:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True\\n/root/autodl-tmp/simgate-modular-routing/src/training/implicit_router_sft.py:364:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_data_size.py:260:                    temperature=0.1,\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_implicit_1_7b.py:264:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:184:    def generate(self, messages: List[dict], temperature: float = 0.3) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:187:            return self._generate_vllm(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:189:            return self._generate_hf(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:191:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:197:            temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:204:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:214:                temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:215:                do_sample=temperature > 0,\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:333:            raw = llm.generate(messages, temperature=0.3)\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:397:            raw = llm.generate(messages, temperature=0.3)\\n/root/autodl-tmp/simgate-modular-routing/src/cross_task_transfer.py:318:                do_sample=False, temperature=None, top_p=None,\\n/root/autodl-tmp/simgate-modular-routing/src/eval_end_to_end.py:347:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True,\\n/root/autodl-tmp/simgate-modular-routing/src/eval_implicit_router.py:213:                temperature=1.0,\\n/root/autodl-tmp/simgate-modular-routing/src/eval_routing_metrics.py:116:                temperature=0.1, do_sample=True,\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:199:        temperature: float = 0.3,\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:206:        self.temperature = temperature\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:247:    def _generate(self, messages: List[dict], temperature: Optional[float] = None) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:249:        temp = temperature if temperature is not None else self.temperature\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:255:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:269:            temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:276:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:288:                temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:289:                do_sample=temperature > 0,\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:341:        raw = self._generate(messages, temperature=0.5)\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:105:    def generate(self, messages: List[dict], temperature: float = 0.0) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:107:            return self._generate_api(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:109:            return self._generate_vllm(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:110:        return self._generate_hf(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:112:    def _generate_api(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:117:            \\\"temperature\\\": max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:135:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:142:            temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:148:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:159:                temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:160:                do_sample=temperature > 0,\\n/root/autodl-tmp/simgate-modular-routing/src/r7n2_scale_study.py:262:                    temperature=0.1,\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:85:    def __init__(self, model: str, api_base: str, temperature: float = 0.3,\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:89:        self.temperature = temperature\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:92:    def _chat(self, messages: List[dict], temperature: float = None,\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:97:            temperature=temperature if temperature is not None else self.temperature,\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:145:        return self._chat(messages, temperature=0.5, max_tokens=300)\\n/root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py:195:        \\\"temperature\\\": 0.3,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "7e35344a-c9f3-40e9-b18f-1f26ffa29233",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:106:                do_sample=False, temperature=None, top_p=None,\\\\n/root/autodl-tmp/simgate-modular-routing/src/training/generative_router_sft.py:525:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True\\\\n/root/autodl-tmp/simgate-modular-routing/src/training/implicit_router_sft.py:364:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True\\\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_data_size.py:260:                    temperature=0.1,\\\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_implicit_1_7b.py:264:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:184:    def generate(self, messages: List[dict], temperature: float = 0.3) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:187:            return self._generate_vllm(messages, temperature)\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:189:            return self._generate_hf(messages, temperature)\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:191:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:197:            temperature=max(temperature, 0.01),\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:204:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:214:                temperature=max(temperature, 0.01),\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:215:                do_sample=temperature > 0,\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:333:            raw = llm.generate(messages, temperature=0.3)\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:397:            raw = llm.generate(messages, temperature=0.3)\\\\n/root/autodl-tmp/simgate-modular-routing/src/cross_task_transfer.py:318:                do_sample=False, temperature=None, top_p=None,\\\\n/root/autodl-tmp/simgate-modular-routing/src/eval_end_to_end.py:347:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True,\\\\n/root/autodl-tmp/simgate-modular-routing/src/eval_implicit_router.py:213:                temperature=1.0,\\\\n/root/autodl-tmp/simgate-modular-routing/src/eval_routing_metrics.py:116:                temperature=0.1, do_sample=True,\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:199:        temperature: float = 0.3,\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:206:        self.temperature = temperature\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:247:    def _generate(self, messages: List[dict], temperature: Optional[float] = None) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:249:        temp = temperature if temperature is not None else self.temperature\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:255:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:269:            temperature=max(temperature, 0.01),\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:276:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:288:                temperature=max(temperature, 0.01),\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:289:                do_sample=temperature > 0,\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:341:        raw = self._generate(messages, temperature=0.5)\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:105:    def generate(self, messages: List[dict], temperature: float = 0.0) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:107:            return self._generate_api(messages, temperature)\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:109:            return self._generate_vllm(messages, temperature)\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:110:        return self._generate_hf(messages, temperature)\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:112:    def _generate_api(self, messages: List[dict], temperature: float) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:117:            \\\\\\\"temperature\\\\\\\": max(temperature, 0.01),\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:135:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:142:            temperature=max(temperature, 0.01),\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:148:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:159:                temperature=max(temperature, 0.01),\\\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:160:                do_sample=temperature > 0,\\\\n/root/autodl-tmp/simgate-modular-routing/src/r7n2_scale_study.py:262:                    temperature=0.1,\\\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:85:    def __init__(self, model: str, api_base: str, temperature: float = 0.3,\\\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:89:        self.temperature = temperature\\\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:92:    def _chat(self, messages: List[dict], temperature: float = None,\\\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:97:            temperature=temperature if temperature is not None else self.temperature,\\\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:145:        return self._chat(messages, temperature=0.5, max_tokens=300)\\\\n/root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py:195:        \\\\\\\"temperature\\\\\\\": 0.3,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:106:                do_sample=False, temperature=None, top_p=None,\\n/root/autodl-tmp/simgate-modular-routing/src/training/generative_router_sft.py:525:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True\\n/root/autodl-tmp/simgate-modular-routing/src/training/implicit_router_sft.py:364:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_data_size.py:260:                    temperature=0.1,\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_implicit_1_7b.py:264:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:184:    def generate(self, messages: List[dict], temperature: float = 0.3) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:187:            return self._generate_vllm(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:189:            return self._generate_hf(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:191:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:197:            temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:204:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:214:                temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:215:                do_sample=temperature > 0,\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:333:            raw = llm.generate(messages, temperature=0.3)\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:397:            raw = llm.generate(messages, temperature=0.3)\\n/root/autodl-tmp/simgate-modular-routing/src/cross_task_transfer.py:318:                do_sample=False, temperature=None, top_p=None,\\n/root/autodl-tmp/simgate-modular-routing/src/eval_end_to_end.py:347:                **inputs, max_new_tokens=64, temperature=0.1, do_sample=True,\\n/root/autodl-tmp/simgate-modular-routing/src/eval_implicit_router.py:213:                temperature=1.0,\\n/root/autodl-tmp/simgate-modular-routing/src/eval_routing_metrics.py:116:                temperature=0.1, do_sample=True,\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:199:        temperature: float = 0.3,\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:206:        self.temperature = temperature\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:247:    def _generate(self, messages: List[dict], temperature: Optional[float] = None) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:249:        temp = temperature if temperature is not None else self.temperature\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:255:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:269:            temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:276:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:288:                temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:289:                do_sample=temperature > 0,\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:341:        raw = self._generate(messages, temperature=0.5)\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:105:    def generate(self, messages: List[dict], temperature: float = 0.0) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:107:            return self._generate_api(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:109:            return self._generate_vllm(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:110:        return self._generate_hf(messages, temperature)\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:112:    def _generate_api(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:117:            \\\"temperature\\\": max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:135:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:142:            temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:148:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:159:                temperature=max(temperature, 0.01),\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py:160:                do_sample=temperature > 0,\\n/root/autodl-tmp/simgate-modular-routing/src/r7n2_scale_study.py:262:                    temperature=0.1,\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:85:    def __init__(self, model: str, api_base: str, temperature: float = 0.3,\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:89:        self.temperature = temperature\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:92:    def _chat(self, messages: List[dict], temperature: float = None,\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:97:            temperature=temperature if temperature is not None else self.temperature,\\n/root/autodl-tmp/simgate-modular-routing/src/reflexion_baseline.py:145:        return self._chat(messages, temperature=0.5, max_tokens=300)\\n/root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py:195:        \\\"temperature\\\": 0.3,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T09:39:04.812Z_
+
+<details><summary>↩ Tool result · `toolu_01BuCH7whpiQ7H3tTH4NXHv2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:106:                do_sample=False, temperature=None, top_p=None,\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:216:                top_p=0.9,\\n/root/autodl-tmp/simgate-modular-routing/src/cross_task_transfer.py:318:                do_sample=False, temperature=None, top_p=None,\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:290:                top_p=0.9,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "2053d84e-48b2-4745-b361-52018ae30184",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:106:                do_sample=False, temperature=None, top_p=None,\\\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:216:                top_p=0.9,\\\\n/root/autodl-tmp/simgate-modular-routing/src/cross_task_transfer.py:318:                do_sample=False, temperature=None, top_p=None,\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:290:                top_p=0.9,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:106:                do_sample=False, temperature=None, top_p=None,\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py:216:                top_p=0.9,\\n/root/autodl-tmp/simgate-modular-routing/src/cross_task_transfer.py:318:                do_sample=False, temperature=None, top_p=None,\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:290:                top_p=0.9,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Rn3Cf7MhGrWRkvwGvTfjn1`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"max_tokens\\|max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "e2d1096e-0ced-42bf-9c4a-c79829466d09",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T09:39:05.490Z_
+
+<details><summary>↩ Tool result · `toolu_01Rn3Cf7MhGrWRkvwGvTfjn1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "d983cda4-fe70-4eae-84d6-8a6c88f920cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LcmdKgb7NsmtV7foPgCkPK`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "pip show vllm",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "67a4b890-f5a5-41a9-b9ab-af087e2f1005",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T09:39:06.401Z_
+
+<details><summary>↩ Tool result · `toolu_01LcmdKgb7NsmtV7foPgCkPK`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: pip: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "6e7f39dc-9148-42c2-8817-7aaadac94866",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: pip: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: pip: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HZAgVvSxbQdg6AgWxGaLM8`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "pip show scienceworld",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "aacea428-b6b5-40f2-8bdf-ec6f6c171c08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T09:39:07.438Z_
+
+<details><summary>↩ Tool result · `toolu_01HZAgVvSxbQdg6AgWxGaLM8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: pip: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "e19650cc-9390-42a3-a913-b6cc546bb519",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"bash: line 1: pip: command not found\\\\n\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: pip: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01612JmHEEHZW6rSBSCoNAeJ`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "head -5 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "0bc6e0c8-32cf-44d7-86aa-83f9e08a2294",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T09:39:08.469Z_
+
+<details><summary>↩ Tool result · `toolu_01612JmHEEHZW6rSBSCoNAeJ`</summary>
+
+````text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_id\\\": \\\"math_level4_0000\\\", \\\"environment\\\": \\\"math\\\", \\\"task_type\\\": \\\"algebra\\\", \\\"task_id\\\": \\\"test/algebra/0000\\\", \\\"problem\\\": \\\"Find $x$ such that $\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\", \\\"ground_truth\\\": \\\"\\\\\\\\dfrac{9}{7}\\\", \\\"internal\\\": {\\\"trajectory\\\": [{\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"Solve this math problem step by step. Show your reasoning clearly. Give your final answer as \\\\\\\\boxed{answer}.\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Find $x$ such that $\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"To solve the equation \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\frac{23}{7}\\\\\\\\), we need to understand the properties of the ceiling function and how it interacts with \\\\\\\\(x\\\\\\\\).\\\\n\\\\n1. **Understanding the Ceiling Function:**\\\\n   The ceiling function \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) returns the smallest integer greater than or equal to \\\\\\\\(x\\\\\\\\). Let's denote \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) by \\\\\\\\(n\\\\\\\\), where \\\\\\\\(n\\\\\\\\) is an integer.\\\\n\\\\n2. **Expressing \\\\\\\\(x\\\\\\\\) in Terms of \\\\\\\\(n\\\\\\\\):**\\\\n   Since \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil = n\\\\\\\\), it follows that \\\\\\\\(n-1 < x \\\\\\\\leq n\\\\\\\\).\\\\n\\\\n3. **Substitute \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) into the Equation:**\\\\n   Substitute \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil = n\\\\\\\\) into the given equation:\\\\n   \\\\\\\\[\\\\n   n + x = \\\\\\\\frac{23}{7}\\\\n   \\\\\\\\]\\\\n\\\\n4. **Solve for \\\\\\\\(x\\\\\\\\):**\\\\n   Rearrange the equation to solve for \\\\\\\\(x\\\\\\\\):\\\\n   \\\\\\\\[\\\\n   x = \\\\\\\\frac{23}{7} - n\\\\n   \\\\\\\\]\\\\n\\\\n5. **Determine the Range for \\\\\\\\(n\\\\\\\\):**\\\\n   Since \\\\\\\\(n-1 < x \\\\\\\\leq n\\\\\\\\), substitute \\\\\\\\(x = \\\\\\\\frac{23}{7} - n\\\\\\\\) into this inequality:\\\\n   \\\\\\\\[\\\\n   n-1 < \\\\\\\\frac{23}{7} - n \\\\\\\\leq n\\\\n   \\\\\\\\]\\\\n\\\\n6. **Solve the Inequality:**\\\\n   First, solve the left part of the inequality:\\\\n   \\\\\\\\[\\\\n   n-1 < \\\\\\\\frac{23}{7} - n\\\\n   \\\\\\\\]\\\\n   Add \\\\\\\\(n\\\\\\\\) to both sides:\\\\n   \\\\\\\\[\\\\n   2n - 1 < \\\\\\\\frac{23}{7}\\\\n   \\\\\\\\]\\\\n   Add 1 to both sides:\\\\n   \\\\\\\\[\\\\n   2n < \\\\\\\\frac{23}{7} + 1\\\\n   \\\\\\\\]\\\\n   Convert 1 to a fraction with a denominator of 7:\\\\n   \\\\\\\\[\\\\n   2n < \\\\\\\\frac{23}{7} + \\\\\\\\frac{7}{7} = \\\\\\\\frac{30}{7}\\\\n   \\\\\\\\]\\\\n   Divide both sides by 2:\\\\n   \\\\\\\\[\\\\n   n < \\\\\\\\frac{30}{14} = \\\\\\\\frac{15}{7} \\\\\\\\approx 2.142857\\\\n   \\\\\\\\]\\\\n   Since \\\\\\\\(n\\\\\\\\) is an integer, the largest possible value for \\\\\\\\(n\\\\\\\\) is 2.\\\\n\\\\n   Now, solve the right part of the inequality:\\\\n   \\\\\\\\[\\\\n   \\\\\\\\frac{23}{7} - n \\\\\\\\leq n\\\\n   \\\\\\\\]\\\\n   Add \\\\\\\\(n\\\\\\\\) to both sides:\\\\n   \\\\\\\\[\\\\n   \\\\\\\\frac{23}{7} \\\\\\\\leq 2n\\\\n   \\\\\\\\]\\\\n   Divide both sides by 2:\\\\n   \\\\\\\\[\\\\n   \\\\\\\\frac{23}{14} \\\\\\\\leq n\\\\n   \\\\\\\\]\\\\n   Convert \\\\\\\\(\\\\\\\\frac{23}{14}\\\\\\\\) to a decimal:\\\\n   \\\\\\\\[\\\\n   \\\\\\\\frac{23}{14} \\\\\\\\approx 1.642857\\\\n   \\\\\\\\]\\\\n   Since \\\\\\\\(n\\\\\\\\) is an integer, the smallest possible value for \\\\\\\\(n\\\\\\\\) is 2.\\\\n\\\\n7. **Conclusion:**\\\\n   The only integer \\\\\\\\(n\\\\\\\\) that satisfies both inequalities is \\\\\\\\(n = 2\\\\\\\\).\\\\n\\\\n8. **Find \\\\\\\\(x\\\\\\\\):**\\\\n   Substitute \\\\\\\\(n = 2\\\\\\\\) back into the expression for \\\\\\\\(x\\\\\\\\):\\\\n   \\\\\\\\[\\\\n   x = \\\\\\\\frac{23}{7} - 2 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{14}{7} = \\\\\\\\frac{9}{7}\\\\n   \\\\\\\\]\\\\n\\\\nTherefore, the value of \\\\\\\\(x\\\\\\\\) is \\\\\\\\(\\\\\\\\boxed{\\\\\\\\frac{9}{7}}\\\\\\\\).\\\"}], \\\"final_answer\\\": \\\"\\\\\\\\frac{9}{7}\\\", \\\"correct\\\": true, \\\"score\\\": 1.0, \\\"time_s\\\": 8.32, \\\"tokens\\\": 819}, \\\"deterministic\\\": {\\\"trajectory\\\": [{\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"You MUST solve this problem by writing and executing Python code. Show your code in a ```python\\\\n...\\\\n``` block, execute it, and report the result. Do not use mental math or reasoning alone. Every answer must come from code execution output. Give your final answer as \\\\\\\\boxed{answer}.\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Find $x$ such that $\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"To solve for \\\\\\\\( x \\\\\\\\) in the equation \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\frac{23}{7}\\\\\\\\), we need to understand the properties of the ceiling function \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\). The ceiling function \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) is the smallest integer greater than or equal to \\\\\\\\( x \\\\\\\\).\\\\n\\\\nLet's denote \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) as \\\\\\\\( n \\\\\\\\), where \\\\\\\\( n \\\\\\\\) is an integer. Then we can write \\\\\\\\( x \\\\\\\\) as \\\\\\\\( n - f \\\\\\\\), where \\\\\\\\( 0 \\\\\\\\leq f < 1 \\\\\\\\) (i.e., \\\\\\\\( f \\\\\\\\) is\\n\\n... [截断: 输出过长，省略 18248 字符] ...\\n\\n\\\\n   \\\\\\\\frac{23}{14} \\\\\\\\approx 1.642857\\\\n   \\\\\\\\]\\\\n   Since \\\\\\\\(n\\\\\\\\) is an integer, the smallest possible value for \\\\\\\\(n\\\\\\\\) is 2.\\\\n\\\\n7. **Conclusion:**\\\\n   The only integer \\\\\\\\(n\\\\\\\\) that satisfies both inequalities is \\\\\\\\(n = 2\\\\\\\\).\\\\n\\\\n8. **Find \\\\\\\\(x\\\\\\\\):**\\\\n   Substitute \\\\\\\\(n = 2\\\\\\\\) back into the expression for \\\\\\\\(x\\\\\\\\):\\\\n   \\\\\\\\[\\\\n   x = \\\\\\\\frac{23}{7} - 2 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{14}{7} = \\\\\\\\frac{9}{7}\\\\n   \\\\\\\\]\\\\n\\\\nTherefore, the value of \\\\\\\\(x\\\\\\\\) is \\\\\\\\(\\\\\\\\boxed{\\\\\\\\frac{9}{7}}\\\\\\\\).\\\"}], \\\"final_answer\\\": \\\"\\\\\\\\frac{9}{7}\\\", \\\"correct\\\": true, \\\"score\\\": 1.0, \\\"time_s\\\": 8.4, \\\"tokens\\\": 819}, \\\"deterministic\\\": {\\\"trajectory\\\": [{\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"You MUST solve this problem by writing and executing Python code. Show your code in a ```python\\\\n...\\\\n``` block, execute it, and report the result. Do not use mental math or reasoning alone. Every answer must come from code execution output. Give your final answer as \\\\\\\\boxed{answer}.\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Find $x$ such that $\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"To solve for \\\\\\\\( x \\\\\\\\) in the equation \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\frac{23}{7}\\\\\\\\), we need to understand the properties of the ceiling function. The ceiling function \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) returns the smallest integer greater than or equal to \\\\\\\\( x \\\\\\\\). Let's denote \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) as \\\\\\\\( n \\\\\\\\), where \\\\\\\\( n \\\\\\\\) is an integer. Therefore, we can write \\\\\\\\( x \\\\\\\\) as \\\\\\\\( n - f \\\\\\\\), where \\\\\\\\( 0 \\\\\\\\leq f < 1 \\\\\\\\).\\\\n\\\\nSubstituting \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil = n\\\\\\\\) into the equation, we get:\\\\n\\\\\\\\[ n + (n - f) = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ 2n - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\nSince \\\\\\\\( n \\\\\\\\) is an integer, \\\\\\\\( 2n \\\\\\\\) is also an integer. This means that \\\\\\\\( f \\\\\\\\) must be such that \\\\\\\\( 2n - f \\\\\\\\) is equal to \\\\\\\\(\\\\\\\\frac{23}{7}\\\\\\\\). To find \\\\\\\\( n \\\\\\\\), we need to determine the integer part of \\\\\\\\(\\\\\\\\frac{23}{7}\\\\\\\\):\\\\n\\\\\\\\[ \\\\\\\\frac{23}{7} \\\\\\\\approx 3.2857 \\\\\\\\]\\\\nSo, \\\\\\\\( n = 3 \\\\\\\\) because \\\\\\\\( n \\\\\\\\) must be the integer part of \\\\\\\\(\\\\\\\\frac{23}{7}\\\\\\\\).\\\\n\\\\nNow substitute \\\\\\\\( n = 3 \\\\\\\\) back into the equation:\\\\n\\\\\\\\[ 2(3) - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ 6 - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = 6 - \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = \\\\\\\\frac{42}{7} - \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = \\\\\\\\frac{19}{7} \\\\\\\\]\\\\n\\\\nHowever, \\\\\\\\( f \\\\\\\\) must be a fractional part between 0 and 1, so we need to re-evaluate the integer part. Since \\\\\\\\( f \\\\\\\\) must be less than 1, we should check if \\\\\\\\( n = 3 \\\\\\\\) is correct by ensuring \\\\\\\\( f \\\\\\\\) is valid:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible since \\\\\\\\( f \\\\\\\\) must be positive. So, let's try \\\\\\\\( n = 4 \\\\\\\\):\\\\n\\\\\\\\[ 2(4) - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ 8 - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = 8 - \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = \\\\\\\\frac{56}{7} - \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = \\\\\\\\frac{33}{7} \\\\\\\\]\\\\nAgain, this is not possible since \\\\\\\\( f \\\\\\\\) must be less than 1. So, let's try \\\\\\\\( n = 3 \\\\\\\\) again but correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible. So, let's try \\\\\\\\( n = 3 \\\\\\\\) correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible. So, let's try \\\\\\\\( n = 3 \\\\\\\\) correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible. So, let's try \\\\\\\\( n = 3 \\\\\\\\) correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible. So, let's try \\\\\\\\( n = 3 \\\\\\\\) correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible.\\\\n\\\\nFinally, we get:\\\\n\\\\\\\\[ x = 3 - \\\\\\\\frac{1}{7} = \\\\\\\\frac{21}{7} - \\\\\\\\frac{1}{7} = \\\\\\\\frac{22}{7} \\\\\\\\]\\\\n\\\\nSo, the value of \\\\\\\\( x \\\\\\\\) is:\\\\n\\\\\\\\[ \\\\\\\\boxed{\\\\\\\\frac{22}{7}} \\\\\\\\]\\\"}], \\\"code_executions\\\": [], \\\"final_answer\\\": \\\"\\\\\\\\frac{22}{7}\\\", \\\"correct\\\": false, \\\"score\\\": 0.0, \\\"n_rounds\\\": 0, \\\"time_s\\\": 10.53, \\\"tokens\\\": 1027}, \\\"label\\\": \\\"no-preference\\\", \\\"raw_label\\\": \\\"internal-preferred\\\", \\\"filtered\\\": true, \\\"metadata\\\": {\\\"level\\\": \\\"Level 4\\\", \\\"type\\\": \\\"Algebra\\\"}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "32b18958-0cc4-44e2-9d50-00df7dc3c902",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"episode_id\\\\\\\": \\\\\\\"math_level4_0000\\\\\\\", \\\\\\\"environment\\\\\\\": \\\\\\\"math\\\\\\\", \\\\\\\"task_type\\\\\\\": \\\\\\\"algebra\\\\\\\", \\\\\\\"task_id\\\\\\\": \\\\\\\"test/algebra/0000\\\\\\\", \\\\\\\"problem\\\\\\\": \\\\\\\"Find $x$ such that $\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil + x = \\\\\\\\\\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\\\\\", \\\\\\\"ground_truth\\\\\\\": \\\\\\\"\\\\\\\\\\\\\\\\dfrac{9}{7}\\\\\\\", \\\\\\\"internal\\\\\\\": {\\\\\\\"trajectory\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"Solve this math problem step by step. Show your reasoning clearly. Give your final answer as \\\\\\\\\\\\\\\\boxed{answer}.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"Find $x$ such that $\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil + x = \\\\\\\\\\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"To solve the equation \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil + x = \\\\\\\\\\\\\\\\frac{23}{7}\\\\\\\\\\\\\\\\), we need to understand the properties of the ceiling function and how it interacts with \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\).\\\\\\\\n\\\\\\\\n1. **Understanding the Ceiling Function:**\\\\\\\\n   The ceiling function \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil\\\\\\\\\\\\\\\\) returns the smallest integer greater than or equal to \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\). Let's denote \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil\\\\\\\\\\\\\\\\) by \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\), where \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) is an integer.\\\\\\\\n\\\\\\\\n2. **Expressing \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\) in Terms of \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\):**\\\\\\\\n   Since \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil = n\\\\\\\\\\\\\\\\), it follows that \\\\\\\\\\\\\\\\(n-1 < x \\\\\\\\\\\\\\\\leq n\\\\\\\\\\\\\\\\).\\\\\\\\n\\\\\\\\n3. **Substitute \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil\\\\\\\\\\\\\\\\) into the Equation:**\\\\\\\\n   Substitute \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil = n\\\\\\\\\\\\\\\\) into the given equation:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   n + x = \\\\\\\\\\\\\\\\frac{23}{7}\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\n4. **Solve for \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\):**\\\\\\\\n   Rearrange the equation to solve for \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\):\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   x = \\\\\\\\\\\\\\\\frac{23}{7} - n\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\n5. **Determine the Range for \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\):**\\\\\\\\n   Since \\\\\\\\\\\\\\\\(n-1 < x \\\\\\\\\\\\\\\\leq n\\\\\\\\\\\\\\\\), substitute \\\\\\\\\\\\\\\\(x = \\\\\\\\\\\\\\\\frac{23}{7} - n\\\\\\\\\\\\\\\\) into this inequality:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   n-1 < \\\\\\\\\\\\\\\\frac{23}{7} - n \\\\\\\\\\\\\\\\leq n\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\n6. **Solve the Inequality:**\\\\\\\\n   First, solve the left part of the inequality:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   n-1 < \\\\\\\\\\\\\\\\frac{23}{7} - n\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Add \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) to both sides:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   2n - 1 < \\\\\\\\\\\\\\\\frac{23}{7}\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Add 1 to both sides:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   2n < \\\\\\\\\\\\\\\\frac{23}{7} + 1\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Convert 1 to a fraction with a denominator of 7:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   2n < \\\\\\\\\\\\\\\\frac{23}{7} + \\\\\\\\\\\\\\\\frac{7}{7} = \\\\\\\\\\\\\\\\frac{30}{7}\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Divide both sides by 2:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   n < \\\\\\\\\\\\\\\\frac{30}{14} = \\\\\\\\\\\\\\\\frac{15}{7} \\\\\\\\\\\\\\\\approx 2.142857\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Since \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) is an integer, the largest possible value for \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) is 2.\\\\\\\\n\\\\\\\\n   Now, solve the right part of the inequality:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   \\\\\\\\\\\\\\\\frac{23}{7} - n \\\\\\\\\\\\\\\\leq n\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Add \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) to both sides:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\leq 2n\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Divide both sides by 2:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   \\\\\\\\\\\\\\\\frac{23}{14} \\\\\\\\\\\\\\\\leq n\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Convert \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\frac{23}{14}\\\\\\\\\\\\\\\\) to a decimal:\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   \\\\\\\\\\\\\\\\frac{23}{14} \\\\\\\\\\\\\\\\approx 1.642857\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Since \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) is an integer, the smallest possible value for \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) is 2.\\\\\\\\n\\\\\\\\n7. **Conclusion:**\\\\\\\\n   The only integer \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) that satisfies both inequalities is \\\\\\\\\\\\\\\\(n = 2\\\\\\\\\\\\\\\\).\\\\\\\\n\\\\\\\\n8. **Find \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\):**\\\\\\\\n   Substitute \\\\\\\\\\\\\\\\(n = 2\\\\\\\\\\\\\\\\) back into the expression for \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\):\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   x = \\\\\\\\\\\\\\\\frac{23}{7} - 2 = \\\\\\\\\\\\\\\\frac{23}{7} - \\\\\\\\\\\\\\\\frac{14}{7} = \\\\\\\\\\\\\\\\frac{9}{7}\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\nTherefore, the value of \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\) is \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\boxed{\\\\\\\\\\\\\\\\frac{9}{7}}\\\\\\\\\\\\\\\\).\\\\\\\"}], \\\\\\\"final_answer\\\\\\\": \\\\\\\"\\\\\\\\\\\\\\\\frac{9}{7}\\\\\\\", \\\\\\\"correct\\\\\\\": true, \\\\\\\"score\\\\\\\": 1.0, \\\\\\\"time_s\\\\\\\": 8.32, \\\\\\\"tokens\\\\\\\": 819}, \\\\\\\"deterministic\\\\\\\": {\\\\\\\"trajectory\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"You MUST solve this problem by writing and executing Python code. Show your code in a ```python\\\\\\\\n...\\\\\\\\n``` block, execute it, and report the result. Do not use mental math or reasoning alone. Every answer must come from code execution output. Give your final answer as \\\\\\\\\\\\\\\\boxed{answer}.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"Find $x$ such that $\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil + x = \\\\\\\\\\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"To solve for \\\\\\\\\\\\\\\\( x \\\\\\\\\\\\\\\\) in the equation \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil + x = \\\\\\\\\\\\\\\\frac{23}{7}\\\\\\\\\\\\\\\\), we need to understand the properties of the ceiling function \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil\\\\\\\\\\\\\\\\). The ceiling function \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil\\\\\\\\\\\\\\\\) is the smallest integer greater than or equal to \\\\\\\\\\\\\\\\( x \\\\\\\\\\\\\\\\).\\\\\\\\n\\\\\\\\nLet's denote \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil\\\\\\\\\\\\\\\\) as \\\\\\\\\\\\\\\\( n \\\\\\\\\\\\\\\\), where \\\\\\\\\\\\\\\\( n \\\\\\\\\\\\\\\\) is an integer. Then we can write \\\\\\\\\\\\\\\\( x \\\\\\\\\\\\\\\\) as \\\\\\\\\\\\\\\\( n - f \\\\\\\\\\\\\\\\), where \\\\\\\\\\\\\\\\( 0 \\\\\\\\\\\\\\\\leq f < 1 \\\\\\\\\\\\\\\\) (i.e., \\\\\\\\\\\\\\\\( f \\\\\\\\\\\\\\\\) is\\\\n\\\\n... [截断: 输出过长，省略 18248 字符] ...\\\\n\\\\n\\\\\\\\n   \\\\\\\\\\\\\\\\frac{23}{14} \\\\\\\\\\\\\\\\approx 1.642857\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n   Since \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) is an integer, the smallest possible value for \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) is 2.\\\\\\\\n\\\\\\\\n7. **Conclusion:**\\\\\\\\n   The only integer \\\\\\\\\\\\\\\\(n\\\\\\\\\\\\\\\\) that satisfies both inequalities is \\\\\\\\\\\\\\\\(n = 2\\\\\\\\\\\\\\\\).\\\\\\\\n\\\\\\\\n8. **Find \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\):**\\\\\\\\n   Substitute \\\\\\\\\\\\\\\\(n = 2\\\\\\\\\\\\\\\\) back into the expression for \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\):\\\\\\\\n   \\\\\\\\\\\\\\\\[\\\\\\\\n   x = \\\\\\\\\\\\\\\\frac{23}{7} - 2 = \\\\\\\\\\\\\\\\frac{23}{7} - \\\\\\\\\\\\\\\\frac{14}{7} = \\\\\\\\\\\\\\\\frac{9}{7}\\\\\\\\n   \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\nTherefore, the value of \\\\\\\\\\\\\\\\(x\\\\\\\\\\\\\\\\) is \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\boxed{\\\\\\\\\\\\\\\\frac{9}{7}}\\\\\\\\\\\\\\\\).\\\\\\\"}], \\\\\\\"final_answer\\\\\\\": \\\\\\\"\\\\\\\\\\\\\\\\frac{9}{7}\\\\\\\", \\\\\\\"correct\\\\\\\": true, \\\\\\\"score\\\\\\\": 1.0, \\\\\\\"time_s\\\\\\\": 8.4, \\\\\\\"tokens\\\\\\\": 819}, \\\\\\\"deterministic\\\\\\\": {\\\\\\\"trajectory\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"You MUST solve this problem by writing and executing Python code. Show your code in a ```python\\\\\\\\n...\\\\\\\\n``` block, execute it, and report the result. Do not use mental math or reasoning alone. Every answer must come from code execution output. Give your final answer as \\\\\\\\\\\\\\\\boxed{answer}.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"Find $x$ such that $\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil + x = \\\\\\\\\\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"To solve for \\\\\\\\\\\\\\\\( x \\\\\\\\\\\\\\\\) in the equation \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil + x = \\\\\\\\\\\\\\\\frac{23}{7}\\\\\\\\\\\\\\\\), we need to understand the properties of the ceiling function. The ceiling function \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil\\\\\\\\\\\\\\\\) returns the smallest integer greater than or equal to \\\\\\\\\\\\\\\\( x \\\\\\\\\\\\\\\\). Let's denote \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil\\\\\\\\\\\\\\\\) as \\\\\\\\\\\\\\\\( n \\\\\\\\\\\\\\\\), where \\\\\\\\\\\\\\\\( n \\\\\\\\\\\\\\\\) is an integer. Therefore, we can write \\\\\\\\\\\\\\\\( x \\\\\\\\\\\\\\\\) as \\\\\\\\\\\\\\\\( n - f \\\\\\\\\\\\\\\\), where \\\\\\\\\\\\\\\\( 0 \\\\\\\\\\\\\\\\leq f < 1 \\\\\\\\\\\\\\\\).\\\\\\\\n\\\\\\\\nSubstituting \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\lceil x \\\\\\\\\\\\\\\\rceil = n\\\\\\\\\\\\\\\\) into the equation, we get:\\\\\\\\n\\\\\\\\\\\\\\\\[ n + (n - f) = \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\\\\\\\\\[ 2n - f = \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\nSince \\\\\\\\\\\\\\\\( n \\\\\\\\\\\\\\\\) is an integer, \\\\\\\\\\\\\\\\( 2n \\\\\\\\\\\\\\\\) is also an integer. This means that \\\\\\\\\\\\\\\\( f \\\\\\\\\\\\\\\\) must be such that \\\\\\\\\\\\\\\\( 2n - f \\\\\\\\\\\\\\\\) is equal to \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\frac{23}{7}\\\\\\\\\\\\\\\\). To find \\\\\\\\\\\\\\\\( n \\\\\\\\\\\\\\\\), we need to determine the integer part of \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\frac{23}{7}\\\\\\\\\\\\\\\\):\\\\\\\\n\\\\\\\\\\\\\\\\[ \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\approx 3.2857 \\\\\\\\\\\\\\\\]\\\\\\\\nSo, \\\\\\\\\\\\\\\\( n = 3 \\\\\\\\\\\\\\\\) because \\\\\\\\\\\\\\\\( n \\\\\\\\\\\\\\\\) must be the integer part of \\\\\\\\\\\\\\\\(\\\\\\\\\\\\\\\\frac{23}{7}\\\\\\\\\\\\\\\\).\\\\\\\\n\\\\\\\\nNow substitute \\\\\\\\\\\\\\\\( n = 3 \\\\\\\\\\\\\\\\) back into the equation:\\\\\\\\n\\\\\\\\\\\\\\\\[ 2(3) - f = \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\\\\\\\\\[ 6 - f = \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\\\\\\\\\[ f = 6 - \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{42}{7} - \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{19}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\nHowever, \\\\\\\\\\\\\\\\( f \\\\\\\\\\\\\\\\) must be a fractional part between 0 and 1, so we need to re-evaluate the integer part. Since \\\\\\\\\\\\\\\\( f \\\\\\\\\\\\\\\\) must be less than 1, we should check if \\\\\\\\\\\\\\\\( n = 3 \\\\\\\\\\\\\\\\) is correct by ensuring \\\\\\\\\\\\\\\\( f \\\\\\\\\\\\\\\\) is valid:\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{23}{7} - 6 = \\\\\\\\\\\\\\\\frac{23}{7} - \\\\\\\\\\\\\\\\frac{42}{7} = -\\\\\\\\\\\\\\\\frac{19}{7} \\\\\\\\\\\\\\\\]\\\\\\\\nThis is not possible since \\\\\\\\\\\\\\\\( f \\\\\\\\\\\\\\\\) must be positive. So, let's try \\\\\\\\\\\\\\\\( n = 4 \\\\\\\\\\\\\\\\):\\\\\\\\n\\\\\\\\\\\\\\\\[ 2(4) - f = \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\\\\\\\\\[ 8 - f = \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\\\\\\\\\[ f = 8 - \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{56}{7} - \\\\\\\\\\\\\\\\frac{23}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{33}{7} \\\\\\\\\\\\\\\\]\\\\\\\\nAgain, this is not possible since \\\\\\\\\\\\\\\\( f \\\\\\\\\\\\\\\\) must be less than 1. So, let's try \\\\\\\\\\\\\\\\( n = 3 \\\\\\\\\\\\\\\\) again but correctly:\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{23}{7} - 6 = \\\\\\\\\\\\\\\\frac{23}{7} - \\\\\\\\\\\\\\\\frac{42}{7} = -\\\\\\\\\\\\\\\\frac{19}{7} \\\\\\\\\\\\\\\\]\\\\\\\\nThis is not possible. So, let's try \\\\\\\\\\\\\\\\( n = 3 \\\\\\\\\\\\\\\\) correctly:\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{23}{7} - 6 = \\\\\\\\\\\\\\\\frac{23}{7} - \\\\\\\\\\\\\\\\frac{42}{7} = -\\\\\\\\\\\\\\\\frac{19}{7} \\\\\\\\\\\\\\\\]\\\\\\\\nThis is not possible. So, let's try \\\\\\\\\\\\\\\\( n = 3 \\\\\\\\\\\\\\\\) correctly:\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{23}{7} - 6 = \\\\\\\\\\\\\\\\frac{23}{7} - \\\\\\\\\\\\\\\\frac{42}{7} = -\\\\\\\\\\\\\\\\frac{19}{7} \\\\\\\\\\\\\\\\]\\\\\\\\nThis is not possible. So, let's try \\\\\\\\\\\\\\\\( n = 3 \\\\\\\\\\\\\\\\) correctly:\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{23}{7} - 6 = \\\\\\\\\\\\\\\\frac{23}{7} - \\\\\\\\\\\\\\\\frac{42}{7} = -\\\\\\\\\\\\\\\\frac{19}{7} \\\\\\\\\\\\\\\\]\\\\\\\\nThis is not possible. So, let's try \\\\\\\\\\\\\\\\( n = 3 \\\\\\\\\\\\\\\\) correctly:\\\\\\\\n\\\\\\\\\\\\\\\\[ f = \\\\\\\\\\\\\\\\frac{23}{7} - 6 = \\\\\\\\\\\\\\\\frac{23}{7} - \\\\\\\\\\\\\\\\frac{42}{7} = -\\\\\\\\\\\\\\\\frac{19}{7} \\\\\\\\\\\\\\\\]\\\\\\\\nThis is not possible.\\\\\\\\n\\\\\\\\nFinally, we get:\\\\\\\\n\\\\\\\\\\\\\\\\[ x = 3 - \\\\\\\\\\\\\\\\frac{1}{7} = \\\\\\\\\\\\\\\\frac{21}{7} - \\\\\\\\\\\\\\\\frac{1}{7} = \\\\\\\\\\\\\\\\frac{22}{7} \\\\\\\\\\\\\\\\]\\\\\\\\n\\\\\\\\nSo, the value of \\\\\\\\\\\\\\\\( x \\\\\\\\\\\\\\\\) is:\\\\\\\\n\\\\\\\\\\\\\\\\[ \\\\\\\\\\\\\\\\boxed{\\\\\\\\\\\\\\\\frac{22}{7}} \\\\\\\\\\\\\\\\]\\\\\\\"}], \\\\\\\"code_executions\\\\\\\": [], \\\\\\\"final_answer\\\\\\\": \\\\\\\"\\\\\\\\\\\\\\\\frac{22}{7}\\\\\\\", \\\\\\\"correct\\\\\\\": false, \\\\\\\"score\\\\\\\": 0.0, \\\\\\\"n_rounds\\\\\\\": 0, \\\\\\\"time_s\\\\\\\": 10.53, \\\\\\\"tokens\\\\\\\": 1027}, \\\\\\\"label\\\\\\\": \\\\\\\"no-preference\\\\\\\", \\\\\\\"raw_label\\\\\\\": \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"filtered\\\\\\\": true, \\\\\\\"metadata\\\\\\\": {\\\\\\\"level\\\\\\\": \\\\\\\"Level 4\\\\\\\", \\\\\\\"type\\\\\\\": \\\\\\\"Algebra\\\\\\\"}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_id\\\": \\\"math_level4_0000\\\", \\\"environment\\\": \\\"math\\\", \\\"task_type\\\": \\\"algebra\\\", \\\"task_id\\\": \\\"test/algebra/0000\\\", \\\"problem\\\": \\\"Find $x$ such that $\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\", \\\"ground_truth\\\": \\\"\\\\\\\\dfrac{9}{7}\\\", \\\"internal\\\": {\\\"trajectory\\\": [{\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"Solve this math problem step by step. Show your reasoning clearly. Give your final answer as \\\\\\\\boxed{answer}.\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Find $x$ such that $\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"To solve the equation \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\frac{23}{7}\\\\\\\\), we need to understand the properties of the ceiling function and how it interacts with \\\\\\\\(x\\\\\\\\).\\\\n\\\\n1. **Understanding the Ceiling Function:**\\\\n   The ceiling function \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) returns the smallest integer greater than or equal to \\\\\\\\(x\\\\\\\\). Let's denote \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) by \\\\\\\\(n\\\\\\\\), where \\\\\\\\(n\\\\\\\\) is an integer.\\\\n\\\\n2. **Expressing \\\\\\\\(x\\\\\\\\) in Terms of \\\\\\\\(n\\\\\\\\):**\\\\n   Since \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil = n\\\\\\\\), it follows that \\\\\\\\(n-1 < x \\\\\\\\leq n\\\\\\\\).\\\\n\\\\n3. **Substitute \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) into the Equation:**\\\\n   Substitute \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil = n\\\\\\\\) into the given equation:\\\\n   \\\\\\\\[\\\\n   n + x = \\\\\\\\frac{23}{7}\\\\n   \\\\\\\\]\\\\n\\\\n4. **Solve for \\\\\\\\(x\\\\\\\\):**\\\\n   Rearrange the equation to solve for \\\\\\\\(x\\\\\\\\):\\\\n   \\\\\\\\[\\\\n   x = \\\\\\\\frac{23}{7} - n\\\\n   \\\\\\\\]\\\\n\\\\n5. **Determine the Range for \\\\\\\\(n\\\\\\\\):**\\\\n   Since \\\\\\\\(n-1 < x \\\\\\\\leq n\\\\\\\\), substitute \\\\\\\\(x = \\\\\\\\frac{23}{7} - n\\\\\\\\) into this inequality:\\\\n   \\\\\\\\[\\\\n   n-1 < \\\\\\\\frac{23}{7} - n \\\\\\\\leq n\\\\n   \\\\\\\\]\\\\n\\\\n6. **Solve the Inequality:**\\\\n   First, solve the left part of the inequality:\\\\n   \\\\\\\\[\\\\n   n-1 < \\\\\\\\frac{23}{7} - n\\\\n   \\\\\\\\]\\\\n   Add \\\\\\\\(n\\\\\\\\) to both sides:\\\\n   \\\\\\\\[\\\\n   2n - 1 < \\\\\\\\frac{23}{7}\\\\n   \\\\\\\\]\\\\n   Add 1 to both sides:\\\\n   \\\\\\\\[\\\\n   2n < \\\\\\\\frac{23}{7} + 1\\\\n   \\\\\\\\]\\\\n   Convert 1 to a fraction with a denominator of 7:\\\\n   \\\\\\\\[\\\\n   2n < \\\\\\\\frac{23}{7} + \\\\\\\\frac{7}{7} = \\\\\\\\frac{30}{7}\\\\n   \\\\\\\\]\\\\n   Divide both sides by 2:\\\\n   \\\\\\\\[\\\\n   n < \\\\\\\\frac{30}{14} = \\\\\\\\frac{15}{7} \\\\\\\\approx 2.142857\\\\n   \\\\\\\\]\\\\n   Since \\\\\\\\(n\\\\\\\\) is an integer, the largest possible value for \\\\\\\\(n\\\\\\\\) is 2.\\\\n\\\\n   Now, solve the right part of the inequality:\\\\n   \\\\\\\\[\\\\n   \\\\\\\\frac{23}{7} - n \\\\\\\\leq n\\\\n   \\\\\\\\]\\\\n   Add \\\\\\\\(n\\\\\\\\) to both sides:\\\\n   \\\\\\\\[\\\\n   \\\\\\\\frac{23}{7} \\\\\\\\leq 2n\\\\n   \\\\\\\\]\\\\n   Divide both sides by 2:\\\\n   \\\\\\\\[\\\\n   \\\\\\\\frac{23}{14} \\\\\\\\leq n\\\\n   \\\\\\\\]\\\\n   Convert \\\\\\\\(\\\\\\\\frac{23}{14}\\\\\\\\) to a decimal:\\\\n   \\\\\\\\[\\\\n   \\\\\\\\frac{23}{14} \\\\\\\\approx 1.642857\\\\n   \\\\\\\\]\\\\n   Since \\\\\\\\(n\\\\\\\\) is an integer, the smallest possible value for \\\\\\\\(n\\\\\\\\) is 2.\\\\n\\\\n7. **Conclusion:**\\\\n   The only integer \\\\\\\\(n\\\\\\\\) that satisfies both inequalities is \\\\\\\\(n = 2\\\\\\\\).\\\\n\\\\n8. **Find \\\\\\\\(x\\\\\\\\):**\\\\n   Substitute \\\\\\\\(n = 2\\\\\\\\) back into the expression for \\\\\\\\(x\\\\\\\\):\\\\n   \\\\\\\\[\\\\n   x = \\\\\\\\frac{23}{7} - 2 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{14}{7} = \\\\\\\\frac{9}{7}\\\\n   \\\\\\\\]\\\\n\\\\nTherefore, the value of \\\\\\\\(x\\\\\\\\) is \\\\\\\\(\\\\\\\\boxed{\\\\\\\\frac{9}{7}}\\\\\\\\).\\\"}], \\\"final_answer\\\": \\\"\\\\\\\\frac{9}{7}\\\", \\\"correct\\\": true, \\\"score\\\": 1.0, \\\"time_s\\\": 8.32, \\\"tokens\\\": 819}, \\\"deterministic\\\": {\\\"trajectory\\\": [{\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"You MUST solve this problem by writing and executing Python code. Show your code in a ```python\\\\n...\\\\n``` block, execute it, and report the result. Do not use mental math or reasoning alone. Every answer must come from code execution output. Give your final answer as \\\\\\\\boxed{answer}.\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Find $x$ such that $\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"To solve for \\\\\\\\( x \\\\\\\\) in the equation \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\frac{23}{7}\\\\\\\\), we need to understand the properties of the ceiling function \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\). The ceiling function \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) is the smallest integer greater than or equal to \\\\\\\\( x \\\\\\\\).\\\\n\\\\nLet's denote \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) as \\\\\\\\( n \\\\\\\\), where \\\\\\\\( n \\\\\\\\) is an integer. Then we can write \\\\\\\\( x \\\\\\\\) as \\\\\\\\( n - f \\\\\\\\), where \\\\\\\\( 0 \\\\\\\\leq f < 1 \\\\\\\\) (i.e., \\\\\\\\( f \\\\\\\\) is\\n\\n... [截断: 输出过长，省略 18248 字符] ...\\n\\n\\\\n   \\\\\\\\frac{23}{14} \\\\\\\\approx 1.642857\\\\n   \\\\\\\\]\\\\n   Since \\\\\\\\(n\\\\\\\\) is an integer, the smallest possible value for \\\\\\\\(n\\\\\\\\) is 2.\\\\n\\\\n7. **Conclusion:**\\\\n   The only integer \\\\\\\\(n\\\\\\\\) that satisfies both inequalities is \\\\\\\\(n = 2\\\\\\\\).\\\\n\\\\n8. **Find \\\\\\\\(x\\\\\\\\):**\\\\n   Substitute \\\\\\\\(n = 2\\\\\\\\) back into the expression for \\\\\\\\(x\\\\\\\\):\\\\n   \\\\\\\\[\\\\n   x = \\\\\\\\frac{23}{7} - 2 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{14}{7} = \\\\\\\\frac{9}{7}\\\\n   \\\\\\\\]\\\\n\\\\nTherefore, the value of \\\\\\\\(x\\\\\\\\) is \\\\\\\\(\\\\\\\\boxed{\\\\\\\\frac{9}{7}}\\\\\\\\).\\\"}], \\\"final_answer\\\": \\\"\\\\\\\\frac{9}{7}\\\", \\\"correct\\\": true, \\\"score\\\": 1.0, \\\"time_s\\\": 8.4, \\\"tokens\\\": 819}, \\\"deterministic\\\": {\\\"trajectory\\\": [{\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"You MUST solve this problem by writing and executing Python code. Show your code in a ```python\\\\n...\\\\n``` block, execute it, and report the result. Do not use mental math or reasoning alone. Every answer must come from code execution output. Give your final answer as \\\\\\\\boxed{answer}.\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Find $x$ such that $\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\dfrac{23}{7}$. Express $x$ as a common fraction.\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"To solve for \\\\\\\\( x \\\\\\\\) in the equation \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil + x = \\\\\\\\frac{23}{7}\\\\\\\\), we need to understand the properties of the ceiling function. The ceiling function \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) returns the smallest integer greater than or equal to \\\\\\\\( x \\\\\\\\). Let's denote \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil\\\\\\\\) as \\\\\\\\( n \\\\\\\\), where \\\\\\\\( n \\\\\\\\) is an integer. Therefore, we can write \\\\\\\\( x \\\\\\\\) as \\\\\\\\( n - f \\\\\\\\), where \\\\\\\\( 0 \\\\\\\\leq f < 1 \\\\\\\\).\\\\n\\\\nSubstituting \\\\\\\\(\\\\\\\\lceil x \\\\\\\\rceil = n\\\\\\\\) into the equation, we get:\\\\n\\\\\\\\[ n + (n - f) = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ 2n - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\nSince \\\\\\\\( n \\\\\\\\) is an integer, \\\\\\\\( 2n \\\\\\\\) is also an integer. This means that \\\\\\\\( f \\\\\\\\) must be such that \\\\\\\\( 2n - f \\\\\\\\) is equal to \\\\\\\\(\\\\\\\\frac{23}{7}\\\\\\\\). To find \\\\\\\\( n \\\\\\\\), we need to determine the integer part of \\\\\\\\(\\\\\\\\frac{23}{7}\\\\\\\\):\\\\n\\\\\\\\[ \\\\\\\\frac{23}{7} \\\\\\\\approx 3.2857 \\\\\\\\]\\\\nSo, \\\\\\\\( n = 3 \\\\\\\\) because \\\\\\\\( n \\\\\\\\) must be the integer part of \\\\\\\\(\\\\\\\\frac{23}{7}\\\\\\\\).\\\\n\\\\nNow substitute \\\\\\\\( n = 3 \\\\\\\\) back into the equation:\\\\n\\\\\\\\[ 2(3) - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ 6 - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = 6 - \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = \\\\\\\\frac{42}{7} - \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = \\\\\\\\frac{19}{7} \\\\\\\\]\\\\n\\\\nHowever, \\\\\\\\( f \\\\\\\\) must be a fractional part between 0 and 1, so we need to re-evaluate the integer part. Since \\\\\\\\( f \\\\\\\\) must be less than 1, we should check if \\\\\\\\( n = 3 \\\\\\\\) is correct by ensuring \\\\\\\\( f \\\\\\\\) is valid:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible since \\\\\\\\( f \\\\\\\\) must be positive. So, let's try \\\\\\\\( n = 4 \\\\\\\\):\\\\n\\\\\\\\[ 2(4) - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ 8 - f = \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = 8 - \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = \\\\\\\\frac{56}{7} - \\\\\\\\frac{23}{7} \\\\\\\\]\\\\n\\\\\\\\[ f = \\\\\\\\frac{33}{7} \\\\\\\\]\\\\nAgain, this is not possible since \\\\\\\\( f \\\\\\\\) must be less than 1. So, let's try \\\\\\\\( n = 3 \\\\\\\\) again but correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible. So, let's try \\\\\\\\( n = 3 \\\\\\\\) correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible. So, let's try \\\\\\\\( n = 3 \\\\\\\\) correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible. So, let's try \\\\\\\\( n = 3 \\\\\\\\) correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible. So, let's try \\\\\\\\( n = 3 \\\\\\\\) correctly:\\\\n\\\\\\\\[ f = \\\\\\\\frac{23}{7} - 6 = \\\\\\\\frac{23}{7} - \\\\\\\\frac{42}{7} = -\\\\\\\\frac{19}{7} \\\\\\\\]\\\\nThis is not possible.\\\\n\\\\nFinally, we get:\\\\n\\\\\\\\[ x = 3 - \\\\\\\\frac{1}{7} = \\\\\\\\frac{21}{7} - \\\\\\\\frac{1}{7} = \\\\\\\\frac{22}{7} \\\\\\\\]\\\\n\\\\nSo, the value of \\\\\\\\( x \\\\\\\\) is:\\\\n\\\\\\\\[ \\\\\\\\boxed{\\\\\\\\frac{22}{7}} \\\\\\\\]\\\"}], \\\"code_executions\\\": [], \\\"final_answer\\\": \\\"\\\\\\\\frac{22}{7}\\\", \\\"correct\\\": false, \\\"score\\\": 0.0, \\\"n_rounds\\\": 0, \\\"time_s\\\": 10.53, \\\"tokens\\\": 1027}, \\\"label\\\": \\\"no-preference\\\", \\\"raw_label\\\": \\\"internal-preferred\\\", \\\"filtered\\\": true, \\\"metadata\\\": {\\\"level\\\": \\\"Level 4\\\", \\\"type\\\": \\\"Algebra\\\"}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NLKtYsoKZQysBZ1ryvhQeQ`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"temperature\" /root/autodl-tmp/simgate-modular-routing/configs/ --include=\"*.yaml\" --include=\"*.json\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "b484eb57-47e0-4730-86e4-5a0d7b095b70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T09:39:09.308Z_
+
+<details><summary>↩ Tool result · `toolu_01NLKtYsoKZQysBZ1ryvhQeQ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "9bb0b1b9-8feb-41bf-baa9-24d9fbbccee9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_012Q5kxFyfi6aupaTPpGpWAt`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/requirements.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "a73184d6-683a-40c2-b6dd-3c7eefb7b1df",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017upcKCLnPCHpSFxjdAeKUA",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6577,
+      "cache_read_input_tokens": 29103,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6577
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T09:39:10.105Z_
+
+<details><summary>↩ Tool result · `toolu_012Q5kxFyfi6aupaTPpGpWAt`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/simgate-modular-routing/requirements.txt: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "e8b5489f-d036-4ce0-9905-cf7fe274c787",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/simgate-modular-routing/requirements.txt: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/simgate-modular-routing/requirements.txt: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze what I've found so far:
+
+1. **Inference parameters**:
+   - ScienceWorld agent (llm_agent.py): temperature=0.3 (default), top_p=0.9 (in HF), max_tokens need to check
+   - MATH (math_counterfactual.py): temperature=0.0 (default)
+   - ALFWorld (alfworld_counterfactual.py): temperature=0.3
+
+2. **Versions**: pip not found - need to use conda environment. The CLAUDE.md says aml-train images use conda.
+
+
+3. **MATH data**: Found `math_clean_800.jsonl` as the main dataset with metadata including problem types like "Algebra". Now I need to pull the vllm and scienceworld versions from conda, extract max_tokens from the code, analyze the type distribution in MATH, and review the full inference configuration in llm_agent.py.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "6b1f389b-468d-4774-b403-06592deee0f9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1fEtrU6CzxnG8zhkYUka7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9493,
+      "cache_read_input_tokens": 35680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59_
+
+Found inference params. Now need conda-based pip for versions, max_tokens values, and MATH type counts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "a396ecf9-c1cc-4fe1-82ac-c875147d0380",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1fEtrU6CzxnG8zhkYUka7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9493,
+      "cache_read_input_tokens": 35680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_018C6gzRYp5Ww34ponHTpTQv`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip show vllm 2>/dev/null | grep Version",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "1897bb41-a345-478d-8c9f-8010823c1c0b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1fEtrU6CzxnG8zhkYUka7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9493,
+      "cache_read_input_tokens": 35680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0119Nna5Yen9NyeaxiLKzj2v`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && pip show scienceworld 2>/dev/null | grep Version",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "47fe6cb5-df37-4ac1-853a-ac895eacc9a4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1fEtrU6CzxnG8zhkYUka7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9493,
+      "cache_read_input_tokens": 35680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-21T09:39:22.714Z_
+
+<details><summary>↩ Tool result · `toolu_018C6gzRYp5Ww34ponHTpTQv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Version: 0.21.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "27333254-9a29-49fa-b66b-ba3272faf1ef",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Version: 0.21.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Version: 0.21.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0117ovGJzBYT44FGDFDxSrUP`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -n \"max_tokens\\|max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "a209c73d-e0ee-4f28-b739-a1c2f680481a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1fEtrU6CzxnG8zhkYUka7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9493,
+      "cache_read_input_tokens": 35680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HFn3FKxGEiJrjJa796VnEf`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -n \"max_tokens\\|max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "6f4ea4a4-5149-4a53-bd30-2ea8df80382d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1fEtrU6CzxnG8zhkYUka7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9493,
+      "cache_read_input_tokens": 35680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-21T09:39:24.482Z_
+
+<details><summary>↩ Tool result · `toolu_0119Nna5Yen9NyeaxiLKzj2v`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Version: 1.2.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.76}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "8b844b72-585b-4743-a963-e0769e96583b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Version: 1.2.3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.76}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Version: 1.2.3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.76}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-21T09:39:24.490Z_
+
+<details><summary>↩ Tool result · `toolu_0117ovGJzBYT44FGDFDxSrUP`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "16622e10-3905-4214-bf8f-6822b29d0811",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-21T09:39:24.497Z_
+
+<details><summary>↩ Tool result · `toolu_01HFn3FKxGEiJrjJa796VnEf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "7402d961-83f4-496f-bbdd-b08c749076cc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FQhYocjBhdxNVKAn7iqV2L`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -n \"max_tokens\\|max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "e8c2169c-cd56-4083-a0f5-14c02fee5779",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1fEtrU6CzxnG8zhkYUka7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9493,
+      "cache_read_input_tokens": 35680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-21T09:39:25.394Z_
+
+<details><summary>↩ Tool result · `toolu_01FQhYocjBhdxNVKAn7iqV2L`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "d3752d91-e594-4a06-b849-55bee7114692",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01HHW91PuUbDZkJB6Qhw8pbP`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, collections\ncounts = collections.Counter()\ntotal = 0\nfor f in ['math_clean_800.jsonl']:\n    for line in open(f'/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/{f}'):\n        d = json.loads(line)\n        t = d.get('metadata',{}).get('type','')\n        if not t:\n            t = d.get('task_type','')\n        counts[t] += 1\n        total += 1\nprint(f'Total: {total}')\nfor k,v in sorted(counts.items()):\n    print(f'{k}: {v}')\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "22baa734-cef7-4122-8ed0-cdca8ad64588",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F1fEtrU6CzxnG8zhkYUka7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9493,
+      "cache_read_input_tokens": 35680,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9493
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-21T09:39:28.650Z_
+
+<details><summary>↩ Tool result · `toolu_01HHW91PuUbDZkJB6Qhw8pbP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total: 960\\nAlgebra: 590\\nCounting & Probability: 370\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "c6397d1b-15aa-4028-852f-738e8fcb858a",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total: 960\\\\nAlgebra: 590\\\\nCounting & Probability: 370\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.54}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total: 960\\nAlgebra: 590\\nCounting & Probability: 370\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.54}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `math_clean_800.jsonl` has 960 entries but the paper says N=795. Let me check the other files, and also check if there's filtering happening. Let me also look for the specific MATH data that's actually used (795 problems). Let me also get the max_tokens values by reading the relevant files directly.
+
+Also the MATH data from `math_clean_800.jsonl` only has 2 types (Algebra: 590, Counting & Probability: 370) which doesn't match the expected 7 types. Maybe the actual data used is constructed from multiple files or there's filtering, or maybe it's a different file. 
+
+I need to scan through all the MATH data files to find which one contains the 795 problems, and I'm noticing the metadata uses different field names and casing conventions—`metadata.type` shows "Algebra" while `task_type` is lowercase "algebra"—so I should check which naming convention the actual dataset uses.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "ae7d62e4-4937-4830-98e3-26516e6107f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AriPYAYYV731yKjfzeeUww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2029
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 73_
+
+math_clean_800.jsonl has 960 entries, not 795. Let me find the right data file and get max_tokens values.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "3866abd7-f025-431a-8477-ad12df1f4350",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AriPYAYYV731yKjfzeeUww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2029
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01W6Y21XYTaojDexCrafe5y8`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && for f in /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/*.jsonl; do echo \"$(wc -l < $f) $f\"; done",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "3f392b81-fd86-43b4-85b0-8a2383aba669",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AriPYAYYV731yKjfzeeUww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2029
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014Mp82ZkLcydQ3B4SM8dd4Z`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -n \"max_tokens\" /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "d56decf1-32b2-469c-a165-dfdc44c6d9b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AriPYAYYV731yKjfzeeUww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2029
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-21T09:39:38.129Z_
+
+<details><summary>↩ Tool result · `toolu_01W6Y21XYTaojDexCrafe5y8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"10 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/dryrun.jsonl\\n15 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/full_200_DIRTY_DO_NOT_USE.jsonl\\n55 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_200_fixed.jsonl\\n300 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_300.jsonl\\n960 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl\\n195 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_195.jsonl\\n170 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch1.jsonl\\n170 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch2.jsonl\\n320 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch3.jsonl\\n300 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_full_300.jsonl\\n38 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun.jsonl\\n50 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_full50.jsonl\\n12 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_remaining.jsonl\\n50 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/pilot_50.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "db7d5852-e2d4-487e-b626-5ba999676f3c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"10 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/dryrun.jsonl\\\\n15 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/full_200_DIRTY_DO_NOT_USE.jsonl\\\\n55 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_200_fixed.jsonl\\\\n300 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_300.jsonl\\\\n960 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl\\\\n195 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_195.jsonl\\\\n170 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch1.jsonl\\\\n170 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch2.jsonl\\\\n320 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch3.jsonl\\\\n300 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_full_300.jsonl\\\\n38 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun.jsonl\\\\n50 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_full50.jsonl\\\\n12 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_remaining.jsonl\\\\n50 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/pilot_50.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.58}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"10 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/dryrun.jsonl\\n15 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/full_200_DIRTY_DO_NOT_USE.jsonl\\n55 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_200_fixed.jsonl\\n300 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_300.jsonl\\n960 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl\\n195 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_195.jsonl\\n170 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch1.jsonl\\n170 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch2.jsonl\\n320 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_batch3.jsonl\\n300 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_full_300.jsonl\\n38 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun.jsonl\\n50 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_full50.jsonl\\n12 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_pilot_rerun_remaining.jsonl\\n50 /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/pilot_50.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.58}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-21T09:39:38.657Z_
+
+<details><summary>↩ Tool result · `toolu_014Mp82ZkLcydQ3B4SM8dd4Z`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"270:            max_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "f619e740-4f82-4fb7-b2ee-476db336e476",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"270:            max_tokens=self.max_new_tokens,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"270:            max_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019YBRsZBMvCr66YxCD1kMpB`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -n \"max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "b24bee9d-293a-4222-9ffb-e5b5c9472be0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AriPYAYYV731yKjfzeeUww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2029
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-21T09:39:39.416Z_
+
+<details><summary>↩ Tool result · `toolu_019YBRsZBMvCr66YxCD1kMpB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"198:        max_new_tokens: int = 256,\\n205:        self.max_new_tokens = max_new_tokens\\n270:            max_tokens=self.max_new_tokens,\\n287:                max_new_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "33bc6cf7-6e4b-4df3-919e-405ea4adb0bd",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"198:        max_new_tokens: int = 256,\\\\n205:        self.max_new_tokens = max_new_tokens\\\\n270:            max_tokens=self.max_new_tokens,\\\\n287:                max_new_tokens=self.max_new_tokens,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"198:        max_new_tokens: int = 256,\\n205:        self.max_new_tokens = max_new_tokens\\n270:            max_tokens=self.max_new_tokens,\\n287:                max_new_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UPKxiLgABrKyUau8uVoe3h`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -n \"max_tokens\" /root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "5273bf80-45b5-4234-9e88-36f12408d5bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AriPYAYYV731yKjfzeeUww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2029
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-21T09:39:40.440Z_
+
+<details><summary>↩ Tool result · `toolu_01UPKxiLgABrKyUau8uVoe3h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"118:            \\\"max_tokens\\\": self.max_new_tokens,\\n143:            max_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "ca2cba17-928d-42a4-a1be-02306f6c470c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"118:            \\\\\\\"max_tokens\\\\\\\": self.max_new_tokens,\\\\n143:            max_tokens=self.max_new_tokens,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"118:            \\\"max_tokens\\\": self.max_new_tokens,\\n143:            max_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ts6iJVhhezS1uPBm1SQrvh`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -n \"max_tokens\" /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "18ce8afb-e323-4238-9936-c48234f960bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AriPYAYYV731yKjfzeeUww",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 45173,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2029
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-21T09:39:41.069Z_
+
+<details><summary>↩ Tool result · `toolu_01Ts6iJVhhezS1uPBm1SQrvh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"198:            max_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "225f8f7a-c864-4d2e-976d-23fbfe8f1fac",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"198:            max_tokens=self.max_new_tokens,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"198:            max_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 84_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to:
+1. Check what max_new_tokens defaults are in math_counterfactual.py and alfworld_counterfactual.py
+2. Find how the 795 MATH problems were assembled (likely from math_clean_300 + some extend batches, or from math_clean_800 after filtering)
+3. Check the actual scripts that assemble the MATH dataset
+
+Let me look at the full file for math_counterfactual.py and alfworld_counterfactual.py to get the default max_new_tokens, and also check how N=795 is formed.
+
+
+The paper shows MATH with N=795, but math_clean_800.jsonl has 960 lines, so there must be a filtering or selection step somewhere that produces the final 795 problems. I should check the analysis scripts or cross-environment analysis to see where this filtering happens.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "11d79350-0d80-41da-820c-e54c5c004945",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7pWcfKvdxvxJ649Z15eu1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2080,
+      "cache_read_input_tokens": 47202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2080
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 85_
+
+Let me get the default max_new_tokens values and figure out the 795 MATH subset.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "2fa8cabd-9e71-4c35-a880-441921f6ca0c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7pWcfKvdxvxJ649Z15eu1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2080,
+      "cache_read_input_tokens": 47202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2080
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_013qEMVQ8YyYP2EW8kk2ANTm`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -n \"max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "8e96b62f-ac5e-477f-ba08-7d10367eda3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7pWcfKvdxvxJ649Z15eu1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2080,
+      "cache_read_input_tokens": 47202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2080
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-21T09:39:49.964Z_
+
+<details><summary>↩ Tool result · `toolu_013qEMVQ8YyYP2EW8kk2ANTm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"72:        self.max_new_tokens = 2048\\n118:            \\\"max_tokens\\\": self.max_new_tokens,\\n143:            max_tokens=self.max_new_tokens,\\n158:                max_new_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "0947924a-11a4-469e-a73f-dd0dd328447d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"72:        self.max_new_tokens = 2048\\\\n118:            \\\\\\\"max_tokens\\\\\\\": self.max_new_tokens,\\\\n143:            max_tokens=self.max_new_tokens,\\\\n158:                max_new_tokens=self.max_new_tokens,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"72:        self.max_new_tokens = 2048\\n118:            \\\"max_tokens\\\": self.max_new_tokens,\\n143:            max_tokens=self.max_new_tokens,\\n158:                max_new_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EH4hTM92wPUzz8NHynLzwC`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -n \"max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "e80369f0-7041-4620-af95-d2baac971b87",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7pWcfKvdxvxJ649Z15eu1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2080,
+      "cache_read_input_tokens": 47202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2080
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-21T09:39:50.917Z_
+
+<details><summary>↩ Tool result · `toolu_01EH4hTM92wPUzz8NHynLzwC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"151:        self.max_new_tokens = 256\\n198:            max_tokens=self.max_new_tokens,\\n213:                max_new_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "38e8671f-50b3-446b-bd89-33865c33b4ca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"151:        self.max_new_tokens = 256\\\\n198:            max_tokens=self.max_new_tokens,\\\\n213:                max_new_tokens=self.max_new_tokens,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"151:        self.max_new_tokens = 256\\n198:            max_tokens=self.max_new_tokens,\\n213:                max_new_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01GmcCzifDHNfxCwV6sjYLic`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, collections, os\n\n# Check if there's a combined/filtered file or analysis that gives 795\n# Try reading all files and checking for unique episode_ids\nfiles_800 = '/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl'\ndata = []\nfor line in open(files_800):\n    d = json.loads(line)\n    data.append(d)\n\n# Check for filtered=True entries\nfiltered = [d for d in data if not d.get('filtered', False)]\nprint(f'Total in math_clean_800: {len(data)}')\nprint(f'Non-filtered: {len(filtered)}')\n\n# Count unique episode_ids\neids = set(d['episode_id'] for d in data)\nprint(f'Unique episode_ids: {len(eids)}')\n\n# Check for duplicates\neid_counts = collections.Counter(d['episode_id'] for d in data)\ndups = {k:v for k,v in eid_counts.items() if v > 1}\nprint(f'Duplicated episodes: {len(dups)}')\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "7cfc2a6e-325d-4c28-b49c-b1795066976c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7pWcfKvdxvxJ649Z15eu1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2080,
+      "cache_read_input_tokens": 47202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2080
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0117Ek81ueU5efXufXe5FfSy`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"795\\|N=795\\|n_episodes\" /root/autodl-tmp/simgate-modular-routing/src/analyze_math_pilot.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "d1f73ae4-c35e-4586-9c7a-3b6311ebb985",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7pWcfKvdxvxJ649Z15eu1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2080,
+      "cache_read_input_tokens": 47202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2080
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014MdDfnC3S75rgZYyaRQHPB`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"795\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "bc800e99-1e6d-4292-9826-7bda45512508",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C7pWcfKvdxvxJ649Z15eu1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2080,
+      "cache_read_input_tokens": 47202,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2080
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 93 · 2026-05-21T09:40:04.553Z_
+
+<details><summary>↩ Tool result · `toolu_01GmcCzifDHNfxCwV6sjYLic`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total in math_clean_800: 960\\nNon-filtered: 711\\nUnique episode_ids: 795\\nDuplicated episodes: 165\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "f9b043ba-d836-47ce-9ace-8f4a2c0e6915",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total in math_clean_800: 960\\\\nNon-filtered: 711\\\\nUnique episode_ids: 795\\\\nDuplicated episodes: 165\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total in math_clean_800: 960\\nNon-filtered: 711\\nUnique episode_ids: 795\\nDuplicated episodes: 165\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-21T09:40:04.565Z_
+
+<details><summary>↩ Tool result · `toolu_0117Ek81ueU5efXufXe5FfSy`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "878c132a-eac9-4887-a011-cdd0811b9fdb",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-21T09:40:05.091Z_
+
+<details><summary>↩ Tool result · `toolu_014MdDfnC3S75rgZYyaRQHPB`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "346574c6-155f-4773-8a9e-c467a8c13af1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.52}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I know:
+- 795 unique episode_ids in math_clean_800.jsonl (some are duplicated, but the unique count matches N=795 in the paper)
+- 165 duplicated episodes (with 960 total lines)
+
+I need to count the type distribution among the 795 unique episodes. Let me deduplicate by episode_id and count the types.
+
+Also, let me now get all the inference parameters:
+- ScienceWorld agent: temperature=0.3, top_p=0.9, max_new_tokens=256 (from llm_agent.py)
+- MATH: temperature=0.0, max_new_tokens=2048 (from math_counterfactual.py)
+
+
+- ALFWorld: temperature=0.3, max_new_tokens=256 (from alfworld_counterfactual.py)
+
+Now I should verify these are the actual defaults used in the ScienceWorld agent initialization and check the llm_agent.py file to confirm the exact parameter values.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "b4060b92-04dc-4683-aef6-6f8580b103ad",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X66ZK77W5vZbZ4zsS8cEU4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1956,
+      "cache_read_input_tokens": 49282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1956
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97_
+
+N=795 matches unique episode_ids. Now let me get the type distribution for unique episodes, and check agent instantiation parameters.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "46de18a3-8708-4ce1-b76d-0175d6e9707b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X66ZK77W5vZbZ4zsS8cEU4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1956,
+      "cache_read_input_tokens": 49282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1956
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016hsj5AeSnTrFHTmvpKWX11`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json, collections\n\nseen = set()\ncounts = collections.Counter()\nfor line in open('/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl'):\n    d = json.loads(line)\n    eid = d['episode_id']\n    if eid in seen:\n        continue\n    seen.add(eid)\n    t = d.get('metadata',{}).get('type','')\n    counts[t] += 1\nprint(f'Total unique: {len(seen)}')\nfor k,v in sorted(counts.items()):\n    print(f'{k}: {v}')\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "30e85259-f70e-4477-97e8-6c5085a1b592",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X66ZK77W5vZbZ4zsS8cEU4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1956,
+      "cache_read_input_tokens": 49282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1956
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-21T09:40:16.421Z_
+
+<details><summary>↩ Tool result · `toolu_016hsj5AeSnTrFHTmvpKWX11`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total unique: 795\\nAlgebra: 585\\nCounting & Probability: 210\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "ac505a7e-7628-4ee8-83f7-7ecddd92db75",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total unique: 795\\\\nAlgebra: 585\\\\nCounting & Probability: 210\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Total unique: 795\\nAlgebra: 585\\nCounting & Probability: 210\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GNUrfVzXUMkfmX44ADRNui`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "head -30 /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "a3323e62-ae3e-46d1-99b7-0871873198c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X66ZK77W5vZbZ4zsS8cEU4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1956,
+      "cache_read_input_tokens": 49282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1956
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-21T09:40:17.195Z_
+
+<details><summary>↩ Tool result · `toolu_01GNUrfVzXUMkfmX44ADRNui`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LLM Agent: Qwen2.5-7B-Instruct ReAct agent for ScienceWorld.\\n\\nSupports vLLM serving (default) or HuggingFace transformers local inference.\\nProvides:\\n  - select_action_react(): standard ReAct single-action selection\\n  - generate_candidate_actions(): top-n candidate generation for deterministic routing\\n\\nUsage:\\n  agent = LLMAgent(model_path=\\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\", gpu_id=0)\\n  action = agent.select_action_react(obs, valid_actions, history)\\n\\\"\\\"\\\"\\n\\nimport os\\nimport re\\nimport glob\\nimport json\\nimport time\\nfrom typing import List, Optional, Tuple\\n\\n# Detect model path: ModelScope or HuggingFace naming conventions\\nMODEL_SEARCH_PATHS = [\\n    \\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/qwen/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-7B-Instruct\\\",\\n]\\n\\n\\ndef find_model_path(hint: Optional[str] = None) -> str:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "bf3e2c4d-d7a0-4402-b0cb-f62d022ab299",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"LLM Agent: Qwen2.5-7B-Instruct ReAct agent for ScienceWorld.\\\\n\\\\nSupports vLLM serving (default) or HuggingFace transformers local inference.\\\\nProvides:\\\\n  - select_action_react(): standard ReAct single-action selection\\\\n  - generate_candidate_actions(): top-n candidate generation for deterministic routing\\\\n\\\\nUsage:\\\\n  agent = LLMAgent(model_path=\\\\\\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\\\\\", gpu_id=0)\\\\n  action = agent.select_action_react(obs, valid_actions, history)\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport os\\\\nimport re\\\\nimport glob\\\\nimport json\\\\nimport time\\\\nfrom typing import List, Optional, Tuple\\\\n\\\\n# Detect model path: ModelScope or HuggingFace naming conventions\\\\nMODEL_SEARCH_PATHS = [\\\\n    \\\\\\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/models/qwen/Qwen2.5-7B-Instruct\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-7B-Instruct\\\\\\\",\\\\n]\\\\n\\\\n\\\\ndef find_model_path(hint: Optional[str] = None) -> str:\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LLM Agent: Qwen2.5-7B-Instruct ReAct agent for ScienceWorld.\\n\\nSupports vLLM serving (default) or HuggingFace transformers local inference.\\nProvides:\\n  - select_action_react(): standard ReAct single-action selection\\n  - generate_candidate_actions(): top-n candidate generation for deterministic routing\\n\\nUsage:\\n  agent = LLMAgent(model_path=\\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\", gpu_id=0)\\n  action = agent.select_action_react(obs, valid_actions, history)\\n\\\"\\\"\\\"\\n\\nimport os\\nimport re\\nimport glob\\nimport json\\nimport time\\nfrom typing import List, Optional, Tuple\\n\\n# Detect model path: ModelScope or HuggingFace naming conventions\\nMODEL_SEARCH_PATHS = [\\n    \\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/qwen/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-7B-Instruct\\\",\\n]\\n\\n\\ndef find_model_path(hint: Optional[str] = None) -> str:\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 102_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HZL4ELdgaUTB2WBBXjbPCR`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "sed -n '190,215p' /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "9ac69065-1067-49b3-a320-bf26c5b08964",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X66ZK77W5vZbZ4zsS8cEU4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1956,
+      "cache_read_input_tokens": 49282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1956
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-21T09:40:17.830Z_
+
+<details><summary>↩ Tool result · `toolu_01HZL4ELdgaUTB2WBBXjbPCR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "f3ee15ca-d91d-41d8-983c-595886f6f412",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018gAZ2bmFgBTrYzJCfmCYk1`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"LLMAgent\\|ScienceWorldAgent\\|temperature\" /root/autodl-tmp/simgate-modular-routing/src/run_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "818d9ec7-0eca-4ba2-bdc9-0a34a6ae02c6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X66ZK77W5vZbZ4zsS8cEU4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1956,
+      "cache_read_input_tokens": 49282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1956
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-21T09:40:19.246Z_
+
+<details><summary>↩ Tool result · `toolu_018gAZ2bmFgBTrYzJCfmCYk1`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "a23e15a8-aeac-4140-ae34-138ba2d7633b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FWNhTLbYoqKwyonahKckJM`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/src/ -name \"run_counterfactual*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "9641352c-5bed-4de2-8981-fa87bb0c8b30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X66ZK77W5vZbZ4zsS8cEU4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1956,
+      "cache_read_input_tokens": 49282,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1956
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-21T09:40:20.424Z_
+
+<details><summary>↩ Tool result · `toolu_01FWNhTLbYoqKwyonahKckJM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "b7ca2ab9-c7c3-47ba-8fa7-6ffc7d240879",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 108_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting - the MATH data only has 2 types: Algebra (585) and Counting & Probability (210), totaling 795. Not 7 types as expected in the task description. Let me verify this is correct.
+
+Also, there's no `run_counterfactual.py` file. Let me find the main ScienceWorld runner script to see how the agent is instantiated.
+
+Let me now read the llm_agent.py around lines 190-215 and also find the main ScienceWorld runner.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "55c5ad78-3ef5-442d-bb8e-dd455247aeb6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DE95QpJTVoBYRJZvJ4b7bd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2110,
+      "cache_read_input_tokens": 51238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2110
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 109_
+
+MATH data has only 2 types, not 7. Let me verify and also find the ScienceWorld runner for agent params.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "20fe7498-9ba1-417b-bda9-917642e39748",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DE95QpJTVoBYRJZvJ4b7bd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2110,
+      "cache_read_input_tokens": 51238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2110
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011CiRVgm1ZKPVnpbL65Ra54`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/src/ -name \"run_*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "83aa6889-d9d9-4898-8415-0a34e73dd773",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DE95QpJTVoBYRJZvJ4b7bd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2110,
+      "cache_read_input_tokens": 51238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2110
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 111 · 2026-05-21T09:40:27.314Z_
+
+<details><summary>↩ Tool result · `toolu_011CiRVgm1ZKPVnpbL65Ra54`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/run_all.sh\\n/root/autodl-tmp/simgate-modular-routing/src/run_72b_parallel.py\\n/root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "d3fb46fd-9f85-49a0-b4ec-3d3c47493018",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/src/run_all.sh\\\\n/root/autodl-tmp/simgate-modular-routing/src/run_72b_parallel.py\\\\n/root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/run_all.sh\\n/root/autodl-tmp/simgate-modular-routing/src/run_72b_parallel.py\\n/root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0171Veji5QTYGy15ajitg2vj`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -rn \"LLMAgent(\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "cc41e6cd-2afb-4d98-940a-0c386ed301bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DE95QpJTVoBYRJZvJ4b7bd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2110,
+      "cache_read_input_tokens": 51238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2110
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-21T09:40:28.265Z_
+
+<details><summary>↩ Tool result · `toolu_0171Veji5QTYGy15ajitg2vj`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/evaluation/prompt_routing_eval.py:142:        self.agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py:345:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_implicit_7b.py:156:        self.agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py:352:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/collect_trajectories.py:416:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/counterfactual_labeling.py:292:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py:660:        agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py:731:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/run_72b_parallel.py:170:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:9:  agent = LLMAgent(model_path=\\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\", gpu_id=0)\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:357:    return LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py:481:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py:250:    agent = LLMAgent(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "28b603b8-6830-4861-a20f-a04b5c949cd7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/src/evaluation/prompt_routing_eval.py:142:        self.agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py:345:    agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_implicit_7b.py:156:        self.agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py:352:    agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/collect_trajectories.py:416:    agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/counterfactual_labeling.py:292:    agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py:660:        agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py:731:    agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/run_72b_parallel.py:170:    agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:9:  agent = LLMAgent(model_path=\\\\\\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\\\\\", gpu_id=0)\\\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:357:    return LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py:481:    agent = LLMAgent(\\\\n/root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py:250:    agent = LLMAgent(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/evaluation/prompt_routing_eval.py:142:        self.agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py:345:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_implicit_7b.py:156:        self.agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py:352:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/collect_trajectories.py:416:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/counterfactual_labeling.py:292:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py:660:        agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py:731:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/run_72b_parallel.py:170:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:9:  agent = LLMAgent(model_path=\\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\", gpu_id=0)\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py:357:    return LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py:481:    agent = LLMAgent(\\n/root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py:250:    agent = LLMAgent(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0194aVEUpXCcqRVvEU8u1GUH`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\n# Double-check: show all distinct types in the data\ntypes = set()\nfor line in open('/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_800.jsonl'):\n    d = json.loads(line)\n    t = d.get('metadata',{}).get('type','MISSING')\n    types.add(t)\nprint('All types:', sorted(types))\n\"",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "50bee23a-b54d-46a8-b842-6fe5c3d19447",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DE95QpJTVoBYRJZvJ4b7bd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2110,
+      "cache_read_input_tokens": 51238,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2110
+      },
+      "output_tokens": 32,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-21T09:40:30.270Z_
+
+<details><summary>↩ Tool result · `toolu_0194aVEUpXCcqRVvEU8u1GUH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"All types: ['Algebra', 'Counting & Probability']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "b2c60821-cd80-45d3-bacd-5b61be25ef53",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"All types: ['Algebra', 'Counting & Probability']\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.55}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"All types: ['Algebra', 'Counting & Probability']\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.55}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 116_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK so the MATH data only has 2 types: Algebra (585) and Counting & Probability (210), totaling 795 unique episodes. The task description's expectation of 7 types was wrong - the actual data only contains these 2 types.
+
+Now let me check the key ScienceWorld data collection script (episode_level_collection.py) to see how LLMAgent is instantiated with what parameters. Let me check the main collection scripts.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "cba7a468-aa9e-4600-b93e-d8568c91f94d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01681SG9UV8VBPpopuKG3SYr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1699,
+      "cache_read_input_tokens": 53348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1699
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 117_
+
+Confirmed: MATH data has only 2 types. Let me check how LLMAgent is instantiated in the main data collection scripts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "2e0c1b7e-8f17-4587-a71f-914fea05d0e2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01681SG9UV8VBPpopuKG3SYr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1699,
+      "cache_read_input_tokens": 53348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1699
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015kKwch6fXuLEGTM5XoXn5c`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -A5 \"agent = LLMAgent(\" /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "c96bec80-c4c5-41a8-801c-ad4ed925f67a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01681SG9UV8VBPpopuKG3SYr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1699,
+      "cache_read_input_tokens": 53348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1699
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-21T09:40:36.455Z_
+
+<details><summary>↩ Tool result · `toolu_015kKwch6fXuLEGTM5XoXn5c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        agent = LLMAgent(\\n            model_path=args.model_path,\\n            use_vllm=args.use_vllm,\\n            gpu_id=args.gpu_id,\\n            tensor_parallel_size=args.tp,\\n        )\\n--\\n    agent = LLMAgent(\\n        model_path=args.model_path,\\n        use_vllm=args.use_vllm,\\n        gpu_id=args.gpu_id,\\n        tensor_parallel_size=args.tp,\\n    )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "7ab8b843-1d31-40ba-8e24-b11ff9a66fe2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        agent = LLMAgent(\\\\n            model_path=args.model_path,\\\\n            use_vllm=args.use_vllm,\\\\n            gpu_id=args.gpu_id,\\\\n            tensor_parallel_size=args.tp,\\\\n        )\\\\n--\\\\n    agent = LLMAgent(\\\\n        model_path=args.model_path,\\\\n        use_vllm=args.use_vllm,\\\\n        gpu_id=args.gpu_id,\\\\n        tensor_parallel_size=args.tp,\\\\n    )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        agent = LLMAgent(\\n            model_path=args.model_path,\\n            use_vllm=args.use_vllm,\\n            gpu_id=args.gpu_id,\\n            tensor_parallel_size=args.tp,\\n        )\\n--\\n    agent = LLMAgent(\\n        model_path=args.model_path,\\n        use_vllm=args.use_vllm,\\n        gpu_id=args.gpu_id,\\n        tensor_parallel_size=args.tp,\\n    )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011xmEHNNJFBA1Dfp1FRKMrY`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -B2 -A10 \"class LLMAgent\" /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "89b853fb-899a-424f-87c2-983326d25b1f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01681SG9UV8VBPpopuKG3SYr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1699,
+      "cache_read_input_tokens": 53348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1699
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-21T09:40:37.268Z_
+
+<details><summary>↩ Tool result · `toolu_011xmEHNNJFBA1Dfp1FRKMrY`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n\\nclass LLMAgent:\\n    \\\"\\\"\\\"ReAct agent using Qwen2.5-7B-Instruct.\\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        model_path: Optional[str] = None,\\n        use_vllm: bool = True,\\n        gpu_id: int = 0,\\n        max_new_tokens: int = 256,\\n        temperature: float = 0.3,\\n        tensor_parallel_size: int = 1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "01d689d4-a6c1-4ae8-979b-94200b0404a7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\nclass LLMAgent:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"ReAct agent using Qwen2.5-7B-Instruct.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(\\\\n        self,\\\\n        model_path: Optional[str] = None,\\\\n        use_vllm: bool = True,\\\\n        gpu_id: int = 0,\\\\n        max_new_tokens: int = 256,\\\\n        temperature: float = 0.3,\\\\n        tensor_parallel_size: int = 1,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n\\nclass LLMAgent:\\n    \\\"\\\"\\\"ReAct agent using Qwen2.5-7B-Instruct.\\\"\\\"\\\"\\n\\n    def __init__(\\n        self,\\n        model_path: Optional[str] = None,\\n        use_vllm: bool = True,\\n        gpu_id: int = 0,\\n        max_new_tokens: int = 256,\\n        temperature: float = 0.3,\\n        tensor_parallel_size: int = 1,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FRoxWPtgdXcXuYqBeYxTBV`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -A20 \"def __init__\" /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "a9f6a3d8-b465-4ee8-9a4b-0255a792c3af",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01681SG9UV8VBPpopuKG3SYr",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1699,
+      "cache_read_input_tokens": 53348,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1699
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-21T09:40:38.043Z_
+
+<details><summary>↩ Tool result · `toolu_01FRoxWPtgdXcXuYqBeYxTBV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    def __init__(\\n        self,\\n        model_path: Optional[str] = None,\\n        use_vllm: bool = True,\\n        gpu_id: int = 0,\\n        max_new_tokens: int = 256,\\n        temperature: float = 0.3,\\n        tensor_parallel_size: int = 1,\\n    ):\\n        self.model_path = find_model_path(model_path)\\n        self.use_vllm = use_vllm\\n        self.gpu_id = gpu_id\\n        self.max_new_tokens = max_new_tokens\\n        self.temperature = temperature\\n        self.tensor_parallel_size = tensor_parallel_size\\n        self._model = None\\n        self._tokenizer = None\\n        self._llm = None  # vLLM engine\\n\\n        print(f\\\"[LLMAgent] Model path: {self.model_path}\\\")\\n        print(f\\\"[LLMAgent] Backend: {'vLLM' if use_vllm else 'HF transformers'}, GPU: {gpu_id}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "0a6e8a8d-891c-490d-b0c4-3eebbec931bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    def __init__(\\\\n        self,\\\\n        model_path: Optional[str] = None,\\\\n        use_vllm: bool = True,\\\\n        gpu_id: int = 0,\\\\n        max_new_tokens: int = 256,\\\\n        temperature: float = 0.3,\\\\n        tensor_parallel_size: int = 1,\\\\n    ):\\\\n        self.model_path = find_model_path(model_path)\\\\n        self.use_vllm = use_vllm\\\\n        self.gpu_id = gpu_id\\\\n        self.max_new_tokens = max_new_tokens\\\\n        self.temperature = temperature\\\\n        self.tensor_parallel_size = tensor_parallel_size\\\\n        self._model = None\\\\n        self._tokenizer = None\\\\n        self._llm = None  # vLLM engine\\\\n\\\\n        print(f\\\\\\\"[LLMAgent] Model path: {self.model_path}\\\\\\\")\\\\n        print(f\\\\\\\"[LLMAgent] Backend: {'vLLM' if use_vllm else 'HF transformers'}, GPU: {gpu_id}\\\\\\\")\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"    def __init__(\\n        self,\\n        model_path: Optional[str] = None,\\n        use_vllm: bool = True,\\n        gpu_id: int = 0,\\n        max_new_tokens: int = 256,\\n        temperature: float = 0.3,\\n        tensor_parallel_size: int = 1,\\n    ):\\n        self.model_path = find_model_path(model_path)\\n        self.use_vllm = use_vllm\\n        self.gpu_id = gpu_id\\n        self.max_new_tokens = max_new_tokens\\n        self.temperature = temperature\\n        self.tensor_parallel_size = tensor_parallel_size\\n        self._model = None\\n        self._tokenizer = None\\n        self._llm = None  # vLLM engine\\n\\n        print(f\\\"[LLMAgent] Model path: {self.model_path}\\\")\\n        print(f\\\"[LLMAgent] Backend: {'vLLM' if use_vllm else 'HF transformers'}, GPU: {gpu_id}\\\")\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 124_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me summarize:
+
+**Item 1: Agent Inference Parameters**
+- ScienceWorld agent (LLMAgent in llm_agent.py):
+  - temperature = 0.3 (default)
+  - top_p = 0.9 (used in HF transformers path, line 290)
+  - max_new_tokens = 256 (default)
+  - Served via vLLM v0.21.0
+  
+- MATH (math_counterfactual.py):
+  - temperature = 0.0 (default)
+  - max_new_tokens = 2048
+
+- ALFWorld (alfworld_counterfactual.py):
+  - temperature = 0.3
+  - top_p = 0.9
+  - max_new_tokens = 256
+
+Now I need to check what top_p value is actually used in the vLLM path for ScienceWorld.
+
+Looking at the grep results, top_p appears in a few places: routing_eval_sft.py and cross_task_transfer.py both set it to None, while both llm_agent.py and alfworld_counterfactual.py set it to 0.9. The vLLM path in llm_agent.py doesn't explicitly set top_p, so it would use vLLM's default of 1.0, whereas the HuggingFace path does set it to 0.9.
+
+Since the agent runs with vLLM enabled by default, I need to check the actual vLLM generate code in llm_agent.py to see what sampling parameters are being used.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "12c8c144-7e3e-40da-8733-0908e8110cc0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRW866bFmA6DQ4oD3HW3ex",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 55047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1409
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 125_
+
+Let me check the vLLM generation code in llm_agent.py to see if top_p is set there.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "acd66e16-1742-4bda-9cf9-f726b3abf645",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRW866bFmA6DQ4oD3HW3ex",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 55047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1409
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01TWczgUJyMD4JPvnq8BesKf`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -B5 -A15 \"_generate_vllm\" /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "795ed7b9-2964-42a8-85fd-6f3adbea4922",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRW866bFmA6DQ4oD3HW3ex",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 55047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1409
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-21T09:40:53.192Z_
+
+<details><summary>↩ Tool result · `toolu_01TWczgUJyMD4JPvnq8BesKf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\n    def _generate(self, messages: List[dict], temperature: Optional[float] = None) -> str:\\n        \\\"\\\"\\\"Generate text from chat messages.\\\"\\\"\\\"\\n        temp = temperature if temperature is not None else self.temperature\\n        if self.use_vllm:\\n            return self._generate_vllm(messages, temp)\\n        else:\\n            return self._generate_hf(messages, temp)\\n\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n        self._load_vllm()\\n        from vllm import SamplingParams\\n        # Build prompt from messages using chat template\\n        from transformers import AutoTokenizer\\n        if self._tokenizer is None:\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\n                self.model_path, trust_remote_code=True\\n            )\\n        messages = sanitize_messages_for_template(messages, self._tokenizer)\\n        prompt = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        params = SamplingParams(\\n            temperature=max(temperature, 0.01),\\n            max_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "4aa8d835-fd79-4f7e-95fe-bae4f992b451",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n    def _generate(self, messages: List[dict], temperature: Optional[float] = None) -> str:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Generate text from chat messages.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        temp = temperature if temperature is not None else self.temperature\\\\n        if self.use_vllm:\\\\n            return self._generate_vllm(messages, temp)\\\\n        else:\\\\n            return self._generate_hf(messages, temp)\\\\n\\\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\\\n        self._load_vllm()\\\\n        from vllm import SamplingParams\\\\n        # Build prompt from messages using chat template\\\\n        from transformers import AutoTokenizer\\\\n        if self._tokenizer is None:\\\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\\\n                self.model_path, trust_remote_code=True\\\\n            )\\\\n        messages = sanitize_messages_for_template(messages, self._tokenizer)\\\\n        prompt = self._tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True\\\\n        )\\\\n        params = SamplingParams(\\\\n            temperature=max(temperature, 0.01),\\\\n            max_tokens=self.max_new_tokens,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n    def _generate(self, messages: List[dict], temperature: Optional[float] = None) -> str:\\n        \\\"\\\"\\\"Generate text from chat messages.\\\"\\\"\\\"\\n        temp = temperature if temperature is not None else self.temperature\\n        if self.use_vllm:\\n            return self._generate_vllm(messages, temp)\\n        else:\\n            return self._generate_hf(messages, temp)\\n\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n        self._load_vllm()\\n        from vllm import SamplingParams\\n        # Build prompt from messages using chat template\\n        from transformers import AutoTokenizer\\n        if self._tokenizer is None:\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\n                self.model_path, trust_remote_code=True\\n            )\\n        messages = sanitize_messages_for_template(messages, self._tokenizer)\\n        prompt = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        params = SamplingParams(\\n            temperature=max(temperature, 0.01),\\n            max_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 128_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Czc7KoSdDE5WakkquxNrfp`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -B5 -A15 \"_generate_hf\" /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "92fc801e-9c73-4028-bc8c-f3c7933647a9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TRW866bFmA6DQ4oD3HW3ex",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1409,
+      "cache_read_input_tokens": 55047,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1409
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 129 · 2026-05-21T09:40:54.108Z_
+
+<details><summary>↩ Tool result · `toolu_01Czc7KoSdDE5WakkquxNrfp`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        \\\"\\\"\\\"Generate text from chat messages.\\\"\\\"\\\"\\n        temp = temperature if temperature is not None else self.temperature\\n        if self.use_vllm:\\n            return self._generate_vllm(messages, temp)\\n        else:\\n            return self._generate_hf(messages, temp)\\n\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n        self._load_vllm()\\n        from vllm import SamplingParams\\n        # Build prompt from messages using chat template\\n        from transformers import AutoTokenizer\\n        if self._tokenizer is None:\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\n                self.model_path, trust_remote_code=True\\n            )\\n        messages = sanitize_messages_for_template(messages, self._tokenizer)\\n        prompt = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        params = SamplingParams(\\n--\\n            stop=[\\\"Observation:\\\", \\\"\\\\nObservation\\\"],\\n        )\\n        outputs = self._llm.generate([prompt], params)\\n        return outputs[0].outputs[0].text.strip()\\n\\n    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n        self._load_hf()\\n        import torch\\n        messages = sanitize_messages_for_template(messages, self._tokenizer)\\n        text = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        inputs = self._tokenizer(text, return_tensors=\\\"pt\\\").to(self._model.device)\\n        with torch.no_grad():\\n            outputs = self._model.generate(\\n                **inputs,\\n                max_new_tokens=self.max_new_tokens,\\n                temperature=max(temperature, 0.01),\\n                do_sample=temperature > 0,\\n                top_p=0.9,\\n            )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "30bfcfb3-3f45-420e-87ba-9cd83a5a351c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        \\\\\\\"\\\\\\\"\\\\\\\"Generate text from chat messages.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        temp = temperature if temperature is not None else self.temperature\\\\n        if self.use_vllm:\\\\n            return self._generate_vllm(messages, temp)\\\\n        else:\\\\n            return self._generate_hf(messages, temp)\\\\n\\\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\\\n        self._load_vllm()\\\\n        from vllm import SamplingParams\\\\n        # Build prompt from messages using chat template\\\\n        from transformers import AutoTokenizer\\\\n        if self._tokenizer is None:\\\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\\\n                self.model_path, trust_remote_code=True\\\\n            )\\\\n        messages = sanitize_messages_for_template(messages, self._tokenizer)\\\\n        prompt = self._tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True\\\\n        )\\\\n        params = SamplingParams(\\\\n--\\\\n            stop=[\\\\\\\"Observation:\\\\\\\", \\\\\\\"\\\\\\\\nObservation\\\\\\\"],\\\\n        )\\\\n        outputs = self._llm.generate([prompt], params)\\\\n        return outputs[0].outputs[0].text.strip()\\\\n\\\\n    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\\\n        self._load_hf()\\\\n        import torch\\\\n        messages = sanitize_messages_for_template(messages, self._tokenizer)\\\\n        text = self._tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True\\\\n        )\\\\n        inputs = self._tokenizer(text, return_tensors=\\\\\\\"pt\\\\\\\").to(self._model.device)\\\\n        with torch.no_grad():\\\\n            outputs = self._model.generate(\\\\n                **inputs,\\\\n                max_new_tokens=self.max_new_tokens,\\\\n                temperature=max(temperature, 0.01),\\\\n                do_sample=temperature > 0,\\\\n                top_p=0.9,\\\\n            )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        \\\"\\\"\\\"Generate text from chat messages.\\\"\\\"\\\"\\n        temp = temperature if temperature is not None else self.temperature\\n        if self.use_vllm:\\n            return self._generate_vllm(messages, temp)\\n        else:\\n            return self._generate_hf(messages, temp)\\n\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n        self._load_vllm()\\n        from vllm import SamplingParams\\n        # Build prompt from messages using chat template\\n        from transformers import AutoTokenizer\\n        if self._tokenizer is None:\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\n                self.model_path, trust_remote_code=True\\n            )\\n        messages = sanitize_messages_for_template(messages, self._tokenizer)\\n        prompt = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        params = SamplingParams(\\n--\\n            stop=[\\\"Observation:\\\", \\\"\\\\nObservation\\\"],\\n        )\\n        outputs = self._llm.generate([prompt], params)\\n        return outputs[0].outputs[0].text.strip()\\n\\n    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n        self._load_hf()\\n        import torch\\n        messages = sanitize_messages_for_template(messages, self._tokenizer)\\n        text = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        inputs = self._tokenizer(text, return_tensors=\\\"pt\\\").to(self._model.device)\\n        with torch.no_grad():\\n            outputs = self._model.generate(\\n                **inputs,\\n                max_new_tokens=self.max_new_tokens,\\n                temperature=max(temperature, 0.01),\\n                do_sample=temperature > 0,\\n                top_p=0.9,\\n            )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 130_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I can see the full vLLM generation code. The SamplingParams only sets temperature and max_tokens (and stop tokens). It does NOT set top_p, which means vLLM uses its default (1.0). The HF path sets top_p=0.9.
+
+But wait, the data collection was done using vLLM (use_vllm=True is default), so:
+
+**ScienceWorld (LLMAgent via vLLM):**
+- temperature = 0.3
+
+
+- top_p = 1.0 (vLLM default, not explicitly set)
+- max_tokens = 256
+- vLLM v0.21.0
+
+Let me double-check the reflexion_baseline.py and the MATH/ALFWorld params to make sure I have the complete picture, and verify the SamplingParams construction doesn't have a top_p value I missed.
+
+Looking at the code, the SamplingParams only includes temperature, max_tokens, and stop sequences—no top_p parameter is explicitly set. Now I need to check what parameters the MATH counterfactual vLLM path uses and review the Reflexion baseline params mentioned in the paper before I can write up the appendix sections. parts of main.tex more fully to understand exactly where to insert.
+
+I need to gather the key experimental details: the ScienceWorld agent uses temperature 0.3 with top_p 1.0 and max tokens of 256 via vLLM v0.21.0, MATH runs greedy decoding with 2048 tokens, and ALFWorld uses temperature 0.3 with 256 tokens—all served through the same vLLM version. ScienceWorld is v1.2.3, and the MATH subset contains 795 unique episodes split between Algebra (585) and Counting & Probability (210), just two categories rather than seven.
+
+Now I'm scanning through the appendix sections to find where each of these details should go.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "f9364bf1-e5d7-4137-b1a7-e30823a71b08",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kaSgSDpiwbEYSvcn8f36c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2039,
+      "cache_read_input_tokens": 56456,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2039
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 131_
+
+Let me also check if the MATH vLLM path has top_p, and verify all SamplingParams for each environment.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "c1738ea6-3fc7-423a-b866-44d21fcc77dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kaSgSDpiwbEYSvcn8f36c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2039,
+      "cache_read_input_tokens": 56456,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2039
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jbx5G1SzG6bNbsb9116dtA`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -B2 -A15 \"_generate_vllm\" /root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "3d1de67b-dde7-45e5-8a52-9f60c022350f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kaSgSDpiwbEYSvcn8f36c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2039,
+      "cache_read_input_tokens": 56456,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2039
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-21T09:41:11.392Z_
+
+<details><summary>↩ Tool result · `toolu_01Jbx5G1SzG6bNbsb9116dtA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"            return self._generate_api(messages, temperature)\\n        if self.use_vllm:\\n            return self._generate_vllm(messages, temperature)\\n        return self._generate_hf(messages, temperature)\\n\\n    def _generate_api(self, messages: List[dict], temperature: float) -> str:\\n        \\\"\\\"\\\"Generate via vLLM OpenAI-compatible API.\\\"\\\"\\\"\\n        payload = {\\n            \\\"model\\\": self.model_path,\\n            \\\"messages\\\": messages,\\n            \\\"temperature\\\": max(temperature, 0.01),\\n            \\\"max_tokens\\\": self.max_new_tokens,\\n        }\\n        for attempt in range(3):\\n            try:\\n                resp = requests.post(\\n                    f\\\"{self.api_url}/chat/completions\\\",\\n                    json=payload,\\n--\\n                time.sleep(2)\\n\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n        self._load_vllm()\\n        from vllm import SamplingParams\\n        prompt = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        params = SamplingParams(\\n            temperature=max(temperature, 0.01),\\n            max_tokens=self.max_new_tokens,\\n        )\\n        outputs = self._llm.generate([prompt], params)\\n        return outputs[0].outputs[0].text.strip()\\n\\n    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n        self._load_hf()\\n        import torch\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "8c282724-0460-45cb-96b9-1f774ebcbc91",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"            return self._generate_api(messages, temperature)\\\\n        if self.use_vllm:\\\\n            return self._generate_vllm(messages, temperature)\\\\n        return self._generate_hf(messages, temperature)\\\\n\\\\n    def _generate_api(self, messages: List[dict], temperature: float) -> str:\\\\n        \\\\\\\"\\\\\\\"\\\\\\\"Generate via vLLM OpenAI-compatible API.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n        payload = {\\\\n            \\\\\\\"model\\\\\\\": self.model_path,\\\\n            \\\\\\\"messages\\\\\\\": messages,\\\\n            \\\\\\\"temperature\\\\\\\": max(temperature, 0.01),\\\\n            \\\\\\\"max_tokens\\\\\\\": self.max_new_tokens,\\\\n        }\\\\n        for attempt in range(3):\\\\n            try:\\\\n                resp = requests.post(\\\\n                    f\\\\\\\"{self.api_url}/chat/completions\\\\\\\",\\\\n                    json=payload,\\\\n--\\\\n                time.sleep(2)\\\\n\\\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\\\n        self._load_vllm()\\\\n        from vllm import SamplingParams\\\\n        prompt = self._tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True\\\\n        )\\\\n        params = SamplingParams(\\\\n            temperature=max(temperature, 0.01),\\\\n            max_tokens=self.max_new_tokens,\\\\n        )\\\\n        outputs = self._llm.generate([prompt], params)\\\\n        return outputs[0].outputs[0].text.strip()\\\\n\\\\n    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\\\n        self._load_hf()\\\\n        import torch\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"            return self._generate_api(messages, temperature)\\n        if self.use_vllm:\\n            return self._generate_vllm(messages, temperature)\\n        return self._generate_hf(messages, temperature)\\n\\n    def _generate_api(self, messages: List[dict], temperature: float) -> str:\\n        \\\"\\\"\\\"Generate via vLLM OpenAI-compatible API.\\\"\\\"\\\"\\n        payload = {\\n            \\\"model\\\": self.model_path,\\n            \\\"messages\\\": messages,\\n            \\\"temperature\\\": max(temperature, 0.01),\\n            \\\"max_tokens\\\": self.max_new_tokens,\\n        }\\n        for attempt in range(3):\\n            try:\\n                resp = requests.post(\\n                    f\\\"{self.api_url}/chat/completions\\\",\\n                    json=payload,\\n--\\n                time.sleep(2)\\n\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n        self._load_vllm()\\n        from vllm import SamplingParams\\n        prompt = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        params = SamplingParams(\\n            temperature=max(temperature, 0.01),\\n            max_tokens=self.max_new_tokens,\\n        )\\n        outputs = self._llm.generate([prompt], params)\\n        return outputs[0].outputs[0].text.strip()\\n\\n    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n        self._load_hf()\\n        import torch\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Dk6WRfRtCi7s8E4cW3y3BH`</summary>
+
+```json
+{
+  "server": "westd-18266",
+  "command": "grep -B2 -A15 \"_generate_vllm\" /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "e5986054-0503-4d22-86ef-d63a743366fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kaSgSDpiwbEYSvcn8f36c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2039,
+      "cache_read_input_tokens": 56456,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2039
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-21T09:41:12.194Z_
+
+<details><summary>↩ Tool result · `toolu_01Dk6WRfRtCi7s8E4cW3y3BH`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        self._load()\\n        if self.use_vllm:\\n            return self._generate_vllm(messages, temperature)\\n        else:\\n            return self._generate_hf(messages, temperature)\\n\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n        from vllm import SamplingParams\\n        prompt = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        params = SamplingParams(\\n            temperature=max(temperature, 0.01),\\n            max_tokens=self.max_new_tokens,\\n            stop=[\\\"Observation:\\\", \\\"\\\\nObservation\\\"],\\n        )\\n        outputs = self._llm.generate([prompt], params)\\n        return outputs[0].outputs[0].text.strip()\\n\\n    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n        import torch\\n        text = self._tokenizer.apply_chat_template(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "436eb403-02f6-4733-84f1-11a412466cd7",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"        self._load()\\\\n        if self.use_vllm:\\\\n            return self._generate_vllm(messages, temperature)\\\\n        else:\\\\n            return self._generate_hf(messages, temperature)\\\\n\\\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\\\n        from vllm import SamplingParams\\\\n        prompt = self._tokenizer.apply_chat_template(\\\\n            messages, tokenize=False, add_generation_prompt=True\\\\n        )\\\\n        params = SamplingParams(\\\\n            temperature=max(temperature, 0.01),\\\\n            max_tokens=self.max_new_tokens,\\\\n            stop=[\\\\\\\"Observation:\\\\\\\", \\\\\\\"\\\\\\\\nObservation\\\\\\\"],\\\\n        )\\\\n        outputs = self._llm.generate([prompt], params)\\\\n        return outputs[0].outputs[0].text.strip()\\\\n\\\\n    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\\\n        import torch\\\\n        text = self._tokenizer.apply_chat_template(\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"        self._load()\\n        if self.use_vllm:\\n            return self._generate_vllm(messages, temperature)\\n        else:\\n            return self._generate_hf(messages, temperature)\\n\\n    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n        from vllm import SamplingParams\\n        prompt = self._tokenizer.apply_chat_template(\\n            messages, tokenize=False, add_generation_prompt=True\\n        )\\n        params = SamplingParams(\\n            temperature=max(temperature, 0.01),\\n            max_tokens=self.max_new_tokens,\\n            stop=[\\\"Observation:\\\", \\\"\\\\nObservation\\\"],\\n        )\\n        outputs = self._llm.generate([prompt], params)\\n        return outputs[0].outputs[0].text.strip()\\n\\n    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n        import torch\\n        text = self._tokenizer.apply_chat_template(\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BFeomRVN3QtpsvpkYD1eEj`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "offset": 350,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "15846043-9c53-42d3-af99-b0e33c616df6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011kaSgSDpiwbEYSvcn8f36c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2039,
+      "cache_read_input_tokens": 56456,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2039
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-21T09:41:13.226Z_
+
+<details><summary>↩ Tool result · `toolu_01BFeomRVN3QtpsvpkYD1eEj`</summary>
+
+```text
+350	\bottomrule
+351	\end{tabular}}
+352	\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\pm$std.}
+353	\label{tab:hyperparams}
+354	\end{table}
+355	
+356	\section{Seed Robustness}
+357	\label{app:seed-robustness}
+358	
+359	We assess router generalization at two evaluation granularities: \emph{step-level}, where steps from the same episode may appear in both train and validation sets, and \emph{episode-level}, where entire episodes are held out. Both use cross-split evaluation (seeds $\{42, \ldots, 49\}$, 8 seeds total), where the data partition and training seed both vary. Table~\ref{tab:seed-robustness} reports per-seed results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "3872c377-f370-4557-ae38-b39a06a37497",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+      "content": "\\bottomrule\n\\end{tabular}}\n\\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\\pm$std.}\n\\label{tab:hyperparams}\n\\end{table}\n\n\\section{Seed Robustness}\n\\label{app:seed-robustness}\n\nWe assess router generalization at two evaluation granularities: \\emph{step-level}, where steps from the same episode may appear in both train and validation sets, and \\emph{episode-level}, where entire episodes are held out. Both use cross-split evaluation (seeds $\\{42, \\ldots, 49\\}$, 8 seeds total), where the data partition and training seed both vary. Table~\\ref{tab:seed-robustness} reports per-seed results.",
+      "numLines": 10,
+      "startLine": 350,
+      "totalLines": 767
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 138_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me now look at where to insert things in main.tex:
+
+1. **Item 1 (Agent Inference Parameters)**: After the hyperparameter table in Appendix I (after line 354), add a paragraph about agent inference parameters.
+
+2. **Item 3 (ScienceWorld version)**: Appendix C starts at line 120. I should add version info there or at first mention. Let me look at Appendix C opening text.
+
+3. **Item 4 (MATH subset distribution)**: Appendix L starts at line 482. I need to add MATH type distribution. 
+
+The MATH subset only has two types—Algebra with 585 problems and Counting & Probability with 210—so I'll note that. Now let me examine the Appendix C opening more carefully to find where to best insert the ScienceWorld version information, and check the Appendix L area for the MATH distribution placement.
+
+Looking at Appendix C, it's titled "Per-Task Decomposition" and discusses selecting 11 of ScienceWorld's 30 task types. This seems like the natural place to add version details, though I should also check where ScienceWorld is first mentioned in the experiments section to see if that's a better insertion point.
+
+The task specifically asks me to add information at the start of Appendix C in main.tex around line 122. I'm planning three edits total: one for Appendix I with agent inference parameters, one for Appendix C with the ScienceWorld version, and one for Appendix J with additional details. Let me structure the LaTeX additions for each section. I'm trying to figure out where exactly to place the MATH distribution information in Appendix L. Looking at the structure, there's the cross-env table around line 508, then the ALFWorld breakdown through line 532, followed by a Cross-Model Verification section. I need to find the best spot to insert details about the 795 MATH problems split between Algebra and Counting & Probability, and I should also verify that the reference key for MATH is correct in the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "5f9756fd-ba5d-42a5-85ba-5fa2ef1020e5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCmmZvjucq61GfrPaNuFuo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2473,
+      "cache_read_input_tokens": 58495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 139_
+
+I have all the data. Let me find the MATH citation key and prepare the edits.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "ca9a3e16-52a9-4fbd-ab09-02db7d40fec1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCmmZvjucq61GfrPaNuFuo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2473,
+      "cache_read_input_tokens": 58495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 140_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_014QiB8Zzn81G3aoSZ911cda`</summary>
+
+```json
+{
+  "pattern": "MATH.*cite|cite.*math|hendrycks",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "0ef27ffb-2308-405a-9bfa-14cfe9cbd72a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCmmZvjucq61GfrPaNuFuo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2473,
+      "cache_read_input_tokens": 58495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 141 · 2026-05-21T09:41:42.757Z_
+
+<details><summary>↩ Tool result · `toolu_014QiB8Zzn81G3aoSZ911cda`</summary>
+
+```text
+docs/paper/responsibleNLPchecklist.tex:24:Yes. All environments, models, and methods are cited: ScienceWorld~\cite{scienceworld-2022}, ALFWorld~\cite{alfworld-2021}, MATH~\cite{math-2021}, Qwen2.5~\cite{qwen25-2024}, Llama-3.1~\cite{llama3-2024}, ReAct~\cite{react-2023}, Reflexion~\cite{reflexion-2023}.
+docs/paper/experiments.tex:80:\paragraph{MATH.} On MATH Level~4--5~\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\%$ vs.\ $73.0\%$, McNemar $p = 0.81$), with 74.6\% no-preference. Without catastrophic failure, no routing signal emerges.
+docs/paper/main.bbl:86:\bibitem[{Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath, Arora, Basart,
+docs/paper/main.bbl:88:Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric
+docs/paper/method.tex:9:[Omitted long matching line]
+docs/paper/method.tex:29:[Omitted long matching line]
+docs/paper/method.tex:64:[Omitted long matching line]
+docs/paper/main.tex:49:[Omitted long matching line]
+docs/paper/main.log:1031:[][]\T1/ptm/m/n/10.95 (+20) 2021[][]), MATH ([][]Hendrycks et al.[][], [][]2021
+docs/paper/introduction.tex:12:[Omitted long matching line]
+docs/paper/references.bib:220:  author={Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart, Steven and Tang, Eric and Song, Dawn and Steinhardt, Jacob},
+docs/paper/main.aux:921:\bibcite{llama3-2024}{{10}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten et~al.}}}
+docs/paper/main.aux:925:\bibcite{math-2021}{{14}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Kadavath, Arora, Basart, Tang, Song, and Steinhardt}}}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "2d9f9d6e-8cd7-4a56-8fa5-a325c17e45ac",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/responsibleNLPchecklist.tex:24:Yes. All environments, models, and methods are cited: ScienceWorld~\\cite{scienceworld-2022}, ALFWorld~\\cite{alfworld-2021}, MATH~\\cite{math-2021}, Qwen2.5~\\cite{qwen25-2024}, Llama-3.1~\\cite{llama3-2024}, ReAct~\\cite{react-2023}, Reflexion~\\cite{reflexion-2023}.\ndocs/paper/experiments.tex:80:\\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 74.6\\% no-preference. Without catastrophic failure, no routing signal emerges.\ndocs/paper/main.bbl:86:\\bibitem[{Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath, Arora, Basart,\ndocs/paper/main.bbl:88:Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric\ndocs/paper/method.tex:9:[Omitted long matching line]\ndocs/paper/method.tex:29:[Omitted long matching line]\ndocs/paper/method.tex:64:[Omitted long matching line]\ndocs/paper/main.tex:49:[Omitted long matching line]\ndocs/paper/main.log:1031:[][]\\T1/ptm/m/n/10.95 (+20) 2021[][]), MATH ([][]Hendrycks et al.[][], [][]2021\ndocs/paper/introduction.tex:12:[Omitted long matching line]\ndocs/paper/references.bib:220:  author={Hendrycks, Dan and Burns, Collin and Kadavath, Saurav and Arora, Akul and Basart, Steven and Tang, Eric and Song, Dawn and Steinhardt, Jacob},\ndocs/paper/main.aux:921:\\bibcite{llama3-2024}{{10}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten et~al.}}}\ndocs/paper/main.aux:925:\\bibcite{math-2021}{{14}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Kadavath, Arora, Basart, Tang, Song, and Steinhardt}}}",
+    "numLines": 13
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 142_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RA82bbBQxr4LGqhABd7EjM`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "offset": 528,
+  "limit": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "3d3b5f20-61cf-449c-ab26-e672bde16de7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LCmmZvjucq61GfrPaNuFuo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2473,
+      "cache_read_input_tokens": 58495,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2473
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-21T09:41:43.183Z_
+
+<details><summary>↩ Tool result · `toolu_01RA82bbBQxr4LGqhABd7EjM`</summary>
+
+```text
+528	\bottomrule
+529	\end{tabular}
+530	\caption{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\Delta_{\text{full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\Delta_{\text{full}}$ descending.}
+531	\label{tab:alfworld-pertask}
+532	\end{table}
+533	
+534	\section{Cross-Model Verification}
+535	\label{app:cross-model}
+536	
+537	We replicate the counterfactual analysis with Llama-3.1-8B-Instruct across all 11 task types ($N{=}220$ episode pairs, 20 per type; Table~\ref{tab:cross-model-detail}).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "6d3d1125-fa0c-4ba4-b53f-75dfb6362abb",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+      "content": "\\bottomrule\n\\end{tabular}\n\\caption{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\\Delta_{\\text{full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\\Delta_{\\text{full}}$ descending.}\n\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\section{Cross-Model Verification}\n\\label{app:cross-model}\n\nWe replicate the counterfactual analysis with Llama-3.1-8B-Instruct across all 11 task types ($N{=}220$ episode pairs, 20 per type; Table~\\ref{tab:cross-model-detail}).",
+      "numLines": 10,
+      "startLine": 528,
+      "totalLines": 767
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 144_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have everything. Let me also check the exact location in experiments.tex where ScienceWorld is first mentioned, to decide whether to put the version there or in Appendix C.
+
+The citation key for MATH is `math-2021`. ScienceWorld is `scienceworld-2022`.
+
+Now let me plan all three edits:
+
+**Edit 1: Appendix I - Agent Inference Parameters**
+Insert after line 354 (after `\end{table}`) and before line 356 (`\section{Seed Robustness}`).
+
+
+**Edit 2: Appendix C - ScienceWorld version**
+Insert at the beginning of Appendix C content (line 122). Add the version mention before the existing text.
+**Edit 3: Appendix L - MATH subset composition**
+Insert after line 532 (`\end{table}`) and before line 534 (`\section{Cross-Model Verification}`).
+
+I should verify whether the paper uses `\citep` or `\cite` for consistency with the existing citation style.
+
+Looking at experiments.tex, I can see `\citep{math-2021}` is used, so that's the correct format. Now I'll apply all three edits, starting with the ScienceWorld version in Appendix C. Since this section discusses per-task decomposition, I'll add the version sentence right after the section label and before the current opening text about selecting task types.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "5e65c542-9de8-40e1-ab56-870e336f71a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRAjRaE9bSqPegpSjKFLLD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2596,
+      "cache_read_input_tokens": 60968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2596
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 145_
+
+All data collected. Now making the three edits to main.tex.
+
+Summary of extracted values:
+- **ScienceWorld**: v1.2.3, agent uses T=0.3, max_tokens=256 via vLLM v0.21.0
+- **MATH**: T=0.0 (greedy), max_tokens=2048
+- **ALFWorld**: T=0.3, max_tokens=256
+- **MATH distribution**: Algebra 585 (73.6%), Counting & Probability 210 (26.4%), total 795
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "c6d6f5b9-a723-4036-9343-5a324d7c745c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRAjRaE9bSqPegpSjKFLLD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2596,
+      "cache_read_input_tokens": 60968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2596
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 146_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01UqPBJCpz1h6pVb2firXjfu`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "old_string": "\\label{tab:hyperparams}\n\\end{table}\n\n\\section{Seed Robustness}",
+  "new_string": "\\label{tab:hyperparams}\n\\end{table}\n\n\\paragraph{Agent inference parameters.}\nFor ScienceWorld, each agent step uses temperature $T{=}0.3$ and maximum generation length of 256 tokens, served via vLLM v0.21.0. Top-$p$ is left at the vLLM default of $1.0$ (no nucleus sampling). For MATH, the agent uses greedy decoding ($T{=}0.0$) with a maximum of 2{,}048 tokens per generation. For ALFWorld, we use $T{=}0.3$ with 256 maximum tokens. All three environments use Qwen2.5-7B-Instruct~\\citep{qwen25-2024} as the backbone.\n\n\\section{Seed Robustness}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "257f0f01-ba71-4b52-ba35-30b2babc5169",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JRAjRaE9bSqPegpSjKFLLD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2596,
+      "cache_read_input_tokens": 60968,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2596
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 147 · 2026-05-21T09:41:59.471Z_
+
+<details><summary>↩ Tool result · `toolu_01UqPBJCpz1h6pVb2firXjfu`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "741be165-130a-40a1-b3a2-9a86682ad12c",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+    "oldString": "\\label{tab:hyperparams}\n\\end{table}\n\n\\section{Seed Robustness}",
+    "newString": "\\label{tab:hyperparams}\n\\end{table}\n\n\\paragraph{Agent inference parameters.}\nFor ScienceWorld, each agent step uses temperature $T{=}0.3$ and maximum generation length of 256 tokens, served via vLLM v0.21.0. Top-$p$ is left at the vLLM default of $1.0$ (no nucleus sampling). For MATH, the agent uses greedy decoding ($T{=}0.0$) with a maximum of 2{,}048 tokens per generation. For ALFWorld, we use $T{=}0.3$ with 256 maximum tokens. All three environments use Qwen2.5-7B-Instruct~\\citep{qwen25-2024} as the backbone.\n\n\\section{Seed Robustness}",
+    "originalFile": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\graphicspath{{figures/}}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\n\\title{Death Avoidance as the Dominant Routing Signal:\\\\A Counterfactual Analysis on ScienceWorld}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\\input{introduction}\n\\input{method}\n\\input{experiments}\n\\input{related_work}\n\\input{discussion}\n\\input{conclusion}\n\n\\section*{Limitations}\n\n\\paragraph{Environmental scope.}\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\ref{app:penalty}). The 19 excluded task types (63\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\\S\\ref{sec:cross-env}, \\S\\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \\S\\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\\times}$ scale) reduces death rate but does not eliminate death dominance (\\S\\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).\n\n\\paragraph{Methodological constraints.}\nOur internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\\% pre-event neutral). The issue is granularity mismatch---applying correct-direction labels to uninformative steps---not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.\n\n\\paragraph{Statistical limitations.}\nEpisodes within the same task type are not fully independent because they share environment dynamics, though they use different random seeds. Cluster bootstrap with $K{=}11$ task-type clusters yields wider CIs ($[73.3\\%, 100.0\\%]$); with $K < 40$ clusters, these should be interpreted cautiously~\\citep{cameron-2008,webb-2023}. A wild cluster bootstrap ($K{=}11$, $p < 0.001$; Appendix~\\ref{app:wild-cluster}) and 100\\% directional consistency across all 28 death-prone tasks (Appendix~\\ref{app:per-task-ci}) mitigate this concern.\n\n\\paragraph{Pure-strategy upper bound.}\nOur counterfactual analysis compares pure strategies (always-internal vs.\\ always-deterministic). In mixed routing, the router can selectively invoke deterministic mode on high-risk steps, potentially reducing death asymmetry. Thus, DAF${=}90.4\\%$ represents an upper bound on death avoidance's contribution to optimized routing; the actual contribution under mixed strategies may be lower.\n\n\\section*{Ethics Statement}\n\nThis work uses ScienceWorld \\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All evaluation environments (ScienceWorld, ALFWorld, MATH) are released under permissive open-source licenses (Apache 2.0 / MIT). All models used (Qwen2.5 family, Llama-3.1-8B) are publicly available for research use. All language models are accessed via standard APIs or publicly released weights. Experiments were conducted on 2$\\times$ NVIDIA RTX 5090 (32GB) and 4$\\times$ NVIDIA RTX 6000 PRO (96GB), totaling approximately 200 GPU-hours for data collection, router training, and evaluation. Code and data will be released upon acceptance.\n\n\\bibliography{references}\n\n\\appendix\n\n\\noindent\\textbf{Appendix Overview.}\n\\hyperref[app:sci]{A.~Signal Concentration Index} $\\cdot$\n\\hyperref[app:labeling]{B.~Labeling Quality Audit} $\\cdot$\n\\hyperref[app:per-task]{C.~Per-Task Decomposition} $\\cdot$\n\\hyperref[app:correlation]{D.~Correlation Robustness} $\\cdot$\n\\hyperref[app:wild-cluster]{E.~Cluster Bootstrap Sensitivity} $\\cdot$\n\\hyperref[app:per-task-ci]{F.~Per-Task CIs} $\\cdot$\n\\hyperref[app:loto-daf]{G.~Leave-One-Task-Out DAF} $\\cdot$\n\\hyperref[app:dose-response]{H.~Dose-Response Breakdown} $\\cdot$\n\\hyperref[app:router-details]{I.~Router Training Details} $\\cdot$\n\\hyperref[app:seed-robustness]{J.~Seed Robustness} $\\cdot$\n\\hyperref[app:penalty]{K.~Penalty Sensitivity} $\\cdot$\n\\hyperref[app:cross-env-details]{L.~Cross-Environment Details} $\\cdot$\n\\hyperref[app:cross-model]{M.~Cross-Model Verification} $\\cdot$\n\\hyperref[app:failure-modes]{N.~Failure Mode Analysis} $\\cdot$\n\\hyperref[app:grounding-ablation]{O.~Grounding Ablation} $\\cdot$\n\\hyperref[app:ablations]{P.~Ablation Studies} $\\cdot$\n\\hyperref[sec:threshold-routing]{Q.~Threshold Routing} $\\cdot$\n\\hyperref[app:decision-framework]{R.~Decision Framework} $\\cdot$\n\\hyperref[app:extended-validation]{S.~Extended Validation}\n\n\\section{Signal Concentration Index}\n\\label{app:sci}\n\nLet $K$ denote the number of task types and $c_k$ the contribution of task type $k$ to the aggregate routing signal, defined as the fraction of total death-rate differential attributable to task $k$:\n\\begin{equation}\n    c_k = \\frac{n_k \\cdot \\delta_k}{\\sum_{j=1}^{K} n_j \\cdot \\delta_j}\n\\end{equation}\nwhere $n_k$ is the number of episodes and $\\delta_k = d_k^{\\tt int} - d_k^{\\tt det}$ is the per-task death-rate differential. The SCI is the Gini coefficient over $\\{c_1, \\ldots, c_K\\}$:\n\\begin{equation}\n    \\text{SCI} = \\frac{\\sum_{i=1}^K \\sum_{j=1}^K |c_i - c_j|}{2K \\sum_{k=1}^K c_k}\n\\end{equation}\n\n\\section{Labeling Quality Audit}\n\\label{app:labeling}\n\n\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR\n\\IF{$d_{\\tt int} = 1$ \\AND $d_{\\tt det} = 0$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = 0$ \\AND $d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{both dead}\n\\ELSIF{$s_{\\tt det} > s_{\\tt int}$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSIF{$s_{\\tt int} > s_{\\tt det}$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSE\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{tied alive}\n\\ENDIF\n\\RETURN $\\ell$\n\\end{algorithmic}\n\\end{algorithm}\n\nNote that episode-level labels are used to evaluate step-level predictions, introducing a granularity mismatch rather than independent validation. A potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine computation mode differences. We audit all 245 labels. Of the 150 \\texttt{no\\_preference} labels (61.2\\%), 115 (46.9\\%) are both-alive ties and 35 (14.3\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\%, within 1$\\sigma$ of the full-label retrain (57.6 $\\pm$ 0.5\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\S\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\% step-level tie rate (\\S\\ref{sec:collection}) further motivates episode-level over step-level labeling.\n\n\\section{Per-Task Decomposition}\n\\label{app:per-task}\nWe select 11 of ScienceWorld's 30 task types for analysis. Types are excluded when they were used for pipeline development (5 tasks, standard hold-out practice), are taxonomically redundant with a retained family representative (7 tasks), or exhibit near-zero task progress under both strategies (7 tasks, agent capability floor).\\footnote{Excluded tasks exhibit even stronger death dominance than included tasks ($\\Delta\\text{DR} = +38.2$\\,pp vs.\\ $+28.7$\\,pp; Table~\\ref{tab:excluded-death}).}\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrrccc@{}}\n\\toprule\nTask & $n$ & $\\Delta_\\text{full}$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & D / I / N \\\\\n\\midrule\nid-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\\\\nlifespan-long          & 25  & $+44.00$ & 56   & 16   & 11 / 1 / 13 \\\\\nlifespan-l-then-s      & 20  & $+40.80$ & 45   & 10   & 8 / 1 / 11  \\\\\ninclined-plane         & 20  & $+36.00$ & 55   & 20   & 7 / 0 / 13  \\\\\nfreeze                 & 20  & $+30.50$ & 55   & 25   & 6 / 0 / 14  \\\\\nmeas-melt-point        & 20  & $+30.05$ & 55   & 25   & 6 / 0 / 14  \\\\\nid-life-stages-2       & 20  & $+30.00$ & 50   & 20   & 6 / 0 / 14  \\\\\nfind-animal            & 20  & $+26.65$ & 50   & 25   & 5 / 0 / 15  \\\\\ngrow-fruit             & 20  & $+25.10$ & 45   & 20   & 6 / 1 / 13  \\\\\nchem-mix               & 20  & $+21.80$ & 45   & 25   & 6 / 2 / 12  \\\\\n\\midrule\nfind-non-living-thing$^\\dagger$ & 40 & $+9.58$ & 0  & 0    & 16 / 4 / 20 \\\\\n\\midrule\n\\textbf{All (11 tasks)} & \\textbf{245} & $\\mathbf{+29.60}$ & \\textbf{42.9} & \\textbf{16.3} & \\textbf{86 / 9 / 150} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task decomposition of the death avoidance effect. D\\%: death rate for internal (int) and deterministic (det) strategies. D/I/N: episode labels (det-preferred / internal-preferred / no-preference). Sorted by $\\Delta_{\\text{full}}$ descending. The \\textit{All} row is an episode-weighted aggregate across 245 episodes. $\\dagger$\\,Only task with zero deaths under both strategies; $n{=}40$ because data was collected in two batches, with the second batch adding 20 episodes to increase statistical power for this zero-death outlier.}\n\\label{tab:per-task}\n\\end{table}\n\n\\paragraph{Task selection and anti-cherry-picking.}\nEighteen of the 19 excluded task types (95\\%) exhibit death-asymmetric patterns (Table~\\ref{tab:excluded-death}): internal-reasoning death rates range from 40\\% to 60\\% (mean 53.9\\%), while deterministic death rates range from 0\\% to 40\\% (mean 15.8\\%), yielding a mean death-rate differential of $+38.2$\\,pp, exceeding the $+28.7$\\,pp for included tasks. The included subset is thus \\emph{less} death-asymmetric than the excluded subset, the opposite of what a cherry-picking hypothesis would predict. The sole exception is \\texttt{grow-plant}, an intrinsically safe task with zero deaths under both strategies, paralleling \\texttt{find-non-living-thing} in the included set. The 19 excluded tasks fall into three independently motivated categories: five used during pipeline development (standard hold-out practice), seven taxonomically redundant with included family representatives (deduplication), and seven where the 7B backbone achieves near-zero task progress regardless of strategy (agent capability floor). In no case was a task excluded because death dominance was absent. Exclusion is driven by absence of non-death routing signal ($\\Delta_{\\text{nd}} = 0$ for 53\\% of excluded tasks) and standard deduplication practices. \\texttt{find-non-living-thing} serves as an internal counterexample: zero deaths under both strategies yet included because it exhibits non-death routing signal ($\\Delta_{\\text{full}} = +9.58$ entirely from score differences), and deterministic is not always preferred (4 of 20 non-tie labels favor internal).\n\n\\begin{table}[t]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2pt}\n\\begin{tabular}{@{}llrcccl@{}}\n\\toprule\nTask & Grp & $n$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & $\\Delta$DR & Excl.\\ reason \\\\\n\\midrule\nboil                          & A & 20 & 50 & 20 & $+30$ & dev set \\\\\nchange-state-of-matter        & A & 20 & 55 & 15 & $+40$ & dev set \\\\\nchem-mix-paint-secondary      & A & 20 & 45 & 10 & $+35$ & dev set \\\\\ngrow-plant                    & A & 20 &  0 &  0 & $\\phantom{+}0$  & dev set \\\\\nmelt                          & A & 20 & 55 & 15 & $+40$ & dev set \\\\\n\\midrule\nchem-mix-paint-tertiary       & B &  5 & 40 & 20 & $+20$ & family redundancy \\\\\nfind-living-thing             & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\nfind-plant                    & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\ninclined-friction-named       & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\ninclined-friction-unnamed     & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\nlifespan-shortest             & B &  5 & 60 & 40 & $+20$ & family redundancy \\\\\nmeasure-melt-known            & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\n\\midrule\nmendelian-known               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nmendelian-unknown             & C &  5 & 60 & 40 & $+20$ & agent floor \\\\\npower-component               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\npower-renewable               & C &  5 & 60 &  0 & $+60$ & agent floor \\\\\ntest-conductivity             & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\ntest-conductivity-unknown     & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nuse-thermometer               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\n\\midrule\n\\textbf{Mean (19 excluded)}   &   &    & \\textbf{53.9} & \\textbf{15.8} & $\\mathbf{+38.2}$ & \\\\\n\\textit{cf.\\ included (11)}   &   &    & \\textit{46.5} & \\textit{17.8} & $\\textit{+28.7}$ & \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Death-rate analysis of all 19 excluded task types. D\\%: death rate (score $\\leq -100$). $\\Delta$DR = D\\%\\textsubscript{int} $-$ D\\%\\textsubscript{det}. 18 of 19 excluded tasks (95\\%) exhibit positive death asymmetry ($\\Delta$DR $\\geq +20$\\,pp). Exclusion groups: A = development set (excluded to prevent circular evaluation), B = taxonomically redundant with an included family representative, C = agent-floor tasks (backbone achieves near-zero progress regardless of strategy). The mean $\\Delta$DR among excluded tasks ($+38.2$\\,pp) exceeds that of included tasks ($+28.7$\\,pp), confirming that task selection does not bias toward death-prone tasks. Group B--C estimates are based on $n{=}5$ prescreening episodes per task and should be interpreted as directional evidence rather than precise rate estimates.}\n\\label{tab:excluded-death}\n\\end{table}\n\n\\section{Correlation Robustness}\n\\label{app:correlation}\n\nThe Pearson $r = 0.9698$ reported in \\S\\ref{sec:death-decomp} is robust across multiple diagnostics. Spearman rank correlation is $\\rho = 0.986$ ($p = 2.4 \\times 10^{-8}$); the relationship is not driven by outliers or non-linearity. A nonparametric bootstrap (10{,}000 resamples) yields 95\\% CI $[0.952, 0.995]$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lr@{}}\n\\toprule\nTask removed & $r_{\\text{LOO}}$ \\\\\n\\midrule\nid-life-stages-1       & 0.963 \\\\\nlifespan-long          & 0.969 \\\\\nlifespan-l-then-s      & 0.976 \\\\\ninclined-plane         & 0.969 \\\\\nfreeze                 & 0.971 \\\\\nmeas-melt-point        & 0.972 \\\\\nid-life-stages-2       & 0.972 \\\\\nfind-animal            & 0.970 \\\\\ngrow-fruit             & 0.973 \\\\\nchem-mix               & 0.969 \\\\\nfind-non-living-thing  & 0.980 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-out Pearson $r$ for the death rate differential vs.\\ $\\Delta_{\\text{full}}$ correlation. Full $r = 0.970$; LOO range $[0.963, 0.980]$. No single task type is a leverage point.}\n\\label{tab:loo}\n\\end{table}\n\n\\section{Cluster Bootstrap Sensitivity Analysis}\n\\label{app:wild-cluster}\n\nWith $K{=}11$ task-type clusters, cluster bootstrap falls well below the $K{\\geq}20$--30 recommended for reliable inference \\citep{cameron-2008,webb-2023}. The narrower CIs obtained reflect known small-sample bias toward underestimation of variance, not tighter inference.\n\nEpisodes within the same task type share environment dynamics, raising the concern that the effective sample size is closer to $K$ (task types) than $N$ (episodes). We address this with cluster-robust inference treating each task type as a cluster ($K{=}11$, all 11 included task types, 245 episodes).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nMethod & $p$-value & 95\\% CI \\\\\n\\midrule\nCluster-robust $t$-test ($t{=}10.0$, df$=$10) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nWild cluster bootstrap ($B{=}9{,}999$) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nExact permutation ($2{,}048$ perms) & $0.002$ & --- \\\\\nSign test & $< 0.001$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cluster-level tests of death-rate asymmetry ($K{=}11$ task clusters, 245 episodes). 10 of 11 clusters show internal DR $>$ deterministic DR; the sole exception (\\texttt{find-non-living-thing}) has zero deaths under both strategies. Cohen's $d = 3.02$. The exact permutation $p = 0.002$ ($4/2{,}048$) reflects the near-unanimous directional consistency.}\n\\label{tab:wild-cluster}\n\\end{table}\n\n\\noindent All methods confirm significance with $p < 0.01$, and the 95\\% CI $[0.73, 1.00]$ excludes zero by a wide margin. With $K{=}11$ task types, ICC estimation itself carries substantial uncertainty; the high within-task consistency of death patterns (all-or-nothing per task type) suggests high ICC, which explains the CI narrowing under cluster resampling.\n\nWe retain this analysis for transparency; readers should rely on the non-clustered episode-level bootstrap (\\S\\ref{sec:death-decomp}) as the primary inference.\n\n\\section{Per-Task Death Rate Confidence Intervals}\n\\label{app:per-task-ci}\n\nWe compute bootstrap 95\\% CIs for the death-rate differential ($\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$) for all 30 ScienceWorld task types. Of 30 tasks, 28 are death-prone (at least one death under either strategy); the remaining 2 (\\texttt{grow-plant}, \\texttt{find-non-living-thing}) have zero deaths under both strategies.\n\nAcross all 28 death-prone tasks, internal DR exceeds deterministic DR without exception (100\\% directional consistency). The pooled death-rate differential is $+37.3\\%$ (95\\% CI: $[29.7\\%, 44.4\\%]$). Fifteen of 28 tasks are individually significant (CI excludes zero); the 13 non-significant tasks all have $n{=}5$ prescreening episodes, where statistical power is insufficient to detect even large effects (e.g., a task with $\\Delta\\text{DR} = +40$\\,pp at $n{=}5$ has a CI of $\\pm 43$\\,pp). The universal directional consistency, combined with the pooled significance, confirms that death asymmetry is not driven by a subset of outlier tasks.\n\n\\section{Leave-One-Task-Out DAF Sensitivity}\n\\label{app:loto-daf}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Leave-one-task-out DAF sensitivity (penalty-independent label fraction). Among the 10 death-prone tasks, removing any single task changes DAF by at most 3.0\\,pp (range: 75.9\\%--78.9\\%). Removing \\emph{Find Non-Living Thing}, the sole death-free task that contributes all 20 score-comparison episodes, raises DAF to 100\\% by construction.}\n\\label{tab:loto-daf}\n\\begin{tabular}{lrrr}\n\\toprule\nRemoved Task & $N_\\text{rem}$ & DAF (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n(none, full) & 245 & 78.9 & --- \\\\\n\\midrule\nFind Non-Living$^\\dagger$ & 205 & 100.0 & +21.1 \\\\\nLifespan Longest & 220 & 75.9 & $-$3.0 \\\\\nLife Stages 1 & 225 & 76.7 & $-$2.2 \\\\\nLifespan Long+Short & 225 & 76.7 & $-$2.2 \\\\\nChemistry Mix & 225 & 77.0 & $-$1.9 \\\\\nGrow Fruit & 225 & 77.3 & $-$1.7 \\\\\nInclined Plane Angle & 225 & 77.3 & $-$1.7 \\\\\nFreeze & 225 & 77.5 & $-$1.4 \\\\\nLife Stages 2 & 225 & 77.5 & $-$1.4 \\\\\nMelt Pt Unknown & 225 & 77.5 & $-$1.4 \\\\\nFind Animal & 225 & 77.8 & $-$1.2 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize $^\\dagger$Only death-free task; contributes all score-comparison labels. Sorted by $|\\Delta|$ descending.}\n\\end{table}\n\n\\section{Per-Task Dose-Response Breakdown}\n\\label{app:dose-response}\n\nTable~\\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\\,pp range for \\texttt{measure-melting-point}), but the aggregate smooths to a 2.5\\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \\texttt{freeze} is consistently the hardest task (50--60\\% DR across all $N$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-task death rates (\\%) for Reflexion at $N{=}3$, 4, 5 on 10 death-prone tasks ($n{=}20$ per task). Aggregate death rates confirm stabilization at $N \\geq 3$ (range: $34.0$--$36.5\\%$).}\n\\label{tab:dose-response-detail}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nTask & $N{=}3$ & $N{=}4$ & $N{=}5$ \\\\\n\\midrule\nchemistry-mix & 25.0 & 35.0 & 20.0 \\\\\nfind-animal & 45.0 & 30.0 & 45.0 \\\\\nfreeze & 50.0 & 50.0 & 60.0 \\\\\ngrow-fruit & 30.0 & 25.0 & 25.0 \\\\\nidentify-life-stages-1 & 35.0 & 35.0 & 35.0 \\\\\nidentify-life-stages-2 & 25.0 & 25.0 & 30.0 \\\\\ninclined-plane-angle & 20.0 & 30.0 & 35.0 \\\\\nlifespan-longest & 45.0 & 40.0 & 40.0 \\\\\nlifespan-long+short & 30.0 & 45.0 & 35.0 \\\\\nmeasure-melting-pt & 35.0 & 50.0 & 25.0 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{34.0} & \\textbf{36.5} & \\textbf{35.0} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Router Training Details}\n\\label{app:router-details}\n\nWe use Qwen3-1.7B for the router to avoid circular dependency with the Qwen2.5-7B data-generating model.\n\nWith gradient accumulation of 1 (effective batch size 4), routing performance is highly sensitive to the evaluation split; this suggests overfitting to specific train/validation partition boundaries. With gradient accumulation of 8 (effective batch size 32), step-level performance stabilizes across splits (${\\sim}54\\%$ balanced accuracy). All reported results use gradient accumulation 8.\n\nUnder step-level evaluation with a fixed data split, cross-seed balanced accuracy ranges from 52.7\\% to 58.1\\%, but internal recall varies from 51.5\\% to 81.8\\%, which reflects threshold sensitivity. However, episode-level evaluation reveals that this apparent discrimination does not generalize: balanced accuracy drops to $47.1 \\pm 2.2\\%$ across 8 cross-split seeds (Appendix~\\ref{app:seed-robustness}). Deployed end-to-end, the trained router allocates 97.0\\% of episodes to deterministic computation with 17.6\\% death rate, and misrouting cost (death from internally-routed episodes) exceeds the benefit of correctly routing rare internal-preferred cases.\n\n\\paragraph{Evaluation methods.} All results use \\emph{generation-based evaluation}: the model generates a routing label as text (\\texttt{enable\\_thinking=False}), parsed for classification. We evaluate at two granularities: \\emph{step-level} (steps from the same episode may appear in both train and validation sets) and \\emph{episode-level} (entire episodes held out). Step-level accuracy ($54.1 \\pm 5.4\\%$) exceeds chance (the router captures some signal), but episode-level accuracy ($47.1 \\pm 2.2\\%$, below chance) shows this does not generalize to unseen episodes. Paraphrase-based text augmentation (Appendix~\\ref{app:seed-robustness}) provides no improvement; real-data scaling remains open. Always-deterministic is trivially near-optimal given DAF $= 90.4\\%$. The main text (\\S\\ref{sec:router-diagnostic}) reports controlled 4-seed results at three scales; the model-size ablation (Appendix~\\ref{app:ablations}) provides further detail.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nHyperparameter & Classification Head & Implicit Router \\\\\n\\midrule\nBase model & Qwen3-1.7B & Qwen3-1.7B \\\\\nArchitecture & Linear + LoRA & SFT + LoRA \\\\\nLoRA $r$ / $\\alpha$ & 16 / 32 & 16 / 32 \\\\\nLearning rate & 2e-5 & 2e-4 \\\\\nOptimizer & AdamW & AdamW \\\\\nEpochs & 3 & 3 \\\\\nBatch size (per device) & 4 & 4 \\\\\nGradient accumulation & 8 & 8 \\\\\nWarmup ratio & 0.1 & 0.1 \\\\\nWeight decay & 0.01 & 0.01 \\\\\nMax sequence length & 512 & 512 \\\\\nSeeds & \\{42\\} & \\{42, 123, 456, 789\\} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\\pm$std.}\n\\label{tab:hyperparams}\n\\end{table}\n\n\\section{Seed Robustness}\n\\label{app:seed-robustness}\n\nWe assess router generalization at two evaluation granularities: \\emph{step-level}, where steps from the same episode may appear in both train and validation sets, and \\emph{episode-level}, where entire episodes are held out. Both use cross-split evaluation (seeds $\\{42, \\ldots, 49\\}$, 8 seeds total), where the data partition and training seed both vary. Table~\\ref{tab:seed-robustness} reports per-seed results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nEval.\\ Granularity & Seed & Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nStep-level & 42 & 57.06 \\\\\n(same-episode & 43 & 63.99 \\\\\nleakage) & 44 & 55.43 \\\\\n & 45 & 56.14 \\\\\n & 46 & 55.45 \\\\\n & 47 & 50.08 \\\\\n & 48 & 48.03 \\\\\n & 49 & 59.30 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $54.1 \\pm 5.4$ \\\\\n\\midrule\nEpisode-level & 42 & 48.1 \\\\\n(held-out & 43 & 47.9 \\\\\nepisodes) & 44 & 49.6 \\\\\n & 45 & 49.4 \\\\\n & 46 & 48.5 \\\\\n & 47 & 43.1 \\\\\n & 48 & 45.4 \\\\\n & 49 & 44.8 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $47.1 \\pm 2.2$ \\\\\n\\midrule\n\\multicolumn{2}{@{}l}{Always-det (= majority-vote)} & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-seed router performance under cross-split evaluation (8 seeds, generation-based, \\texttt{enable\\_thinking=False}). Step-level evaluation allows steps from the same episode in both train and validation sets (same-episode leakage). Episode-level evaluation holds out entire episodes; the resulting $47.1 \\pm 2.2\\%$ is below the 50\\% chance baseline. A text augmentation ablation (Table~\\ref{tab:text-augmentation}) confirms this failure persists under the current data distribution and augmentation regime.}\n\\label{tab:seed-robustness}\n\\end{table}\n\nThe contrast between step-level ($54.1 \\pm 5.4\\%$) and episode-level ($47.1 \\pm 2.2\\%$) evaluation reveals a generalization gap: the step-level signal likely reflects memorization of episode-specific context (enabled by same-episode leakage) rather than extraction of generalizable routing features. At episode level, the router performs below chance across all 8 seeds (range: 43.1\\%--49.6\\%). Paraphrase-based text augmentation (Table~\\ref{tab:text-augmentation}) from 25\\% to 800\\% ($32{\\times}$ range) provides no improvement, converging to the always-deterministic baseline ($50\\%$). Paraphrase augmentation inflates the majority class without generating novel routing patterns; genuine episode-level scaling (collecting more counterfactual pairs) remains an open question. With DAF $= 90.4\\%$ and all task types deterministic-majority (86:9 label ratio), always-deterministic trivially solves the episode-level routing problem, leaving the step-level router with no exploitable signal under current architectures.\n\n\\paragraph{Text augmentation ablation.} To test whether the episode-level generalization failure stems from data scarcity, we vary training set size from 25\\% to 800\\% of the original via paraphrase-based text augmentation (synonym substitution + template variation on step observations), holding the episode-level validation set fixed. This tests augmentation-based scaling, not genuine episode-level scaling (which would require new counterfactual collections). Table~\\ref{tab:text-augmentation} reports the results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccc@{}}\n\\toprule\nScale & Samples & Det\\% & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\n25\\% & 433 & ${\\sim}90$ & $49.5 \\pm 0.3$ \\\\\n50\\% & 867 & ${\\sim}90$ & $51.5$ \\\\\n100\\% & 1{,}735 & 89.6 & $49.9 \\pm 0.1$ \\\\\n200\\% & 3{,}470 & 94.2 & $50.0 \\pm 0.0$ \\\\\n800\\% & 13{,}880 & ${\\sim}97.7$ & $51.0 \\pm 1.1$ \\\\\n\\midrule\nAlways-det & --- & --- & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Text augmentation ablation: episode-level balanced accuracy across training set sizes (25\\%--800\\% of original via paraphrase, $32{\\times}$ range). Internal recall $= 0.0$ at all scales (complete majority-class collapse). Det\\%: fraction of deterministic-preferred labels in training data. The 50\\% scale is a single seed; all others report mean$\\pm$std across seeds.}\n\\label{tab:text-augmentation}\n\\end{table}\n\nAll scales hover at ${\\sim}50\\%$ episode-level balanced accuracy (equivalent to the always-deterministic baseline), with no monotonic improvement as data increases. Augmentation-based scaling provides no improvement at any scale; however, episode-level minority-class diversity remains a potential confound that cannot be resolved without collecting more internal-preferred episodes. The ground-truth internal-preferred rate (9/245 $= 3.7\\%$) means collecting 50 internal-preferred episodes would require approximately 1{,}350 paired episodes at current environment dynamics, a $5.5{\\times}$ expansion with diminishing return on a $9.6\\%$ signal. The failure points to a limitation of the current data distribution: when DAF $= 90.4\\%$ and all task types are deterministic-majority (86:9 label ratio), the episode-level routing problem is trivially solved by always choosing deterministic, and the step-level router finds no exploitable signal under the current architecture and data regime.\n\nAugmentation disproportionately increases the majority (deterministic) class: Det\\% rises from 89.6\\% at 100\\% to 94.2\\% at 200\\% and ${\\sim}97.7\\%$ at 800\\%. However, the complete collapse to majority-class prediction (internal recall $= 0.0$) occurs even at the smallest unaugmented scale (25\\%, ${\\sim}90\\%$ det); this is not an augmentation artifact. Balanced accuracy corrects for class imbalance by averaging per-class recall, so the metric itself is not biased by the skew.\n\nDecomposition metrics are stable under bootstrap resampling ($B{=}10{,}000$ resamples of the 245-episode dataset): DAF $= 90.4\\% \\pm 4.2\\%$ (95\\% CI $[81.1\\%, 99.0\\%]$); Pearson $r = 0.975 \\pm 0.011$ (95\\% CI $[0.952, 0.995]$). The death avoidance dominance finding is robust to both resampling and split perturbation.\n\n\\paragraph{Per-task-type evaluation breakdown.} To test whether the router learns transferable routing strategies or merely task-type classification, we evaluate existing checkpoints (8 seeds) separately on each of the 11 task types. Of the 11 task types, 7 have \\emph{all-deterministic} labels (no internal-preferred episodes exist), making balanced accuracy undefined; the router has nothing to learn beyond the trivial always-deterministic default. For the remaining 4 task types where both classes are present, balanced accuracy ranges from 50.0\\% to 73.0\\%, but this apparent signal does not indicate cross-task-type routing transfer: the router is effectively classifying task types (which correlate with death risk) rather than extracting a generalizable routing strategy. This complements the text augmentation ablation: routing signal does not transfer across task types because the signal \\emph{is} the task type, i.e., whether a given task carries death risk. The 4B capacity scaling result (Appendix~\\ref{app:ablations}) suggests capacity is one factor, but even 4B's $59.0\\%$ episode-level accuracy does not demonstrate cross-task-type transfer.\n\n\\section{Penalty Sensitivity Analysis}\n\\label{app:penalty}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rrr@{}}\n\\toprule\n$P$ & DAF($P$) & 95\\% CI \\\\\n\\midrule\n0 & 7.4\\% & [$-39.4$, $82.5$] \\\\\n1 & 14.8\\% & [$-28.6$, $89.6$] \\\\\n5 & 35.4\\% & [$-1.8$, $92.7$] \\\\\n10 & 50.4\\% & [$18.5$, $93.3$] \\\\\n25 & 70.7\\% & [$48.0$, $96.3$] \\\\\n50 & 82.6\\% & [$67.2$, $98.2$] \\\\\n100\\textsuperscript{*} & 90.4\\% & [$81.1$, $99.0$] \\\\\n200 & 94.9\\% & [$89.9$, $99.5$] \\\\\n500 & 97.9\\% & [$95.7$, $99.8$] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Sensitivity of DAF to death penalty magnitude $P$. DAF$(P) = 1 - \\Delta_{\\text{nd}} / \\Delta_{\\text{full}}(P)$, where $\\Delta_{\\text{full}}(P) \\approx \\delta \\cdot P + \\Delta_{\\text{nd}}$, $\\delta = 0.2653$ is the death-rate differential, and $\\Delta_{\\text{nd}} = 2.84$ (strict neither-died filtering). Recomputed from 245 episode-level data; bootstrap 95\\% CIs ($B{=}10{,}000$). \\textsuperscript{*}Default setting.}\n\\label{tab:penalty-sensitivity}\n\\end{table}\n\nThe non-death score gap $\\Delta_{\\text{nd}} = 2.84$ is invariant across penalty levels; it depends only on surviving-episode performance, not on $P$. As $P$ increases, $\\Delta_{\\text{full}}$ grows ($16.33$ at $P{=}50$, $29.60$ at $P{=}100$, $56.13$ at $P{=}200$) while $\\Delta_{\\text{nd}}$ remains fixed, mechanically increasing DAF.\n\n\\paragraph{Mechanism boundary: death specificity.}\nThe $r = 0.97$ correlation between per-task death-rate differential and $\\Delta_{\\text{full}}$ is specific to catastrophic death (score $= -100$). Broader failure definitions dissolve the correlation entirely: defining ``failure'' as any non-positive score ($T{=}0$) yields $r = -0.13$ ($p = 0.70$), because non-death episodes show near-zero performance differential between strategies ($\\Delta_{\\text{nd}} = 2.84$). Table~\\ref{tab:penalty-correlation} quantifies this specificity across penalty magnitudes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccl@{}}\n\\toprule\n$P$ & $r$ & $p$ & Sig.\\ ($\\alpha{=}0.05$) \\\\\n\\midrule\n1 & $-0.44$ & $0.178$ & No \\\\\n5 & $-0.29$ & $0.382$ & No \\\\\n10 & $-0.08$ & $0.813$ & No \\\\\n25 & $0.51$ & $0.108$ & No \\\\\n50 & $0.86$ & $0.0006$ & Yes \\\\\n100\\textsuperscript{*} & $0.97$ & $8 \\times 10^{-7}$ & Yes \\\\\n200 & $0.99$ & $1 \\times 10^{-9}$ & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Pearson $r$ between per-task death-rate differential and $\\Delta_{\\text{full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \\geq 50$, which reflects the transition from non-death-dominated to death-dominated score gaps. \\textsuperscript{*}Default ScienceWorld setting.}\n\\label{tab:penalty-correlation}\n\\end{table}\n\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\Delta_{\\text{full}}$ reduces to $\\Delta_{\\text{nd}} \\approx 2.84$, which is near-uniform across task types ($\\text{mean non-death gap} = -1.19$ excluding the \\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\Delta_{\\text{full}}$, and the correlation sharpens because death rates \\emph{are} the performance gap. The DAF values in Table~\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\text{DAF} = \\delta P / (\\delta P + \\Delta_{\\text{nd}})$), not evidence of mechanism robustness.\n\n\\section{Cross-Environment Details}\n\\label{app:cross-env-details}\n\nFigure~\\ref{fig:signal-reversal} and Table~\\ref{tab:cross-env} summarize the label distributions across all three environments.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/signal_reversal.pdf}\n\\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both show deterministic preference, but through different mechanisms: death avoidance (ScienceWorld) vs.\\ information asymmetry from admissible-action access (ALFWorld). MATH shows balanced labels, confirming no routing signal without catastrophic failure.}\n\\label{fig:signal-reversal}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nEnvironment & $N$ & Det\\% & Int\\% & NoPref\\% & Death? \\\\\n\\midrule\nScienceWorld & 245 & 35.1 & 3.7 & 61.2 & Yes ($-100$) \\\\\nMATH & 795 & 12.0 & 13.5 & 74.6 & No \\\\\nALFWorld & 135 & 25.9 & 1.5 & 72.6 & No\\textsuperscript{$\\dagger$} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different computation modes: ScienceWorld = oracle simulator with ground-truth state; MATH = Python code interpreter; ALFWorld = admissible-action enumeration. $\\dagger$\\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}\n\\label{tab:cross-env}\n\\end{table}\n\nTable~\\ref{tab:alfworld-pertask} provides the per-task-type breakdown for ALFWorld. Unlike ScienceWorld, ALFWorld has no death mechanism ($\\delta = 0$, DAF $= 0\\%$); the entire performance gap $\\Delta_{\\text{full}}$ reflects information asymmetry from admissible-action access. \\texttt{pick\\_and\\_place} shows the strongest effect ($\\Delta = 0.563$, 18 of 32 episodes det-preferred), while \\texttt{pick\\_two\\_obj\\_and\\_place} shows the weakest ($\\Delta = 0.087$), consistent with multi-object tasks requiring more sequential reasoning that admissible actions alone cannot resolve. Only \\texttt{pick\\_heat\\_then\\_place} has a 95\\% CI crossing zero ($n{=}16$).\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\nTask Type & $n$ & Succ\\%\\textsubscript{int} & Succ\\%\\textsubscript{det} & D / I / N & $\\Delta_{\\text{full}}$ \\\\\n\\midrule\npick\\_and\\_place       & 32 & 0.0  & 56.3 & 18 / 0 / 14 & $+0.563$ \\\\\nlook\\_at\\_obj\\_in\\_light & 13 & 15.4 & 38.5 & 3 / 0 / 10  & $+0.231$ \\\\\npick\\_cool\\_then\\_place & 24 & 0.0  & 16.7 & 4 / 0 / 20  & $+0.167$ \\\\\npick\\_clean\\_then\\_place & 27 & 3.7  & 18.5 & 5 / 1 / 21  & $+0.148$ \\\\\npick\\_heat\\_then\\_place & 16 & 6.3  & 18.8 & 3 / 1 / 12  & $+0.125$ \\\\\npick\\_two\\_obj\\_and\\_place & 23 & 0.0 & 8.7  & 2 / 0 / 21  & $+0.087$ \\\\\n\\midrule\n\\textbf{All (6 types)} & \\textbf{135} & \\textbf{3.0} & \\textbf{27.4} & \\textbf{35 / 2 / 98} & $\\mathbf{+0.244}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\\Delta_{\\text{full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\\Delta_{\\text{full}}$ descending.}\n\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\section{Cross-Model Verification}\n\\label{app:cross-model}\n\nWe replicate the counterfactual analysis with Llama-3.1-8B-Instruct across all 11 task types ($N{=}220$ episode pairs, 20 per type; Table~\\ref{tab:cross-model-detail}).\nThe internal strategy dies in $41.4\\%$ of episodes versus $11.4\\%$ for deterministic (death-rate differential $+30.0$~pp), with 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated by the task environment rather than model-specific factors. The differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$), but directional consistency is 100\\% (10/10 death-prone tasks in both models).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrrl@{}}\n\\toprule\nTask & Int\\% & Det\\% & $\\Delta$\\,pp & D / I / N \\\\\n\\midrule\nidentify-life-stages-1 & 55 & 10 & +45 & 9 / 0 / 11 \\\\\nfreeze & 45 & 0 & +45 & 9 / 0 / 11 \\\\\ngrow-fruit & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nidentify-life-stages-2 & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nmeasure-melting-point & 50 & 15 & +35 & 9 / 0 / 11 \\\\\nlifespan-longest & 35 & 5 & +30 & 7 / 1 / 12 \\\\\nlifespan-l-then-s & 50 & 20 & +30 & 6 / 0 / 14 \\\\\nchemistry-mix & 45 & 20 & +25 & 5 / 0 / 15 \\\\\ninclined-plane & 45 & 20 & +25 & 6 / 0 / 14 \\\\\nfind-animal & 40 & 25 & +15 & 6 / 2 / 12 \\\\\nfind-non-living-thing & 0 & 0 & 0 & 10 / 0 / 10 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{41.4} & \\textbf{11.4} & \\textbf{+30.0} & \\textbf{83 / 3 / 134} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task Llama-3.1-8B cross-model replication ($N{=}20$ per task). D/I/N: deterministic-preferred / internal-preferred / no-preference. Sorted by $\\Delta$ DR descending.}\n\\label{tab:cross-model-detail}\n\\end{table}\n\n\\paragraph{Cross-model and cross-environment summary.}\nTable~\\ref{tab:cross-model-env} consolidates replication results across model families and environments.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcrrrccc}\n\\toprule\nModel & Environment & $n$ & Int DR & Det DR & $\\Delta$DR & DAF & DAF 95\\% CI & Signal \\\\\n\\midrule\nQwen2.5-7B & ScienceWorld & 245 & 42.9\\% & 16.3\\% & +26.5 & 90.4\\% & [81.1, 99.0] & death \\\\\nLlama-3.1-8B & ScienceWorld & 220 & 41.4\\% & 11.4\\% & +30.0 & 88.2\\% & [80.2, 95.1] & death \\\\\nGemma-2-9B-it & ScienceWorld & 220 & 36.4\\% & 14.1\\% & +22.3 & 89.7\\% & [79.5, 98.4] & death \\\\\nQwen2.5-72B & ScienceWorld & 255 & 30.6\\% & 2.75\\% & +27.8 & 92.4\\% & --- & death \\\\\n\\midrule\nQwen2.5-7B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\nLlama-3.1-8B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\n\\midrule\nQwen2.5-7B & MATH & 795 & N/A & N/A & N/A & N/A & N/A & none \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model and cross-environment replication summary. \\textbf{ScienceWorld}: death dominance replicates across three model families in the 7--9B range and persists under $10{\\times}$ scaling (72B); DAF 95\\% CIs from non-clustered episode-level bootstrap ($B{=}10{,}000$). \\textbf{ALFWorld}: DAF $= 0\\%$ (no death mechanism); routing signal arises from information asymmetry. \\textbf{MATH}: no routing signal without catastrophic failure. Signal column: diagnosed routing mechanism. DR = death rate. Gemma-2's wider CI reflects one zero-death task type (\\texttt{find-non-living-thing}); excluding it yields DAF $= 99.9\\%$ $[99.7, 100.0]$.}\n\\label{tab:cross-model-env}\n\\end{table}\n\n\\section{Failure Mode Analysis}\n\\label{app:failure-modes}\n\nAll 105 internal-strategy deaths (100\\%) are triggered by the same action pattern: \\texttt{focus on [object]}. In ScienceWorld, \\texttt{focus on} is the answer-submission action (equivalent to ``this is my final answer''); the LLM agent systematically misuses it as a general interaction or exploration command, and applies it to irrelevant targets (rooms, doors, inventory items). Each such execution submits an incorrect answer and triggers the $-100$ death penalty. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40 for deterministic) reflects how often each strategy enters catastrophic states, not different action selection within those states.\n\nManual inspection identifies four failure categories: (A) no task awareness, where the agent executes \\texttt{focus on} without reading the task; (B) task-aware but lacking action grounding, where the agent correctly identifies the objective but cannot map it to valid action primitives; (D) genuine attempts with execution failure; and (E) initial progress wasted by early errors. Category B dominates: agents demonstrate task comprehension but systematically fail to translate it into correct ScienceWorld actions. This taxonomy was produced by a single annotator; no inter-annotator agreement was computed. The categories are intended as qualitative illustrations, not as formal labels with reliability guarantees.\n\\label{tab:death-taxonomy}\n\n\\paragraph{Representative examples.}\n\\emph{Category A} (no task awareness): In a \\texttt{chemistry-mix} episode, the agent immediately executes \\texttt{focus on kitchen}, \\texttt{focus on door}, \\texttt{focus on inventory} without reading the task, dying on the first \\texttt{focus on} call. \\emph{Category B} (comprehension without grounding): In a \\texttt{lifespan-longest-lived} episode, the agent correctly identifies that it must compare animal lifespans and reasons about which animal lives longest, but then executes \\texttt{focus on oak tree} (a non-animal object in the room) instead of navigating to find the target animal, triggering death.\n\n\\paragraph{Action distribution analysis.}\nFigure~\\ref{fig:death-action-dist} shows the action distribution in death versus non-death episodes for the internal strategy; both are dominated by \\texttt{connect} actions, with \\texttt{focus on} moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$). Crucially, Figure~\\ref{fig:death-comparison} reveals that within death episodes, internal and deterministic strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$). The survival gap (105 vs.\\ 40 deaths) therefore reflects how often each strategy enters catastrophic states, not how it behaves within those states. Among fatal \\texttt{focus on} targets, \\texttt{workshop} remains the most frequent (20.0\\%), followed by \\texttt{inventory} (17.1\\%) and \\texttt{kitchen} (10.5\\%), indicating a systematic object bias rather than random exploration. Figure~\\ref{fig:death-timeline} visualizes the temporal pattern: agents execute long sequences of \\texttt{connect} actions before a terminal \\texttt{focus on} triggers death, typically in the final 1--3 steps.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_distribution.pdf}\n\\caption{Action distribution for the internal (LLM) strategy in death ($n{=}105$) vs.\\ non-death ($n{=}140$) episodes. Left: full distribution (both dominated by \\texttt{connect}). Right: non-\\texttt{connect} actions zoomed. \\texttt{focus on} is moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$), while non-death episodes show higher rates of observation and object interaction.}\n\\label{fig:death-action-dist}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_timeline.pdf}\n\\caption{Step-by-step action sequences for 6 representative death episodes. The fatal \\texttt{focus on} action (marked with arrow) consistently appears in the final steps after long \\texttt{connect} sequences, and illustrates the ``connect loop $\\to$ fatal focus'' pattern. Examples are drawn from the full 30-task dataset for task-type diversity; the pattern is identical in the 11-task analysis subset.}\n\\label{fig:death-timeline}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_comparison.pdf}\n\\caption{Non-\\texttt{connect} action distribution comparison between internal (left) and deterministic (right) strategies. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40) reflects more frequent entry into catastrophic states, not different action selection within those states.}\n\\label{fig:death-comparison}\n\\end{figure}\n\n\\section{Grounding Ablation}\n\\label{app:grounding-ablation}\n\nWe test whether directly intervening on the dominant death action (\\texttt{focus on}) eliminates death vulnerability on the 10 death-prone tasks (baseline 48.0\\%, $n{=}200$).\n\n\\paragraph{Prompt warning.} Adding an explicit system prompt (``use \\texttt{focus on} only for final answers'') reduces aggregate death rate to 37.0\\% ($\\Delta = -11$~pp). Both identification tasks exhibit ironic effects (\\texttt{identify-life-stages-1}: 35\\%$\\to$50\\%; \\texttt{identify-life-stages-2}: 25\\%$\\to$70\\%), where explicit mention of the dangerous action may have increased its salience.\n\n\\paragraph{Action-space filtering.} Blocking \\texttt{focus on} during the exploration phase yields 379 blocks across 200 episodes with zero leaks and zero passthroughs (the agent never persisted in retrying blocked actions), reducing death rate to 29.0\\% ($\\Delta = -19$~pp). The zero-passthrough rate suggests \\texttt{focus on} use is a shallow behavioral pattern rather than a deliberate strategy.\n\n\\paragraph{Per-task variation.} Under filtering, \\texttt{identify-life-stages} and \\texttt{inclined-plane} approach deterministic-level safety (${\\sim}$15--20\\% DR), while \\texttt{chemistry-mix} and \\texttt{find-animal} remain at 35--40\\%. Residual deaths occur during the answer-submission window, where the filter is inactive and agents submit \\texttt{focus on} to incorrect objects.\n\n\\section{Ablation Studies}\n\\label{app:ablations}\n\n\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\ref{tab:capacity}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nModel & Step Bal.\\ Acc.\\ (\\%) & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nQwen3-0.6B & $56.4 \\pm 3.5$ & $50.7 \\pm 2.6$ \\\\\nQwen3-1.7B & $58.2 \\pm 4.0$ & $43.1 \\pm 1.0$ \\\\\nQwen3-4B & $59.2 \\pm 3.5$ & $\\mathbf{59.0 \\pm 1.9}$ \\\\\n\\midrule\nAlways-det & 50.0 & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\\%$, $p < 0.005$).}\n\\label{tab:capacity}\n\\end{table}\n\nStep-level balanced accuracy is flat across scales ($56$--$59\\%$, within seed variance); step-level discrimination is not capacity-sensitive. At episode level, only 4B breaks the random baseline ($59.0 \\pm 1.9\\%$, $p < 0.005$); 0.6B and 1.7B remain at or below chance. The 1.7B model's below-chance episode-level accuracy ($43.1\\%$) may reflect overfitting to spurious step-level correlations that anti-correlate with episode outcomes; without per-class confusion matrices at this scale, this remains a hypothesis. The dominant explanation across scales is that death avoidance constitutes a task-type-level binary signal that a step-level router cannot exploit efficiently.\n\n\\paragraph{Generative router.} A generative routing model trained with explicit routing labels achieves balanced accuracy of 46.7\\%, confirming that the routing bottleneck is signal-limited, not architecture-limited.\n\n\\paragraph{Leave-one-task-type-out routing.} Under leave-one-task-type-out evaluation, blind routing collapses to always-deterministic (balanced accuracy 50.0\\%); a keyword-based variant achieves 62.9\\% only through task-identity leakage, not genuine routing signal. A guided router evaluated under the same protocol confirms this: without task-type identifiers it achieves chance accuracy (50.0\\%), and leaking task names raises this to 62.9\\%, confirming that the only learnable routing feature is task-type identity.\n\n\\paragraph{Death-proximal labeling.} Training a router only on the $k$ steps preceding death events (rather than all steps) also collapses to majority-class prediction (step balanced accuracy 50.0\\%, episode balanced accuracy 50.0\\%, internal recall 0\\%), confirming that the absence of step-level signal is not an artifact of label dilution across long episodes.\n\n\\paragraph{Reasoning depth.} An ablation comparing chain-of-thought reasoning against direct-answer generation on 6 task types ($n{=}120$ episodes per condition, 6 tasks $\\times$ 20 episodes per task) found no significant difference (Mann--Whitney $p > 0.26$, $|d| \\leq 0.31$) and near-identical death rates (41.8\\% vs.\\ 42.5\\%); reasoning depth does not meaningfully alter internal-mode outcomes.\n\n\\section{Threshold Routing Analysis}\n\\label{sec:threshold-routing}\n\nGiven per-task death risk knowledge, we test whether a simple threshold routing strategy can outperform always-deterministic. For each threshold $t \\in [0, 1]$, we route to internal if the per-task internal death rate $\\leq t$, otherwise to deterministic, and sweep all thresholds to find the optimal.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\nStrategy & Mean Score & Death Rate & $\\Delta$ vs Det \\\\\n\\midrule\nAlways-det & $-9.47$ & $0.163$ & $0.00$ \\\\\nOptimal threshold ($t{=}0$) & $-11.03$ & $0.155$ & $-1.56$ \\\\\nAlways-internal & $-39.07$ & $0.429$ & $-29.60$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \\texttt{find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\\% CI for the difference: $[-8.87, +5.92]$.}\n\\label{tab:threshold-routing}\n\\end{table}\n\nEven with perfect per-task death risk knowledge, threshold routing cannot outperform always-deterministic. The sole zero-death task achieves higher scores under deterministic (+28.5) than internal (+18.9), leaving no room for a beneficial mixed strategy.\n\n\\section{Practitioner Decision Framework}\n\\label{app:decision-framework}\n\nGiven a new interactive environment, the following three-stage procedure diagnoses whether learned routing adds value over a fixed deterministic strategy.\n\n\\paragraph{Stage 1: Pilot collection (${\\sim}$50 episodes).}\nRun pure-internal and pure-deterministic strategies on a representative sample (${\\sim}$50 episode pairs). Compute the death-rate differential $\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$.\n\n\\paragraph{Stage 2: Death dominance check.}\nIf $\\Delta\\text{DR} > 15$~pp, death asymmetry is likely the dominant routing signal. Compute the death-label fraction $f_{\\text{death}}$: the proportion of non-tie routing labels where exactly one strategy dies.\n\n\\paragraph{Stage 3: Decision.}\nIf $f_{\\text{death}} > 75\\%$, the routing signal is death-dominated; a fixed deterministic strategy will match or exceed any learned router. If $f_{\\text{death}} < 50\\%$, diverse routing signals may justify a learned router. Between 50\\%--75\\%, collect additional episodes to reduce estimation noise before committing to router development.\n\n\\paragraph{Retrospective validation.}\nAll four experimental conditions in this paper are correctly classified:\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrll@{}}\n\\toprule\nCondition & $\\Delta$DR & $f_{\\text{death}}$ & Prediction & Actual \\\\\n\\midrule\nQwen-7B & +26.5 & 78.9\\% & det-fixed & det wins \\\\\nLlama-8B & +30.0 & $>$75\\% & det-fixed & det wins \\\\\nQwen-72B & +27.8 & $>$75\\% & det-fixed & det wins \\\\\nMATH & +0.5 & 0\\% & router viable & no signal \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Retrospective validation of the decision framework. All four conditions are correctly classified (4/4).}\n\\label{tab:decision-framework}\n\\end{table}\n\nThe framework also predicts the inverted-U relationship between capability and death risk: below ${\\sim}$0.5B parameters, agents rarely reach dangerous states (13.3\\% death rate in a 15-episode pilot), so $\\Delta\\text{DR}$ is low and the framework would not recommend fixed-deterministic. Above ${\\sim}$7B, agents are capable enough to enter catastrophic states but not capable enough to avoid them, producing high $\\Delta\\text{DR}$.\n\n\\paragraph{Threshold calibration.} The thresholds above (15~pp, 75\\%, 50\\%) are illustrative, derived from ScienceWorld's specific reward structure (binary death penalty $P{=}100$, sparse terminal rewards). Environments with graded penalties, dense rewards, or qualitatively different failure modes may require different thresholds. Practitioners should calibrate these boundaries for their specific environment.\n\n\\section{Extended Validation of Excluded Tasks}\n\\label{app:extended-validation}\n\nTo verify that task exclusion does not bias toward death-prone tasks, we collect $n{=}20$ episodes for five representative excluded tasks spanning all exclusion categories (Table~\\ref{tab:extended-val}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcrrrrc}\n\\toprule\nTask & Category & $n$ & Int DR & Det DR & $\\Delta$DR & D/I/N \\\\\n\\midrule\nboil & dev-set & 20 & 55\\% & 25\\% & +30\\,pp & 6/0/14 \\\\\nmelt & dev-set & 20 & 45\\% & 20\\% & +25\\,pp & 7/2/11 \\\\\nfind-living-thing & taxonomic & 20 & 55\\% & 15\\% & +40\\,pp & 10/0/10 \\\\\nuse-thermometer & agent-floor & 20 & 50\\% & 20\\% & +30\\,pp & 7/1/12 \\\\\npower-component & agent-floor & 20 & 50\\% & 15\\% & +35\\,pp & 7/0/13 \\\\\n\\midrule\n\\textit{Mean (5 tasks)} & & 100 & 51.0\\% & 19.0\\% & +32.0\\,pp & 37/3/60 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Extended validation ($n{=}20$) of representative excluded task types. All five tasks confirm death asymmetry; mean $\\Delta$DR $= +32.0$\\,pp is consistent with the $n{=}5$ prescreening estimate for these same tasks (Table~\\ref{tab:excluded-death}).}\n\\label{tab:extended-val}\n\\end{table}\n\nNotably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\n\n\\input{responsibleNLPchecklist}\n\n\\end{document}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 353,
+        "oldLines": 6,
+        "newStart": 353,
+        "newLines": 9,
+        "lines": [
+          " \\label{tab:hyperparams}",
+          " \\end{table}",
+          " ",
+          "+\\paragraph{Agent inference parameters.}",
+          "+For ScienceWorld, each agent step uses temperature $T{=}0.3$ and maximum generation length of 256 tokens, served via vLLM v0.21.0. Top-$p$ is left at the vLLM default of $1.0$ (no nucleus sampling). For MATH, the agent uses greedy decoding ($T{=}0.0$) with a maximum of 2{,}048 tokens per generation. For ALFWorld, we use $T{=}0.3$ with 256 maximum tokens. All three environments use Qwen2.5-7B-Instruct~\\citep{qwen25-2024} as the backbone.",
+          "+",
+          " \\section{Seed Robustness}",
+          " \\label{app:seed-robustness}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 148_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_013QTeVG13WxeyaiizWNuEu1`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "old_string": "\\label{app:per-task}\nWe select 11 of ScienceWorld's 30 task types for analysis.",
+  "new_string": "\\label{app:per-task}\nWe use ScienceWorld v1.2.3~\\citep{scienceworld-2022}.\nWe select 11 of ScienceWorld's 30 task types for analysis."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "d5fe54e1-cb89-4a98-8aad-4deca8a18d5f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014ExcapiJTfCnJHQTcXLkxX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1202,
+      "cache_read_input_tokens": 63564,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1202
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 149 · 2026-05-21T09:42:03.392Z_
+
+<details><summary>↩ Tool result · `toolu_013QTeVG13WxeyaiizWNuEu1`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "199a8223-1b92-4b6b-af83-130ded709b49",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+    "oldString": "\\label{app:per-task}\nWe select 11 of ScienceWorld's 30 task types for analysis.",
+    "newString": "\\label{app:per-task}\nWe use ScienceWorld v1.2.3~\\citep{scienceworld-2022}.\nWe select 11 of ScienceWorld's 30 task types for analysis.",
+    "originalFile": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\graphicspath{{figures/}}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\n\\title{Death Avoidance as the Dominant Routing Signal:\\\\A Counterfactual Analysis on ScienceWorld}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\\input{introduction}\n\\input{method}\n\\input{experiments}\n\\input{related_work}\n\\input{discussion}\n\\input{conclusion}\n\n\\section*{Limitations}\n\n\\paragraph{Environmental scope.}\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\ref{app:penalty}). The 19 excluded task types (63\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\\S\\ref{sec:cross-env}, \\S\\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \\S\\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\\times}$ scale) reduces death rate but does not eliminate death dominance (\\S\\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).\n\n\\paragraph{Methodological constraints.}\nOur internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\\% pre-event neutral). The issue is granularity mismatch---applying correct-direction labels to uninformative steps---not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.\n\n\\paragraph{Statistical limitations.}\nEpisodes within the same task type are not fully independent because they share environment dynamics, though they use different random seeds. Cluster bootstrap with $K{=}11$ task-type clusters yields wider CIs ($[73.3\\%, 100.0\\%]$); with $K < 40$ clusters, these should be interpreted cautiously~\\citep{cameron-2008,webb-2023}. A wild cluster bootstrap ($K{=}11$, $p < 0.001$; Appendix~\\ref{app:wild-cluster}) and 100\\% directional consistency across all 28 death-prone tasks (Appendix~\\ref{app:per-task-ci}) mitigate this concern.\n\n\\paragraph{Pure-strategy upper bound.}\nOur counterfactual analysis compares pure strategies (always-internal vs.\\ always-deterministic). In mixed routing, the router can selectively invoke deterministic mode on high-risk steps, potentially reducing death asymmetry. Thus, DAF${=}90.4\\%$ represents an upper bound on death avoidance's contribution to optimized routing; the actual contribution under mixed strategies may be lower.\n\n\\section*{Ethics Statement}\n\nThis work uses ScienceWorld \\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All evaluation environments (ScienceWorld, ALFWorld, MATH) are released under permissive open-source licenses (Apache 2.0 / MIT). All models used (Qwen2.5 family, Llama-3.1-8B) are publicly available for research use. All language models are accessed via standard APIs or publicly released weights. Experiments were conducted on 2$\\times$ NVIDIA RTX 5090 (32GB) and 4$\\times$ NVIDIA RTX 6000 PRO (96GB), totaling approximately 200 GPU-hours for data collection, router training, and evaluation. Code and data will be released upon acceptance.\n\n\\bibliography{references}\n\n\\appendix\n\n\\noindent\\textbf{Appendix Overview.}\n\\hyperref[app:sci]{A.~Signal Concentration Index} $\\cdot$\n\\hyperref[app:labeling]{B.~Labeling Quality Audit} $\\cdot$\n\\hyperref[app:per-task]{C.~Per-Task Decomposition} $\\cdot$\n\\hyperref[app:correlation]{D.~Correlation Robustness} $\\cdot$\n\\hyperref[app:wild-cluster]{E.~Cluster Bootstrap Sensitivity} $\\cdot$\n\\hyperref[app:per-task-ci]{F.~Per-Task CIs} $\\cdot$\n\\hyperref[app:loto-daf]{G.~Leave-One-Task-Out DAF} $\\cdot$\n\\hyperref[app:dose-response]{H.~Dose-Response Breakdown} $\\cdot$\n\\hyperref[app:router-details]{I.~Router Training Details} $\\cdot$\n\\hyperref[app:seed-robustness]{J.~Seed Robustness} $\\cdot$\n\\hyperref[app:penalty]{K.~Penalty Sensitivity} $\\cdot$\n\\hyperref[app:cross-env-details]{L.~Cross-Environment Details} $\\cdot$\n\\hyperref[app:cross-model]{M.~Cross-Model Verification} $\\cdot$\n\\hyperref[app:failure-modes]{N.~Failure Mode Analysis} $\\cdot$\n\\hyperref[app:grounding-ablation]{O.~Grounding Ablation} $\\cdot$\n\\hyperref[app:ablations]{P.~Ablation Studies} $\\cdot$\n\\hyperref[sec:threshold-routing]{Q.~Threshold Routing} $\\cdot$\n\\hyperref[app:decision-framework]{R.~Decision Framework} $\\cdot$\n\\hyperref[app:extended-validation]{S.~Extended Validation}\n\n\\section{Signal Concentration Index}\n\\label{app:sci}\n\nLet $K$ denote the number of task types and $c_k$ the contribution of task type $k$ to the aggregate routing signal, defined as the fraction of total death-rate differential attributable to task $k$:\n\\begin{equation}\n    c_k = \\frac{n_k \\cdot \\delta_k}{\\sum_{j=1}^{K} n_j \\cdot \\delta_j}\n\\end{equation}\nwhere $n_k$ is the number of episodes and $\\delta_k = d_k^{\\tt int} - d_k^{\\tt det}$ is the per-task death-rate differential. The SCI is the Gini coefficient over $\\{c_1, \\ldots, c_K\\}$:\n\\begin{equation}\n    \\text{SCI} = \\frac{\\sum_{i=1}^K \\sum_{j=1}^K |c_i - c_j|}{2K \\sum_{k=1}^K c_k}\n\\end{equation}\n\n\\section{Labeling Quality Audit}\n\\label{app:labeling}\n\n\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR\n\\IF{$d_{\\tt int} = 1$ \\AND $d_{\\tt det} = 0$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = 0$ \\AND $d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{both dead}\n\\ELSIF{$s_{\\tt det} > s_{\\tt int}$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSIF{$s_{\\tt int} > s_{\\tt det}$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSE\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{tied alive}\n\\ENDIF\n\\RETURN $\\ell$\n\\end{algorithmic}\n\\end{algorithm}\n\nNote that episode-level labels are used to evaluate step-level predictions, introducing a granularity mismatch rather than independent validation. A potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine computation mode differences. We audit all 245 labels. Of the 150 \\texttt{no\\_preference} labels (61.2\\%), 115 (46.9\\%) are both-alive ties and 35 (14.3\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\%, within 1$\\sigma$ of the full-label retrain (57.6 $\\pm$ 0.5\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\S\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\% step-level tie rate (\\S\\ref{sec:collection}) further motivates episode-level over step-level labeling.\n\n\\section{Per-Task Decomposition}\n\\label{app:per-task}\nWe select 11 of ScienceWorld's 30 task types for analysis. Types are excluded when they were used for pipeline development (5 tasks, standard hold-out practice), are taxonomically redundant with a retained family representative (7 tasks), or exhibit near-zero task progress under both strategies (7 tasks, agent capability floor).\\footnote{Excluded tasks exhibit even stronger death dominance than included tasks ($\\Delta\\text{DR} = +38.2$\\,pp vs.\\ $+28.7$\\,pp; Table~\\ref{tab:excluded-death}).}\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrrccc@{}}\n\\toprule\nTask & $n$ & $\\Delta_\\text{full}$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & D / I / N \\\\\n\\midrule\nid-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\\\\nlifespan-long          & 25  & $+44.00$ & 56   & 16   & 11 / 1 / 13 \\\\\nlifespan-l-then-s      & 20  & $+40.80$ & 45   & 10   & 8 / 1 / 11  \\\\\ninclined-plane         & 20  & $+36.00$ & 55   & 20   & 7 / 0 / 13  \\\\\nfreeze                 & 20  & $+30.50$ & 55   & 25   & 6 / 0 / 14  \\\\\nmeas-melt-point        & 20  & $+30.05$ & 55   & 25   & 6 / 0 / 14  \\\\\nid-life-stages-2       & 20  & $+30.00$ & 50   & 20   & 6 / 0 / 14  \\\\\nfind-animal            & 20  & $+26.65$ & 50   & 25   & 5 / 0 / 15  \\\\\ngrow-fruit             & 20  & $+25.10$ & 45   & 20   & 6 / 1 / 13  \\\\\nchem-mix               & 20  & $+21.80$ & 45   & 25   & 6 / 2 / 12  \\\\\n\\midrule\nfind-non-living-thing$^\\dagger$ & 40 & $+9.58$ & 0  & 0    & 16 / 4 / 20 \\\\\n\\midrule\n\\textbf{All (11 tasks)} & \\textbf{245} & $\\mathbf{+29.60}$ & \\textbf{42.9} & \\textbf{16.3} & \\textbf{86 / 9 / 150} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task decomposition of the death avoidance effect. D\\%: death rate for internal (int) and deterministic (det) strategies. D/I/N: episode labels (det-preferred / internal-preferred / no-preference). Sorted by $\\Delta_{\\text{full}}$ descending. The \\textit{All} row is an episode-weighted aggregate across 245 episodes. $\\dagger$\\,Only task with zero deaths under both strategies; $n{=}40$ because data was collected in two batches, with the second batch adding 20 episodes to increase statistical power for this zero-death outlier.}\n\\label{tab:per-task}\n\\end{table}\n\n\\paragraph{Task selection and anti-cherry-picking.}\nEighteen of the 19 excluded task types (95\\%) exhibit death-asymmetric patterns (Table~\\ref{tab:excluded-death}): internal-reasoning death rates range from 40\\% to 60\\% (mean 53.9\\%), while deterministic death rates range from 0\\% to 40\\% (mean 15.8\\%), yielding a mean death-rate differential of $+38.2$\\,pp, exceeding the $+28.7$\\,pp for included tasks. The included subset is thus \\emph{less} death-asymmetric than the excluded subset, the opposite of what a cherry-picking hypothesis would predict. The sole exception is \\texttt{grow-plant}, an intrinsically safe task with zero deaths under both strategies, paralleling \\texttt{find-non-living-thing} in the included set. The 19 excluded tasks fall into three independently motivated categories: five used during pipeline development (standard hold-out practice), seven taxonomically redundant with included family representatives (deduplication), and seven where the 7B backbone achieves near-zero task progress regardless of strategy (agent capability floor). In no case was a task excluded because death dominance was absent. Exclusion is driven by absence of non-death routing signal ($\\Delta_{\\text{nd}} = 0$ for 53\\% of excluded tasks) and standard deduplication practices. \\texttt{find-non-living-thing} serves as an internal counterexample: zero deaths under both strategies yet included because it exhibits non-death routing signal ($\\Delta_{\\text{full}} = +9.58$ entirely from score differences), and deterministic is not always preferred (4 of 20 non-tie labels favor internal).\n\n\\begin{table}[t]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2pt}\n\\begin{tabular}{@{}llrcccl@{}}\n\\toprule\nTask & Grp & $n$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & $\\Delta$DR & Excl.\\ reason \\\\\n\\midrule\nboil                          & A & 20 & 50 & 20 & $+30$ & dev set \\\\\nchange-state-of-matter        & A & 20 & 55 & 15 & $+40$ & dev set \\\\\nchem-mix-paint-secondary      & A & 20 & 45 & 10 & $+35$ & dev set \\\\\ngrow-plant                    & A & 20 &  0 &  0 & $\\phantom{+}0$  & dev set \\\\\nmelt                          & A & 20 & 55 & 15 & $+40$ & dev set \\\\\n\\midrule\nchem-mix-paint-tertiary       & B &  5 & 40 & 20 & $+20$ & family redundancy \\\\\nfind-living-thing             & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\nfind-plant                    & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\ninclined-friction-named       & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\ninclined-friction-unnamed     & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\nlifespan-shortest             & B &  5 & 60 & 40 & $+20$ & family redundancy \\\\\nmeasure-melt-known            & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\n\\midrule\nmendelian-known               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nmendelian-unknown             & C &  5 & 60 & 40 & $+20$ & agent floor \\\\\npower-component               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\npower-renewable               & C &  5 & 60 &  0 & $+60$ & agent floor \\\\\ntest-conductivity             & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\ntest-conductivity-unknown     & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nuse-thermometer               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\n\\midrule\n\\textbf{Mean (19 excluded)}   &   &    & \\textbf{53.9} & \\textbf{15.8} & $\\mathbf{+38.2}$ & \\\\\n\\textit{cf.\\ included (11)}   &   &    & \\textit{46.5} & \\textit{17.8} & $\\textit{+28.7}$ & \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Death-rate analysis of all 19 excluded task types. D\\%: death rate (score $\\leq -100$). $\\Delta$DR = D\\%\\textsubscript{int} $-$ D\\%\\textsubscript{det}. 18 of 19 excluded tasks (95\\%) exhibit positive death asymmetry ($\\Delta$DR $\\geq +20$\\,pp). Exclusion groups: A = development set (excluded to prevent circular evaluation), B = taxonomically redundant with an included family representative, C = agent-floor tasks (backbone achieves near-zero progress regardless of strategy). The mean $\\Delta$DR among excluded tasks ($+38.2$\\,pp) exceeds that of included tasks ($+28.7$\\,pp), confirming that task selection does not bias toward death-prone tasks. Group B--C estimates are based on $n{=}5$ prescreening episodes per task and should be interpreted as directional evidence rather than precise rate estimates.}\n\\label{tab:excluded-death}\n\\end{table}\n\n\\section{Correlation Robustness}\n\\label{app:correlation}\n\nThe Pearson $r = 0.9698$ reported in \\S\\ref{sec:death-decomp} is robust across multiple diagnostics. Spearman rank correlation is $\\rho = 0.986$ ($p = 2.4 \\times 10^{-8}$); the relationship is not driven by outliers or non-linearity. A nonparametric bootstrap (10{,}000 resamples) yields 95\\% CI $[0.952, 0.995]$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lr@{}}\n\\toprule\nTask removed & $r_{\\text{LOO}}$ \\\\\n\\midrule\nid-life-stages-1       & 0.963 \\\\\nlifespan-long          & 0.969 \\\\\nlifespan-l-then-s      & 0.976 \\\\\ninclined-plane         & 0.969 \\\\\nfreeze                 & 0.971 \\\\\nmeas-melt-point        & 0.972 \\\\\nid-life-stages-2       & 0.972 \\\\\nfind-animal            & 0.970 \\\\\ngrow-fruit             & 0.973 \\\\\nchem-mix               & 0.969 \\\\\nfind-non-living-thing  & 0.980 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-out Pearson $r$ for the death rate differential vs.\\ $\\Delta_{\\text{full}}$ correlation. Full $r = 0.970$; LOO range $[0.963, 0.980]$. No single task type is a leverage point.}\n\\label{tab:loo}\n\\end{table}\n\n\\section{Cluster Bootstrap Sensitivity Analysis}\n\\label{app:wild-cluster}\n\nWith $K{=}11$ task-type clusters, cluster bootstrap falls well below the $K{\\geq}20$--30 recommended for reliable inference \\citep{cameron-2008,webb-2023}. The narrower CIs obtained reflect known small-sample bias toward underestimation of variance, not tighter inference.\n\nEpisodes within the same task type share environment dynamics, raising the concern that the effective sample size is closer to $K$ (task types) than $N$ (episodes). We address this with cluster-robust inference treating each task type as a cluster ($K{=}11$, all 11 included task types, 245 episodes).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nMethod & $p$-value & 95\\% CI \\\\\n\\midrule\nCluster-robust $t$-test ($t{=}10.0$, df$=$10) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nWild cluster bootstrap ($B{=}9{,}999$) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nExact permutation ($2{,}048$ perms) & $0.002$ & --- \\\\\nSign test & $< 0.001$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cluster-level tests of death-rate asymmetry ($K{=}11$ task clusters, 245 episodes). 10 of 11 clusters show internal DR $>$ deterministic DR; the sole exception (\\texttt{find-non-living-thing}) has zero deaths under both strategies. Cohen's $d = 3.02$. The exact permutation $p = 0.002$ ($4/2{,}048$) reflects the near-unanimous directional consistency.}\n\\label{tab:wild-cluster}\n\\end{table}\n\n\\noindent All methods confirm significance with $p < 0.01$, and the 95\\% CI $[0.73, 1.00]$ excludes zero by a wide margin. With $K{=}11$ task types, ICC estimation itself carries substantial uncertainty; the high within-task consistency of death patterns (all-or-nothing per task type) suggests high ICC, which explains the CI narrowing under cluster resampling.\n\nWe retain this analysis for transparency; readers should rely on the non-clustered episode-level bootstrap (\\S\\ref{sec:death-decomp}) as the primary inference.\n\n\\section{Per-Task Death Rate Confidence Intervals}\n\\label{app:per-task-ci}\n\nWe compute bootstrap 95\\% CIs for the death-rate differential ($\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$) for all 30 ScienceWorld task types. Of 30 tasks, 28 are death-prone (at least one death under either strategy); the remaining 2 (\\texttt{grow-plant}, \\texttt{find-non-living-thing}) have zero deaths under both strategies.\n\nAcross all 28 death-prone tasks, internal DR exceeds deterministic DR without exception (100\\% directional consistency). The pooled death-rate differential is $+37.3\\%$ (95\\% CI: $[29.7\\%, 44.4\\%]$). Fifteen of 28 tasks are individually significant (CI excludes zero); the 13 non-significant tasks all have $n{=}5$ prescreening episodes, where statistical power is insufficient to detect even large effects (e.g., a task with $\\Delta\\text{DR} = +40$\\,pp at $n{=}5$ has a CI of $\\pm 43$\\,pp). The universal directional consistency, combined with the pooled significance, confirms that death asymmetry is not driven by a subset of outlier tasks.\n\n\\section{Leave-One-Task-Out DAF Sensitivity}\n\\label{app:loto-daf}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Leave-one-task-out DAF sensitivity (penalty-independent label fraction). Among the 10 death-prone tasks, removing any single task changes DAF by at most 3.0\\,pp (range: 75.9\\%--78.9\\%). Removing \\emph{Find Non-Living Thing}, the sole death-free task that contributes all 20 score-comparison episodes, raises DAF to 100\\% by construction.}\n\\label{tab:loto-daf}\n\\begin{tabular}{lrrr}\n\\toprule\nRemoved Task & $N_\\text{rem}$ & DAF (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n(none, full) & 245 & 78.9 & --- \\\\\n\\midrule\nFind Non-Living$^\\dagger$ & 205 & 100.0 & +21.1 \\\\\nLifespan Longest & 220 & 75.9 & $-$3.0 \\\\\nLife Stages 1 & 225 & 76.7 & $-$2.2 \\\\\nLifespan Long+Short & 225 & 76.7 & $-$2.2 \\\\\nChemistry Mix & 225 & 77.0 & $-$1.9 \\\\\nGrow Fruit & 225 & 77.3 & $-$1.7 \\\\\nInclined Plane Angle & 225 & 77.3 & $-$1.7 \\\\\nFreeze & 225 & 77.5 & $-$1.4 \\\\\nLife Stages 2 & 225 & 77.5 & $-$1.4 \\\\\nMelt Pt Unknown & 225 & 77.5 & $-$1.4 \\\\\nFind Animal & 225 & 77.8 & $-$1.2 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize $^\\dagger$Only death-free task; contributes all score-comparison labels. Sorted by $|\\Delta|$ descending.}\n\\end{table}\n\n\\section{Per-Task Dose-Response Breakdown}\n\\label{app:dose-response}\n\nTable~\\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\\,pp range for \\texttt{measure-melting-point}), but the aggregate smooths to a 2.5\\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \\texttt{freeze} is consistently the hardest task (50--60\\% DR across all $N$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-task death rates (\\%) for Reflexion at $N{=}3$, 4, 5 on 10 death-prone tasks ($n{=}20$ per task). Aggregate death rates confirm stabilization at $N \\geq 3$ (range: $34.0$--$36.5\\%$).}\n\\label{tab:dose-response-detail}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nTask & $N{=}3$ & $N{=}4$ & $N{=}5$ \\\\\n\\midrule\nchemistry-mix & 25.0 & 35.0 & 20.0 \\\\\nfind-animal & 45.0 & 30.0 & 45.0 \\\\\nfreeze & 50.0 & 50.0 & 60.0 \\\\\ngrow-fruit & 30.0 & 25.0 & 25.0 \\\\\nidentify-life-stages-1 & 35.0 & 35.0 & 35.0 \\\\\nidentify-life-stages-2 & 25.0 & 25.0 & 30.0 \\\\\ninclined-plane-angle & 20.0 & 30.0 & 35.0 \\\\\nlifespan-longest & 45.0 & 40.0 & 40.0 \\\\\nlifespan-long+short & 30.0 & 45.0 & 35.0 \\\\\nmeasure-melting-pt & 35.0 & 50.0 & 25.0 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{34.0} & \\textbf{36.5} & \\textbf{35.0} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Router Training Details}\n\\label{app:router-details}\n\nWe use Qwen3-1.7B for the router to avoid circular dependency with the Qwen2.5-7B data-generating model.\n\nWith gradient accumulation of 1 (effective batch size 4), routing performance is highly sensitive to the evaluation split; this suggests overfitting to specific train/validation partition boundaries. With gradient accumulation of 8 (effective batch size 32), step-level performance stabilizes across splits (${\\sim}54\\%$ balanced accuracy). All reported results use gradient accumulation 8.\n\nUnder step-level evaluation with a fixed data split, cross-seed balanced accuracy ranges from 52.7\\% to 58.1\\%, but internal recall varies from 51.5\\% to 81.8\\%, which reflects threshold sensitivity. However, episode-level evaluation reveals that this apparent discrimination does not generalize: balanced accuracy drops to $47.1 \\pm 2.2\\%$ across 8 cross-split seeds (Appendix~\\ref{app:seed-robustness}). Deployed end-to-end, the trained router allocates 97.0\\% of episodes to deterministic computation with 17.6\\% death rate, and misrouting cost (death from internally-routed episodes) exceeds the benefit of correctly routing rare internal-preferred cases.\n\n\\paragraph{Evaluation methods.} All results use \\emph{generation-based evaluation}: the model generates a routing label as text (\\texttt{enable\\_thinking=False}), parsed for classification. We evaluate at two granularities: \\emph{step-level} (steps from the same episode may appear in both train and validation sets) and \\emph{episode-level} (entire episodes held out). Step-level accuracy ($54.1 \\pm 5.4\\%$) exceeds chance (the router captures some signal), but episode-level accuracy ($47.1 \\pm 2.2\\%$, below chance) shows this does not generalize to unseen episodes. Paraphrase-based text augmentation (Appendix~\\ref{app:seed-robustness}) provides no improvement; real-data scaling remains open. Always-deterministic is trivially near-optimal given DAF $= 90.4\\%$. The main text (\\S\\ref{sec:router-diagnostic}) reports controlled 4-seed results at three scales; the model-size ablation (Appendix~\\ref{app:ablations}) provides further detail.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nHyperparameter & Classification Head & Implicit Router \\\\\n\\midrule\nBase model & Qwen3-1.7B & Qwen3-1.7B \\\\\nArchitecture & Linear + LoRA & SFT + LoRA \\\\\nLoRA $r$ / $\\alpha$ & 16 / 32 & 16 / 32 \\\\\nLearning rate & 2e-5 & 2e-4 \\\\\nOptimizer & AdamW & AdamW \\\\\nEpochs & 3 & 3 \\\\\nBatch size (per device) & 4 & 4 \\\\\nGradient accumulation & 8 & 8 \\\\\nWarmup ratio & 0.1 & 0.1 \\\\\nWeight decay & 0.01 & 0.01 \\\\\nMax sequence length & 512 & 512 \\\\\nSeeds & \\{42\\} & \\{42, 123, 456, 789\\} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\\pm$std.}\n\\label{tab:hyperparams}\n\\end{table}\n\n\\paragraph{Agent inference parameters.}\nFor ScienceWorld, each agent step uses temperature $T{=}0.3$ and maximum generation length of 256 tokens, served via vLLM v0.21.0. Top-$p$ is left at the vLLM default of $1.0$ (no nucleus sampling). For MATH, the agent uses greedy decoding ($T{=}0.0$) with a maximum of 2{,}048 tokens per generation. For ALFWorld, we use $T{=}0.3$ with 256 maximum tokens. All three environments use Qwen2.5-7B-Instruct~\\citep{qwen25-2024} as the backbone.\n\n\\section{Seed Robustness}\n\\label{app:seed-robustness}\n\nWe assess router generalization at two evaluation granularities: \\emph{step-level}, where steps from the same episode may appear in both train and validation sets, and \\emph{episode-level}, where entire episodes are held out. Both use cross-split evaluation (seeds $\\{42, \\ldots, 49\\}$, 8 seeds total), where the data partition and training seed both vary. Table~\\ref{tab:seed-robustness} reports per-seed results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nEval.\\ Granularity & Seed & Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nStep-level & 42 & 57.06 \\\\\n(same-episode & 43 & 63.99 \\\\\nleakage) & 44 & 55.43 \\\\\n & 45 & 56.14 \\\\\n & 46 & 55.45 \\\\\n & 47 & 50.08 \\\\\n & 48 & 48.03 \\\\\n & 49 & 59.30 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $54.1 \\pm 5.4$ \\\\\n\\midrule\nEpisode-level & 42 & 48.1 \\\\\n(held-out & 43 & 47.9 \\\\\nepisodes) & 44 & 49.6 \\\\\n & 45 & 49.4 \\\\\n & 46 & 48.5 \\\\\n & 47 & 43.1 \\\\\n & 48 & 45.4 \\\\\n & 49 & 44.8 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $47.1 \\pm 2.2$ \\\\\n\\midrule\n\\multicolumn{2}{@{}l}{Always-det (= majority-vote)} & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-seed router performance under cross-split evaluation (8 seeds, generation-based, \\texttt{enable\\_thinking=False}). Step-level evaluation allows steps from the same episode in both train and validation sets (same-episode leakage). Episode-level evaluation holds out entire episodes; the resulting $47.1 \\pm 2.2\\%$ is below the 50\\% chance baseline. A text augmentation ablation (Table~\\ref{tab:text-augmentation}) confirms this failure persists under the current data distribution and augmentation regime.}\n\\label{tab:seed-robustness}\n\\end{table}\n\nThe contrast between step-level ($54.1 \\pm 5.4\\%$) and episode-level ($47.1 \\pm 2.2\\%$) evaluation reveals a generalization gap: the step-level signal likely reflects memorization of episode-specific context (enabled by same-episode leakage) rather than extraction of generalizable routing features. At episode level, the router performs below chance across all 8 seeds (range: 43.1\\%--49.6\\%). Paraphrase-based text augmentation (Table~\\ref{tab:text-augmentation}) from 25\\% to 800\\% ($32{\\times}$ range) provides no improvement, converging to the always-deterministic baseline ($50\\%$). Paraphrase augmentation inflates the majority class without generating novel routing patterns; genuine episode-level scaling (collecting more counterfactual pairs) remains an open question. With DAF $= 90.4\\%$ and all task types deterministic-majority (86:9 label ratio), always-deterministic trivially solves the episode-level routing problem, leaving the step-level router with no exploitable signal under current architectures.\n\n\\paragraph{Text augmentation ablation.} To test whether the episode-level generalization failure stems from data scarcity, we vary training set size from 25\\% to 800\\% of the original via paraphrase-based text augmentation (synonym substitution + template variation on step observations), holding the episode-level validation set fixed. This tests augmentation-based scaling, not genuine episode-level scaling (which would require new counterfactual collections). Table~\\ref{tab:text-augmentation} reports the results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccc@{}}\n\\toprule\nScale & Samples & Det\\% & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\n25\\% & 433 & ${\\sim}90$ & $49.5 \\pm 0.3$ \\\\\n50\\% & 867 & ${\\sim}90$ & $51.5$ \\\\\n100\\% & 1{,}735 & 89.6 & $49.9 \\pm 0.1$ \\\\\n200\\% & 3{,}470 & 94.2 & $50.0 \\pm 0.0$ \\\\\n800\\% & 13{,}880 & ${\\sim}97.7$ & $51.0 \\pm 1.1$ \\\\\n\\midrule\nAlways-det & --- & --- & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Text augmentation ablation: episode-level balanced accuracy across training set sizes (25\\%--800\\% of original via paraphrase, $32{\\times}$ range). Internal recall $= 0.0$ at all scales (complete majority-class collapse). Det\\%: fraction of deterministic-preferred labels in training data. The 50\\% scale is a single seed; all others report mean$\\pm$std across seeds.}\n\\label{tab:text-augmentation}\n\\end{table}\n\nAll scales hover at ${\\sim}50\\%$ episode-level balanced accuracy (equivalent to the always-deterministic baseline), with no monotonic improvement as data increases. Augmentation-based scaling provides no improvement at any scale; however, episode-level minority-class diversity remains a potential confound that cannot be resolved without collecting more internal-preferred episodes. The ground-truth internal-preferred rate (9/245 $= 3.7\\%$) means collecting 50 internal-preferred episodes would require approximately 1{,}350 paired episodes at current environment dynamics, a $5.5{\\times}$ expansion with diminishing return on a $9.6\\%$ signal. The failure points to a limitation of the current data distribution: when DAF $= 90.4\\%$ and all task types are deterministic-majority (86:9 label ratio), the episode-level routing problem is trivially solved by always choosing deterministic, and the step-level router finds no exploitable signal under the current architecture and data regime.\n\nAugmentation disproportionately increases the majority (deterministic) class: Det\\% rises from 89.6\\% at 100\\% to 94.2\\% at 200\\% and ${\\sim}97.7\\%$ at 800\\%. However, the complete collapse to majority-class prediction (internal recall $= 0.0$) occurs even at the smallest unaugmented scale (25\\%, ${\\sim}90\\%$ det); this is not an augmentation artifact. Balanced accuracy corrects for class imbalance by averaging per-class recall, so the metric itself is not biased by the skew.\n\nDecomposition metrics are stable under bootstrap resampling ($B{=}10{,}000$ resamples of the 245-episode dataset): DAF $= 90.4\\% \\pm 4.2\\%$ (95\\% CI $[81.1\\%, 99.0\\%]$); Pearson $r = 0.975 \\pm 0.011$ (95\\% CI $[0.952, 0.995]$). The death avoidance dominance finding is robust to both resampling and split perturbation.\n\n\\paragraph{Per-task-type evaluation breakdown.} To test whether the router learns transferable routing strategies or merely task-type classification, we evaluate existing checkpoints (8 seeds) separately on each of the 11 task types. Of the 11 task types, 7 have \\emph{all-deterministic} labels (no internal-preferred episodes exist), making balanced accuracy undefined; the router has nothing to learn beyond the trivial always-deterministic default. For the remaining 4 task types where both classes are present, balanced accuracy ranges from 50.0\\% to 73.0\\%, but this apparent signal does not indicate cross-task-type routing transfer: the router is effectively classifying task types (which correlate with death risk) rather than extracting a generalizable routing strategy. This complements the text augmentation ablation: routing signal does not transfer across task types because the signal \\emph{is} the task type, i.e., whether a given task carries death risk. The 4B capacity scaling result (Appendix~\\ref{app:ablations}) suggests capacity is one factor, but even 4B's $59.0\\%$ episode-level accuracy does not demonstrate cross-task-type transfer.\n\n\\section{Penalty Sensitivity Analysis}\n\\label{app:penalty}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rrr@{}}\n\\toprule\n$P$ & DAF($P$) & 95\\% CI \\\\\n\\midrule\n0 & 7.4\\% & [$-39.4$, $82.5$] \\\\\n1 & 14.8\\% & [$-28.6$, $89.6$] \\\\\n5 & 35.4\\% & [$-1.8$, $92.7$] \\\\\n10 & 50.4\\% & [$18.5$, $93.3$] \\\\\n25 & 70.7\\% & [$48.0$, $96.3$] \\\\\n50 & 82.6\\% & [$67.2$, $98.2$] \\\\\n100\\textsuperscript{*} & 90.4\\% & [$81.1$, $99.0$] \\\\\n200 & 94.9\\% & [$89.9$, $99.5$] \\\\\n500 & 97.9\\% & [$95.7$, $99.8$] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Sensitivity of DAF to death penalty magnitude $P$. DAF$(P) = 1 - \\Delta_{\\text{nd}} / \\Delta_{\\text{full}}(P)$, where $\\Delta_{\\text{full}}(P) \\approx \\delta \\cdot P + \\Delta_{\\text{nd}}$, $\\delta = 0.2653$ is the death-rate differential, and $\\Delta_{\\text{nd}} = 2.84$ (strict neither-died filtering). Recomputed from 245 episode-level data; bootstrap 95\\% CIs ($B{=}10{,}000$). \\textsuperscript{*}Default setting.}\n\\label{tab:penalty-sensitivity}\n\\end{table}\n\nThe non-death score gap $\\Delta_{\\text{nd}} = 2.84$ is invariant across penalty levels; it depends only on surviving-episode performance, not on $P$. As $P$ increases, $\\Delta_{\\text{full}}$ grows ($16.33$ at $P{=}50$, $29.60$ at $P{=}100$, $56.13$ at $P{=}200$) while $\\Delta_{\\text{nd}}$ remains fixed, mechanically increasing DAF.\n\n\\paragraph{Mechanism boundary: death specificity.}\nThe $r = 0.97$ correlation between per-task death-rate differential and $\\Delta_{\\text{full}}$ is specific to catastrophic death (score $= -100$). Broader failure definitions dissolve the correlation entirely: defining ``failure'' as any non-positive score ($T{=}0$) yields $r = -0.13$ ($p = 0.70$), because non-death episodes show near-zero performance differential between strategies ($\\Delta_{\\text{nd}} = 2.84$). Table~\\ref{tab:penalty-correlation} quantifies this specificity across penalty magnitudes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccl@{}}\n\\toprule\n$P$ & $r$ & $p$ & Sig.\\ ($\\alpha{=}0.05$) \\\\\n\\midrule\n1 & $-0.44$ & $0.178$ & No \\\\\n5 & $-0.29$ & $0.382$ & No \\\\\n10 & $-0.08$ & $0.813$ & No \\\\\n25 & $0.51$ & $0.108$ & No \\\\\n50 & $0.86$ & $0.0006$ & Yes \\\\\n100\\textsuperscript{*} & $0.97$ & $8 \\times 10^{-7}$ & Yes \\\\\n200 & $0.99$ & $1 \\times 10^{-9}$ & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Pearson $r$ between per-task death-rate differential and $\\Delta_{\\text{full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \\geq 50$, which reflects the transition from non-death-dominated to death-dominated score gaps. \\textsuperscript{*}Default ScienceWorld setting.}\n\\label{tab:penalty-correlation}\n\\end{table}\n\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\Delta_{\\text{full}}$ reduces to $\\Delta_{\\text{nd}} \\approx 2.84$, which is near-uniform across task types ($\\text{mean non-death gap} = -1.19$ excluding the \\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\Delta_{\\text{full}}$, and the correlation sharpens because death rates \\emph{are} the performance gap. The DAF values in Table~\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\text{DAF} = \\delta P / (\\delta P + \\Delta_{\\text{nd}})$), not evidence of mechanism robustness.\n\n\\section{Cross-Environment Details}\n\\label{app:cross-env-details}\n\nFigure~\\ref{fig:signal-reversal} and Table~\\ref{tab:cross-env} summarize the label distributions across all three environments.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/signal_reversal.pdf}\n\\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both show deterministic preference, but through different mechanisms: death avoidance (ScienceWorld) vs.\\ information asymmetry from admissible-action access (ALFWorld). MATH shows balanced labels, confirming no routing signal without catastrophic failure.}\n\\label{fig:signal-reversal}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nEnvironment & $N$ & Det\\% & Int\\% & NoPref\\% & Death? \\\\\n\\midrule\nScienceWorld & 245 & 35.1 & 3.7 & 61.2 & Yes ($-100$) \\\\\nMATH & 795 & 12.0 & 13.5 & 74.6 & No \\\\\nALFWorld & 135 & 25.9 & 1.5 & 72.6 & No\\textsuperscript{$\\dagger$} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different computation modes: ScienceWorld = oracle simulator with ground-truth state; MATH = Python code interpreter; ALFWorld = admissible-action enumeration. $\\dagger$\\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}\n\\label{tab:cross-env}\n\\end{table}\n\nTable~\\ref{tab:alfworld-pertask} provides the per-task-type breakdown for ALFWorld. Unlike ScienceWorld, ALFWorld has no death mechanism ($\\delta = 0$, DAF $= 0\\%$); the entire performance gap $\\Delta_{\\text{full}}$ reflects information asymmetry from admissible-action access. \\texttt{pick\\_and\\_place} shows the strongest effect ($\\Delta = 0.563$, 18 of 32 episodes det-preferred), while \\texttt{pick\\_two\\_obj\\_and\\_place} shows the weakest ($\\Delta = 0.087$), consistent with multi-object tasks requiring more sequential reasoning that admissible actions alone cannot resolve. Only \\texttt{pick\\_heat\\_then\\_place} has a 95\\% CI crossing zero ($n{=}16$).\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\nTask Type & $n$ & Succ\\%\\textsubscript{int} & Succ\\%\\textsubscript{det} & D / I / N & $\\Delta_{\\text{full}}$ \\\\\n\\midrule\npick\\_and\\_place       & 32 & 0.0  & 56.3 & 18 / 0 / 14 & $+0.563$ \\\\\nlook\\_at\\_obj\\_in\\_light & 13 & 15.4 & 38.5 & 3 / 0 / 10  & $+0.231$ \\\\\npick\\_cool\\_then\\_place & 24 & 0.0  & 16.7 & 4 / 0 / 20  & $+0.167$ \\\\\npick\\_clean\\_then\\_place & 27 & 3.7  & 18.5 & 5 / 1 / 21  & $+0.148$ \\\\\npick\\_heat\\_then\\_place & 16 & 6.3  & 18.8 & 3 / 1 / 12  & $+0.125$ \\\\\npick\\_two\\_obj\\_and\\_place & 23 & 0.0 & 8.7  & 2 / 0 / 21  & $+0.087$ \\\\\n\\midrule\n\\textbf{All (6 types)} & \\textbf{135} & \\textbf{3.0} & \\textbf{27.4} & \\textbf{35 / 2 / 98} & $\\mathbf{+0.244}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\\Delta_{\\text{full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\\Delta_{\\text{full}}$ descending.}\n\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\section{Cross-Model Verification}\n\\label{app:cross-model}\n\nWe replicate the counterfactual analysis with Llama-3.1-8B-Instruct across all 11 task types ($N{=}220$ episode pairs, 20 per type; Table~\\ref{tab:cross-model-detail}).\nThe internal strategy dies in $41.4\\%$ of episodes versus $11.4\\%$ for deterministic (death-rate differential $+30.0$~pp), with 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated by the task environment rather than model-specific factors. The differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$), but directional consistency is 100\\% (10/10 death-prone tasks in both models).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrrl@{}}\n\\toprule\nTask & Int\\% & Det\\% & $\\Delta$\\,pp & D / I / N \\\\\n\\midrule\nidentify-life-stages-1 & 55 & 10 & +45 & 9 / 0 / 11 \\\\\nfreeze & 45 & 0 & +45 & 9 / 0 / 11 \\\\\ngrow-fruit & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nidentify-life-stages-2 & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nmeasure-melting-point & 50 & 15 & +35 & 9 / 0 / 11 \\\\\nlifespan-longest & 35 & 5 & +30 & 7 / 1 / 12 \\\\\nlifespan-l-then-s & 50 & 20 & +30 & 6 / 0 / 14 \\\\\nchemistry-mix & 45 & 20 & +25 & 5 / 0 / 15 \\\\\ninclined-plane & 45 & 20 & +25 & 6 / 0 / 14 \\\\\nfind-animal & 40 & 25 & +15 & 6 / 2 / 12 \\\\\nfind-non-living-thing & 0 & 0 & 0 & 10 / 0 / 10 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{41.4} & \\textbf{11.4} & \\textbf{+30.0} & \\textbf{83 / 3 / 134} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task Llama-3.1-8B cross-model replication ($N{=}20$ per task). D/I/N: deterministic-preferred / internal-preferred / no-preference. Sorted by $\\Delta$ DR descending.}\n\\label{tab:cross-model-detail}\n\\end{table}\n\n\\paragraph{Cross-model and cross-environment summary.}\nTable~\\ref{tab:cross-model-env} consolidates replication results across model families and environments.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcrrrccc}\n\\toprule\nModel & Environment & $n$ & Int DR & Det DR & $\\Delta$DR & DAF & DAF 95\\% CI & Signal \\\\\n\\midrule\nQwen2.5-7B & ScienceWorld & 245 & 42.9\\% & 16.3\\% & +26.5 & 90.4\\% & [81.1, 99.0] & death \\\\\nLlama-3.1-8B & ScienceWorld & 220 & 41.4\\% & 11.4\\% & +30.0 & 88.2\\% & [80.2, 95.1] & death \\\\\nGemma-2-9B-it & ScienceWorld & 220 & 36.4\\% & 14.1\\% & +22.3 & 89.7\\% & [79.5, 98.4] & death \\\\\nQwen2.5-72B & ScienceWorld & 255 & 30.6\\% & 2.75\\% & +27.8 & 92.4\\% & --- & death \\\\\n\\midrule\nQwen2.5-7B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\nLlama-3.1-8B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\n\\midrule\nQwen2.5-7B & MATH & 795 & N/A & N/A & N/A & N/A & N/A & none \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model and cross-environment replication summary. \\textbf{ScienceWorld}: death dominance replicates across three model families in the 7--9B range and persists under $10{\\times}$ scaling (72B); DAF 95\\% CIs from non-clustered episode-level bootstrap ($B{=}10{,}000$). \\textbf{ALFWorld}: DAF $= 0\\%$ (no death mechanism); routing signal arises from information asymmetry. \\textbf{MATH}: no routing signal without catastrophic failure. Signal column: diagnosed routing mechanism. DR = death rate. Gemma-2's wider CI reflects one zero-death task type (\\texttt{find-non-living-thing}); excluding it yields DAF $= 99.9\\%$ $[99.7, 100.0]$.}\n\\label{tab:cross-model-env}\n\\end{table}\n\n\\section{Failure Mode Analysis}\n\\label{app:failure-modes}\n\nAll 105 internal-strategy deaths (100\\%) are triggered by the same action pattern: \\texttt{focus on [object]}. In ScienceWorld, \\texttt{focus on} is the answer-submission action (equivalent to ``this is my final answer''); the LLM agent systematically misuses it as a general interaction or exploration command, and applies it to irrelevant targets (rooms, doors, inventory items). Each such execution submits an incorrect answer and triggers the $-100$ death penalty. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40 for deterministic) reflects how often each strategy enters catastrophic states, not different action selection within those states.\n\nManual inspection identifies four failure categories: (A) no task awareness, where the agent executes \\texttt{focus on} without reading the task; (B) task-aware but lacking action grounding, where the agent correctly identifies the objective but cannot map it to valid action primitives; (D) genuine attempts with execution failure; and (E) initial progress wasted by early errors. Category B dominates: agents demonstrate task comprehension but systematically fail to translate it into correct ScienceWorld actions. This taxonomy was produced by a single annotator; no inter-annotator agreement was computed. The categories are intended as qualitative illustrations, not as formal labels with reliability guarantees.\n\\label{tab:death-taxonomy}\n\n\\paragraph{Representative examples.}\n\\emph{Category A} (no task awareness): In a \\texttt{chemistry-mix} episode, the agent immediately executes \\texttt{focus on kitchen}, \\texttt{focus on door}, \\texttt{focus on inventory} without reading the task, dying on the first \\texttt{focus on} call. \\emph{Category B} (comprehension without grounding): In a \\texttt{lifespan-longest-lived} episode, the agent correctly identifies that it must compare animal lifespans and reasons about which animal lives longest, but then executes \\texttt{focus on oak tree} (a non-animal object in the room) instead of navigating to find the target animal, triggering death.\n\n\\paragraph{Action distribution analysis.}\nFigure~\\ref{fig:death-action-dist} shows the action distribution in death versus non-death episodes for the internal strategy; both are dominated by \\texttt{connect} actions, with \\texttt{focus on} moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$). Crucially, Figure~\\ref{fig:death-comparison} reveals that within death episodes, internal and deterministic strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$). The survival gap (105 vs.\\ 40 deaths) therefore reflects how often each strategy enters catastrophic states, not how it behaves within those states. Among fatal \\texttt{focus on} targets, \\texttt{workshop} remains the most frequent (20.0\\%), followed by \\texttt{inventory} (17.1\\%) and \\texttt{kitchen} (10.5\\%), indicating a systematic object bias rather than random exploration. Figure~\\ref{fig:death-timeline} visualizes the temporal pattern: agents execute long sequences of \\texttt{connect} actions before a terminal \\texttt{focus on} triggers death, typically in the final 1--3 steps.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_distribution.pdf}\n\\caption{Action distribution for the internal (LLM) strategy in death ($n{=}105$) vs.\\ non-death ($n{=}140$) episodes. Left: full distribution (both dominated by \\texttt{connect}). Right: non-\\texttt{connect} actions zoomed. \\texttt{focus on} is moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$), while non-death episodes show higher rates of observation and object interaction.}\n\\label{fig:death-action-dist}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_timeline.pdf}\n\\caption{Step-by-step action sequences for 6 representative death episodes. The fatal \\texttt{focus on} action (marked with arrow) consistently appears in the final steps after long \\texttt{connect} sequences, and illustrates the ``connect loop $\\to$ fatal focus'' pattern. Examples are drawn from the full 30-task dataset for task-type diversity; the pattern is identical in the 11-task analysis subset.}\n\\label{fig:death-timeline}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_comparison.pdf}\n\\caption{Non-\\texttt{connect} action distribution comparison between internal (left) and deterministic (right) strategies. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40) reflects more frequent entry into catastrophic states, not different action selection within those states.}\n\\label{fig:death-comparison}\n\\end{figure}\n\n\\section{Grounding Ablation}\n\\label{app:grounding-ablation}\n\nWe test whether directly intervening on the dominant death action (\\texttt{focus on}) eliminates death vulnerability on the 10 death-prone tasks (baseline 48.0\\%, $n{=}200$).\n\n\\paragraph{Prompt warning.} Adding an explicit system prompt (``use \\texttt{focus on} only for final answers'') reduces aggregate death rate to 37.0\\% ($\\Delta = -11$~pp). Both identification tasks exhibit ironic effects (\\texttt{identify-life-stages-1}: 35\\%$\\to$50\\%; \\texttt{identify-life-stages-2}: 25\\%$\\to$70\\%), where explicit mention of the dangerous action may have increased its salience.\n\n\\paragraph{Action-space filtering.} Blocking \\texttt{focus on} during the exploration phase yields 379 blocks across 200 episodes with zero leaks and zero passthroughs (the agent never persisted in retrying blocked actions), reducing death rate to 29.0\\% ($\\Delta = -19$~pp). The zero-passthrough rate suggests \\texttt{focus on} use is a shallow behavioral pattern rather than a deliberate strategy.\n\n\\paragraph{Per-task variation.} Under filtering, \\texttt{identify-life-stages} and \\texttt{inclined-plane} approach deterministic-level safety (${\\sim}$15--20\\% DR), while \\texttt{chemistry-mix} and \\texttt{find-animal} remain at 35--40\\%. Residual deaths occur during the answer-submission window, where the filter is inactive and agents submit \\texttt{focus on} to incorrect objects.\n\n\\section{Ablation Studies}\n\\label{app:ablations}\n\n\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\ref{tab:capacity}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nModel & Step Bal.\\ Acc.\\ (\\%) & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nQwen3-0.6B & $56.4 \\pm 3.5$ & $50.7 \\pm 2.6$ \\\\\nQwen3-1.7B & $58.2 \\pm 4.0$ & $43.1 \\pm 1.0$ \\\\\nQwen3-4B & $59.2 \\pm 3.5$ & $\\mathbf{59.0 \\pm 1.9}$ \\\\\n\\midrule\nAlways-det & 50.0 & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\\%$, $p < 0.005$).}\n\\label{tab:capacity}\n\\end{table}\n\nStep-level balanced accuracy is flat across scales ($56$--$59\\%$, within seed variance); step-level discrimination is not capacity-sensitive. At episode level, only 4B breaks the random baseline ($59.0 \\pm 1.9\\%$, $p < 0.005$); 0.6B and 1.7B remain at or below chance. The 1.7B model's below-chance episode-level accuracy ($43.1\\%$) may reflect overfitting to spurious step-level correlations that anti-correlate with episode outcomes; without per-class confusion matrices at this scale, this remains a hypothesis. The dominant explanation across scales is that death avoidance constitutes a task-type-level binary signal that a step-level router cannot exploit efficiently.\n\n\\paragraph{Generative router.} A generative routing model trained with explicit routing labels achieves balanced accuracy of 46.7\\%, confirming that the routing bottleneck is signal-limited, not architecture-limited.\n\n\\paragraph{Leave-one-task-type-out routing.} Under leave-one-task-type-out evaluation, blind routing collapses to always-deterministic (balanced accuracy 50.0\\%); a keyword-based variant achieves 62.9\\% only through task-identity leakage, not genuine routing signal. A guided router evaluated under the same protocol confirms this: without task-type identifiers it achieves chance accuracy (50.0\\%), and leaking task names raises this to 62.9\\%, confirming that the only learnable routing feature is task-type identity.\n\n\\paragraph{Death-proximal labeling.} Training a router only on the $k$ steps preceding death events (rather than all steps) also collapses to majority-class prediction (step balanced accuracy 50.0\\%, episode balanced accuracy 50.0\\%, internal recall 0\\%), confirming that the absence of step-level signal is not an artifact of label dilution across long episodes.\n\n\\paragraph{Reasoning depth.} An ablation comparing chain-of-thought reasoning against direct-answer generation on 6 task types ($n{=}120$ episodes per condition, 6 tasks $\\times$ 20 episodes per task) found no significant difference (Mann--Whitney $p > 0.26$, $|d| \\leq 0.31$) and near-identical death rates (41.8\\% vs.\\ 42.5\\%); reasoning depth does not meaningfully alter internal-mode outcomes.\n\n\\section{Threshold Routing Analysis}\n\\label{sec:threshold-routing}\n\nGiven per-task death risk knowledge, we test whether a simple threshold routing strategy can outperform always-deterministic. For each threshold $t \\in [0, 1]$, we route to internal if the per-task internal death rate $\\leq t$, otherwise to deterministic, and sweep all thresholds to find the optimal.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\nStrategy & Mean Score & Death Rate & $\\Delta$ vs Det \\\\\n\\midrule\nAlways-det & $-9.47$ & $0.163$ & $0.00$ \\\\\nOptimal threshold ($t{=}0$) & $-11.03$ & $0.155$ & $-1.56$ \\\\\nAlways-internal & $-39.07$ & $0.429$ & $-29.60$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \\texttt{find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\\% CI for the difference: $[-8.87, +5.92]$.}\n\\label{tab:threshold-routing}\n\\end{table}\n\nEven with perfect per-task death risk knowledge, threshold routing cannot outperform always-deterministic. The sole zero-death task achieves higher scores under deterministic (+28.5) than internal (+18.9), leaving no room for a beneficial mixed strategy.\n\n\\section{Practitioner Decision Framework}\n\\label{app:decision-framework}\n\nGiven a new interactive environment, the following three-stage procedure diagnoses whether learned routing adds value over a fixed deterministic strategy.\n\n\\paragraph{Stage 1: Pilot collection (${\\sim}$50 episodes).}\nRun pure-internal and pure-deterministic strategies on a representative sample (${\\sim}$50 episode pairs). Compute the death-rate differential $\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$.\n\n\\paragraph{Stage 2: Death dominance check.}\nIf $\\Delta\\text{DR} > 15$~pp, death asymmetry is likely the dominant routing signal. Compute the death-label fraction $f_{\\text{death}}$: the proportion of non-tie routing labels where exactly one strategy dies.\n\n\\paragraph{Stage 3: Decision.}\nIf $f_{\\text{death}} > 75\\%$, the routing signal is death-dominated; a fixed deterministic strategy will match or exceed any learned router. If $f_{\\text{death}} < 50\\%$, diverse routing signals may justify a learned router. Between 50\\%--75\\%, collect additional episodes to reduce estimation noise before committing to router development.\n\n\\paragraph{Retrospective validation.}\nAll four experimental conditions in this paper are correctly classified:\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrll@{}}\n\\toprule\nCondition & $\\Delta$DR & $f_{\\text{death}}$ & Prediction & Actual \\\\\n\\midrule\nQwen-7B & +26.5 & 78.9\\% & det-fixed & det wins \\\\\nLlama-8B & +30.0 & $>$75\\% & det-fixed & det wins \\\\\nQwen-72B & +27.8 & $>$75\\% & det-fixed & det wins \\\\\nMATH & +0.5 & 0\\% & router viable & no signal \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Retrospective validation of the decision framework. All four conditions are correctly classified (4/4).}\n\\label{tab:decision-framework}\n\\end{table}\n\nThe framework also predicts the inverted-U relationship between capability and death risk: below ${\\sim}$0.5B parameters, agents rarely reach dangerous states (13.3\\% death rate in a 15-episode pilot), so $\\Delta\\text{DR}$ is low and the framework would not recommend fixed-deterministic. Above ${\\sim}$7B, agents are capable enough to enter catastrophic states but not capable enough to avoid them, producing high $\\Delta\\text{DR}$.\n\n\\paragraph{Threshold calibration.} The thresholds above (15~pp, 75\\%, 50\\%) are illustrative, derived from ScienceWorld's specific reward structure (binary death penalty $P{=}100$, sparse terminal rewards). Environments with graded penalties, dense rewards, or qualitatively different failure modes may require different thresholds. Practitioners should calibrate these boundaries for their specific environment.\n\n\\section{Extended Validation of Excluded Tasks}\n\\label{app:extended-validation}\n\nTo verify that task exclusion does not bias toward death-prone tasks, we collect $n{=}20$ episodes for five representative excluded tasks spanning all exclusion categories (Table~\\ref{tab:extended-val}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcrrrrc}\n\\toprule\nTask & Category & $n$ & Int DR & Det DR & $\\Delta$DR & D/I/N \\\\\n\\midrule\nboil & dev-set & 20 & 55\\% & 25\\% & +30\\,pp & 6/0/14 \\\\\nmelt & dev-set & 20 & 45\\% & 20\\% & +25\\,pp & 7/2/11 \\\\\nfind-living-thing & taxonomic & 20 & 55\\% & 15\\% & +40\\,pp & 10/0/10 \\\\\nuse-thermometer & agent-floor & 20 & 50\\% & 20\\% & +30\\,pp & 7/1/12 \\\\\npower-component & agent-floor & 20 & 50\\% & 15\\% & +35\\,pp & 7/0/13 \\\\\n\\midrule\n\\textit{Mean (5 tasks)} & & 100 & 51.0\\% & 19.0\\% & +32.0\\,pp & 37/3/60 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Extended validation ($n{=}20$) of representative excluded task types. All five tasks confirm death asymmetry; mean $\\Delta$DR $= +32.0$\\,pp is consistent with the $n{=}5$ prescreening estimate for these same tasks (Table~\\ref{tab:excluded-death}).}\n\\label{tab:extended-val}\n\\end{table}\n\nNotably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\n\n\\input{responsibleNLPchecklist}\n\n\\end{document}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 119,
+        "oldLines": 6,
+        "newStart": 119,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\section{Per-Task Decomposition}",
+          " \\label{app:per-task}",
+          "+We use ScienceWorld v1.2.3~\\citep{scienceworld-2022}.",
+          " We select 11 of ScienceWorld's 30 task types for analysis. Types are excluded when they were used for pipeline development (5 tasks, standard hold-out practice), are taxonomically redundant with a retained family representative (7 tasks), or exhibit near-zero task progress under both strategies (7 tasks, agent capability floor).\\footnote{Excluded tasks exhibit even stronger death dominance than included tasks ($\\Delta\\text{DR} = +38.2$\\,pp vs.\\ $+28.7$\\,pp; Table~\\ref{tab:excluded-death}).}",
+          " ",
+          " \\begin{table}[h]"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 150_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01UHH3aZFDSy5o9uMkLHS8YK`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "old_string": "\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\section{Cross-Model Verification}",
+  "new_string": "\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\paragraph{MATH subset composition.}\nThe $N{=}795$ MATH problems span two categories from the MATH test set~\\citep{math-2021} (Levels 4--5): Algebra (585, 73.6\\%) and Counting \\& Probability (210, 26.4\\%). The category imbalance reflects the relative sizes in the original test set.\n\n\\section{Cross-Model Verification}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "6f9f82bb-d369-46d7-910f-a9d67e961ca5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gqz6f9kD7SpDSqzWnSg5My",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 280,
+      "cache_read_input_tokens": 64766,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 280
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 151 · 2026-05-21T09:42:07.755Z_
+
+<details><summary>↩ Tool result · `toolu_01UHH3aZFDSy5o9uMkLHS8YK`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "8e169605-2941-419c-b622-b833431739dd",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+    "oldString": "\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\section{Cross-Model Verification}",
+    "newString": "\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\paragraph{MATH subset composition.}\nThe $N{=}795$ MATH problems span two categories from the MATH test set~\\citep{math-2021} (Levels 4--5): Algebra (585, 73.6\\%) and Counting \\& Probability (210, 26.4\\%). The category imbalance reflects the relative sizes in the original test set.\n\n\\section{Cross-Model Verification}",
+    "originalFile": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\graphicspath{{figures/}}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\n\\title{Death Avoidance as the Dominant Routing Signal:\\\\A Counterfactual Analysis on ScienceWorld}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\\input{introduction}\n\\input{method}\n\\input{experiments}\n\\input{related_work}\n\\input{discussion}\n\\input{conclusion}\n\n\\section*{Limitations}\n\n\\paragraph{Environmental scope.}\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\ref{app:penalty}). The 19 excluded task types (63\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\\S\\ref{sec:cross-env}, \\S\\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \\S\\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\\times}$ scale) reduces death rate but does not eliminate death dominance (\\S\\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).\n\n\\paragraph{Methodological constraints.}\nOur internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\\% pre-event neutral). The issue is granularity mismatch---applying correct-direction labels to uninformative steps---not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.\n\n\\paragraph{Statistical limitations.}\nEpisodes within the same task type are not fully independent because they share environment dynamics, though they use different random seeds. Cluster bootstrap with $K{=}11$ task-type clusters yields wider CIs ($[73.3\\%, 100.0\\%]$); with $K < 40$ clusters, these should be interpreted cautiously~\\citep{cameron-2008,webb-2023}. A wild cluster bootstrap ($K{=}11$, $p < 0.001$; Appendix~\\ref{app:wild-cluster}) and 100\\% directional consistency across all 28 death-prone tasks (Appendix~\\ref{app:per-task-ci}) mitigate this concern.\n\n\\paragraph{Pure-strategy upper bound.}\nOur counterfactual analysis compares pure strategies (always-internal vs.\\ always-deterministic). In mixed routing, the router can selectively invoke deterministic mode on high-risk steps, potentially reducing death asymmetry. Thus, DAF${=}90.4\\%$ represents an upper bound on death avoidance's contribution to optimized routing; the actual contribution under mixed strategies may be lower.\n\n\\section*{Ethics Statement}\n\nThis work uses ScienceWorld \\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All evaluation environments (ScienceWorld, ALFWorld, MATH) are released under permissive open-source licenses (Apache 2.0 / MIT). All models used (Qwen2.5 family, Llama-3.1-8B) are publicly available for research use. All language models are accessed via standard APIs or publicly released weights. Experiments were conducted on 2$\\times$ NVIDIA RTX 5090 (32GB) and 4$\\times$ NVIDIA RTX 6000 PRO (96GB), totaling approximately 200 GPU-hours for data collection, router training, and evaluation. Code and data will be released upon acceptance.\n\n\\bibliography{references}\n\n\\appendix\n\n\\noindent\\textbf{Appendix Overview.}\n\\hyperref[app:sci]{A.~Signal Concentration Index} $\\cdot$\n\\hyperref[app:labeling]{B.~Labeling Quality Audit} $\\cdot$\n\\hyperref[app:per-task]{C.~Per-Task Decomposition} $\\cdot$\n\\hyperref[app:correlation]{D.~Correlation Robustness} $\\cdot$\n\\hyperref[app:wild-cluster]{E.~Cluster Bootstrap Sensitivity} $\\cdot$\n\\hyperref[app:per-task-ci]{F.~Per-Task CIs} $\\cdot$\n\\hyperref[app:loto-daf]{G.~Leave-One-Task-Out DAF} $\\cdot$\n\\hyperref[app:dose-response]{H.~Dose-Response Breakdown} $\\cdot$\n\\hyperref[app:router-details]{I.~Router Training Details} $\\cdot$\n\\hyperref[app:seed-robustness]{J.~Seed Robustness} $\\cdot$\n\\hyperref[app:penalty]{K.~Penalty Sensitivity} $\\cdot$\n\\hyperref[app:cross-env-details]{L.~Cross-Environment Details} $\\cdot$\n\\hyperref[app:cross-model]{M.~Cross-Model Verification} $\\cdot$\n\\hyperref[app:failure-modes]{N.~Failure Mode Analysis} $\\cdot$\n\\hyperref[app:grounding-ablation]{O.~Grounding Ablation} $\\cdot$\n\\hyperref[app:ablations]{P.~Ablation Studies} $\\cdot$\n\\hyperref[sec:threshold-routing]{Q.~Threshold Routing} $\\cdot$\n\\hyperref[app:decision-framework]{R.~Decision Framework} $\\cdot$\n\\hyperref[app:extended-validation]{S.~Extended Validation}\n\n\\section{Signal Concentration Index}\n\\label{app:sci}\n\nLet $K$ denote the number of task types and $c_k$ the contribution of task type $k$ to the aggregate routing signal, defined as the fraction of total death-rate differential attributable to task $k$:\n\\begin{equation}\n    c_k = \\frac{n_k \\cdot \\delta_k}{\\sum_{j=1}^{K} n_j \\cdot \\delta_j}\n\\end{equation}\nwhere $n_k$ is the number of episodes and $\\delta_k = d_k^{\\tt int} - d_k^{\\tt det}$ is the per-task death-rate differential. The SCI is the Gini coefficient over $\\{c_1, \\ldots, c_K\\}$:\n\\begin{equation}\n    \\text{SCI} = \\frac{\\sum_{i=1}^K \\sum_{j=1}^K |c_i - c_j|}{2K \\sum_{k=1}^K c_k}\n\\end{equation}\n\n\\section{Labeling Quality Audit}\n\\label{app:labeling}\n\n\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR\n\\IF{$d_{\\tt int} = 1$ \\AND $d_{\\tt det} = 0$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = 0$ \\AND $d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{both dead}\n\\ELSIF{$s_{\\tt det} > s_{\\tt int}$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSIF{$s_{\\tt int} > s_{\\tt det}$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSE\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{tied alive}\n\\ENDIF\n\\RETURN $\\ell$\n\\end{algorithmic}\n\\end{algorithm}\n\nNote that episode-level labels are used to evaluate step-level predictions, introducing a granularity mismatch rather than independent validation. A potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine computation mode differences. We audit all 245 labels. Of the 150 \\texttt{no\\_preference} labels (61.2\\%), 115 (46.9\\%) are both-alive ties and 35 (14.3\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\%, within 1$\\sigma$ of the full-label retrain (57.6 $\\pm$ 0.5\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\S\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\% step-level tie rate (\\S\\ref{sec:collection}) further motivates episode-level over step-level labeling.\n\n\\section{Per-Task Decomposition}\n\\label{app:per-task}\nWe use ScienceWorld v1.2.3~\\citep{scienceworld-2022}.\nWe select 11 of ScienceWorld's 30 task types for analysis. Types are excluded when they were used for pipeline development (5 tasks, standard hold-out practice), are taxonomically redundant with a retained family representative (7 tasks), or exhibit near-zero task progress under both strategies (7 tasks, agent capability floor).\\footnote{Excluded tasks exhibit even stronger death dominance than included tasks ($\\Delta\\text{DR} = +38.2$\\,pp vs.\\ $+28.7$\\,pp; Table~\\ref{tab:excluded-death}).}\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrrccc@{}}\n\\toprule\nTask & $n$ & $\\Delta_\\text{full}$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & D / I / N \\\\\n\\midrule\nid-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\\\\nlifespan-long          & 25  & $+44.00$ & 56   & 16   & 11 / 1 / 13 \\\\\nlifespan-l-then-s      & 20  & $+40.80$ & 45   & 10   & 8 / 1 / 11  \\\\\ninclined-plane         & 20  & $+36.00$ & 55   & 20   & 7 / 0 / 13  \\\\\nfreeze                 & 20  & $+30.50$ & 55   & 25   & 6 / 0 / 14  \\\\\nmeas-melt-point        & 20  & $+30.05$ & 55   & 25   & 6 / 0 / 14  \\\\\nid-life-stages-2       & 20  & $+30.00$ & 50   & 20   & 6 / 0 / 14  \\\\\nfind-animal            & 20  & $+26.65$ & 50   & 25   & 5 / 0 / 15  \\\\\ngrow-fruit             & 20  & $+25.10$ & 45   & 20   & 6 / 1 / 13  \\\\\nchem-mix               & 20  & $+21.80$ & 45   & 25   & 6 / 2 / 12  \\\\\n\\midrule\nfind-non-living-thing$^\\dagger$ & 40 & $+9.58$ & 0  & 0    & 16 / 4 / 20 \\\\\n\\midrule\n\\textbf{All (11 tasks)} & \\textbf{245} & $\\mathbf{+29.60}$ & \\textbf{42.9} & \\textbf{16.3} & \\textbf{86 / 9 / 150} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task decomposition of the death avoidance effect. D\\%: death rate for internal (int) and deterministic (det) strategies. D/I/N: episode labels (det-preferred / internal-preferred / no-preference). Sorted by $\\Delta_{\\text{full}}$ descending. The \\textit{All} row is an episode-weighted aggregate across 245 episodes. $\\dagger$\\,Only task with zero deaths under both strategies; $n{=}40$ because data was collected in two batches, with the second batch adding 20 episodes to increase statistical power for this zero-death outlier.}\n\\label{tab:per-task}\n\\end{table}\n\n\\paragraph{Task selection and anti-cherry-picking.}\nEighteen of the 19 excluded task types (95\\%) exhibit death-asymmetric patterns (Table~\\ref{tab:excluded-death}): internal-reasoning death rates range from 40\\% to 60\\% (mean 53.9\\%), while deterministic death rates range from 0\\% to 40\\% (mean 15.8\\%), yielding a mean death-rate differential of $+38.2$\\,pp, exceeding the $+28.7$\\,pp for included tasks. The included subset is thus \\emph{less} death-asymmetric than the excluded subset, the opposite of what a cherry-picking hypothesis would predict. The sole exception is \\texttt{grow-plant}, an intrinsically safe task with zero deaths under both strategies, paralleling \\texttt{find-non-living-thing} in the included set. The 19 excluded tasks fall into three independently motivated categories: five used during pipeline development (standard hold-out practice), seven taxonomically redundant with included family representatives (deduplication), and seven where the 7B backbone achieves near-zero task progress regardless of strategy (agent capability floor). In no case was a task excluded because death dominance was absent. Exclusion is driven by absence of non-death routing signal ($\\Delta_{\\text{nd}} = 0$ for 53\\% of excluded tasks) and standard deduplication practices. \\texttt{find-non-living-thing} serves as an internal counterexample: zero deaths under both strategies yet included because it exhibits non-death routing signal ($\\Delta_{\\text{full}} = +9.58$ entirely from score differences), and deterministic is not always preferred (4 of 20 non-tie labels favor internal).\n\n\\begin{table}[t]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2pt}\n\\begin{tabular}{@{}llrcccl@{}}\n\\toprule\nTask & Grp & $n$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & $\\Delta$DR & Excl.\\ reason \\\\\n\\midrule\nboil                          & A & 20 & 50 & 20 & $+30$ & dev set \\\\\nchange-state-of-matter        & A & 20 & 55 & 15 & $+40$ & dev set \\\\\nchem-mix-paint-secondary      & A & 20 & 45 & 10 & $+35$ & dev set \\\\\ngrow-plant                    & A & 20 &  0 &  0 & $\\phantom{+}0$  & dev set \\\\\nmelt                          & A & 20 & 55 & 15 & $+40$ & dev set \\\\\n\\midrule\nchem-mix-paint-tertiary       & B &  5 & 40 & 20 & $+20$ & family redundancy \\\\\nfind-living-thing             & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\nfind-plant                    & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\ninclined-friction-named       & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\ninclined-friction-unnamed     & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\nlifespan-shortest             & B &  5 & 60 & 40 & $+20$ & family redundancy \\\\\nmeasure-melt-known            & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\n\\midrule\nmendelian-known               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nmendelian-unknown             & C &  5 & 60 & 40 & $+20$ & agent floor \\\\\npower-component               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\npower-renewable               & C &  5 & 60 &  0 & $+60$ & agent floor \\\\\ntest-conductivity             & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\ntest-conductivity-unknown     & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nuse-thermometer               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\n\\midrule\n\\textbf{Mean (19 excluded)}   &   &    & \\textbf{53.9} & \\textbf{15.8} & $\\mathbf{+38.2}$ & \\\\\n\\textit{cf.\\ included (11)}   &   &    & \\textit{46.5} & \\textit{17.8} & $\\textit{+28.7}$ & \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Death-rate analysis of all 19 excluded task types. D\\%: death rate (score $\\leq -100$). $\\Delta$DR = D\\%\\textsubscript{int} $-$ D\\%\\textsubscript{det}. 18 of 19 excluded tasks (95\\%) exhibit positive death asymmetry ($\\Delta$DR $\\geq +20$\\,pp). Exclusion groups: A = development set (excluded to prevent circular evaluation), B = taxonomically redundant with an included family representative, C = agent-floor tasks (backbone achieves near-zero progress regardless of strategy). The mean $\\Delta$DR among excluded tasks ($+38.2$\\,pp) exceeds that of included tasks ($+28.7$\\,pp), confirming that task selection does not bias toward death-prone tasks. Group B--C estimates are based on $n{=}5$ prescreening episodes per task and should be interpreted as directional evidence rather than precise rate estimates.}\n\\label{tab:excluded-death}\n\\end{table}\n\n\\section{Correlation Robustness}\n\\label{app:correlation}\n\nThe Pearson $r = 0.9698$ reported in \\S\\ref{sec:death-decomp} is robust across multiple diagnostics. Spearman rank correlation is $\\rho = 0.986$ ($p = 2.4 \\times 10^{-8}$); the relationship is not driven by outliers or non-linearity. A nonparametric bootstrap (10{,}000 resamples) yields 95\\% CI $[0.952, 0.995]$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lr@{}}\n\\toprule\nTask removed & $r_{\\text{LOO}}$ \\\\\n\\midrule\nid-life-stages-1       & 0.963 \\\\\nlifespan-long          & 0.969 \\\\\nlifespan-l-then-s      & 0.976 \\\\\ninclined-plane         & 0.969 \\\\\nfreeze                 & 0.971 \\\\\nmeas-melt-point        & 0.972 \\\\\nid-life-stages-2       & 0.972 \\\\\nfind-animal            & 0.970 \\\\\ngrow-fruit             & 0.973 \\\\\nchem-mix               & 0.969 \\\\\nfind-non-living-thing  & 0.980 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-out Pearson $r$ for the death rate differential vs.\\ $\\Delta_{\\text{full}}$ correlation. Full $r = 0.970$; LOO range $[0.963, 0.980]$. No single task type is a leverage point.}\n\\label{tab:loo}\n\\end{table}\n\n\\section{Cluster Bootstrap Sensitivity Analysis}\n\\label{app:wild-cluster}\n\nWith $K{=}11$ task-type clusters, cluster bootstrap falls well below the $K{\\geq}20$--30 recommended for reliable inference \\citep{cameron-2008,webb-2023}. The narrower CIs obtained reflect known small-sample bias toward underestimation of variance, not tighter inference.\n\nEpisodes within the same task type share environment dynamics, raising the concern that the effective sample size is closer to $K$ (task types) than $N$ (episodes). We address this with cluster-robust inference treating each task type as a cluster ($K{=}11$, all 11 included task types, 245 episodes).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nMethod & $p$-value & 95\\% CI \\\\\n\\midrule\nCluster-robust $t$-test ($t{=}10.0$, df$=$10) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nWild cluster bootstrap ($B{=}9{,}999$) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nExact permutation ($2{,}048$ perms) & $0.002$ & --- \\\\\nSign test & $< 0.001$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cluster-level tests of death-rate asymmetry ($K{=}11$ task clusters, 245 episodes). 10 of 11 clusters show internal DR $>$ deterministic DR; the sole exception (\\texttt{find-non-living-thing}) has zero deaths under both strategies. Cohen's $d = 3.02$. The exact permutation $p = 0.002$ ($4/2{,}048$) reflects the near-unanimous directional consistency.}\n\\label{tab:wild-cluster}\n\\end{table}\n\n\\noindent All methods confirm significance with $p < 0.01$, and the 95\\% CI $[0.73, 1.00]$ excludes zero by a wide margin. With $K{=}11$ task types, ICC estimation itself carries substantial uncertainty; the high within-task consistency of death patterns (all-or-nothing per task type) suggests high ICC, which explains the CI narrowing under cluster resampling.\n\nWe retain this analysis for transparency; readers should rely on the non-clustered episode-level bootstrap (\\S\\ref{sec:death-decomp}) as the primary inference.\n\n\\section{Per-Task Death Rate Confidence Intervals}\n\\label{app:per-task-ci}\n\nWe compute bootstrap 95\\% CIs for the death-rate differential ($\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$) for all 30 ScienceWorld task types. Of 30 tasks, 28 are death-prone (at least one death under either strategy); the remaining 2 (\\texttt{grow-plant}, \\texttt{find-non-living-thing}) have zero deaths under both strategies.\n\nAcross all 28 death-prone tasks, internal DR exceeds deterministic DR without exception (100\\% directional consistency). The pooled death-rate differential is $+37.3\\%$ (95\\% CI: $[29.7\\%, 44.4\\%]$). Fifteen of 28 tasks are individually significant (CI excludes zero); the 13 non-significant tasks all have $n{=}5$ prescreening episodes, where statistical power is insufficient to detect even large effects (e.g., a task with $\\Delta\\text{DR} = +40$\\,pp at $n{=}5$ has a CI of $\\pm 43$\\,pp). The universal directional consistency, combined with the pooled significance, confirms that death asymmetry is not driven by a subset of outlier tasks.\n\n\\section{Leave-One-Task-Out DAF Sensitivity}\n\\label{app:loto-daf}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Leave-one-task-out DAF sensitivity (penalty-independent label fraction). Among the 10 death-prone tasks, removing any single task changes DAF by at most 3.0\\,pp (range: 75.9\\%--78.9\\%). Removing \\emph{Find Non-Living Thing}, the sole death-free task that contributes all 20 score-comparison episodes, raises DAF to 100\\% by construction.}\n\\label{tab:loto-daf}\n\\begin{tabular}{lrrr}\n\\toprule\nRemoved Task & $N_\\text{rem}$ & DAF (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n(none, full) & 245 & 78.9 & --- \\\\\n\\midrule\nFind Non-Living$^\\dagger$ & 205 & 100.0 & +21.1 \\\\\nLifespan Longest & 220 & 75.9 & $-$3.0 \\\\\nLife Stages 1 & 225 & 76.7 & $-$2.2 \\\\\nLifespan Long+Short & 225 & 76.7 & $-$2.2 \\\\\nChemistry Mix & 225 & 77.0 & $-$1.9 \\\\\nGrow Fruit & 225 & 77.3 & $-$1.7 \\\\\nInclined Plane Angle & 225 & 77.3 & $-$1.7 \\\\\nFreeze & 225 & 77.5 & $-$1.4 \\\\\nLife Stages 2 & 225 & 77.5 & $-$1.4 \\\\\nMelt Pt Unknown & 225 & 77.5 & $-$1.4 \\\\\nFind Animal & 225 & 77.8 & $-$1.2 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize $^\\dagger$Only death-free task; contributes all score-comparison labels. Sorted by $|\\Delta|$ descending.}\n\\end{table}\n\n\\section{Per-Task Dose-Response Breakdown}\n\\label{app:dose-response}\n\nTable~\\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\\,pp range for \\texttt{measure-melting-point}), but the aggregate smooths to a 2.5\\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \\texttt{freeze} is consistently the hardest task (50--60\\% DR across all $N$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-task death rates (\\%) for Reflexion at $N{=}3$, 4, 5 on 10 death-prone tasks ($n{=}20$ per task). Aggregate death rates confirm stabilization at $N \\geq 3$ (range: $34.0$--$36.5\\%$).}\n\\label{tab:dose-response-detail}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nTask & $N{=}3$ & $N{=}4$ & $N{=}5$ \\\\\n\\midrule\nchemistry-mix & 25.0 & 35.0 & 20.0 \\\\\nfind-animal & 45.0 & 30.0 & 45.0 \\\\\nfreeze & 50.0 & 50.0 & 60.0 \\\\\ngrow-fruit & 30.0 & 25.0 & 25.0 \\\\\nidentify-life-stages-1 & 35.0 & 35.0 & 35.0 \\\\\nidentify-life-stages-2 & 25.0 & 25.0 & 30.0 \\\\\ninclined-plane-angle & 20.0 & 30.0 & 35.0 \\\\\nlifespan-longest & 45.0 & 40.0 & 40.0 \\\\\nlifespan-long+short & 30.0 & 45.0 & 35.0 \\\\\nmeasure-melting-pt & 35.0 & 50.0 & 25.0 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{34.0} & \\textbf{36.5} & \\textbf{35.0} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Router Training Details}\n\\label{app:router-details}\n\nWe use Qwen3-1.7B for the router to avoid circular dependency with the Qwen2.5-7B data-generating model.\n\nWith gradient accumulation of 1 (effective batch size 4), routing performance is highly sensitive to the evaluation split; this suggests overfitting to specific train/validation partition boundaries. With gradient accumulation of 8 (effective batch size 32), step-level performance stabilizes across splits (${\\sim}54\\%$ balanced accuracy). All reported results use gradient accumulation 8.\n\nUnder step-level evaluation with a fixed data split, cross-seed balanced accuracy ranges from 52.7\\% to 58.1\\%, but internal recall varies from 51.5\\% to 81.8\\%, which reflects threshold sensitivity. However, episode-level evaluation reveals that this apparent discrimination does not generalize: balanced accuracy drops to $47.1 \\pm 2.2\\%$ across 8 cross-split seeds (Appendix~\\ref{app:seed-robustness}). Deployed end-to-end, the trained router allocates 97.0\\% of episodes to deterministic computation with 17.6\\% death rate, and misrouting cost (death from internally-routed episodes) exceeds the benefit of correctly routing rare internal-preferred cases.\n\n\\paragraph{Evaluation methods.} All results use \\emph{generation-based evaluation}: the model generates a routing label as text (\\texttt{enable\\_thinking=False}), parsed for classification. We evaluate at two granularities: \\emph{step-level} (steps from the same episode may appear in both train and validation sets) and \\emph{episode-level} (entire episodes held out). Step-level accuracy ($54.1 \\pm 5.4\\%$) exceeds chance (the router captures some signal), but episode-level accuracy ($47.1 \\pm 2.2\\%$, below chance) shows this does not generalize to unseen episodes. Paraphrase-based text augmentation (Appendix~\\ref{app:seed-robustness}) provides no improvement; real-data scaling remains open. Always-deterministic is trivially near-optimal given DAF $= 90.4\\%$. The main text (\\S\\ref{sec:router-diagnostic}) reports controlled 4-seed results at three scales; the model-size ablation (Appendix~\\ref{app:ablations}) provides further detail.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nHyperparameter & Classification Head & Implicit Router \\\\\n\\midrule\nBase model & Qwen3-1.7B & Qwen3-1.7B \\\\\nArchitecture & Linear + LoRA & SFT + LoRA \\\\\nLoRA $r$ / $\\alpha$ & 16 / 32 & 16 / 32 \\\\\nLearning rate & 2e-5 & 2e-4 \\\\\nOptimizer & AdamW & AdamW \\\\\nEpochs & 3 & 3 \\\\\nBatch size (per device) & 4 & 4 \\\\\nGradient accumulation & 8 & 8 \\\\\nWarmup ratio & 0.1 & 0.1 \\\\\nWeight decay & 0.01 & 0.01 \\\\\nMax sequence length & 512 & 512 \\\\\nSeeds & \\{42\\} & \\{42, 123, 456, 789\\} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\\pm$std.}\n\\label{tab:hyperparams}\n\\end{table}\n\n\\paragraph{Agent inference parameters.}\nFor ScienceWorld, each agent step uses temperature $T{=}0.3$ and maximum generation length of 256 tokens, served via vLLM v0.21.0. Top-$p$ is left at the vLLM default of $1.0$ (no nucleus sampling). For MATH, the agent uses greedy decoding ($T{=}0.0$) with a maximum of 2{,}048 tokens per generation. For ALFWorld, we use $T{=}0.3$ with 256 maximum tokens. All three environments use Qwen2.5-7B-Instruct~\\citep{qwen25-2024} as the backbone.\n\n\\section{Seed Robustness}\n\\label{app:seed-robustness}\n\nWe assess router generalization at two evaluation granularities: \\emph{step-level}, where steps from the same episode may appear in both train and validation sets, and \\emph{episode-level}, where entire episodes are held out. Both use cross-split evaluation (seeds $\\{42, \\ldots, 49\\}$, 8 seeds total), where the data partition and training seed both vary. Table~\\ref{tab:seed-robustness} reports per-seed results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nEval.\\ Granularity & Seed & Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nStep-level & 42 & 57.06 \\\\\n(same-episode & 43 & 63.99 \\\\\nleakage) & 44 & 55.43 \\\\\n & 45 & 56.14 \\\\\n & 46 & 55.45 \\\\\n & 47 & 50.08 \\\\\n & 48 & 48.03 \\\\\n & 49 & 59.30 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $54.1 \\pm 5.4$ \\\\\n\\midrule\nEpisode-level & 42 & 48.1 \\\\\n(held-out & 43 & 47.9 \\\\\nepisodes) & 44 & 49.6 \\\\\n & 45 & 49.4 \\\\\n & 46 & 48.5 \\\\\n & 47 & 43.1 \\\\\n & 48 & 45.4 \\\\\n & 49 & 44.8 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $47.1 \\pm 2.2$ \\\\\n\\midrule\n\\multicolumn{2}{@{}l}{Always-det (= majority-vote)} & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-seed router performance under cross-split evaluation (8 seeds, generation-based, \\texttt{enable\\_thinking=False}). Step-level evaluation allows steps from the same episode in both train and validation sets (same-episode leakage). Episode-level evaluation holds out entire episodes; the resulting $47.1 \\pm 2.2\\%$ is below the 50\\% chance baseline. A text augmentation ablation (Table~\\ref{tab:text-augmentation}) confirms this failure persists under the current data distribution and augmentation regime.}\n\\label{tab:seed-robustness}\n\\end{table}\n\nThe contrast between step-level ($54.1 \\pm 5.4\\%$) and episode-level ($47.1 \\pm 2.2\\%$) evaluation reveals a generalization gap: the step-level signal likely reflects memorization of episode-specific context (enabled by same-episode leakage) rather than extraction of generalizable routing features. At episode level, the router performs below chance across all 8 seeds (range: 43.1\\%--49.6\\%). Paraphrase-based text augmentation (Table~\\ref{tab:text-augmentation}) from 25\\% to 800\\% ($32{\\times}$ range) provides no improvement, converging to the always-deterministic baseline ($50\\%$). Paraphrase augmentation inflates the majority class without generating novel routing patterns; genuine episode-level scaling (collecting more counterfactual pairs) remains an open question. With DAF $= 90.4\\%$ and all task types deterministic-majority (86:9 label ratio), always-deterministic trivially solves the episode-level routing problem, leaving the step-level router with no exploitable signal under current architectures.\n\n\\paragraph{Text augmentation ablation.} To test whether the episode-level generalization failure stems from data scarcity, we vary training set size from 25\\% to 800\\% of the original via paraphrase-based text augmentation (synonym substitution + template variation on step observations), holding the episode-level validation set fixed. This tests augmentation-based scaling, not genuine episode-level scaling (which would require new counterfactual collections). Table~\\ref{tab:text-augmentation} reports the results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccc@{}}\n\\toprule\nScale & Samples & Det\\% & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\n25\\% & 433 & ${\\sim}90$ & $49.5 \\pm 0.3$ \\\\\n50\\% & 867 & ${\\sim}90$ & $51.5$ \\\\\n100\\% & 1{,}735 & 89.6 & $49.9 \\pm 0.1$ \\\\\n200\\% & 3{,}470 & 94.2 & $50.0 \\pm 0.0$ \\\\\n800\\% & 13{,}880 & ${\\sim}97.7$ & $51.0 \\pm 1.1$ \\\\\n\\midrule\nAlways-det & --- & --- & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Text augmentation ablation: episode-level balanced accuracy across training set sizes (25\\%--800\\% of original via paraphrase, $32{\\times}$ range). Internal recall $= 0.0$ at all scales (complete majority-class collapse). Det\\%: fraction of deterministic-preferred labels in training data. The 50\\% scale is a single seed; all others report mean$\\pm$std across seeds.}\n\\label{tab:text-augmentation}\n\\end{table}\n\nAll scales hover at ${\\sim}50\\%$ episode-level balanced accuracy (equivalent to the always-deterministic baseline), with no monotonic improvement as data increases. Augmentation-based scaling provides no improvement at any scale; however, episode-level minority-class diversity remains a potential confound that cannot be resolved without collecting more internal-preferred episodes. The ground-truth internal-preferred rate (9/245 $= 3.7\\%$) means collecting 50 internal-preferred episodes would require approximately 1{,}350 paired episodes at current environment dynamics, a $5.5{\\times}$ expansion with diminishing return on a $9.6\\%$ signal. The failure points to a limitation of the current data distribution: when DAF $= 90.4\\%$ and all task types are deterministic-majority (86:9 label ratio), the episode-level routing problem is trivially solved by always choosing deterministic, and the step-level router finds no exploitable signal under the current architecture and data regime.\n\nAugmentation disproportionately increases the majority (deterministic) class: Det\\% rises from 89.6\\% at 100\\% to 94.2\\% at 200\\% and ${\\sim}97.7\\%$ at 800\\%. However, the complete collapse to majority-class prediction (internal recall $= 0.0$) occurs even at the smallest unaugmented scale (25\\%, ${\\sim}90\\%$ det); this is not an augmentation artifact. Balanced accuracy corrects for class imbalance by averaging per-class recall, so the metric itself is not biased by the skew.\n\nDecomposition metrics are stable under bootstrap resampling ($B{=}10{,}000$ resamples of the 245-episode dataset): DAF $= 90.4\\% \\pm 4.2\\%$ (95\\% CI $[81.1\\%, 99.0\\%]$); Pearson $r = 0.975 \\pm 0.011$ (95\\% CI $[0.952, 0.995]$). The death avoidance dominance finding is robust to both resampling and split perturbation.\n\n\\paragraph{Per-task-type evaluation breakdown.} To test whether the router learns transferable routing strategies or merely task-type classification, we evaluate existing checkpoints (8 seeds) separately on each of the 11 task types. Of the 11 task types, 7 have \\emph{all-deterministic} labels (no internal-preferred episodes exist), making balanced accuracy undefined; the router has nothing to learn beyond the trivial always-deterministic default. For the remaining 4 task types where both classes are present, balanced accuracy ranges from 50.0\\% to 73.0\\%, but this apparent signal does not indicate cross-task-type routing transfer: the router is effectively classifying task types (which correlate with death risk) rather than extracting a generalizable routing strategy. This complements the text augmentation ablation: routing signal does not transfer across task types because the signal \\emph{is} the task type, i.e., whether a given task carries death risk. The 4B capacity scaling result (Appendix~\\ref{app:ablations}) suggests capacity is one factor, but even 4B's $59.0\\%$ episode-level accuracy does not demonstrate cross-task-type transfer.\n\n\\section{Penalty Sensitivity Analysis}\n\\label{app:penalty}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rrr@{}}\n\\toprule\n$P$ & DAF($P$) & 95\\% CI \\\\\n\\midrule\n0 & 7.4\\% & [$-39.4$, $82.5$] \\\\\n1 & 14.8\\% & [$-28.6$, $89.6$] \\\\\n5 & 35.4\\% & [$-1.8$, $92.7$] \\\\\n10 & 50.4\\% & [$18.5$, $93.3$] \\\\\n25 & 70.7\\% & [$48.0$, $96.3$] \\\\\n50 & 82.6\\% & [$67.2$, $98.2$] \\\\\n100\\textsuperscript{*} & 90.4\\% & [$81.1$, $99.0$] \\\\\n200 & 94.9\\% & [$89.9$, $99.5$] \\\\\n500 & 97.9\\% & [$95.7$, $99.8$] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Sensitivity of DAF to death penalty magnitude $P$. DAF$(P) = 1 - \\Delta_{\\text{nd}} / \\Delta_{\\text{full}}(P)$, where $\\Delta_{\\text{full}}(P) \\approx \\delta \\cdot P + \\Delta_{\\text{nd}}$, $\\delta = 0.2653$ is the death-rate differential, and $\\Delta_{\\text{nd}} = 2.84$ (strict neither-died filtering). Recomputed from 245 episode-level data; bootstrap 95\\% CIs ($B{=}10{,}000$). \\textsuperscript{*}Default setting.}\n\\label{tab:penalty-sensitivity}\n\\end{table}\n\nThe non-death score gap $\\Delta_{\\text{nd}} = 2.84$ is invariant across penalty levels; it depends only on surviving-episode performance, not on $P$. As $P$ increases, $\\Delta_{\\text{full}}$ grows ($16.33$ at $P{=}50$, $29.60$ at $P{=}100$, $56.13$ at $P{=}200$) while $\\Delta_{\\text{nd}}$ remains fixed, mechanically increasing DAF.\n\n\\paragraph{Mechanism boundary: death specificity.}\nThe $r = 0.97$ correlation between per-task death-rate differential and $\\Delta_{\\text{full}}$ is specific to catastrophic death (score $= -100$). Broader failure definitions dissolve the correlation entirely: defining ``failure'' as any non-positive score ($T{=}0$) yields $r = -0.13$ ($p = 0.70$), because non-death episodes show near-zero performance differential between strategies ($\\Delta_{\\text{nd}} = 2.84$). Table~\\ref{tab:penalty-correlation} quantifies this specificity across penalty magnitudes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccl@{}}\n\\toprule\n$P$ & $r$ & $p$ & Sig.\\ ($\\alpha{=}0.05$) \\\\\n\\midrule\n1 & $-0.44$ & $0.178$ & No \\\\\n5 & $-0.29$ & $0.382$ & No \\\\\n10 & $-0.08$ & $0.813$ & No \\\\\n25 & $0.51$ & $0.108$ & No \\\\\n50 & $0.86$ & $0.0006$ & Yes \\\\\n100\\textsuperscript{*} & $0.97$ & $8 \\times 10^{-7}$ & Yes \\\\\n200 & $0.99$ & $1 \\times 10^{-9}$ & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Pearson $r$ between per-task death-rate differential and $\\Delta_{\\text{full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \\geq 50$, which reflects the transition from non-death-dominated to death-dominated score gaps. \\textsuperscript{*}Default ScienceWorld setting.}\n\\label{tab:penalty-correlation}\n\\end{table}\n\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\Delta_{\\text{full}}$ reduces to $\\Delta_{\\text{nd}} \\approx 2.84$, which is near-uniform across task types ($\\text{mean non-death gap} = -1.19$ excluding the \\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\Delta_{\\text{full}}$, and the correlation sharpens because death rates \\emph{are} the performance gap. The DAF values in Table~\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\text{DAF} = \\delta P / (\\delta P + \\Delta_{\\text{nd}})$), not evidence of mechanism robustness.\n\n\\section{Cross-Environment Details}\n\\label{app:cross-env-details}\n\nFigure~\\ref{fig:signal-reversal} and Table~\\ref{tab:cross-env} summarize the label distributions across all three environments.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/signal_reversal.pdf}\n\\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both show deterministic preference, but through different mechanisms: death avoidance (ScienceWorld) vs.\\ information asymmetry from admissible-action access (ALFWorld). MATH shows balanced labels, confirming no routing signal without catastrophic failure.}\n\\label{fig:signal-reversal}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nEnvironment & $N$ & Det\\% & Int\\% & NoPref\\% & Death? \\\\\n\\midrule\nScienceWorld & 245 & 35.1 & 3.7 & 61.2 & Yes ($-100$) \\\\\nMATH & 795 & 12.0 & 13.5 & 74.6 & No \\\\\nALFWorld & 135 & 25.9 & 1.5 & 72.6 & No\\textsuperscript{$\\dagger$} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different computation modes: ScienceWorld = oracle simulator with ground-truth state; MATH = Python code interpreter; ALFWorld = admissible-action enumeration. $\\dagger$\\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}\n\\label{tab:cross-env}\n\\end{table}\n\nTable~\\ref{tab:alfworld-pertask} provides the per-task-type breakdown for ALFWorld. Unlike ScienceWorld, ALFWorld has no death mechanism ($\\delta = 0$, DAF $= 0\\%$); the entire performance gap $\\Delta_{\\text{full}}$ reflects information asymmetry from admissible-action access. \\texttt{pick\\_and\\_place} shows the strongest effect ($\\Delta = 0.563$, 18 of 32 episodes det-preferred), while \\texttt{pick\\_two\\_obj\\_and\\_place} shows the weakest ($\\Delta = 0.087$), consistent with multi-object tasks requiring more sequential reasoning that admissible actions alone cannot resolve. Only \\texttt{pick\\_heat\\_then\\_place} has a 95\\% CI crossing zero ($n{=}16$).\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\nTask Type & $n$ & Succ\\%\\textsubscript{int} & Succ\\%\\textsubscript{det} & D / I / N & $\\Delta_{\\text{full}}$ \\\\\n\\midrule\npick\\_and\\_place       & 32 & 0.0  & 56.3 & 18 / 0 / 14 & $+0.563$ \\\\\nlook\\_at\\_obj\\_in\\_light & 13 & 15.4 & 38.5 & 3 / 0 / 10  & $+0.231$ \\\\\npick\\_cool\\_then\\_place & 24 & 0.0  & 16.7 & 4 / 0 / 20  & $+0.167$ \\\\\npick\\_clean\\_then\\_place & 27 & 3.7  & 18.5 & 5 / 1 / 21  & $+0.148$ \\\\\npick\\_heat\\_then\\_place & 16 & 6.3  & 18.8 & 3 / 1 / 12  & $+0.125$ \\\\\npick\\_two\\_obj\\_and\\_place & 23 & 0.0 & 8.7  & 2 / 0 / 21  & $+0.087$ \\\\\n\\midrule\n\\textbf{All (6 types)} & \\textbf{135} & \\textbf{3.0} & \\textbf{27.4} & \\textbf{35 / 2 / 98} & $\\mathbf{+0.244}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\\Delta_{\\text{full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\\Delta_{\\text{full}}$ descending.}\n\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\section{Cross-Model Verification}\n\\label{app:cross-model}\n\nWe replicate the counterfactual analysis with Llama-3.1-8B-Instruct across all 11 task types ($N{=}220$ episode pairs, 20 per type; Table~\\ref{tab:cross-model-detail}).\nThe internal strategy dies in $41.4\\%$ of episodes versus $11.4\\%$ for deterministic (death-rate differential $+30.0$~pp), with 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated by the task environment rather than model-specific factors. The differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$), but directional consistency is 100\\% (10/10 death-prone tasks in both models).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrrl@{}}\n\\toprule\nTask & Int\\% & Det\\% & $\\Delta$\\,pp & D / I / N \\\\\n\\midrule\nidentify-life-stages-1 & 55 & 10 & +45 & 9 / 0 / 11 \\\\\nfreeze & 45 & 0 & +45 & 9 / 0 / 11 \\\\\ngrow-fruit & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nidentify-life-stages-2 & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nmeasure-melting-point & 50 & 15 & +35 & 9 / 0 / 11 \\\\\nlifespan-longest & 35 & 5 & +30 & 7 / 1 / 12 \\\\\nlifespan-l-then-s & 50 & 20 & +30 & 6 / 0 / 14 \\\\\nchemistry-mix & 45 & 20 & +25 & 5 / 0 / 15 \\\\\ninclined-plane & 45 & 20 & +25 & 6 / 0 / 14 \\\\\nfind-animal & 40 & 25 & +15 & 6 / 2 / 12 \\\\\nfind-non-living-thing & 0 & 0 & 0 & 10 / 0 / 10 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{41.4} & \\textbf{11.4} & \\textbf{+30.0} & \\textbf{83 / 3 / 134} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task Llama-3.1-8B cross-model replication ($N{=}20$ per task). D/I/N: deterministic-preferred / internal-preferred / no-preference. Sorted by $\\Delta$ DR descending.}\n\\label{tab:cross-model-detail}\n\\end{table}\n\n\\paragraph{Cross-model and cross-environment summary.}\nTable~\\ref{tab:cross-model-env} consolidates replication results across model families and environments.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcrrrccc}\n\\toprule\nModel & Environment & $n$ & Int DR & Det DR & $\\Delta$DR & DAF & DAF 95\\% CI & Signal \\\\\n\\midrule\nQwen2.5-7B & ScienceWorld & 245 & 42.9\\% & 16.3\\% & +26.5 & 90.4\\% & [81.1, 99.0] & death \\\\\nLlama-3.1-8B & ScienceWorld & 220 & 41.4\\% & 11.4\\% & +30.0 & 88.2\\% & [80.2, 95.1] & death \\\\\nGemma-2-9B-it & ScienceWorld & 220 & 36.4\\% & 14.1\\% & +22.3 & 89.7\\% & [79.5, 98.4] & death \\\\\nQwen2.5-72B & ScienceWorld & 255 & 30.6\\% & 2.75\\% & +27.8 & 92.4\\% & --- & death \\\\\n\\midrule\nQwen2.5-7B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\nLlama-3.1-8B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\n\\midrule\nQwen2.5-7B & MATH & 795 & N/A & N/A & N/A & N/A & N/A & none \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model and cross-environment replication summary. \\textbf{ScienceWorld}: death dominance replicates across three model families in the 7--9B range and persists under $10{\\times}$ scaling (72B); DAF 95\\% CIs from non-clustered episode-level bootstrap ($B{=}10{,}000$). \\textbf{ALFWorld}: DAF $= 0\\%$ (no death mechanism); routing signal arises from information asymmetry. \\textbf{MATH}: no routing signal without catastrophic failure. Signal column: diagnosed routing mechanism. DR = death rate. Gemma-2's wider CI reflects one zero-death task type (\\texttt{find-non-living-thing}); excluding it yields DAF $= 99.9\\%$ $[99.7, 100.0]$.}\n\\label{tab:cross-model-env}\n\\end{table}\n\n\\section{Failure Mode Analysis}\n\\label{app:failure-modes}\n\nAll 105 internal-strategy deaths (100\\%) are triggered by the same action pattern: \\texttt{focus on [object]}. In ScienceWorld, \\texttt{focus on} is the answer-submission action (equivalent to ``this is my final answer''); the LLM agent systematically misuses it as a general interaction or exploration command, and applies it to irrelevant targets (rooms, doors, inventory items). Each such execution submits an incorrect answer and triggers the $-100$ death penalty. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40 for deterministic) reflects how often each strategy enters catastrophic states, not different action selection within those states.\n\nManual inspection identifies four failure categories: (A) no task awareness, where the agent executes \\texttt{focus on} without reading the task; (B) task-aware but lacking action grounding, where the agent correctly identifies the objective but cannot map it to valid action primitives; (D) genuine attempts with execution failure; and (E) initial progress wasted by early errors. Category B dominates: agents demonstrate task comprehension but systematically fail to translate it into correct ScienceWorld actions. This taxonomy was produced by a single annotator; no inter-annotator agreement was computed. The categories are intended as qualitative illustrations, not as formal labels with reliability guarantees.\n\\label{tab:death-taxonomy}\n\n\\paragraph{Representative examples.}\n\\emph{Category A} (no task awareness): In a \\texttt{chemistry-mix} episode, the agent immediately executes \\texttt{focus on kitchen}, \\texttt{focus on door}, \\texttt{focus on inventory} without reading the task, dying on the first \\texttt{focus on} call. \\emph{Category B} (comprehension without grounding): In a \\texttt{lifespan-longest-lived} episode, the agent correctly identifies that it must compare animal lifespans and reasons about which animal lives longest, but then executes \\texttt{focus on oak tree} (a non-animal object in the room) instead of navigating to find the target animal, triggering death.\n\n\\paragraph{Action distribution analysis.}\nFigure~\\ref{fig:death-action-dist} shows the action distribution in death versus non-death episodes for the internal strategy; both are dominated by \\texttt{connect} actions, with \\texttt{focus on} moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$). Crucially, Figure~\\ref{fig:death-comparison} reveals that within death episodes, internal and deterministic strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$). The survival gap (105 vs.\\ 40 deaths) therefore reflects how often each strategy enters catastrophic states, not how it behaves within those states. Among fatal \\texttt{focus on} targets, \\texttt{workshop} remains the most frequent (20.0\\%), followed by \\texttt{inventory} (17.1\\%) and \\texttt{kitchen} (10.5\\%), indicating a systematic object bias rather than random exploration. Figure~\\ref{fig:death-timeline} visualizes the temporal pattern: agents execute long sequences of \\texttt{connect} actions before a terminal \\texttt{focus on} triggers death, typically in the final 1--3 steps.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_distribution.pdf}\n\\caption{Action distribution for the internal (LLM) strategy in death ($n{=}105$) vs.\\ non-death ($n{=}140$) episodes. Left: full distribution (both dominated by \\texttt{connect}). Right: non-\\texttt{connect} actions zoomed. \\texttt{focus on} is moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$), while non-death episodes show higher rates of observation and object interaction.}\n\\label{fig:death-action-dist}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_timeline.pdf}\n\\caption{Step-by-step action sequences for 6 representative death episodes. The fatal \\texttt{focus on} action (marked with arrow) consistently appears in the final steps after long \\texttt{connect} sequences, and illustrates the ``connect loop $\\to$ fatal focus'' pattern. Examples are drawn from the full 30-task dataset for task-type diversity; the pattern is identical in the 11-task analysis subset.}\n\\label{fig:death-timeline}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_comparison.pdf}\n\\caption{Non-\\texttt{connect} action distribution comparison between internal (left) and deterministic (right) strategies. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40) reflects more frequent entry into catastrophic states, not different action selection within those states.}\n\\label{fig:death-comparison}\n\\end{figure}\n\n\\section{Grounding Ablation}\n\\label{app:grounding-ablation}\n\nWe test whether directly intervening on the dominant death action (\\texttt{focus on}) eliminates death vulnerability on the 10 death-prone tasks (baseline 48.0\\%, $n{=}200$).\n\n\\paragraph{Prompt warning.} Adding an explicit system prompt (``use \\texttt{focus on} only for final answers'') reduces aggregate death rate to 37.0\\% ($\\Delta = -11$~pp). Both identification tasks exhibit ironic effects (\\texttt{identify-life-stages-1}: 35\\%$\\to$50\\%; \\texttt{identify-life-stages-2}: 25\\%$\\to$70\\%), where explicit mention of the dangerous action may have increased its salience.\n\n\\paragraph{Action-space filtering.} Blocking \\texttt{focus on} during the exploration phase yields 379 blocks across 200 episodes with zero leaks and zero passthroughs (the agent never persisted in retrying blocked actions), reducing death rate to 29.0\\% ($\\Delta = -19$~pp). The zero-passthrough rate suggests \\texttt{focus on} use is a shallow behavioral pattern rather than a deliberate strategy.\n\n\\paragraph{Per-task variation.} Under filtering, \\texttt{identify-life-stages} and \\texttt{inclined-plane} approach deterministic-level safety (${\\sim}$15--20\\% DR), while \\texttt{chemistry-mix} and \\texttt{find-animal} remain at 35--40\\%. Residual deaths occur during the answer-submission window, where the filter is inactive and agents submit \\texttt{focus on} to incorrect objects.\n\n\\section{Ablation Studies}\n\\label{app:ablations}\n\n\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\ref{tab:capacity}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nModel & Step Bal.\\ Acc.\\ (\\%) & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nQwen3-0.6B & $56.4 \\pm 3.5$ & $50.7 \\pm 2.6$ \\\\\nQwen3-1.7B & $58.2 \\pm 4.0$ & $43.1 \\pm 1.0$ \\\\\nQwen3-4B & $59.2 \\pm 3.5$ & $\\mathbf{59.0 \\pm 1.9}$ \\\\\n\\midrule\nAlways-det & 50.0 & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\\%$, $p < 0.005$).}\n\\label{tab:capacity}\n\\end{table}\n\nStep-level balanced accuracy is flat across scales ($56$--$59\\%$, within seed variance); step-level discrimination is not capacity-sensitive. At episode level, only 4B breaks the random baseline ($59.0 \\pm 1.9\\%$, $p < 0.005$); 0.6B and 1.7B remain at or below chance. The 1.7B model's below-chance episode-level accuracy ($43.1\\%$) may reflect overfitting to spurious step-level correlations that anti-correlate with episode outcomes; without per-class confusion matrices at this scale, this remains a hypothesis. The dominant explanation across scales is that death avoidance constitutes a task-type-level binary signal that a step-level router cannot exploit efficiently.\n\n\\paragraph{Generative router.} A generative routing model trained with explicit routing labels achieves balanced accuracy of 46.7\\%, confirming that the routing bottleneck is signal-limited, not architecture-limited.\n\n\\paragraph{Leave-one-task-type-out routing.} Under leave-one-task-type-out evaluation, blind routing collapses to always-deterministic (balanced accuracy 50.0\\%); a keyword-based variant achieves 62.9\\% only through task-identity leakage, not genuine routing signal. A guided router evaluated under the same protocol confirms this: without task-type identifiers it achieves chance accuracy (50.0\\%), and leaking task names raises this to 62.9\\%, confirming that the only learnable routing feature is task-type identity.\n\n\\paragraph{Death-proximal labeling.} Training a router only on the $k$ steps preceding death events (rather than all steps) also collapses to majority-class prediction (step balanced accuracy 50.0\\%, episode balanced accuracy 50.0\\%, internal recall 0\\%), confirming that the absence of step-level signal is not an artifact of label dilution across long episodes.\n\n\\paragraph{Reasoning depth.} An ablation comparing chain-of-thought reasoning against direct-answer generation on 6 task types ($n{=}120$ episodes per condition, 6 tasks $\\times$ 20 episodes per task) found no significant difference (Mann--Whitney $p > 0.26$, $|d| \\leq 0.31$) and near-identical death rates (41.8\\% vs.\\ 42.5\\%); reasoning depth does not meaningfully alter internal-mode outcomes.\n\n\\section{Threshold Routing Analysis}\n\\label{sec:threshold-routing}\n\nGiven per-task death risk knowledge, we test whether a simple threshold routing strategy can outperform always-deterministic. For each threshold $t \\in [0, 1]$, we route to internal if the per-task internal death rate $\\leq t$, otherwise to deterministic, and sweep all thresholds to find the optimal.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\nStrategy & Mean Score & Death Rate & $\\Delta$ vs Det \\\\\n\\midrule\nAlways-det & $-9.47$ & $0.163$ & $0.00$ \\\\\nOptimal threshold ($t{=}0$) & $-11.03$ & $0.155$ & $-1.56$ \\\\\nAlways-internal & $-39.07$ & $0.429$ & $-29.60$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \\texttt{find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\\% CI for the difference: $[-8.87, +5.92]$.}\n\\label{tab:threshold-routing}\n\\end{table}\n\nEven with perfect per-task death risk knowledge, threshold routing cannot outperform always-deterministic. The sole zero-death task achieves higher scores under deterministic (+28.5) than internal (+18.9), leaving no room for a beneficial mixed strategy.\n\n\\section{Practitioner Decision Framework}\n\\label{app:decision-framework}\n\nGiven a new interactive environment, the following three-stage procedure diagnoses whether learned routing adds value over a fixed deterministic strategy.\n\n\\paragraph{Stage 1: Pilot collection (${\\sim}$50 episodes).}\nRun pure-internal and pure-deterministic strategies on a representative sample (${\\sim}$50 episode pairs). Compute the death-rate differential $\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$.\n\n\\paragraph{Stage 2: Death dominance check.}\nIf $\\Delta\\text{DR} > 15$~pp, death asymmetry is likely the dominant routing signal. Compute the death-label fraction $f_{\\text{death}}$: the proportion of non-tie routing labels where exactly one strategy dies.\n\n\\paragraph{Stage 3: Decision.}\nIf $f_{\\text{death}} > 75\\%$, the routing signal is death-dominated; a fixed deterministic strategy will match or exceed any learned router. If $f_{\\text{death}} < 50\\%$, diverse routing signals may justify a learned router. Between 50\\%--75\\%, collect additional episodes to reduce estimation noise before committing to router development.\n\n\\paragraph{Retrospective validation.}\nAll four experimental conditions in this paper are correctly classified:\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrll@{}}\n\\toprule\nCondition & $\\Delta$DR & $f_{\\text{death}}$ & Prediction & Actual \\\\\n\\midrule\nQwen-7B & +26.5 & 78.9\\% & det-fixed & det wins \\\\\nLlama-8B & +30.0 & $>$75\\% & det-fixed & det wins \\\\\nQwen-72B & +27.8 & $>$75\\% & det-fixed & det wins \\\\\nMATH & +0.5 & 0\\% & router viable & no signal \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Retrospective validation of the decision framework. All four conditions are correctly classified (4/4).}\n\\label{tab:decision-framework}\n\\end{table}\n\nThe framework also predicts the inverted-U relationship between capability and death risk: below ${\\sim}$0.5B parameters, agents rarely reach dangerous states (13.3\\% death rate in a 15-episode pilot), so $\\Delta\\text{DR}$ is low and the framework would not recommend fixed-deterministic. Above ${\\sim}$7B, agents are capable enough to enter catastrophic states but not capable enough to avoid them, producing high $\\Delta\\text{DR}$.\n\n\\paragraph{Threshold calibration.} The thresholds above (15~pp, 75\\%, 50\\%) are illustrative, derived from ScienceWorld's specific reward structure (binary death penalty $P{=}100$, sparse terminal rewards). Environments with graded penalties, dense rewards, or qualitatively different failure modes may require different thresholds. Practitioners should calibrate these boundaries for their specific environment.\n\n\\section{Extended Validation of Excluded Tasks}\n\\label{app:extended-validation}\n\nTo verify that task exclusion does not bias toward death-prone tasks, we collect $n{=}20$ episodes for five representative excluded tasks spanning all exclusion categories (Table~\\ref{tab:extended-val}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcrrrrc}\n\\toprule\nTask & Category & $n$ & Int DR & Det DR & $\\Delta$DR & D/I/N \\\\\n\\midrule\nboil & dev-set & 20 & 55\\% & 25\\% & +30\\,pp & 6/0/14 \\\\\nmelt & dev-set & 20 & 45\\% & 20\\% & +25\\,pp & 7/2/11 \\\\\nfind-living-thing & taxonomic & 20 & 55\\% & 15\\% & +40\\,pp & 10/0/10 \\\\\nuse-thermometer & agent-floor & 20 & 50\\% & 20\\% & +30\\,pp & 7/1/12 \\\\\npower-component & agent-floor & 20 & 50\\% & 15\\% & +35\\,pp & 7/0/13 \\\\\n\\midrule\n\\textit{Mean (5 tasks)} & & 100 & 51.0\\% & 19.0\\% & +32.0\\,pp & 37/3/60 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Extended validation ($n{=}20$) of representative excluded task types. All five tasks confirm death asymmetry; mean $\\Delta$DR $= +32.0$\\,pp is consistent with the $n{=}5$ prescreening estimate for these same tasks (Table~\\ref{tab:excluded-death}).}\n\\label{tab:extended-val}\n\\end{table}\n\nNotably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\n\n\\input{responsibleNLPchecklist}\n\n\\end{document}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 535,
+        "oldLines": 6,
+        "newStart": 535,
+        "newLines": 9,
+        "lines": [
+          " \\label{tab:alfworld-pertask}",
+          " \\end{table}",
+          " ",
+          "+\\paragraph{MATH subset composition.}",
+          "+The $N{=}795$ MATH problems span two categories from the MATH test set~\\citep{math-2021} (Levels 4--5): Algebra (585, 73.6\\%) and Counting \\& Probability (210, 26.4\\%). The category imbalance reflects the relative sizes in the original test set.",
+          "+",
+          " \\section{Cross-Model Verification}",
+          " \\label{app:cross-model}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 152_
+
+Now let me compile to verify no syntax errors.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "7030671a-91e3-458c-9b06-657d59aa5d7c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ua9DsCH1ZR2SC41gcmnNf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 342,
+      "cache_read_input_tokens": 65046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 342
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 153_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_017PuVG4GvMcAUbHigvF7BMi`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -20",
+  "description": "Compile LaTeX to check for errors",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "bd813e55-0633-4705-93a2-8db018929840",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ua9DsCH1ZR2SC41gcmnNf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 342,
+      "cache_read_input_tokens": 65046,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 342
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 154 · 2026-05-21T09:42:13.825Z_
+
+<details><summary>↩ Tool result · `toolu_017PuVG4GvMcAUbHigvF7BMi`</summary>
+
+```text
+ic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
+>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/s
+hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/t
+exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb>&lt;/usr/share/texlive/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmtt8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy
+mbols/msam10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym
+bols/msbm10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.p
+fb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texm
+f-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on main.pdf (23 pages, 586688 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "18b79ce5-00f0-41c9-9b97-aa7163fde48b",
+  "tool_use_result": {
+    "stdout": "ic/amsfonts/cm/cmr10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/cm/cmr6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/\ncmr7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb\n>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/s\nhare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb>&lt;/usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fon\nts/type1/public/amsfonts/cm/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type\n1/public/amsfonts/cm/cmsy9.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publi\nc/amsfonts/cm/cmtt10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/cm/cmtt8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sy\nmbols/msam10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/sym\nbols/msbm10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.p\nfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/sha\nre/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texm\nf-dist/fonts/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/ty\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (23 pages, 586688 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 155_
+
+编译成功，无错误，输出 23 页 PDF。
+
+三处修改：
+1. **Appendix I** (Router Training Details)：添加了 agent inference parameters 段落——ScienceWorld T=0.3/256 tokens，MATH T=0.0/2048 tokens，ALFWorld T=0.3/256 tokens，均通过 vLLM v0.21.0 服务
+2. **Appendix C** (Per-Task Decomposition)：开头添加 ScienceWorld v1.2.3 版本声明
+3. **Appendix L** (Cross-Environment Details)：ALFWorld 表格后添加 MATH subset composition——Algebra 585 (73.6%)、Counting & Probability 210 (26.4%)，共 795 题（注：实际数据仅含这 2 个类别，非预期的 7 个）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "uuid": "ebf3d77b-5f14-49f7-b4b8-71fb2cbfb06d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cd5TAbw9aanvA6DTnxn4wx",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 65388,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 906
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 156_
+
+编译成功，无错误，输出 23 页 PDF。
+
+三处修改：
+1. **Appendix I** (Router Training Details)：添加了 agent inference parameters 段落——ScienceWorld T=0.3/256 tokens，MATH T=0.0/2048 tokens，ALFWorld T=0.3/256 tokens，均通过 vLLM v0.21.0 服务
+2. **Appendix C** (Per-Task Decomposition)：开头添加 ScienceWorld v1.2.3 版本声明
+3. **Appendix L** (Cross-Environment Details)：ALFWorld 表格后添加 MATH subset composition——Algebra 585 (73.6%)、Counting & Probability 210 (26.4%)，共 795 题（注：实际数据仅含这 2 个类别，非预期的 7 个）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 232160,
+  "duration_api_ms": 226216,
+  "num_turns": 62,
+  "stop_reason": "end_turn",
+  "session_id": "a7903038-3e1e-42fb-8b39-78471b0859af",
+  "total_cost_usd": 1.1384192499999999,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 54453,
+    "cache_read_input_tokens": 865062,
+    "output_tokens": 14538,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 54453,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 236,
+        "cache_read_input_tokens": 65388,
+        "cache_creation_input_tokens": 906,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 906
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1922,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 22,
+      "outputTokens": 14538,
+      "cacheReadInputTokens": 865062,
+      "cacheCreationInputTokens": 54453,
+      "webSearchRequests": 0,
+      "costUSD": 1.1364222499999999,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "7c778213-02f1-4116-89ee-a0f957560197"
+}
+```
+
+</details>
+
+---

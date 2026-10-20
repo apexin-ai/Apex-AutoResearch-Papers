@@ -1,0 +1,21 @@
+{
+  "exp_id": "plan-002-formal-v4",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:22:49.207Z",
+    "updated_at": "2026-05-14T06:22:53.894Z",
+    "spec": {
+      "hypothesis": "Router SFT v4：修复 stratified split（val 含 30 internal 样本）+ 移除 upsample_minority（只用 class_weights auto 单一补偿）。v3 根因：双重过校正（class_weights+upsample）导致 internal loss 7:1 爆炸 + val 集 0 internal 样本 → accuracy=0。",
+      "parent": "plan-002-formal-v3",
+      "server": "westb-13313",
+      "gpu": "cuda:0",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T06:22:53.961549+00:00",
+  "trigger": "update_registry"
+}

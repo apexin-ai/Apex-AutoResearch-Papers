@@ -1,0 +1,48 @@
+{
+  "schema_version": "1.0",
+  "id": "03376c6a13b02147bda0",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "eval backbone scaling death 0 5b v3",
+  "task_key": "worker_eval_backbone-scaling-death-0_5b-v3_20260516T210921",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_backbone-scaling-death-0_5b-v3_20260516T210921.log",
+    "occurrence": 1,
+    "bytes": 560992,
+    "sha256": "0d011d66f69317ad2c54ca4275ea7328b1058e67f25b5d392edd77d0464a9b90"
+  },
+  "statistics": {
+    "messages": 280,
+    "user_turns": 0,
+    "tool_calls": 108,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 61,
+      "tool_call": 108,
+      "tool_result": 108
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 280,
+      "chunks": [
+        {
+          "path": "03376c6a13b02147bda0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "03376c6a13b02147bda0-part-0002.json",
+          "message_count": 100
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/eval-backbone-scaling-death-0-5b-v3.md"
+}

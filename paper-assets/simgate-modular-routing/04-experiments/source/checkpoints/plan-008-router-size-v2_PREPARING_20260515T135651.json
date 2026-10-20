@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-008-router-size-v2",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:56:51.786Z",
+    "updated_at": "2026-05-15T13:56:51.786Z"
+  },
+  "timestamp": "2026-05-15T13:56:51.921685+00:00",
+  "trigger": "update_registry"
+}

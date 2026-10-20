@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-013-labeling-quality",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:08:50.100Z",
+    "updated_at": "2026-05-14T12:08:50.100Z"
+  },
+  "timestamp": "2026-05-14T12:08:50.214625+00:00",
+  "trigger": "update_registry"
+}

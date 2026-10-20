@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07e4a0d2d30814213825",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 001b prep",
+  "task_key": "worker_code_plan-001b-prep_20260513T183608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-001b-prep_20260513T183608_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "8a2d60fa4ee257da9bdae74d28a4b47ef631293fefcd51f7b86c8785f34ab130"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过，参数解析正常。\n\n产出：\n- **远程文件**：`/root/autodl-tmp/simgate-modular-routing/src/collect_trajectories.py`\n- **`--help` 验证通过**，所有 CLI 参数可正常解析\n\n与现有 `episode_level_collection.py` 的主要区别：\n1. 每步额外记录 `available_actions`、`is_death`、`observation_text`（步骤执行前的 obs）\n2. 输出分两层：`raw_episodes.jsonl`（两种 modality 的完整 episode 数据）+ `sft_triples.jsonl`（仅 winning modality 的 (obs, action, label) 三元组）\n3. Death episode 自动判负逻辑保持一致，tie 时不产出 SFT 数据\n4. 全局统计写入 `collection_summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-001b-prep.md"
+}

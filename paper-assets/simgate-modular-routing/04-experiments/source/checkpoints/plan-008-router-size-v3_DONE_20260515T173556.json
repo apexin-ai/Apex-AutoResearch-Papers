@@ -1,0 +1,46 @@
+{
+  "exp_id": "plan-008-router-size-v3",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:49:49.991Z",
+    "updated_at": "2026-05-15T17:35:56.117Z",
+    "hypothesis": "Router size ablation v3 (C2): 直接用原始 implicit_router_sft.py（seed-robustness 验证过），只改 --model_name。Qwen3-0.6B / 1.7B (sanity check) / 4B。不写新 wrapper，不改代码。1.7B 应复现 ~0.554-0.576。",
+    "parent": "plan-008-router-size-v2",
+    "spec": {
+      "command": "bash scripts/plan008_v3_run.sh",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": 2040,
+      "model_name": "Qwen3-0.6B / Qwen3-1.7B / Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "data/plan-004-implicit/implicit_sft.jsonl (15% eval split)",
+      "checkpoint_path": "checkpoints/plan-008-v3-qwen3-{0.6b,1.7b,4b}/",
+      "log_path": "logs/plan008_v3.log"
+    },
+    "metrics": {
+      "qwen3_0.6b": {
+        "balanced_acc": 0.3222
+      },
+      "qwen3_1.7b": {
+        "balanced_acc": 0.3759
+      },
+      "qwen3_4b": {
+        "balanced_acc": 0.3463
+      },
+      "reference_1.7b_seed_robustness": {
+        "balanced_acc": "0.554±0.052"
+      },
+      "failure_mode": "implicit_router_sft.py modified on 05-14: gradient_accumulation 8→1, effective batch 32→4 → training collapse. Script restored from .bak.",
+      "root_cause_diagnosis": "checkpoint mismatch: plan-004-v5 (buggy, ga=1, bal_acc=0.4278) vs plan-004-implicit (correct, ga=8, bal_acc=0.5761). enable_thinking irrelevant (0.4148 both ways on v5). Fixed eval on correct checkpoint: 0.5685 ≈ 0.5761. Paper numbers credible."
+    },
+    "conclusion": "killed",
+    "completed_at": "2026-05-15T15:07:56.584Z"
+  },
+  "timestamp": "2026-05-15T17:35:56.259662+00:00",
+  "trigger": "update_registry"
+}

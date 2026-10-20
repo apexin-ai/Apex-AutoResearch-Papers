@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-008-router-size",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:17:35.165Z",
+    "updated_at": "2026-05-15T13:41:35.193Z",
+    "hypothesis": "Router size ablation (C2 lightweight claim): 对比 Qwen3-1.7B vs Qwen2.5-1.5B vs Qwen2.5-3B 作为 router，相同训练数据和配置。如果 1.5B ≈ 1.7B → small router suffices; 如果 3B >> 1.7B → capacity-performance tradeoff discussion。"
+  },
+  "timestamp": "2026-05-15T13:41:35.359275+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,30 @@
+{
+  "exp_id": "backbone-scaling-70b",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:10.909Z",
+    "updated_at": "2026-05-17T08:49:25.772Z",
+    "hypothesis": "72B model 的 death rate 显著低于 7B (42.9%)，但 DAF 可能仍 dominant 因为 deterministic modality 的 death rate 也会降低",
+    "parent": "backbone-scaling-death-rate-0.5b",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/bin/activate && bash /root/autodl-tmp/simgate-modular-routing/scripts/run_72b_episodes.sh 2>&1 | tee /root/autodl-tmp/simgate-modular-routing/results/backbone_72b_run.log\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "607756",
+      "log_path": "~/runs/simgate-modular-routing/backbone-scaling-70b.log",
+      "submitted_at": "2026-05-17T08:49:13.759Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-17T08:49:25.980159+00:00",
+  "trigger": "update_registry"
+}

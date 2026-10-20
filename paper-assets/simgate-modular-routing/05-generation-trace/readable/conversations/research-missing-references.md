@@ -1,0 +1,1032 @@
+# research missing references
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 29
+- **Recorded user turns:** 0
+- **Tool calls:** 14
+- **Original source:** `logs/chats/worker_research_missing-references_20260518T050823.jsonl`
+- **Structured JSON:** [`e6be21dc4e6bafde98d2.json`](../../sessions/e6/e6be21dc4e6bafde98d2.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+29 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-18T05:10:17.626210+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-18T05:10:17.626702+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-18T05:10:17.627056+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Webb 2023 wild cluster bootstrap inference"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Webb 2023 wild cluster bootstrap inference"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-18T05:10:17.627233+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "BALROG benchmark LLM agent games NetHack Crafter ICLR 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "BALROG benchmark LLM agent games NetHack Crafter ICLR 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-18T05:10:17.627365+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "safety-aware routing LLM model selection risk"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "safety-aware routing LLM model selection risk"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T05:10:17.627537+00:00_
+
+Web search results for query: "Webb 2023 wild cluster bootstrap inference"
+
+Links: [{"title":"Reworking wild bootstrap‐based inference for clustered errors - Webb - 2023 - Canadian Journal of Economics/Revue canadienne d'économique - Wiley Online Library","url":"https://onlinelibrary.wiley.com/doi/10.1111/caje.12661"},{"title":"wildbootstrap — Wild cluster bootstrap inference Description Quick start Menu","url":"https://www.stata.com/manuals/rwildbootstrap.pdf"},{"title":"Literature on the Wild Bootstrap and Clustered Inference in Regression Models • fwildclusterboot","url":"https://s3alfisc.github.io/fwildclusterboot/articles/Literature.html"},{"title":"Reworking Wild Bootstrap Based Inference For Clustered Errors","url":"https://ideas.repec.org/p/qed/wpaper/1315.html"},{"title":"Reworking wild bootstrap‐based inference for clustered errors","url":"https://ideas.repec.org/a/wly/canjec/v56y2023i3p839-858.html"},{"title":"Wild Bootstrap Inference for Wildly Different Cluster Sizes","url":"https://ideas.repec.org/a/wly/japmet/v32y2017i2p233-254.html"},{"title":"Wild Bootstrap Inference with Multiway Clustering and ...","url":"https://www.aeaweb.org/conference/2025/program/paper/8aaHE6EZ"},{"title":"Reworking wild bootstrap‐based inference for clustered errors | Request PDF","url":"https://www.researchgate.net/publication/370920784_Reworking_wild_bootstrap-based_inference_for_clustered_errors"},{"title":"The Wild Bootstrap for Few (Treated) Clusters","url":"http://qed.econ.queensu.ca/pub/faculty/mackinnon/working-papers/qed_wp_1364.pdf"},{"title":"Matt Webb - Research","url":"https://sites.google.com/site/matthewdwebb/r"}]
+
+Based on the search results, I found relevant information about Webb's 2023 work on wild cluster bootstrap inference:
+
+## Overview
+
+Webb's 2023 paper, "Reworking wild bootstrap-based inference for clustered errors," was published in the Canadian Journal of Economics.
+
+## Main Contribution
+
+Cluster-robust inference is increasingly common in empirical
+…[truncated 958 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-18T05:10:17.627726+00:00_
+
+Web search results for query: "BALROG benchmark LLM agent games NetHack Crafter ICLR 2025"
+
+Links: [{"title":"Published as a conference paper at ICLR 2025 BALROG: BENCHMARKING AGENTIC LLM","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/f0b1515be276f6ba82b4f2b25e50bef0-Paper-Conference.pdf"},{"title":"BALROG","url":"https://balrogai.com/"},{"title":"ICLR Poster BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games","url":"https://iclr.cc/virtual/2025/poster/28856"},{"title":"BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games","url":"https://arxiv.org/html/2411.13543v2"},{"title":"BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games | OpenReview","url":"https://openreview.net/forum?id=fp6t3F669F"},{"title":"Benchmarking Agentic LLM and VLM Reasoning for Gaming with NVIDIA NIM | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/benchmarking-agentic-llm-and-vlm-reasoning-for-gaming-with-nvidia-nim/"},{"title":"[2411.13543] BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games","url":"https://arxiv.org/abs/2411.13543"},{"title":"[PDF] BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games | Semantic Scholar","url":"https://www.semanticscholar.org/paper/BALROG:-Benchmarking-Agentic-LLM-and-VLM-Reasoning-Paglieri-Cupial/faf5f373bd9944028664ea3e7da2d6a1fe3bf335"},{"title":"BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games - UCL Discovery","url":"https://discovery.ucl.ac.uk/id/eprint/10216728/"},{"title":"GitHub - balrog-ai/BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games · GitHub","url":"https://github.com/balrog-ai/BALROG"}]
+
+I found comprehensive information about the BALROG benchmark. Here's what the search results reveal:
+
+## Overview
+
+BALROG is a novel benchmark designed to assess the agentic capabilities of LLMs and VLMs through a diverse set of challenging games. It enables seamless running of LLM and VLM agents on BabyAI, Crafter, TextWorld, Baba Is AI, MiniHack, and NetHack.
+
+## Sco
+…[truncated 1361 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-18T05:10:17.627927+00:00_
+
+Web search results for query: "safety-aware routing LLM model selection risk"
+
+Links: [{"title":"Quality and Safety in LLM Applications | by Lawrence Emenike | Medium","url":"https://lawrence-emenike.medium.com/quality-and-safety-in-llm-applications-f6cf15b88fcd"},{"title":"CR2: Cost-Aware Risk-Controlled Routing for Wireless Device-Edge LLM Inference","url":"https://arxiv.org/html/2605.12001"},{"title":"Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts LLMs | OpenReview","url":"https://openreview.net/forum?id=JRtldw5Mpw"},{"title":"LLM Safety Risks in Applications","url":"https://www.emergentmind.com/topics/safety-risks-in-llm-applications"},{"title":"BENCHMARKING SAFETY RISK AWARENESS FOR LLM ...","url":"https://openreview.net/pdf?id=g6Yy46YXrU"},{"title":"LLM Safeguards: A Step by Step Guide to risk detection | IBM","url":"https://www.ibm.com/think/tutorials/llm-safeguards-granite-guardian-risk-detection"},{"title":"LLM Safety: Everything you need to know before deploying to production | by Ali Imran | Feb, 2026 | Medium","url":"https://medium.com/@aliimran_36956/llm-safety-everything-you-need-to-know-before-deploying-to-production-7736f659ecf0"},{"title":"Open-Source LLM Router for Mixture-of-Models | vLLM Semantic Router","url":"https://vllm-semantic-router.com/"},{"title":"Security planning for LLM-based applications | Microsoft Learn","url":"https://learn.microsoft.com/en-us/ai/playbook/technology-guidance/generative-ai/mlops-in-openai/security/security-plan-llm-application"},{"title":"LLM Gateways for Enterprise Risk — Building an AI Control Plane | by Adnan Masood, PhD. | Medium","url":"https://medium.com/@adnanmasood/llm-gateways-for-enterprise-risk-building-an-ai-control-plane-e7bed1fdcd9c"}]
+
+I've found several relevant results on safety-aware routing, LLM model selection, and risk management. Here's a summary of key findings:
+
+## Safety-Aware Routing in LLM Systems
+
+Routing models by use case involves using a highly aligned model for sen
+…[truncated 1540 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-18T05:10:17.628178+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Webb 2023 \"Reworking wild bootstrap\" Canadian Journal Economics authors DOI"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Webb 2023 \"Reworking wild bootstrap\" Canadian Journal Economics authors DOI"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-18T05:10:17.628616+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "BALROG benchmarking agentic LLM VLM reasoning games authors Paglieri ICLR 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "BALROG benchmarking agentic LLM VLM reasoning games authors Paglieri ICLR 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-18T05:10:17.628869+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "NetPlay LLM agent NetHack 2024 arxiv skill-based"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "NetPlay LLM agent NetHack 2024 arxiv skill-based"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-18T05:10:17.629064+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"safety routing\" OR \"safety-aware routing\" LLM model router paper 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"safety routing\" OR \"safety-aware routing\" LLM model router paper 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-18T05:10:17.629260+00:00_
+
+Web search results for query: "Webb 2023 "Reworking wild bootstrap" Canadian Journal Economics authors DOI"
+
+Links: [{"title":"Reworking wild bootstrap‐based inference for clustered errors - Webb - 2023 - Canadian Journal of Economics/Revue canadienne d'économique - Wiley Online Library","url":"https://onlinelibrary.wiley.com/doi/10.1111/caje.12661"},{"title":"Reworking wild bootstrap‐based inference for clustered errors - No. 56-3, August 2023 - Canadian Journal of Economics - Books and Journals - VLEX 1042749625 - vLex","url":"https://ca.vlex.com/vid/reworking-wild-bootstrapbased-inference-1042749625"},{"title":"Reworking Wild Bootstrap Based Inference For Clustered Errors","url":"https://ideas.repec.org/p/qed/wpaper/1315.html"},{"title":"Reworking wild bootstrap‐based inference for clustered errors","url":"https://ideas.repec.org/a/wly/canjec/v56y2023i3p839-858.html"},{"title":"Literature on the Wild Bootstrap and Clustered Inference in Regression Models • fwildclusterboot","url":"https://s3alfisc.github.io/fwildclusterboot/articles/Literature.html"},{"title":"Replication Data and Code for: Reworking Wild Bootstrap Based Inference for Clustered Errors - Canadian Journal of Economics (CJE)","url":"https://borealisdata.ca/dataset.xhtml?persistentId=doi:10.5683/SP3/BBZFOY"},{"title":"Matt Webb - Research","url":"https://sites.google.com/site/matthewdwebb/r"},{"title":"Matthew D. Webb - Economics","url":"https://carleton.ca/economics/people/webb-matthew-d/"},{"title":"Wild Bootstrap Inference for Wildly Different Cluster Sizes","url":"https://ideas.repec.org/a/wly/japmet/v32y2017i2p233-254.html"},{"title":"Cluster-robust inference: A guide to empirical practice","url":"https://ideas.repec.org/a/eee/econom/v232y2023i2p272-299.html"}]
+
+Based on the search results, here is the information about the paper:
+
+**Title:** Reworking wild bootstrap-based inference for clustered errors
+
+**Author:** M.D. Webb (Matthew D. Webb)
+
+**Journal:** Canadian Journal of Economics/Revue ca
+…[truncated 255 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 1
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-18T05:10:17.629471+00:00_
+
+Web search results for query: "BALROG benchmarking agentic LLM VLM reasoning games authors Paglieri ICLR 2025"
+
+Links: [{"title":"BALROG","url":"https://balrogai.com/"},{"title":"ICLR Poster BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games","url":"https://iclr.cc/virtual/2025/poster/28856"},{"title":"BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games | OpenReview","url":"https://openreview.net/forum?id=fp6t3F669F"},{"title":"GitHub - balrog-ai/BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games · GitHub","url":"https://github.com/balrog-ai/BALROG"},{"title":"[2411.13543] BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games","url":"https://arxiv.org/abs/2411.13543"},{"title":"Benchmarking Agentic LLM and VLM Reasoning for Gaming with NVIDIA NIM | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/benchmarking-agentic-llm-and-vlm-reasoning-for-gaming-with-nvidia-nim/"},{"title":"BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games","url":"https://arxiv.org/html/2411.13543v1"},{"title":"[PDF] BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games | Semantic Scholar","url":"https://www.semanticscholar.org/paper/BALROG:-Benchmarking-Agentic-LLM-and-VLM-Reasoning-Paglieri-Cupial/faf5f373bd9944028664ea3e7da2d6a1fe3bf335"},{"title":"BALROG: Benchmarking Agentic LLM and VLM Reasoning On Games - UCL Discovery","url":"https://discovery.ucl.ac.uk/id/eprint/10216728/"},{"title":"Published as a conference paper at ICLR 2025 BALROG: BENCHMARKING AGENTIC LLM","url":"https://discovery.ucl.ac.uk/id/eprint/10216728/1/1630_BALROG_Benchmarking_Agent.pdf"}]
+
+Based on the web search results, here's information about the BALROG benchmark:
+
+## Overview
+
+BALROG is a benchmark designed to evaluate the agentic capabilities of large language and vision-language models (LLMs and VLMs) on long-horizon tasks, testing their ability to plan, reason spatially, and explore in dynamic environments.
+
+## Authors and Publication
+
+The paper was au
+…[truncated 1266 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T05:10:17.629692+00:00_
+
+Web search results for query: "NetPlay LLM agent NetHack 2024 arxiv skill-based"
+
+Links: [{"title":"[2403.00690] Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents","url":"https://arxiv.org/abs/2403.00690"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents","url":"https://arxiv.org/html/2403.00690v1"},{"title":"‪Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents‬","url":"https://scholar.google.com/citations?view_op=view_citation&hl=en&user=tuxp1j8AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=tuxp1j8AAAAJ:zYLM7Y9cAGgC"},{"title":"GitHub - CommanderCero/NetPlay: A LLM-powered agent for NetHack","url":"https://github.com/CommanderCero/NetPlay"},{"title":"NetPlay | Dominik Jeurissen","url":"https://commandercero.github.io/netplay/"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | alphaXiv","url":"https://www.alphaxiv.org/abs/2403.00690"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | Request PDF","url":"https://www.researchgate.net/publication/383505253_Playing_NetHack_with_LLMs_Potential_Limitations_as_Zero-Shot_Agents"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents","url":"http://www.diego-perez.net/papers/NethackLLM-CoG24.pdf"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10645630/"},{"title":"[PDF] Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | Semantic Scholar","url":"https://www.semanticscholar.org/paper/81881d2589a34df12d5e2fd192d5354dda1f81a8"}]
+
+Based on the search results, here's what I found about NetPlay, the LLM agent for NetHack:
+
+## Overview
+
+NetPlay is the first LLM-powered zero-shot agent for the challenging roguelike NetHack, published in 2024. The paper is titled "Playing NetHack with LLMs: Potential & Limitations as Zero-S
+…[truncated 1354 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-18T05:10:17.629894+00:00_
+
+Web search results for query: ""safety routing" OR "safety-aware routing" LLM model router paper 2024 2025"
+
+Links: [{"title":"[2406.18665] RouteLLM: Learning to Route LLMs with Preference Data","url":"https://arxiv.org/abs/2406.18665"},{"title":"Router-R1 and LLM routing research – Champaign Magazine","url":"https://champaignmagazine.com/2025/10/16/router-r1-and-llm-routing-research/"},{"title":"Open-Source LLM Router for Mixture-of-Models | vLLM Semantic Router","url":"https://vllm-semantic-router.com/"},{"title":"RouteLLM: Learning to Route LLMs with Preference Data","url":"https://arxiv.org/pdf/2406.18665"},{"title":"A Comprehensive Benchmark for Routing LLMs to Explore ...","url":"https://aclanthology.org/2025.findings-emnlp.208.pdf"},{"title":"A Unified Approach to Routing and Cascading for LLMs","url":"https://files.sri.inf.ethz.ch/website/papers/dekoninck2024cascaderouting.pdf"},{"title":"RouteLLM: An Open-Source Framework for Cost-Effective LLM Routing - LMSYS Blog | LMSYS Org","url":"https://www.lmsys.org/blog/2024-07-01-routellm/"},{"title":"ROUTERARENA: AN OPEN PLATFORM FOR COMPREHENSIVE COMPARISON OF LLM ROUTERS","url":"https://arxiv.org/pdf/2510.00202"},{"title":"RouteLLM: Learning to Route LLMs from Preference Data | OpenReview","url":"https://openreview.net/forum?id=8sSqNntaMr"},{"title":"Published as a conference paper at ICLR 2025","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/5503a7c69d48a2f86fc00b3dc09de686-Paper-Conference.pdf"}]
+
+Based on the search results, I found several relevant papers on LLM model routing from 2024-2025:
+
+## Key Papers on LLM Routing
+
+**RouteLLM (2024-2025)**
+RouteLLM proposes efficient router models that dynamically select between a stronger and a weaker LLM during inference, using a training framework that leverages human preference data and data augmentation techniques. The approach significantly reduces costs by over 2 times in certain cases without compromising response quality.
+
+**RouterBench (2024)*
+…[truncated 1375 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-18T05:10:17.630299+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2403.00690 \"Playing NetHack with LLMs\" authors Jeurissen"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2403.00690 \"Playing NetHack with LLMs\" authors Jeurissen"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-18T05:10:17.630461+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Can LLMs Play NetHack\" 2025 2026 arxiv paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Can LLMs Play NetHack\" 2025 2026 arxiv paper"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-18T05:10:17.630588+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "\"Sparse Models Sparse Safety\" mixture-of-experts unsafe routes LLM 2025 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "\"Sparse Models Sparse Safety\" mixture-of-experts unsafe routes LLM 2025 authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-18T05:10:17.630707+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "safety constraint LLM routing guardrail-aware model selection paper arxiv 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "safety constraint LLM routing guardrail-aware model selection paper arxiv 2024 2025"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T05:10:17.630860+00:00_
+
+Web search results for query: "arxiv 2403.00690 "Playing NetHack with LLMs" authors Jeurissen"
+
+Links: [{"title":"[2403.00690] Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents","url":"https://arxiv.org/abs/2403.00690"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents","url":"https://arxiv.org/html/2403.00690v1"},{"title":"‪Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents‬","url":"https://scholar.google.com/citations?view_op=view_citation&hl=en&user=tuxp1j8AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=tuxp1j8AAAAJ:zYLM7Y9cAGgC"},{"title":"Playing NetHack with LLMs: Potential & L...","url":"https://axi.lims.ac.uk/paper/2403.00690?page=2"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | alphaXiv","url":"https://www.alphaxiv.org/abs/2403.00690"},{"title":"dblp: Duygu Çakmak","url":"https://dblp.org/pid/42/7265.html"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | Request PDF","url":"https://www.researchgate.net/publication/383505253_Playing_NetHack_with_LLMs_Potential_Limitations_as_Zero-Shot_Agents"},{"title":"[PDF] Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Playing-NetHack-with-LLMs:-Potential-&-Limitations-Jeurissen-Liebana/81881d2589a34df12d5e2fd192d5354dda1f81a8"},{"title":"Online Intrinsic Rewards for Decision Making Agents from Large Language Model Feedback","url":"https://arxiv.org/html/2410.23022v4"},{"title":"Playing Nethack With LLMS: Potential & Limitations As Zero-Shot Agents | PDF","url":"https://www.scribd.com/document/822273944/2403-00690v1"}]
+
+I found the paper! Here are the details for arxiv 2403.00690:
+
+**Title:** Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents
+
+**Authors:** Dominik Jeurissen, Diego Perez-Liebana, Jeremy Gow, Duygu Cakmak, James Kwan
+
+**Submitted:** March 1, 2024
+
+**Summ
+…[truncated 918 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-18T05:10:17.631092+00:00_
+
+Web search results for query: ""Can LLMs Play NetHack" 2025 2026 arxiv paper"
+
+Links: [{"title":"[2403.00690] Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents","url":"https://arxiv.org/abs/2403.00690"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents","url":"https://arxiv.org/html/2403.00690v1"},{"title":"‪Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents‬","url":"https://scholar.google.com/citations?view_op=view_citation&hl=en&user=tuxp1j8AAAAJ&pagesize=100&sortby=pubdate&citation_for_view=tuxp1j8AAAAJ:zYLM7Y9cAGgC"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | alphaXiv","url":"https://www.alphaxiv.org/abs/2403.00690"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10645630/"},{"title":"It's 2026. Can LLMs Play Nethack Yet? | Vaguely Aligned","url":"https://kenforthewin.github.io/blog/posts/nethack-agent/"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents | Request PDF","url":"https://www.researchgate.net/publication/383505253_Playing_NetHack_with_LLMs_Potential_Limitations_as_Zero-Shot_Agents"},{"title":"Playing NetHack with LLMs: Potential & L...","url":"https://axi.lims.ac.uk/paper/2403.00690?page=2"},{"title":"Playing Nethack With LLMS: Potential & Limitations As Zero-Shot Agents | PDF","url":"https://www.scribd.com/document/822273944/2403-00690v1"},{"title":"Playing NetHack with LLMs: Potential & Limitations as Zero-Shot Agents","url":"http://www.diego-perez.net/papers/NethackLLM-CoG24.pdf"}]
+
+I found several relevant results about LLMs playing NetHack. Here are the key findings:
+
+## Primary ArXiv Paper (March 2024)
+
+The first LLM-powered zero-shot agent for the challenging roguelike NetHack, called NetPlay, was presented. Large Language Models (LLMs) have shown great success as high-level planner
+…[truncated 1074 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T05:10:17.631286+00:00_
+
+Web search results for query: ""Sparse Models Sparse Safety" mixture-of-experts unsafe routes LLM 2025 authors"
+
+Links: [{"title":"Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts LLMs","url":"https://arxiv.org/html/2602.08621v1"},{"title":"Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts LLMs | OpenReview","url":"https://openreview.net/forum?id=JRtldw5Mpw"},{"title":"[2602.08621] Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts LLMs","url":"https://arxiv.org/abs/2602.08621"},{"title":"UNSAFE ROUTES IN MIXTURE-OF-EXPERTS LLMS","url":"https://openreview.net/pdf/e9755543230f46bbc0069900fd3815f5d9af5aa8.pdf"},{"title":"Steering MoE LLMs via Expert (De)Activation","url":"https://arxiv.org/html/2509.09660"},{"title":"Improving Deep Learning Performance with Mixture of ...","url":"https://www.preprints.org/manuscript/202503.0611/v1"},{"title":"A Survey on Mixture of Experts in Large Language Models","url":"https://arxiv.org/pdf/2407.06204"},{"title":"MOEVIL: Poisoning Experts to Compromise the Safety of Mixture-of-Experts LLMs","url":"https://jaehanwork.github.io/files/moevil.pdf"},{"title":"Mixture of Experts in Large Language Models †: Corresponding author: Junhao Song (junhao.song23@imperial.ac.uk)","url":"https://arxiv.org/html/2507.11181v2"},{"title":"What is 'Mixture of Experts' in LLM Models? - Pinggy","url":"https://pinggy.io/blog/what_is_mixture_of_experts_in_llm_models/"}]
+
+Based on the web search results, here's information about the "Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts LLMs" paper:
+
+## Paper Overview
+
+The key finding is the existence of unsafe routes, which are specific (sparse) routing configurations across layers that, once activated, cause the model to produce harmful content in response to harmful questions.
+
+## Authors
+
+The paper was authored by Yukun Jiang and 5 other authors. The full author list includes: Yukun Jiang, and additional co-authors whose names appear in the pap
+…[truncated 888 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-18T05:10:17.631465+00:00_
+
+Web search results for query: "safety constraint LLM routing guardrail-aware model selection paper arxiv 2024 2025"
+
+Links: [{"title":"Why LLM Safety Guardrails Collapse After Fine-tuning: A Similarity Analysis Between Alignment and Fine-tuning Datasets","url":"https://arxiv.org/html/2506.05346v1"},{"title":"SafeRoute: Adaptive Model Selection for Efficient and Accurate Safety Guardrails in Large Language Models","url":"https://arxiv.org/html/2502.12464v1"},{"title":"No Free Lunch With Guardrails","url":"https://arxiv.org/html/2504.00441v2"},{"title":"SafeHarbor: Defining Precise Decision Boundaries via Hierarchical Memory-Augmented Guardrail for LLM Agent Safety","url":"https://arxiv.org/html/2605.05704"},{"title":"Safety Guardrails for LLM-Enabled Robots","url":"https://arxiv.org/html/2503.07885v2"},{"title":"Current state of LLM Risks and AI Guardrails","url":"https://arxiv.org/html/2406.12934v1"},{"title":"ROBUST REASONING ENABLED LLM GUARDRAIL VIA ...","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/a07e87ecfa8a651d62257571669b0150-Paper-Conference.pdf"},{"title":"Taxonomy-Adaptive Moderation Model with Robust Guardrails for Large Language Models","url":"https://arxiv.org/html/2512.05339v1"},{"title":"Guardrails and Security for LLMs: Safe, Secure, and Controllable Steering of LLM Applications","url":"https://llm-guardrails-security.github.io/"},{"title":"Gradient-Controlled Decoding: A Safety Guardrail for LLMs with Dual-Anchor Steering","url":"https://arxiv.org/html/2604.05179"}]
+
+Based on the web search results, I found several highly relevant papers on safety constraint LLM routing and guardrail-aware model selection from 2024-2025. Here are the key findings:
+
+## Most Relevant Papers
+
+**1. SafeRoute: Adaptive Model Selection for Efficient and Accurate Safety Guardrails (2025)**
+This paper addresses the challenge of deploying safety guard models by distilling larger ones into smaller models, which improves efficiency but generally perform wors
+…[truncated 1256 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-18T05:10:17.631648+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "SafeRoute adaptive model selection safety guardrails LLM arxiv 2502.12464 authors"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "SafeRoute adaptive model selection safety guardrails LLM arxiv 2502.12464 authors"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-18T05:10:17.631799+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "arxiv 2602.08621 \"Sparse Models Sparse Safety\" full author list Yukun Jiang"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "arxiv 2602.08621 \"Sparse Models Sparse Safety\" full author list Yukun Jiang"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T05:10:17.631943+00:00_
+
+Web search results for query: "arxiv 2602.08621 "Sparse Models Sparse Safety" full author list Yukun Jiang"
+
+Links: [{"title":"[2602.08621] Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts LLMs","url":"https://arxiv.org/abs/2602.08621"},{"title":"Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts LLMs","url":"https://arxiv.org/html/2602.08621"},{"title":"[2602.21132] Robust and Sparse Generalized Linear Models for High-Dimensional Data via Maximum Mean Discrepancy","url":"https://arxiv.org/abs/2602.21132"},{"title":"Computer Science","url":"https://arxiv.org/list/cs/recent?skip=543&show=2000"},{"title":"SAFER: Probing Safety in Reward Models with Sparse Autoencoder","url":"https://arxiv.org/html/2507.00665v3"},{"title":"Multilingual Safety Alignment Via Sparse Weight Editing","url":"https://arxiv.org/html/2602.22554"},{"title":"SLA2: Sparse-Linear Attention with Learnable Routing and QAT","url":"https://arxiv.org/html/2602.12675v1"},{"title":"Machine Learning Jun 2024","url":"https://web3.arxiv.org/list/cs.LG/2024-06?skip=1900&show=2000"},{"title":"Computer Vision and Pattern Recognition Apr 2025","url":"http://www.arxiv.org/list/cs.CV/2025-04?skip=1000&show=2000"},{"title":"[2602.22554] Multilingual Safety Alignment Via Sparse Weight Editing","url":"https://arxiv.org/abs/2602.22554"}]
+
+Based on the web search results, I found the paper you're looking for. The full author list for the paper "Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts LLMs" (arxiv 2602.08621) is: Yukun Jiang, Hai Huang, Mingjie Li, Yage Zhang, Michael Backes, and Yang Zhang, all from CISPA Helmholtz Center for Information Security.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-18T05:10:17.632142+00:00_
+
+Web search results for query: "SafeRoute adaptive model selection safety guardrails LLM arxiv 2502.12464 authors"
+
+Links: [{"title":"SafeRoute: Adaptive Model Selection for Efficient and Accurate Safety Guardrails in Large Language Models","url":"https://arxiv.org/html/2502.12464v1"},{"title":"[2502.12464] SafeRoute: Adaptive Model Selection for Efficient and Accurate Safety Guardrails in Large Language Models","url":"https://arxiv.org/abs/2502.12464"},{"title":"Paper page - SafeRoute: Adaptive Model Selection for Efficient and Accurate Safety Guardrails in Large Language Models","url":"https://huggingface.co/papers/2502.12464"},{"title":"No Free Lunch With Guardrails","url":"https://arxiv.org/html/2504.00441v1"},{"title":"SafeRoute: Adaptive Model Selection for Efficient and Accurate Safety Guardrails in Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.105/"},{"title":"[2507.08284] Lightweight Safety Guardrails via Synthetic Data and RL-guided Adversarial Training","url":"https://arxiv.org/abs/2507.08284"},{"title":"SafeHarbor: Defining Precise Decision Boundaries via Hierarchical Memory-Augmented Guardrail for LLM Agent Safety","url":"https://arxiv.org/html/2605.05704"},{"title":"Safety Guardrails for LLM-Enabled Robots","url":"https://arxiv.org/html/2503.07885.pdf"},{"title":"Why LLM Safety Guardrails Collapse After Fine-tuning: A Similarity Analysis Between Alignment and Fine-tuning Datasets","url":"https://arxiv.org/html/2506.05346v1"},{"title":"AdaptiveGuard: Towards Adaptive Runtime Safety for LLM-Powered Software","url":"https://arxiv.org/html/2509.16861v1"}]
+
+Based on the search results, here's the information about the SafeRoute paper (arxiv 2502.12464):
+
+## Paper Overview
+
+SafeRoute is a binary router that distinguishes hard examples from easy ones, and selectively applies the larger safety guard model to the data that the router considers hard, improving efficiency while maintaining accuracy.
+
+## Authors
+
+The autho
+…[truncated 689 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_missing-references_20260518T050823",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-18T05:10:17.632386+00:00_
+
+All searches complete. Here are the results:
+
+---
+
+## 1. Webb 2023 — Wild Cluster Bootstrap
+
+```bibtex
+@article{webb2023reworking,
+  author    = {Matthew D. Webb},
+  title     = {Reworking Wild Bootstrap-Based Inference for Clustered Errors},
+  journal   = {Canadian Journal of Economics/Revue canadienne d'\'{e}conomique},
+  year      = {2023},
+  volume    = {56},
+  number    = {3},
+  pages     = {839--858},
+  doi       = {10.1111/caje.12661},
+  url       = {https://onlinelibrary.wiley.com/doi/10.1111/caje.12661}
+}
+```
+
+---
+
+## 2. Permadeath LLM Agent Literature
+
+### BALROG (ICLR 2025)
+
+```bibtex
+@inproceedings{paglieri2025balrog,
+  author    = {Davide Paglieri and Bart{\l}omiej Cupia{\l} and Samuel Coward and Ulyana Piterbarg and Maciej Wolczyk and Akbir Khan and Eduardo Pignatelli and {\L}ukasz Kuci\'{n}ski and Lerrel Pinto and Rob Fergus and Jakob Nicolaus Foerster and Jack Parker-Holder and Tim Rockt\"{a}schel},
+  title     = {{BALROG}: Benchmarking Agentic {LLM} and {VLM} Reasoning On Games},
+  booktitle = {The Thirteenth International Conference on Learning Representations (ICLR)},
+  year      = {2025},
+  url       = {https://arxiv.org/abs/2411.13543}
+}
+```
+
+### NetPlay (IEEE CoG 2024)
+
+```bibtex
+@inproceedings{jeurissen2024netplay,
+  author    = {Dominik Jeurissen and Diego Perez-Liebana and Jeremy Gow and Duygu Cakmak and James Kwan},
+  title     = {Playing {NetHack} with {LLMs}: Potential \& Limitations as Zero-Shot Agents},
+  booktitle = {2024 IEEE Conference on Games (CoG)},
+  year      = {2024},
+  url       = {https://arxiv.org/abs/2403.00690},
+  doi       = {10.1109/CoG60054.2024.10645630}
+}
+```
+
+### "Can LLMs Play NetHack Yet?" (2026)
+
+**不是正式论文。** 这是一篇博客文章："It's 2026. Can LLMs Play Nethack Yet?" 发表在 "Vaguely Aligned" 博客上（作者 Ken），测试了新模型在 NetHack 上的表现（GPT-5.2 最高到 dungeon level 10，BALROG metric 12.56%）。不建议作为学术引用。如果需要 2026 的 NetHack agent 文献，目前没有找到正式发表的论文。
+
+---
+
+## 3. Safety-Aware Routing Literature
+
+### SafeRoute (ACL Findings 2025) — 最直接匹配
+
+```bibtex
+@inproceedings{lee2025saferoute,
+  author    = {Seanie Lee and Dong Bok Lee and Dominik Wagner and Minki Kang and Haebin Seong and Tobias Bocklet and Juho Lee and Sung Ju Hwang},
+  title     = {{SafeRoute}: Adaptive Model Selection for Efficient and Accurate Safety Guardrails in Large Language Models},
+  booktitle = {Findings of the Association for Computational Linguistics: ACL 2025},
+  year      = {2025},
+  pages     = {2053--2069},
+  address   = {Vienna, Austria},
+  url       = {https://arxiv.org/abs/2502.12464}
+}
+```
+
+这是最精确匹配 "safety-aware routing" 概念的论文：用二分类 router 区分 easy/hard 样本，将 hard 样本路由到更大的 safety guard 模型，实现效率与安全性的平衡。
+
+### 备选：Sparse Models, Sparse Safety (arXiv 2025, ICLR 2026 投稿)
+
+```bibtex
+@article{jiang2025sparse,
+  author    = {Yukun Jiang and Hai Huang and Mingjie Li and Yage Zhang and Michael Backes and Yang Zhang},
+  title     = {Sparse Models, Sparse Safety: Unsafe Routes in Mixture-of-Experts {LLMs}},
+  journal   = {arXiv preprint arXiv:2602.08621},
+  year      = {2025},
+  url       = {https://arxiv.org/abs/2602.08621}
+}
+```
+
+这篇从 MoE routing 角度研究 safety：发现特定 routing 配置会导致模型产出有害内容。角度不同但相关——如果论文需要的是 "在 model routing 决策中显式考虑 safety 因素"，SafeRoute 更合适；如果需要的是 "routing 机制本身的 safety 风险"，这篇更合适。
+
+---
+
+**不确定之处：**
+- "Can LLMs Play NetHack Yet?" 没有找到 2025/2026 的正式论文，只有博客
+- Safety-aware routing 是相对新的交叉方向，SafeRoute 是目前找到的最直接匹配，但它偏 guardrail model selection 而非 general LLM routing with safety constraints。如果 Paper Agent 需要的是另一种 framing，请补充上下文
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_missing-references_20260518T050823"
+}
+```
+
+</details>
+
+---

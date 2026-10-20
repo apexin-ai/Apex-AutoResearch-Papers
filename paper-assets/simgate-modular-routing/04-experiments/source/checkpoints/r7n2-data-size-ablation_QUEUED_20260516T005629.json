@@ -1,0 +1,24 @@
+{
+  "exp_id": "r7n2-data-size-ablation",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:56:29.373Z",
+    "updated_at": "2026-05-16T00:56:29.373Z",
+    "spec": {
+      "command": "python src/ablation_data_size.py --data_path data/plan-004-implicit/implicit_sft.jsonl --gpu_id 0 --seeds 42 43 44",
+      "server": "westb-13313",
+      "data_path": "/root/autodl-tmp/simgate-modular-routing/data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": 2040,
+      "model_name": "Qwen3-1.7B",
+      "seed": "42,43,44",
+      "gpu": "cuda:0 (RTX 5090 32GB)",
+      "description": "R7-N2 data-size ablation: balanced_acc vs training data scale (25%-800%), observation perturbation augmentation, 3 seeds per scale point"
+    }
+  },
+  "timestamp": "2026-05-16T00:56:29.570793+00:00",
+  "trigger": "update_registry"
+}

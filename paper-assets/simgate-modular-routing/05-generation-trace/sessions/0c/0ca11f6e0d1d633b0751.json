@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0ca11f6e0d1d633b0751",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code mvp scripts",
+  "task_key": "worker_code_mvp-scripts_20260513T045148",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_mvp-scripts_20260513T045148_result.json",
+    "occurrence": 1,
+    "bytes": 1483,
+    "sha256": "4ae5669e37648ecac441ae519a167309eb7f5cb1bc3505d868478e77a5e3a27c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "SSH 仍不可用（另一个 Worker 在配置中）。文件已全部写在本地项目目录，等 SSH 恢复后上传。\n\n文件清单和说明：\n\n| 文件 | 功能 |\n|------|------|\n| `src/scienceworld_utils.py` | ScienceWorld 环境工具：创建/重置/步进/关闭环境、`fork_and_lookahead()` action-replay forking、`run_episode_with_logging()` |\n| `src/phase0_validate_forking.py` | Phase 0 验证：10 个 variation 跑 fork，测量成功率/延迟/内存，输出 gate 判定 |\n| `src/llm_agent.py` | Qwen2.5-7B ReAct agent：`select_action_react()` 单步选 action、`generate_candidate_actions()` 生成 top-n 候选，支持 vLLM/HF 后端，自动探测模型路径 |\n| `src/phase1_signal.py` | Phase 1 主实验：3-way comparison（always-internal / always-deterministic / oracle-routing），逐 episode 记录 JSONL + 汇总 summary.json |\n| `src/analysis.py` | 结果分析：bootstrap 90% CI、per-task 判定、ROADMAP Pass/Conditional/Fail 标准 |\n| `src/run_all.sh` | 全流程脚本：Phase 0 gate → Phase 1 双 GPU 并行 → Analysis |\n\n全部 5 个 Python 文件语法验证通过。\n\n待 SSH 恢复后需要：\n1. 上传 6 个文件到 `/root/autodl-tmp/simgate-modular-routing/src/`\n2. 确认 ScienceWorld API 的精确 task type 名称，更新 `scienceworld_utils.py` 顶部常量和 `phase0_validate_forking.py` 中 `PHASE0_TASKS`\n3. 确认模型实际路径，更新 `llm_agent.py` 的 `MODEL_SEARCH_PATHS`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-mvp-scripts.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40e76d15256ee99a6e72",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research framework formalization",
+  "task_key": "worker_research_framework-formalization_20260516T161839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_framework-formalization_20260516T161839_result.json",
+    "occurrence": 1,
+    "bytes": 622,
+    "sha256": "47773a0b283ea000eaeeedd8e73140941ee4f8c6b59a4302c3b99b217fadcf4b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入：`/root/autodl-tmp/simgate-modular-routing/guided_router/framework_draft.md`（279 行）。\n\n三大部分完整覆盖：\n- **Part 1** — Episode-level Counterfactual Labeling、DAF 形式化定义（含 bootstrap CI）、Signal Concentration Index（Gini-based SCI + Top-k CR）\n- **Part 2** — 适用条件表格 + DAF informativeness 条件 + 四个已验证场景（ScienceWorld/ALFWorld/MATH/Llama cross-model）各附数据\n- **Part 3** — 与 ITP-R、ReTool/AgentMath/Chameleon 的差异化对比 + 核心卖点\n\n所有数字严格来自已有实验证据，未做外推。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-framework-formalization.md"
+}

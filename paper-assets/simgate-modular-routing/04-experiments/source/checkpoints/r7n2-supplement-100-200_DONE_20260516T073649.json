@@ -1,0 +1,33 @@
+{
+  "exp_id": "r7n2-supplement-100-200",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T07:01:12.975Z",
+    "updated_at": "2026-05-16T07:36:49.784Z",
+    "spec": {
+      "command": "python src/r7n2_scale_study.py --scales 100pct 200pct --seeds 42 43 --batch_size 4 --epochs 3",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": "100%=1733, 200%=3466 samples",
+      "model_name": "Qwen3-1.7B",
+      "seed": "42, 43",
+      "pid": "9298",
+      "log_path": "/tmp/r7n2_supplement.log",
+      "tmux_session": "r7n2-supp",
+      "gpu_mem": "13213MiB/32607MiB"
+    },
+    "hypothesis": "Supplement r7n2 data scaling with 100%/200% scales (filling gap between 50% and 800%). Expect same majority-class collapse pattern as other scales, confirming monotonic non-improvement.",
+    "reproduce": {
+      "finished_at": "2026-05-16T07:36:44.952Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T07:36:47.507Z"
+  },
+  "timestamp": "2026-05-16T07:36:49.966144+00:00",
+  "trigger": "update_registry"
+}

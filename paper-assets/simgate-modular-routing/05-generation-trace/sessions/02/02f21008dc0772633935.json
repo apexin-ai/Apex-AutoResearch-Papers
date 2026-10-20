@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02f21008dc0772633935",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "launch gemma find nonliving gpu1",
+  "task_key": "worker_launch_gemma-find-nonliving-gpu1_20260520T204328",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_launch_gemma-find-nonliving-gpu1_20260520T204328_result.json",
+    "occurrence": 1,
+    "bytes": 736,
+    "sha256": "0577090cc010423a3cfb1948a7a41a246ae869e55ad96c2761be996a29455ffd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已启动，运行正常。\n\n**报告：**\n\n1. **cuda:1 状态**：旧 vLLM 进程 (PID 688633, 26374 MiB) 已 kill，显存完全释放后重新启动\n2. **脚本**：`scripts/run_gemma_gpu1_findnonliving.sh` — 单 task `find-non-living-thing`，20 episodes，`CUDA_VISIBLE_DEVICES=1`，`enforce_eager=True`，模型路径 `/root/autodl-tmp/models/gemma-2-9b-it/AI-ModelScope/gemma-2-9b-it`，输出 `results/gemma_scienceworld_counterfactual/find-non-living-thing/`\n3. **启动确认**：tmux session `gemma-gpu1-final` 运行中，vLLM EngineCore 已加载 (17.22 GiB)，正在处理 episode 0 的 steps（inference 速度 ~800-1300 toks/s input, ~40 toks/s output），cuda:1 占用 26383 MiB / 8% utilization"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/launch-gemma-find-nonliving-gpu1.md"
+}

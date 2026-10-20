@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d59ae5867a53849b2a7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 004 v3 data fix train",
+  "task_key": "worker_code_plan-004-v3-data-fix-train_20260514T070720",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-004-v3-data-fix-train_20260514T070720_result.json",
+    "occurrence": 1,
+    "bytes": 724,
+    "sha256": "31776e03dd567d3986bb255bdf7b9ca70e48a24ba6c9c2b30dd7c5ef21ad7865"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练正常运行中，42/165 steps (~25%), 速度 ~1.05 it/s，预计 ~2.5 分钟完成剩余 steps（3 epochs 共 165 steps）。\n\n**执行总结**：\n\n| 步骤 | 状态 |\n|------|------|\n| 数据生成 | `data/plan-004-v3/implicit_sft.jsonl` — 2040 条，det 1830 (89.7%), int 210 (10.3%), 11 tasks, 0 skipped |\n| 数据修复 | no-preference 正确丢弃（plan_c/ 中本身无 no-preference 记录） |\n| class_weights | 已去掉（不传 `--class_weights`，默认 None） |\n| 训练提交 | PID 242217, cuda:1, tmux session `plan-004-v3` |\n| 训练进度 | 42/165 steps, ~1.05 it/s, 模型正常加载（6.4M trainable / 1.73B total） |\n| Registry | RUNNING, hypothesis/spec 已更新 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-004-v3-data-fix-train.md"
+}

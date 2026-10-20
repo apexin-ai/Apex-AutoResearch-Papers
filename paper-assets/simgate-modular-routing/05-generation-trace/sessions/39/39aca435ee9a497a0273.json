@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39aca435ee9a497a0273",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh urgent gpu0 fix v2",
+  "task_key": "worker_ssh_urgent-gpu0-fix-v2_20260513T222338",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_urgent-gpu0-fix-v2_20260513T222338_result.json",
+    "occurrence": 1,
+    "bytes": 978,
+    "sha256": "57b99c00f1885792eaef87c1eed834e5792e7c44205774b7580c7301851c731e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "运行正常。\n\n## 诊断报告\n\n**根因**：vLLM EngineCore 子进程在父脚本崩溃后成为孤儿，持续占用 GPU0 ~28 GiB 显存。重新提交时新的 EngineCore 发现 GPU0 仅剩 3.51 GiB 可用，触发 `ValueError: Free memory on device cuda:0 (3.51/31.36 GiB) < desired 0.85 (26.65 GiB)`。\n\n**为什么反复发生**：脚本没有孤儿进程清理机制。每次崩溃都留下 EngineCore 孤儿，每次重提交都因显存不足再次崩溃。cleanup 函数这次启动时又发现了一个新孤儿 (PID 824574)。\n\n**修复**：在 `episode_level_collection.py` 中添加 `cleanup_gpu_processes()` 函数（lines 36-60），在 agent 创建前自动查杀目标 GPU 上的所有残留进程。\n\n**当前状态**：\n- GPU0: plan-001b-gpu0-v2 (PID 853847) 正常运行，100% 利用率，正在收集 find-animal episode 数据\n- GPU1: plan-001b-gpu1 (PID 774317) 正常运行，未受影响\n- 两卡均 28013 MiB / 32607 MiB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-urgent-gpu0-fix-v2.md"
+}

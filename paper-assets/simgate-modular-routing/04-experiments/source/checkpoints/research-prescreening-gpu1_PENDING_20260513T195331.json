@@ -1,0 +1,15 @@
+{
+  "exp_id": "research-prescreening-gpu1",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:53:28.002Z",
+    "updated_at": "2026-05-13T19:53:31.377Z",
+    "hypothesis": "GPU1 加入 plan-001a 预筛，跑剩余 8 个 task types（measure-melting-point-unknown-substance, mendelian-genetics-known/unknown-plant, power-component x2, test-conductivity x2, use-thermometer），加速完成全部 25 tasks"
+  },
+  "timestamp": "2026-05-13T19:53:31.422148+00:00",
+  "trigger": "update_registry"
+}

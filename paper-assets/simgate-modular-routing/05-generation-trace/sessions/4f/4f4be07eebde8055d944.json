@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4f4be07eebde8055d944",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "paper checklist items 25",
+  "task_key": "worker_paper_checklist-items-25_20260521T093843",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_checklist-items-25_20260521T093843.log",
+    "occurrence": 1,
+    "bytes": 790936,
+    "sha256": "4bcbcc5ffe5ca21d99657f1676337cf039dbfbd149928088c52204e99e3a7b8e"
+  },
+  "statistics": {
+    "messages": 111,
+    "user_turns": 1,
+    "tool_calls": 38,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 38,
+      "tool_result": 38,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 70,
+      "chunks": [
+        {
+          "path": "4f4be07eebde8055d944-part-0001.json",
+          "message_count": 70
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "4f4be07eebde8055d944-part-0001.json",
+          "message_count": 20
+        },
+        {
+          "path": "4f4be07eebde8055d944-part-0002.json",
+          "message_count": 21
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/paper-checklist-items-25.md"
+}

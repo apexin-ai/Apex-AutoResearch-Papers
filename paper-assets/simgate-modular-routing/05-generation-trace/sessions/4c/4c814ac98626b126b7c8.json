@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c814ac98626b126b7c8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research data source unification",
+  "task_key": "worker_research_data-source-unification_20260514T080027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-source-unification_20260514T080027_result.json",
+    "occurrence": 1,
+    "bytes": 2406,
+    "sha256": "6625b8675795019db906c2d2ffbba04fc98587efd1f90b259f6b0e8584794965"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部任务完成。总结如下：\n\n---\n\n## 产出 1: 权威数据源确认\n\n**文件**: `results/death_decomposition_report.json` (westb-13313)\n\n| 指标 | 权威值 |\n|------|--------|\n| n_tasks | 30 |\n| n_episodes | 249 |\n| Δ_full | +38.33 |\n| Δ_nd | +0.48 |\n| DAF | 0.9875 (98.75%) |\n| Pearson r | 0.9864 |\n| p-value | < 0.0001 |\n| Labels | det:102 / int:1 / no:146 |\n| Signal source | death_asymmetry:93 / score_comparison:10 / tied_alive:117 / both_dead:29 |\n\n**find-non-living-thing 修正**: n=5, Δ=-6.80 (internal-preferred), NOT n=40/Δ=+9.58\n\n## 产出 2: paper_framing.md ✅ 已更新\n\n所有数字统一到 30 tasks / 249 eps 权威源，末尾新增 Data Provenance Note。\n\n## 产出 3: paper_provenance.yaml ✅ 已修复\n\n修复内容:\n- C003: value 0.99 → 0.9875\n- C006: Δ_full 37.9→38.33, Δ_nd 0.2→0.48\n- **C010: r=0.989 → 0.9864** (解决 C010 vs C053 不一致)\n- **C053: r=0.986 → 0.9864** (现在与 C010 一致)\n- C015/C028: 标签分布精确化 (102/1/146 out of 249)\n- C024: 所有值精确化\n- C031: 新增 93/102=91.2% 量化\n- C035: value 0.99 → 0.9875\n- 全部 claim 添加 source 字段指向 report.json\n- version 11→12, 新增 `data_authority` 和 `numbers_unified` 元数据\n\n## 产出 4: 仍引用旧数字的文件清单\n\n| 文件 | 旧数字 | 优先级 |\n|------|--------|--------|\n| **artifacts/paper_data_tables.md** | 全部旧数字 (29.60, 2.84, 90.41%, 0.9698, find-non-living-thing n=40/+9.58) | P0 — 论文直接引用 |\n| **ROADMAP.md** | 11 tasks/245 eps, 所有旧指标, find-non-living-thing +9.58 | P0 |\n| **memory.md** | 245 eps, 29.60, 2.84, 90.41%, 0.9698 | P1 |\n| **report.md** | \"194 episodes / 11 tasks\" (plan-003-baseline) | P1 |\n| **artifacts/_project/paper/paper_outline.md** | 29.60, 2.84, 90.41% | P1 |\n| **artifacts/_project/report/number_consistency_audit.md** | 多处旧数字 | P2 — 审计文件本身需重写 |\n| **artifacts/manifest.yaml** | 245 eps, find-non-living-thing 40eps/+9.58 | P2 |\n| **registry.yaml** | 245 eps, 90.41%, 0.9698 等 | P2 |\n| **decisions.yaml** | D018/D019 中引用旧 intermediate 数字 | P3 — 历史记录，不宜修改 |\n| **task_context/agent.md** | 11 tasks/245 eps | P3 |\n\n**decisions.yaml 不建议修改** — 它记录的是当时的决策依据，修改历史记录会掩盖认知演进过程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-data-source-unification.md"
+}

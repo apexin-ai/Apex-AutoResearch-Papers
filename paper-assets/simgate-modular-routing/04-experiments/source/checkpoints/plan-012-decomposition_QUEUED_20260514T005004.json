@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-012-decomposition",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:50:01.170Z",
+    "updated_at": "2026-05-14T00:50:04.708Z",
+    "hypothesis": "Death decomposition 中间分析：30 tasks / 249 episodes 上验证 death avoidance 占 ~99% routing signal（预分析，plan-001b 完整数据后将重跑最终版）"
+  },
+  "timestamp": "2026-05-14T00:50:04.761635+00:00",
+  "trigger": "update_registry"
+}

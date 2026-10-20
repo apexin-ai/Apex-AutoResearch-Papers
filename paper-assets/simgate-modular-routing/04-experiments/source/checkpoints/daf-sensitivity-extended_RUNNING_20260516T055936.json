@@ -1,0 +1,22 @@
+{
+  "exp_id": "daf-sensitivity-extended",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:59:31.251Z",
+    "updated_at": "2026-05-16T05:59:36.074Z",
+    "spec": {
+      "command": "CPU-only analysis: per-task bootstrap CI + Pearson r at all P values + DAF threshold sensitivity",
+      "server": "westb-13313",
+      "data_path": "uses plan-012-full assembled data (245 eps / 11 tasks)",
+      "data_count": 245,
+      "model_name": "N/A (analysis only)",
+      "seed": "bootstrap 10000 resamples"
+    }
+  },
+  "timestamp": "2026-05-16T05:59:36.255867+00:00",
+  "trigger": "update_registry"
+}

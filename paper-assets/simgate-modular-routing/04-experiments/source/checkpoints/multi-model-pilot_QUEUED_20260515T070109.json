@@ -1,0 +1,15 @@
+{
+  "exp_id": "multi-model-pilot",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:59:50.510Z",
+    "updated_at": "2026-05-15T07:01:09.532Z",
+    "hypothesis": "Multi-model pilot: Llama-3.1-8B-Instruct 在 2 个 ScienceWorld task types (1 high-death + 1 zero-death) × 5 episodes 上复现 counterfactual analysis。验证 (1) pipeline 兼容性 (2) death pattern 方向一致性。如果 death rate differential > 0 且方向与 Qwen 一致，审批后全量收集 11 tasks × 20 eps。"
+  },
+  "timestamp": "2026-05-15T07:01:09.689098+00:00",
+  "trigger": "update_registry"
+}

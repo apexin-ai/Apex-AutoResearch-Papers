@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "426374e4c64439cdffb7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh check plan001b progress",
+  "task_key": "worker_ssh_check-plan001b-progress_20260514T003226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check-plan001b-progress_20260514T003226_result.json",
+    "occurrence": 1,
+    "bytes": 1860,
+    "sha256": "fd1d5c6d8d0d0d37aa05698c2092c3065cba6f28e7e046f49f7dfc15b62387b4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## plan-001b 双卡进度汇总\n\n### GPU 状态\n| GPU | 显存 | 利用率 | 进程运行时间 |\n|-----|------|--------|-------------|\n| 0 | 28013/32607 MiB | 活跃 | 2h01m |\n| 1 | 28013/32607 MiB | 活跃 | 2h23m |\n\n### plan_c 目录 episode 数\n\n**GPU0 任务 (PID 853847):**\n| Task | plan_c | prescreening | 总计 | 目标 | 状态 |\n|------|--------|-------------|------|------|------|\n| find-animal | 20 | 5 | 25 | 20 | ✅ |\n| identify-life-stages-1 | 20 | 5 | 25 | 20 | ✅ |\n| lifespan-longest-lived-then-shortest-lived | 9 | 5 | 14 | 20 | 🔄 当前 |\n| lifespan-longest-lived | — | 5 | 5 | 20 | 待开始 |\n| measure-melting-point-unknown-substance | — | 9 | 9 | 20 | 待开始 |\n| freeze | — | 5 | 5 | 20 | 待开始 |\n| chemistry-mix | — | 5 | 5 | 20 | 待开始 |\n\n**GPU1 任务 (PID 773109):**\n| Task | plan_c | prescreening | 总计 | 目标 | 状态 |\n|------|--------|-------------|------|------|------|\n| find-non-living-thing | 20 | 5 | 25 | 40 | ⚠️ 脚本设的20，非40 |\n| grow-fruit | 20 | 5 | 25 | 20 | ✅ |\n| inclined-plane-determine-angle | 14 | 5 | 19 | 20 | 🔄 当前 |\n| identify-life-stages-2 | — | 5 | 5 | 20 | 待开始 |\n\n### 其他目录已有数据（非 plan-001b 目标任务）\n- **mvp**: boil(20), chemistry-mix-paint-secondary-color(20), melt(20), grow-plant(20), change-the-state-of-matter-of(20)\n- **research**: boil(20)\n\n### 时间估算\n\n根据已完成量和运行时间：\n\n- **GPU1**: 已完成 ~54 eps / 2h23m ≈ 2.6 min/ep。剩余 ~26 eps (6 + 20) → **~1.1h**\n- **GPU0**: 已完成 ~49 eps / 2h01m ≈ 2.5 min/ep。剩余 ~91 eps (11 + 20×4) → **~3.8h**\n\nGPU1 预计再 ~1 小时完成，GPU0 还需 ~4 小时。注意 find-non-living-thing 的脚本参数是 `--episodes 20`，如果目标是 40 则需要额外一轮收集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-plan001b-progress.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-012-step-tie-rate",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:28:33.620Z",
+    "updated_at": "2026-05-14T12:28:33.620Z"
+  },
+  "timestamp": "2026-05-14T12:28:33.747125+00:00",
+  "trigger": "update_registry"
+}

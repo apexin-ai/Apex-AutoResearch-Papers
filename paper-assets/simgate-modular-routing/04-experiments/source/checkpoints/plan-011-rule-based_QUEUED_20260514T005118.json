@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-011-rule-based",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:51:12.911Z",
+    "updated_at": "2026-05-14T00:51:18.501Z",
+    "hypothesis": "Rule-based keyword routing baseline：测试 keyword heuristic 能否捕获 episode-level routing signal。三版 keyword list 均结构性失效——v1 (含 connect) ≈ always-det, v2 (科学词) ≈ always-internal, v3 (状态变化动词) ≈ always-internal。"
+  },
+  "timestamp": "2026-05-14T00:51:18.555418+00:00",
+  "trigger": "update_registry"
+}

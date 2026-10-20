@@ -1,0 +1,2546 @@
+# research alfworld methodology
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 50
+- **Recorded user turns:** 0
+- **Tool calls:** 16
+- **Original source:** `logs/workers/worker_research_alfworld-methodology_20260515T154350.log`
+- **Structured JSON:** [`d135cec07c81df9c3789.json`](../../sessions/d1/d135cec07c81df9c3789.json)
+
+## Before a recorded user message
+
+50 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "16f41898-3fd1-469b-ab20-d7cb91ed61ba",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778863200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "8f7e6fdd-5252-46c8-8ead-bc96d4c980a8",
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to extract methodological details about ALFWorld from the codebase on a remote server. Let me start by reading the relevant code and results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "951e3d1d-d0df-4fed-8266-887ff49cbe06",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011zRMfnEPrrLdCqCcPgfxXz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11476,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11476
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+Let me fetch the tool schemas and read the code from the server.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "f05ef8e8-e0af-4a10-bfd7-6242d0b24d30",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011zRMfnEPrrLdCqCcPgfxXz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11476,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11476
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VDLSnPVsKRQdebD3yWJyQ7`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "4c76bc7e-084e-4f56-8db8-59cb6069d0a0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011zRMfnEPrrLdCqCcPgfxXz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11476,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11476
+      },
+      "output_tokens": 28,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T15:44:03.945Z_
+
+<details><summary>↩ Tool result · `toolu_01VDLSnPVsKRQdebD3yWJyQ7`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "97b8b7f6-bf98-4bf7-ab6a-169b85ba8058",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 26
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 8_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the code and results in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "653f101d-2dd4-4f3f-b68b-e88063573691",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pjFv6SGWrDaWHnbVt7WLB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QmX35dynNofxN6uQnDYm3i`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "097688a6-f104-49a8-9d53-b68c0d1d3ed3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pjFv6SGWrDaWHnbVt7WLB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Vk2zdWQk15tDJK3qBbXKQ3`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "fe6297c2-4efb-4bb2-b3e5-ab348ae0e766",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pjFv6SGWrDaWHnbVt7WLB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_017jVfG5BsAwAs5TLLq5UQB7`</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "filters": {
+    "experiment_id": "alfworld-counterfactual-full"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "9e73ceff-ac8f-4685-af6a-8f29aaad95f6",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pjFv6SGWrDaWHnbVt7WLB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1283,
+      "cache_read_input_tokens": 23317,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1283
+      },
+      "output_tokens": 57,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T15:44:09.357Z_
+
+<details><summary>↩ Tool result · `toolu_01QmX35dynNofxN6uQnDYm3i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ALFWorld counterfactual labeling pipeline.\\n\\nFor each ALFWorld task, runs two episode-level trajectories:\\n1. Internal: LLM sees observation only — generates action from its own knowledge\\n2. Deterministic: LLM sees observation + admissible actions list from simulator\\n\\nThe admissible actions list is the \\\"deterministic computation\\\" source:\\nit constrains the LLM to valid simulator actions.\\n\\nProduces episode-level labels:\\n- det-preferred: deterministic succeeds + internal fails\\n- internal-preferred: internal succeeds + deterministic fails\\n- no-preference: both succeed or both fail\\n\\nInput:  ALFWorld game files (json_2.1.1 split)\\nOutput: data/alfworld-counterfactual/episodes.jsonl\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom typing import List, Dict, Any, Optional, Tuple\\n\\nimport textworld\\nimport textworld.gym\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom llm_agent import find_model_path\\n\\n# ---------------------------------------------------------------------------\\n# Prompts\\n# ---------------------------------------------------------------------------\\n\\nINTERNAL_SYSTEM = (\\n    \\\"You are an agent in a household environment (ALFWorld). \\\"\\n    \\\"You must complete the given task by choosing actions.\\\\n\\\\n\\\"\\n    \\\"You do NOT have access to any action list — you must generate the action \\\"\\n    \\\"yourself based on your understanding of the environment.\\\\n\\\\n\\\"\\n    \\\"Use this format:\\\\n\\\"\\n    \\\"Thought: &lt;your reasoning about what to do next>\\\\n\\\"\\n    \\\"Action: &lt;your action>\\\\n\\\\n\\\"\\n    \\\"Common actions: go to &lt;location>, take &lt;obj> from &lt;location>, \\\"\\n    \\\"put &lt;obj> in/on &lt;location>, open &lt;receptacle>, close &lt;receptacle>, \\\"\\n    \\\"use &lt;lamp/appliance>, examine &lt;obj>, look, inventory, \\\"\\n    \\\"clean &lt;obj> with &lt;sinkbasin>, heat &lt;obj> with &lt;microwave>, \\\"\\n    \\\"cool &lt;obj> with &lt;fridge>.\\\"\\n)\\n\\nDETERMINISTIC_SYSTEM = (\\n    \\\"You are an agent in a household environment (ALFWorld). \\\"\\n    \\\"You must complete the given task by choosing from the admissible actions list.\\\\n\\\\n\\\"\\n    \\\"Use this format:\\\\n\\\"\\n    \\\"Thought: &lt;your reasoning about what to do next>\\\\n\\\"\\n    \\\"Action: &lt;exact action from the admissible actions list>\\\\n\\\\n\\\"\\n    \\\"Rules:\\\\n\\\"\\n    \\\"- You MUST choose an action from the admissible actions list exactly as written.\\\\n\\\"\\n    \\\"- Think step by step: first locate the target object, then perform required \\\"\\n    \\\"operations (clean/heat/cool if needed), then place it at the destination.\\\"\\n)\\n\\nUSER_TEMPLATE_INTERNAL = (\\n    \\\"Task: {task_desc}\\\\n\\\\n\\\"\\n    \\\"Current observation:\\\\n{observation}\\\\n\\\\n\\\"\\n    \\\"Previous actions: {history}\\\\n\\\\n\\\"\\n    \\\"Choose your next action.\\\"\\n)\\n\\nUSER_TEMPLATE_DETERMINISTIC = (\\n    \\\"Task: {task_desc}\\\\n\\\\n\\\"\\n    \\\"Current observation:\\\\n{observation}\\\\n\\\\n\\\"\\n    \\\"Admissible actions:\\\\n{admissible_str}\\\\n\\\\n\\\"\\n    \\\"Previous actions: {history}\\\\n\\\\n\\\"\\n    \\\"Choose your next action from the admissible actions list.\\\"\\n)\\n\\n# ---------------------------------------------------------------------------\\n# Task types\\n# ---------------------------------------------------------------------------\\n\\nTASK_TYPES = [\\n    \\\"pick_and_place\\\",\\n    \\\"pick_clean_then_place\\\",\\n    \\\"pick_heat_then_place\\\",\\n    \\\"pick_cool_then_place\\\",\\n    \\\"look_at_obj_in_light\\\",\\n    \\\"pick_two_obj_and_place\\\",\\n]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Action parsing\\n# ---------------------------------------------------------------------------\\n\\ndef parse_action_free(text: str) -> Optional[str]:\\n    \\\"\\\"\\\"Parse free-form action from LLM output (internal mode).\\\"\\\"\\\"\\n    m = re.search(r\\\"Action:\\\\s*(.+?)(?:\\\\n|$)\\\", text, re.IGNORECASE)\\n    if m:\\n        return m.group(1).strip().strip('\\\"').strip(\\\"'\\\")\\n    lines = [l.strip() for l in text.strip().split(\\\"\\\\n\\\") if l.strip()]\\n    if lines:\\n        return lines[-1].strip().strip('\\\"').strip(\\\"'\\\")\\n    return None\\n\\n\\ndef match_to_admissible(free_action: str, admissible: List[str]) -> Optiona\\n\\n... [截断: 输出过长，省略 11477 字符] ...\\n\\n | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\")\\n\\n    llm = ALFWorldLLM(\\n        model_path=args.model_path,\\n        use_vllm=not args.no_vllm,\\n        gpu_id=args.gpu_id,\\n    )\\n\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    if os.path.exists(args.output):\\n        os.remove(args.output)\\n\\n    label_counts = Counter()\\n    results = []\\n\\n    for i, game in enumerate(games):\\n        t0 = time.time()\\n        print(f\\\"\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\")\\n        print(f\\\"  Task: {game['task_desc']}\\\")\\n\\n        try:\\n            internal = run_internal_episode(llm, game, args.max_steps)\\n            print(f\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\"\\n                  f\\\"({internal['n_steps']} steps)\\\")\\n\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\n            print(f\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\"\\n                  f\\\"({det['n_steps']} steps)\\\")\\n        except Exception as e:\\n            print(f\\\"  ERROR: {e}\\\")\\n            import traceback\\n            traceback.print_exc()\\n            continue\\n\\n        if det[\\\"success\\\"] and not internal[\\\"success\\\"]:\\n            label = \\\"det-preferred\\\"\\n        elif internal[\\\"success\\\"] and not det[\\\"success\\\"]:\\n            label = \\\"internal-preferred\\\"\\n        else:\\n            label = \\\"no-preference\\\"\\n\\n        label_counts[label] += 1\\n        elapsed = round(time.time() - t0, 1)\\n\\n        record = {\\n            \\\"env\\\": \\\"alfworld\\\",\\n            \\\"task_id\\\": game[\\\"task_id\\\"],\\n            \\\"task_type\\\": game[\\\"task_type\\\"],\\n            \\\"task_desc\\\": game[\\\"task_desc\\\"],\\n            \\\"internal_success\\\": internal[\\\"success\\\"],\\n            \\\"deterministic_success\\\": det[\\\"success\\\"],\\n            \\\"internal_steps\\\": internal[\\\"n_steps\\\"],\\n            \\\"deterministic_steps\\\": det[\\\"n_steps\\\"],\\n            \\\"label\\\": label,\\n            \\\"internal\\\": internal,\\n            \\\"deterministic\\\": det,\\n            \\\"metadata\\\": {\\n                \\\"split\\\": args.split,\\n                \\\"time_s\\\": elapsed,\\n            },\\n        }\\n        results.append(record)\\n\\n        with open(args.output, \\\"a\\\") as f:\\n            f.write(json.dumps(record, default=str) + \\\"\\\\n\\\")\\n\\n        print(f\\\"  Label: {label} ({elapsed}s)\\\")\\n\\n    # Summary\\n    n = len(results)\\n    print(f\\\"\\\\n{'='*50}\\\")\\n    print(f\\\"Total: {n} games\\\")\\n    if n > 0:\\n        for lb in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n            c = label_counts.get(lb, 0)\\n            print(f\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\")\\n        iw = sum(1 for r in results if r[\\\"internal_success\\\"])\\n        dw = sum(1 for r in results if r[\\\"deterministic_success\\\"])\\n        print(f\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\")\\n        print(f\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\")\\n    print(f\\\"Output: {args.output}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"ALFWorld counterfactual labeling\\\")\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/alfworld_data\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"valid_seen\\\")\\n    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task types\\\")\\n    parser.add_argument(\\\"--max_per_type\\\", type=int, default=0)\\n    parser.add_argument(\\\"--n_tasks\\\", type=int, default=10)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--output\\\", type=str,\\n                        default=\\\"data/alfworld-counterfactual/episodes.jsonl\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    args = parser.parse_args()\\n\\n    if args.model_path is None:\\n        args.model_path = find_model_path()\\n    print(f\\\"Model: {args.model_path}\\\")\\n\\n    random.seed(args.seed)\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "21f274d1-6d7d-4746-a651-d3562f135fd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"ALFWorld counterfactual labeling pipeline.\\\\n\\\\nFor each ALFWorld task, runs two episode-level trajectories:\\\\n1. Internal: LLM sees observation only — generates action from its own knowledge\\\\n2. Deterministic: LLM sees observation + admissible actions list from simulator\\\\n\\\\nThe admissible actions list is the \\\\\\\"deterministic computation\\\\\\\" source:\\\\nit constrains the LLM to valid simulator actions.\\\\n\\\\nProduces episode-level labels:\\\\n- det-preferred: deterministic succeeds + internal fails\\\\n- internal-preferred: internal succeeds + deterministic fails\\\\n- no-preference: both succeed or both fail\\\\n\\\\nInput:  ALFWorld game files (json_2.1.1 split)\\\\nOutput: data/alfworld-counterfactual/episodes.jsonl\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom typing import List, Dict, Any, Optional, Tuple\\\\n\\\\nimport textworld\\\\nimport textworld.gym\\\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom llm_agent import find_model_path\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Prompts\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nINTERNAL_SYSTEM = (\\\\n    \\\\\\\"You are an agent in a household environment (ALFWorld). \\\\\\\"\\\\n    \\\\\\\"You must complete the given task by choosing actions.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"You do NOT have access to any action list — you must generate the action \\\\\\\"\\\\n    \\\\\\\"yourself based on your understanding of the environment.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use this format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Thought: &lt;your reasoning about what to do next>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Action: &lt;your action>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Common actions: go to &lt;location>, take &lt;obj> from &lt;location>, \\\\\\\"\\\\n    \\\\\\\"put &lt;obj> in/on &lt;location>, open &lt;receptacle>, close &lt;receptacle>, \\\\\\\"\\\\n    \\\\\\\"use &lt;lamp/appliance>, examine &lt;obj>, look, inventory, \\\\\\\"\\\\n    \\\\\\\"clean &lt;obj> with &lt;sinkbasin>, heat &lt;obj> with &lt;microwave>, \\\\\\\"\\\\n    \\\\\\\"cool &lt;obj> with &lt;fridge>.\\\\\\\"\\\\n)\\\\n\\\\nDETERMINISTIC_SYSTEM = (\\\\n    \\\\\\\"You are an agent in a household environment (ALFWorld). \\\\\\\"\\\\n    \\\\\\\"You must complete the given task by choosing from the admissible actions list.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use this format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Thought: &lt;your reasoning about what to do next>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Action: &lt;exact action from the admissible actions list>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Rules:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"- You MUST choose an action from the admissible actions list exactly as written.\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"- Think step by step: first locate the target object, then perform required \\\\\\\"\\\\n    \\\\\\\"operations (clean/heat/cool if needed), then place it at the destination.\\\\\\\"\\\\n)\\\\n\\\\nUSER_TEMPLATE_INTERNAL = (\\\\n    \\\\\\\"Task: {task_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Current observation:\\\\\\\\n{observation}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Previous actions: {history}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Choose your next action.\\\\\\\"\\\\n)\\\\n\\\\nUSER_TEMPLATE_DETERMINISTIC = (\\\\n    \\\\\\\"Task: {task_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Current observation:\\\\\\\\n{observation}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Admissible actions:\\\\\\\\n{admissible_str}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Previous actions: {history}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Choose your next action from the admissible actions list.\\\\\\\"\\\\n)\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Task types\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nTASK_TYPES = [\\\\n    \\\\\\\"pick_and_place\\\\\\\",\\\\n    \\\\\\\"pick_clean_then_place\\\\\\\",\\\\n    \\\\\\\"pick_heat_then_place\\\\\\\",\\\\n    \\\\\\\"pick_cool_then_place\\\\\\\",\\\\n    \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n    \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n]\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Action parsing\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef parse_action_free(text: str) -> Optional[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse free-form action from LLM output (internal mode).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = re.search(r\\\\\\\"Action:\\\\\\\\s*(.+?)(?:\\\\\\\\n|$)\\\\\\\", text, re.IGNORECASE)\\\\n    if m:\\\\n        return m.group(1).strip().strip('\\\\\\\"').strip(\\\\\\\"'\\\\\\\")\\\\n    lines = [l.strip() for l in text.strip().split(\\\\\\\"\\\\\\\\n\\\\\\\") if l.strip()]\\\\n    if lines:\\\\n        return lines[-1].strip().strip('\\\\\\\"').strip(\\\\\\\"'\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef match_to_admissible(free_action: str, admissible: List[str]) -> Optiona\\\\n\\\\n... [截断: 输出过长，省略 11477 字符] ...\\\\n\\\\n | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\\\\\")\\\\n\\\\n    llm = ALFWorldLLM(\\\\n        model_path=args.model_path,\\\\n        use_vllm=not args.no_vllm,\\\\n        gpu_id=args.gpu_id,\\\\n    )\\\\n\\\\n    os.makedirs(os.path.dirname(args.output) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    if os.path.exists(args.output):\\\\n        os.remove(args.output)\\\\n\\\\n    label_counts = Counter()\\\\n    results = []\\\\n\\\\n    for i, game in enumerate(games):\\\\n        t0 = time.time()\\\\n        print(f\\\\\\\"\\\\\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\\\\\")\\\\n        print(f\\\\\\\"  Task: {game['task_desc']}\\\\\\\")\\\\n\\\\n        try:\\\\n            internal = run_internal_episode(llm, game, args.max_steps)\\\\n            print(f\\\\\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\\\\\"\\\\n                  f\\\\\\\"({internal['n_steps']} steps)\\\\\\\")\\\\n\\\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\\\n            print(f\\\\\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\\\\\"\\\\n                  f\\\\\\\"({det['n_steps']} steps)\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  ERROR: {e}\\\\\\\")\\\\n            import traceback\\\\n            traceback.print_exc()\\\\n            continue\\\\n\\\\n        if det[\\\\\\\"success\\\\\\\"] and not internal[\\\\\\\"success\\\\\\\"]:\\\\n            label = \\\\\\\"det-preferred\\\\\\\"\\\\n        elif internal[\\\\\\\"success\\\\\\\"] and not det[\\\\\\\"success\\\\\\\"]:\\\\n            label = \\\\\\\"internal-preferred\\\\\\\"\\\\n        else:\\\\n            label = \\\\\\\"no-preference\\\\\\\"\\\\n\\\\n        label_counts[label] += 1\\\\n        elapsed = round(time.time() - t0, 1)\\\\n\\\\n        record = {\\\\n            \\\\\\\"env\\\\\\\": \\\\\\\"alfworld\\\\\\\",\\\\n            \\\\\\\"task_id\\\\\\\": game[\\\\\\\"task_id\\\\\\\"],\\\\n            \\\\\\\"task_type\\\\\\\": game[\\\\\\\"task_type\\\\\\\"],\\\\n            \\\\\\\"task_desc\\\\\\\": game[\\\\\\\"task_desc\\\\\\\"],\\\\n            \\\\\\\"internal_success\\\\\\\": internal[\\\\\\\"success\\\\\\\"],\\\\n            \\\\\\\"deterministic_success\\\\\\\": det[\\\\\\\"success\\\\\\\"],\\\\n            \\\\\\\"internal_steps\\\\\\\": internal[\\\\\\\"n_steps\\\\\\\"],\\\\n            \\\\\\\"deterministic_steps\\\\\\\": det[\\\\\\\"n_steps\\\\\\\"],\\\\n            \\\\\\\"label\\\\\\\": label,\\\\n            \\\\\\\"internal\\\\\\\": internal,\\\\n            \\\\\\\"deterministic\\\\\\\": det,\\\\n            \\\\\\\"metadata\\\\\\\": {\\\\n                \\\\\\\"split\\\\\\\": args.split,\\\\n                \\\\\\\"time_s\\\\\\\": elapsed,\\\\n            },\\\\n        }\\\\n        results.append(record)\\\\n\\\\n        with open(args.output, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(record, default=str) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  Label: {label} ({elapsed}s)\\\\\\\")\\\\n\\\\n    # Summary\\\\n    n = len(results)\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*50}\\\\\\\")\\\\n    print(f\\\\\\\"Total: {n} games\\\\\\\")\\\\n    if n > 0:\\\\n        for lb in [\\\\\\\"det-preferred\\\\\\\", \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"no-preference\\\\\\\"]:\\\\n            c = label_counts.get(lb, 0)\\\\n            print(f\\\\\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\\\\\")\\\\n        iw = sum(1 for r in results if r[\\\\\\\"internal_success\\\\\\\"])\\\\n        dw = sum(1 for r in results if r[\\\\\\\"deterministic_success\\\\\\\"])\\\\n        print(f\\\\\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\\\\\")\\\\n        print(f\\\\\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"Output: {args.output}\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"ALFWorld counterfactual labeling\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str,\\\\n                        default=\\\\\\\"/root/autodl-tmp/alfworld_data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--split\\\\\\\", type=str, default=\\\\\\\"valid_seen\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--task_types\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated task types\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_per_type\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--n_tasks\\\\\\\", type=int, default=10)\\\\n    parser.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=50)\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str,\\\\n                        default=\\\\\\\"data/alfworld-counterfactual/episodes.jsonl\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--no_vllm\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu_id\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.model_path is None:\\\\n        args.model_path = find_model_path()\\\\n    print(f\\\\\\\"Model: {args.model_path}\\\\\\\")\\\\n\\\\n    random.seed(args.seed)\\\\n    run_pipeline(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ALFWorld counterfactual labeling pipeline.\\n\\nFor each ALFWorld task, runs two episode-level trajectories:\\n1. Internal: LLM sees observation only — generates action from its own knowledge\\n2. Deterministic: LLM sees observation + admissible actions list from simulator\\n\\nThe admissible actions list is the \\\"deterministic computation\\\" source:\\nit constrains the LLM to valid simulator actions.\\n\\nProduces episode-level labels:\\n- det-preferred: deterministic succeeds + internal fails\\n- internal-preferred: internal succeeds + deterministic fails\\n- no-preference: both succeed or both fail\\n\\nInput:  ALFWorld game files (json_2.1.1 split)\\nOutput: data/alfworld-counterfactual/episodes.jsonl\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom typing import List, Dict, Any, Optional, Tuple\\n\\nimport textworld\\nimport textworld.gym\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom llm_agent import find_model_path\\n\\n# ---------------------------------------------------------------------------\\n# Prompts\\n# ---------------------------------------------------------------------------\\n\\nINTERNAL_SYSTEM = (\\n    \\\"You are an agent in a household environment (ALFWorld). \\\"\\n    \\\"You must complete the given task by choosing actions.\\\\n\\\\n\\\"\\n    \\\"You do NOT have access to any action list — you must generate the action \\\"\\n    \\\"yourself based on your understanding of the environment.\\\\n\\\\n\\\"\\n    \\\"Use this format:\\\\n\\\"\\n    \\\"Thought: &lt;your reasoning about what to do next>\\\\n\\\"\\n    \\\"Action: &lt;your action>\\\\n\\\\n\\\"\\n    \\\"Common actions: go to &lt;location>, take &lt;obj> from &lt;location>, \\\"\\n    \\\"put &lt;obj> in/on &lt;location>, open &lt;receptacle>, close &lt;receptacle>, \\\"\\n    \\\"use &lt;lamp/appliance>, examine &lt;obj>, look, inventory, \\\"\\n    \\\"clean &lt;obj> with &lt;sinkbasin>, heat &lt;obj> with &lt;microwave>, \\\"\\n    \\\"cool &lt;obj> with &lt;fridge>.\\\"\\n)\\n\\nDETERMINISTIC_SYSTEM = (\\n    \\\"You are an agent in a household environment (ALFWorld). \\\"\\n    \\\"You must complete the given task by choosing from the admissible actions list.\\\\n\\\\n\\\"\\n    \\\"Use this format:\\\\n\\\"\\n    \\\"Thought: &lt;your reasoning about what to do next>\\\\n\\\"\\n    \\\"Action: &lt;exact action from the admissible actions list>\\\\n\\\\n\\\"\\n    \\\"Rules:\\\\n\\\"\\n    \\\"- You MUST choose an action from the admissible actions list exactly as written.\\\\n\\\"\\n    \\\"- Think step by step: first locate the target object, then perform required \\\"\\n    \\\"operations (clean/heat/cool if needed), then place it at the destination.\\\"\\n)\\n\\nUSER_TEMPLATE_INTERNAL = (\\n    \\\"Task: {task_desc}\\\\n\\\\n\\\"\\n    \\\"Current observation:\\\\n{observation}\\\\n\\\\n\\\"\\n    \\\"Previous actions: {history}\\\\n\\\\n\\\"\\n    \\\"Choose your next action.\\\"\\n)\\n\\nUSER_TEMPLATE_DETERMINISTIC = (\\n    \\\"Task: {task_desc}\\\\n\\\\n\\\"\\n    \\\"Current observation:\\\\n{observation}\\\\n\\\\n\\\"\\n    \\\"Admissible actions:\\\\n{admissible_str}\\\\n\\\\n\\\"\\n    \\\"Previous actions: {history}\\\\n\\\\n\\\"\\n    \\\"Choose your next action from the admissible actions list.\\\"\\n)\\n\\n# ---------------------------------------------------------------------------\\n# Task types\\n# ---------------------------------------------------------------------------\\n\\nTASK_TYPES = [\\n    \\\"pick_and_place\\\",\\n    \\\"pick_clean_then_place\\\",\\n    \\\"pick_heat_then_place\\\",\\n    \\\"pick_cool_then_place\\\",\\n    \\\"look_at_obj_in_light\\\",\\n    \\\"pick_two_obj_and_place\\\",\\n]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Action parsing\\n# ---------------------------------------------------------------------------\\n\\ndef parse_action_free(text: str) -> Optional[str]:\\n    \\\"\\\"\\\"Parse free-form action from LLM output (internal mode).\\\"\\\"\\\"\\n    m = re.search(r\\\"Action:\\\\s*(.+?)(?:\\\\n|$)\\\", text, re.IGNORECASE)\\n    if m:\\n        return m.group(1).strip().strip('\\\"').strip(\\\"'\\\")\\n    lines = [l.strip() for l in text.strip().split(\\\"\\\\n\\\") if l.strip()]\\n    if lines:\\n        return lines[-1].strip().strip('\\\"').strip(\\\"'\\\")\\n    return None\\n\\n\\ndef match_to_admissible(free_action: str, admissible: List[str]) -> Optiona\\n\\n... [截断: 输出过长，省略 11477 字符] ...\\n\\n | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\")\\n\\n    llm = ALFWorldLLM(\\n        model_path=args.model_path,\\n        use_vllm=not args.no_vllm,\\n        gpu_id=args.gpu_id,\\n    )\\n\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    if os.path.exists(args.output):\\n        os.remove(args.output)\\n\\n    label_counts = Counter()\\n    results = []\\n\\n    for i, game in enumerate(games):\\n        t0 = time.time()\\n        print(f\\\"\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\")\\n        print(f\\\"  Task: {game['task_desc']}\\\")\\n\\n        try:\\n            internal = run_internal_episode(llm, game, args.max_steps)\\n            print(f\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\"\\n                  f\\\"({internal['n_steps']} steps)\\\")\\n\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\n            print(f\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\"\\n                  f\\\"({det['n_steps']} steps)\\\")\\n        except Exception as e:\\n            print(f\\\"  ERROR: {e}\\\")\\n            import traceback\\n            traceback.print_exc()\\n            continue\\n\\n        if det[\\\"success\\\"] and not internal[\\\"success\\\"]:\\n            label = \\\"det-preferred\\\"\\n        elif internal[\\\"success\\\"] and not det[\\\"success\\\"]:\\n            label = \\\"internal-preferred\\\"\\n        else:\\n            label = \\\"no-preference\\\"\\n\\n        label_counts[label] += 1\\n        elapsed = round(time.time() - t0, 1)\\n\\n        record = {\\n            \\\"env\\\": \\\"alfworld\\\",\\n            \\\"task_id\\\": game[\\\"task_id\\\"],\\n            \\\"task_type\\\": game[\\\"task_type\\\"],\\n            \\\"task_desc\\\": game[\\\"task_desc\\\"],\\n            \\\"internal_success\\\": internal[\\\"success\\\"],\\n            \\\"deterministic_success\\\": det[\\\"success\\\"],\\n            \\\"internal_steps\\\": internal[\\\"n_steps\\\"],\\n            \\\"deterministic_steps\\\": det[\\\"n_steps\\\"],\\n            \\\"label\\\": label,\\n            \\\"internal\\\": internal,\\n            \\\"deterministic\\\": det,\\n            \\\"metadata\\\": {\\n                \\\"split\\\": args.split,\\n                \\\"time_s\\\": elapsed,\\n            },\\n        }\\n        results.append(record)\\n\\n        with open(args.output, \\\"a\\\") as f:\\n            f.write(json.dumps(record, default=str) + \\\"\\\\n\\\")\\n\\n        print(f\\\"  Label: {label} ({elapsed}s)\\\")\\n\\n    # Summary\\n    n = len(results)\\n    print(f\\\"\\\\n{'='*50}\\\")\\n    print(f\\\"Total: {n} games\\\")\\n    if n > 0:\\n        for lb in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n            c = label_counts.get(lb, 0)\\n            print(f\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\")\\n        iw = sum(1 for r in results if r[\\\"internal_success\\\"])\\n        dw = sum(1 for r in results if r[\\\"deterministic_success\\\"])\\n        print(f\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\")\\n        print(f\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\")\\n    print(f\\\"Output: {args.output}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"ALFWorld counterfactual labeling\\\")\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/alfworld_data\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"valid_seen\\\")\\n    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task types\\\")\\n    parser.add_argument(\\\"--max_per_type\\\", type=int, default=0)\\n    parser.add_argument(\\\"--n_tasks\\\", type=int, default=10)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--output\\\", type=str,\\n                        default=\\\"data/alfworld-counterfactual/episodes.jsonl\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    args = parser.parse_args()\\n\\n    if args.model_path is None:\\n        args.model_path = find_model_path()\\n    print(f\\\"Model: {args.model_path}\\\")\\n\\n    random.seed(args.seed)\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T15:44:10.187Z_
+
+<details><summary>↩ Tool result · `toolu_01Vk2zdWQk15tDJK3qBbXKQ3`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 12984\\ndrwxr-xr-x  2 root root      55 May 14 21:54 .\\ndrwxr-xr-x 38 root root    4096 May 15 23:30 ..\\n-rw-r--r--  1 root root 5103085 May 15 00:13 episodes.jsonl\\n-rw-r--r--  1 root root 8184019 May 15 01:47 run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "bdf33ebb-2ab9-461f-931a-b6ca9b3d5798",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 12984\\\\ndrwxr-xr-x  2 root root      55 May 14 21:54 .\\\\ndrwxr-xr-x 38 root root    4096 May 15 23:30 ..\\\\n-rw-r--r--  1 root root 5103085 May 15 00:13 episodes.jsonl\\\\n-rw-r--r--  1 root root 8184019 May 15 01:47 run.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.8}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 12984\\ndrwxr-xr-x  2 root root      55 May 14 21:54 .\\ndrwxr-xr-x 38 root root    4096 May 15 23:30 ..\\n-rw-r--r--  1 root root 5103085 May 15 00:13 episodes.jsonl\\n-rw-r--r--  1 root root 8184019 May 15 01:47 run.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T15:44:10.652Z_
+
+<details><summary>↩ Tool result · `toolu_017jVfG5BsAwAs5TLLq5UQB7`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.445}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "82fda743-5b46-4126-886f-fe3b3f1b6ee2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.445}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.445}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The code was truncated. Let me get the missing parts and also read the results. Let me also check the run log for the model used and the summary statistics.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "4d88e020-a045-4b09-9281-51874a86f823",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jFm8rGPFWqwYuEpQU7SvX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3986,
+      "cache_read_input_tokens": 24600,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3986
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 16_
+
+Code partially truncated. Let me get the missing middle section, the run log summary, and the results statistics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "e4341cfd-c36c-4551-baef-d3175fb3ffe3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jFm8rGPFWqwYuEpQU7SvX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3986,
+      "cache_read_input_tokens": 24600,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3986
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01HjbbsqYHTgd4QSGTogCYLR`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "ce0aacd5-2447-4497-b280-8a4f3c738294",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jFm8rGPFWqwYuEpQU7SvX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3986,
+      "cache_read_input_tokens": 24600,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3986
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T15:44:16.499Z_
+
+<details><summary>↩ Tool result · `toolu_01HjbbsqYHTgd4QSGTogCYLR`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"135 /root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/episodes.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "43ec1052-c45a-4fd7-9f28-7659a7ab0f49",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"135 /root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/episodes.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.72}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"135 /root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/episodes.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016sMswmahPZHTmv8x63Rxd9`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -30 /root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "63c9b586-b1b3-4ab0-ae17-5532e58c7e41",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jFm8rGPFWqwYuEpQU7SvX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3986,
+      "cache_read_input_tokens": 24600,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3986
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T15:44:17.505Z_
+
+<details><summary>↩ Tool result · `toolu_016sMswmahPZHTmv8x63Rxd9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 609.81it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.27it/s, est. speed input: 892.90 toks/s, output: 97.44 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.27it/s, est. speed input: 892.90 toks/s, output: 97.44 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.26it/s, est. speed input: 892.90 toks/s, output: 97.44 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 598.84it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s, est. speed input: 846.12 toks/s, output: 99.78 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s, est. speed input: 846.12 toks/s, output: 99.78 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s, est. speed input: 846.12 toks/s, output: 99.78 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 623.87it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.54it/s, est. speed input: 1000.05 toks/s, output: 99.23 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.54it/s, est. speed input: 1000.05 toks/s, output: 99.23 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.54it/s, est. speed input: 1000.05 toks/s, output: 99.23 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 616.27it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it, est. speed input: 370.58 toks/s, output: 101.15 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it, est. speed input: 370.58 toks/s, output: 101.15 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it, est. speed input: 370.58 toks/s, output: 101.15 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 609.73it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████��███| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 636.57 toks/s, output: 100.25 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 636.57 toks/s, output: 100.25 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 636.57 toks/s, output: 100.25 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 601.59it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s, est. speed input: 702.49 toks/s, output: 100.09 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s, est. speed input: 702.49 toks/s, output: 100.09 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s, est. speed input: 702.49 toks/s, output: 100.09 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 489.59it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.89it/s, est. speed input: 756.61 toks/s, output: 99.99 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.89it/s, est. speed input: 756.61 toks/s, output: 99.99 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.88it/s, est. speed input: 756.61 toks/s, output: 99.99 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 402.10it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s, est. speed input: 569.25 toks/s, output: 99.11 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s, est. speed input: 569.25 toks/s, output: 99.11 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s, est. speed input: 569.25 toks/s, output: 99.11 toks/s]\\n  Deterministic: FAIL (50 steps)\\n  Label: no-preference (67.5s)\\n\\n==================================================\\nTotal: 135 games\\n  det-preferred: 35 (25.9%)\\n  internal-preferred: 2 (1.5%)\\n  no-preference: 98 (72.6%)\\n  Internal success: 4/135 (3.0%)\\n  Deterministic success: 37/135 (27.4%)\\nOutput: results/alfworld_counterfactual/episodes.jsonl\\n(EngineCore pid=290843) INFO 05-15 01:47:31 [core.py:1201] Shutdown initiated (timeout=0)\\n(EngineCore pid=290843) INFO 05-15 01:47:31 [core.py:1224] Shutdown complete\\nERROR 05-15 01:47:31 [core_client.py:704] Engine core proc EngineCore died unexpectedly, shutting down client.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "5bba5ced-0ebf-49e7-bf49-360b5d34e62f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 609.81it/s]\\\\n\\\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.27it/s, est. speed input: 892.90 toks/s, output: 97.44 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.27it/s, est. speed input: 892.90 toks/s, output: 97.44 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.26it/s, est. speed input: 892.90 toks/s, output: 97.44 toks/s]\\\\n\\\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 598.84it/s]\\\\n\\\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s, est. speed input: 846.12 toks/s, output: 99.78 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s, est. speed input: 846.12 toks/s, output: 99.78 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s, est. speed input: 846.12 toks/s, output: 99.78 toks/s]\\\\n\\\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 623.87it/s]\\\\n\\\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.54it/s, est. speed input: 1000.05 toks/s, output: 99.23 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.54it/s, est. speed input: 1000.05 toks/s, output: 99.23 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.54it/s, est. speed input: 1000.05 toks/s, output: 99.23 toks/s]\\\\n\\\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 616.27it/s]\\\\n\\\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it, est. speed input: 370.58 toks/s, output: 101.15 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it, est. speed input: 370.58 toks/s, output: 101.15 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it, est. speed input: 370.58 toks/s, output: 101.15 toks/s]\\\\n\\\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 609.73it/s]\\\\n\\\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts: 100%|██████��███| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 636.57 toks/s, output: 100.25 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 636.57 toks/s, output: 100.25 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 636.57 toks/s, output: 100.25 toks/s]\\\\n\\\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 601.59it/s]\\\\n\\\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s, est. speed input: 702.49 toks/s, output: 100.09 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s, est. speed input: 702.49 toks/s, output: 100.09 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s, est. speed input: 702.49 toks/s, output: 100.09 toks/s]\\\\n\\\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 489.59it/s]\\\\n\\\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.89it/s, est. speed input: 756.61 toks/s, output: 99.99 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.89it/s, est. speed input: 756.61 toks/s, output: 99.99 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.88it/s, est. speed input: 756.61 toks/s, output: 99.99 toks/s]\\\\n\\\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 402.10it/s]\\\\n\\\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s, est. speed input: 569.25 toks/s, output: 99.11 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s, est. speed input: 569.25 toks/s, output: 99.11 toks/s]\\\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s, est. speed input: 569.25 toks/s, output: 99.11 toks/s]\\\\n  Deterministic: FAIL (50 steps)\\\\n  Label: no-preference (67.5s)\\\\n\\\\n==================================================\\\\nTotal: 135 games\\\\n  det-preferred: 35 (25.9%)\\\\n  internal-preferred: 2 (1.5%)\\\\n  no-preference: 98 (72.6%)\\\\n  Internal success: 4/135 (3.0%)\\\\n  Deterministic success: 37/135 (27.4%)\\\\nOutput: results/alfworld_counterfactual/episodes.jsonl\\\\n(EngineCore pid=290843) INFO 05-15 01:47:31 [core.py:1201] Shutdown initiated (timeout=0)\\\\n(EngineCore pid=290843) INFO 05-15 01:47:31 [core.py:1224] Shutdown complete\\\\nERROR 05-15 01:47:31 [core_client.py:704] Engine core proc EngineCore died unexpectedly, shutting down client.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.83}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 609.81it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.27it/s, est. speed input: 892.90 toks/s, output: 97.44 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.27it/s, est. speed input: 892.90 toks/s, output: 97.44 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.26it/s, est. speed input: 892.90 toks/s, output: 97.44 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 598.84it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s, est. speed input: 846.12 toks/s, output: 99.78 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s, est. speed input: 846.12 toks/s, output: 99.78 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.08it/s, est. speed input: 846.12 toks/s, output: 99.78 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 623.87it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.54it/s, est. speed input: 1000.05 toks/s, output: 99.23 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.54it/s, est. speed input: 1000.05 toks/s, output: 99.23 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.54it/s, est. speed input: 1000.05 toks/s, output: 99.23 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 616.27it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it, est. speed input: 370.58 toks/s, output: 101.15 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it, est. speed input: 370.58 toks/s, output: 101.15 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.06s/it, est. speed input: 370.58 toks/s, output: 101.15 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 609.73it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████��███| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 636.57 toks/s, output: 100.25 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 636.57 toks/s, output: 100.25 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 636.57 toks/s, output: 100.25 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 601.59it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s, est. speed input: 702.49 toks/s, output: 100.09 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s, est. speed input: 702.49 toks/s, output: 100.09 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.79it/s, est. speed input: 702.49 toks/s, output: 100.09 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 489.59it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.89it/s, est. speed input: 756.61 toks/s, output: 99.99 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.89it/s, est. speed input: 756.61 toks/s, output: 99.99 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.88it/s, est. speed input: 756.61 toks/s, output: 99.99 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 402.10it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s, est. speed input: 569.25 toks/s, output: 99.11 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s, est. speed input: 569.25 toks/s, output: 99.11 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.34it/s, est. speed input: 569.25 toks/s, output: 99.11 toks/s]\\n  Deterministic: FAIL (50 steps)\\n  Label: no-preference (67.5s)\\n\\n==================================================\\nTotal: 135 games\\n  det-preferred: 35 (25.9%)\\n  internal-preferred: 2 (1.5%)\\n  no-preference: 98 (72.6%)\\n  Internal success: 4/135 (3.0%)\\n  Deterministic success: 37/135 (27.4%)\\nOutput: results/alfworld_counterfactual/episodes.jsonl\\n(EngineCore pid=290843) INFO 05-15 01:47:31 [core.py:1201] Shutdown initiated (timeout=0)\\n(EngineCore pid=290843) INFO 05-15 01:47:31 [core.py:1224] Shutdown complete\\nERROR 05-15 01:47:31 [core_client.py:704] Engine core proc EngineCore died unexpectedly, shutting down client.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014jAqwaubfm9hTkavi7TbbZ`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -5 /root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "570966ef-e4ec-45d0-b48b-340757217ab7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jFm8rGPFWqwYuEpQU7SvX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3986,
+      "cache_read_input_tokens": 24600,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3986
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01941X5EQiHFRCw7qJ5n5LhW`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -1 /root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "98f147bf-8124-4b2e-bc61-36d85ec0fb72",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011jFm8rGPFWqwYuEpQU7SvX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3986,
+      "cache_read_input_tokens": 24600,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3986
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T15:44:18.371Z_
+
+<details><summary>↩ Tool result · `toolu_014jAqwaubfm9hTkavi7TbbZ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Model: /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\\n=== ALFWorld Counterfactual Labeling ===\\nSplit: valid_seen | Games: 135 | Max steps: 50\\nModel: /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct | GPU: 1 | vLLM: True\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "c7e89450-c695-4b5f-a4a2-2028efb683af",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Model: /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\\\\n=== ALFWorld Counterfactual Labeling ===\\\\nSplit: valid_seen | Games: 135 | Max steps: 50\\\\nModel: /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct | GPU: 1 | vLLM: True\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.73}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Model: /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\\n=== ALFWorld Counterfactual Labeling ===\\nSplit: valid_seen | Games: 135 | Max steps: 50\\nModel: /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct | GPU: 1 | vLLM: True\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T15:44:19.494Z_
+
+<details><summary>↩ Tool result · `toolu_01941X5EQiHFRCw7qJ5n5LhW`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"env\\\": \\\"alfworld\\\", \\\"task_id\\\": \\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-323/trial_T20190909_044715_250790\\\", \\\"task_type\\\": \\\"look_at_obj_in_light\\\", \\\"task_desc\\\": \\\"look at the clock under the lamp\\\", \\\"internal_success\\\": false, \\\"deterministic_success\\\": false, \\\"internal_steps\\\": 50, \\\"deterministic_steps\\\": 50, \\\"label\\\": \\\"no-preference\\\", \\\"internal\\\": {\\\"trajectory\\\": [{\\\"step\\\": 0, \\\"observation\\\": \\\"-= Welcome to TextWorld, ALFRED! =-\\\\n\\\\nYou are in the middle of a room. Looking quickly around you, you see a bed 2, a bed 1, a desk 1, a drawer 11, a drawer 10, a drawer 9, a drawer 8, a drawer 7, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a safe 1, a sidetable 2, and a sidetable 1.\\\\n\\\\nYour task is to: look at alarmclock under the desklamp.\\\", \\\"thought\\\": \\\"Thought: The task requires me to find and look at the clock under the lamp. I should first look around to find the desk and the lamp.\\\\nAction: look\\\", \\\"action\\\": \\\"look\\\", \\\"action_raw\\\": \\\"look\\\", \\\"action_matched\\\": false, \\\"admissible_count\\\": 22}, {\\\"step\\\": 1, \\\"observation\\\": \\\"You are in the middle of a room. Looking quickly around you, you see nothing.\\\", \\\"thought\\\": \\\"Thought: Since the previous action was to look around and nothing was seen, the clock under the lamp must be in a location that was not visible from the middle of the room. The most logical place to look next would be near a lamp, as the task specifies that the clock is under a lamp.\\\\nAction: go to l\\\", \\\"action\\\": \\\"go to bed 1\\\", \\\"action_raw\\\": \\\"go to lamp\\\", \\\"action_matched\\\": true, \\\"admissible_count\\\": 22}, {\\\"step\\\": 2, \\\"observation\\\": \\\"You arrive at bed 1. On the bed 1, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The task requires looking at the clock under the lamp, but I have not seen a clock or a lamp yet. I should first look around the room to find these items.\\\\nAction: look\\\", \\\"action\\\": \\\"look\\\", \\\"action_raw\\\": \\\"look\\\", \\\"action_matched\\\": false, \\\"admissible_count\\\": 22}, {\\\"step\\\": 3, \\\"observation\\\": \\\"You are facing the bed 1. Next to it, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is likely near the bed. I should go to the bed and look under it.\\\\nAction: go to bed 1\\\\n\\\\nThought: Now that I am at the bed, I need to look under it to find the clock.\\\\nAction: look under bed 1\\\\n\\\\nThought: If the clock is not under the bed, I sho\\\", \\\"action\\\": \\\"examine bed 1\\\", \\\"action_raw\\\": \\\"go to bed 1\\\", \\\"action_matched\\\": true, \\\"admissible_count\\\": 22}, {\\\"step\\\": 4, \\\"observation\\\": \\\"On the bed 1, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The previous actions indicate that there is nothing on the bed, so I should check other locations in the room. The clock is mentioned to be under the lamp, so I should go to the lamp and look under it.\\\\nAction: go to lamp 1 and look under it\\\", \\\"action\\\": \\\"look\\\", \\\"action_raw\\\": \\\"go to lamp 1 and look under it\\\", \\\"action_matched\\\": true, \\\"admissible_count\\\": 22}, {\\\"step\\\": 5, \\\"observation\\\": \\\"You are facing the bed 1. Next to it, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The task requires me to look at the clock under the lamp. Since I am currently facing the bed and there is nothing next to it, I need to go to the lamp to find the clock.\\\\nAction: go to lamp 1\\\", \\\"action\\\": \\\"examine bed 1\\\", \\\"action_raw\\\": \\\"go to lamp 1\\\", \\\"action_matched\\\": true, \\\"admissible_count\\\": 22}, {\\\"step\\\": 6, \\\"observation\\\": \\\"On the bed 1, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The task requires me to look at the clock under the lamp. Since I haven't found the clock or the lamp yet, I need to search the environment for them.\\\\nAction: look\\\", \\\"action\\\": \\\"look\\\", \\\"action_raw\\\": \\\"look\\\", \\\"action_matched\\\": false, \\\"admissible_count\\\": 22}, {\\\"step\\\": 7, \\\"observation\\\": \\\"You are facing the bed 1. Next to it, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The task requires looking at the clock under the lamp. Since I am currently in front of bed 1 and there is nothing there, I need to find the lamp and clock. The lamp is likely to be near the bed, so I should check the area around the bed.\\\\nAction: go to bed 1\\\",\\n\\n... [截断: 输出过长，省略 31340 字符] ...\\n\\n \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 40, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp on the desk, so I should examine the desk to locate the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 41, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 42, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned as being under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 43, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 44, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp on the desk. I need to examine the desk to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 45, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp on the desk, so I need to continue examining the desk to locate the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 46, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to locate the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 47, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to locate the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 48, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp on the desk, so I need to examine the desk to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 49, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The previous actions indicate that I have already examined the desk multiple times. The clock is mentioned to be on the desk, so I should directly go to the desk to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}], \\\"success\\\": false, \\\"n_steps\\\": 50, \\\"score\\\": 0.0}, \\\"metadata\\\": {\\\"split\\\": \\\"valid_seen\\\", \\\"time_s\\\": 86.4}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "7cc4a391-6659-493e-b0f2-a20f8537aa1d",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"env\\\\\\\": \\\\\\\"alfworld\\\\\\\", \\\\\\\"task_id\\\\\\\": \\\\\\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-323/trial_T20190909_044715_250790\\\\\\\", \\\\\\\"task_type\\\\\\\": \\\\\\\"look_at_obj_in_light\\\\\\\", \\\\\\\"task_desc\\\\\\\": \\\\\\\"look at the clock under the lamp\\\\\\\", \\\\\\\"internal_success\\\\\\\": false, \\\\\\\"deterministic_success\\\\\\\": false, \\\\\\\"internal_steps\\\\\\\": 50, \\\\\\\"deterministic_steps\\\\\\\": 50, \\\\\\\"label\\\\\\\": \\\\\\\"no-preference\\\\\\\", \\\\\\\"internal\\\\\\\": {\\\\\\\"trajectory\\\\\\\": [{\\\\\\\"step\\\\\\\": 0, \\\\\\\"observation\\\\\\\": \\\\\\\"-= Welcome to TextWorld, ALFRED! =-\\\\\\\\n\\\\\\\\nYou are in the middle of a room. Looking quickly around you, you see a bed 2, a bed 1, a desk 1, a drawer 11, a drawer 10, a drawer 9, a drawer 8, a drawer 7, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a safe 1, a sidetable 2, and a sidetable 1.\\\\\\\\n\\\\\\\\nYour task is to: look at alarmclock under the desklamp.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The task requires me to find and look at the clock under the lamp. I should first look around to find the desk and the lamp.\\\\\\\\nAction: look\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"look\\\\\\\", \\\\\\\"action_raw\\\\\\\": \\\\\\\"look\\\\\\\", \\\\\\\"action_matched\\\\\\\": false, \\\\\\\"admissible_count\\\\\\\": 22}, {\\\\\\\"step\\\\\\\": 1, \\\\\\\"observation\\\\\\\": \\\\\\\"You are in the middle of a room. Looking quickly around you, you see nothing.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: Since the previous action was to look around and nothing was seen, the clock under the lamp must be in a location that was not visible from the middle of the room. The most logical place to look next would be near a lamp, as the task specifies that the clock is under a lamp.\\\\\\\\nAction: go to l\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"go to bed 1\\\\\\\", \\\\\\\"action_raw\\\\\\\": \\\\\\\"go to lamp\\\\\\\", \\\\\\\"action_matched\\\\\\\": true, \\\\\\\"admissible_count\\\\\\\": 22}, {\\\\\\\"step\\\\\\\": 2, \\\\\\\"observation\\\\\\\": \\\\\\\"You arrive at bed 1. On the bed 1, you see nothing.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The task requires looking at the clock under the lamp, but I have not seen a clock or a lamp yet. I should first look around the room to find these items.\\\\\\\\nAction: look\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"look\\\\\\\", \\\\\\\"action_raw\\\\\\\": \\\\\\\"look\\\\\\\", \\\\\\\"action_matched\\\\\\\": false, \\\\\\\"admissible_count\\\\\\\": 22}, {\\\\\\\"step\\\\\\\": 3, \\\\\\\"observation\\\\\\\": \\\\\\\"You are facing the bed 1. Next to it, you see nothing.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp, which is likely near the bed. I should go to the bed and look under it.\\\\\\\\nAction: go to bed 1\\\\\\\\n\\\\\\\\nThought: Now that I am at the bed, I need to look under it to find the clock.\\\\\\\\nAction: look under bed 1\\\\\\\\n\\\\\\\\nThought: If the clock is not under the bed, I sho\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine bed 1\\\\\\\", \\\\\\\"action_raw\\\\\\\": \\\\\\\"go to bed 1\\\\\\\", \\\\\\\"action_matched\\\\\\\": true, \\\\\\\"admissible_count\\\\\\\": 22}, {\\\\\\\"step\\\\\\\": 4, \\\\\\\"observation\\\\\\\": \\\\\\\"On the bed 1, you see nothing.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The previous actions indicate that there is nothing on the bed, so I should check other locations in the room. The clock is mentioned to be under the lamp, so I should go to the lamp and look under it.\\\\\\\\nAction: go to lamp 1 and look under it\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"look\\\\\\\", \\\\\\\"action_raw\\\\\\\": \\\\\\\"go to lamp 1 and look under it\\\\\\\", \\\\\\\"action_matched\\\\\\\": true, \\\\\\\"admissible_count\\\\\\\": 22}, {\\\\\\\"step\\\\\\\": 5, \\\\\\\"observation\\\\\\\": \\\\\\\"You are facing the bed 1. Next to it, you see nothing.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The task requires me to look at the clock under the lamp. Since I am currently facing the bed and there is nothing next to it, I need to go to the lamp to find the clock.\\\\\\\\nAction: go to lamp 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine bed 1\\\\\\\", \\\\\\\"action_raw\\\\\\\": \\\\\\\"go to lamp 1\\\\\\\", \\\\\\\"action_matched\\\\\\\": true, \\\\\\\"admissible_count\\\\\\\": 22}, {\\\\\\\"step\\\\\\\": 6, \\\\\\\"observation\\\\\\\": \\\\\\\"On the bed 1, you see nothing.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The task requires me to look at the clock under the lamp. Since I haven't found the clock or the lamp yet, I need to search the environment for them.\\\\\\\\nAction: look\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"look\\\\\\\", \\\\\\\"action_raw\\\\\\\": \\\\\\\"look\\\\\\\", \\\\\\\"action_matched\\\\\\\": false, \\\\\\\"admissible_count\\\\\\\": 22}, {\\\\\\\"step\\\\\\\": 7, \\\\\\\"observation\\\\\\\": \\\\\\\"You are facing the bed 1. Next to it, you see nothing.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The task requires looking at the clock under the lamp. Since I am currently in front of bed 1 and there is nothing there, I need to find the lamp and clock. The lamp is likely to be near the bed, so I should check the area around the bed.\\\\\\\\nAction: go to bed 1\\\\\\\",\\\\n\\\\n... [截断: 输出过长，省略 31340 字符] ...\\\\n\\\\n \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 40, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp on the desk, so I should examine the desk to locate the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 41, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 42, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned as being under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 43, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 44, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp on the desk. I need to examine the desk to find the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 45, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp on the desk, so I need to continue examining the desk to locate the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 46, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to locate the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 47, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to locate the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 48, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The clock is mentioned to be under the lamp on the desk, so I need to examine the desk to find the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}, {\\\\\\\"step\\\\\\\": 49, \\\\\\\"observation\\\\\\\": \\\\\\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\\\\\", \\\\\\\"thought\\\\\\\": \\\\\\\"Thought: The previous actions indicate that I have already examined the desk multiple times. The clock is mentioned to be on the desk, so I should directly go to the desk to find the clock.\\\\\\\\nAction: examine desk 1\\\\\\\", \\\\\\\"action\\\\\\\": \\\\\\\"examine desk 1\\\\\\\", \\\\\\\"admissible_count\\\\\\\": 31}], \\\\\\\"success\\\\\\\": false, \\\\\\\"n_steps\\\\\\\": 50, \\\\\\\"score\\\\\\\": 0.0}, \\\\\\\"metadata\\\\\\\": {\\\\\\\"split\\\\\\\": \\\\\\\"valid_seen\\\\\\\", \\\\\\\"time_s\\\\\\\": 86.4}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.11}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"env\\\": \\\"alfworld\\\", \\\"task_id\\\": \\\"look_at_obj_in_light-AlarmClock-None-DeskLamp-323/trial_T20190909_044715_250790\\\", \\\"task_type\\\": \\\"look_at_obj_in_light\\\", \\\"task_desc\\\": \\\"look at the clock under the lamp\\\", \\\"internal_success\\\": false, \\\"deterministic_success\\\": false, \\\"internal_steps\\\": 50, \\\"deterministic_steps\\\": 50, \\\"label\\\": \\\"no-preference\\\", \\\"internal\\\": {\\\"trajectory\\\": [{\\\"step\\\": 0, \\\"observation\\\": \\\"-= Welcome to TextWorld, ALFRED! =-\\\\n\\\\nYou are in the middle of a room. Looking quickly around you, you see a bed 2, a bed 1, a desk 1, a drawer 11, a drawer 10, a drawer 9, a drawer 8, a drawer 7, a drawer 6, a drawer 5, a drawer 4, a drawer 3, a drawer 2, a drawer 1, a dresser 1, a garbagecan 1, a safe 1, a sidetable 2, and a sidetable 1.\\\\n\\\\nYour task is to: look at alarmclock under the desklamp.\\\", \\\"thought\\\": \\\"Thought: The task requires me to find and look at the clock under the lamp. I should first look around to find the desk and the lamp.\\\\nAction: look\\\", \\\"action\\\": \\\"look\\\", \\\"action_raw\\\": \\\"look\\\", \\\"action_matched\\\": false, \\\"admissible_count\\\": 22}, {\\\"step\\\": 1, \\\"observation\\\": \\\"You are in the middle of a room. Looking quickly around you, you see nothing.\\\", \\\"thought\\\": \\\"Thought: Since the previous action was to look around and nothing was seen, the clock under the lamp must be in a location that was not visible from the middle of the room. The most logical place to look next would be near a lamp, as the task specifies that the clock is under a lamp.\\\\nAction: go to l\\\", \\\"action\\\": \\\"go to bed 1\\\", \\\"action_raw\\\": \\\"go to lamp\\\", \\\"action_matched\\\": true, \\\"admissible_count\\\": 22}, {\\\"step\\\": 2, \\\"observation\\\": \\\"You arrive at bed 1. On the bed 1, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The task requires looking at the clock under the lamp, but I have not seen a clock or a lamp yet. I should first look around the room to find these items.\\\\nAction: look\\\", \\\"action\\\": \\\"look\\\", \\\"action_raw\\\": \\\"look\\\", \\\"action_matched\\\": false, \\\"admissible_count\\\": 22}, {\\\"step\\\": 3, \\\"observation\\\": \\\"You are facing the bed 1. Next to it, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is likely near the bed. I should go to the bed and look under it.\\\\nAction: go to bed 1\\\\n\\\\nThought: Now that I am at the bed, I need to look under it to find the clock.\\\\nAction: look under bed 1\\\\n\\\\nThought: If the clock is not under the bed, I sho\\\", \\\"action\\\": \\\"examine bed 1\\\", \\\"action_raw\\\": \\\"go to bed 1\\\", \\\"action_matched\\\": true, \\\"admissible_count\\\": 22}, {\\\"step\\\": 4, \\\"observation\\\": \\\"On the bed 1, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The previous actions indicate that there is nothing on the bed, so I should check other locations in the room. The clock is mentioned to be under the lamp, so I should go to the lamp and look under it.\\\\nAction: go to lamp 1 and look under it\\\", \\\"action\\\": \\\"look\\\", \\\"action_raw\\\": \\\"go to lamp 1 and look under it\\\", \\\"action_matched\\\": true, \\\"admissible_count\\\": 22}, {\\\"step\\\": 5, \\\"observation\\\": \\\"You are facing the bed 1. Next to it, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The task requires me to look at the clock under the lamp. Since I am currently facing the bed and there is nothing next to it, I need to go to the lamp to find the clock.\\\\nAction: go to lamp 1\\\", \\\"action\\\": \\\"examine bed 1\\\", \\\"action_raw\\\": \\\"go to lamp 1\\\", \\\"action_matched\\\": true, \\\"admissible_count\\\": 22}, {\\\"step\\\": 6, \\\"observation\\\": \\\"On the bed 1, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The task requires me to look at the clock under the lamp. Since I haven't found the clock or the lamp yet, I need to search the environment for them.\\\\nAction: look\\\", \\\"action\\\": \\\"look\\\", \\\"action_raw\\\": \\\"look\\\", \\\"action_matched\\\": false, \\\"admissible_count\\\": 22}, {\\\"step\\\": 7, \\\"observation\\\": \\\"You are facing the bed 1. Next to it, you see nothing.\\\", \\\"thought\\\": \\\"Thought: The task requires looking at the clock under the lamp. Since I am currently in front of bed 1 and there is nothing there, I need to find the lamp and clock. The lamp is likely to be near the bed, so I should check the area around the bed.\\\\nAction: go to bed 1\\\",\\n\\n... [截断: 输出过长，省略 31340 字符] ...\\n\\n \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 40, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp on the desk, so I should examine the desk to locate the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 41, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 42, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned as being under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 43, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 44, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp on the desk. I need to examine the desk to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 45, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp on the desk, so I need to continue examining the desk to locate the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 46, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to locate the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 47, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp, which is on desk 1. I need to examine desk 1 to locate the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 48, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The clock is mentioned to be under the lamp on the desk, so I need to examine the desk to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}, {\\\"step\\\": 49, \\\"observation\\\": \\\"On the desk 1, you see a alarmclock 2, a book 1, a bowl 1, a cd 2, a desklamp 1, a mug 2, a mug 1, a pen 2, and a pen 1.\\\", \\\"thought\\\": \\\"Thought: The previous actions indicate that I have already examined the desk multiple times. The clock is mentioned to be on the desk, so I should directly go to the desk to find the clock.\\\\nAction: examine desk 1\\\", \\\"action\\\": \\\"examine desk 1\\\", \\\"admissible_count\\\": 31}], \\\"success\\\": false, \\\"n_steps\\\": 50, \\\"score\\\": 0.0}, \\\"metadata\\\": {\\\"split\\\": \\\"valid_seen\\\", \\\"time_s\\\": 86.4}}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have most of the information. Let me also get the truncated middle section of the code to see the `match_to_admissible` function and the `run_internal_episode`/`run_deterministic_episode` functions, as well as the `ALFWorldLLM` class and `find_model_path`.
+
+Let me also check the `llm_agent.py` for `find_model_path` and compute some stats from the episodes.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "ff70d8aa-2108-49c2-a53a-347fa2be63bc",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cWqef6y1zAk8quYWNDxpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7509,
+      "cache_read_input_tokens": 28586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 26_
+
+Let me get the truncated code middle section and compute step statistics.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "09e559c3-2ee1-4eb2-9cae-cf2009e693bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cWqef6y1zAk8quYWNDxpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7509,
+      "cache_read_input_tokens": 28586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01H6qEkUxWThTexe6AdHxgKP`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -n \"def \" /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "0645960a-24aa-47c5-bd56-c211d87b7cc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cWqef6y1zAk8quYWNDxpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7509,
+      "cache_read_input_tokens": 28586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T15:44:26.674Z_
+
+<details><summary>↩ Tool result · `toolu_01H6qEkUxWThTexe6AdHxgKP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"100:def parse_action_free(text: str) -> Optional[str]:\\n111:def match_to_admissible(free_action: str, admissible: List[str]) -> Optional[str]:\\n125:def parse_action_constrained(text: str, admissible: List[str]) -> Optional[str]:\\n145:    def __init__(self, model_path: str, use_vllm: bool = True, gpu_id: int = 0):\\n153:    def _load(self):\\n182:    def generate(self, messages: List[dict], temperature: float = 0.3) -> str:\\n189:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n202:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n224:def collect_game_files(data_root: str, split: str = \\\"valid_seen\\\",\\n277:def make_env(game_path: str, max_steps: int = 50):\\n290:def extract_task_desc_from_obs(obs: str) -> str:\\n297:def format_history(actions: List[str], last_k: int = 10) -> str:\\n307:def run_internal_episode(\\n367:def run_deterministic_episode(\\n429:def run_pipeline(args):\\n526:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "e1b69fbf-1100-46e3-aafa-5d07f2bd1aca",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"100:def parse_action_free(text: str) -> Optional[str]:\\\\n111:def match_to_admissible(free_action: str, admissible: List[str]) -> Optional[str]:\\\\n125:def parse_action_constrained(text: str, admissible: List[str]) -> Optional[str]:\\\\n145:    def __init__(self, model_path: str, use_vllm: bool = True, gpu_id: int = 0):\\\\n153:    def _load(self):\\\\n182:    def generate(self, messages: List[dict], temperature: float = 0.3) -> str:\\\\n189:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\\\n202:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\\\n224:def collect_game_files(data_root: str, split: str = \\\\\\\"valid_seen\\\\\\\",\\\\n277:def make_env(game_path: str, max_steps: int = 50):\\\\n290:def extract_task_desc_from_obs(obs: str) -> str:\\\\n297:def format_history(actions: List[str], last_k: int = 10) -> str:\\\\n307:def run_internal_episode(\\\\n367:def run_deterministic_episode(\\\\n429:def run_pipeline(args):\\\\n526:def main():\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"100:def parse_action_free(text: str) -> Optional[str]:\\n111:def match_to_admissible(free_action: str, admissible: List[str]) -> Optional[str]:\\n125:def parse_action_constrained(text: str, admissible: List[str]) -> Optional[str]:\\n145:    def __init__(self, model_path: str, use_vllm: bool = True, gpu_id: int = 0):\\n153:    def _load(self):\\n182:    def generate(self, messages: List[dict], temperature: float = 0.3) -> str:\\n189:    def _generate_vllm(self, messages: List[dict], temperature: float) -> str:\\n202:    def _generate_hf(self, messages: List[dict], temperature: float) -> str:\\n224:def collect_game_files(data_root: str, split: str = \\\"valid_seen\\\",\\n277:def make_env(game_path: str, max_steps: int = 50):\\n290:def extract_task_desc_from_obs(obs: str) -> str:\\n297:def format_history(actions: List[str], last_k: int = 10) -> str:\\n307:def run_internal_episode(\\n367:def run_deterministic_episode(\\n429:def run_pipeline(args):\\n526:def main():\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011qa4E6jk5Nr5Ev1Qw3J5eF`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "python3 -c \"\nimport json\nrecords = [json.loads(l) for l in open('/root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/episodes.jsonl')]\n# label distribution\nfrom collections import Counter\nlabels = Counter(r['label'] for r in records)\nprint('=== Label Distribution ===')\nfor lb in ['det-preferred','internal-preferred','no-preference']:\n    print(f'  {lb}: {labels.get(lb,0)}')\n\n# task type breakdown\ntypes = Counter(r['task_type'] for r in records)\nprint('\\n=== Task Type Distribution ===')\nfor t, c in types.most_common():\n    print(f'  {t}: {c}')\n\n# step stats\nimport statistics\nint_steps = [r['internal_steps'] for r in records]\ndet_steps = [r['deterministic_steps'] for r in records]\nprint(f'\\n=== Step Statistics ===')\nprint(f'  Internal: mean={statistics.mean(int_steps):.1f}, median={statistics.median(int_steps):.1f}, min={min(int_steps)}, max={max(int_steps)}')\nprint(f'  Deterministic: mean={statistics.mean(det_steps):.1f}, median={statistics.median(det_steps):.1f}, min={min(det_steps)}, max={max(det_steps)}')\n\n# success by task type\nprint('\\n=== Success Rate by Task Type ===')\nfor t in sorted(types):\n    tr = [r for r in records if r['task_type']==t]\n    iw = sum(1 for r in tr if r['internal_success'])\n    dw = sum(1 for r in tr if r['deterministic_success'])\n    print(f'  {t}: internal={iw}/{len(tr)} det={dw}/{len(tr)}')\n\n# label by task type\nprint('\\n=== Label by Task Type ===')\nfor t in sorted(types):\n    tr = [r for r in records if r['task_type']==t]\n    lc = Counter(r['label'] for r in tr)\n    print(f'  {t}: det-pref={lc.get(\\\"det-preferred\\\",0)} int-pref={lc.get(\\\"internal-preferred\\\",0)} no-pref={lc.get(\\\"no-preference\\\",0)}')\n\n# both-succeed and both-fail in no-preference\nboth_succ = sum(1 for r in records if r['label']=='no-preference' and r['internal_success'] and r['deterministic_success'])\nboth_fail = sum(1 for r in records if r['label']=='no-preference' and not r['internal_success'] and not r['deterministic_success'])\nprint(f'\\n=== No-preference breakdown ===')\nprint(f'  Both succeed: {both_succ}')\nprint(f'  Both fail: {both_fail}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "4d8e2eba-b73d-4c63-8170-18dc163c6051",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cWqef6y1zAk8quYWNDxpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7509,
+      "cache_read_input_tokens": 28586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T15:44:35.417Z_
+
+<details><summary>↩ Tool result · `toolu_011qa4E6jk5Nr5Ev1Qw3J5eF`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "6ce286f7-e62a-4fa4-96e0-4acb097a894b",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QrK1asZSMbnC2uaaGH5JZE`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -180 /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "2be22eb4-c548-42e7-a769-ccb8b0fa9d47",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012cWqef6y1zAk8quYWNDxpH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7509,
+      "cache_read_input_tokens": 28586,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7509
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T15:44:36.768Z_
+
+<details><summary>↩ Tool result · `toolu_01QrK1asZSMbnC2uaaGH5JZE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ALFWorld counterfactual labeling pipeline.\\n\\nFor each ALFWorld task, runs two episode-level trajectories:\\n1. Internal: LLM sees observation only — generates action from its own knowledge\\n2. Deterministic: LLM sees observation + admissible actions list from simulator\\n\\nThe admissible actions list is the \\\"deterministic computation\\\" source:\\nit constrains the LLM to valid simulator actions.\\n\\nProduces episode-level labels:\\n- det-preferred: deterministic succeeds + internal fails\\n- internal-preferred: internal succeeds + deterministic fails\\n- no-preference: both succeed or both fail\\n\\nInput:  ALFWorld game files (json_2.1.1 split)\\nOutput: data/alfworld-counterfactual/episodes.jsonl\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom typing import List, Dict, Any, Optional, Tuple\\n\\nimport textworld\\nimport textworld.gym\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom llm_agent import find_model_path\\n\\n# ---------------------------------------------------------------------------\\n# Prompts\\n# ---------------------------------------------------------------------------\\n\\nINTERNAL_SYSTEM = (\\n    \\\"You are an agent in a household environment (ALFWorld). \\\"\\n    \\\"You must complete the given task by choosing actions.\\\\n\\\\n\\\"\\n    \\\"You do NOT have access to any action list — you must generate the action \\\"\\n    \\\"yourself based on your understanding of the environment.\\\\n\\\\n\\\"\\n    \\\"Use this format:\\\\n\\\"\\n    \\\"Thought: &lt;your reasoning about what to do next>\\\\n\\\"\\n    \\\"Action: &lt;your action>\\\\n\\\\n\\\"\\n    \\\"Common actions: go to &lt;location>, take &lt;obj> from &lt;location>, \\\"\\n    \\\"put &lt;obj> in/on &lt;location>, open &lt;receptacle>, close &lt;receptacle>, \\\"\\n    \\\"use &lt;lamp/appliance>, examine &lt;obj>, look, inventory, \\\"\\n    \\\"clean &lt;obj> with &lt;sinkbasin>, heat &lt;obj> with &lt;microwave>, \\\"\\n    \\\"cool &lt;obj> with &lt;fridge>.\\\"\\n)\\n\\nDETERMINISTIC_SYSTEM = (\\n    \\\"You are an agent in a household environment (ALFWorld). \\\"\\n    \\\"You must complete the given task by choosing from the admissible actions list.\\\\n\\\\n\\\"\\n    \\\"Use this format:\\\\n\\\"\\n    \\\"Thought: &lt;your reasoning about what to do next>\\\\n\\\"\\n    \\\"Action: &lt;exact action from the admissible actions list>\\\\n\\\\n\\\"\\n    \\\"Rules:\\\\n\\\"\\n    \\\"- You MUST choose an action from the admissible actions list exactly as written.\\\\n\\\"\\n    \\\"- Think step by step: first locate the target object, then perform required \\\"\\n    \\\"operations (clean/heat/cool if needed), then place it at the destination.\\\"\\n)\\n\\nUSER_TEMPLATE_INTERNAL = (\\n    \\\"Task: {task_desc}\\\\n\\\\n\\\"\\n    \\\"Current observation:\\\\n{observation}\\\\n\\\\n\\\"\\n    \\\"Previous actions: {history}\\\\n\\\\n\\\"\\n    \\\"Choose your next action.\\\"\\n)\\n\\nUSER_TEMPLATE_DETERMINISTIC = (\\n    \\\"Task: {task_desc}\\\\n\\\\n\\\"\\n    \\\"Current observation:\\\\n{observation}\\\\n\\\\n\\\"\\n    \\\"Admissible actions:\\\\n{admissible_str}\\\\n\\\\n\\\"\\n    \\\"Previous actions: {history}\\\\n\\\\n\\\"\\n    \\\"Choose your next action from the admissible actions list.\\\"\\n)\\n\\n# ---------------------------------------------------------------------------\\n# Task types\\n# ---------------------------------------------------------------------------\\n\\nTASK_TYPES = [\\n    \\\"pick_and_place\\\",\\n    \\\"pick_clean_then_place\\\",\\n    \\\"pick_heat_then_place\\\",\\n    \\\"pick_cool_then_place\\\",\\n    \\\"look_at_obj_in_light\\\",\\n    \\\"pick_two_obj_and_place\\\",\\n]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Action parsing\\n# ---------------------------------------------------------------------------\\n\\ndef parse_action_free(text: str) -> Optional[str]:\\n    \\\"\\\"\\\"Parse free-form action from LLM output (internal mode).\\\"\\\"\\\"\\n    m = re.search(r\\\"Action:\\\\s*(.+?)(?:\\\\n|$)\\\", text, re.IGNORECASE)\\n    if m:\\n        return m.group(1).strip().strip('\\\"').strip(\\\"'\\\")\\n    lines = [l.strip() for l in text.strip().split(\\\"\\\\n\\\") if l.strip()]\\n    if lines:\\n        return lines[-1].strip().strip('\\\"').strip(\\\"'\\\")\\n    return None\\n\\n\\ndef match_to_admissible(free_action: str, admissible: List[str]) -> Optional[str]:\\n    \\\"\\\"\\\"Best-effort match a free-form action string to admissible actions.\\\"\\\"\\\"\\n    if free_action in admissible:\\n        return free_action\\n    fl = free_action.lower()\\n    for va in admissible:\\n        if va.lower() == fl:\\n            return va\\n    for va in admissible:\\n        if fl in va.lower() or va.lower() in fl:\\n            return va\\n    return None\\n\\n\\ndef parse_action_constrained(text: str, admissible: List[str]) -> Optional[str]:\\n    \\\"\\\"\\\"Parse action from LLM output, matching against admissible actions.\\\"\\\"\\\"\\n    m = re.search(r\\\"Action:\\\\s*(.+?)(?:\\\\n|$)\\\", text, re.IGNORECASE)\\n    candidate = m.group(1).strip().strip('\\\"').strip(\\\"'\\\") if m else text.strip()\\n\\n    matched = match_to_admissible(candidate, admissible)\\n    if matched:\\n        return matched\\n\\n    for va in admissible:\\n        if va in text:\\n            return va\\n    return None\\n\\n\\n# ---------------------------------------------------------------------------\\n# LLM wrapper\\n# ---------------------------------------------------------------------------\\n\\nclass ALFWorldLLM:\\n    def __init__(self, model_path: str, use_vllm: bool = True, gpu_id: int = 0):\\n        self.model_path = model_path\\n        self.use_vllm = use_vllm\\n        self.gpu_id = gpu_id\\n        self._llm = None\\n        self._tokenizer = None\\n        self.max_new_tokens = 256\\n\\n    def _load(self):\\n        if self._llm is not None:\\n            return\\n        if self.use_vllm:\\n            os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = str(self.gpu_id)\\n            from vllm import LLM\\n            self._llm = LLM(\\n                model=self.model_path,\\n                trust_remote_code=True,\\n                gpu_memory_utilization=0.85,\\n                max_model_len=4096,\\n            )\\n            from transformers import AutoTokenizer\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\n                self.model_path, trust_remote_code=True\\n            )\\n        else:\\n            import torch\\n            from transformers import AutoModelForCausalLM, AutoTokenizer\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\n                self.model_path, trust_remote_code=True\\n            )\\n            self._llm = AutoModelForCausalLM.from_pretrained(\\n                self.model_path,\\n                torch_dtype=torch.float16,\\n                device_map=f\\\"cuda:{self.gpu_id}\\\",\\n                trust_remote_code=True,\\n            )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "4a16d65f-d24e-45c2-8518-043d05848cd2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"ALFWorld counterfactual labeling pipeline.\\\\n\\\\nFor each ALFWorld task, runs two episode-level trajectories:\\\\n1. Internal: LLM sees observation only — generates action from its own knowledge\\\\n2. Deterministic: LLM sees observation + admissible actions list from simulator\\\\n\\\\nThe admissible actions list is the \\\\\\\"deterministic computation\\\\\\\" source:\\\\nit constrains the LLM to valid simulator actions.\\\\n\\\\nProduces episode-level labels:\\\\n- det-preferred: deterministic succeeds + internal fails\\\\n- internal-preferred: internal succeeds + deterministic fails\\\\n- no-preference: both succeed or both fail\\\\n\\\\nInput:  ALFWorld game files (json_2.1.1 split)\\\\nOutput: data/alfworld-counterfactual/episodes.jsonl\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport re\\\\nimport sys\\\\nimport time\\\\nfrom collections import Counter\\\\nfrom typing import List, Dict, Any, Optional, Tuple\\\\n\\\\nimport textworld\\\\nimport textworld.gym\\\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom llm_agent import find_model_path\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Prompts\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nINTERNAL_SYSTEM = (\\\\n    \\\\\\\"You are an agent in a household environment (ALFWorld). \\\\\\\"\\\\n    \\\\\\\"You must complete the given task by choosing actions.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"You do NOT have access to any action list — you must generate the action \\\\\\\"\\\\n    \\\\\\\"yourself based on your understanding of the environment.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use this format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Thought: &lt;your reasoning about what to do next>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Action: &lt;your action>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Common actions: go to &lt;location>, take &lt;obj> from &lt;location>, \\\\\\\"\\\\n    \\\\\\\"put &lt;obj> in/on &lt;location>, open &lt;receptacle>, close &lt;receptacle>, \\\\\\\"\\\\n    \\\\\\\"use &lt;lamp/appliance>, examine &lt;obj>, look, inventory, \\\\\\\"\\\\n    \\\\\\\"clean &lt;obj> with &lt;sinkbasin>, heat &lt;obj> with &lt;microwave>, \\\\\\\"\\\\n    \\\\\\\"cool &lt;obj> with &lt;fridge>.\\\\\\\"\\\\n)\\\\n\\\\nDETERMINISTIC_SYSTEM = (\\\\n    \\\\\\\"You are an agent in a household environment (ALFWorld). \\\\\\\"\\\\n    \\\\\\\"You must complete the given task by choosing from the admissible actions list.\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Use this format:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Thought: &lt;your reasoning about what to do next>\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Action: &lt;exact action from the admissible actions list>\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Rules:\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"- You MUST choose an action from the admissible actions list exactly as written.\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"- Think step by step: first locate the target object, then perform required \\\\\\\"\\\\n    \\\\\\\"operations (clean/heat/cool if needed), then place it at the destination.\\\\\\\"\\\\n)\\\\n\\\\nUSER_TEMPLATE_INTERNAL = (\\\\n    \\\\\\\"Task: {task_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Current observation:\\\\\\\\n{observation}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Previous actions: {history}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Choose your next action.\\\\\\\"\\\\n)\\\\n\\\\nUSER_TEMPLATE_DETERMINISTIC = (\\\\n    \\\\\\\"Task: {task_desc}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Current observation:\\\\\\\\n{observation}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Admissible actions:\\\\\\\\n{admissible_str}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Previous actions: {history}\\\\\\\\n\\\\\\\\n\\\\\\\"\\\\n    \\\\\\\"Choose your next action from the admissible actions list.\\\\\\\"\\\\n)\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Task types\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nTASK_TYPES = [\\\\n    \\\\\\\"pick_and_place\\\\\\\",\\\\n    \\\\\\\"pick_clean_then_place\\\\\\\",\\\\n    \\\\\\\"pick_heat_then_place\\\\\\\",\\\\n    \\\\\\\"pick_cool_then_place\\\\\\\",\\\\n    \\\\\\\"look_at_obj_in_light\\\\\\\",\\\\n    \\\\\\\"pick_two_obj_and_place\\\\\\\",\\\\n]\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Action parsing\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef parse_action_free(text: str) -> Optional[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse free-form action from LLM output (internal mode).\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = re.search(r\\\\\\\"Action:\\\\\\\\s*(.+?)(?:\\\\\\\\n|$)\\\\\\\", text, re.IGNORECASE)\\\\n    if m:\\\\n        return m.group(1).strip().strip('\\\\\\\"').strip(\\\\\\\"'\\\\\\\")\\\\n    lines = [l.strip() for l in text.strip().split(\\\\\\\"\\\\\\\\n\\\\\\\") if l.strip()]\\\\n    if lines:\\\\n        return lines[-1].strip().strip('\\\\\\\"').strip(\\\\\\\"'\\\\\\\")\\\\n    return None\\\\n\\\\n\\\\ndef match_to_admissible(free_action: str, admissible: List[str]) -> Optional[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Best-effort match a free-form action string to admissible actions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if free_action in admissible:\\\\n        return free_action\\\\n    fl = free_action.lower()\\\\n    for va in admissible:\\\\n        if va.lower() == fl:\\\\n            return va\\\\n    for va in admissible:\\\\n        if fl in va.lower() or va.lower() in fl:\\\\n            return va\\\\n    return None\\\\n\\\\n\\\\ndef parse_action_constrained(text: str, admissible: List[str]) -> Optional[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Parse action from LLM output, matching against admissible actions.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    m = re.search(r\\\\\\\"Action:\\\\\\\\s*(.+?)(?:\\\\\\\\n|$)\\\\\\\", text, re.IGNORECASE)\\\\n    candidate = m.group(1).strip().strip('\\\\\\\"').strip(\\\\\\\"'\\\\\\\") if m else text.strip()\\\\n\\\\n    matched = match_to_admissible(candidate, admissible)\\\\n    if matched:\\\\n        return matched\\\\n\\\\n    for va in admissible:\\\\n        if va in text:\\\\n            return va\\\\n    return None\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# LLM wrapper\\\\n# ---------------------------------------------------------------------------\\\\n\\\\nclass ALFWorldLLM:\\\\n    def __init__(self, model_path: str, use_vllm: bool = True, gpu_id: int = 0):\\\\n        self.model_path = model_path\\\\n        self.use_vllm = use_vllm\\\\n        self.gpu_id = gpu_id\\\\n        self._llm = None\\\\n        self._tokenizer = None\\\\n        self.max_new_tokens = 256\\\\n\\\\n    def _load(self):\\\\n        if self._llm is not None:\\\\n            return\\\\n        if self.use_vllm:\\\\n            os.environ[\\\\\\\"CUDA_VISIBLE_DEVICES\\\\\\\"] = str(self.gpu_id)\\\\n            from vllm import LLM\\\\n            self._llm = LLM(\\\\n                model=self.model_path,\\\\n                trust_remote_code=True,\\\\n                gpu_memory_utilization=0.85,\\\\n                max_model_len=4096,\\\\n            )\\\\n            from transformers import AutoTokenizer\\\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\\\n                self.model_path, trust_remote_code=True\\\\n            )\\\\n        else:\\\\n            import torch\\\\n            from transformers import AutoModelForCausalLM, AutoTokenizer\\\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\\\n                self.model_path, trust_remote_code=True\\\\n            )\\\\n            self._llm = AutoModelForCausalLM.from_pretrained(\\\\n                self.model_path,\\\\n                torch_dtype=torch.float16,\\\\n                device_map=f\\\\\\\"cuda:{self.gpu_id}\\\\\\\",\\\\n                trust_remote_code=True,\\\\n            )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ALFWorld counterfactual labeling pipeline.\\n\\nFor each ALFWorld task, runs two episode-level trajectories:\\n1. Internal: LLM sees observation only — generates action from its own knowledge\\n2. Deterministic: LLM sees observation + admissible actions list from simulator\\n\\nThe admissible actions list is the \\\"deterministic computation\\\" source:\\nit constrains the LLM to valid simulator actions.\\n\\nProduces episode-level labels:\\n- det-preferred: deterministic succeeds + internal fails\\n- internal-preferred: internal succeeds + deterministic fails\\n- no-preference: both succeed or both fail\\n\\nInput:  ALFWorld game files (json_2.1.1 split)\\nOutput: data/alfworld-counterfactual/episodes.jsonl\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport re\\nimport sys\\nimport time\\nfrom collections import Counter\\nfrom typing import List, Dict, Any, Optional, Tuple\\n\\nimport textworld\\nimport textworld.gym\\nfrom alfworld.agents.environment.alfred_tw_env import AlfredDemangler, AlfredInfos\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom llm_agent import find_model_path\\n\\n# ---------------------------------------------------------------------------\\n# Prompts\\n# ---------------------------------------------------------------------------\\n\\nINTERNAL_SYSTEM = (\\n    \\\"You are an agent in a household environment (ALFWorld). \\\"\\n    \\\"You must complete the given task by choosing actions.\\\\n\\\\n\\\"\\n    \\\"You do NOT have access to any action list — you must generate the action \\\"\\n    \\\"yourself based on your understanding of the environment.\\\\n\\\\n\\\"\\n    \\\"Use this format:\\\\n\\\"\\n    \\\"Thought: &lt;your reasoning about what to do next>\\\\n\\\"\\n    \\\"Action: &lt;your action>\\\\n\\\\n\\\"\\n    \\\"Common actions: go to &lt;location>, take &lt;obj> from &lt;location>, \\\"\\n    \\\"put &lt;obj> in/on &lt;location>, open &lt;receptacle>, close &lt;receptacle>, \\\"\\n    \\\"use &lt;lamp/appliance>, examine &lt;obj>, look, inventory, \\\"\\n    \\\"clean &lt;obj> with &lt;sinkbasin>, heat &lt;obj> with &lt;microwave>, \\\"\\n    \\\"cool &lt;obj> with &lt;fridge>.\\\"\\n)\\n\\nDETERMINISTIC_SYSTEM = (\\n    \\\"You are an agent in a household environment (ALFWorld). \\\"\\n    \\\"You must complete the given task by choosing from the admissible actions list.\\\\n\\\\n\\\"\\n    \\\"Use this format:\\\\n\\\"\\n    \\\"Thought: &lt;your reasoning about what to do next>\\\\n\\\"\\n    \\\"Action: &lt;exact action from the admissible actions list>\\\\n\\\\n\\\"\\n    \\\"Rules:\\\\n\\\"\\n    \\\"- You MUST choose an action from the admissible actions list exactly as written.\\\\n\\\"\\n    \\\"- Think step by step: first locate the target object, then perform required \\\"\\n    \\\"operations (clean/heat/cool if needed), then place it at the destination.\\\"\\n)\\n\\nUSER_TEMPLATE_INTERNAL = (\\n    \\\"Task: {task_desc}\\\\n\\\\n\\\"\\n    \\\"Current observation:\\\\n{observation}\\\\n\\\\n\\\"\\n    \\\"Previous actions: {history}\\\\n\\\\n\\\"\\n    \\\"Choose your next action.\\\"\\n)\\n\\nUSER_TEMPLATE_DETERMINISTIC = (\\n    \\\"Task: {task_desc}\\\\n\\\\n\\\"\\n    \\\"Current observation:\\\\n{observation}\\\\n\\\\n\\\"\\n    \\\"Admissible actions:\\\\n{admissible_str}\\\\n\\\\n\\\"\\n    \\\"Previous actions: {history}\\\\n\\\\n\\\"\\n    \\\"Choose your next action from the admissible actions list.\\\"\\n)\\n\\n# ---------------------------------------------------------------------------\\n# Task types\\n# ---------------------------------------------------------------------------\\n\\nTASK_TYPES = [\\n    \\\"pick_and_place\\\",\\n    \\\"pick_clean_then_place\\\",\\n    \\\"pick_heat_then_place\\\",\\n    \\\"pick_cool_then_place\\\",\\n    \\\"look_at_obj_in_light\\\",\\n    \\\"pick_two_obj_and_place\\\",\\n]\\n\\n\\n# ---------------------------------------------------------------------------\\n# Action parsing\\n# ---------------------------------------------------------------------------\\n\\ndef parse_action_free(text: str) -> Optional[str]:\\n    \\\"\\\"\\\"Parse free-form action from LLM output (internal mode).\\\"\\\"\\\"\\n    m = re.search(r\\\"Action:\\\\s*(.+?)(?:\\\\n|$)\\\", text, re.IGNORECASE)\\n    if m:\\n        return m.group(1).strip().strip('\\\"').strip(\\\"'\\\")\\n    lines = [l.strip() for l in text.strip().split(\\\"\\\\n\\\") if l.strip()]\\n    if lines:\\n        return lines[-1].strip().strip('\\\"').strip(\\\"'\\\")\\n    return None\\n\\n\\ndef match_to_admissible(free_action: str, admissible: List[str]) -> Optional[str]:\\n    \\\"\\\"\\\"Best-effort match a free-form action string to admissible actions.\\\"\\\"\\\"\\n    if free_action in admissible:\\n        return free_action\\n    fl = free_action.lower()\\n    for va in admissible:\\n        if va.lower() == fl:\\n            return va\\n    for va in admissible:\\n        if fl in va.lower() or va.lower() in fl:\\n            return va\\n    return None\\n\\n\\ndef parse_action_constrained(text: str, admissible: List[str]) -> Optional[str]:\\n    \\\"\\\"\\\"Parse action from LLM output, matching against admissible actions.\\\"\\\"\\\"\\n    m = re.search(r\\\"Action:\\\\s*(.+?)(?:\\\\n|$)\\\", text, re.IGNORECASE)\\n    candidate = m.group(1).strip().strip('\\\"').strip(\\\"'\\\") if m else text.strip()\\n\\n    matched = match_to_admissible(candidate, admissible)\\n    if matched:\\n        return matched\\n\\n    for va in admissible:\\n        if va in text:\\n            return va\\n    return None\\n\\n\\n# ---------------------------------------------------------------------------\\n# LLM wrapper\\n# ---------------------------------------------------------------------------\\n\\nclass ALFWorldLLM:\\n    def __init__(self, model_path: str, use_vllm: bool = True, gpu_id: int = 0):\\n        self.model_path = model_path\\n        self.use_vllm = use_vllm\\n        self.gpu_id = gpu_id\\n        self._llm = None\\n        self._tokenizer = None\\n        self.max_new_tokens = 256\\n\\n    def _load(self):\\n        if self._llm is not None:\\n            return\\n        if self.use_vllm:\\n            os.environ[\\\"CUDA_VISIBLE_DEVICES\\\"] = str(self.gpu_id)\\n            from vllm import LLM\\n            self._llm = LLM(\\n                model=self.model_path,\\n                trust_remote_code=True,\\n                gpu_memory_utilization=0.85,\\n                max_model_len=4096,\\n            )\\n            from transformers import AutoTokenizer\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\n                self.model_path, trust_remote_code=True\\n            )\\n        else:\\n            import torch\\n            from transformers import AutoModelForCausalLM, AutoTokenizer\\n            self._tokenizer = AutoTokenizer.from_pretrained(\\n                self.model_path, trust_remote_code=True\\n            )\\n            self._llm = AutoModelForCausalLM.from_pretrained(\\n                self.model_path,\\n                torch_dtype=torch.float16,\\n                device_map=f\\\"cuda:{self.gpu_id}\\\",\\n                trust_remote_code=True,\\n            )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me get the run_internal_episode and run_deterministic_episode functions, and also run the stats via ssh_execute since ssh_read_only blocks python open().
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "2246aab5-e2c8-4f68-a1e0-592d3fce4ff9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P5mZuEZUZr1TSUmzc6u4eM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4127,
+      "cache_read_input_tokens": 36095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4127
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+Need the episode runner functions and the stats. Let me fetch those.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "32db483b-97f9-4c31-a780-98791ecb4d35",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P5mZuEZUZr1TSUmzc6u4eM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4127,
+      "cache_read_input_tokens": 36095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4127
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01RQGQZk7L8UkaWXMdtnmGX8`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "sed -n '277,430p' /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "c82b4789-c4b1-42d6-af6a-d3b5f08bdd58",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P5mZuEZUZr1TSUmzc6u4eM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4127,
+      "cache_read_input_tokens": 36095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4127
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T15:44:41.299Z_
+
+<details><summary>↩ Tool result · `toolu_01RQGQZk7L8UkaWXMdtnmGX8`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "67ec8cba-a184-4046-9ff7-19857b001219",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'sed' is not in the read-only allowlist. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UH2VySeRkJKhRz9PMvKHB8`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, statistics\nfrom collections import Counter\nrecords = [json.loads(l) for l in open('results/alfworld_counterfactual/episodes.jsonl')]\nlabels = Counter(r['label'] for r in records)\nprint('=== Label Distribution ===')\nfor lb in ['det-preferred','internal-preferred','no-preference']:\n    print(f'  {lb}: {labels.get(lb,0)} ({labels.get(lb,0)/len(records)*100:.1f}%)')\n\ntypes = Counter(r['task_type'] for r in records)\nprint('\\n=== Task Type Distribution ===')\nfor t, c in types.most_common():\n    print(f'  {t}: {c}')\n\nint_steps = [r['internal_steps'] for r in records]\ndet_steps = [r['deterministic_steps'] for r in records]\nprint(f'\\n=== Step Statistics ===')\nprint(f'  Internal:  mean={statistics.mean(int_steps):.1f}, median={statistics.median(int_steps):.1f}, min={min(int_steps)}, max={max(int_steps)}')\nprint(f'  Determin:  mean={statistics.mean(det_steps):.1f}, median={statistics.median(det_steps):.1f}, min={min(det_steps)}, max={max(det_steps)}')\n\nprint('\\n=== Success Rate by Task Type ===')\nfor t in sorted(types):\n    tr = [r for r in records if r['task_type']==t]\n    iw = sum(1 for r in tr if r['internal_success'])\n    dw = sum(1 for r in tr if r['deterministic_success'])\n    print(f'  {t}: internal={iw}/{len(tr)} ({iw/len(tr)*100:.1f}%) det={dw}/{len(tr)} ({dw/len(tr)*100:.1f}%)')\n\nprint('\\n=== Label by Task Type ===')\nfor t in sorted(types):\n    tr = [r for r in records if r['task_type']==t]\n    lc = Counter(r['label'] for r in tr)\n    print(f'  {t}: det-pref={lc.get(\\\"det-preferred\\\",0)} int-pref={lc.get(\\\"internal-preferred\\\",0)} no-pref={lc.get(\\\"no-preference\\\",0)}')\n\nboth_succ = sum(1 for r in records if r['label']=='no-preference' and r['internal_success'] and r['deterministic_success'])\nboth_fail = sum(1 for r in records if r['label']=='no-preference' and not r['internal_success'] and not r['deterministic_success'])\nprint(f'\\n=== No-preference breakdown ===')\nprint(f'  Both succeed: {both_succ}')\nprint(f'  Both fail: {both_fail}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "ea503058-38d7-483d-ad67-cab909323bc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P5mZuEZUZr1TSUmzc6u4eM",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4127,
+      "cache_read_input_tokens": 36095,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4127
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T15:44:48.894Z_
+
+<details><summary>↩ Tool result · `toolu_01UH2VySeRkJKhRz9PMvKHB8`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== Label Distribution ===\\n  det-preferred: 35 (25.9%)\\n  internal-preferred: 2 (1.5%)\\n  no-preference: 98 (72.6%)\\n\\n=== Task Type Distribution ===\\n  pick_and_place: 32\\n  pick_clean_then_place: 27\\n  pick_cool_then_place: 24\\n  pick_two_obj_and_place: 23\\n  pick_heat_then_place: 16\\n  look_at_obj_in_light: 13\\n\\n=== Step Statistics ===\\n  Internal:  mean=49.0, median=50.0, min=5, max=50\\n  Determin:  mean=40.2, median=50.0, min=3, max=50\\n\\n=== Success Rate by Task Type ===\\n  look_at_obj_in_light: internal=2/13 (15.4%) det=5/13 (38.5%)\\n  pick_and_place: internal=0/32 (0.0%) det=18/32 (56.2%)\\n  pick_clean_then_place: internal=1/27 (3.7%) det=5/27 (18.5%)\\n  pick_cool_then_place: internal=0/24 (0.0%) det=4/24 (16.7%)\\n  pick_heat_then_place: internal=1/16 (6.2%) det=3/16 (18.8%)\\n  pick_two_obj_and_place: internal=0/23 (0.0%) det=2/23 (8.7%)\\n\\n=== Label by Task Type ===\\n  look_at_obj_in_light: det-pref=3 int-pref=0 no-pref=10\\n  pick_and_place: det-pref=18 int-pref=0 no-pref=14\\n  pick_clean_then_place: det-pref=5 int-pref=1 no-pref=21\\n  pick_cool_then_place: det-pref=4 int-pref=0 no-pref=20\\n  pick_heat_then_place: det-pref=3 int-pref=1 no-pref=12\\n  pick_two_obj_and_place: det-pref=2 int-pref=0 no-pref=21\\n\\n=== No-preference breakdown ===\\n  Both succeed: 2\\n  Both fail: 96\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "b269625a-3e57-47d6-9593-7a2c2c218ca2",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Label Distribution ===\\\\n  det-preferred: 35 (25.9%)\\\\n  internal-preferred: 2 (1.5%)\\\\n  no-preference: 98 (72.6%)\\\\n\\\\n=== Task Type Distribution ===\\\\n  pick_and_place: 32\\\\n  pick_clean_then_place: 27\\\\n  pick_cool_then_place: 24\\\\n  pick_two_obj_and_place: 23\\\\n  pick_heat_then_place: 16\\\\n  look_at_obj_in_light: 13\\\\n\\\\n=== Step Statistics ===\\\\n  Internal:  mean=49.0, median=50.0, min=5, max=50\\\\n  Determin:  mean=40.2, median=50.0, min=3, max=50\\\\n\\\\n=== Success Rate by Task Type ===\\\\n  look_at_obj_in_light: internal=2/13 (15.4%) det=5/13 (38.5%)\\\\n  pick_and_place: internal=0/32 (0.0%) det=18/32 (56.2%)\\\\n  pick_clean_then_place: internal=1/27 (3.7%) det=5/27 (18.5%)\\\\n  pick_cool_then_place: internal=0/24 (0.0%) det=4/24 (16.7%)\\\\n  pick_heat_then_place: internal=1/16 (6.2%) det=3/16 (18.8%)\\\\n  pick_two_obj_and_place: internal=0/23 (0.0%) det=2/23 (8.7%)\\\\n\\\\n=== Label by Task Type ===\\\\n  look_at_obj_in_light: det-pref=3 int-pref=0 no-pref=10\\\\n  pick_and_place: det-pref=18 int-pref=0 no-pref=14\\\\n  pick_clean_then_place: det-pref=5 int-pref=1 no-pref=21\\\\n  pick_cool_then_place: det-pref=4 int-pref=0 no-pref=20\\\\n  pick_heat_then_place: det-pref=3 int-pref=1 no-pref=12\\\\n  pick_two_obj_and_place: det-pref=2 int-pref=0 no-pref=21\\\\n\\\\n=== No-preference breakdown ===\\\\n  Both succeed: 2\\\\n  Both fail: 96\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== Label Distribution ===\\n  det-preferred: 35 (25.9%)\\n  internal-preferred: 2 (1.5%)\\n  no-preference: 98 (72.6%)\\n\\n=== Task Type Distribution ===\\n  pick_and_place: 32\\n  pick_clean_then_place: 27\\n  pick_cool_then_place: 24\\n  pick_two_obj_and_place: 23\\n  pick_heat_then_place: 16\\n  look_at_obj_in_light: 13\\n\\n=== Step Statistics ===\\n  Internal:  mean=49.0, median=50.0, min=5, max=50\\n  Determin:  mean=40.2, median=50.0, min=3, max=50\\n\\n=== Success Rate by Task Type ===\\n  look_at_obj_in_light: internal=2/13 (15.4%) det=5/13 (38.5%)\\n  pick_and_place: internal=0/32 (0.0%) det=18/32 (56.2%)\\n  pick_clean_then_place: internal=1/27 (3.7%) det=5/27 (18.5%)\\n  pick_cool_then_place: internal=0/24 (0.0%) det=4/24 (16.7%)\\n  pick_heat_then_place: internal=1/16 (6.2%) det=3/16 (18.8%)\\n  pick_two_obj_and_place: internal=0/23 (0.0%) det=2/23 (8.7%)\\n\\n=== Label by Task Type ===\\n  look_at_obj_in_light: det-pref=3 int-pref=0 no-pref=10\\n  pick_and_place: det-pref=18 int-pref=0 no-pref=14\\n  pick_clean_then_place: det-pref=5 int-pref=1 no-pref=21\\n  pick_cool_then_place: det-pref=4 int-pref=0 no-pref=20\\n  pick_heat_then_place: det-pref=3 int-pref=1 no-pref=12\\n  pick_two_obj_and_place: det-pref=2 int-pref=0 no-pref=21\\n\\n=== No-preference breakdown ===\\n  Both succeed: 2\\n  Both fail: 96\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.91}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me get the episode runner functions and the `make_env` function.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "79e09301-5157-475b-bb0c-05d93130a817",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzwD9vhD7wVuiDSRipkAVu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1927,
+      "cache_read_input_tokens": 40222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01DmzHqzaTb4BkLmNhmvRrW1`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -n +277 /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "48a0ef6f-47dc-4be8-8642-1d0d96cf9784",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MzwD9vhD7wVuiDSRipkAVu",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1927,
+      "cache_read_input_tokens": 40222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T15:44:53.053Z_
+
+<details><summary>↩ Tool result · `toolu_01DmzHqzaTb4BkLmNhmvRrW1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def make_env(game_path: str, max_steps: int = 50):\\n    \\\"\\\"\\\"Create a TextWorld gym env for a single ALFWorld game with demangler.\\\"\\\"\\\"\\n    request_infos = textworld.EnvInfos(\\n        won=True, admissible_commands=True, extras=[\\\"gamefile\\\"]\\n    )\\n    env_id = textworld.gym.register_game(\\n        game_path, request_infos,\\n        max_episode_steps=max_steps,\\n        wrappers=[AlfredDemangler(shuffle=False), AlfredInfos],\\n    )\\n    return textworld.gym.make(env_id)\\n\\n\\ndef extract_task_desc_from_obs(obs: str) -> str:\\n    \\\"\\\"\\\"Extract task description from initial observation.\\\"\\\"\\\"\\n    if \\\"Your task is to:\\\" in obs:\\n        return obs.split(\\\"Your task is to:\\\")[-1].strip().rstrip(\\\".\\\")\\n    return \\\"\\\"\\n\\n\\ndef format_history(actions: List[str], last_k: int = 10) -> str:\\n    if not actions:\\n        return \\\"(none)\\\"\\n    return \\\" -> \\\".join(actions[-last_k:])\\n\\n\\n# ---------------------------------------------------------------------------\\n# Episode runners\\n# ---------------------------------------------------------------------------\\n\\ndef run_internal_episode(\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Internal mode: LLM sees observation only, no admissible actions list.\\\"\\\"\\\"\\n    env = make_env(game_info[\\\"game_path\\\"], max_steps)\\n    trajectory = []\\n    actions_taken = []\\n    won = False\\n\\n    try:\\n        obs, infos = env.reset()\\n        task_desc = game_info.get(\\\"task_desc\\\") or extract_task_desc_from_obs(obs)\\n\\n        for step in range(max_steps):\\n            admissible = infos[\\\"admissible_commands\\\"]\\n\\n            messages = [\\n                {\\\"role\\\": \\\"system\\\", \\\"content\\\": INTERNAL_SYSTEM},\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE_INTERNAL.format(\\n                    task_desc=task_desc,\\n                    observation=obs,\\n                    history=format_history(actions_taken),\\n                )},\\n            ]\\n            raw = llm.generate(messages, temperature=0.3)\\n            free_action = parse_action_free(raw)\\n\\n            action = None\\n            if free_action:\\n                action = match_to_admissible(free_action, admissible)\\n            if not action:\\n                action = admissible[0] if admissible else \\\"look\\\"\\n\\n            trajectory.append({\\n                \\\"step\\\": step,\\n                \\\"observation\\\": obs[:500],\\n                \\\"thought\\\": raw[:300],\\n                \\\"action\\\": action,\\n                \\\"action_raw\\\": free_action,\\n                \\\"action_matched\\\": action != free_action if free_action else True,\\n                \\\"admissible_count\\\": len(admissible),\\n            })\\n\\n            obs, score, done, infos = env.step(action)\\n            actions_taken.append(action)\\n            won = infos.get(\\\"won\\\", False)\\n\\n            if done or won:\\n                break\\n\\n        return {\\n            \\\"trajectory\\\": trajectory,\\n            \\\"success\\\": bool(won),\\n            \\\"n_steps\\\": len(trajectory),\\n            \\\"score\\\": 1.0 if won else 0.0,\\n        }\\n    finally:\\n        env.close()\\n\\n\\ndef run_deterministic_episode(\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Deterministic mode: LLM sees observation + admissible actions list.\\\"\\\"\\\"\\n    env = make_env(game_info[\\\"game_path\\\"], max_steps)\\n    trajectory = []\\n    actions_taken = []\\n    won = False\\n\\n    try:\\n        obs, infos = env.reset()\\n        task_desc = game_info.get(\\\"task_desc\\\") or extract_task_desc_from_obs(obs)\\n\\n        for step in range(max_steps):\\n            admissible = infos[\\\"admissible_commands\\\"]\\n            admissible_str = \\\"\\\\n\\\".join(\\n                f\\\"  [{i}] {a}\\\" for i, a in enumerate(admissible)\\n            )\\n\\n            messages = [\\n                {\\\"role\\\": \\\"system\\\", \\\"content\\\": DETERMINISTIC_SYSTEM},\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE_DETERMINISTIC.format(\\n                    task_desc=task_desc,\\n                    observation=obs,\\n                    admissible_str=admissible_str,\\n                    history=format_history(actions_taken),\\n                )},\\n \\n\\n... [截断: 输出过长，省略 1518 字符] ...\\n\\n | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\")\\n\\n    llm = ALFWorldLLM(\\n        model_path=args.model_path,\\n        use_vllm=not args.no_vllm,\\n        gpu_id=args.gpu_id,\\n    )\\n\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    if os.path.exists(args.output):\\n        os.remove(args.output)\\n\\n    label_counts = Counter()\\n    results = []\\n\\n    for i, game in enumerate(games):\\n        t0 = time.time()\\n        print(f\\\"\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\")\\n        print(f\\\"  Task: {game['task_desc']}\\\")\\n\\n        try:\\n            internal = run_internal_episode(llm, game, args.max_steps)\\n            print(f\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\"\\n                  f\\\"({internal['n_steps']} steps)\\\")\\n\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\n            print(f\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\"\\n                  f\\\"({det['n_steps']} steps)\\\")\\n        except Exception as e:\\n            print(f\\\"  ERROR: {e}\\\")\\n            import traceback\\n            traceback.print_exc()\\n            continue\\n\\n        if det[\\\"success\\\"] and not internal[\\\"success\\\"]:\\n            label = \\\"det-preferred\\\"\\n        elif internal[\\\"success\\\"] and not det[\\\"success\\\"]:\\n            label = \\\"internal-preferred\\\"\\n        else:\\n            label = \\\"no-preference\\\"\\n\\n        label_counts[label] += 1\\n        elapsed = round(time.time() - t0, 1)\\n\\n        record = {\\n            \\\"env\\\": \\\"alfworld\\\",\\n            \\\"task_id\\\": game[\\\"task_id\\\"],\\n            \\\"task_type\\\": game[\\\"task_type\\\"],\\n            \\\"task_desc\\\": game[\\\"task_desc\\\"],\\n            \\\"internal_success\\\": internal[\\\"success\\\"],\\n            \\\"deterministic_success\\\": det[\\\"success\\\"],\\n            \\\"internal_steps\\\": internal[\\\"n_steps\\\"],\\n            \\\"deterministic_steps\\\": det[\\\"n_steps\\\"],\\n            \\\"label\\\": label,\\n            \\\"internal\\\": internal,\\n            \\\"deterministic\\\": det,\\n            \\\"metadata\\\": {\\n                \\\"split\\\": args.split,\\n                \\\"time_s\\\": elapsed,\\n            },\\n        }\\n        results.append(record)\\n\\n        with open(args.output, \\\"a\\\") as f:\\n            f.write(json.dumps(record, default=str) + \\\"\\\\n\\\")\\n\\n        print(f\\\"  Label: {label} ({elapsed}s)\\\")\\n\\n    # Summary\\n    n = len(results)\\n    print(f\\\"\\\\n{'='*50}\\\")\\n    print(f\\\"Total: {n} games\\\")\\n    if n > 0:\\n        for lb in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n            c = label_counts.get(lb, 0)\\n            print(f\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\")\\n        iw = sum(1 for r in results if r[\\\"internal_success\\\"])\\n        dw = sum(1 for r in results if r[\\\"deterministic_success\\\"])\\n        print(f\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\")\\n        print(f\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\")\\n    print(f\\\"Output: {args.output}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"ALFWorld counterfactual labeling\\\")\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/alfworld_data\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"valid_seen\\\")\\n    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task types\\\")\\n    parser.add_argument(\\\"--max_per_type\\\", type=int, default=0)\\n    parser.add_argument(\\\"--n_tasks\\\", type=int, default=10)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--output\\\", type=str,\\n                        default=\\\"data/alfworld-counterfactual/episodes.jsonl\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    args = parser.parse_args()\\n\\n    if args.model_path is None:\\n        args.model_path = find_model_path()\\n    print(f\\\"Model: {args.model_path}\\\")\\n\\n    random.seed(args.seed)\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "fe8fa66e-cc47-4ac2-b888-e8711db9a46c",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def make_env(game_path: str, max_steps: int = 50):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Create a TextWorld gym env for a single ALFWorld game with demangler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    request_infos = textworld.EnvInfos(\\\\n        won=True, admissible_commands=True, extras=[\\\\\\\"gamefile\\\\\\\"]\\\\n    )\\\\n    env_id = textworld.gym.register_game(\\\\n        game_path, request_infos,\\\\n        max_episode_steps=max_steps,\\\\n        wrappers=[AlfredDemangler(shuffle=False), AlfredInfos],\\\\n    )\\\\n    return textworld.gym.make(env_id)\\\\n\\\\n\\\\ndef extract_task_desc_from_obs(obs: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract task description from initial observation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if \\\\\\\"Your task is to:\\\\\\\" in obs:\\\\n        return obs.split(\\\\\\\"Your task is to:\\\\\\\")[-1].strip().rstrip(\\\\\\\".\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\"\\\\n\\\\n\\\\ndef format_history(actions: List[str], last_k: int = 10) -> str:\\\\n    if not actions:\\\\n        return \\\\\\\"(none)\\\\\\\"\\\\n    return \\\\\\\" -> \\\\\\\".join(actions[-last_k:])\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Episode runners\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef run_internal_episode(\\\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\\\n) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Internal mode: LLM sees observation only, no admissible actions list.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = make_env(game_info[\\\\\\\"game_path\\\\\\\"], max_steps)\\\\n    trajectory = []\\\\n    actions_taken = []\\\\n    won = False\\\\n\\\\n    try:\\\\n        obs, infos = env.reset()\\\\n        task_desc = game_info.get(\\\\\\\"task_desc\\\\\\\") or extract_task_desc_from_obs(obs)\\\\n\\\\n        for step in range(max_steps):\\\\n            admissible = infos[\\\\\\\"admissible_commands\\\\\\\"]\\\\n\\\\n            messages = [\\\\n                {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": INTERNAL_SYSTEM},\\\\n                {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": USER_TEMPLATE_INTERNAL.format(\\\\n                    task_desc=task_desc,\\\\n                    observation=obs,\\\\n                    history=format_history(actions_taken),\\\\n                )},\\\\n            ]\\\\n            raw = llm.generate(messages, temperature=0.3)\\\\n            free_action = parse_action_free(raw)\\\\n\\\\n            action = None\\\\n            if free_action:\\\\n                action = match_to_admissible(free_action, admissible)\\\\n            if not action:\\\\n                action = admissible[0] if admissible else \\\\\\\"look\\\\\\\"\\\\n\\\\n            trajectory.append({\\\\n                \\\\\\\"step\\\\\\\": step,\\\\n                \\\\\\\"observation\\\\\\\": obs[:500],\\\\n                \\\\\\\"thought\\\\\\\": raw[:300],\\\\n                \\\\\\\"action\\\\\\\": action,\\\\n                \\\\\\\"action_raw\\\\\\\": free_action,\\\\n                \\\\\\\"action_matched\\\\\\\": action != free_action if free_action else True,\\\\n                \\\\\\\"admissible_count\\\\\\\": len(admissible),\\\\n            })\\\\n\\\\n            obs, score, done, infos = env.step(action)\\\\n            actions_taken.append(action)\\\\n            won = infos.get(\\\\\\\"won\\\\\\\", False)\\\\n\\\\n            if done or won:\\\\n                break\\\\n\\\\n        return {\\\\n            \\\\\\\"trajectory\\\\\\\": trajectory,\\\\n            \\\\\\\"success\\\\\\\": bool(won),\\\\n            \\\\\\\"n_steps\\\\\\\": len(trajectory),\\\\n            \\\\\\\"score\\\\\\\": 1.0 if won else 0.0,\\\\n        }\\\\n    finally:\\\\n        env.close()\\\\n\\\\n\\\\ndef run_deterministic_episode(\\\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\\\n) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Deterministic mode: LLM sees observation + admissible actions list.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = make_env(game_info[\\\\\\\"game_path\\\\\\\"], max_steps)\\\\n    trajectory = []\\\\n    actions_taken = []\\\\n    won = False\\\\n\\\\n    try:\\\\n        obs, infos = env.reset()\\\\n        task_desc = game_info.get(\\\\\\\"task_desc\\\\\\\") or extract_task_desc_from_obs(obs)\\\\n\\\\n        for step in range(max_steps):\\\\n            admissible = infos[\\\\\\\"admissible_commands\\\\\\\"]\\\\n            admissible_str = \\\\\\\"\\\\\\\\n\\\\\\\".join(\\\\n                f\\\\\\\"  [{i}] {a}\\\\\\\" for i, a in enumerate(admissible)\\\\n            )\\\\n\\\\n            messages = [\\\\n                {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": DETERMINISTIC_SYSTEM},\\\\n                {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": USER_TEMPLATE_DETERMINISTIC.format(\\\\n                    task_desc=task_desc,\\\\n                    observation=obs,\\\\n                    admissible_str=admissible_str,\\\\n                    history=format_history(actions_taken),\\\\n                )},\\\\n \\\\n\\\\n... [截断: 输出过长，省略 1518 字符] ...\\\\n\\\\n | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\\\\\")\\\\n\\\\n    llm = ALFWorldLLM(\\\\n        model_path=args.model_path,\\\\n        use_vllm=not args.no_vllm,\\\\n        gpu_id=args.gpu_id,\\\\n    )\\\\n\\\\n    os.makedirs(os.path.dirname(args.output) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    if os.path.exists(args.output):\\\\n        os.remove(args.output)\\\\n\\\\n    label_counts = Counter()\\\\n    results = []\\\\n\\\\n    for i, game in enumerate(games):\\\\n        t0 = time.time()\\\\n        print(f\\\\\\\"\\\\\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\\\\\")\\\\n        print(f\\\\\\\"  Task: {game['task_desc']}\\\\\\\")\\\\n\\\\n        try:\\\\n            internal = run_internal_episode(llm, game, args.max_steps)\\\\n            print(f\\\\\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\\\\\"\\\\n                  f\\\\\\\"({internal['n_steps']} steps)\\\\\\\")\\\\n\\\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\\\n            print(f\\\\\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\\\\\"\\\\n                  f\\\\\\\"({det['n_steps']} steps)\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  ERROR: {e}\\\\\\\")\\\\n            import traceback\\\\n            traceback.print_exc()\\\\n            continue\\\\n\\\\n        if det[\\\\\\\"success\\\\\\\"] and not internal[\\\\\\\"success\\\\\\\"]:\\\\n            label = \\\\\\\"det-preferred\\\\\\\"\\\\n        elif internal[\\\\\\\"success\\\\\\\"] and not det[\\\\\\\"success\\\\\\\"]:\\\\n            label = \\\\\\\"internal-preferred\\\\\\\"\\\\n        else:\\\\n            label = \\\\\\\"no-preference\\\\\\\"\\\\n\\\\n        label_counts[label] += 1\\\\n        elapsed = round(time.time() - t0, 1)\\\\n\\\\n        record = {\\\\n            \\\\\\\"env\\\\\\\": \\\\\\\"alfworld\\\\\\\",\\\\n            \\\\\\\"task_id\\\\\\\": game[\\\\\\\"task_id\\\\\\\"],\\\\n            \\\\\\\"task_type\\\\\\\": game[\\\\\\\"task_type\\\\\\\"],\\\\n            \\\\\\\"task_desc\\\\\\\": game[\\\\\\\"task_desc\\\\\\\"],\\\\n            \\\\\\\"internal_success\\\\\\\": internal[\\\\\\\"success\\\\\\\"],\\\\n            \\\\\\\"deterministic_success\\\\\\\": det[\\\\\\\"success\\\\\\\"],\\\\n            \\\\\\\"internal_steps\\\\\\\": internal[\\\\\\\"n_steps\\\\\\\"],\\\\n            \\\\\\\"deterministic_steps\\\\\\\": det[\\\\\\\"n_steps\\\\\\\"],\\\\n            \\\\\\\"label\\\\\\\": label,\\\\n            \\\\\\\"internal\\\\\\\": internal,\\\\n            \\\\\\\"deterministic\\\\\\\": det,\\\\n            \\\\\\\"metadata\\\\\\\": {\\\\n                \\\\\\\"split\\\\\\\": args.split,\\\\n                \\\\\\\"time_s\\\\\\\": elapsed,\\\\n            },\\\\n        }\\\\n        results.append(record)\\\\n\\\\n        with open(args.output, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(record, default=str) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  Label: {label} ({elapsed}s)\\\\\\\")\\\\n\\\\n    # Summary\\\\n    n = len(results)\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*50}\\\\\\\")\\\\n    print(f\\\\\\\"Total: {n} games\\\\\\\")\\\\n    if n > 0:\\\\n        for lb in [\\\\\\\"det-preferred\\\\\\\", \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"no-preference\\\\\\\"]:\\\\n            c = label_counts.get(lb, 0)\\\\n            print(f\\\\\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\\\\\")\\\\n        iw = sum(1 for r in results if r[\\\\\\\"internal_success\\\\\\\"])\\\\n        dw = sum(1 for r in results if r[\\\\\\\"deterministic_success\\\\\\\"])\\\\n        print(f\\\\\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\\\\\")\\\\n        print(f\\\\\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"Output: {args.output}\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"ALFWorld counterfactual labeling\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str,\\\\n                        default=\\\\\\\"/root/autodl-tmp/alfworld_data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--split\\\\\\\", type=str, default=\\\\\\\"valid_seen\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--task_types\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated task types\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_per_type\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--n_tasks\\\\\\\", type=int, default=10)\\\\n    parser.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=50)\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str,\\\\n                        default=\\\\\\\"data/alfworld-counterfactual/episodes.jsonl\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--no_vllm\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu_id\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.model_path is None:\\\\n        args.model_path = find_model_path()\\\\n    print(f\\\\\\\"Model: {args.model_path}\\\\\\\")\\\\n\\\\n    random.seed(args.seed)\\\\n    run_pipeline(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def make_env(game_path: str, max_steps: int = 50):\\n    \\\"\\\"\\\"Create a TextWorld gym env for a single ALFWorld game with demangler.\\\"\\\"\\\"\\n    request_infos = textworld.EnvInfos(\\n        won=True, admissible_commands=True, extras=[\\\"gamefile\\\"]\\n    )\\n    env_id = textworld.gym.register_game(\\n        game_path, request_infos,\\n        max_episode_steps=max_steps,\\n        wrappers=[AlfredDemangler(shuffle=False), AlfredInfos],\\n    )\\n    return textworld.gym.make(env_id)\\n\\n\\ndef extract_task_desc_from_obs(obs: str) -> str:\\n    \\\"\\\"\\\"Extract task description from initial observation.\\\"\\\"\\\"\\n    if \\\"Your task is to:\\\" in obs:\\n        return obs.split(\\\"Your task is to:\\\")[-1].strip().rstrip(\\\".\\\")\\n    return \\\"\\\"\\n\\n\\ndef format_history(actions: List[str], last_k: int = 10) -> str:\\n    if not actions:\\n        return \\\"(none)\\\"\\n    return \\\" -> \\\".join(actions[-last_k:])\\n\\n\\n# ---------------------------------------------------------------------------\\n# Episode runners\\n# ---------------------------------------------------------------------------\\n\\ndef run_internal_episode(\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Internal mode: LLM sees observation only, no admissible actions list.\\\"\\\"\\\"\\n    env = make_env(game_info[\\\"game_path\\\"], max_steps)\\n    trajectory = []\\n    actions_taken = []\\n    won = False\\n\\n    try:\\n        obs, infos = env.reset()\\n        task_desc = game_info.get(\\\"task_desc\\\") or extract_task_desc_from_obs(obs)\\n\\n        for step in range(max_steps):\\n            admissible = infos[\\\"admissible_commands\\\"]\\n\\n            messages = [\\n                {\\\"role\\\": \\\"system\\\", \\\"content\\\": INTERNAL_SYSTEM},\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE_INTERNAL.format(\\n                    task_desc=task_desc,\\n                    observation=obs,\\n                    history=format_history(actions_taken),\\n                )},\\n            ]\\n            raw = llm.generate(messages, temperature=0.3)\\n            free_action = parse_action_free(raw)\\n\\n            action = None\\n            if free_action:\\n                action = match_to_admissible(free_action, admissible)\\n            if not action:\\n                action = admissible[0] if admissible else \\\"look\\\"\\n\\n            trajectory.append({\\n                \\\"step\\\": step,\\n                \\\"observation\\\": obs[:500],\\n                \\\"thought\\\": raw[:300],\\n                \\\"action\\\": action,\\n                \\\"action_raw\\\": free_action,\\n                \\\"action_matched\\\": action != free_action if free_action else True,\\n                \\\"admissible_count\\\": len(admissible),\\n            })\\n\\n            obs, score, done, infos = env.step(action)\\n            actions_taken.append(action)\\n            won = infos.get(\\\"won\\\", False)\\n\\n            if done or won:\\n                break\\n\\n        return {\\n            \\\"trajectory\\\": trajectory,\\n            \\\"success\\\": bool(won),\\n            \\\"n_steps\\\": len(trajectory),\\n            \\\"score\\\": 1.0 if won else 0.0,\\n        }\\n    finally:\\n        env.close()\\n\\n\\ndef run_deterministic_episode(\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Deterministic mode: LLM sees observation + admissible actions list.\\\"\\\"\\\"\\n    env = make_env(game_info[\\\"game_path\\\"], max_steps)\\n    trajectory = []\\n    actions_taken = []\\n    won = False\\n\\n    try:\\n        obs, infos = env.reset()\\n        task_desc = game_info.get(\\\"task_desc\\\") or extract_task_desc_from_obs(obs)\\n\\n        for step in range(max_steps):\\n            admissible = infos[\\\"admissible_commands\\\"]\\n            admissible_str = \\\"\\\\n\\\".join(\\n                f\\\"  [{i}] {a}\\\" for i, a in enumerate(admissible)\\n            )\\n\\n            messages = [\\n                {\\\"role\\\": \\\"system\\\", \\\"content\\\": DETERMINISTIC_SYSTEM},\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE_DETERMINISTIC.format(\\n                    task_desc=task_desc,\\n                    observation=obs,\\n                    admissible_str=admissible_str,\\n                    history=format_history(actions_taken),\\n                )},\\n \\n\\n... [截断: 输出过长，省略 1518 字符] ...\\n\\n | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\")\\n\\n    llm = ALFWorldLLM(\\n        model_path=args.model_path,\\n        use_vllm=not args.no_vllm,\\n        gpu_id=args.gpu_id,\\n    )\\n\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    if os.path.exists(args.output):\\n        os.remove(args.output)\\n\\n    label_counts = Counter()\\n    results = []\\n\\n    for i, game in enumerate(games):\\n        t0 = time.time()\\n        print(f\\\"\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\")\\n        print(f\\\"  Task: {game['task_desc']}\\\")\\n\\n        try:\\n            internal = run_internal_episode(llm, game, args.max_steps)\\n            print(f\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\"\\n                  f\\\"({internal['n_steps']} steps)\\\")\\n\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\n            print(f\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\"\\n                  f\\\"({det['n_steps']} steps)\\\")\\n        except Exception as e:\\n            print(f\\\"  ERROR: {e}\\\")\\n            import traceback\\n            traceback.print_exc()\\n            continue\\n\\n        if det[\\\"success\\\"] and not internal[\\\"success\\\"]:\\n            label = \\\"det-preferred\\\"\\n        elif internal[\\\"success\\\"] and not det[\\\"success\\\"]:\\n            label = \\\"internal-preferred\\\"\\n        else:\\n            label = \\\"no-preference\\\"\\n\\n        label_counts[label] += 1\\n        elapsed = round(time.time() - t0, 1)\\n\\n        record = {\\n            \\\"env\\\": \\\"alfworld\\\",\\n            \\\"task_id\\\": game[\\\"task_id\\\"],\\n            \\\"task_type\\\": game[\\\"task_type\\\"],\\n            \\\"task_desc\\\": game[\\\"task_desc\\\"],\\n            \\\"internal_success\\\": internal[\\\"success\\\"],\\n            \\\"deterministic_success\\\": det[\\\"success\\\"],\\n            \\\"internal_steps\\\": internal[\\\"n_steps\\\"],\\n            \\\"deterministic_steps\\\": det[\\\"n_steps\\\"],\\n            \\\"label\\\": label,\\n            \\\"internal\\\": internal,\\n            \\\"deterministic\\\": det,\\n            \\\"metadata\\\": {\\n                \\\"split\\\": args.split,\\n                \\\"time_s\\\": elapsed,\\n            },\\n        }\\n        results.append(record)\\n\\n        with open(args.output, \\\"a\\\") as f:\\n            f.write(json.dumps(record, default=str) + \\\"\\\\n\\\")\\n\\n        print(f\\\"  Label: {label} ({elapsed}s)\\\")\\n\\n    # Summary\\n    n = len(results)\\n    print(f\\\"\\\\n{'='*50}\\\")\\n    print(f\\\"Total: {n} games\\\")\\n    if n > 0:\\n        for lb in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n            c = label_counts.get(lb, 0)\\n            print(f\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\")\\n        iw = sum(1 for r in results if r[\\\"internal_success\\\"])\\n        dw = sum(1 for r in results if r[\\\"deterministic_success\\\"])\\n        print(f\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\")\\n        print(f\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\")\\n    print(f\\\"Output: {args.output}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"ALFWorld counterfactual labeling\\\")\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/alfworld_data\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"valid_seen\\\")\\n    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task types\\\")\\n    parser.add_argument(\\\"--max_per_type\\\", type=int, default=0)\\n    parser.add_argument(\\\"--n_tasks\\\", type=int, default=10)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--output\\\", type=str,\\n                        default=\\\"data/alfworld-counterfactual/episodes.jsonl\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    args = parser.parse_args()\\n\\n    if args.model_path is None:\\n        args.model_path = find_model_path()\\n    print(f\\\"Model: {args.model_path}\\\")\\n\\n    random.seed(args.seed)\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also get the `run_deterministic_episode` function which got truncated. Let me also check `collect_game_files` and the `find_model_path` function.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "b679e3a8-93b3-425c-bac5-22a4fcc591f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bgj8ou5AroUJUHS6VngEX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3416,
+      "cache_read_input_tokens": 42149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43_
+
+Let me get the truncated `run_deterministic_episode` and `collect_game_files`.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "53d67ad6-dc73-462c-87c1-4ddd7811838f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bgj8ou5AroUJUHS6VngEX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3416,
+      "cache_read_input_tokens": 42149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01FCgyruSGttTmCBYQHm545i`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -n +367 /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "b09e1dc3-1a8b-4731-af15-5443749b5b22",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bgj8ou5AroUJUHS6VngEX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3416,
+      "cache_read_input_tokens": 42149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WDY24CtCGdrG5Kykf6U8yF`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -n +224 /root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "9b2565bb-5a04-4b8d-a2c9-3715b6649508",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018bgj8ou5AroUJUHS6VngEX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3416,
+      "cache_read_input_tokens": 42149,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3416
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T15:44:58.843Z_
+
+<details><summary>↩ Tool result · `toolu_01FCgyruSGttTmCBYQHm545i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def run_deterministic_episode(\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Deterministic mode: LLM sees observation + admissible actions list.\\\"\\\"\\\"\\n    env = make_env(game_info[\\\"game_path\\\"], max_steps)\\n    trajectory = []\\n    actions_taken = []\\n    won = False\\n\\n    try:\\n        obs, infos = env.reset()\\n        task_desc = game_info.get(\\\"task_desc\\\") or extract_task_desc_from_obs(obs)\\n\\n        for step in range(max_steps):\\n            admissible = infos[\\\"admissible_commands\\\"]\\n            admissible_str = \\\"\\\\n\\\".join(\\n                f\\\"  [{i}] {a}\\\" for i, a in enumerate(admissible)\\n            )\\n\\n            messages = [\\n                {\\\"role\\\": \\\"system\\\", \\\"content\\\": DETERMINISTIC_SYSTEM},\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE_DETERMINISTIC.format(\\n                    task_desc=task_desc,\\n                    observation=obs,\\n                    admissible_str=admissible_str,\\n                    history=format_history(actions_taken),\\n                )},\\n            ]\\n            raw = llm.generate(messages, temperature=0.3)\\n            action = parse_action_constrained(raw, admissible)\\n            if not action:\\n                action = admissible[0] if admissible else \\\"look\\\"\\n\\n            trajectory.append({\\n                \\\"step\\\": step,\\n                \\\"observation\\\": obs[:500],\\n                \\\"thought\\\": raw[:300],\\n                \\\"action\\\": action,\\n                \\\"admissible_count\\\": len(admissible),\\n            })\\n\\n            obs, score, done, infos = env.step(action)\\n            actions_taken.append(action)\\n            won = infos.get(\\\"won\\\", False)\\n\\n            if done or won:\\n                break\\n\\n        return {\\n            \\\"trajectory\\\": trajectory,\\n            \\\"success\\\": bool(won),\\n            \\\"n_steps\\\": len(trajectory),\\n            \\\"score\\\": 1.0 if won else 0.0,\\n        }\\n    finally:\\n        env.close()\\n\\n\\n# ---------------------------------------------------------------------------\\n# Main pipeline\\n# ---------------------------------------------------------------------------\\n\\ndef run_pipeline(args):\\n    games = collect_game_files(\\n        args.data_dir,\\n        split=args.split,\\n        task_types=args.task_types.split(\\\",\\\") if args.task_types else None,\\n        max_per_type=args.max_per_type,\\n    )\\n    if args.n_tasks > 0:\\n        games = games[:args.n_tasks]\\n\\n    print(f\\\"=== ALFWorld Counterfactual Labeling ===\\\")\\n    print(f\\\"Split: {args.split} | Games: {len(games)} | Max steps: {args.max_steps}\\\")\\n    print(f\\\"Model: {args.model_path} | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\")\\n\\n    llm = ALFWorldLLM(\\n        model_path=args.model_path,\\n        use_vllm=not args.no_vllm,\\n        gpu_id=args.gpu_id,\\n    )\\n\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    if os.path.exists(args.output):\\n        os.remove(args.output)\\n\\n    label_counts = Counter()\\n    results = []\\n\\n    for i, game in enumerate(games):\\n        t0 = time.time()\\n        print(f\\\"\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\")\\n        print(f\\\"  Task: {game['task_desc']}\\\")\\n\\n        try:\\n            internal = run_internal_episode(llm, game, args.max_steps)\\n            print(f\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\"\\n                  f\\\"({internal['n_steps']} steps)\\\")\\n\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\n            print(f\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\"\\n                  f\\\"({det['n_steps']} steps)\\\")\\n        except Exception as e:\\n            print(f\\\"  ERROR: {e}\\\")\\n            import traceback\\n            traceback.print_exc()\\n            continue\\n\\n        if det[\\\"success\\\"] and not internal[\\\"success\\\"]:\\n            label = \\\"det-preferred\\\"\\n        elif internal[\\\"success\\\"] and not det[\\\"success\\\"]:\\n            label = \\\"internal-preferred\\\"\\n        else:\\n            label = \\\"no-preference\\\"\\n\\n        label_counts[label] += 1\\n        elapsed = round(time.time() - t0, 1)\\n\\n        record = {\\n            \\\"env\\\": \\\"alfworld\\\",\\n            \\\"task_id\\\": game[\\\"task_id\\\"],\\n            \\\"task_type\\\": game[\\\"task_type\\\"],\\n            \\\"task_desc\\\": game[\\\"task_desc\\\"],\\n            \\\"internal_success\\\": internal[\\\"success\\\"],\\n            \\\"deterministic_success\\\": det[\\\"success\\\"],\\n            \\\"internal_steps\\\": internal[\\\"n_steps\\\"],\\n            \\\"deterministic_steps\\\": det[\\\"n_steps\\\"],\\n            \\\"label\\\": label,\\n            \\\"internal\\\": internal,\\n            \\\"deterministic\\\": det,\\n            \\\"metadata\\\": {\\n                \\\"split\\\": args.split,\\n                \\\"time_s\\\": elapsed,\\n            },\\n        }\\n        results.append(record)\\n\\n        with open(args.output, \\\"a\\\") as f:\\n            f.write(json.dumps(record, default=str) + \\\"\\\\n\\\")\\n\\n        print(f\\\"  Label: {label} ({elapsed}s)\\\")\\n\\n    # Summary\\n    n = len(results)\\n    print(f\\\"\\\\n{'='*50}\\\")\\n    print(f\\\"Total: {n} games\\\")\\n    if n > 0:\\n        for lb in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n            c = label_counts.get(lb, 0)\\n            print(f\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\")\\n        iw = sum(1 for r in results if r[\\\"internal_success\\\"])\\n        dw = sum(1 for r in results if r[\\\"deterministic_success\\\"])\\n        print(f\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\")\\n        print(f\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\")\\n    print(f\\\"Output: {args.output}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"ALFWorld counterfactual labeling\\\")\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/alfworld_data\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"valid_seen\\\")\\n    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task types\\\")\\n    parser.add_argument(\\\"--max_per_type\\\", type=int, default=0)\\n    parser.add_argument(\\\"--n_tasks\\\", type=int, default=10)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--output\\\", type=str,\\n                        default=\\\"data/alfworld-counterfactual/episodes.jsonl\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    args = parser.parse_args()\\n\\n    if args.model_path is None:\\n        args.model_path = find_model_path()\\n    print(f\\\"Model: {args.model_path}\\\")\\n\\n    random.seed(args.seed)\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "28e5b845-42ac-443c-9a73-e37701006155",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def run_deterministic_episode(\\\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\\\n) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Deterministic mode: LLM sees observation + admissible actions list.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = make_env(game_info[\\\\\\\"game_path\\\\\\\"], max_steps)\\\\n    trajectory = []\\\\n    actions_taken = []\\\\n    won = False\\\\n\\\\n    try:\\\\n        obs, infos = env.reset()\\\\n        task_desc = game_info.get(\\\\\\\"task_desc\\\\\\\") or extract_task_desc_from_obs(obs)\\\\n\\\\n        for step in range(max_steps):\\\\n            admissible = infos[\\\\\\\"admissible_commands\\\\\\\"]\\\\n            admissible_str = \\\\\\\"\\\\\\\\n\\\\\\\".join(\\\\n                f\\\\\\\"  [{i}] {a}\\\\\\\" for i, a in enumerate(admissible)\\\\n            )\\\\n\\\\n            messages = [\\\\n                {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": DETERMINISTIC_SYSTEM},\\\\n                {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": USER_TEMPLATE_DETERMINISTIC.format(\\\\n                    task_desc=task_desc,\\\\n                    observation=obs,\\\\n                    admissible_str=admissible_str,\\\\n                    history=format_history(actions_taken),\\\\n                )},\\\\n            ]\\\\n            raw = llm.generate(messages, temperature=0.3)\\\\n            action = parse_action_constrained(raw, admissible)\\\\n            if not action:\\\\n                action = admissible[0] if admissible else \\\\\\\"look\\\\\\\"\\\\n\\\\n            trajectory.append({\\\\n                \\\\\\\"step\\\\\\\": step,\\\\n                \\\\\\\"observation\\\\\\\": obs[:500],\\\\n                \\\\\\\"thought\\\\\\\": raw[:300],\\\\n                \\\\\\\"action\\\\\\\": action,\\\\n                \\\\\\\"admissible_count\\\\\\\": len(admissible),\\\\n            })\\\\n\\\\n            obs, score, done, infos = env.step(action)\\\\n            actions_taken.append(action)\\\\n            won = infos.get(\\\\\\\"won\\\\\\\", False)\\\\n\\\\n            if done or won:\\\\n                break\\\\n\\\\n        return {\\\\n            \\\\\\\"trajectory\\\\\\\": trajectory,\\\\n            \\\\\\\"success\\\\\\\": bool(won),\\\\n            \\\\\\\"n_steps\\\\\\\": len(trajectory),\\\\n            \\\\\\\"score\\\\\\\": 1.0 if won else 0.0,\\\\n        }\\\\n    finally:\\\\n        env.close()\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Main pipeline\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef run_pipeline(args):\\\\n    games = collect_game_files(\\\\n        args.data_dir,\\\\n        split=args.split,\\\\n        task_types=args.task_types.split(\\\\\\\",\\\\\\\") if args.task_types else None,\\\\n        max_per_type=args.max_per_type,\\\\n    )\\\\n    if args.n_tasks > 0:\\\\n        games = games[:args.n_tasks]\\\\n\\\\n    print(f\\\\\\\"=== ALFWorld Counterfactual Labeling ===\\\\\\\")\\\\n    print(f\\\\\\\"Split: {args.split} | Games: {len(games)} | Max steps: {args.max_steps}\\\\\\\")\\\\n    print(f\\\\\\\"Model: {args.model_path} | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\\\\\")\\\\n\\\\n    llm = ALFWorldLLM(\\\\n        model_path=args.model_path,\\\\n        use_vllm=not args.no_vllm,\\\\n        gpu_id=args.gpu_id,\\\\n    )\\\\n\\\\n    os.makedirs(os.path.dirname(args.output) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    if os.path.exists(args.output):\\\\n        os.remove(args.output)\\\\n\\\\n    label_counts = Counter()\\\\n    results = []\\\\n\\\\n    for i, game in enumerate(games):\\\\n        t0 = time.time()\\\\n        print(f\\\\\\\"\\\\\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\\\\\")\\\\n        print(f\\\\\\\"  Task: {game['task_desc']}\\\\\\\")\\\\n\\\\n        try:\\\\n            internal = run_internal_episode(llm, game, args.max_steps)\\\\n            print(f\\\\\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\\\\\"\\\\n                  f\\\\\\\"({internal['n_steps']} steps)\\\\\\\")\\\\n\\\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\\\n            print(f\\\\\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\\\\\"\\\\n                  f\\\\\\\"({det['n_steps']} steps)\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  ERROR: {e}\\\\\\\")\\\\n            import traceback\\\\n            traceback.print_exc()\\\\n            continue\\\\n\\\\n        if det[\\\\\\\"success\\\\\\\"] and not internal[\\\\\\\"success\\\\\\\"]:\\\\n            label = \\\\\\\"det-preferred\\\\\\\"\\\\n        elif internal[\\\\\\\"success\\\\\\\"] and not det[\\\\\\\"success\\\\\\\"]:\\\\n            label = \\\\\\\"internal-preferred\\\\\\\"\\\\n        else:\\\\n            label = \\\\\\\"no-preference\\\\\\\"\\\\n\\\\n        label_counts[label] += 1\\\\n        elapsed = round(time.time() - t0, 1)\\\\n\\\\n        record = {\\\\n            \\\\\\\"env\\\\\\\": \\\\\\\"alfworld\\\\\\\",\\\\n            \\\\\\\"task_id\\\\\\\": game[\\\\\\\"task_id\\\\\\\"],\\\\n            \\\\\\\"task_type\\\\\\\": game[\\\\\\\"task_type\\\\\\\"],\\\\n            \\\\\\\"task_desc\\\\\\\": game[\\\\\\\"task_desc\\\\\\\"],\\\\n            \\\\\\\"internal_success\\\\\\\": internal[\\\\\\\"success\\\\\\\"],\\\\n            \\\\\\\"deterministic_success\\\\\\\": det[\\\\\\\"success\\\\\\\"],\\\\n            \\\\\\\"internal_steps\\\\\\\": internal[\\\\\\\"n_steps\\\\\\\"],\\\\n            \\\\\\\"deterministic_steps\\\\\\\": det[\\\\\\\"n_steps\\\\\\\"],\\\\n            \\\\\\\"label\\\\\\\": label,\\\\n            \\\\\\\"internal\\\\\\\": internal,\\\\n            \\\\\\\"deterministic\\\\\\\": det,\\\\n            \\\\\\\"metadata\\\\\\\": {\\\\n                \\\\\\\"split\\\\\\\": args.split,\\\\n                \\\\\\\"time_s\\\\\\\": elapsed,\\\\n            },\\\\n        }\\\\n        results.append(record)\\\\n\\\\n        with open(args.output, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(record, default=str) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  Label: {label} ({elapsed}s)\\\\\\\")\\\\n\\\\n    # Summary\\\\n    n = len(results)\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*50}\\\\\\\")\\\\n    print(f\\\\\\\"Total: {n} games\\\\\\\")\\\\n    if n > 0:\\\\n        for lb in [\\\\\\\"det-preferred\\\\\\\", \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"no-preference\\\\\\\"]:\\\\n            c = label_counts.get(lb, 0)\\\\n            print(f\\\\\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\\\\\")\\\\n        iw = sum(1 for r in results if r[\\\\\\\"internal_success\\\\\\\"])\\\\n        dw = sum(1 for r in results if r[\\\\\\\"deterministic_success\\\\\\\"])\\\\n        print(f\\\\\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\\\\\")\\\\n        print(f\\\\\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"Output: {args.output}\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"ALFWorld counterfactual labeling\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str,\\\\n                        default=\\\\\\\"/root/autodl-tmp/alfworld_data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--split\\\\\\\", type=str, default=\\\\\\\"valid_seen\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--task_types\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated task types\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_per_type\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--n_tasks\\\\\\\", type=int, default=10)\\\\n    parser.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=50)\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str,\\\\n                        default=\\\\\\\"data/alfworld-counterfactual/episodes.jsonl\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--no_vllm\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu_id\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.model_path is None:\\\\n        args.model_path = find_model_path()\\\\n    print(f\\\\\\\"Model: {args.model_path}\\\\\\\")\\\\n\\\\n    random.seed(args.seed)\\\\n    run_pipeline(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.71}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def run_deterministic_episode(\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Deterministic mode: LLM sees observation + admissible actions list.\\\"\\\"\\\"\\n    env = make_env(game_info[\\\"game_path\\\"], max_steps)\\n    trajectory = []\\n    actions_taken = []\\n    won = False\\n\\n    try:\\n        obs, infos = env.reset()\\n        task_desc = game_info.get(\\\"task_desc\\\") or extract_task_desc_from_obs(obs)\\n\\n        for step in range(max_steps):\\n            admissible = infos[\\\"admissible_commands\\\"]\\n            admissible_str = \\\"\\\\n\\\".join(\\n                f\\\"  [{i}] {a}\\\" for i, a in enumerate(admissible)\\n            )\\n\\n            messages = [\\n                {\\\"role\\\": \\\"system\\\", \\\"content\\\": DETERMINISTIC_SYSTEM},\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE_DETERMINISTIC.format(\\n                    task_desc=task_desc,\\n                    observation=obs,\\n                    admissible_str=admissible_str,\\n                    history=format_history(actions_taken),\\n                )},\\n            ]\\n            raw = llm.generate(messages, temperature=0.3)\\n            action = parse_action_constrained(raw, admissible)\\n            if not action:\\n                action = admissible[0] if admissible else \\\"look\\\"\\n\\n            trajectory.append({\\n                \\\"step\\\": step,\\n                \\\"observation\\\": obs[:500],\\n                \\\"thought\\\": raw[:300],\\n                \\\"action\\\": action,\\n                \\\"admissible_count\\\": len(admissible),\\n            })\\n\\n            obs, score, done, infos = env.step(action)\\n            actions_taken.append(action)\\n            won = infos.get(\\\"won\\\", False)\\n\\n            if done or won:\\n                break\\n\\n        return {\\n            \\\"trajectory\\\": trajectory,\\n            \\\"success\\\": bool(won),\\n            \\\"n_steps\\\": len(trajectory),\\n            \\\"score\\\": 1.0 if won else 0.0,\\n        }\\n    finally:\\n        env.close()\\n\\n\\n# ---------------------------------------------------------------------------\\n# Main pipeline\\n# ---------------------------------------------------------------------------\\n\\ndef run_pipeline(args):\\n    games = collect_game_files(\\n        args.data_dir,\\n        split=args.split,\\n        task_types=args.task_types.split(\\\",\\\") if args.task_types else None,\\n        max_per_type=args.max_per_type,\\n    )\\n    if args.n_tasks > 0:\\n        games = games[:args.n_tasks]\\n\\n    print(f\\\"=== ALFWorld Counterfactual Labeling ===\\\")\\n    print(f\\\"Split: {args.split} | Games: {len(games)} | Max steps: {args.max_steps}\\\")\\n    print(f\\\"Model: {args.model_path} | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\")\\n\\n    llm = ALFWorldLLM(\\n        model_path=args.model_path,\\n        use_vllm=not args.no_vllm,\\n        gpu_id=args.gpu_id,\\n    )\\n\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    if os.path.exists(args.output):\\n        os.remove(args.output)\\n\\n    label_counts = Counter()\\n    results = []\\n\\n    for i, game in enumerate(games):\\n        t0 = time.time()\\n        print(f\\\"\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\")\\n        print(f\\\"  Task: {game['task_desc']}\\\")\\n\\n        try:\\n            internal = run_internal_episode(llm, game, args.max_steps)\\n            print(f\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\"\\n                  f\\\"({internal['n_steps']} steps)\\\")\\n\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\n            print(f\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\"\\n                  f\\\"({det['n_steps']} steps)\\\")\\n        except Exception as e:\\n            print(f\\\"  ERROR: {e}\\\")\\n            import traceback\\n            traceback.print_exc()\\n            continue\\n\\n        if det[\\\"success\\\"] and not internal[\\\"success\\\"]:\\n            label = \\\"det-preferred\\\"\\n        elif internal[\\\"success\\\"] and not det[\\\"success\\\"]:\\n            label = \\\"internal-preferred\\\"\\n        else:\\n            label = \\\"no-preference\\\"\\n\\n        label_counts[label] += 1\\n        elapsed = round(time.time() - t0, 1)\\n\\n        record = {\\n            \\\"env\\\": \\\"alfworld\\\",\\n            \\\"task_id\\\": game[\\\"task_id\\\"],\\n            \\\"task_type\\\": game[\\\"task_type\\\"],\\n            \\\"task_desc\\\": game[\\\"task_desc\\\"],\\n            \\\"internal_success\\\": internal[\\\"success\\\"],\\n            \\\"deterministic_success\\\": det[\\\"success\\\"],\\n            \\\"internal_steps\\\": internal[\\\"n_steps\\\"],\\n            \\\"deterministic_steps\\\": det[\\\"n_steps\\\"],\\n            \\\"label\\\": label,\\n            \\\"internal\\\": internal,\\n            \\\"deterministic\\\": det,\\n            \\\"metadata\\\": {\\n                \\\"split\\\": args.split,\\n                \\\"time_s\\\": elapsed,\\n            },\\n        }\\n        results.append(record)\\n\\n        with open(args.output, \\\"a\\\") as f:\\n            f.write(json.dumps(record, default=str) + \\\"\\\\n\\\")\\n\\n        print(f\\\"  Label: {label} ({elapsed}s)\\\")\\n\\n    # Summary\\n    n = len(results)\\n    print(f\\\"\\\\n{'='*50}\\\")\\n    print(f\\\"Total: {n} games\\\")\\n    if n > 0:\\n        for lb in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n            c = label_counts.get(lb, 0)\\n            print(f\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\")\\n        iw = sum(1 for r in results if r[\\\"internal_success\\\"])\\n        dw = sum(1 for r in results if r[\\\"deterministic_success\\\"])\\n        print(f\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\")\\n        print(f\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\")\\n    print(f\\\"Output: {args.output}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"ALFWorld counterfactual labeling\\\")\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/alfworld_data\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"valid_seen\\\")\\n    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task types\\\")\\n    parser.add_argument(\\\"--max_per_type\\\", type=int, default=0)\\n    parser.add_argument(\\\"--n_tasks\\\", type=int, default=10)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--output\\\", type=str,\\n                        default=\\\"data/alfworld-counterfactual/episodes.jsonl\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    args = parser.parse_args()\\n\\n    if args.model_path is None:\\n        args.model_path = find_model_path()\\n    print(f\\\"Model: {args.model_path}\\\")\\n\\n    random.seed(args.seed)\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.71}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T15:44:59.723Z_
+
+<details><summary>↩ Tool result · `toolu_01WDY24CtCGdrG5Kykf6U8yF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def collect_game_files(data_root: str, split: str = \\\"valid_seen\\\",\\n                       task_types: Optional[List[str]] = None,\\n                       max_per_type: int = 0) -> List[Dict[str, str]]:\\n    \\\"\\\"\\\"Collect game files from ALFWorld data directory.\\\"\\\"\\\"\\n    split_path = os.path.join(data_root, \\\"json_2.1.1\\\", split)\\n    if not os.path.exists(split_path):\\n        raise FileNotFoundError(f\\\"Split path not found: {split_path}\\\")\\n\\n    games = []\\n    type_counts = Counter()\\n\\n    for task_dir in sorted(os.listdir(split_path)):\\n        task_type = None\\n        for tt in TASK_TYPES:\\n            if task_dir.startswith(tt):\\n                task_type = tt\\n                break\\n        if task_type is None:\\n            continue\\n        if task_types and task_type not in task_types:\\n            continue\\n        if max_per_type > 0 and type_counts[task_type] >= max_per_type:\\n            continue\\n\\n        full_dir = os.path.join(split_path, task_dir)\\n        trials = sorted([d for d in os.listdir(full_dir) if d.startswith(\\\"trial_\\\")])\\n        if not trials:\\n            continue\\n\\n        trial_dir = os.path.join(full_dir, trials[0])\\n        game_path = os.path.join(trial_dir, \\\"game.tw-pddl\\\")\\n        if not os.path.exists(game_path):\\n            continue\\n\\n        traj_path = os.path.join(trial_dir, \\\"traj_data.json\\\")\\n        task_desc = \\\"\\\"\\n        if os.path.exists(traj_path):\\n            with open(traj_path) as f:\\n                traj = json.load(f)\\n            anns = traj.get(\\\"turk_annotations\\\", {}).get(\\\"anns\\\", [{}])\\n            task_desc = anns[0].get(\\\"task_desc\\\", \\\"\\\") if anns else \\\"\\\"\\n\\n        games.append({\\n            \\\"game_path\\\": game_path,\\n            \\\"task_type\\\": task_type,\\n            \\\"task_id\\\": f\\\"{task_dir}/{trials[0]}\\\",\\n            \\\"task_desc\\\": task_desc,\\n        })\\n        type_counts[task_type] += 1\\n\\n    return games\\n\\n\\ndef make_env(game_path: str, max_steps: int = 50):\\n    \\\"\\\"\\\"Create a TextWorld gym env for a single ALFWorld game with demangler.\\\"\\\"\\\"\\n    request_infos = textworld.EnvInfos(\\n        won=True, admissible_commands=True, extras=[\\\"gamefile\\\"]\\n    )\\n    env_id = textworld.gym.register_game(\\n        game_path, request_infos,\\n        max_episode_steps=max_steps,\\n        wrappers=[AlfredDemangler(shuffle=False), AlfredInfos],\\n    )\\n    return textworld.gym.make(env_id)\\n\\n\\ndef extract_task_desc_from_obs(obs: str) -> str:\\n    \\\"\\\"\\\"Extract task description from initial observation.\\\"\\\"\\\"\\n    if \\\"Your task is to:\\\" in obs:\\n        return obs.split(\\\"Your task is to:\\\")[-1].strip().rstrip(\\\".\\\")\\n    return \\\"\\\"\\n\\n\\ndef format_history(actions: List[str], last_k: int = 10) -> str:\\n    if not actions:\\n        return \\\"(none)\\\"\\n    return \\\" -> \\\".join(actions[-last_k:])\\n\\n\\n# ---------------------------------------------------------------------------\\n# Episode runners\\n# ---------------------------------------------------------------------------\\n\\ndef run_internal_episode(\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Internal mode: LLM sees observation only, no admissible actions list.\\\"\\\"\\\"\\n    env = make_env(game_info[\\\"game_path\\\"], max_steps)\\n    trajectory = []\\n    actions_taken = []\\n    won = False\\n\\n    try:\\n        obs, infos = env.reset()\\n        task_desc = game_info.get(\\\"task_desc\\\") or extract_task_desc_from_obs(obs)\\n\\n        for step in range(max_steps):\\n            admissible = infos[\\\"admissible_commands\\\"]\\n\\n            messages = [\\n                {\\\"role\\\": \\\"system\\\", \\\"content\\\": INTERNAL_SYSTEM},\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE_INTERNAL.format(\\n                    task_desc=task_desc,\\n                    observation=obs,\\n                    history=format_history(actions_taken),\\n                )},\\n            ]\\n            raw = llm.generate(messages, temperature=0.3)\\n            free_action = parse_action_free(raw)\\n\\n            action = None\\n            if free_action:\\n                action = match_to_admissible(free_action, admissible)\\n            if not action:\\n                actio\\n\\n... [截断: 输出过长，省略 3363 字符] ...\\n\\n | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\")\\n\\n    llm = ALFWorldLLM(\\n        model_path=args.model_path,\\n        use_vllm=not args.no_vllm,\\n        gpu_id=args.gpu_id,\\n    )\\n\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    if os.path.exists(args.output):\\n        os.remove(args.output)\\n\\n    label_counts = Counter()\\n    results = []\\n\\n    for i, game in enumerate(games):\\n        t0 = time.time()\\n        print(f\\\"\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\")\\n        print(f\\\"  Task: {game['task_desc']}\\\")\\n\\n        try:\\n            internal = run_internal_episode(llm, game, args.max_steps)\\n            print(f\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\"\\n                  f\\\"({internal['n_steps']} steps)\\\")\\n\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\n            print(f\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\"\\n                  f\\\"({det['n_steps']} steps)\\\")\\n        except Exception as e:\\n            print(f\\\"  ERROR: {e}\\\")\\n            import traceback\\n            traceback.print_exc()\\n            continue\\n\\n        if det[\\\"success\\\"] and not internal[\\\"success\\\"]:\\n            label = \\\"det-preferred\\\"\\n        elif internal[\\\"success\\\"] and not det[\\\"success\\\"]:\\n            label = \\\"internal-preferred\\\"\\n        else:\\n            label = \\\"no-preference\\\"\\n\\n        label_counts[label] += 1\\n        elapsed = round(time.time() - t0, 1)\\n\\n        record = {\\n            \\\"env\\\": \\\"alfworld\\\",\\n            \\\"task_id\\\": game[\\\"task_id\\\"],\\n            \\\"task_type\\\": game[\\\"task_type\\\"],\\n            \\\"task_desc\\\": game[\\\"task_desc\\\"],\\n            \\\"internal_success\\\": internal[\\\"success\\\"],\\n            \\\"deterministic_success\\\": det[\\\"success\\\"],\\n            \\\"internal_steps\\\": internal[\\\"n_steps\\\"],\\n            \\\"deterministic_steps\\\": det[\\\"n_steps\\\"],\\n            \\\"label\\\": label,\\n            \\\"internal\\\": internal,\\n            \\\"deterministic\\\": det,\\n            \\\"metadata\\\": {\\n                \\\"split\\\": args.split,\\n                \\\"time_s\\\": elapsed,\\n            },\\n        }\\n        results.append(record)\\n\\n        with open(args.output, \\\"a\\\") as f:\\n            f.write(json.dumps(record, default=str) + \\\"\\\\n\\\")\\n\\n        print(f\\\"  Label: {label} ({elapsed}s)\\\")\\n\\n    # Summary\\n    n = len(results)\\n    print(f\\\"\\\\n{'='*50}\\\")\\n    print(f\\\"Total: {n} games\\\")\\n    if n > 0:\\n        for lb in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n            c = label_counts.get(lb, 0)\\n            print(f\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\")\\n        iw = sum(1 for r in results if r[\\\"internal_success\\\"])\\n        dw = sum(1 for r in results if r[\\\"deterministic_success\\\"])\\n        print(f\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\")\\n        print(f\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\")\\n    print(f\\\"Output: {args.output}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"ALFWorld counterfactual labeling\\\")\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/alfworld_data\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"valid_seen\\\")\\n    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task types\\\")\\n    parser.add_argument(\\\"--max_per_type\\\", type=int, default=0)\\n    parser.add_argument(\\\"--n_tasks\\\", type=int, default=10)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--output\\\", type=str,\\n                        default=\\\"data/alfworld-counterfactual/episodes.jsonl\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    args = parser.parse_args()\\n\\n    if args.model_path is None:\\n        args.model_path = find_model_path()\\n    print(f\\\"Model: {args.model_path}\\\")\\n\\n    random.seed(args.seed)\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "b5b7df1b-02b8-4661-90f6-6c940f12a149",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"def collect_game_files(data_root: str, split: str = \\\\\\\"valid_seen\\\\\\\",\\\\n                       task_types: Optional[List[str]] = None,\\\\n                       max_per_type: int = 0) -> List[Dict[str, str]]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Collect game files from ALFWorld data directory.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    split_path = os.path.join(data_root, \\\\\\\"json_2.1.1\\\\\\\", split)\\\\n    if not os.path.exists(split_path):\\\\n        raise FileNotFoundError(f\\\\\\\"Split path not found: {split_path}\\\\\\\")\\\\n\\\\n    games = []\\\\n    type_counts = Counter()\\\\n\\\\n    for task_dir in sorted(os.listdir(split_path)):\\\\n        task_type = None\\\\n        for tt in TASK_TYPES:\\\\n            if task_dir.startswith(tt):\\\\n                task_type = tt\\\\n                break\\\\n        if task_type is None:\\\\n            continue\\\\n        if task_types and task_type not in task_types:\\\\n            continue\\\\n        if max_per_type > 0 and type_counts[task_type] >= max_per_type:\\\\n            continue\\\\n\\\\n        full_dir = os.path.join(split_path, task_dir)\\\\n        trials = sorted([d for d in os.listdir(full_dir) if d.startswith(\\\\\\\"trial_\\\\\\\")])\\\\n        if not trials:\\\\n            continue\\\\n\\\\n        trial_dir = os.path.join(full_dir, trials[0])\\\\n        game_path = os.path.join(trial_dir, \\\\\\\"game.tw-pddl\\\\\\\")\\\\n        if not os.path.exists(game_path):\\\\n            continue\\\\n\\\\n        traj_path = os.path.join(trial_dir, \\\\\\\"traj_data.json\\\\\\\")\\\\n        task_desc = \\\\\\\"\\\\\\\"\\\\n        if os.path.exists(traj_path):\\\\n            with open(traj_path) as f:\\\\n                traj = json.load(f)\\\\n            anns = traj.get(\\\\\\\"turk_annotations\\\\\\\", {}).get(\\\\\\\"anns\\\\\\\", [{}])\\\\n            task_desc = anns[0].get(\\\\\\\"task_desc\\\\\\\", \\\\\\\"\\\\\\\") if anns else \\\\\\\"\\\\\\\"\\\\n\\\\n        games.append({\\\\n            \\\\\\\"game_path\\\\\\\": game_path,\\\\n            \\\\\\\"task_type\\\\\\\": task_type,\\\\n            \\\\\\\"task_id\\\\\\\": f\\\\\\\"{task_dir}/{trials[0]}\\\\\\\",\\\\n            \\\\\\\"task_desc\\\\\\\": task_desc,\\\\n        })\\\\n        type_counts[task_type] += 1\\\\n\\\\n    return games\\\\n\\\\n\\\\ndef make_env(game_path: str, max_steps: int = 50):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Create a TextWorld gym env for a single ALFWorld game with demangler.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    request_infos = textworld.EnvInfos(\\\\n        won=True, admissible_commands=True, extras=[\\\\\\\"gamefile\\\\\\\"]\\\\n    )\\\\n    env_id = textworld.gym.register_game(\\\\n        game_path, request_infos,\\\\n        max_episode_steps=max_steps,\\\\n        wrappers=[AlfredDemangler(shuffle=False), AlfredInfos],\\\\n    )\\\\n    return textworld.gym.make(env_id)\\\\n\\\\n\\\\ndef extract_task_desc_from_obs(obs: str) -> str:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract task description from initial observation.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if \\\\\\\"Your task is to:\\\\\\\" in obs:\\\\n        return obs.split(\\\\\\\"Your task is to:\\\\\\\")[-1].strip().rstrip(\\\\\\\".\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\"\\\\n\\\\n\\\\ndef format_history(actions: List[str], last_k: int = 10) -> str:\\\\n    if not actions:\\\\n        return \\\\\\\"(none)\\\\\\\"\\\\n    return \\\\\\\" -> \\\\\\\".join(actions[-last_k:])\\\\n\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Episode runners\\\\n# ---------------------------------------------------------------------------\\\\n\\\\ndef run_internal_episode(\\\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\\\n) -> Dict[str, Any]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Internal mode: LLM sees observation only, no admissible actions list.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = make_env(game_info[\\\\\\\"game_path\\\\\\\"], max_steps)\\\\n    trajectory = []\\\\n    actions_taken = []\\\\n    won = False\\\\n\\\\n    try:\\\\n        obs, infos = env.reset()\\\\n        task_desc = game_info.get(\\\\\\\"task_desc\\\\\\\") or extract_task_desc_from_obs(obs)\\\\n\\\\n        for step in range(max_steps):\\\\n            admissible = infos[\\\\\\\"admissible_commands\\\\\\\"]\\\\n\\\\n            messages = [\\\\n                {\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": INTERNAL_SYSTEM},\\\\n                {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": USER_TEMPLATE_INTERNAL.format(\\\\n                    task_desc=task_desc,\\\\n                    observation=obs,\\\\n                    history=format_history(actions_taken),\\\\n                )},\\\\n            ]\\\\n            raw = llm.generate(messages, temperature=0.3)\\\\n            free_action = parse_action_free(raw)\\\\n\\\\n            action = None\\\\n            if free_action:\\\\n                action = match_to_admissible(free_action, admissible)\\\\n            if not action:\\\\n                actio\\\\n\\\\n... [截断: 输出过长，省略 3363 字符] ...\\\\n\\\\n | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\\\\\")\\\\n\\\\n    llm = ALFWorldLLM(\\\\n        model_path=args.model_path,\\\\n        use_vllm=not args.no_vllm,\\\\n        gpu_id=args.gpu_id,\\\\n    )\\\\n\\\\n    os.makedirs(os.path.dirname(args.output) or \\\\\\\".\\\\\\\", exist_ok=True)\\\\n    if os.path.exists(args.output):\\\\n        os.remove(args.output)\\\\n\\\\n    label_counts = Counter()\\\\n    results = []\\\\n\\\\n    for i, game in enumerate(games):\\\\n        t0 = time.time()\\\\n        print(f\\\\\\\"\\\\\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\\\\\")\\\\n        print(f\\\\\\\"  Task: {game['task_desc']}\\\\\\\")\\\\n\\\\n        try:\\\\n            internal = run_internal_episode(llm, game, args.max_steps)\\\\n            print(f\\\\\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\\\\\"\\\\n                  f\\\\\\\"({internal['n_steps']} steps)\\\\\\\")\\\\n\\\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\\\n            print(f\\\\\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\\\\\"\\\\n                  f\\\\\\\"({det['n_steps']} steps)\\\\\\\")\\\\n        except Exception as e:\\\\n            print(f\\\\\\\"  ERROR: {e}\\\\\\\")\\\\n            import traceback\\\\n            traceback.print_exc()\\\\n            continue\\\\n\\\\n        if det[\\\\\\\"success\\\\\\\"] and not internal[\\\\\\\"success\\\\\\\"]:\\\\n            label = \\\\\\\"det-preferred\\\\\\\"\\\\n        elif internal[\\\\\\\"success\\\\\\\"] and not det[\\\\\\\"success\\\\\\\"]:\\\\n            label = \\\\\\\"internal-preferred\\\\\\\"\\\\n        else:\\\\n            label = \\\\\\\"no-preference\\\\\\\"\\\\n\\\\n        label_counts[label] += 1\\\\n        elapsed = round(time.time() - t0, 1)\\\\n\\\\n        record = {\\\\n            \\\\\\\"env\\\\\\\": \\\\\\\"alfworld\\\\\\\",\\\\n            \\\\\\\"task_id\\\\\\\": game[\\\\\\\"task_id\\\\\\\"],\\\\n            \\\\\\\"task_type\\\\\\\": game[\\\\\\\"task_type\\\\\\\"],\\\\n            \\\\\\\"task_desc\\\\\\\": game[\\\\\\\"task_desc\\\\\\\"],\\\\n            \\\\\\\"internal_success\\\\\\\": internal[\\\\\\\"success\\\\\\\"],\\\\n            \\\\\\\"deterministic_success\\\\\\\": det[\\\\\\\"success\\\\\\\"],\\\\n            \\\\\\\"internal_steps\\\\\\\": internal[\\\\\\\"n_steps\\\\\\\"],\\\\n            \\\\\\\"deterministic_steps\\\\\\\": det[\\\\\\\"n_steps\\\\\\\"],\\\\n            \\\\\\\"label\\\\\\\": label,\\\\n            \\\\\\\"internal\\\\\\\": internal,\\\\n            \\\\\\\"deterministic\\\\\\\": det,\\\\n            \\\\\\\"metadata\\\\\\\": {\\\\n                \\\\\\\"split\\\\\\\": args.split,\\\\n                \\\\\\\"time_s\\\\\\\": elapsed,\\\\n            },\\\\n        }\\\\n        results.append(record)\\\\n\\\\n        with open(args.output, \\\\\\\"a\\\\\\\") as f:\\\\n            f.write(json.dumps(record, default=str) + \\\\\\\"\\\\\\\\n\\\\\\\")\\\\n\\\\n        print(f\\\\\\\"  Label: {label} ({elapsed}s)\\\\\\\")\\\\n\\\\n    # Summary\\\\n    n = len(results)\\\\n    print(f\\\\\\\"\\\\\\\\n{'='*50}\\\\\\\")\\\\n    print(f\\\\\\\"Total: {n} games\\\\\\\")\\\\n    if n > 0:\\\\n        for lb in [\\\\\\\"det-preferred\\\\\\\", \\\\\\\"internal-preferred\\\\\\\", \\\\\\\"no-preference\\\\\\\"]:\\\\n            c = label_counts.get(lb, 0)\\\\n            print(f\\\\\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\\\\\")\\\\n        iw = sum(1 for r in results if r[\\\\\\\"internal_success\\\\\\\"])\\\\n        dw = sum(1 for r in results if r[\\\\\\\"deterministic_success\\\\\\\"])\\\\n        print(f\\\\\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\\\\\")\\\\n        print(f\\\\\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\\\\\")\\\\n    print(f\\\\\\\"Output: {args.output}\\\\\\\")\\\\n\\\\n    return results\\\\n\\\\n\\\\ndef main():\\\\n    parser = argparse.ArgumentParser(description=\\\\\\\"ALFWorld counterfactual labeling\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--data_dir\\\\\\\", type=str,\\\\n                        default=\\\\\\\"/root/autodl-tmp/alfworld_data\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--split\\\\\\\", type=str, default=\\\\\\\"valid_seen\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--task_types\\\\\\\", type=str, default=None,\\\\n                        help=\\\\\\\"Comma-separated task types\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--max_per_type\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--n_tasks\\\\\\\", type=int, default=10)\\\\n    parser.add_argument(\\\\\\\"--max_steps\\\\\\\", type=int, default=50)\\\\n    parser.add_argument(\\\\\\\"--output\\\\\\\", type=str,\\\\n                        default=\\\\\\\"data/alfworld-counterfactual/episodes.jsonl\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--model_path\\\\\\\", type=str, default=None)\\\\n    parser.add_argument(\\\\\\\"--no_vllm\\\\\\\", action=\\\\\\\"store_true\\\\\\\")\\\\n    parser.add_argument(\\\\\\\"--gpu_id\\\\\\\", type=int, default=0)\\\\n    parser.add_argument(\\\\\\\"--seed\\\\\\\", type=int, default=42)\\\\n    args = parser.parse_args()\\\\n\\\\n    if args.model_path is None:\\\\n        args.model_path = find_model_path()\\\\n    print(f\\\\\\\"Model: {args.model_path}\\\\\\\")\\\\n\\\\n    random.seed(args.seed)\\\\n    run_pipeline(args)\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"def collect_game_files(data_root: str, split: str = \\\"valid_seen\\\",\\n                       task_types: Optional[List[str]] = None,\\n                       max_per_type: int = 0) -> List[Dict[str, str]]:\\n    \\\"\\\"\\\"Collect game files from ALFWorld data directory.\\\"\\\"\\\"\\n    split_path = os.path.join(data_root, \\\"json_2.1.1\\\", split)\\n    if not os.path.exists(split_path):\\n        raise FileNotFoundError(f\\\"Split path not found: {split_path}\\\")\\n\\n    games = []\\n    type_counts = Counter()\\n\\n    for task_dir in sorted(os.listdir(split_path)):\\n        task_type = None\\n        for tt in TASK_TYPES:\\n            if task_dir.startswith(tt):\\n                task_type = tt\\n                break\\n        if task_type is None:\\n            continue\\n        if task_types and task_type not in task_types:\\n            continue\\n        if max_per_type > 0 and type_counts[task_type] >= max_per_type:\\n            continue\\n\\n        full_dir = os.path.join(split_path, task_dir)\\n        trials = sorted([d for d in os.listdir(full_dir) if d.startswith(\\\"trial_\\\")])\\n        if not trials:\\n            continue\\n\\n        trial_dir = os.path.join(full_dir, trials[0])\\n        game_path = os.path.join(trial_dir, \\\"game.tw-pddl\\\")\\n        if not os.path.exists(game_path):\\n            continue\\n\\n        traj_path = os.path.join(trial_dir, \\\"traj_data.json\\\")\\n        task_desc = \\\"\\\"\\n        if os.path.exists(traj_path):\\n            with open(traj_path) as f:\\n                traj = json.load(f)\\n            anns = traj.get(\\\"turk_annotations\\\", {}).get(\\\"anns\\\", [{}])\\n            task_desc = anns[0].get(\\\"task_desc\\\", \\\"\\\") if anns else \\\"\\\"\\n\\n        games.append({\\n            \\\"game_path\\\": game_path,\\n            \\\"task_type\\\": task_type,\\n            \\\"task_id\\\": f\\\"{task_dir}/{trials[0]}\\\",\\n            \\\"task_desc\\\": task_desc,\\n        })\\n        type_counts[task_type] += 1\\n\\n    return games\\n\\n\\ndef make_env(game_path: str, max_steps: int = 50):\\n    \\\"\\\"\\\"Create a TextWorld gym env for a single ALFWorld game with demangler.\\\"\\\"\\\"\\n    request_infos = textworld.EnvInfos(\\n        won=True, admissible_commands=True, extras=[\\\"gamefile\\\"]\\n    )\\n    env_id = textworld.gym.register_game(\\n        game_path, request_infos,\\n        max_episode_steps=max_steps,\\n        wrappers=[AlfredDemangler(shuffle=False), AlfredInfos],\\n    )\\n    return textworld.gym.make(env_id)\\n\\n\\ndef extract_task_desc_from_obs(obs: str) -> str:\\n    \\\"\\\"\\\"Extract task description from initial observation.\\\"\\\"\\\"\\n    if \\\"Your task is to:\\\" in obs:\\n        return obs.split(\\\"Your task is to:\\\")[-1].strip().rstrip(\\\".\\\")\\n    return \\\"\\\"\\n\\n\\ndef format_history(actions: List[str], last_k: int = 10) -> str:\\n    if not actions:\\n        return \\\"(none)\\\"\\n    return \\\" -> \\\".join(actions[-last_k:])\\n\\n\\n# ---------------------------------------------------------------------------\\n# Episode runners\\n# ---------------------------------------------------------------------------\\n\\ndef run_internal_episode(\\n    llm: ALFWorldLLM, game_info: dict, max_steps: int = 50,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Internal mode: LLM sees observation only, no admissible actions list.\\\"\\\"\\\"\\n    env = make_env(game_info[\\\"game_path\\\"], max_steps)\\n    trajectory = []\\n    actions_taken = []\\n    won = False\\n\\n    try:\\n        obs, infos = env.reset()\\n        task_desc = game_info.get(\\\"task_desc\\\") or extract_task_desc_from_obs(obs)\\n\\n        for step in range(max_steps):\\n            admissible = infos[\\\"admissible_commands\\\"]\\n\\n            messages = [\\n                {\\\"role\\\": \\\"system\\\", \\\"content\\\": INTERNAL_SYSTEM},\\n                {\\\"role\\\": \\\"user\\\", \\\"content\\\": USER_TEMPLATE_INTERNAL.format(\\n                    task_desc=task_desc,\\n                    observation=obs,\\n                    history=format_history(actions_taken),\\n                )},\\n            ]\\n            raw = llm.generate(messages, temperature=0.3)\\n            free_action = parse_action_free(raw)\\n\\n            action = None\\n            if free_action:\\n                action = match_to_admissible(free_action, admissible)\\n            if not action:\\n                actio\\n\\n... [截断: 输出过长，省略 3363 字符] ...\\n\\n | GPU: {args.gpu_id} | vLLM: {not args.no_vllm}\\\")\\n\\n    llm = ALFWorldLLM(\\n        model_path=args.model_path,\\n        use_vllm=not args.no_vllm,\\n        gpu_id=args.gpu_id,\\n    )\\n\\n    os.makedirs(os.path.dirname(args.output) or \\\".\\\", exist_ok=True)\\n    if os.path.exists(args.output):\\n        os.remove(args.output)\\n\\n    label_counts = Counter()\\n    results = []\\n\\n    for i, game in enumerate(games):\\n        t0 = time.time()\\n        print(f\\\"\\\\n[{i+1}/{len(games)}] {game['task_type']}: {game['task_id'][:60]}\\\")\\n        print(f\\\"  Task: {game['task_desc']}\\\")\\n\\n        try:\\n            internal = run_internal_episode(llm, game, args.max_steps)\\n            print(f\\\"  Internal: {'OK' if internal['success'] else 'FAIL'} \\\"\\n                  f\\\"({internal['n_steps']} steps)\\\")\\n\\n            det = run_deterministic_episode(llm, game, args.max_steps)\\n            print(f\\\"  Deterministic: {'OK' if det['success'] else 'FAIL'} \\\"\\n                  f\\\"({det['n_steps']} steps)\\\")\\n        except Exception as e:\\n            print(f\\\"  ERROR: {e}\\\")\\n            import traceback\\n            traceback.print_exc()\\n            continue\\n\\n        if det[\\\"success\\\"] and not internal[\\\"success\\\"]:\\n            label = \\\"det-preferred\\\"\\n        elif internal[\\\"success\\\"] and not det[\\\"success\\\"]:\\n            label = \\\"internal-preferred\\\"\\n        else:\\n            label = \\\"no-preference\\\"\\n\\n        label_counts[label] += 1\\n        elapsed = round(time.time() - t0, 1)\\n\\n        record = {\\n            \\\"env\\\": \\\"alfworld\\\",\\n            \\\"task_id\\\": game[\\\"task_id\\\"],\\n            \\\"task_type\\\": game[\\\"task_type\\\"],\\n            \\\"task_desc\\\": game[\\\"task_desc\\\"],\\n            \\\"internal_success\\\": internal[\\\"success\\\"],\\n            \\\"deterministic_success\\\": det[\\\"success\\\"],\\n            \\\"internal_steps\\\": internal[\\\"n_steps\\\"],\\n            \\\"deterministic_steps\\\": det[\\\"n_steps\\\"],\\n            \\\"label\\\": label,\\n            \\\"internal\\\": internal,\\n            \\\"deterministic\\\": det,\\n            \\\"metadata\\\": {\\n                \\\"split\\\": args.split,\\n                \\\"time_s\\\": elapsed,\\n            },\\n        }\\n        results.append(record)\\n\\n        with open(args.output, \\\"a\\\") as f:\\n            f.write(json.dumps(record, default=str) + \\\"\\\\n\\\")\\n\\n        print(f\\\"  Label: {label} ({elapsed}s)\\\")\\n\\n    # Summary\\n    n = len(results)\\n    print(f\\\"\\\\n{'='*50}\\\")\\n    print(f\\\"Total: {n} games\\\")\\n    if n > 0:\\n        for lb in [\\\"det-preferred\\\", \\\"internal-preferred\\\", \\\"no-preference\\\"]:\\n            c = label_counts.get(lb, 0)\\n            print(f\\\"  {lb}: {c} ({c/n*100:.1f}%)\\\")\\n        iw = sum(1 for r in results if r[\\\"internal_success\\\"])\\n        dw = sum(1 for r in results if r[\\\"deterministic_success\\\"])\\n        print(f\\\"  Internal success: {iw}/{n} ({iw/n*100:.1f}%)\\\")\\n        print(f\\\"  Deterministic success: {dw}/{n} ({dw/n*100:.1f}%)\\\")\\n    print(f\\\"Output: {args.output}\\\")\\n\\n    return results\\n\\n\\ndef main():\\n    parser = argparse.ArgumentParser(description=\\\"ALFWorld counterfactual labeling\\\")\\n    parser.add_argument(\\\"--data_dir\\\", type=str,\\n                        default=\\\"/root/autodl-tmp/alfworld_data\\\")\\n    parser.add_argument(\\\"--split\\\", type=str, default=\\\"valid_seen\\\")\\n    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n                        help=\\\"Comma-separated task types\\\")\\n    parser.add_argument(\\\"--max_per_type\\\", type=int, default=0)\\n    parser.add_argument(\\\"--n_tasks\\\", type=int, default=10)\\n    parser.add_argument(\\\"--max_steps\\\", type=int, default=50)\\n    parser.add_argument(\\\"--output\\\", type=str,\\n                        default=\\\"data/alfworld-counterfactual/episodes.jsonl\\\")\\n    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\")\\n    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n    args = parser.parse_args()\\n\\n    if args.model_path is None:\\n        args.model_path = find_model_path()\\n    print(f\\\"Model: {args.model_path}\\\")\\n\\n    random.seed(args.seed)\\n    run_pipeline(args)\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.86}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information needed. Let me also check if there's a ScienceWorld counterfactual implementation to compare the labeling logic.
+
+Actually, I have enough information from the code to provide a comprehensive summary. Let me compile all findings.
+
+Key findings:
+
+1. **Model**: Qwen2.5-7B-Instruct (`/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct`), served via vLLM with `max_model_len=4096`, `temperature=0.3`, `max_new_tokens=256`
+
+
+2. **"Deterministic" modality in ALFWorld**: The LLM gets the admissible actions list from the environment at each step and must choose from it exactly as written, with parsing validated against this oracle set—quite different from ScienceWorld's deterministic mode which controls the simulator itself.
+
+3. **Labeling flow**: Episodes are compared at the binary level (deterministic-preferred when it succeeds and internal fails, internal-preferred when internal succeeds and deterministic fails, no-preference when both succeed or both fail), running two independent episodes per game with the same LLM, and using only the task completion flag from TextWorld.
+
+4. **Episode configuration**: Running 135 games across 6 task types with a 50-step limit, using the valid_seen split from json_2.1.1, seed 42, and a history window of the last actions.
+
+5. **Results**: The deterministic approach dominates with 37 successes versus 4 for internal reasoning, leaving 98 games with no preference (96 where both failed). Internal reasoning consistently hits the step limit while deterministic completes faster on average, with pick_and_place being the most common task type.
+
+The internal mode uses a fallback matching strategy—it attempts to map the LLM's free-form action to an admissible action through exact matching, case-insensitive matching, then substring matching, and if nothing works it defaults to the first admissible action. This ensures the executed action is always valid regardless of what the LLM generates.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "20992538-f320-4f28-b7ec-43637435e3a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015GseDk3DMXSm6tpWA3MpEK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6437,
+      "cache_read_input_tokens": 45565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6437
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 49_
+
+All data collected. Here's the structured output:
+
+---
+
+## ALFWorld 方法论补充材料
+
+### 1. 模型
+
+**Qwen2.5-7B-Instruct** (`/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct`)
+- 推理引擎：vLLM，`gpu_memory_utilization=0.85`，`max_model_len=4096`
+- 生成参数：`temperature=0.3`，`max_new_tokens=256`
+
+### 2. "Deterministic" Modality 的精确定义
+
+**与 ScienceWorld 语义完全不同。** ALFWorld 中 "deterministic" = LLM 在每一步接收环境提供的 **admissible actions list**（合法动作列表）。
+
+代码 docstring 原文：
+> The admissible actions list is the "deterministic computation" source: it constrains the LLM to valid simulator actions.
+
+具体实现对比：
+
+| 维度 | Internal mode | Deterministic mode |
+|------|--------------|-------------------|
+| 系统 prompt | "You do NOT have access to any action list" | "You MUST choose an action from the admissible actions list exactly as written" |
+| 用户 prompt | 仅含 observation + history | 含 observation + history + **编号的 admissible actions 列表** |
+| 动作解析 | `parse_action_free()` → 自由文本提取，再 `match_to_admissible()` 做 best-effort 匹配（exact → case-insensitive → substring） | `parse_action_constrained()` → 直接匹配 admissible list |
+| 兜底 | 匹配失败时 fallback 到 `admissible[0]` | 同 |
+
+关键点：Internal mode 生成的动作仍然需要 map 到 admissible action 才能执行（TextWorld 引擎限制），但 LLM **看不到**这个列表。差异完全在于信息可见性，不是模拟器模式的切换。
+
+### 3. Labeling 流程（与 Algorithm 1 的异同）
+
+**沿用 Algorithm 1 的 episode-level 比较逻辑**，标签定义完全一致：
+
+```
+if det_success and not internal_success → "det-preferred"
+if internal_success and not det_success → "internal-preferred"
+else → "no-preference"  (both succeed OR both fail)
+```
+
+**差异：**
+- **成功判定**：ALFWorld 使用 TextWorld 的 `won` 布尔标志（任务是否完成），不存在 ScienceWorld 的 normalized score / death 概念
+- **无 death 统计**：ALFWorld 没有 agent 死亡机制，失败 = 50 步内未完成任务
+- **无部分分数**：score 只有 0.0（失败）和 1.0（成功），没有中间态
+
+### 4. Episode 长度配置
+
+- **max_steps = 50**（命令行默认值，实际运行使用此值）
+- Split: `valid_seen`（来自 `json_2.1.1`）
+- History window: 最近 10 步 (`last_k=10`)
+- Random seed: 42
+- 环境：TextWorld gym + `AlfredDemangler(shuffle=False)` + `AlfredInfos`
+
+步数统计：
+| | Mean | Median | Min | Max |
+|---|---|---|---|---|
+| Internal | 49.0 | 50.0 | 5 | 50 |
+| Deterministic | 40.2 | 50.0 | 3 | 50 |
+
+几乎所有 internal episodes 都跑满 50 步（3.0% 成功率极低）。
+
+### 5. 关键统计
+
+**总量**：135 games，6 task types
+
+**Label 分布**：
+
+| Label | Count | % |
+|-------|-------|---|
+| det-preferred | 35 | 25.9% |
+| internal-preferred | 2 | 1.5% |
+| no-preference | 98 | 72.6% |
+
+**No-preference 细分**：both-succeed = 2，both-fail = **96**
+
+**成功率**：Internal 4/135 (3.0%)，Deterministic 37/135 (27.4%)
+
+**按 Task Type 细分**：
+
+| Task Type | N | Internal SR | Det SR | det-pref | int-pref | no-pref |
+|-----------|---|-------------|--------|----------|----------|---------|
+| pick_and_place | 32 | 0.0% | 56.2% | 18 | 0 | 14 |
+| pick_clean_then_place | 27 | 3.7% | 18.5% | 5 | 1 | 21 |
+| pick_cool_then_place | 24 | 0.0% | 16.7% | 4 | 0 | 20 |
+| pick_two_obj_and_place | 23 | 0.0% | 8.7% | 2 | 0 | 21 |
+| pick_heat_then_place | 16 | 6.2% | 18.8% | 3 | 1 | 12 |
+| look_at_obj_in_light | 13 | 15.4% | 38.5% | 3 | 0 | 10 |
+
+**论文写作要点**：
+- ALFWorld 的 deterministic modality 是 **admissible actions oracle**，不是 simulator mode——需要在补充材料中明确说明这个语义差异
+- 标签分布严重偏向 det-preferred + both-fail，符合"外部知识源（admissible list）显著提升 7B 模型在交互式任务中的表现"的叙事
+- `pick_and_place` 上 det 优势最大（56.2% vs 0.0%），因为动作空间约束对简单导航任务帮助最大
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "uuid": "21567efb-f6ce-4bf1-af22-f044e8ae33ce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015GseDk3DMXSm6tpWA3MpEK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6437,
+      "cache_read_input_tokens": 45565,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6437
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 50_
+
+All data collected. Here's the structured output:
+
+---
+
+## ALFWorld 方法论补充材料
+
+### 1. 模型
+
+**Qwen2.5-7B-Instruct** (`/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct`)
+- 推理引擎：vLLM，`gpu_memory_utilization=0.85`，`max_model_len=4096`
+- 生成参数：`temperature=0.3`，`max_new_tokens=256`
+
+### 2. "Deterministic" Modality 的精确定义
+
+**与 ScienceWorld 语义完全不同。** ALFWorld 中 "deterministic" = LLM 在每一步接收环境提供的 **admissible actions list**（合法动作列表）。
+
+代码 docstring 原文：
+> The admissible actions list is the "deterministic computation" source: it constrains the LLM to valid simulator actions.
+
+具体实现对比：
+
+| 维度 | Internal mode | Deterministic mode |
+|------|--------------|-------------------|
+| 系统 prompt | "You do NOT have access to any action list" | "You MUST choose an action from the admissible actions list exactly as written" |
+| 用户 prompt | 仅含 observation + history | 含 observation + history + **编号的 admissible actions 列表** |
+| 动作解析 | `parse_action_free()` → 自由文本提取，再 `match_to_admissible()` 做 best-effort 匹配（exact → case-insensitive → substring） | `parse_action_constrained()` → 直接匹配 admissible list |
+| 兜底 | 匹配失败时 fallback 到 `admissible[0]` | 同 |
+
+关键点：Internal mode 生成的动作仍然需要 map 到 admissible action 才能执行（TextWorld 引擎限制），但 LLM **看不到**这个列表。差异完全在于信息可见性，不是模拟器模式的切换。
+
+### 3. Labeling 流程（与 Algorithm 1 的异同）
+
+**沿用 Algorithm 1 的 episode-level 比较逻辑**，标签定义完全一致：
+
+```
+if det_success and not internal_success → "det-preferred"
+if internal_success and not det_success → "internal-preferred"
+else → "no-preference"  (both succeed OR both fail)
+```
+
+**差异：**
+- **成功判定**：ALFWorld 使用 TextWorld 的 `won` 布尔标志（任务是否完成），不存在 ScienceWorld 的 normalized score / death 概念
+- **无 death 统计**：ALFWorld 没有 agent 死亡机制，失败 = 50 步内未完成任务
+- **无部分分数**：score 只有 0.0（失败）和 1.0（成功），没有中间态
+
+### 4. Episode 长度配置
+
+- **max_steps = 50**（命令行默认值，实际运行使用此值）
+- Split: `valid_seen`（来自 `json_2.1.1`）
+- History window: 最近 10 步 (`last_k=10`)
+- Random seed: 42
+- 环境：TextWorld gym + `AlfredDemangler(shuffle=False)` + `AlfredInfos`
+
+步数统计：
+| | Mean | Median | Min | Max |
+|---|---|---|---|---|
+| Internal | 49.0 | 50.0 | 5 | 50 |
+| Deterministic | 40.2 | 50.0 | 3 | 50 |
+
+几乎所有 internal episodes 都跑满 50 步（3.0% 成功率极低）。
+
+### 5. 关键统计
+
+**总量**：135 games，6 task types
+
+**Label 分布**：
+
+| Label | Count | % |
+|-------|-------|---|
+| det-preferred | 35 | 25.9% |
+| internal-preferred | 2 | 1.5% |
+| no-preference | 98 | 72.6% |
+
+**No-preference 细分**：both-succeed = 2，both-fail = **96**
+
+**成功率**：Internal 4/135 (3.0%)，Deterministic 37/135 (27.4%)
+
+**按 Task Type 细分**：
+
+| Task Type | N | Internal SR | Det SR | det-pref | int-pref | no-pref |
+|-----------|---|-------------|--------|----------|----------|---------|
+| pick_and_place | 32 | 0.0% | 56.2% | 18 | 0 | 14 |
+| pick_clean_then_place | 27 | 3.7% | 18.5% | 5 | 1 | 21 |
+| pick_cool_then_place | 24 | 0.0% | 16.7% | 4 | 0 | 20 |
+| pick_two_obj_and_place | 23 | 0.0% | 8.7% | 2 | 0 | 21 |
+| pick_heat_then_place | 16 | 6.2% | 18.8% | 3 | 1 | 12 |
+| look_at_obj_in_light | 13 | 15.4% | 38.5% | 3 | 0 | 10 |
+
+**论文写作要点**：
+- ALFWorld 的 deterministic modality 是 **admissible actions oracle**，不是 simulator mode——需要在补充材料中明确说明这个语义差异
+- 标签分布严重偏向 det-preferred + both-fail，符合"外部知识源（admissible list）显著提升 7B 模型在交互式任务中的表现"的叙事
+- `pick_and_place` 上 det 优势最大（56.2% vs 0.0%），因为动作空间约束对简单导航任务帮助最大
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 105893,
+  "duration_api_ms": 100681,
+  "num_turns": 17,
+  "stop_reason": "end_turn",
+  "session_id": "d384e877-916e-4b42-a2b9-9bbea820a69c",
+  "total_cost_usd": 0.53774875,
+  "usage": {
+    "input_tokens": 12,
+    "cache_creation_input_tokens": 40161,
+    "cache_read_input_tokens": 252375,
+    "output_tokens": 6365,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 40161,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 2488,
+        "cache_read_input_tokens": 45565,
+        "cache_creation_input_tokens": 6437,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 6437
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1290,
+      "outputTokens": 16,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.00137,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 12,
+      "outputTokens": 6365,
+      "cacheReadInputTokens": 252375,
+      "cacheCreationInputTokens": 40161,
+      "webSearchRequests": 0,
+      "costUSD": 0.53637875,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "09c18bb6-a673-4ee1-ac00-972f2d684d00"
+}
+```
+
+</details>
+
+---

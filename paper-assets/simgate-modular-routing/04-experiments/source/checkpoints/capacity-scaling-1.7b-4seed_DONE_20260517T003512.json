@@ -1,0 +1,42 @@
+{
+  "exp_id": "capacity-scaling-1.7b-4seed",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:53:56.577Z",
+    "updated_at": "2026-05-17T00:35:11.818Z",
+    "hypothesis": "1.7B router's 47.1% episode-level accuracy (below 0.6B's 50.7%) is a seed configuration artifact. With 4 seeds matching 0.6B/4B config, 1.7B should achieve >= 50.7%, restoring monotonic capacity scaling.",
+    "parent": "capacity-scaling-episode-eval",
+    "spec": {
+      "command": "python src/training/implicit_router_sft.py train + capacity_episode_eval.py",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": null,
+      "model_name": "Qwen3-1.7B",
+      "seed": "42,43,44,45",
+      "checkpoint_source": "train from scratch (plan-008-v4 config)",
+      "eval_data": "data/plan-004-implicit/implicit_sft.jsonl (episode-level split, test_size=0.15, seed=42)",
+      "checkpoint_path": "checkpoints/plan-008-v4-1_7b-seed{42-45}/final_adapter",
+      "log_path": "capacity_1.7b_4seed.log"
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "mean_bal_acc": 0.4307,
+      "std": 0.01,
+      "seed42": 0.4437,
+      "seed43": 0.4354,
+      "seed44": 0.4271,
+      "seed45": 0.4167,
+      "comparison_0.6b": 0.507,
+      "comparison_1.7b_old_8seed": 0.471,
+      "comparison_4b": 0.5896,
+      "note": "Non-monotonicity REAL and worse. 1.7B (43.1%) < 0.6B (50.7%) < 4B (59.0%). Model biased toward det_recall in some seeds."
+    },
+    "completed_at": "2026-05-17T00:35:11.818Z"
+  },
+  "timestamp": "2026-05-17T00:35:12.016636+00:00",
+  "trigger": "update_registry"
+}

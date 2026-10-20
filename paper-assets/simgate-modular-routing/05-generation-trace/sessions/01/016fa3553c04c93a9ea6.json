@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "016fa3553c04c93a9ea6",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis death risk routing",
+  "task_key": "worker_analysis_death-risk-routing_20260517T090340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_death-risk-routing_20260517T090340_result.json",
+    "occurrence": 1,
+    "bytes": 1182,
+    "sha256": "3b2c5d0ac9e3f346c1d64e7a38db66cd721e90ec11e75699a14113a7a2689ce3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果完整。总结：\n\n---\n\n## 结果\n\n```\n=== Death-Risk Threshold Routing ===\nBaselines: always-det = -9.47, always-internal = -39.07\n\n245 episodes, 11 task types (skipped 30 deep_internal-only episodes)\n```\n\n**关键发现：threshold routing 无法优于 always-det。**\n\n- 唯一 death_rate=0 的 task type 是 `find-non-living-thing`（internal mean=+18.9, det mean=+28.5）\n- 其余 10 个 task types 的 internal death rate 均在 45-56%，全部高于任何合理 threshold\n- 最优 threshold=0.0（即：只要 death rate > 0 就路由到 det），只有 find-non-living-thing 走 internal\n- 最优得分 = **-11.03**，比 always-det (-9.47) 差 1.56 分\n- 原因：find-non-living-thing 用 internal (+18.9) 不如用 det (+28.5)，所以混合反而降分\n\n**Bootstrap CI**: difference = -1.57, 95% CI = [-8.87, +5.92]，不显著。\n\n**结论**：基于 task-type death risk 的 threshold routing 不能优于 always-det。唯一零死亡的 task type 在 internal 下的得分也低于 det，因此没有任何 threshold 能带来正向收益。这种简单的 per-task-type routing oracle 在当前数据集上是无效的。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-death-risk-routing.md"
+}

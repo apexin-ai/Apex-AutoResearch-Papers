@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "338dd63fe93b9765d942",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_7_1778769154.md",
+  "task_key": "loop_7_1778769154",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778769154.md",
+    "occurrence": 1,
+    "bytes": 5727,
+    "sha256": "a2c8c6b5e6d397e92d84eb5fbfa692b14487f34fdb3a71acdee9c7c4de2f8508"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: idle_timeout\nupdated: '2026-05-14T14:32:15+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单只有 `cuda:0` 和 `cuda:1`（服务器 westb-13313），config `gpu_ids: [\"cuda:0\", \"cuda:1\"]`\n- D046 最终定调：**analysis paper**，不是 method paper。MATH 不扩全量，pilot 结果只进 Discussion/Future Work。ALFWorld 是 exploratory，看结果再决定是否 supplementary。不要再 pivot 回 method paper\n- 论文 Table 1 数字必须来自 `eval_end_to_end.py`（不是 eval_implicit_router.py）。trained-router (ablation-b) = **-10.70**，always-det = **-9.47**\n- Checkpoint 路径：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（正确的），`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败的）。两者 eval 指标相似，极易混淆\n- 所有 eval 脚本必须 `enable_thinking=False` + `re.sub` 清理 `<think>` tags（Qwen3 干扰）\n- 98.2% tie rate 是 per-step 的数字，不是 episode-level。episode-level tie rate = 61.2%（150/245 no-preference）。论文里不要混用\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westb-13313**，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base env，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- HF_HOME：`/root/autodl-tmp/.hf_cache`\n- 模型：`/root/autodl-tmp/models/Qwen2.5-7B-Instruct`（backbone）、`/root/autodl-tmp/models/Qwen3-1.7B`（router）\n- Router checkpoint：`/root/autodl-tmp/simgate-modular-routing/checkpoints/plan-004-implicit/final_adapter`（ablation-b，唯一可用）\n- 数据：`data/plan-004-implicit/implicit_sft.jsonl`（2040 samples，MD5: c9b59e04de78，唯一可用训练数据）\n- 活跃进程：\n  - `math-200-fixed`：cuda:0，tmux 未知，cron 监控中（interval 120s）\n  - `alfworld-counterfactual-full`：cuda:1，tmux=alfworld_cf，cron 监控中（interval 120s）\n- LaTeX 论文目录：项目 `paper/` 下\n\n### 3. 📊 当前状态\n**Paper Writing Sprint 阶段**，DDL 2026-05-25（剩余 11 天）。\n\n刚完成的关键里程碑：\n- plan-012-full（death decomposition）: SUCCESS，核心数据 Δ_full=29.60, DAF=90.41%, r=0.9698\n- plan-013（labeling quality）: SUCCESS，oracle circularity 封死，strict-only retrain balanced_acc=0.5729 ≈ ablation-b\n- plan-003 baseline: SUCCESS，Table 1 数据齐全\n- D046 pivot 定调：analysis paper（经历了 D041→D042→D045→D046 四次 pivot，最终稳定）\n\n**RUNNING 实验（2个）：**\n- `math-200-fixed`（cuda:0）：MATH 200 题 counterfactual 收集（offset=50 跳 pilot），修复了 code_sandbox auto_print_last_expr bug。结果进 Discussion\n- `alfworld-counterfactual-full`（cuda:1）：ALFWorld 135 games 全量 counterfactual。D044 定位 exploratory\n\n**Worker 池 = 0**。上一轮 session 有多个 paper writing workers（experiments_v2_patch, conclusion, related_work_v2, consistency_review, bootstrap_ci_check, fig1-font-fix, abstract-sync），应已完成但本 session 未收到回调。需要检查这些 worker 的产出是否已合入 LaTeX。\n\n**等待中：**\n- 2 个 cron 回调（math-200-fixed、alfworld-counterfactual-full 完成时触发）\n- 无待处理 Director 决策\n\n### 4. 📋 待办（条件触发式）\n- math-200-fixed cron 回调到达 → spawn worker 分析结果（internal vs code-interpreter 对比、执行率、反转率）→ 写入 Discussion 段落 → 汇报 Director\n- alfworld-counterfactual-full cron 回调到达 → spawn worker 分析 6 task types 的 counterfactual 结果 → 决定是否进 supplementary → 汇报 Director\n- **立即**：检查上轮 paper writing workers 产出（experiments_v2_patch/conclusion/related_work_v2/abstract-sync 等）是否已合入 LaTeX → 如未合入，spawn worker 整合\n- **立即**：98.2% tie rate 数值修正（ROADMAP 标注 Agent 处理中）→ 确认论文中 per-step vs episode-level 区分是否已修正\n- 5/15-16：plan-013 labeling quality 结果 → Discussion/Limitations 段落（Worker 写）\n- 5/17：整合完整 LaTeX 初稿 → Director 审稿\n- Worker 池 = 0 是失职状态 → 开局应立即 spawn paper integration worker\n\n### 5. 🎯 战略上下文\n**核心结论**：Death avoidance 占 ~90% routing signal（D013/D018/D033/D046 决策链）。论文贡献 = empirical finding + diagnostic methodology，不是 router 架构。Router near-random（balanced_acc=58.1±0.8%）本身就是 finding。\n\n**决策链关键节点**：\n- D013: Framing pivot 到 death avoidance analysis\n- D025: Classification head 路线失败 → generative SFT\n- D033: Option B 定稿（方法论贡献）\n- D035: e2e eval NEGATIVE（trained-router 不优于 always-det）→ 反而强化 C1\n- D039: Oracle circularity 封死\n- D046: 最终定调 analysis paper，MATH pilot 进 Discussion\n\n**最容易判断错的事**：\n1. **不要再 pivot**。D041-D046 一天内 pivot 了 4 次，Director 已经在 D046 最终定调。如果 MATH/ALFWorld 结果出来有意外，写进 Discussion 讨论，不要主动建议 pivot\n2. **MATH pilot 显示 internal (80%) > code interpreter (72%)**，label 严重偏 internal-preferred。这和 ScienceWorld 趋势相反。D046 决策是\"不扩全量，pilot 结果入 Discussion\"——不要试图解决这个反转，just report it\n3. **plan-003-baseline 状态 PREPARING 但 conclusion=success**——这是回溯注册的，数据已齐全（metrics 在 registry），不需要重跑\n4. **Worker 产出检查**：上轮有 7+ paper writing workers，本 session 未收到回调。优先确认它们的 LaTeX 修改是否已 merge 到论文目录，避免重复工作或覆盖\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778769154.md"
+}

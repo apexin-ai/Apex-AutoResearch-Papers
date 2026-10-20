@@ -1,0 +1,21 @@
+{
+  "exp_id": "llama-70b-cross-model",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T22:16:23.406Z",
+    "updated_at": "2026-05-23T23:59:49.414Z",
+    "hypothesis": "Llama-3.1-70B-Instruct on ScienceWorld will show death dominance (DAF>80%) consistent with Qwen2.5-72B (DAF=92.4%), extending the cross-model scaling evidence from 1 to 2 independent 70B-class model families and upgrading C3 (scaling) from single-model probe to cross-model-at-scale validation.",
+    "parent": "backbone-72b-full",
+    "reproduce": {
+      "finished_at": "2026-05-23T23:59:48.226Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-23T23:59:49.660690+00:00",
+  "trigger": "update_registry"
+}

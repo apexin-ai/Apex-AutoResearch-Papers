@@ -1,0 +1,10 @@
+source_archive,member_path,source_bytes,sanitized_bytes,processing
+simgate-modular-routing/workspace.tar.gz,logs/chats/feishu_group_oc_905abcca13e538218858b8f8d1d5c211_reviewer.jsonl,177640,175003,Credentials and binary attachments redacted
+simgate-modular-routing/workspace.tar.gz,logs/chats/cron_hook_e003_inference_coverage_ablation.jsonl,52222,51492,Credentials and binary attachments redacted
+simgate-modular-routing/workspace.tar.gz,logs/chats/feishu_group_oc_905abcca13e538218858b8f8d1d5c211.jsonl,1368189,1351437,Credentials and binary attachments redacted
+simgate-modular-routing/workspace.tar.gz,logs/chats/feishu_group_oc_4e2f2f78b05f262344bedb641be7ff2e.jsonl,27636,26981,Credentials and binary attachments redacted
+simgate-modular-routing/workspace.tar.gz,logs/chats/cron_hook_e002_budgeted_confusion_estimation_r1.jsonl,150586,148456,Credentials and binary attachments redacted
+simgate-modular-routing/workspace.tar.gz,logs/chats/cron_hook_e004_coverage_bias_decomposition.jsonl,73736,72774,Credentials and binary attachments redacted
+simgate-modular-routing/workspace.tar.gz,logs/chats/feishu_group_oc_4e2f2f78b05f262344bedb641be7ff2e_director.jsonl,649361,640031,Credentials and binary attachments redacted
+simgate-modular-routing/workspace.tar.gz,logs/chats/cron_hook_e002_budgeted_confusion_estimation.jsonl,131258,129467,Credentials and binary attachments redacted
+simgate-modular-routing/workspace.tar.gz,logs/chats/cron_hook_e010_selector_seed_threshold_sensitivity.jsonl,54491,53729,Credentials and binary attachments redacted

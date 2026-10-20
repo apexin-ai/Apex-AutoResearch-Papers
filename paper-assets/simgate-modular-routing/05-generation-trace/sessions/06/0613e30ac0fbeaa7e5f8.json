@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0",
+  "id": "0613e30ac0fbeaa7e5f8",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code multi model pilot v2",
+  "task_key": "worker_code_multi-model-pilot-v2_20260515T071423",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_multi-model-pilot-v2_20260515T071423.log",
+    "occurrence": 1,
+    "bytes": 2122097,
+    "sha256": "b48c689350efd78e218ae84c991cef1a8ed3864203229e48b0f0cb5ba5a3d9c6"
+  },
+  "statistics": {
+    "messages": 1402,
+    "user_turns": 2,
+    "tool_calls": 513,
+    "roles": {
+      "log": 1,
+      "system": 51,
+      "record": 1,
+      "assistant": 309,
+      "tool_call": 513,
+      "tool_result": 513,
+      "user": 2,
+      "result": 12
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 567,
+      "chunks": [
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0004.json",
+          "message_count": 27
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 801,
+      "chunks": [
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0004.json",
+          "message_count": 153
+        },
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0008.json",
+          "message_count": 108
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 34,
+      "chunks": [
+        {
+          "path": "0613e30ac0fbeaa7e5f8-part-0008.json",
+          "message_count": 34
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-multi-model-pilot-v2.md"
+}

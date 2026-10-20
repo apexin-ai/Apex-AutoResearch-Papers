@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2baf501a76325defddb4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra bib append recompile",
+  "task_key": "worker_infra_bib-append-recompile_20260517T023421",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_bib-append-recompile_20260517T023421_result.json",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "4222083eeff7e98f82f6864759a40bd7eb73ff8d24af2fadda1f7d6fb75776e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **bib 追加**：成功，共 34 条条目\n- **编译**：成功，输出 14 页 PDF（main.pdf, 405KB）\n- **undefined citations**：0"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-bib-append-recompile.md"
+}

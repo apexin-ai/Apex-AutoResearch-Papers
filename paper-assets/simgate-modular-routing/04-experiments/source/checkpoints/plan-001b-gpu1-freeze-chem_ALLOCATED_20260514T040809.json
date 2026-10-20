@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan-001b-gpu1-freeze-chem",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:08:29.425Z",
+    "updated_at": "2026-05-14T04:08:09.920Z",
+    "hypothesis": "GPU1 拆分任务：freeze 20 eps + chemistry-mix 20 eps。find-non-living-thing 完成后立即启动，与 GPU0 (lifespan-longest-lived + measure-melting-point) 并行。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python src/episode_level_collection.py --task_types freeze,chemistry-mix --episodes 20 --gpu_id 1 --reuse_dirs results/plan_c\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "788058",
+      "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu1-freeze-chem.log",
+      "submitted_at": "2026-05-14T03:12:09.644Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-14T04:08:09.968782+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,47 @@
+{
+  "exp_id": "r7n2-data-size-ablation-r3",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T04:01:41.336Z",
+    "updated_at": "2026-05-16T05:08:24.296Z",
+    "spec": {
+      "command": "python src/r7n2_scale_study.py",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "934738",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": "2040 steps, scales: 25%/50%/75%/100%/200%/400%/800%",
+      "model_name": "Qwen3-1.7B",
+      "seed": "42,43,44",
+      "log_path": "results/ablation_r3/",
+      "note": "Round 3: incremental save, eval batch=2, dual eval (step+episode). Actual scales include 200%/400%/800% (synthetic augmentation). 6/14 done + 1 in progress. All episode-level bal_acc ≈ 50%."
+    },
+    "hypothesis": "R7-N2 reviewer concern: router diagnostic 低 balanced_acc 可能是数据不足导致。通过 data scaling (25%/50%/75%/100%) 验证 balanced_acc 是否随数据量上升。双套 eval: step-level + episode-level。",
+    "conclusion": "negative",
+    "metrics": {
+      "completed_runs": "7/21 (25%×3, 50%×1, 800%×3)",
+      "step_bal_acc": {
+        "25pct": "0.497±0.009",
+        "50pct": "0.493",
+        "800pct": "0.511±0.007"
+      },
+      "episode_bal_acc": {
+        "25pct": "0.495±0.003",
+        "50pct": "0.515",
+        "800pct": "0.510±0.011"
+      },
+      "int_recall_range": "0.0-0.083",
+      "model_behavior": "majority-class collapse at all scales"
+    },
+    "checkpoint_path": "results/ablation_r3/",
+    "completed_at": "2026-05-16T05:08:24.296Z"
+  },
+  "timestamp": "2026-05-16T05:08:24.458677+00:00",
+  "trigger": "update_registry"
+}

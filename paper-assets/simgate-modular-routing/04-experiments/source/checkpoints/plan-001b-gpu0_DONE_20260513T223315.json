@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan-001b-gpu0",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:10:02.679Z",
+    "updated_at": "2026-05-13T22:33:15.743Z",
+    "spec": {
+      "command": "python src/episode_level_collection.py --task_types find-animal,...,chemistry-mix --episodes 20 --gpu_id 0",
+      "server": "westb-13313",
+      "data_path": "ScienceWorld API (7 tasks x 20 eps)",
+      "data_count": 105,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "pid": "794184",
+      "note": "Resubmitted after GPU0 OOM — killed residual prescreening vLLM process (pid 741465, 28GB)"
+    },
+    "hypothesis": "Episode-level data collection for 7 tasks (5 genuine-det: find-animal, identify-life-stages-1, lifespan-longest-lived-then-shortest, lifespan-longest-lived, measure-melting-point-unknown + 2 death-dom: freeze, chemistry-mix), 20 eps/task, reusing prescreening 5 eps",
+    "notes": "Part of plan-001b approved by Director. Tasks: find-animal, identify-life-stages-1, lifespan-longest-lived-then-shortest-lived, lifespan-longest-lived, measure-melting-point-unknown-substance, freeze, chemistry-mix. 105 new eps (15 each × 7 tasks). Watch measure-melting-point-unknown death_avoidance_fraction=0.38 outlier per Reviewer note.",
+    "conclusion": "failed",
+    "completed_at": "2026-05-13T22:32:07.561Z"
+  },
+  "timestamp": "2026-05-13T22:33:15.811696+00:00",
+  "trigger": "update_registry"
+}

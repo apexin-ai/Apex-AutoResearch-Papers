@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d8b1c696e49f0bccd95",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "data scienceworld consolidate",
+  "task_key": "worker_data_scienceworld-consolidate_20260514T132243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_scienceworld-consolidate_20260514T132243_result.json",
+    "occurrence": 1,
+    "bytes": 720,
+    "sha256": "66b4142e624e8cbbbe57a2bff851ab7467e5a151014a7f536e5d473741f4b9d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。ScienceWorld counterfactual 数据已转换为统一格式：\n\n- **输出**: `data/scienceworld-counterfactual/episodes.jsonl` (245 条)\n- **摘要**: `data/scienceworld-counterfactual/summary.json`\n- **转换脚本**: `src/consolidate_scienceworld.py`\n\n验证结果全部匹配预期：\n| 指标 | 值 |\n|------|-----|\n| Episodes | 245 |\n| Tasks | 11 |\n| det-preferred | 86 |\n| internal-preferred | 9 |\n| no-preference | 150 |\n| only_int_dies | 70 |\n| only_det_dies | 5 |\n| both_die | 35 |\n| neither_die | 135 |\n\n两种原始数据格式（完整版含 observation/llm_output 和精简版仅含核心字段）均已处理，缺失 observation 的 step 填充为空字符串。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-scienceworld-consolidate.md"
+}

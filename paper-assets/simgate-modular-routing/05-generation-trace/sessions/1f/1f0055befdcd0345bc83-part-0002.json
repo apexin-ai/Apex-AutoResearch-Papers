@@ -1,0 +1,1216 @@
+{
+  "schema_version": "1.0",
+  "session_id": "1f0055befdcd0345bc83",
+  "rounds": [
+    {
+      "number": 0,
+      "messages": [
+        {
+          "source_line": 132,
+          "timestamp": "2026-05-21T01:07:56.063Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012rLiH4AjtcNDRaXNCYm6GB",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\\documentclass[11pt]{article}\\\\n     2\\\\t\\\\n     3\\\\t\\\\\\\\usepackage[review]{acl}\\\\n     4\\\\t\\\\n     5\\\\t\\\\\\\\usepackage{times}\\\\n     6\\\\t\\\\\\\\usepackage{latexsym}\\\\n     7\\\\t\\\\\\\\usepackage[T1]{fontenc}\\\\n     8\\\\t\\\\\\\\usepackage[utf8]{inputenc}\\\\n     9\\\\t\\\\\\\\usepackage{microtype}\\\\n    10\\\\t\\\\\\\\usepackage{graphicx}\\\\n    11\\\\t\\\\\\\\graphicspath{{figures/}}\\\\n    12\\\\t\\\\\\\\usepackage{booktabs}\\\\n    13\\\\t\\\\\\\\usepackage{amsmath}\\\\n    14\\\\t\\\\\\\\usepackage{amssymb}\\\\n    15\\\\t\\\\\\\\usepackage{algorithm}\\\\n    16\\\\t\\\\\\\\usepackage{enumitem}\\\\n    17\\\\t\\\\\\\\usepackage{algorithmic}\\\\n    18\\\\t\\\\n    19\\\\t\\\\\\\\title{Death Avoidance as a Dominant Routing Signal:\\\\\\\\\\\\\\\\A Counterfactual Analysis on ScienceWorld}\\\\n    20\\\\t\\\\n    21\\\\t\\\\\\\\author{Anonymous}\\\\n    22\\\\t\\\\n    23\\\\t\\\\\\\\begin{document}\\\\n    24\\\\t\\\\\\\\maketitle\\\\n    25\\\\t\\\\n    26\\\\t\\\\\\\\input{abstract}\\\\n    27\\\\t\\\\\\\\input{introduction}\\\\n    28\\\\t\\\\\\\\input{method}\\\\n    29\\\\t\\\\\\\\input{experiments}\\\\n    30\\\\t\\\\\\\\input{related_work}\\\\n    31\\\\t\\\\\\\\input{discussion}\\\\n    32\\\\t\\\\\\\\input{conclusion}\\\\n    33\\\\t\\\\n    34\\\\t\\\\\\\\section*{Limitations}\\\\n    35\\\\t\\\\n    36\\\\tOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\\\\\\\ref{app:penalty}). The 19 excluded task types (63\\\\\\\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface additional signal. Our internal-reasoning baseline uses single-pass ReAct~\\\\\\\\citep{react-2023}; more sophisticated strategies (e.g., Reflexion~\\\\\\\\citep{reflexion-2023} or Tree-of-Thought backtracking~\\\\\\\\citep{tot-2023}) may reduce internal death rates and lower DAF. Episode-level labels may assign suboptimal routing to individual steps, particularly those preceding death events, and training on pure-strategy trajectories introduces distribution shift at deployment~\\\\\\\\citep{dagger-2011}. Cross-environment analyses on MATH and ALFWorld (\\\\\\\\S\\\\\\\\ref{sec:cross-env}, \\\\\\\\S\\\\\\\\ref{sec:discussion}) provide supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct replication (7 task types, $N{=}70$; Appendix~\\\\\\\\ref{app:cross-model}) confirms direction-consistent death patterns for all tasks, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\\\\n    37\\\\t\\\\n    38\\\\t\\\\\\\\section*{Ethics Statement}\\\\n    39\\\\t\\\\n    40\\\\tThis work uses ScienceWorld \\\\\\\\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two consumer GPUs for data collection, router training, and evaluation. Code and data will be released upon acceptance.\\\\n    41\\\\t\\\\n    42\\\\t\\\\\\\\bibliography{references}\\\\n    43\\\\t\\\\n    44\\\\t\\\\\\\\appendix\\\\n    45\\\\t\\\\n    46\\\\t\\\\\\\\section{Labeling Quality Audit}\\\\n    47\\\\t\\\\\\\\label{app:labeling}\\\\n    48\\\\t\\\\n    49\\\\tA potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \\\\\\\\texttt{no\\\\\\\\_preference} labels (61.2\\\\\\\\%), 115 (46.9\\\\\\\\%) are both-alive ties and 35 (14.3\\\\\\\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\\\\\\\%, within 1$\\\\\\\\sigma$ of the full-label retrain (57.6 $\\\\\\\\pm$ 0.5\\\\\\\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\\\\\\\S\\\\\\\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\\\\\\\% step-level tie rate (\\\\\\\\S\\\\\\\\ref{sec:collecti\\\\n\\\\n... [截断: 输出过长，省略 21394 字符] ...\\\\n\\\\ntype rather than method instability.\\\\n   301\\\\t\\\\\\\\section{Failure Mode Analysis}\\\\n   302\\\\t\\\\\\\\label{app:failure-modes}\\\\n   303\\\\t\\\\n   304\\\\tThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\\\n   305\\\\t\\\\n   306\\\\t\\\\\\\\section{Ablation Studies}\\\\n   307\\\\t\\\\\\\\label{app:ablations}\\\\n   308\\\\t\\\\n   309\\\\t\\\\\\\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\\\\\\\ref{tab:capacity}).\\\\n   310\\\\t\\\\n   311\\\\t\\\\\\\\begin{table}[h]\\\\n   312\\\\t\\\\\\\\centering\\\\n   313\\\\t\\\\\\\\small\\\\n   314\\\\t\\\\\\\\begin{tabular}{@{}lcc@{}}\\\\n   315\\\\t\\\\\\\\toprule\\\\n   316\\\\tModel & Step Bal.\\\\\\\\ Acc.\\\\\\\\ (\\\\\\\\%) & Ep.\\\\\\\\ Bal.\\\\\\\\ Acc.\\\\\\\\ (\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n   317\\\\t\\\\\\\\midrule\\\\n   318\\\\tQwen3-0.6B & $56.4 \\\\\\\\pm 3.5$ & $50.7 \\\\\\\\pm 2.6$ \\\\\\\\\\\\\\\\\\\\n   319\\\\tQwen3-1.7B & $58.2 \\\\\\\\pm 4.0$ & $43.1 \\\\\\\\pm 1.0$ \\\\\\\\\\\\\\\\\\\\n   320\\\\tQwen3-4B & $59.2 \\\\\\\\pm 3.5$ & $\\\\\\\\mathbf{59.0 \\\\\\\\pm 1.9}$ \\\\\\\\\\\\\\\\\\\\n   321\\\\t\\\\\\\\midrule\\\\n   322\\\\tAlways-det & 50.0 & 50.0 \\\\\\\\\\\\\\\\\\\\n   323\\\\t\\\\\\\\bottomrule\\\\n   324\\\\t\\\\\\\\end{tabular}\\\\n   325\\\\t\\\\\\\\caption{Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\\\\\\\\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\\\\\\\\%$, $p < 0.005$).}\\\\n   326\\\\t\\\\\\\\label{tab:capacity}\\\\n   327\\\\t\\\\\\\\end{table}\\\\n   328\\\\t\\\\n   329\\\\tStep-level balanced accuracy is flat across scales ($56$--$59\\\\\\\\%$, within seed variance), indicating step-level discrimination is not capacity-sensitive. At episode level, only 4B breaks the random baseline ($59.0 \\\\\\\\pm 1.9\\\\\\\\%$, $p < 0.005$); 0.6B and 1.7B remain at or below chance. The dominant explanation is that death avoidance constitutes a task-type-level binary signal that a step-level router cannot exploit efficiently.\\\\n   330\\\\t\\\\n   331\\\\t\\\\\\\\paragraph{Reasoning depth.} An ablation comparing chain-of-thought reasoning against direct-answer generation on 6 task types ($n{=}120$ episodes per condition, 6 tasks $\\\\\\\\times$ 20 episodes per task) found no significant difference (Mann--Whitney $p > 0.26$, $|d| \\\\\\\\leq 0.31$) and near-identical death rates (41.8\\\\\\\\% vs.\\\\\\\\ 42.5\\\\\\\\%); reasoning depth does not meaningfully alter internal-mode outcomes.\\\\n   332\\\\t\\\\n   333\\\\t\\\\\\\\section{Threshold Routing Analysis}\\\\n   334\\\\t\\\\\\\\label{sec:threshold-routing}\\\\n   335\\\\t\\\\n   336\\\\tGiven per-task death risk knowledge, we test whether a simple threshold routing strategy can outperform always-deterministic. For each threshold $t \\\\\\\\in [0, 1]$, we route to internal if the per-task internal death rate $\\\\\\\\leq t$, otherwise to deterministic, and sweep all thresholds to find the optimal.\\\\n   337\\\\t\\\\n   338\\\\t\\\\\\\\begin{table}[h]\\\\n   339\\\\t\\\\\\\\centering\\\\n   340\\\\t\\\\\\\\small\\\\n   341\\\\t\\\\\\\\begin{tabular}{lccc}\\\\n   342\\\\t\\\\\\\\toprule\\\\n   343\\\\tStrategy & Mean Score & Death Rate & $\\\\\\\\Delta$ vs Det \\\\\\\\\\\\\\\\\\\\n   344\\\\t\\\\\\\\midrule\\\\n   345\\\\tAlways-det & $-9.47$ & $0.163$ & $0.00$ \\\\\\\\\\\\\\\\\\\\n   346\\\\tOptimal threshold ($t{=}0$) & $-11.03$ & $0.155$ & $-1.56$ \\\\\\\\\\\\\\\\\\\\n   347\\\\tAlways-internal & $-39.07$ & $0.429$ & $-29.60$ \\\\\\\\\\\\\\\\\\\\n   348\\\\t\\\\\\\\bottomrule\\\\n   349\\\\t\\\\\\\\end{tabular}\\\\n   350\\\\t\\\\\\\\caption{Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \\\\\\\\texttt{find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\\\\\\\\% CI for the difference: $[-8.87, +5.92]$.}\\\\n   351\\\\t\\\\\\\\label{tab:threshold-routing}\\\\n   352\\\\t\\\\\\\\end{table}\\\\n   353\\\\t\\\\n   354\\\\tEven with perfect per-task death risk knowledge, threshold routing cannot outperform always-deterministic. The sole zero-death task achieves higher scores under deterministic (+28.5) than internal (+18.9), leaving no room for a beneficial mixed strategy.\\\\n   355\\\\t\\\\n   356\\\\t\\\\\\\\input{responsible_nlp_checklist}\\\\n   357\\\\t\\\\n   358\\\\t\\\\\\\\end{document}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "52112b61-3686-4ca8-9180-42f490b3e18e",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"     1\\\\t\\\\\\\\documentclass[11pt]{article}\\\\n     2\\\\t\\\\n     3\\\\t\\\\\\\\usepackage[review]{acl}\\\\n     4\\\\t\\\\n     5\\\\t\\\\\\\\usepackage{times}\\\\n     6\\\\t\\\\\\\\usepackage{latexsym}\\\\n     7\\\\t\\\\\\\\usepackage[T1]{fontenc}\\\\n     8\\\\t\\\\\\\\usepackage[utf8]{inputenc}\\\\n     9\\\\t\\\\\\\\usepackage{microtype}\\\\n    10\\\\t\\\\\\\\usepackage{graphicx}\\\\n    11\\\\t\\\\\\\\graphicspath{{figures/}}\\\\n    12\\\\t\\\\\\\\usepackage{booktabs}\\\\n    13\\\\t\\\\\\\\usepackage{amsmath}\\\\n    14\\\\t\\\\\\\\usepackage{amssymb}\\\\n    15\\\\t\\\\\\\\usepackage{algorithm}\\\\n    16\\\\t\\\\\\\\usepackage{enumitem}\\\\n    17\\\\t\\\\\\\\usepackage{algorithmic}\\\\n    18\\\\t\\\\n    19\\\\t\\\\\\\\title{Death Avoidance as a Dominant Routing Signal:\\\\\\\\\\\\\\\\A Counterfactual Analysis on ScienceWorld}\\\\n    20\\\\t\\\\n    21\\\\t\\\\\\\\author{Anonymous}\\\\n    22\\\\t\\\\n    23\\\\t\\\\\\\\begin{document}\\\\n    24\\\\t\\\\\\\\maketitle\\\\n    25\\\\t\\\\n    26\\\\t\\\\\\\\input{abstract}\\\\n    27\\\\t\\\\\\\\input{introduction}\\\\n    28\\\\t\\\\\\\\input{method}\\\\n    29\\\\t\\\\\\\\input{experiments}\\\\n    30\\\\t\\\\\\\\input{related_work}\\\\n    31\\\\t\\\\\\\\input{discussion}\\\\n    32\\\\t\\\\\\\\input{conclusion}\\\\n    33\\\\t\\\\n    34\\\\t\\\\\\\\section*{Limitations}\\\\n    35\\\\t\\\\n    36\\\\tOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\\\\\\\ref{app:penalty}). The 19 excluded task types (63\\\\\\\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface additional signal. Our internal-reasoning baseline uses single-pass ReAct~\\\\\\\\citep{react-2023}; more sophisticated strategies (e.g., Reflexion~\\\\\\\\citep{reflexion-2023} or Tree-of-Thought backtracking~\\\\\\\\citep{tot-2023}) may reduce internal death rates and lower DAF. Episode-level labels may assign suboptimal routing to individual steps, particularly those preceding death events, and training on pure-strategy trajectories introduces distribution shift at deployment~\\\\\\\\citep{dagger-2011}. Cross-environment analyses on MATH and ALFWorld (\\\\\\\\S\\\\\\\\ref{sec:cross-env}, \\\\\\\\S\\\\\\\\ref{sec:discussion}) provide supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct replication (7 task types, $N{=}70$; Appendix~\\\\\\\\ref{app:cross-model}) confirms direction-consistent death patterns for all tasks, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\\\\n    37\\\\t\\\\n    38\\\\t\\\\\\\\section*{Ethics Statement}\\\\n    39\\\\t\\\\n    40\\\\tThis work uses ScienceWorld \\\\\\\\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two consumer GPUs for data collection, router training, and evaluation. Code and data will be released upon acceptance.\\\\n    41\\\\t\\\\n    42\\\\t\\\\\\\\bibliography{references}\\\\n    43\\\\t\\\\n    44\\\\t\\\\\\\\appendix\\\\n    45\\\\t\\\\n    46\\\\t\\\\\\\\section{Labeling Quality Audit}\\\\n    47\\\\t\\\\\\\\label{app:labeling}\\\\n    48\\\\t\\\\n    49\\\\tA potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \\\\\\\\texttt{no\\\\\\\\_preference} labels (61.2\\\\\\\\%), 115 (46.9\\\\\\\\%) are both-alive ties and 35 (14.3\\\\\\\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\\\\\\\%, within 1$\\\\\\\\sigma$ of the full-label retrain (57.6 $\\\\\\\\pm$ 0.5\\\\\\\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\\\\\\\S\\\\\\\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\\\\\\\% step-level tie rate (\\\\\\\\S\\\\\\\\ref{sec:collecti\\\\n\\\\n... [截断: 输出过长，省略 21394 字符] ...\\\\n\\\\ntype rather than method instability.\\\\n   301\\\\t\\\\\\\\section{Failure Mode Analysis}\\\\n   302\\\\t\\\\\\\\label{app:failure-modes}\\\\n   303\\\\t\\\\n   304\\\\tThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\\\n   305\\\\t\\\\n   306\\\\t\\\\\\\\section{Ablation Studies}\\\\n   307\\\\t\\\\\\\\label{app:ablations}\\\\n   308\\\\t\\\\n   309\\\\t\\\\\\\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\\\\\\\ref{tab:capacity}).\\\\n   310\\\\t\\\\n   311\\\\t\\\\\\\\begin{table}[h]\\\\n   312\\\\t\\\\\\\\centering\\\\n   313\\\\t\\\\\\\\small\\\\n   314\\\\t\\\\\\\\begin{tabular}{@{}lcc@{}}\\\\n   315\\\\t\\\\\\\\toprule\\\\n   316\\\\tModel & Step Bal.\\\\\\\\ Acc.\\\\\\\\ (\\\\\\\\%) & Ep.\\\\\\\\ Bal.\\\\\\\\ Acc.\\\\\\\\ (\\\\\\\\%) \\\\\\\\\\\\\\\\\\\\n   317\\\\t\\\\\\\\midrule\\\\n   318\\\\tQwen3-0.6B & $56.4 \\\\\\\\pm 3.5$ & $50.7 \\\\\\\\pm 2.6$ \\\\\\\\\\\\\\\\\\\\n   319\\\\tQwen3-1.7B & $58.2 \\\\\\\\pm 4.0$ & $43.1 \\\\\\\\pm 1.0$ \\\\\\\\\\\\\\\\\\\\n   320\\\\tQwen3-4B & $59.2 \\\\\\\\pm 3.5$ & $\\\\\\\\mathbf{59.0 \\\\\\\\pm 1.9}$ \\\\\\\\\\\\\\\\\\\\n   321\\\\t\\\\\\\\midrule\\\\n   322\\\\tAlways-det & 50.0 & 50.0 \\\\\\\\\\\\\\\\\\\\n   323\\\\t\\\\\\\\bottomrule\\\\n   324\\\\t\\\\\\\\end{tabular}\\\\n   325\\\\t\\\\\\\\caption{Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\\\\\\\\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\\\\\\\\%$, $p < 0.005$).}\\\\n   326\\\\t\\\\\\\\label{tab:capacity}\\\\n   327\\\\t\\\\\\\\end{table}\\\\n   328\\\\t\\\\n   329\\\\tStep-level balanced accuracy is flat across scales ($56$--$59\\\\\\\\%$, within seed variance), indicating step-level discrimination is not capacity-sensitive. At episode level, only 4B breaks the random baseline ($59.0 \\\\\\\\pm 1.9\\\\\\\\%$, $p < 0.005$); 0.6B and 1.7B remain at or below chance. The dominant explanation is that death avoidance constitutes a task-type-level binary signal that a step-level router cannot exploit efficiently.\\\\n   330\\\\t\\\\n   331\\\\t\\\\\\\\paragraph{Reasoning depth.} An ablation comparing chain-of-thought reasoning against direct-answer generation on 6 task types ($n{=}120$ episodes per condition, 6 tasks $\\\\\\\\times$ 20 episodes per task) found no significant difference (Mann--Whitney $p > 0.26$, $|d| \\\\\\\\leq 0.31$) and near-identical death rates (41.8\\\\\\\\% vs.\\\\\\\\ 42.5\\\\\\\\%); reasoning depth does not meaningfully alter internal-mode outcomes.\\\\n   332\\\\t\\\\n   333\\\\t\\\\\\\\section{Threshold Routing Analysis}\\\\n   334\\\\t\\\\\\\\label{sec:threshold-routing}\\\\n   335\\\\t\\\\n   336\\\\tGiven per-task death risk knowledge, we test whether a simple threshold routing strategy can outperform always-deterministic. For each threshold $t \\\\\\\\in [0, 1]$, we route to internal if the per-task internal death rate $\\\\\\\\leq t$, otherwise to deterministic, and sweep all thresholds to find the optimal.\\\\n   337\\\\t\\\\n   338\\\\t\\\\\\\\begin{table}[h]\\\\n   339\\\\t\\\\\\\\centering\\\\n   340\\\\t\\\\\\\\small\\\\n   341\\\\t\\\\\\\\begin{tabular}{lccc}\\\\n   342\\\\t\\\\\\\\toprule\\\\n   343\\\\tStrategy & Mean Score & Death Rate & $\\\\\\\\Delta$ vs Det \\\\\\\\\\\\\\\\\\\\n   344\\\\t\\\\\\\\midrule\\\\n   345\\\\tAlways-det & $-9.47$ & $0.163$ & $0.00$ \\\\\\\\\\\\\\\\\\\\n   346\\\\tOptimal threshold ($t{=}0$) & $-11.03$ & $0.155$ & $-1.56$ \\\\\\\\\\\\\\\\\\\\n   347\\\\tAlways-internal & $-39.07$ & $0.429$ & $-29.60$ \\\\\\\\\\\\\\\\\\\\n   348\\\\t\\\\\\\\bottomrule\\\\n   349\\\\t\\\\\\\\end{tabular}\\\\n   350\\\\t\\\\\\\\caption{Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \\\\\\\\texttt{find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\\\\\\\\% CI for the difference: $[-8.87, +5.92]$.}\\\\n   351\\\\t\\\\\\\\label{tab:threshold-routing}\\\\n   352\\\\t\\\\\\\\end{table}\\\\n   353\\\\t\\\\n   354\\\\tEven with perfect per-task death risk knowledge, threshold routing cannot outperform always-deterministic. The sole zero-death task achieves higher scores under deterministic (+28.5) than internal (+18.9), leaving no room for a beneficial mixed strategy.\\\\n   355\\\\t\\\\n   356\\\\t\\\\\\\\input{responsible_nlp_checklist}\\\\n   357\\\\t\\\\n   358\\\\t\\\\\\\\end{document}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.94}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"     1\\t\\\\documentclass[11pt]{article}\\n     2\\t\\n     3\\t\\\\usepackage[review]{acl}\\n     4\\t\\n     5\\t\\\\usepackage{times}\\n     6\\t\\\\usepackage{latexsym}\\n     7\\t\\\\usepackage[T1]{fontenc}\\n     8\\t\\\\usepackage[utf8]{inputenc}\\n     9\\t\\\\usepackage{microtype}\\n    10\\t\\\\usepackage{graphicx}\\n    11\\t\\\\graphicspath{{figures/}}\\n    12\\t\\\\usepackage{booktabs}\\n    13\\t\\\\usepackage{amsmath}\\n    14\\t\\\\usepackage{amssymb}\\n    15\\t\\\\usepackage{algorithm}\\n    16\\t\\\\usepackage{enumitem}\\n    17\\t\\\\usepackage{algorithmic}\\n    18\\t\\n    19\\t\\\\title{Death Avoidance as a Dominant Routing Signal:\\\\\\\\A Counterfactual Analysis on ScienceWorld}\\n    20\\t\\n    21\\t\\\\author{Anonymous}\\n    22\\t\\n    23\\t\\\\begin{document}\\n    24\\t\\\\maketitle\\n    25\\t\\n    26\\t\\\\input{abstract}\\n    27\\t\\\\input{introduction}\\n    28\\t\\\\input{method}\\n    29\\t\\\\input{experiments}\\n    30\\t\\\\input{related_work}\\n    31\\t\\\\input{discussion}\\n    32\\t\\\\input{conclusion}\\n    33\\t\\n    34\\t\\\\section*{Limitations}\\n    35\\t\\n    36\\tOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\\\ref{app:penalty}). The 19 excluded task types (63\\\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface additional signal. Our internal-reasoning baseline uses single-pass ReAct~\\\\citep{react-2023}; more sophisticated strategies (e.g., Reflexion~\\\\citep{reflexion-2023} or Tree-of-Thought backtracking~\\\\citep{tot-2023}) may reduce internal death rates and lower DAF. Episode-level labels may assign suboptimal routing to individual steps, particularly those preceding death events, and training on pure-strategy trajectories introduces distribution shift at deployment~\\\\citep{dagger-2011}. Cross-environment analyses on MATH and ALFWorld (\\\\S\\\\ref{sec:cross-env}, \\\\S\\\\ref{sec:discussion}) provide supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct replication (7 task types, $N{=}70$; Appendix~\\\\ref{app:cross-model}) confirms direction-consistent death patterns for all tasks, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\\n    37\\t\\n    38\\t\\\\section*{Ethics Statement}\\n    39\\t\\n    40\\tThis work uses ScienceWorld \\\\cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two consumer GPUs for data collection, router training, and evaluation. Code and data will be released upon acceptance.\\n    41\\t\\n    42\\t\\\\bibliography{references}\\n    43\\t\\n    44\\t\\\\appendix\\n    45\\t\\n    46\\t\\\\section{Labeling Quality Audit}\\n    47\\t\\\\label{app:labeling}\\n    48\\t\\n    49\\tA potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \\\\texttt{no\\\\_preference} labels (61.2\\\\%), 115 (46.9\\\\%) are both-alive ties and 35 (14.3\\\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\\\%, within 1$\\\\sigma$ of the full-label retrain (57.6 $\\\\pm$ 0.5\\\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\\\S\\\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\\\% step-level tie rate (\\\\S\\\\ref{sec:collecti\\n\\n... [截断: 输出过长，省略 21394 字符] ...\\n\\ntype rather than method instability.\\n   301\\t\\\\section{Failure Mode Analysis}\\n   302\\t\\\\label{app:failure-modes}\\n   303\\t\\n   304\\tThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\n   305\\t\\n   306\\t\\\\section{Ablation Studies}\\n   307\\t\\\\label{app:ablations}\\n   308\\t\\n   309\\t\\\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\\\ref{tab:capacity}).\\n   310\\t\\n   311\\t\\\\begin{table}[h]\\n   312\\t\\\\centering\\n   313\\t\\\\small\\n   314\\t\\\\begin{tabular}{@{}lcc@{}}\\n   315\\t\\\\toprule\\n   316\\tModel & Step Bal.\\\\ Acc.\\\\ (\\\\%) & Ep.\\\\ Bal.\\\\ Acc.\\\\ (\\\\%) \\\\\\\\\\n   317\\t\\\\midrule\\n   318\\tQwen3-0.6B & $56.4 \\\\pm 3.5$ & $50.7 \\\\pm 2.6$ \\\\\\\\\\n   319\\tQwen3-1.7B & $58.2 \\\\pm 4.0$ & $43.1 \\\\pm 1.0$ \\\\\\\\\\n   320\\tQwen3-4B & $59.2 \\\\pm 3.5$ & $\\\\mathbf{59.0 \\\\pm 1.9}$ \\\\\\\\\\n   321\\t\\\\midrule\\n   322\\tAlways-det & 50.0 & 50.0 \\\\\\\\\\n   323\\t\\\\bottomrule\\n   324\\t\\\\end{tabular}\\n   325\\t\\\\caption{Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\\\\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\\\\%$, $p < 0.005$).}\\n   326\\t\\\\label{tab:capacity}\\n   327\\t\\\\end{table}\\n   328\\t\\n   329\\tStep-level balanced accuracy is flat across scales ($56$--$59\\\\%$, within seed variance), indicating step-level discrimination is not capacity-sensitive. At episode level, only 4B breaks the random baseline ($59.0 \\\\pm 1.9\\\\%$, $p < 0.005$); 0.6B and 1.7B remain at or below chance. The dominant explanation is that death avoidance constitutes a task-type-level binary signal that a step-level router cannot exploit efficiently.\\n   330\\t\\n   331\\t\\\\paragraph{Reasoning depth.} An ablation comparing chain-of-thought reasoning against direct-answer generation on 6 task types ($n{=}120$ episodes per condition, 6 tasks $\\\\times$ 20 episodes per task) found no significant difference (Mann--Whitney $p > 0.26$, $|d| \\\\leq 0.31$) and near-identical death rates (41.8\\\\% vs.\\\\ 42.5\\\\%); reasoning depth does not meaningfully alter internal-mode outcomes.\\n   332\\t\\n   333\\t\\\\section{Threshold Routing Analysis}\\n   334\\t\\\\label{sec:threshold-routing}\\n   335\\t\\n   336\\tGiven per-task death risk knowledge, we test whether a simple threshold routing strategy can outperform always-deterministic. For each threshold $t \\\\in [0, 1]$, we route to internal if the per-task internal death rate $\\\\leq t$, otherwise to deterministic, and sweep all thresholds to find the optimal.\\n   337\\t\\n   338\\t\\\\begin{table}[h]\\n   339\\t\\\\centering\\n   340\\t\\\\small\\n   341\\t\\\\begin{tabular}{lccc}\\n   342\\t\\\\toprule\\n   343\\tStrategy & Mean Score & Death Rate & $\\\\Delta$ vs Det \\\\\\\\\\n   344\\t\\\\midrule\\n   345\\tAlways-det & $-9.47$ & $0.163$ & $0.00$ \\\\\\\\\\n   346\\tOptimal threshold ($t{=}0$) & $-11.03$ & $0.155$ & $-1.56$ \\\\\\\\\\n   347\\tAlways-internal & $-39.07$ & $0.429$ & $-29.60$ \\\\\\\\\\n   348\\t\\\\bottomrule\\n   349\\t\\\\end{tabular}\\n   350\\t\\\\caption{Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \\\\texttt{find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\\\\% CI for the difference: $[-8.87, +5.92]$.}\\n   351\\t\\\\label{tab:threshold-routing}\\n   352\\t\\\\end{table}\\n   353\\t\\n   354\\tEven with perfect per-task death risk knowledge, threshold routing cannot outperform always-deterministic. The sole zero-death task achieves higher scores under deterministic (+28.5) than internal (+18.9), leaving no room for a beneficial mixed strategy.\\n   355\\t\\n   356\\t\\\\input{responsible_nlp_checklist}\\n   357\\t\\n   358\\t\\\\end{document}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.94}}"
+              }
+            }
+          },
+          "id": "event-000132"
+        },
+        {
+          "source_line": 133,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The output was truncated in the middle again. Let me check lines 277-301 specifically to verify the inserted content.",
+              "signature": "ErsCCmMIDRgCKkBw0iAnZ7xx7cC/HLPeca4fuMKjLvIfUBlXXdTh09eVO06vYRbQiXVGvjjU4jIE4SBcjlg4BgKWE+prkI+nXkvqMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDPcO7jSBaCdhIaI6ABoMmf42YQ9qa5n2u3doIjD2h5ynSFsIgm8cW8g/lOBXpnZVsC8Ntq6HvzX2yYlOOp4655iZ/1oKsh//w0n6aTgqhQHPMgeGn9FpvrM4KWvctdg2FnsN/S1HhvYVaQwSuKsYbZAQPn0I7CZ4X0WtsnzvPcM9Jjxaazpy2amFFfa+VWuqX1N9UDWhA+pl6ZcYJSOQjVxNShb0Ph8EHMbT+ILCLBpArUhcBO/1xbDuLFPuvW1F95qUwTx1Hr1RzuF+sjhxvoLVnnluGAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "23b8ea19-8fb9-48eb-a7ac-4ade14c292a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tntzg6QQPA6YgE6jczKWoV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3201,
+                "cache_read_input_tokens": 105314,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3201
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000133"
+        },
+        {
+          "source_line": 134,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012ReN6jR7nBKyJKxLFJJjBu",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && sed -n '275,305p' main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "f29b70f8-b8cf-4aa1-9c2d-83f555bbed9d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Tntzg6QQPA6YgE6jczKWoV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3201,
+                "cache_read_input_tokens": 105314,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3201
+                },
+                "output_tokens": 9,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000134"
+        },
+        {
+          "source_line": 135,
+          "timestamp": "2026-05-21T01:08:03.401Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012ReN6jR7nBKyJKxLFJJjBu",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nTo test whether the death-avoidance finding generalizes beyond Qwen2.5-7B-Instruct, we replicate the counterfactual analysis with Llama-3.1-8B-Instruct on 7 task types ($N{=}70$ episode pairs, 10 episodes per task). The results are strongly consistent with the Qwen findings: 24 episodes (34.3\\\\\\\\%) are deterministic-preferred, \\\\\\\\textbf{0} (0\\\\\\\\%) are internal-preferred, and 46 (65.7\\\\\\\\%) show no preference. The internal strategy dies in 58.6\\\\\\\\% of episodes versus 24.3\\\\\\\\% for deterministic (death-rate differential $+34.3\\\\\\\\%$), compared to $+26.6\\\\\\\\%$ for Qwen2.5-7B. Direction consistency is perfect: all 7 task types show higher internal than deterministic death rates (7/7, compared to 10/11 for Qwen). The larger death-rate differential ($+34.3\\\\\\\\%$ vs.\\\\\\\\ $+26.6\\\\\\\\%$) and the absence of any internal-preferred episodes (0 vs.\\\\\\\\ 9 for Qwen) suggest that Llama-3.1-8B is more vulnerable to hallucination-induced death, amplifying the death-avoidance effect. These results confirm that the death-avoidance dominance is not specific to the Qwen model family.\\\\n\\\\n\\\\n\\\\\\\\section{DAF Sensitivity to Zero-Death Task Types}\\\\n\\\\\\\\label{app:daf-sensitivity}\\\\n\\\\nTable~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{DAF (11 tasks)} & \\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nQwen2.5-7B-Instruct & 90.4\\\\\\\\% [81.4, 99.1] & 100.0\\\\\\\\% [100.0, 100.0] \\\\\\\\\\\\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\\\\\% [80.0, 95.1] & 97.0\\\\\\\\% [91.5, 100.0] \\\\\\\\\\\\\\\\\\\\nGemma-2-9B-it & 89.7\\\\\\\\% [79.5, 98.4] & 99.9\\\\\\\\% [99.7, 100.0] \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{DAF sensitivity analysis. ``10 tasks' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\\\\\% CIs ($B = 10{,}000$).}\\\\n\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\\\\\\end{table}\\\\n\\\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\\\n\\\\\\\\section{Failure Mode Analysis}\\\\n\\\\\\\\label{app:failure-modes}\\\\n\\\\nThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "8d0ef221-be3f-4d96-8329-071ff411c036",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\nTo test whether the death-avoidance finding generalizes beyond Qwen2.5-7B-Instruct, we replicate the counterfactual analysis with Llama-3.1-8B-Instruct on 7 task types ($N{=}70$ episode pairs, 10 episodes per task). The results are strongly consistent with the Qwen findings: 24 episodes (34.3\\\\\\\\%) are deterministic-preferred, \\\\\\\\textbf{0} (0\\\\\\\\%) are internal-preferred, and 46 (65.7\\\\\\\\%) show no preference. The internal strategy dies in 58.6\\\\\\\\% of episodes versus 24.3\\\\\\\\% for deterministic (death-rate differential $+34.3\\\\\\\\%$), compared to $+26.6\\\\\\\\%$ for Qwen2.5-7B. Direction consistency is perfect: all 7 task types show higher internal than deterministic death rates (7/7, compared to 10/11 for Qwen). The larger death-rate differential ($+34.3\\\\\\\\%$ vs.\\\\\\\\ $+26.6\\\\\\\\%$) and the absence of any internal-preferred episodes (0 vs.\\\\\\\\ 9 for Qwen) suggest that Llama-3.1-8B is more vulnerable to hallucination-induced death, amplifying the death-avoidance effect. These results confirm that the death-avoidance dominance is not specific to the Qwen model family.\\\\n\\\\n\\\\n\\\\\\\\section{DAF Sensitivity to Zero-Death Task Types}\\\\n\\\\\\\\label{app:daf-sensitivity}\\\\n\\\\nTable~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{DAF (11 tasks)} & \\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nQwen2.5-7B-Instruct & 90.4\\\\\\\\% [81.4, 99.1] & 100.0\\\\\\\\% [100.0, 100.0] \\\\\\\\\\\\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\\\\\% [80.0, 95.1] & 97.0\\\\\\\\% [91.5, 100.0] \\\\\\\\\\\\\\\\\\\\nGemma-2-9B-it & 89.7\\\\\\\\% [79.5, 98.4] & 99.9\\\\\\\\% [99.7, 100.0] \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{DAF sensitivity analysis. ``10 tasks' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\\\\\% CIs ($B = 10{,}000$).}\\\\n\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\\\\\\end{table}\\\\n\\\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\\\n\\\\\\\\section{Failure Mode Analysis}\\\\n\\\\\\\\label{app:failure-modes}\\\\n\\\\nThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\nTo test whether the death-avoidance finding generalizes beyond Qwen2.5-7B-Instruct, we replicate the counterfactual analysis with Llama-3.1-8B-Instruct on 7 task types ($N{=}70$ episode pairs, 10 episodes per task). The results are strongly consistent with the Qwen findings: 24 episodes (34.3\\\\%) are deterministic-preferred, \\\\textbf{0} (0\\\\%) are internal-preferred, and 46 (65.7\\\\%) show no preference. The internal strategy dies in 58.6\\\\% of episodes versus 24.3\\\\% for deterministic (death-rate differential $+34.3\\\\%$), compared to $+26.6\\\\%$ for Qwen2.5-7B. Direction consistency is perfect: all 7 task types show higher internal than deterministic death rates (7/7, compared to 10/11 for Qwen). The larger death-rate differential ($+34.3\\\\%$ vs.\\\\ $+26.6\\\\%$) and the absence of any internal-preferred episodes (0 vs.\\\\ 9 for Qwen) suggest that Llama-3.1-8B is more vulnerable to hallucination-induced death, amplifying the death-avoidance effect. These results confirm that the death-avoidance dominance is not specific to the Qwen model family.\\n\\n\\n\\\\section{DAF Sensitivity to Zero-Death Task Types}\\n\\\\label{app:daf-sensitivity}\\n\\nTable~\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\n\\\\textbf{Model} & \\\\textbf{DAF (11 tasks)} & \\\\textbf{DAF (10 tasks)} \\\\\\\\\\n\\\\midrule\\nQwen2.5-7B-Instruct & 90.4\\\\% [81.4, 99.1] & 100.0\\\\% [100.0, 100.0] \\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\% [80.0, 95.1] & 97.0\\\\% [91.5, 100.0] \\\\\\\\\\nGemma-2-9B-it & 89.7\\\\% [79.5, 98.4] & 99.9\\\\% [99.7, 100.0] \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\caption{DAF sensitivity analysis. ``10 tasks' excludes \\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\% CIs ($B = 10{,}000$).}\\n\\\\label{tab:daf-sensitivity}\\n\\\\end{table}\\n\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\n\\\\section{Failure Mode Analysis}\\n\\\\label{app:failure-modes}\\n\\nThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.62}}"
+              }
+            }
+          },
+          "id": "event-000135"
+        },
+        {
+          "source_line": 136,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "I see a problem with the caption: `''10 tasks'` should be `''10 tasks''` (two backticks for closing quote in LaTeX). The sed command escaped the single quotes and it lost one. Let me fix that.\n\nAlso, there's an issue with spacing - the new section starts right after the Cross-Model text without a blank line before `\\section{Failure Mode Analysis}`. Let me check.\n\nLooking at the output:\n```\n...method instability.\n\\section{Failure Mode Analysis}\n```\n\nThere should be a blank line before `\\section{Failure Mode Analysis}`. \n\nNow I need to correct both the backtick issue in the caption and add the missing blank line before the section heading.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "627cf366-c1d2-4641-915c-e5f8f6a429f7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V2khgNg6HYZLFGVtuowHbu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 108515,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1243
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000136"
+        },
+        {
+          "source_line": 137,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "发现两个问题：caption 中 ``10 tasks' 缺少一个关闭引号，且新段落后与 Failure Mode Analysis 之间缺少空行。修复。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "6784cbbb-cf6e-40bb-a809-56dfcc65e13a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V2khgNg6HYZLFGVtuowHbu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 108515,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1243
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000137"
+        },
+        {
+          "source_line": 138,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YRXcBFZrZ1VsxBiwuTY76g",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && sed -i \"s/``10 tasks' excludes/``10 tasks'' excludes/\" main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "ed247d69-c8e6-4593-a6c1-93dedff2b7fb",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V2khgNg6HYZLFGVtuowHbu",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1243,
+                "cache_read_input_tokens": 108515,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1243
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000138"
+        },
+        {
+          "source_line": 139,
+          "timestamp": "2026-05-21T01:08:14.731Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01YRXcBFZrZ1VsxBiwuTY76g",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.63}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "05d5142d-4b0f-4897-a161-e7d19a208c35",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.63}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.63}}"
+              }
+            }
+          },
+          "id": "event-000139"
+        },
+        {
+          "source_line": 140,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_015gi5GYRfiGnkSAt32wcETZ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && sed -i '/rather than method instability\\.$/{n;/^\\\\section{Failure/i\\\n}' main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "7ab248e6-1ff4-46bb-89a6-06efe486496f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RYBKvyB6Kk1Ks4kdxG88tA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 530,
+                "cache_read_input_tokens": 109758,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 530
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000140"
+        },
+        {
+          "source_line": 141,
+          "timestamp": "2026-05-21T01:08:19.925Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_015gi5GYRfiGnkSAt32wcETZ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: \\\\\\\"cd /root/autodl-tmp/simgate-modular-routing/docs/paper && sed -i '/rather than method instability\\\\\\\\\\\\\\\\.$/{n;/^\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\section{Failure/i\\\\\\\\\\\\\\\\\\\\\\\\n}' main.tex\\\\\\\"\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nsed: -e expression #1, char 0: unmatched `{'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "d0debcf0-b707-4e77-8785-fd734d789bb4",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: \\\\\\\"cd /root/autodl-tmp/simgate-modular-routing/docs/paper && sed -i '/rather than method instability\\\\\\\\\\\\\\\\.$/{n;/^\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\section{Failure/i\\\\\\\\\\\\\\\\\\\\\\\\n}' main.tex\\\\\\\"\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nsed: -e expression #1, char 0: unmatched `{'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.62}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: \\\"cd /root/autodl-tmp/simgate-modular-routing/docs/paper && sed -i '/rather than method instability\\\\\\\\.$/{n;/^\\\\\\\\\\\\\\\\section{Failure/i\\\\\\\\\\\\n}' main.tex\\\"\\n\\nExit code: 1\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nsed: -e expression #1, char 0: unmatched `{'\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.62}}"
+              }
+            }
+          },
+          "id": "event-000141"
+        },
+        {
+          "source_line": 142,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014ZLevEMkrsQxA1AR4eE2Py",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && python3 -c \"\ntext = open('main.tex').read()\ntext = text.replace('rather than method instability.\\n\\\\\\\\section{Failure Mode Analysis}',\n                     'rather than method instability.\\n\\n\\\\\\\\section{Failure Mode Analysis}')\nopen('main.tex','w').write(text)\nprint('Done')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "06f4a8f7-f9e6-4044-9e66-6241a4a571e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FvzopEXgxiWHLS3JTKzAuU",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 339,
+                "cache_read_input_tokens": 110288,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 339
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000142"
+        },
+        {
+          "source_line": 143,
+          "timestamp": "2026-05-21T01:08:26.788Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014ZLevEMkrsQxA1AR4eE2Py",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "ab1fefe8-2893-4417-a161-7f167172473c",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Done\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.09}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Done\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.09}}"
+              }
+            }
+          },
+          "id": "event-000143"
+        },
+        {
+          "source_line": 144,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证修复效果。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "d8cc0bd5-0003-4cd6-9558-66982ea822cf",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RenofCgY5ejfzXTvEmiei2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 280,
+                "cache_read_input_tokens": 110627,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 280
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000144"
+        },
+        {
+          "source_line": 145,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01G1eJnqbRnPXEsPPR9UFnTC",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && sed -n '278,305p' main.tex",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "d434fafd-097d-4893-82bb-2851b8013843",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RenofCgY5ejfzXTvEmiei2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 280,
+                "cache_read_input_tokens": 110627,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 280
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-21T01:08:31.526Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01G1eJnqbRnPXEsPPR9UFnTC",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\\\\\section{DAF Sensitivity to Zero-Death Task Types}\\\\n\\\\\\\\label{app:daf-sensitivity}\\\\n\\\\nTable~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{DAF (11 tasks)} & \\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nQwen2.5-7B-Instruct & 90.4\\\\\\\\% [81.4, 99.1] & 100.0\\\\\\\\% [100.0, 100.0] \\\\\\\\\\\\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\\\\\% [80.0, 95.1] & 97.0\\\\\\\\% [91.5, 100.0] \\\\\\\\\\\\\\\\\\\\nGemma-2-9B-it & 89.7\\\\\\\\% [79.5, 98.4] & 99.9\\\\\\\\% [99.7, 100.0] \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{DAF sensitivity analysis. ``10 tasks'' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\\\\\% CIs ($B = 10{,}000$).}\\\\n\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\\\\\\end{table}\\\\n\\\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\\\n\\\\n\\\\\\\\section{Failure Mode Analysis}\\\\n\\\\\\\\label{app:failure-modes}\\\\n\\\\nThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "9a43b066-1d54-4b24-b990-13420d3245af",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\n\\\\\\\\section{DAF Sensitivity to Zero-Death Task Types}\\\\n\\\\\\\\label{app:daf-sensitivity}\\\\n\\\\nTable~\\\\\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\\\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\\\n\\\\n\\\\\\\\begin{table}[h]\\\\n\\\\\\\\centering\\\\n\\\\\\\\small\\\\n\\\\\\\\begin{tabular}{lcc}\\\\n\\\\\\\\toprule\\\\n\\\\\\\\textbf{Model} & \\\\\\\\textbf{DAF (11 tasks)} & \\\\\\\\textbf{DAF (10 tasks)} \\\\\\\\\\\\\\\\\\\\n\\\\\\\\midrule\\\\nQwen2.5-7B-Instruct & 90.4\\\\\\\\% [81.4, 99.1] & 100.0\\\\\\\\% [100.0, 100.0] \\\\\\\\\\\\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\\\\\% [80.0, 95.1] & 97.0\\\\\\\\% [91.5, 100.0] \\\\\\\\\\\\\\\\\\\\nGemma-2-9B-it & 89.7\\\\\\\\% [79.5, 98.4] & 99.9\\\\\\\\% [99.7, 100.0] \\\\\\\\\\\\\\\\\\\\n\\\\\\\\bottomrule\\\\n\\\\\\\\end{tabular}\\\\n\\\\\\\\caption{DAF sensitivity analysis. ``10 tasks'' excludes \\\\\\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\\\\\% CIs ($B = 10{,}000$).}\\\\n\\\\\\\\label{tab:daf-sensitivity}\\\\n\\\\\\\\end{table}\\\\n\\\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\\\n\\\\n\\\\\\\\section{Failure Mode Analysis}\\\\n\\\\\\\\label{app:failure-modes}\\\\n\\\\nThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\\n\\\\section{DAF Sensitivity to Zero-Death Task Types}\\n\\\\label{app:daf-sensitivity}\\n\\nTable~\\\\ref{tab:daf-sensitivity} reports DAF estimates with and without \\\\texttt{find-non-living-thing}, the only task type with zero death rate across all three models.\\n\\n\\\\begin{table}[h]\\n\\\\centering\\n\\\\small\\n\\\\begin{tabular}{lcc}\\n\\\\toprule\\n\\\\textbf{Model} & \\\\textbf{DAF (11 tasks)} & \\\\textbf{DAF (10 tasks)} \\\\\\\\\\n\\\\midrule\\nQwen2.5-7B-Instruct & 90.4\\\\% [81.4, 99.1] & 100.0\\\\% [100.0, 100.0] \\\\\\\\\\nLlama-3.1-8B-Instruct & 88.2\\\\% [80.0, 95.1] & 97.0\\\\% [91.5, 100.0] \\\\\\\\\\nGemma-2-9B-it & 89.7\\\\% [79.5, 98.4] & 99.9\\\\% [99.7, 100.0] \\\\\\\\\\n\\\\bottomrule\\n\\\\end{tabular}\\n\\\\caption{DAF sensitivity analysis. ``10 tasks'' excludes \\\\texttt{find-non-living-thing} (the only task type with zero death rate across all models). Episode-level bootstrap 95\\\\% CIs ($B = 10{,}000$).}\\n\\\\label{tab:daf-sensitivity}\\n\\\\end{table}\\n\\nFor the 10 task types with nonzero death rates, DAF exceeds 97\\\\% across all three model families, confirming that the wider CIs in the full analysis reflect the mechanical effect of including a zero-death task type rather than method instability.\\n\\n\\\\section{Failure Mode Analysis}\\n\\\\label{app:failure-modes}\\n\\nThe most common failure mode for the internal strategy is state hallucination: the model predicts that an action succeeded (e.g., ``the water is now boiling'') when the environment state did not change, leading to cascading errors that trigger agent death. The deterministic strategy avoids this by receiving ground-truth observations, but still dies in 16.3\\\\% of episodes, primarily from selecting inherently dangerous actions (e.g., eating toxic substances) rather than from state misestimation.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.36}}"
+              }
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "LaTeX 内容正确。开始编译。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "8f76fd50-c5ec-4500-9f19-ece459b0967b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S7vFU33bG6tWDYFMuZz9PE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 860,
+                "cache_read_input_tokens": 110907,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 860
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017grYdEzEkez2K461Shfwrk",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && latexmk -pdf main.tex 2>&1 | tail -30",
+                "account": "root",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "a955f9bf-8361-4713-947c-16a6f3c115b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01S7vFU33bG6tWDYFMuZz9PE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 860,
+                "cache_read_input_tokens": 110907,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 860
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": "2026-05-21T01:08:38.659Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017grYdEzEkez2K461Shfwrk",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\\\\nlic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\\\\nonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\\\\nm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6\\\\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></\\\\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sha\\\\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texl\\\\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/te\\\\nxmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dis\\\\nt/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist\\\\n/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\\\\nfonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u\\\\nrw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm\\\\nb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s\\\\nhare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (17 pages, 444752 bytes).\\\\nTranscript written on main.log.\\\\nLatexmk: Found input bbl file 'main.bbl'\\\\nLatexmk: Log file says output to 'main.pdf'\\\\nLatexmk: List of undefined refs and citations:\\\\n  Reference `sec:experiments' on page 16 undefined on input line 33\\\\n  Reference `sec:experiments' on page 16 undefined on input line 45\\\\n  Reference `sec:experiments' on page 16 undefined on input line 56\\\\n  Reference `sec:experiments' on page 16 undefined on input line 59\\\\nLatexmk: Examining 'main.log'\\\\n=== TeX engine is 'pdfTeX'\\\\nLatexmk: Found bibliography file(s) [references.bib]\\\\nLatexmk: Summary of warnings from last run of *latex:\\\\n  Latex failed to resolve 4 reference(s)\\\\nLatexmk: All targets (main.pdf) are up-to-date\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "19d5efa1-d809-48a7-9593-78ce41033607",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\\\\nlic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\\\\nonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\\\\nm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6\\\\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></\\\\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sha\\\\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texl\\\\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/te\\\\nxmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dis\\\\nt/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist\\\\n/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\\\\nfonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u\\\\nrw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm\\\\nb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s\\\\nhare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\\\nOutput written on main.pdf (17 pages, 444752 bytes).\\\\nTranscript written on main.log.\\\\nLatexmk: Found input bbl file 'main.bbl'\\\\nLatexmk: Log file says output to 'main.pdf'\\\\nLatexmk: List of undefined refs and citations:\\\\n  Reference `sec:experiments' on page 16 undefined on input line 33\\\\n  Reference `sec:experiments' on page 16 undefined on input line 45\\\\n  Reference `sec:experiments' on page 16 undefined on input line 56\\\\n  Reference `sec:experiments' on page 16 undefined on input line 59\\\\nLatexmk: Examining 'main.log'\\\\n=== TeX engine is 'pdfTeX'\\\\nLatexmk: Found bibliography file(s) [references.bib]\\\\nLatexmk: Summary of warnings from last run of *latex:\\\\n  Latex failed to resolve 4 reference(s)\\\\nLatexmk: All targets (main.pdf) are up-to-date\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.93}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"ype1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub\\nlic/amsfonts/cm/cmr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf\\nonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\\nm/cmsy5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6\\n.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></\\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/sha\\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/share/texl\\nive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/te\\nxmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf-dis\\nt/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texlive/texmf-dist\\n/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texlive/texmf-dist/\\nfonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u\\nrw/helvetic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utm\\nb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/s\\nhare/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\\nOutput written on main.pdf (17 pages, 444752 bytes).\\nTranscript written on main.log.\\nLatexmk: Found input bbl file 'main.bbl'\\nLatexmk: Log file says output to 'main.pdf'\\nLatexmk: List of undefined refs and citations:\\n  Reference `sec:experiments' on page 16 undefined on input line 33\\n  Reference `sec:experiments' on page 16 undefined on input line 45\\n  Reference `sec:experiments' on page 16 undefined on input line 56\\n  Reference `sec:experiments' on page 16 undefined on input line 59\\nLatexmk: Examining 'main.log'\\n=== TeX engine is 'pdfTeX'\\nLatexmk: Found bibliography file(s) [references.bib]\\nLatexmk: Summary of warnings from last run of *latex:\\n  Latex failed to resolve 4 reference(s)\\nLatexmk: All targets (main.pdf) are up-to-date\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.93}}"
+              }
+            }
+          },
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Compilation succeeded. Let me check:\n1. Output: main.pdf, 17 pages, 444752 bytes\n2. Errors: 0 errors\n3. Undefined references: 4 references to `sec:experiments` on page 16 (responsible NLP checklist) - these are pre-existing, not related to my change\n4. My new `tab:daf-sensitivity` and `app:daf-sensitivity` labels should resolve correctly\n\nLet me verify:\n1. No new undefined references (my labels are `app:daf-sensitivity` and `tab:daf-sensitivity`)\n\n\n2. Checking the page count...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "dac93e23-cf54-46e1-804a-d82f64c419fc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017EKe6npwP4ePzKEzxQfAm9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1109,
+                "cache_read_input_tokens": 111767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1109
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功（0 errors）。4 个 undefined ref 是 `sec:experiments`（NLP checklist 中预存的），与本次修改无关。检查页数和新标签。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "6462f0ed-c089-4b0a-a34c-7149571e1b0c",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017EKe6npwP4ePzKEzxQfAm9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1109,
+                "cache_read_input_tokens": 111767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1109
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01S36vS1dwLKJtpJC7AywAWd",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && grep -c \"undefined\" main.log && grep \"daf-sensitivity\" main.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "03074cec-a7d2-4b60-a787-8816dbd19983",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_017EKe6npwP4ePzKEzxQfAm9",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1109,
+                "cache_read_input_tokens": 111767,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1109
+                },
+                "output_tokens": 25,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000152"
+        },
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-21T01:08:50.302Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01S36vS1dwLKJtpJC7AywAWd",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing/docs/paper && grep -c \\\\\\\"undefined\\\\\\\" main.log && grep \\\\\\\"daf-sensitivity\\\\\\\" main.log'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n5\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "4ed0cb7e-d9a6-439e-9dd4-69a98f9ae2be",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing/docs/paper && grep -c \\\\\\\"undefined\\\\\\\" main.log && grep \\\\\\\"daf-sensitivity\\\\\\\" main.log'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n5\\\\n\\\\nStderr:\\\\n\\\\n\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.37}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing/docs/paper && grep -c \\\"undefined\\\" main.log && grep \\\"daf-sensitivity\\\" main.log'\\n\\nExit code: 1\\n\\nStdout:\\n\\n5\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 1.37}}"
+              }
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01P5nReuKZ2L2nBHzMqn6DDY",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && grep \"undefined\" main.log",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "1c54fdbc-8485-4f5b-802e-ef7b13bcb23a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013DyiWovAhBS94d3JJ7a1JP",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 501,
+                "cache_read_input_tokens": 112876,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 501
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-21T01:08:57.851Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01P5nReuKZ2L2nBHzMqn6DDY",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 3\\\\nLaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 4\\\\nLaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 5\\\\nLaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 5\\\\nLaTeX Warning: There were undefined references.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.67}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "baf036bd-6418-4f79-aa23-6f0d5ff43430",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"LaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 3\\\\nLaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 4\\\\nLaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 5\\\\nLaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 5\\\\nLaTeX Warning: There were undefined references.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.67}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"LaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 3\\nLaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 4\\nLaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 5\\nLaTeX Warning: Reference `sec:experiments' on page 16 undefined on input line 5\\nLaTeX Warning: There were undefined references.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.67}}"
+              }
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 undefined references 都是预存的 `sec:experiments`（NLP checklist），与本次修改无关。新增的 `app:daf-sensitivity` 和 `tab:daf-sensitivity` 均正确解析。\n\n检查主文页数。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "e5293883-b840-4eaa-8ab8-a6f7795163ac",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015JAkQWJFbu3ssQxiRNXLqA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 113377,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RbJiXwVNofAQNa1dYE8QpU",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing/docs/paper && python3 -c \"\nimport subprocess\nr = subprocess.run(['pdfinfo', 'main.pdf'], capture_output=True, text=True)\nfor line in r.stdout.split('\\n'):\n    if 'Pages' in line:\n        print(line)\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "d98d487e-f266-49e1-b13f-1acf30e8e8e4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015JAkQWJFbu3ssQxiRNXLqA",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 307,
+                "cache_read_input_tokens": 113377,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 307
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-21T01:09:07.299Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RbJiXwVNofAQNa1dYE8QpU",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Pages:           17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "f8ca8fad-398e-4b2d-bf04-d70e703f1662",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Pages:           17\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.66}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Pages:           17\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.66}}"
+              }
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "17 pages total. The main text should still be within 8 pages (the appendix is the rest). Let me verify by checking where the appendix starts - it's at the page where \\appendix appears. The main text goes up to line 43 (after bibliography), and the paper has 8 pages of main text from previous builds. Since I only added content to the appendix, the main text page count hasn't changed.\n\nLet me summarize the results.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "f9a8257e-973b-434b-aaea-a4967c7561e3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LwBtTMxeLVwVbtV78SbmS6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 438,
+                "cache_read_input_tokens": 113684,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 438
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n---\n\n### 产出总结\n\n**1. 添加的 LaTeX 内容**（main.tex 行 279-300，Cross-Model Verification 之后）\n\n新增 `\\section{DAF Sensitivity to Zero-Death Task Types}`，包含三模型对比表（Table `tab:daf-sensitivity`）：\n\n| Model | DAF (11 tasks) | DAF (10 tasks) |\n|-------|---------------|---------------|\n| Qwen2.5-7B-Instruct | 90.4% [81.4, 99.1] | 100.0% [100.0, 100.0] |\n| Llama-3.1-8B-Instruct | 88.2% [80.0, 95.1] | 97.0% [91.5, 100.0] |\n| Gemma-2-9B-it | 89.7% [79.5, 98.4] | 99.9% [99.7, 100.0] |\n\n所有数值通过 `scripts/daf_sensitivity_3model.py` 从原始 episode 数据独立计算验证（episode-level bootstrap, B=10,000, seed=42）。\n\n**2. 数值一致性分析**\n\n- **96.8% 不存在于论文中**。`0.9698` 是 Pearson r 值（main.tex:89），不是 DAF\n- 主文 Qwen DAF=90.4% 与 cross-model 数据完全一致\n- Gemma 有额外 task（boil, melt）和 40 条 find-non-living-thing episodes，标准化为 11 canonical tasks、20 eps/task 后 DAF=89.7%，与 analysis.json 一致\n- 排除 find-non-living-thing 后三模型 DAF 均 ≥97%，CI 收窄\n\n**3. 编译结果**\n\n- **0 errors**\n- 4 undefined refs：均为预存 `sec:experiments`（NLP checklist），非本次修改引入\n- **17 pages**（主文 ≤8 页 + appendix + checklist，未改变主文长度）"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "uuid": "5d8fb275-65b0-44bc-ab43-7a7de9b6cec6",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01LwBtTMxeLVwVbtV78SbmS6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 438,
+                "cache_read_input_tokens": 113684,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 438
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n---\n\n### 产出总结\n\n**1. 添加的 LaTeX 内容**（main.tex 行 279-300，Cross-Model Verification 之后）\n\n新增 `\\section{DAF Sensitivity to Zero-Death Task Types}`，包含三模型对比表（Table `tab:daf-sensitivity`）：\n\n| Model | DAF (11 tasks) | DAF (10 tasks) |\n|-------|---------------|---------------|\n| Qwen2.5-7B-Instruct | 90.4% [81.4, 99.1] | 100.0% [100.0, 100.0] |\n| Llama-3.1-8B-Instruct | 88.2% [80.0, 95.1] | 97.0% [91.5, 100.0] |\n| Gemma-2-9B-it | 89.7% [79.5, 98.4] | 99.9% [99.7, 100.0] |\n\n所有数值通过 `scripts/daf_sensitivity_3model.py` 从原始 episode 数据独立计算验证（episode-level bootstrap, B=10,000, seed=42）。\n\n**2. 数值一致性分析**\n\n- **96.8% 不存在于论文中**。`0.9698` 是 Pearson r 值（main.tex:89），不是 DAF\n- 主文 Qwen DAF=90.4% 与 cross-model 数据完全一致\n- Gemma 有额外 task（boil, melt）和 40 条 find-non-living-thing episodes，标准化为 11 canonical tasks、20 eps/task 后 DAF=89.7%，与 analysis.json 一致\n- 排除 find-non-living-thing 后三模型 DAF 均 ≥97%，CI 收窄\n\n**3. 编译结果**\n\n- **0 errors**\n- 4 undefined refs：均为预存 `sec:experiments`（NLP checklist），非本次修改引入\n- **17 pages**（主文 ≤8 页 + appendix + checklist，未改变主文长度）"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 736490,
+            "duration_api_ms": 645786,
+            "num_turns": 54,
+            "stop_reason": "end_turn",
+            "session_id": "2f6084f2-0449-4453-afc3-a5f3d46c8034",
+            "total_cost_usd": 2.7830917500000005,
+            "usage": {
+              "input_tokens": 41,
+              "cache_creation_input_tokens": 102281,
+              "cache_read_input_tokens": 2825091,
+              "output_tokens": 29159,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 102281,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 699,
+                  "cache_read_input_tokens": 113684,
+                  "cache_creation_input_tokens": 438,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 438
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2025,
+                "outputTokens": 17,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00211,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 41,
+                "outputTokens": 29159,
+                "cacheReadInputTokens": 2825091,
+                "cacheCreationInputTokens": 102281,
+                "webSearchRequests": 0,
+                "costUSD": 2.7809817500000005,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "4dab5e1d-e8fb-4eaa-afe5-637d83a9f708"
+          },
+          "id": "event-000161"
+        }
+      ]
+    }
+  ]
+}

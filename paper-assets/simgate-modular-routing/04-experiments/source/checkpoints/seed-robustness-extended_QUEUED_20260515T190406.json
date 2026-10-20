@@ -1,0 +1,16 @@
+{
+  "exp_id": "seed-robustness-extended",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:03:15.593Z",
+    "updated_at": "2026-05-15T19:04:06.698Z",
+    "hypothesis": "追加 4 个新 seed (46/47/48/49) 重训 router，与 seed-robustness-core 的 4 seed (42-45) 合并为 8-seed 汇总统计。验证 cross-split balanced_acc 的 55.4±5.2% 在更大样本下是否稳定。同一训练 protocol（Qwen3-1.7B LoRA, same hyperparams, episode-level stratified split）。",
+    "parent": "seed-robustness-core"
+  },
+  "timestamp": "2026-05-15T19:04:06.862488+00:00",
+  "trigger": "update_registry"
+}

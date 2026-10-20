@@ -1,0 +1,1679 @@
+# paper writing experiments v2 patch
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 33
+- **Recorded user turns:** 0
+- **Tool calls:** 10
+- **Original source:** `logs/workers/worker_paper_writing_experiments_v2_patch_20260514T112407.log`
+- **Structured JSON:** [`4b00f0b6ea543c910850.json`](../../sessions/4b/4b00f0b6ea543c910850.json)
+
+## Before a recorded user message
+
+33 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "2283da62-40ca-4f9c-af51-4964941e7591",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed_warning",
+    "resetsAt": 1779303600,
+    "rateLimitType": "seven_day",
+    "utilization": 0.33,
+    "isUsingOverage": false
+  },
+  "uuid": "24cb7f31-a38e-42a0-98ae-37a157ee7a57",
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me start by reading the existing draft and the registry for context.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "a590baf1-01fc-4aca-9cf1-bbc7c7dc49a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UEw4UDPs5PCZQefHgv8ybo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11963,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11963
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01M9FCvQShCg6mY54aymsVX6`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "c2c508b4-e778-49fa-98ad-db9192e7fd42",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UEw4UDPs5PCZQefHgv8ybo",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11963,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11963
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-14T11:24:17.315Z_
+
+<details><summary>↩ Tool result · `toolu_01M9FCvQShCg6mY54aymsVX6`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "fdf7acb5-fc28-401c-8e03-5d3fd4a04c07",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the existing draft and the registry to get context.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "4338b63c-a63b-41bd-8f6f-ed5bb6858d2d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrAHNgaGpm7HhFigjfAYCH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1673,
+      "cache_read_input_tokens": 23804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1673
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01MYSA2rBLqCLKvMDdGh5Xao`</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "file": "artifacts/_project/paper/experiments_draft_dd9866.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "c7ed5dc4-c756-4c54-a6fd-9081e5acb887",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrAHNgaGpm7HhFigjfAYCH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1673,
+      "cache_read_input_tokens": 23804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1673
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-14T11:24:21.752Z_
+
+<details><summary>↩ Tool result · `toolu_01MYSA2rBLqCLKvMDdGh5Xao`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'artifacts/_project/paper/experiments_draft_dd9866.md'\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "7c25296a-5c49-4639-ba8b-e90beb812817",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'artifacts/_project/paper/experiments_draft_dd9866.md'\\\", \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"file must be one of ['ARCHITECTURE.md', 'DATA.md', 'EVALUATION.md', 'MODELS.md', 'ROADMAP.md', 'constraints.yaml', 'decisions.yaml', 'ideas.md', 'literature_map.yaml', 'memory.md', 'paper_checklist.yaml', 'paper_framing.md', 'paper_provenance.yaml', 'report.md', 'writing_plan.yaml'], got 'artifacts/_project/paper/experiments_draft_dd9866.md'\", \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_011TN9T3ZRvkL5ANmEJg9M1i`</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "file": "decisions.yaml",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "29fe102f-bbd6-4508-bd8b-f450f9305f74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RrAHNgaGpm7HhFigjfAYCH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1673,
+      "cache_read_input_tokens": 23804,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1673
+      },
+      "output_tokens": 45,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-14T11:24:21.950Z_
+
+<details><summary>↩ Tool result · `toolu_011TN9T3ZRvkL5ANmEJg9M1i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/decisions.yaml\", \"content\": \"_next_id: 39\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 04:25 UTC\\n  summary: 'MVP 方案: ScienceWorld 信号检测——验证确定性模拟是否在规则驱动任务上优于 LLM 内部推理'\\n  rationale: 12 天 deadline 下必须快速验证核心假设。ScienceWorld 是 primary track，其 JVM 后端提供精确的规则化状态转移，与\\n    LLM 近似推理的差距应该最大。选 5 task types × 10 episodes 的小规模 counterfactual 比较，不训练 router，纯信号检测。Pass\\n    标准 ≥2/5 task types >5pp，基于 ITP-R vs CogRouter 7.4pp 差距的量级。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 04:28 UTC\\n  summary: 采纳 Reviewer 全部 4 条 warning，修订 MVP 为 Phase 0 + Phase 1 两阶段方案\\n  rationale: Reviewer 指出 D001 方案 3 个操作层缺陷：(1) counterfactual 方法未明确——改为 episode-level\\n    3-way (always-internal / always-deterministic / oracle-routing)，oracle 作为 selective\\n    routing 上界；(2) N=10 统计功效不足——增加到 20 episodes/task type + bootstrap 90% CI；(3) kill\\n    criteria 不完整——增加 Phase 0 工程 gate、灰区 conditional pass、pre-register 5 task types\\n    (3S+1M+1W)。无额外 GPU 成本，仅设计层修正。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 07:43 UTC\\n  summary: GPU0 继续收集 baseline，GPU1 停下修复 tie-break + 致死动作过滤后重跑\\n  rationale: Fork 诊断发现两个方法论缺陷：(1) tie-break >= 使 95% delta=0 步骤 oracle 永远选 internal，oracle\\n    数据不可信；(2) 致死动作 (score=-100) 污染三条线。修 >= 为 >（oracle 仅在 deterministic 严格更优时介入）+ 致死动作过滤。不做\\n    N-step rollout——1-step 局限性是真实发现，MVP 应如实反映。GPU0 baseline 数据有效，不浪费已有进度。\\n  related_experiments:\\n  - exp_id: mvp-p1-gpu0\\n    role: baseline data, continue\\n  - exp_id: mvp-p1-gpu1-vllm\\n    role: kill, fix, rerun\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-13 08:13 UTC\\n  summary: MVP 判定 primary metric 改为 always-deterministic vs always-internal，oracle\\n    降为 supplementary\\n  rationale: 1-step lookahead 在稀疏 reward 下 95% 步骤 delta=0，任何 tie-break 都使 oracle 退化（>=\\n    → always-internal，> → always-deterministic）。这是 1-step 的本质局限而非 bug。直接比较 det vs\\n    internal 能回答核心问题\\\"确定性计算有没有用\\\"，无需 oracle 作为中介。oracle 在密集 reward tasks 上仍有参考价值。\\n  related_experiments: []\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-13 15:25 UTC\\n  summary: MVP Phase 1 判定 PASS — det > internal 在 ≥2/5 task types 上统计显著，oracle > det\\n    信号支持 router 训练\\n  rationale: melt (+40.15, CI [25, 60.15]) 和 change-state (+40.2, CI [25, 60.15])\\n    满足 ≥2/5 Pass 标准。mix-paint (+35.5) 大概率也通过。grow-plant (0.0) 符合预期（pre-registered\\n    weak/对照）。最关键发现：oracle > det（melt +16.7, change-state +14.95, mix-paint +10.0）证明\\n    selective routing 有额外增量——这是 SimGate router 训练的信号来源。信号机制是 death avoidance（避免 -100\\n    致死动作）而非正向引导，论文 framing 需定位为 safety-aware routing。待确认：melt/change-state 数据重复性、mix-paint\\n    CI、boil v3 重跑。\\n  related_experiments:\\n  - exp_id: mvp-p1-gpu0\\n    role: boil data (old code)\\n    result: det-int +30.1\\n  - exp_id: mvp-p1-gpu0-vllm\\n    role: melt+change-state (v3)\\n    result: det-int +40.15/+40.2, CI [25, 60.15]\\n  - exp_id: mvp-p1-gpu1-v3\\n    role: mix-paint+grow-plant (v3)\\n    result: det-int +35.5/0.0\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-13 15:37 UTC\\n  summary: 'Research phase plan revised per Reviewer W1-W5: 2-way first, signal pre-screening,\\n    parameter-controlled ablation, GPU units fixed'\\n  rationale: 'Reviewer 提出 5 个实质性问题全部采纳: (1) C1 \\\"selective > unconditional\\\" 标注为待确认;\\n    (2) 2-way collection 优先，与 MVP 一致且省 33% GPU; (3) plan-001 增加 mini signal detection\\n    前置步骤避免浪费 GPU; (4) plan-004 增加 1.7B implicit 控制条件隔离架构效果; (5) GPU 预算改为 RTX 5090\\n    实际时长。melt/change-state 确认非重复但共享 variations，论文中合并报告。'\\n  related_experiments: []\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-13 17:01 UTC\\n  summary: 'Dream 审稿结果处理: best 4/6, median 3/6, worst 2/6. 三档一致问题修入 framing+plan:\\n    tool-use 文献定位, rule-based baseline, death decomposition'\\n  rationale: 'Dream 三档一致暴露 3 个结构性问题: (1) 缺 tool-use learning 文献 (Toolformer/ART/Chameleon),\\n    核心方法是标准 tool-use SFT pipeline 必须承认并差异化定位; (2) 缺 rule-based routing baseline 无法证明\\n    learned signal; (3) ScienceWorld -100 惩罚放大效应未解构。修入 paper_framing.md (tool-use\\n    定位段 + 3 新 concerns) 和 experiment_plan.yaml (plan-011 rule-based baseline P0, plan-012\\n    death decomposition P0, plan-013 labeling quality P1)。不 re-dream: 改动是补充性 (新 baselines\\n    + 定位), 非方向性 pivot。'\\n  related_experiments: []\\n  depends_on:\\n  - D006\\n- id: D008\\n  date: 2026-05-13 17:09 UTC\\n  summary: 1-step labeling 失败 (tie rate 98.2%), plan-001b 必须改为 episode-terminal counterfactual\\n    labeling\\n  rationale: 'MVP tie-rate 分析: 2880/2894 步 (98.2%) 两种模式 1-step score delta = 0 (稀疏\\n    reward)。非 tie 步几乎全是 catastrophic gap (death penalty)。1-step oracle labeling 下\\n    router 只能学到\\\"避死\\\"——等价于 always-det on death-risk tasks。必须改为 episode-terminal counterfactual\\n    labeling: 每步 fork 环境，两条模式各自继续到 episode 结束，以 final episode score 差异作为 label。Phase\\n    0 已验证 forking 可行 (p95 latency 2.37s)。GPU 成本显著增加——需要 Agent 估算 action divergence\\n    rate 和实际工时。plan-001a (pre-screening) 和 plan-007 (boil rerun) 不受影响，继续运行。'\\n  related_experiments:\\n  - exp_id: mvp-p1-gpu0-vllm\\n    role: source\\n    result: tie rate data from episodes.jsonl\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-13 17:15 UTC\\n  summary: 'Counterfactual labeling 分 pilot + 全量两阶段执行。Pilot: 3 tasks × 10 ep × K=10\\n    on GPU1。Non-tie rate > 30% 则全量 K=10，< 15% 则 pivot。'\\n  rationale: Action divergence rate 73.1% 确认 per-step routing 有足够 action space，但 1-step\\n    tie rate 98.2% 排除了 1-step labeling。Episode-terminal counterfactual labeling (fork\\n    at diverge + K-step continuation) 是必要方案。Full K=20 成本 78h 双卡太高。Pilot 先验证 K=10 的\\n    label quality (non-tie rate)，再决定全量策略。Pilot 选 melt/change-state/mix-paint（MVP 确认有信号），10\\n    ep each（~7-8h 单卡）。如果 K=10 non-tie rate < 15%，per-step routing 可能是 wrong granularity，需要\\n    pivot。\\n  related_experiments: []\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-13 18:13 UTC\\n  summary: C2 重构为 \\\"failure trajectory predictor\\\"，paper_framing v3 更新 Plan C 定位\\n  rationale: Reviewer 分析 Plan C (episode-level labeling) 对论文 story 的三个影响：(1) Router\\n    学到的是 trajectory-level risk prediction 而非 step-level routing，C2 应重构为 \\\"failure trajectory\\n    predictor + diagnostic probe\\\"；(2) Plan C 完全绕开 Dream worst case 的 oracle circularity\\n    攻击（不用 per-step tie-breaking，直接用 episode outcome ground truth）；(3) 不做 class weighting，label\\n    不平衡反映真实分布。Story 一致性提升：safety-aware framing ↔ episode-level labeling ↔ trajectory\\n    risk prediction 三者天然匹配。C1 \\\"selective > unconditional\\\" 的关键指标变为 simulator invocation\\n    ratio（用更少的 simulator calls 达到接近 always-det 效果）。\\n  related_experiments: []\\n  depends_on:\\n  - D010\\n- id: D011\\n  date: 2026-05-13 19:09 UTC\\n  summary: Framing 调整：det 优势 = 纯 death avoidance，non-death 时 internal 略优。C1 机制明确为\\n    \\\"safety-efficiency tradeoff\\\"，router 学习 death-risk detection 而非泛泛路由。Labeling 策略维持\\n    episode-level 但加 death-aware 后处理。\\n  rationale: 13 tasks (8 prescreening + 5 MVP) 一致显示：no-death Δ(D-I) = -4.5 ~ -0.4，det\\n    的全部 30-60 分优势来自 internal 的 41-49% death rate vs det 的 5-12% death rate。这意味着：(1)\\n    always-det 不是最优（safe steps 有性能代价），selective routing 有理论基础；(2) router 的核心任务是 death-risk\\n    detection；(3) plan-001b episode-level labels 将以 death episodes 为主要信号源，non-death\\n    episodes 提供少量 internal labels；(4) plan-012 death decomposition 升为论文核心证据。\\n  related_experiments:\\n  - exp_id: research-prescreening-gpu0\\n    role: evidence\\n    result: '8/25 tasks: aggregate no-death Δ = -4.5, I_death=48.6%, D_death=5.4%'\\n  - exp_id: mvp-p1-gpu1-v3\\n    role: evidence\\n    result: '5 tasks: aggregate no-death Δ = -0.4, I_death=41%, D_death=12%'\\n  depends_on:\\n  - D010\\n  - D008\\n- id: D012\\n  date: 2026-05-13 19:26 UTC\\n  summary: 'D012: Label 不平衡应对——设条件触发点，预筛完成后决定是否 pivot framing'\\n  rationale: 'Reviewer Loop #2 确认 14 tasks 中仅 1 个 internal-preferred（7%），预计全部 25 tasks\\n    中 internal-preferred ≤ 3。93% det 标签 → router SFT 退化为 always-det → C1 \\\"selective\\n    > unconditional\\\" 不成立风险极高。\\n\\n\\n    条件触发：\\n\\n    - 若 internal-preferred < 3/25（<12%）→ 执行 framing pivot：C1 从 \\\"selective > unconditional\\\"\\n    降级为 \\\"det >> internal, 主要机制是 death avoidance\\\"；C2 调整为 \\\"router 学习 death-risk trajectory\\n    prediction\\\"；plan-012 (death decomposition) 升为核心贡献；plan-011 (rule-based baseline)\\n    变关键（learned vs heuristic）\\n\\n    - 若 internal-preferred ≥ 3/25（≥12%）→ 保持现有 framing，plan-002 router SFT 使用 class-weighted\\n    loss 应对不平衡\\n\\n\\n    不选的方案：(b) 人为增加 internal episodes → p-hacking 风险；(c) 加 MATH track → 12 天 DDL 下风险太大\\n\\n\\n    另外 Reviewer 指出 genuine-det 分类中 find-living-thing（+0.25）和 freeze（+2.0）在 n=5 下无统计意义，仅\\n    find-animal（+4.2）可能有真实信号。这进一步削弱 non-death 信号。'\\n  related_experiments:\\n  - exp_id: research-prescreening-gpu0\\n    role: evidence\\n    result: 14/25 tasks analyzed, 93% det-preferred\\n  - exp_id: research-boil-v3-gpu1\\n    role: evidence\\n    result: death avoidance confirmed as sole driver\\n  depends_on: []\\n- id: D013\\n  date: 2026-05-13 19:33 UTC\\n  summary: 'D013: 接受 Reviewer 结构性论证，framing pivot 从\\\"条件触发\\\"升级为\\\"近确定\\\"——C1 改为纯经验发现，C2 重心从\\n    router 转向 labeling method'\\n  rationale: 'Reviewer 指出三个关键判断：\\n\\n    1. Class-weighted loss 无法 salvage selective routing——问题不是 class imbalance，而是 episode-level\\n    labels 把同一 episode 所有步骤（含安全步骤）标为同一 label，router 学到的是 task-type classifier 而非 step-level\\n    risk detector\\n\\n    2. C2 \\\"early warning signals\\\" 脆弱（~30% 有实质），需 plan-005 验证 within-task-type 预测方差\\n\\n    3. Rule-based baseline 有 ~60% 概率让 learned router novelty 归零\\n\\n\\n    Reviewer 建议进一步 pivot：\\n\\n    - C1 完全放弃 \\\"selective > unconditional\\\"，改为纯经验发现：det >> internal，death avoidance\\n    是主要机制\\n\\n    - C2 重心从 router 转向 labeling method：episode-level counterfactual labeling 绕开 per-step\\n    oracle circularity，本身是 methodological contribution\\n\\n    - 这样 plan-011 威胁降低：论文贡献不在于\\\"router 比 keywords 好\\\"，而在于\\\"counterfactual analysis 揭示\\n    death avoidance 机制 + 诊断框架\\\"\\n\\n\\n    评估：Reviewer 的结构性论证正确。Episode-level labels 确实无法教 step-level discrimination（D008\\n    98.2% tie rate → Plan C → 但 Plan C 的标注粒度太粗）。这是一个独立于预筛计数的结构性限制。\\n\\n\\n    决策：framing pivot 近确定执行。仍等预筛完成获取完整数据（论文需要），但 paper_framing.md 立即更新方向。实验计划不变——router\\n    SFT 仍做（负面结果有论文价值），plan-005/011/012 优先级提升。'\\n  related_experiments:\\n  - exp_id: research-prescreening-gpu0\\n    role: pending\\n    result: awaiting final count\\n  - exp_id: research-boil-v3-gpu1\\n    role: evidence\\n    result: oracle > det +10-17pp comes from step-level oracle, not episode-level\\n  depends_on:\\n  - D012\\n  - D011\\n  - D010\\n- id: D014\\n  date: 2026-05-13 20:59 UTC\\n  summary: 'D014: 重新注册 plan-011 rule-based keyword list，排除 connect/disconnect 通用动作词'\\n  rationale: 'Reviewer critical 发现：原 rule_based_keywords.json 包含 \\\"connect\\\"/\\\"disconnect\\\"，这是\\n    ScienceWorld 通用动作词（几乎所有对象交互都用 connect），非科学操作指示词。结果 85.79% 关键词匹配率，184/189 episodes\\n    预测为 det-preferred → rule-based ≈ always-det → 与 learned router 对比无区分度。\\n\\n\\n    重新注册理由：原列表设计时未理解 ScienceWorld 动作词汇表。\\\"connect\\\" 类似 web UI 的 \\\"click\\\"，不指示需要确定性计算的科学操作。\\n\\n\\n    新列表只保留真正的状态变化/科学操作动词：heat, cool, boil, melt, freeze, burn, mix, pour, react, dissolve,\\n    activate, change-state 等。排除：connect, disconnect, move, look, pick up, go, open,\\n    close, focus, examine 等通用交互词。\\n\\n\\n    这不是 post-hoc 修改实验结果——plan-011 尚未正式开始，这是修复实验设计缺陷。新列表需在 plan-011 正式实验前注册并锁定。'\\n  related_experiments:\\n  - exp_id: plan-011\\n    role: design fix\\n    result: keyword list re-registration before experiment starts\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-13 21:53 UTC\\n  summary: 'D015: plan-012 预分析确认核心假设在 30 tasks 上高度稳健 (r=0.989, death_fraction=99%,\\n    Δ_full=+37.9)'\\n  rationale: 从 MVP 5 tasks 扩展到预筛全量 30 tasks / 219 episodes，所有核心指标保持或改善：r 从 0.986→0.989，Δ_full\\n    从 +36.9→+37.9，death_fraction 稳定 99%。Label 分布 det-preferred 41% / internal-preferred\\n    0.5% / no-preference 59%。核心发现方向已确定，plan-001b 收集 20 eps/task 后将提升统计功效但不改变结论方向。death_decomposition.py\\n    (519行) 已就绪。\\n  related_experiments:\\n  - exp_id: research-prescreening-gpu0\\n    role: data_source\\n    result: 30 tasks / 219 episodes 预分析\\n  - exp_id: research-boil-v3-gpu1\\n    role: data_source\\n    result: MVP boil data included\\n  depends_on:\\n  - D013\\n- id: D016\\n  date: 2026-05-13 23:33 UTC\\n  summary: 'D016: find-non-living-thing 方向翻转评估——framing robust 无需 pivot，C2 诊断贡献重心从\\n    router 移向 methodology'\\n  rationale: find-non-living-thing 12/20 eps delta 从 -6.8 收窄到 -2.3，可能翻转。Reviewer 独立确认：(1)\\n    C1 不依赖 internal-preferred 任务存在，翻转后 death avoidance = 100% 更强；(2) C2 \\\"router-as-probe\\\"\\n    措辞需调整——如果 router trivially always-det，诊断价值归属于 labeling methodology 而非 router 本身；(3)\\n    plan-002 结果性质转变为 negative result（trivial one-class classifier），但有论文价值（量化 episode-level\\n    labeling 的粒度限制）；(4) 成本效率论证需明确为 task-category level 而非 per-episode dynamic routing。等\\n    20 eps 全量数据后更新 paper_framing.md 四处文字。\\n  related_experiments:\\n  - exp_id: plan-001b-gpu1\\n    role: data source\\n    result: running, find-non-living-thing 12/20 eps delta=-2.3\\n  depends_on:\\n  - D013\\n  - D015\\n- id: D017\\n  date: 2026-05-14 00:40 UTC\\n  summary: 'C1 claim 采用 Tier B: \\\"Death avoidance ~99% 主导，non-death signal negligible\\\"'\\n  rationale: 30 tasks / 219 episodes 预分析：Δ_full=+37.9, Δ_nd=+0.2, r=0.989, death_fraction=99%。Tier\\n    A (\\\"entirely/唯一\\\") 虽然 provocative 但 find-animal Δ_nd=+4.2 可能成反例；Tier C (\\\"primary\\\")\\n    hedging 过度浪费 r=0.989 的强数据。Tier B 用 \\\"small and inconsistent\\\" 准确反映 -6.8~+4.2 的无系统性方向分布。升档条件：plan-001b\\n    全量 n=20 数据中所有 task 的 Δ_nd bootstrap 95% CI 跨 0 → 升 Tier A。\\n  related_experiments:\\n  - exp_id: plan-001b\\n    role: evidence\\n    result: '30 tasks prescreening: r=0.989, death_fraction=99%, Δ_nd=+0.2'\\n  - exp_id: plan-012\\n    role: planned_validation\\n    result: Full death decomposition on n=20 data will confirm/upgrade tier\\n  depends_on: []\\n- id: D018\\n  date: 2026-05-14 04:55 UTC\\n  summary: C1 claim 从 \\\"~99% death avoidance\\\" 调整为 \\\"~90%\\\"，find-non-living-thing 定位为正面案例\\n  rationale: plan-012 preliminary 显示 death fraction=90.1%（非 99%），因 find-non-living-thing（0%\\n    death rate）拉低。该 task Δ_nd=9.58=Δ_full，证明 router 在零死亡场景仍有 non-trivial 增益，routing\\n    价值超越 death avoidance。与 plan-011（keyword heuristic 失效）互相呼应，强化 learned routing 的必要性。论文分两层报告：overall\\n    ~90% death-dominated + per-task breakdown 展示非死亡信号。\\n  related_experiments:\\n  - exp_id: plan-012\\n    role: evidence\\n    result: death_fraction=90.1%, r=0.967, Δ_nd=2.95 (driven by find-non-living-thing)\\n  - exp_id: plan-011\\n    role: corroboration\\n    result: keyword heuristic 结构性失效，learned routing 不可被简单规则替代\\n  depends_on: []\\n- id: D019\\n  date: 2026-05-14 05:00 UTC\\n  summary: C1 death fraction 报告方式：per-task fraction (10/11) + episode-weighted ~94.5%，不用\\n    per-task mean\\n  rationale: Reviewer 核实发现 death fraction 对聚合方式高度敏感：episode-weighted(plan_c)=~94.5%,\\n    per-task mean=~90.9%, 混合数据=98.75%。per-task mean 被 find-non-living-thing 的 0% 拉偏（二值化效应），episode-weighted\\n    在均匀数据上更公允。论文报告策略：(1) per-task fraction \\\"10/11 tasks death-dominated\\\" 传达定性结论；(2)\\n    episode-weighted ~94.5% 传达定量强度；(3) find-non-living-thing 单独讨论作为 non-death signal\\n    正面案例。D018 的 \\\"~90%\\\" 修正为更精确的 ~94.5%。\\n  related_experiments:\\n  - exp_id: plan-012\\n    role: evidence\\n    result: episode-weighted death fraction ~94.5% on 11 plan_c tasks/235 eps; per-task\\n      mean 90.9% (10/11=100%, 1/11=0%)\\n  depends_on:\\n  - D018\\n- id: D020\\n  date: 2026-05-14 06:43 UTC\\n  summary: plan-002 分类路线：v5 pad_token_id fix 为最后一次尝试，epoch 1 internal recall=0 则 pivot\\n    到生成式\\n  rationale: v1-v4 连续失败，但 v5 的 pad_token_id fix 精准命中 Reviewer 识别的根因（ModelScope Qwen3-1.7B\\n    未设 pad_token_id → CrossEntropyLoss 在 padding tokens 上计算 → 初始 loss 11.5 远超正常 0.69\\n    → 梯度信号被污染 → 退化到 majority class）。plan-004 生成式路线已证明非退化（eval_loss 0.36, internal\\n    recall 51.5%），作为 fallback。v5 是分类路线的 make-or-break 实验。\\n  related_experiments:\\n  - exp_id: plan-002-formal-v4\\n    role: evidence\\n    result: accuracy 91.9% but internal recall=0 across all 3 epochs, degenerate\\n  - exp_id: plan-002-formal-v5\\n    role: test\\n    result: running, pad_token_id fix\\n  - exp_id: plan-004\\n    role: fallback\\n    result: 'generative route: eval_loss 0.36, accuracy 65.4%, internal recall 51.5%'\\n  depends_on: []\\n- id: D021\\n  date: 2026-05-14 06:48 UTC\\n  summary: 修正 D020：pad_token_id 非根因，class_weights auto 才是 loss 异常主因。v5 仍跑完 epoch 1\\n    作对照，同时启动 v6（无 class_weights）\\n  rationale: Reviewer 提供决定性证据链：(1) router_sft_train.py L294-305 在 v3 就已赋值 pad_token_id=151643，v5\\n    只加了 assert；(2) plan-004 v1(无 class_weights)→loss 0.36-0.71 正常，v2(class_weights\\n    auto)→loss 48→42→8→4 爆炸，唯一变量是 class_weights；(3) v4 accuracy 88.3% 证明 pooling 正常工作（若\\n    pad_token_id 坏了应~50%），88.3%≈majority baseline 92.7%是典型多数类退化。结论：4.5x minority weight\\n    + 仅 180 internal 样本 → 模型选择忽略少数类以最小化总加权 loss。v6（去掉 class_weights）是验证此诊断的必要对照。\\n  related_experiments:\\n  - exp_id: plan-004-v1\\n    role: control\\n    result: 无 class_weights, loss 0.36-0.71 正常\\n  - exp_id: plan-004-v2\\n    role: control\\n    result: class_weights auto, loss 48→4 异常，决定性证据\\n  - exp_id: plan-002-formal-v4\\n    role: evidence\\n    result: accuracy 88.3% 证明 pooling 正常，退化是多数类收敛\\n  - exp_id: plan-002-formal-v5\\n    role: running\\n    result: 仍用 class_weights auto, 预计复现 v4 退化\\n  - exp_id: plan-002-formal-v6\\n    role: planned\\n    result: 去掉 class_weights, 验证 loss 是否回到正常范围\\n  depends_on:\\n  - D020\\n- id: D022\\n  date: 2026-05-14 06:51 UTC\\n  summary: plan-002 classification head 定性为 negative baseline，v6 为最终对照后停止迭代\\n  rationale: Reviewer 核实：plan-002 从 dryrun 到 v5 共 5 次迭代 internal recall 均为 0，而 plan-004\\n    implicit router 首次即达 51.5%。pad_token_id 非根因（v4 已修复），class_weights 4.5× 仅解释 loss\\n    数值偏高（不影响退化本质）。真正根因是 classification head 架构无法从当前数据中提取 internal routing 信号。v6（去掉\\n    class_weights、3 epochs）作为最终公平对照——预期仍会退化，用作论文中 explicit router 的 negative baseline，与\\n    plan-004 implicit router 形成对比证据。\\n  related_experiments:\\n  - exp_id: plan-002-formal-v5\\n    role: evidence\\n    result: internal recall=0, eval_loss=0.79, accuracy=87.4%, 与 v3/v4 同样退化\\n  - exp_id: plan-004-v2\\n    role: contrast\\n    result: implicit router internal recall=51.5%, 证明信号可提取但 classification head 架构不行\\n  - exp_id: plan-002-dryrun\\n    role: evidence\\n    result: 无 class_weights 1 epoch 仍 internal recall=0, 排除 class_weights 为退化根因\\n  depends_on: []\\n- id: D023\\n  date: 2026-05-14 07:00 UTC\\n  summary: plan-002 根因修正：pad_token_id 假说被 v5 实证否定，真正根因是 class_weights + gradient clipping\\n    交互\\n  rationale: v5 加入 pad_token_id fix 后 loss 曲线与 v4 完全一致（差异在噪声范围），证伪 pad_token_id 假说。Reviewer\\n    识别出真正根因：class_weights [4.5, 0.5625] 给 internal 样本 4.5x 权重 → loss 爆炸(4-11) → grad_norm\\n    100-600 → 被 max_grad_norm=1.0 裁剪 → internal 有效学习率≈3e-8。该机制同时解释三个现象：(a) train loss\\n    差 10x 但 eval loss 差<2x, (b) grad_norm 100-600 vs dryrun 的 0.5-42, (c) v5 fix 无效。下一步：去掉\\n    class_weights 跑 v6 隔离验证。附带：v4 registry 标 killed 但实际完整训练完毕需更正。\\n  related_experiments:\\n  - exp_id: plan-002-sft-v5\\n    role: evidence\\n    result: pad_token_id fix 无效，loss 曲线与 v4 一致\\n  - exp_id: plan-002-sft-v4\\n    role: evidence\\n    result: registry 标 killed 但实际完整训练(accuracy=91.9%, internal_recall=0%)\\n  - exp_id: plan-002-sft-dryrun\\n    role: control\\n    result: 无 class_weights 时 loss 正常(0.17-1.03)，但也退化(internal_recall=0%)\\n  depends_on: []\\n- id: D024\\n  date: 2026-05-14 07:15 UTC\\n  summary: D021 推翻：class_weights 不是 router 训练退化根因，数据文件差异是首要排查方向\\n  rationale: '双 pipeline 实证否定 class_weights 假说：(1) implicit router plan-004-v3 去掉\\n    class_weights 后 loss 与 v2 完全一致（step 10: 48.15 vs 48.15），零影响；(2) explicit router\\n    plan-002-formal-v6 去掉 class_weights 后仍退化为全 det 预测（f1_internal=0.0, recall_internal=0.0）。唯一非退化结果\\n    ablation-b（internal recall 51.5%）使用了不同数据文件 data/plan-004-implicit/（而非 results/plan_c_test_labels/implicit_sft.jsonl），且用了\\n    upsample_minority。下一步：对比两份数据的格式/分布/内容差异，隔离数据 vs upsample 的各自贡献。'\\n  related_experiments:\\n  - exp_id: plan-004-v3\\n    role: evidence\\n    result: loss identical to v2, class_weights has no effect\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: f1_internal=0.0, class_weights removal ineffective\\n  - exp_id: plan-004-ablation-b\\n    role: reference\\n    result: only non-degenerate model, used different data + upsample\\n  depends_on:\\n  - D021\\n  - D023\\n- id: D025\\n  date: 2026-05-14 07:18 UTC\\n  summary: Classification head 路线确认失败，plan-002 pivot 到 generative approach (implicit\\n    SFT + upsample)\\n  rationale: Reviewer 审查 v6（去掉 class_weights）epoch 1 结果：eval_accuracy 0.929 但 internal\\n    recall=0, balanced_accuracy=0.5，仍全预测 deterministic。v3-v6 四个版本均退化，证实 classification\\n    head 在 89.7%/10.3% 极端不平衡下无法学到少数类信号。根因不是 class_weights（D024）也不是 pad_token_id（D023），而是分类头方法本身的局限。plan-004-ablation-b\\n    的 implicit generative + upsample 方案已验证可行，pivot 到该路线。\\n  related_experiments:\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: 'epoch 1 still degrades: internal recall=0, balanced_accuracy=0.5 despite\\n      removing class_weights'\\n  - exp_id: plan-002-formal-v5\\n    role: evidence\\n    result: degraded with class_weights\\n  - exp_id: plan-004-ablation-b\\n    role: baseline\\n    result: implicit generative + upsample worked\\n  depends_on:\\n  - D024\\n  - D022\\n- id: D026\\n  date: 2026-05-14 07:20 UTC\\n  summary: plan-004 v2/v3/v4 失败根因确认：训练数据标签损坏（no-preference→internal mapping bug），非\\n    class_weights\\n  rationale: Reviewer 独立审计三个 implicit SFT 数据文件发现：v2/v3/v4 使用的 results/plan_c_test_labels/implicit_sft.jsonl\\n    中 66.9% 标记为 internal（真实应为 10.3%），no-preference 步骤被错误映射为 internal。ablation-b 使用正确数据（data/plan-004-implicit/）loss\\n    0.71→0.36 且 internal recall=51.5%；v2/v3 使用错误数据 loss 48→4.4，无论是否有 class_weights。已指令\\n    kill v4 并用修复数据重跑 v5。\\n  related_experiments:\\n  - exp_id: plan-004-v4\\n    role: evidence\\n    result: loss 48→13.7, repeating v2/v3 failure pattern on corrupted data\\n  - exp_id: plan-004-v3\\n    role: evidence\\n    result: loss 48→4.4 on corrupted data, identical to v2 despite no class_weights\\n  - exp_id: plan-004-ablation-b\\n    role: control\\n    result: loss 0.71→0.36, internal recall=51.5% on CORRECT data\\n  depends_on:\\n  - D024\\n- id: D027\\n  date: 2026-05-14 07:31 UTC\\n  summary: generative-v1 双对照提交：grad_accum=8 vs grad_accum=1 并行隔离变量\\n  rationale: Reviewer 修正根因：数据污染只影响 v2，v3/v4 失败的真正 confound 是 upsample_minority 和 gradient_accumulation_steps\\n    同时变化（ablation-b 成功用 upsample=true+ga=1，v3/v4 失败用 upsample=false+ga=8）。generative-v1\\n    原 spec 用 ga=8 有风险，利用双 GPU 并行跑 ga=8 和 ga=1 对照，一次实验同时验证 generative SFT 可行性和 grad_accum\\n    是否为退化因素。\\n  related_experiments:\\n  - exp_id: plan-002-generative-v1\\n    role: subject\\n    result: preparing\\n  - exp_id: plan-004-v4\\n    role: evidence\\n    result: negative (upsample=false+ga=8, internal_recall=0)\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: negative (classification head degenerated)\\n  - exp_id: ablation-b\\n    role: evidence\\n    result: success (upsample=true+ga=1, internal_recall=51.5%)\\n  depends_on: []\\n- id: D028\\n  date: 2026-05-14 07:38 UTC\\n  summary: 暂停论文写作，修复核心数字不一致（至少 3 套数据源混用）\\n  rationale: Reviewer CRITICAL：paper_framing.md（245eps/11tasks）与 experiment_tables.md（249eps/30tasks）与\\n    plan-003 registry（194eps/11tasks）三套数字矛盾，label distribution 差异尤其严重（9 vs 1 个 internal-preferred）。在错误数字上写论文是浪费。需确定唯一权威数据源（plan-012\\n    最终输出），统一所有材料，可能需要在权威集合上重跑 baseline。\\n  related_experiments:\\n  - exp_id: plan-012-decomposition\\n    role: authority\\n    result: 249eps/30tasks 全量分析\\n  - exp_id: plan-003-baseline\\n    role: conflict\\n    result: 194eps/11tasks baseline，数字与 plan-012 不一致\\n  depends_on: []\\n- id: D029\\n  date: 2026-05-14 08:52 UTC\\n  summary: 'Router 训练路线全面评估完毕：classification head 全退化(D025)、generative SFT NEGATIVE、ablation-b\\n    复现失败(v5)。论文以 plan-012 empirical finding 为核心，router 结果作 informative data。Critical\\n    path: e2e eval → D028 修复 → plan-003 baselines → Paper Agent'\\n  rationale: 'Router 训练 8+ 次迭代结果：(1) classification head v3-v6 全退化为 always-det (D025确认)；(2)\\n    generative SFT (plan-002-generative-v1) ga=8 和 ga=1 双对照均 NEGATIVE；(3) ablation-b\\n    唯一成功 (internal_recall=51.5%) 但 v5 严格复现条件下失败。根因：episode-level labels 粒度太粗 (D013)，标签分布极端不平衡\\n    (89.7% det-preferred)，router 结构性受限于 task-level risk classification。\\n\\n\\n    论文策略调整：v3 framing 本身以 empirical finding + methodology 为核心贡献。router 训练结果 (partial\\n    success + systematic failure) 恰好证明 episode-level labeling 的粒度限制——这 IS the finding。ablation-b\\n    的 51.5% recall 说明 signal 可提取但不稳定，与 D013 \\\"task-type classifier\\\" 判断一致。\\n\\n\\n    11 天 DDL critical path：(1) ablation-b e2e eval (当前进行中) → 判断 router 是否能 end-to-end\\n    工作；(2) D028 数据一致性修复 (editorial)；(3) plan-003 baselines (always-int/det/random/oracle\\n    大部分可从 plan-001b 数据后处理)；(4) Paper Agent 启动 (目标 5/17 前交初稿)。plan-005 routing pattern\\n    分析和 plan-013 labeling quality 为 nice-to-have。'\\n  related_experiments:\\n  - exp_id: plan-002-generative-v1\\n    role: evidence\\n    result: NEGATIVE - generative SFT 双对照 (ga=8/ga=1) 均未改善\\n  - exp_id: plan-004-v5\\n    role: evidence\\n    result: NEGATIVE - 严格复现 ablation-b 条件失败\\n  - exp_id: plan-004-ablation-b\\n    role: reference\\n    result: 唯一成功 (internal_recall=51.5%) 但不可复现\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: classification head 最终对照仍退化\\n  - exp_id: plan-012-decomposition\\n    role: core\\n    result: 论文核心数据已到位 (11 tasks/245 eps, r=0.9698)\\n  depends_on:\\n  - D025\\n  - D027\\n  - D028\\n- id: D030\\n  date: 2026-05-14 09:00 UTC\\n  summary: Generative routing negative 结果纳入 C1 叙事：router 训练失败是 death dominance 极端\\n    class imbalance 的必然后果，非独立发现\\n  rationale: 所有 router 训练路线（classification head D025, generative v1, v5）均失败/退化。唯一成功的\\n    ablation-b 无法复现。根因：episode-level labels 极端不平衡（86 det / 9 internal / 150 no-pref\\n    = 3.7% internal），death avoidance 占 90% signal 导致 router 结构性无法学到平衡决策。这一结果 REINFORCES\\n    C1（death dominance）。84.9% logit vs 26.7% generation gap 放入 Discussion 作为 secondary\\n    observation（signal learnable but not reliably expressible）。论文核心贡献不变：empirical\\n    finding (death avoidance) + diagnostic methodology (counterfactual labeling)，非\\n    router 架构。等 v5/ablation-b 调查完毕后 finalize 措辞。\\n  related_experiments:\\n  - exp_id: plan-004-v5\\n    role: evidence\\n    result: 'negative: gen internal_recall 26.7%, logit 84.9%'\\n  - exp_id: plan-002-generative-v1\\n    role: evidence\\n    result: 'negative: gen internal_recall 16.7%'\\n  - exp_id: plan-004-ablation-b\\n    role: anomaly\\n    result: 'success: internal_recall 51.5%, unreproducible'\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: 'negative: classification head degenerated to always-det'\\n  depends_on:\\n  - D029\\n  - D025\\n- id: D031\\n  date: 2026-05-14 09:01 UTC\\n  summary: 发现 v5 未真正复现 ablation-b 配置：ga=8→1 (effective batch 32→4) + 脚本重构，logit-generation\\n    gap 结论需重新验证\\n  rationale: Registry spec 对比发现 ablation-b 用 gradient_accumulation_steps=8（effective\\n    batch=32），v5 用 ga=1（effective batch=4）。此外脚本从无 train 子命令重构为有 train 子命令，说明代码经历过修改。v5\\n    从未在与 ablation-b 相同条件下训练，logit-generation gap 可能是配置/代码差异引入的 artifact 而非 generative\\n    routing 的系统性问题。需用匹配配置重新训练验证。\\n  related_experiments:\\n  - exp_id: ablation-b\\n    role: 原始实验\\n    result: routing 有效但有 logit-generation gap\\n  - exp_id: v5\\n    role: 复现尝试\\n    result: 配置不匹配导致未真正复现\\n  depends_on: []\\n- id: D032\\n  date: 2026-05-14 09:04 UTC\\n  summary: 确认 v5 与 ablation-b 代码级差异：loss 计算(WeightedTrainer vs 标准HF)、数据上采样逻辑、class_weights\\n    全部不同，logit-generation gap 可能是代码重构副产物\\n  rationale: 代码 diff 确认三个影响训练行为的关键差异：(1) ablation-b 用自定义 WeightedTrainer.compute_loss\\n    做 per-sample 加权，v5 用标准 HF Trainer loss；(2) ablation-b 数据加载无内置上采样，v5 默认开启 upsample_ratio=1.0\\n    导致双重平衡；(3) ablation-b 支持 class_weights，v5 完全移除。加上之前发现的 ga=8 vs ga=1，v5 从未在可比条件下复现\\n    ablation-b。需要用 ablation-b 原始代码+原始配置重新训练验证 gap 是否真实存在。\\n  related_experiments:\\n  - exp_id: ablation-b\\n    role: 原始实验\\n    result: 自定义 WeightedTrainer + ga=8\\n  - exp_id: v5\\n    role: 失败的复现\\n    result: 标准 HF Trainer + ga=1 + 双重上采样\\n  depends_on:\\n  - D031\\n- id: D033\\n  date: 2026-05-14 09:14 UTC\\n  summary: 'Framing 定稿 Option B (方法论贡献): Reviewer seed 变体分析确认 router balanced_acc\\n    仅 ~58%(接近随机)，router 架构非贡献点，论文贡献 = 分析方法论 + death avoidance empirical finding'\\n  rationale: 'Reviewer 发现 ablation-b 的 3 个 seed 变体(123/456/789)在 balanced_accuracy\\n    上恒定 57-59%，仅比随机(50%)高 ~8pp，internal_recall 从 51% 到 82% 大幅波动完全由 seed 决定。这意味着：(1)\\n    router 判别力接近随机，\\\"internal_recall=51.5%\\\" 不是固有属性而是 seed=42 的阈值效应；(2) 所有 router 训练路线（classification\\n    head 退化、generative SFT negative、ablation-b 近随机）均未产出有效 router；(3) 论文不应声称 \\\"首个非退化\\n    router\\\"，而应将 router 近随机作为 C1 的补充证据——routing signal 被 death avoidance 主导到 router\\n    几乎无法学到其他信号。选择 Option B: 论文贡献 = episode-level counterfactual 方法论 + death avoidance\\n    占 90% routing signal 的 empirical finding + router 负面结果强化分析叙事。'\\n  related_experiments:\\n  - exp_id: plan-004-ablation-b\\n    role: evidence\\n    result: seed 变体 balanced_acc 57-59% 恒定,接近随机\\n  - exp_id: plan-004-v5\\n    role: evidence\\n    result: negative\\n  - exp_id: plan-002-generative-v1\\n    role: evidence\\n    result: negative\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: degenerate always-det\\n  - exp_id: plan-012-decomposition\\n    role: core_finding\\n    result: DAF=90.41%, r=0.9698\\n  depends_on:\\n  - D029\\n  - D030\\n- id: D034\\n  date: 2026-05-14 09:15 UTC\\n  summary: 'D027 更正: ablation-b 使用 gradient_accumulation_steps=8（非 ga=1），D027 原文 \\\"ga=1\\\"\\n    为错误记录'\\n  rationale: Reviewer 审查发现 D027 声称 ablation-b 用 ga=1，D031 声称用 ga=8。Registry spec 命令和\\n    seed 变体的 train_config.json 均确认 ga=8。D027 的 ga=1 描述错误，以本条更正。v5(ga=1) 与 ablation-b(ga=8)\\n    确实不同，D031 的判断方向正确。\\n  related_experiments:\\n  - exp_id: plan-004-ablation-b\\n    role: subject\\n    result: ga=8 confirmed\\n  depends_on:\\n  - D027\\n  - D031\\n- id: D035\\n  date: 2026-05-14 09:17 UTC\\n  summary: Trained router e2e 确认 negative (-12.84 vs always-det -9.47)，纳入 C1 叙事作为正面证据\\n  rationale: plan-003-eval-implicit 用正确 checkpoint (ablation-b adapter) 做 e2e eval，trained\\n    router -12.84 (CI [-17.52, -8.45])，always-det -9.47。CI 包含 -9.47（不显著），但点估计负向。93.5%\\n    路由到 det，仅 16 个 internal 决策导致 catastrophic_failure_rate 升至 19.2% (vs 16.3%)。这完全一致\\n    C1：death avoidance dominance → 少量 misrouting 代价 > 正确路由收益。Paper Table 1 增加此行，Discussion\\n    讨论 router 训练困境。\\n  related_experiments:\\n  - exp_id: plan-003-eval-implicit\\n    role: e2e eval with correct ablation-b checkpoint\\n    result: trained-router=-12.84 vs always-det=-9.47, negative\\n  - exp_id: plan-004-ablation-b\\n    role: source checkpoint\\n    result: internal_recall=51.5% (generation-level non-degenerate)\\n  depends_on: []\\n- id: D036\\n  date: 2026-05-14 09:17 UTC\\n  summary: Ablation-b 跨 seed 复制确认非退化可复现，但 internal_recall 方差 30pp+，决策边界不稳定\\n  rationale: 4 个 seed (42/123/456/789) 的 balanced_accuracy 稳定在 57-59%，确认模型学到了信号。但\\n    internal_recall 从 51.5% 到 81.8%，overall accuracy 从 65.4% 到 39.9%。seed 789 将 67%\\n    样本预测为 internal（真实仅 10.8%）。ga=8 确认为非退化必要条件（vs v5 ga=1 → internal_recall=26.7%）。论文引用\\n    ablation-b 时需标注方差。进一步支持 C1：即使 router 学到非退化信号，决策边界脆弱，实用性有限。\\n  related_experiments:\\n  - exp_id: plan-004-ablation-b\\n    role: original seed 42\\n    result: internal_recall=51.5%, balanced_acc=59.3%\\n  - exp_id: ablation-b-seed123\\n    role: replication\\n    result: internal_recall=57.6%, balanced_acc=57.4%\\n  - exp_id: ablation-b-seed456\\n    role: replication\\n    result: internal_recall=75.8%, balanced_acc=57.5%\\n  - exp_id: ablation-b-seed789\\n    role: replication\\n    result: internal_recall=81.8%, balanced_acc=58.3%\\n  depends_on: []\\n- id: D037\\n  date: 2026-05-14 09:25 UTC\\n  summary: Table 1 统一使用 eval_end_to_end.py，trained-router = -10.70（非 -12.84）\\n  rationale: 两个 eval 脚本对同一 ablation-b checkpoint 给出不同结果：eval_implicit_router.py=-12.84,\\n    eval_end_to_end.py=-10.70（差 2.14 分）。因 plan-003-baseline-245eps 的 4 个 baseline\\n    均用 eval_end_to_end.py 评估，trained-router 必须用同一框架以保证公平比较。CI [-15.25, -6.38] 仍包含\\n    always-det -9.47，差异不显著。论文措辞用 \\\"did not significantly outperform always-deterministic\\\"。\\n  related_experiments:\\n  - exp_id: plan-003-eval-implicit\\n    role: eval_implicit_router.py result\\n    result: '-12.84'\\n  - exp_id: plan-003-e2e-ablation-b-correct\\n    role: eval_end_to_end.py result (authoritative)\\n    result: '-10.70'\\n  depends_on:\\n  - D035\\n- id: D038\\n  date: 2026-05-14 09:25 UTC\\n  summary: 'Table 1 统一用 eval_end_to_end.py: trained-router = -10.70 (非 -12.84)，与 baseline\\n    同框架'\\n  rationale: '两个 eval 脚本对同一 ablation-b checkpoint 给出不同结果: eval_implicit_router.py=-12.84,\\n    eval_end_to_end.py=-10.70。差异 2.14 分(17%)，推测 fallback/路由判定逻辑不同。plan-003-baseline-245eps\\n    的 4 个 baseline (always-int/det/oracle/random) 均用 eval_end_to_end.py 评估，trained-router\\n    行也必须用同一脚本保证公平比较。两个数字的 CI 均包含 always-det(-9.47)，差异不显著——论文措辞用 \\\"did not significantly\\n    outperform\\\"。'\\n  related_experiments:\\n  - exp_id: plan-003-eval-implicit\\n    role: eval_implicit_router.py result\\n    result: -12.84 CI[-17.52,-8.45]\\n  - exp_id: plan-003-e2e-ablation-b-correct\\n    role: eval_end_to_end.py result (authoritative)\\n    result: -10.70 CI[-15.25,-6.38]\\n  depends_on:\\n  - D035\\n\", \"total_chars\": 31869, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "d37e515f-0708-4c43-9525-6cbaeae57f37",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/decisions.yaml\\\", \\\"content\\\": \\\"_next_id: 39\\\\ndecisions:\\\\n- id: D001\\\\n  date: 2026-05-13 04:25 UTC\\\\n  summary: 'MVP 方案: ScienceWorld 信号检测——验证确定性模拟是否在规则驱动任务上优于 LLM 内部推理'\\\\n  rationale: 12 天 deadline 下必须快速验证核心假设。ScienceWorld 是 primary track，其 JVM 后端提供精确的规则化状态转移，与\\\\n    LLM 近似推理的差距应该最大。选 5 task types × 10 episodes 的小规模 counterfactual 比较，不训练 router，纯信号检测。Pass\\\\n    标准 ≥2/5 task types >5pp，基于 ITP-R vs CogRouter 7.4pp 差距的量级。\\\\n  related_experiments: []\\\\n  depends_on: []\\\\n- id: D002\\\\n  date: 2026-05-13 04:28 UTC\\\\n  summary: 采纳 Reviewer 全部 4 条 warning，修订 MVP 为 Phase 0 + Phase 1 两阶段方案\\\\n  rationale: Reviewer 指出 D001 方案 3 个操作层缺陷：(1) counterfactual 方法未明确——改为 episode-level\\\\n    3-way (always-internal / always-deterministic / oracle-routing)，oracle 作为 selective\\\\n    routing 上界；(2) N=10 统计功效不足——增加到 20 episodes/task type + bootstrap 90% CI；(3) kill\\\\n    criteria 不完整——增加 Phase 0 工程 gate、灰区 conditional pass、pre-register 5 task types\\\\n    (3S+1M+1W)。无额外 GPU 成本，仅设计层修正。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D001\\\\n- id: D003\\\\n  date: 2026-05-13 07:43 UTC\\\\n  summary: GPU0 继续收集 baseline，GPU1 停下修复 tie-break + 致死动作过滤后重跑\\\\n  rationale: Fork 诊断发现两个方法论缺陷：(1) tie-break >= 使 95% delta=0 步骤 oracle 永远选 internal，oracle\\\\n    数据不可信；(2) 致死动作 (score=-100) 污染三条线。修 >= 为 >（oracle 仅在 deterministic 严格更优时介入）+ 致死动作过滤。不做\\\\n    N-step rollout——1-step 局限性是真实发现，MVP 应如实反映。GPU0 baseline 数据有效，不浪费已有进度。\\\\n  related_experiments:\\\\n  - exp_id: mvp-p1-gpu0\\\\n    role: baseline data, continue\\\\n  - exp_id: mvp-p1-gpu1-vllm\\\\n    role: kill, fix, rerun\\\\n  depends_on:\\\\n  - D002\\\\n- id: D004\\\\n  date: 2026-05-13 08:13 UTC\\\\n  summary: MVP 判定 primary metric 改为 always-deterministic vs always-internal，oracle\\\\n    降为 supplementary\\\\n  rationale: 1-step lookahead 在稀疏 reward 下 95% 步骤 delta=0，任何 tie-break 都使 oracle 退化（>=\\\\n    → always-internal，> → always-deterministic）。这是 1-step 的本质局限而非 bug。直接比较 det vs\\\\n    internal 能回答核心问题\\\\\\\"确定性计算有没有用\\\\\\\"，无需 oracle 作为中介。oracle 在密集 reward tasks 上仍有参考价值。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D003\\\\n- id: D005\\\\n  date: 2026-05-13 15:25 UTC\\\\n  summary: MVP Phase 1 判定 PASS — det > internal 在 ≥2/5 task types 上统计显著，oracle > det\\\\n    信号支持 router 训练\\\\n  rationale: melt (+40.15, CI [25, 60.15]) 和 change-state (+40.2, CI [25, 60.15])\\\\n    满足 ≥2/5 Pass 标准。mix-paint (+35.5) 大概率也通过。grow-plant (0.0) 符合预期（pre-registered\\\\n    weak/对照）。最关键发现：oracle > det（melt +16.7, change-state +14.95, mix-paint +10.0）证明\\\\n    selective routing 有额外增量——这是 SimGate router 训练的信号来源。信号机制是 death avoidance（避免 -100\\\\n    致死动作）而非正向引导，论文 framing 需定位为 safety-aware routing。待确认：melt/change-state 数据重复性、mix-paint\\\\n    CI、boil v3 重跑。\\\\n  related_experiments:\\\\n  - exp_id: mvp-p1-gpu0\\\\n    role: boil data (old code)\\\\n    result: det-int +30.1\\\\n  - exp_id: mvp-p1-gpu0-vllm\\\\n    role: melt+change-state (v3)\\\\n    result: det-int +40.15/+40.2, CI [25, 60.15]\\\\n  - exp_id: mvp-p1-gpu1-v3\\\\n    role: mix-paint+grow-plant (v3)\\\\n    result: det-int +35.5/0.0\\\\n  depends_on:\\\\n  - D004\\\\n- id: D006\\\\n  date: 2026-05-13 15:37 UTC\\\\n  summary: 'Research phase plan revised per Reviewer W1-W5: 2-way first, signal pre-screening,\\\\n    parameter-controlled ablation, GPU units fixed'\\\\n  rationale: 'Reviewer 提出 5 个实质性问题全部采纳: (1) C1 \\\\\\\"selective > unconditional\\\\\\\" 标注为待确认;\\\\n    (2) 2-way collection 优先，与 MVP 一致且省 33% GPU; (3) plan-001 增加 mini signal detection\\\\n    前置步骤避免浪费 GPU; (4) plan-004 增加 1.7B implicit 控制条件隔离架构效果; (5) GPU 预算改为 RTX 5090\\\\n    实际时长。melt/change-state 确认非重复但共享 variations，论文中合并报告。'\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D005\\\\n- id: D007\\\\n  date: 2026-05-13 17:01 UTC\\\\n  summary: 'Dream 审稿结果处理: best 4/6, median 3/6, worst 2/6. 三档一致问题修入 framing+plan:\\\\n    tool-use 文献定位, rule-based baseline, death decomposition'\\\\n  rationale: 'Dream 三档一致暴露 3 个结构性问题: (1) 缺 tool-use learning 文献 (Toolformer/ART/Chameleon),\\\\n    核心方法是标准 tool-use SFT pipeline 必须承认并差异化定位; (2) 缺 rule-based routing baseline 无法证明\\\\n    learned signal; (3) ScienceWorld -100 惩罚放大效应未解构。修入 paper_framing.md (tool-use\\\\n    定位段 + 3 新 concerns) 和 experiment_plan.yaml (plan-011 rule-based baseline P0, plan-012\\\\n    death decomposition P0, plan-013 labeling quality P1)。不 re-dream: 改动是补充性 (新 baselines\\\\n    + 定位), 非方向性 pivot。'\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D006\\\\n- id: D008\\\\n  date: 2026-05-13 17:09 UTC\\\\n  summary: 1-step labeling 失败 (tie rate 98.2%), plan-001b 必须改为 episode-terminal counterfactual\\\\n    labeling\\\\n  rationale: 'MVP tie-rate 分析: 2880/2894 步 (98.2%) 两种模式 1-step score delta = 0 (稀疏\\\\n    reward)。非 tie 步几乎全是 catastrophic gap (death penalty)。1-step oracle labeling 下\\\\n    router 只能学到\\\\\\\"避死\\\\\\\"——等价于 always-det on death-risk tasks。必须改为 episode-terminal counterfactual\\\\n    labeling: 每步 fork 环境，两条模式各自继续到 episode 结束，以 final episode score 差异作为 label。Phase\\\\n    0 已验证 forking 可行 (p95 latency 2.37s)。GPU 成本显著增加——需要 Agent 估算 action divergence\\\\n    rate 和实际工时。plan-001a (pre-screening) 和 plan-007 (boil rerun) 不受影响，继续运行。'\\\\n  related_experiments:\\\\n  - exp_id: mvp-p1-gpu0-vllm\\\\n    role: source\\\\n    result: tie rate data from episodes.jsonl\\\\n  depends_on:\\\\n  - D007\\\\n- id: D009\\\\n  date: 2026-05-13 17:15 UTC\\\\n  summary: 'Counterfactual labeling 分 pilot + 全量两阶段执行。Pilot: 3 tasks × 10 ep × K=10\\\\n    on GPU1。Non-tie rate > 30% 则全量 K=10，< 15% 则 pivot。'\\\\n  rationale: Action divergence rate 73.1% 确认 per-step routing 有足够 action space，但 1-step\\\\n    tie rate 98.2% 排除了 1-step labeling。Episode-terminal counterfactual labeling (fork\\\\n    at diverge + K-step continuation) 是必要方案。Full K=20 成本 78h 双卡太高。Pilot 先验证 K=10 的\\\\n    label quality (non-tie rate)，再决定全量策略。Pilot 选 melt/change-state/mix-paint（MVP 确认有信号），10\\\\n    ep each（~7-8h 单卡）。如果 K=10 non-tie rate < 15%，per-step routing 可能是 wrong granularity，需要\\\\n    pivot。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D008\\\\n- id: D010\\\\n  date: 2026-05-13 18:13 UTC\\\\n  summary: C2 重构为 \\\\\\\"failure trajectory predictor\\\\\\\"，paper_framing v3 更新 Plan C 定位\\\\n  rationale: Reviewer 分析 Plan C (episode-level labeling) 对论文 story 的三个影响：(1) Router\\\\n    学到的是 trajectory-level risk prediction 而非 step-level routing，C2 应重构为 \\\\\\\"failure trajectory\\\\n    predictor + diagnostic probe\\\\\\\"；(2) Plan C 完全绕开 Dream worst case 的 oracle circularity\\\\n    攻击（不用 per-step tie-breaking，直接用 episode outcome ground truth）；(3) 不做 class weighting，label\\\\n    不平衡反映真实分布。Story 一致性提升：safety-aware framing ↔ episode-level labeling ↔ trajectory\\\\n    risk prediction 三者天然匹配。C1 \\\\\\\"selective > unconditional\\\\\\\" 的关键指标变为 simulator invocation\\\\n    ratio（用更少的 simulator calls 达到接近 always-det 效果）。\\\\n  related_experiments: []\\\\n  depends_on:\\\\n  - D010\\\\n- id: D011\\\\n  date: 2026-05-13 19:09 UTC\\\\n  summary: Framing 调整：det 优势 = 纯 death avoidance，non-death 时 internal 略优。C1 机制明确为\\\\n    \\\\\\\"safety-efficiency tradeoff\\\\\\\"，router 学习 death-risk detection 而非泛泛路由。Labeling 策略维持\\\\n    episode-level 但加 death-aware 后处理。\\\\n  rationale: 13 tasks (8 prescreening + 5 MVP) 一致显示：no-death Δ(D-I) = -4.5 ~ -0.4，det\\\\n    的全部 30-60 分优势来自 internal 的 41-49% death rate vs det 的 5-12% death rate。这意味着：(1)\\\\n    always-det 不是最优（safe steps 有性能代价），selective routing 有理论基础；(2) router 的核心任务是 death-risk\\\\n    detection；(3) plan-001b episode-level labels 将以 death episodes 为主要信号源，non-death\\\\n    episodes 提供少量 internal labels；(4) plan-012 death decomposition 升为论文核心证据。\\\\n  related_experiments:\\\\n  - exp_id: research-prescreening-gpu0\\\\n    role: evidence\\\\n    result: '8/25 tasks: aggregate no-death Δ = -4.5, I_death=48.6%, D_death=5.4%'\\\\n  - exp_id: mvp-p1-gpu1-v3\\\\n    role: evidence\\\\n    result: '5 tasks: aggregate no-death Δ = -0.4, I_death=41%, D_death=12%'\\\\n  depends_on:\\\\n  - D010\\\\n  - D008\\\\n- id: D012\\\\n  date: 2026-05-13 19:26 UTC\\\\n  summary: 'D012: Label 不平衡应对——设条件触发点，预筛完成后决定是否 pivot framing'\\\\n  rationale: 'Reviewer Loop #2 确认 14 tasks 中仅 1 个 internal-preferred（7%），预计全部 25 tasks\\\\n    中 internal-preferred ≤ 3。93% det 标签 → router SFT 退化为 always-det → C1 \\\\\\\"selective\\\\n    > unconditional\\\\\\\" 不成立风险极高。\\\\n\\\\n\\\\n    条件触发：\\\\n\\\\n    - 若 internal-preferred < 3/25（<12%）→ 执行 framing pivot：C1 从 \\\\\\\"selective > unconditional\\\\\\\"\\\\n    降级为 \\\\\\\"det >> internal, 主要机制是 death avoidance\\\\\\\"；C2 调整为 \\\\\\\"router 学习 death-risk trajectory\\\\n    prediction\\\\\\\"；plan-012 (death decomposition) 升为核心贡献；plan-011 (rule-based baseline)\\\\n    变关键（learned vs heuristic）\\\\n\\\\n    - 若 internal-preferred ≥ 3/25（≥12%）→ 保持现有 framing，plan-002 router SFT 使用 class-weighted\\\\n    loss 应对不平衡\\\\n\\\\n\\\\n    不选的方案：(b) 人为增加 internal episodes → p-hacking 风险；(c) 加 MATH track → 12 天 DDL 下风险太大\\\\n\\\\n\\\\n    另外 Reviewer 指出 genuine-det 分类中 find-living-thing（+0.25）和 freeze（+2.0）在 n=5 下无统计意义，仅\\\\n    find-animal（+4.2）可能有真实信号。这进一步削弱 non-death 信号。'\\\\n  related_experiments:\\\\n  - exp_id: research-prescreening-gpu0\\\\n    role: evidence\\\\n    result: 14/25 tasks analyzed, 93% det-preferred\\\\n  - exp_id: research-boil-v3-gpu1\\\\n    role: evidence\\\\n    result: death avoidance confirmed as sole driver\\\\n  depends_on: []\\\\n- id: D013\\\\n  date: 2026-05-13 19:33 UTC\\\\n  summary: 'D013: 接受 Reviewer 结构性论证，framing pivot 从\\\\\\\"条件触发\\\\\\\"升级为\\\\\\\"近确定\\\\\\\"——C1 改为纯经验发现，C2 重心从\\\\n    router 转向 labeling method'\\\\n  rationale: 'Reviewer 指出三个关键判断：\\\\n\\\\n    1. Class-weighted loss 无法 salvage selective routing——问题不是 class imbalance，而是 episode-level\\\\n    labels 把同一 episode 所有步骤（含安全步骤）标为同一 label，router 学到的是 task-type classifier 而非 step-level\\\\n    risk detector\\\\n\\\\n    2. C2 \\\\\\\"early warning signals\\\\\\\" 脆弱（~30% 有实质），需 plan-005 验证 within-task-type 预测方差\\\\n\\\\n    3. Rule-based baseline 有 ~60% 概率让 learned router novelty 归零\\\\n\\\\n\\\\n    Reviewer 建议进一步 pivot：\\\\n\\\\n    - C1 完全放弃 \\\\\\\"selective > unconditional\\\\\\\"，改为纯经验发现：det >> internal，death avoidance\\\\n    是主要机制\\\\n\\\\n    - C2 重心从 router 转向 labeling method：episode-level counterfactual labeling 绕开 per-step\\\\n    oracle circularity，本身是 methodological contribution\\\\n\\\\n    - 这样 plan-011 威胁降低：论文贡献不在于\\\\\\\"router 比 keywords 好\\\\\\\"，而在于\\\\\\\"counterfactual analysis 揭示\\\\n    death avoidance 机制 + 诊断框架\\\\\\\"\\\\n\\\\n\\\\n    评估：Reviewer 的结构性论证正确。Episode-level labels 确实无法教 step-level discrimination（D008\\\\n    98.2% tie rate → Plan C → 但 Plan C 的标注粒度太粗）。这是一个独立于预筛计数的结构性限制。\\\\n\\\\n\\\\n    决策：framing pivot 近确定执行。仍等预筛完成获取完整数据（论文需要），但 paper_framing.md 立即更新方向。实验计划不变——router\\\\n    SFT 仍做（负面结果有论文价值），plan-005/011/012 优先级提升。'\\\\n  related_experiments:\\\\n  - exp_id: research-prescreening-gpu0\\\\n    role: pending\\\\n    result: awaiting final count\\\\n  - exp_id: research-boil-v3-gpu1\\\\n    role: evidence\\\\n    result: oracle > det +10-17pp comes from step-level oracle, not episode-level\\\\n  depends_on:\\\\n  - D012\\\\n  - D011\\\\n  - D010\\\\n- id: D014\\\\n  date: 2026-05-13 20:59 UTC\\\\n  summary: 'D014: 重新注册 plan-011 rule-based keyword list，排除 connect/disconnect 通用动作词'\\\\n  rationale: 'Reviewer critical 发现：原 rule_based_keywords.json 包含 \\\\\\\"connect\\\\\\\"/\\\\\\\"disconnect\\\\\\\"，这是\\\\n    ScienceWorld 通用动作词（几乎所有对象交互都用 connect），非科学操作指示词。结果 85.79% 关键词匹配率，184/189 episodes\\\\n    预测为 det-preferred → rule-based ≈ always-det → 与 learned router 对比无区分度。\\\\n\\\\n\\\\n    重新注册理由：原列表设计时未理解 ScienceWorld 动作词汇表。\\\\\\\"connect\\\\\\\" 类似 web UI 的 \\\\\\\"click\\\\\\\"，不指示需要确定性计算的科学操作。\\\\n\\\\n\\\\n    新列表只保留真正的状态变化/科学操作动词：heat, cool, boil, melt, freeze, burn, mix, pour, react, dissolve,\\\\n    activate, change-state 等。排除：connect, disconnect, move, look, pick up, go, open,\\\\n    close, focus, examine 等通用交互词。\\\\n\\\\n\\\\n    这不是 post-hoc 修改实验结果——plan-011 尚未正式开始，这是修复实验设计缺陷。新列表需在 plan-011 正式实验前注册并锁定。'\\\\n  related_experiments:\\\\n  - exp_id: plan-011\\\\n    role: design fix\\\\n    result: keyword list re-registration before experiment starts\\\\n  depends_on:\\\\n  - D013\\\\n- id: D015\\\\n  date: 2026-05-13 21:53 UTC\\\\n  summary: 'D015: plan-012 预分析确认核心假设在 30 tasks 上高度稳健 (r=0.989, death_fraction=99%,\\\\n    Δ_full=+37.9)'\\\\n  rationale: 从 MVP 5 tasks 扩展到预筛全量 30 tasks / 219 episodes，所有核心指标保持或改善：r 从 0.986→0.989，Δ_full\\\\n    从 +36.9→+37.9，death_fraction 稳定 99%。Label 分布 det-preferred 41% / internal-preferred\\\\n    0.5% / no-preference 59%。核心发现方向已确定，plan-001b 收集 20 eps/task 后将提升统计功效但不改变结论方向。death_decomposition.py\\\\n    (519行) 已就绪。\\\\n  related_experiments:\\\\n  - exp_id: research-prescreening-gpu0\\\\n    role: data_source\\\\n    result: 30 tasks / 219 episodes 预分析\\\\n  - exp_id: research-boil-v3-gpu1\\\\n    role: data_source\\\\n    result: MVP boil data included\\\\n  depends_on:\\\\n  - D013\\\\n- id: D016\\\\n  date: 2026-05-13 23:33 UTC\\\\n  summary: 'D016: find-non-living-thing 方向翻转评估——framing robust 无需 pivot，C2 诊断贡献重心从\\\\n    router 移向 methodology'\\\\n  rationale: find-non-living-thing 12/20 eps delta 从 -6.8 收窄到 -2.3，可能翻转。Reviewer 独立确认：(1)\\\\n    C1 不依赖 internal-preferred 任务存在，翻转后 death avoidance = 100% 更强；(2) C2 \\\\\\\"router-as-probe\\\\\\\"\\\\n    措辞需调整——如果 router trivially always-det，诊断价值归属于 labeling methodology 而非 router 本身；(3)\\\\n    plan-002 结果性质转变为 negative result（trivial one-class classifier），但有论文价值（量化 episode-level\\\\n    labeling 的粒度限制）；(4) 成本效率论证需明确为 task-category level 而非 per-episode dynamic routing。等\\\\n    20 eps 全量数据后更新 paper_framing.md 四处文字。\\\\n  related_experiments:\\\\n  - exp_id: plan-001b-gpu1\\\\n    role: data source\\\\n    result: running, find-non-living-thing 12/20 eps delta=-2.3\\\\n  depends_on:\\\\n  - D013\\\\n  - D015\\\\n- id: D017\\\\n  date: 2026-05-14 00:40 UTC\\\\n  summary: 'C1 claim 采用 Tier B: \\\\\\\"Death avoidance ~99% 主导，non-death signal negligible\\\\\\\"'\\\\n  rationale: 30 tasks / 219 episodes 预分析：Δ_full=+37.9, Δ_nd=+0.2, r=0.989, death_fraction=99%。Tier\\\\n    A (\\\\\\\"entirely/唯一\\\\\\\") 虽然 provocative 但 find-animal Δ_nd=+4.2 可能成反例；Tier C (\\\\\\\"primary\\\\\\\")\\\\n    hedging 过度浪费 r=0.989 的强数据。Tier B 用 \\\\\\\"small and inconsistent\\\\\\\" 准确反映 -6.8~+4.2 的无系统性方向分布。升档条件：plan-001b\\\\n    全量 n=20 数据中所有 task 的 Δ_nd bootstrap 95% CI 跨 0 → 升 Tier A。\\\\n  related_experiments:\\\\n  - exp_id: plan-001b\\\\n    role: evidence\\\\n    result: '30 tasks prescreening: r=0.989, death_fraction=99%, Δ_nd=+0.2'\\\\n  - exp_id: plan-012\\\\n    role: planned_validation\\\\n    result: Full death decomposition on n=20 data will confirm/upgrade tier\\\\n  depends_on: []\\\\n- id: D018\\\\n  date: 2026-05-14 04:55 UTC\\\\n  summary: C1 claim 从 \\\\\\\"~99% death avoidance\\\\\\\" 调整为 \\\\\\\"~90%\\\\\\\"，find-non-living-thing 定位为正面案例\\\\n  rationale: plan-012 preliminary 显示 death fraction=90.1%（非 99%），因 find-non-living-thing（0%\\\\n    death rate）拉低。该 task Δ_nd=9.58=Δ_full，证明 router 在零死亡场景仍有 non-trivial 增益，routing\\\\n    价值超越 death avoidance。与 plan-011（keyword heuristic 失效）互相呼应，强化 learned routing 的必要性。论文分两层报告：overall\\\\n    ~90% death-dominated + per-task breakdown 展示非死亡信号。\\\\n  related_experiments:\\\\n  - exp_id: plan-012\\\\n    role: evidence\\\\n    result: death_fraction=90.1%, r=0.967, Δ_nd=2.95 (driven by find-non-living-thing)\\\\n  - exp_id: plan-011\\\\n    role: corroboration\\\\n    result: keyword heuristic 结构性失效，learned routing 不可被简单规则替代\\\\n  depends_on: []\\\\n- id: D019\\\\n  date: 2026-05-14 05:00 UTC\\\\n  summary: C1 death fraction 报告方式：per-task fraction (10/11) + episode-weighted ~94.5%，不用\\\\n    per-task mean\\\\n  rationale: Reviewer 核实发现 death fraction 对聚合方式高度敏感：episode-weighted(plan_c)=~94.5%,\\\\n    per-task mean=~90.9%, 混合数据=98.75%。per-task mean 被 find-non-living-thing 的 0% 拉偏（二值化效应），episode-weighted\\\\n    在均匀数据上更公允。论文报告策略：(1) per-task fraction \\\\\\\"10/11 tasks death-dominated\\\\\\\" 传达定性结论；(2)\\\\n    episode-weighted ~94.5% 传达定量强度；(3) find-non-living-thing 单独讨论作为 non-death signal\\\\n    正面案例。D018 的 \\\\\\\"~90%\\\\\\\" 修正为更精确的 ~94.5%。\\\\n  related_experiments:\\\\n  - exp_id: plan-012\\\\n    role: evidence\\\\n    result: episode-weighted death fraction ~94.5% on 11 plan_c tasks/235 eps; per-task\\\\n      mean 90.9% (10/11=100%, 1/11=0%)\\\\n  depends_on:\\\\n  - D018\\\\n- id: D020\\\\n  date: 2026-05-14 06:43 UTC\\\\n  summary: plan-002 分类路线：v5 pad_token_id fix 为最后一次尝试，epoch 1 internal recall=0 则 pivot\\\\n    到生成式\\\\n  rationale: v1-v4 连续失败，但 v5 的 pad_token_id fix 精准命中 Reviewer 识别的根因（ModelScope Qwen3-1.7B\\\\n    未设 pad_token_id → CrossEntropyLoss 在 padding tokens 上计算 → 初始 loss 11.5 远超正常 0.69\\\\n    → 梯度信号被污染 → 退化到 majority class）。plan-004 生成式路线已证明非退化（eval_loss 0.36, internal\\\\n    recall 51.5%），作为 fallback。v5 是分类路线的 make-or-break 实验。\\\\n  related_experiments:\\\\n  - exp_id: plan-002-formal-v4\\\\n    role: evidence\\\\n    result: accuracy 91.9% but internal recall=0 across all 3 epochs, degenerate\\\\n  - exp_id: plan-002-formal-v5\\\\n    role: test\\\\n    result: running, pad_token_id fix\\\\n  - exp_id: plan-004\\\\n    role: fallback\\\\n    result: 'generative route: eval_loss 0.36, accuracy 65.4%, internal recall 51.5%'\\\\n  depends_on: []\\\\n- id: D021\\\\n  date: 2026-05-14 06:48 UTC\\\\n  summary: 修正 D020：pad_token_id 非根因，class_weights auto 才是 loss 异常主因。v5 仍跑完 epoch 1\\\\n    作对照，同时启动 v6（无 class_weights）\\\\n  rationale: Reviewer 提供决定性证据链：(1) router_sft_train.py L294-305 在 v3 就已赋值 pad_token_id=151643，v5\\\\n    只加了 assert；(2) plan-004 v1(无 class_weights)→loss 0.36-0.71 正常，v2(class_weights\\\\n    auto)→loss 48→42→8→4 爆炸，唯一变量是 class_weights；(3) v4 accuracy 88.3% 证明 pooling 正常工作（若\\\\n    pad_token_id 坏了应~50%），88.3%≈majority baseline 92.7%是典型多数类退化。结论：4.5x minority weight\\\\n    + 仅 180 internal 样本 → 模型选择忽略少数类以最小化总加权 loss。v6（去掉 class_weights）是验证此诊断的必要对照。\\\\n  related_experiments:\\\\n  - exp_id: plan-004-v1\\\\n    role: control\\\\n    result: 无 class_weights, loss 0.36-0.71 正常\\\\n  - exp_id: plan-004-v2\\\\n    role: control\\\\n    result: class_weights auto, loss 48→4 异常，决定性证据\\\\n  - exp_id: plan-002-formal-v4\\\\n    role: evidence\\\\n    result: accuracy 88.3% 证明 pooling 正常，退化是多数类收敛\\\\n  - exp_id: plan-002-formal-v5\\\\n    role: running\\\\n    result: 仍用 class_weights auto, 预计复现 v4 退化\\\\n  - exp_id: plan-002-formal-v6\\\\n    role: planned\\\\n    result: 去掉 class_weights, 验证 loss 是否回到正常范围\\\\n  depends_on:\\\\n  - D020\\\\n- id: D022\\\\n  date: 2026-05-14 06:51 UTC\\\\n  summary: plan-002 classification head 定性为 negative baseline，v6 为最终对照后停止迭代\\\\n  rationale: Reviewer 核实：plan-002 从 dryrun 到 v5 共 5 次迭代 internal recall 均为 0，而 plan-004\\\\n    implicit router 首次即达 51.5%。pad_token_id 非根因（v4 已修复），class_weights 4.5× 仅解释 loss\\\\n    数值偏高（不影响退化本质）。真正根因是 classification head 架构无法从当前数据中提取 internal routing 信号。v6（去掉\\\\n    class_weights、3 epochs）作为最终公平对照——预期仍会退化，用作论文中 explicit router 的 negative baseline，与\\\\n    plan-004 implicit router 形成对比证据。\\\\n  related_experiments:\\\\n  - exp_id: plan-002-formal-v5\\\\n    role: evidence\\\\n    result: internal recall=0, eval_loss=0.79, accuracy=87.4%, 与 v3/v4 同样退化\\\\n  - exp_id: plan-004-v2\\\\n    role: contrast\\\\n    result: implicit router internal recall=51.5%, 证明信号可提取但 classification head 架构不行\\\\n  - exp_id: plan-002-dryrun\\\\n    role: evidence\\\\n    result: 无 class_weights 1 epoch 仍 internal recall=0, 排除 class_weights 为退化根因\\\\n  depends_on: []\\\\n- id: D023\\\\n  date: 2026-05-14 07:00 UTC\\\\n  summary: plan-002 根因修正：pad_token_id 假说被 v5 实证否定，真正根因是 class_weights + gradient clipping\\\\n    交互\\\\n  rationale: v5 加入 pad_token_id fix 后 loss 曲线与 v4 完全一致（差异在噪声范围），证伪 pad_token_id 假说。Reviewer\\\\n    识别出真正根因：class_weights [4.5, 0.5625] 给 internal 样本 4.5x 权重 → loss 爆炸(4-11) → grad_norm\\\\n    100-600 → 被 max_grad_norm=1.0 裁剪 → internal 有效学习率≈3e-8。该机制同时解释三个现象：(a) train loss\\\\n    差 10x 但 eval loss 差<2x, (b) grad_norm 100-600 vs dryrun 的 0.5-42, (c) v5 fix 无效。下一步：去掉\\\\n    class_weights 跑 v6 隔离验证。附带：v4 registry 标 killed 但实际完整训练完毕需更正。\\\\n  related_experiments:\\\\n  - exp_id: plan-002-sft-v5\\\\n    role: evidence\\\\n    result: pad_token_id fix 无效，loss 曲线与 v4 一致\\\\n  - exp_id: plan-002-sft-v4\\\\n    role: evidence\\\\n    result: registry 标 killed 但实际完整训练(accuracy=91.9%, internal_recall=0%)\\\\n  - exp_id: plan-002-sft-dryrun\\\\n    role: control\\\\n    result: 无 class_weights 时 loss 正常(0.17-1.03)，但也退化(internal_recall=0%)\\\\n  depends_on: []\\\\n- id: D024\\\\n  date: 2026-05-14 07:15 UTC\\\\n  summary: D021 推翻：class_weights 不是 router 训练退化根因，数据文件差异是首要排查方向\\\\n  rationale: '双 pipeline 实证否定 class_weights 假说：(1) implicit router plan-004-v3 去掉\\\\n    class_weights 后 loss 与 v2 完全一致（step 10: 48.15 vs 48.15），零影响；(2) explicit router\\\\n    plan-002-formal-v6 去掉 class_weights 后仍退化为全 det 预测（f1_internal=0.0, recall_internal=0.0）。唯一非退化结果\\\\n    ablation-b（internal recall 51.5%）使用了不同数据文件 data/plan-004-implicit/（而非 results/plan_c_test_labels/implicit_sft.jsonl），且用了\\\\n    upsample_minority。下一步：对比两份数据的格式/分布/内容差异，隔离数据 vs upsample 的各自贡献。'\\\\n  related_experiments:\\\\n  - exp_id: plan-004-v3\\\\n    role: evidence\\\\n    result: loss identical to v2, class_weights has no effect\\\\n  - exp_id: plan-002-formal-v6\\\\n    role: evidence\\\\n    result: f1_internal=0.0, class_weights removal ineffective\\\\n  - exp_id: plan-004-ablation-b\\\\n    role: reference\\\\n    result: only non-degenerate model, used different data + upsample\\\\n  depends_on:\\\\n  - D021\\\\n  - D023\\\\n- id: D025\\\\n  date: 2026-05-14 07:18 UTC\\\\n  summary: Classification head 路线确认失败，plan-002 pivot 到 generative approach (implicit\\\\n    SFT + upsample)\\\\n  rationale: Reviewer 审查 v6（去掉 class_weights）epoch 1 结果：eval_accuracy 0.929 但 internal\\\\n    recall=0, balanced_accuracy=0.5，仍全预测 deterministic。v3-v6 四个版本均退化，证实 classification\\\\n    head 在 89.7%/10.3% 极端不平衡下无法学到少数类信号。根因不是 class_weights（D024）也不是 pad_token_id（D023），而是分类头方法本身的局限。plan-004-ablation-b\\\\n    的 implicit generative + upsample 方案已验证可行，pivot 到该路线。\\\\n  related_experiments:\\\\n  - exp_id: plan-002-formal-v6\\\\n    role: evidence\\\\n    result: 'epoch 1 still degrades: internal recall=0, balanced_accuracy=0.5 despite\\\\n      removing class_weights'\\\\n  - exp_id: plan-002-formal-v5\\\\n    role: evidence\\\\n    result: degraded with class_weights\\\\n  - exp_id: plan-004-ablation-b\\\\n    role: baseline\\\\n    result: implicit generative + upsample worked\\\\n  depends_on:\\\\n  - D024\\\\n  - D022\\\\n- id: D026\\\\n  date: 2026-05-14 07:20 UTC\\\\n  summary: plan-004 v2/v3/v4 失败根因确认：训练数据标签损坏（no-preference→internal mapping bug），非\\\\n    class_weights\\\\n  rationale: Reviewer 独立审计三个 implicit SFT 数据文件发现：v2/v3/v4 使用的 results/plan_c_test_labels/implicit_sft.jsonl\\\\n    中 66.9% 标记为 internal（真实应为 10.3%），no-preference 步骤被错误映射为 internal。ablation-b 使用正确数据（data/plan-004-implicit/）loss\\\\n    0.71→0.36 且 internal recall=51.5%；v2/v3 使用错误数据 loss 48→4.4，无论是否有 class_weights。已指令\\\\n    kill v4 并用修复数据重跑 v5。\\\\n  related_experiments:\\\\n  - exp_id: plan-004-v4\\\\n    role: evidence\\\\n    result: loss 48→13.7, repeating v2/v3 failure pattern on corrupted data\\\\n  - exp_id: plan-004-v3\\\\n    role: evidence\\\\n    result: loss 48→4.4 on corrupted data, identical to v2 despite no class_weights\\\\n  - exp_id: plan-004-ablation-b\\\\n    role: control\\\\n    result: loss 0.71→0.36, internal recall=51.5% on CORRECT data\\\\n  depends_on:\\\\n  - D024\\\\n- id: D027\\\\n  date: 2026-05-14 07:31 UTC\\\\n  summary: generative-v1 双对照提交：grad_accum=8 vs grad_accum=1 并行隔离变量\\\\n  rationale: Reviewer 修正根因：数据污染只影响 v2，v3/v4 失败的真正 confound 是 upsample_minority 和 gradient_accumulation_steps\\\\n    同时变化（ablation-b 成功用 upsample=true+ga=1，v3/v4 失败用 upsample=false+ga=8）。generative-v1\\\\n    原 spec 用 ga=8 有风险，利用双 GPU 并行跑 ga=8 和 ga=1 对照，一次实验同时验证 generative SFT 可行性和 grad_accum\\\\n    是否为退化因素。\\\\n  related_experiments:\\\\n  - exp_id: plan-002-generative-v1\\\\n    role: subject\\\\n    result: preparing\\\\n  - exp_id: plan-004-v4\\\\n    role: evidence\\\\n    result: negative (upsample=false+ga=8, internal_recall=0)\\\\n  - exp_id: plan-002-formal-v6\\\\n    role: evidence\\\\n    result: negative (classification head degenerated)\\\\n  - exp_id: ablation-b\\\\n    role: evidence\\\\n    result: success (upsample=true+ga=1, internal_recall=51.5%)\\\\n  depends_on: []\\\\n- id: D028\\\\n  date: 2026-05-14 07:38 UTC\\\\n  summary: 暂停论文写作，修复核心数字不一致（至少 3 套数据源混用）\\\\n  rationale: Reviewer CRITICAL：paper_framing.md（245eps/11tasks）与 experiment_tables.md（249eps/30tasks）与\\\\n    plan-003 registry（194eps/11tasks）三套数字矛盾，label distribution 差异尤其严重（9 vs 1 个 internal-preferred）。在错误数字上写论文是浪费。需确定唯一权威数据源（plan-012\\\\n    最终输出），统一所有材料，可能需要在权威集合上重跑 baseline。\\\\n  related_experiments:\\\\n  - exp_id: plan-012-decomposition\\\\n    role: authority\\\\n    result: 249eps/30tasks 全量分析\\\\n  - exp_id: plan-003-baseline\\\\n    role: conflict\\\\n    result: 194eps/11tasks baseline，数字与 plan-012 不一致\\\\n  depends_on: []\\\\n- id: D029\\\\n  date: 2026-05-14 08:52 UTC\\\\n  summary: 'Router 训练路线全面评估完毕：classification head 全退化(D025)、generative SFT NEGATIVE、ablation-b\\\\n    复现失败(v5)。论文以 plan-012 empirical finding 为核心，router 结果作 informative data。Critical\\\\n    path: e2e eval → D028 修复 → plan-003 baselines → Paper Agent'\\\\n  rationale: 'Router 训练 8+ 次迭代结果：(1) classification head v3-v6 全退化为 always-det (D025确认)；(2)\\\\n    generative SFT (plan-002-generative-v1) ga=8 和 ga=1 双对照均 NEGATIVE；(3) ablation-b\\\\n    唯一成功 (internal_recall=51.5%) 但 v5 严格复现条件下失败。根因：episode-level labels 粒度太粗 (D013)，标签分布极端不平衡\\\\n    (89.7% det-preferred)，router 结构性受限于 task-level risk classification。\\\\n\\\\n\\\\n    论文策略调整：v3 framing 本身以 empirical finding + methodology 为核心贡献。router 训练结果 (partial\\\\n    success + systematic failure) 恰好证明 episode-level labeling 的粒度限制——这 IS the finding。ablation-b\\\\n    的 51.5% recall 说明 signal 可提取但不稳定，与 D013 \\\\\\\"task-type classifier\\\\\\\" 判断一致。\\\\n\\\\n\\\\n    11 天 DDL critical path：(1) ablation-b e2e eval (当前进行中) → 判断 router 是否能 end-to-end\\\\n    工作；(2) D028 数据一致性修复 (editorial)；(3) plan-003 baselines (always-int/det/random/oracle\\\\n    大部分可从 plan-001b 数据后处理)；(4) Paper Agent 启动 (目标 5/17 前交初稿)。plan-005 routing pattern\\\\n    分析和 plan-013 labeling quality 为 nice-to-have。'\\\\n  related_experiments:\\\\n  - exp_id: plan-002-generative-v1\\\\n    role: evidence\\\\n    result: NEGATIVE - generative SFT 双对照 (ga=8/ga=1) 均未改善\\\\n  - exp_id: plan-004-v5\\\\n    role: evidence\\\\n    result: NEGATIVE - 严格复现 ablation-b 条件失败\\\\n  - exp_id: plan-004-ablation-b\\\\n    role: reference\\\\n    result: 唯一成功 (internal_recall=51.5%) 但不可复现\\\\n  - exp_id: plan-002-formal-v6\\\\n    role: evidence\\\\n    result: classification head 最终对照仍退化\\\\n  - exp_id: plan-012-decomposition\\\\n    role: core\\\\n    result: 论文核心数据已到位 (11 tasks/245 eps, r=0.9698)\\\\n  depends_on:\\\\n  - D025\\\\n  - D027\\\\n  - D028\\\\n- id: D030\\\\n  date: 2026-05-14 09:00 UTC\\\\n  summary: Generative routing negative 结果纳入 C1 叙事：router 训练失败是 death dominance 极端\\\\n    class imbalance 的必然后果，非独立发现\\\\n  rationale: 所有 router 训练路线（classification head D025, generative v1, v5）均失败/退化。唯一成功的\\\\n    ablation-b 无法复现。根因：episode-level labels 极端不平衡（86 det / 9 internal / 150 no-pref\\\\n    = 3.7% internal），death avoidance 占 90% signal 导致 router 结构性无法学到平衡决策。这一结果 REINFORCES\\\\n    C1（death dominance）。84.9% logit vs 26.7% generation gap 放入 Discussion 作为 secondary\\\\n    observation（signal learnable but not reliably expressible）。论文核心贡献不变：empirical\\\\n    finding (death avoidance) + diagnostic methodology (counterfactual labeling)，非\\\\n    router 架构。等 v5/ablation-b 调查完毕后 finalize 措辞。\\\\n  related_experiments:\\\\n  - exp_id: plan-004-v5\\\\n    role: evidence\\\\n    result: 'negative: gen internal_recall 26.7%, logit 84.9%'\\\\n  - exp_id: plan-002-generative-v1\\\\n    role: evidence\\\\n    result: 'negative: gen internal_recall 16.7%'\\\\n  - exp_id: plan-004-ablation-b\\\\n    role: anomaly\\\\n    result: 'success: internal_recall 51.5%, unreproducible'\\\\n  - exp_id: plan-002-formal-v6\\\\n    role: evidence\\\\n    result: 'negative: classification head degenerated to always-det'\\\\n  depends_on:\\\\n  - D029\\\\n  - D025\\\\n- id: D031\\\\n  date: 2026-05-14 09:01 UTC\\\\n  summary: 发现 v5 未真正复现 ablation-b 配置：ga=8→1 (effective batch 32→4) + 脚本重构，logit-generation\\\\n    gap 结论需重新验证\\\\n  rationale: Registry spec 对比发现 ablation-b 用 gradient_accumulation_steps=8（effective\\\\n    batch=32），v5 用 ga=1（effective batch=4）。此外脚本从无 train 子命令重构为有 train 子命令，说明代码经历过修改。v5\\\\n    从未在与 ablation-b 相同条件下训练，logit-generation gap 可能是配置/代码差异引入的 artifact 而非 generative\\\\n    routing 的系统性问题。需用匹配配置重新训练验证。\\\\n  related_experiments:\\\\n  - exp_id: ablation-b\\\\n    role: 原始实验\\\\n    result: routing 有效但有 logit-generation gap\\\\n  - exp_id: v5\\\\n    role: 复现尝试\\\\n    result: 配置不匹配导致未真正复现\\\\n  depends_on: []\\\\n- id: D032\\\\n  date: 2026-05-14 09:04 UTC\\\\n  summary: 确认 v5 与 ablation-b 代码级差异：loss 计算(WeightedTrainer vs 标准HF)、数据上采样逻辑、class_weights\\\\n    全部不同，logit-generation gap 可能是代码重构副产物\\\\n  rationale: 代码 diff 确认三个影响训练行为的关键差异：(1) ablation-b 用自定义 WeightedTrainer.compute_loss\\\\n    做 per-sample 加权，v5 用标准 HF Trainer loss；(2) ablation-b 数据加载无内置上采样，v5 默认开启 upsample_ratio=1.0\\\\n    导致双重平衡；(3) ablation-b 支持 class_weights，v5 完全移除。加上之前发现的 ga=8 vs ga=1，v5 从未在可比条件下复现\\\\n    ablation-b。需要用 ablation-b 原始代码+原始配置重新训练验证 gap 是否真实存在。\\\\n  related_experiments:\\\\n  - exp_id: ablation-b\\\\n    role: 原始实验\\\\n    result: 自定义 WeightedTrainer + ga=8\\\\n  - exp_id: v5\\\\n    role: 失败的复现\\\\n    result: 标准 HF Trainer + ga=1 + 双重上采样\\\\n  depends_on:\\\\n  - D031\\\\n- id: D033\\\\n  date: 2026-05-14 09:14 UTC\\\\n  summary: 'Framing 定稿 Option B (方法论贡献): Reviewer seed 变体分析确认 router balanced_acc\\\\n    仅 ~58%(接近随机)，router 架构非贡献点，论文贡献 = 分析方法论 + death avoidance empirical finding'\\\\n  rationale: 'Reviewer 发现 ablation-b 的 3 个 seed 变体(123/456/789)在 balanced_accuracy\\\\n    上恒定 57-59%，仅比随机(50%)高 ~8pp，internal_recall 从 51% 到 82% 大幅波动完全由 seed 决定。这意味着：(1)\\\\n    router 判别力接近随机，\\\\\\\"internal_recall=51.5%\\\\\\\" 不是固有属性而是 seed=42 的阈值效应；(2) 所有 router 训练路线（classification\\\\n    head 退化、generative SFT negative、ablation-b 近随机）均未产出有效 router；(3) 论文不应声称 \\\\\\\"首个非退化\\\\n    router\\\\\\\"，而应将 router 近随机作为 C1 的补充证据——routing signal 被 death avoidance 主导到 router\\\\n    几乎无法学到其他信号。选择 Option B: 论文贡献 = episode-level counterfactual 方法论 + death avoidance\\\\n    占 90% routing signal 的 empirical finding + router 负面结果强化分析叙事。'\\\\n  related_experiments:\\\\n  - exp_id: plan-004-ablation-b\\\\n    role: evidence\\\\n    result: seed 变体 balanced_acc 57-59% 恒定,接近随机\\\\n  - exp_id: plan-004-v5\\\\n    role: evidence\\\\n    result: negative\\\\n  - exp_id: plan-002-generative-v1\\\\n    role: evidence\\\\n    result: negative\\\\n  - exp_id: plan-002-formal-v6\\\\n    role: evidence\\\\n    result: degenerate always-det\\\\n  - exp_id: plan-012-decomposition\\\\n    role: core_finding\\\\n    result: DAF=90.41%, r=0.9698\\\\n  depends_on:\\\\n  - D029\\\\n  - D030\\\\n- id: D034\\\\n  date: 2026-05-14 09:15 UTC\\\\n  summary: 'D027 更正: ablation-b 使用 gradient_accumulation_steps=8（非 ga=1），D027 原文 \\\\\\\"ga=1\\\\\\\"\\\\n    为错误记录'\\\\n  rationale: Reviewer 审查发现 D027 声称 ablation-b 用 ga=1，D031 声称用 ga=8。Registry spec 命令和\\\\n    seed 变体的 train_config.json 均确认 ga=8。D027 的 ga=1 描述错误，以本条更正。v5(ga=1) 与 ablation-b(ga=8)\\\\n    确实不同，D031 的判断方向正确。\\\\n  related_experiments:\\\\n  - exp_id: plan-004-ablation-b\\\\n    role: subject\\\\n    result: ga=8 confirmed\\\\n  depends_on:\\\\n  - D027\\\\n  - D031\\\\n- id: D035\\\\n  date: 2026-05-14 09:17 UTC\\\\n  summary: Trained router e2e 确认 negative (-12.84 vs always-det -9.47)，纳入 C1 叙事作为正面证据\\\\n  rationale: plan-003-eval-implicit 用正确 checkpoint (ablation-b adapter) 做 e2e eval，trained\\\\n    router -12.84 (CI [-17.52, -8.45])，always-det -9.47。CI 包含 -9.47（不显著），但点估计负向。93.5%\\\\n    路由到 det，仅 16 个 internal 决策导致 catastrophic_failure_rate 升至 19.2% (vs 16.3%)。这完全一致\\\\n    C1：death avoidance dominance → 少量 misrouting 代价 > 正确路由收益。Paper Table 1 增加此行，Discussion\\\\n    讨论 router 训练困境。\\\\n  related_experiments:\\\\n  - exp_id: plan-003-eval-implicit\\\\n    role: e2e eval with correct ablation-b checkpoint\\\\n    result: trained-router=-12.84 vs always-det=-9.47, negative\\\\n  - exp_id: plan-004-ablation-b\\\\n    role: source checkpoint\\\\n    result: internal_recall=51.5% (generation-level non-degenerate)\\\\n  depends_on: []\\\\n- id: D036\\\\n  date: 2026-05-14 09:17 UTC\\\\n  summary: Ablation-b 跨 seed 复制确认非退化可复现，但 internal_recall 方差 30pp+，决策边界不稳定\\\\n  rationale: 4 个 seed (42/123/456/789) 的 balanced_accuracy 稳定在 57-59%，确认模型学到了信号。但\\\\n    internal_recall 从 51.5% 到 81.8%，overall accuracy 从 65.4% 到 39.9%。seed 789 将 67%\\\\n    样本预测为 internal（真实仅 10.8%）。ga=8 确认为非退化必要条件（vs v5 ga=1 → internal_recall=26.7%）。论文引用\\\\n    ablation-b 时需标注方差。进一步支持 C1：即使 router 学到非退化信号，决策边界脆弱，实用性有限。\\\\n  related_experiments:\\\\n  - exp_id: plan-004-ablation-b\\\\n    role: original seed 42\\\\n    result: internal_recall=51.5%, balanced_acc=59.3%\\\\n  - exp_id: ablation-b-seed123\\\\n    role: replication\\\\n    result: internal_recall=57.6%, balanced_acc=57.4%\\\\n  - exp_id: ablation-b-seed456\\\\n    role: replication\\\\n    result: internal_recall=75.8%, balanced_acc=57.5%\\\\n  - exp_id: ablation-b-seed789\\\\n    role: replication\\\\n    result: internal_recall=81.8%, balanced_acc=58.3%\\\\n  depends_on: []\\\\n- id: D037\\\\n  date: 2026-05-14 09:25 UTC\\\\n  summary: Table 1 统一使用 eval_end_to_end.py，trained-router = -10.70（非 -12.84）\\\\n  rationale: 两个 eval 脚本对同一 ablation-b checkpoint 给出不同结果：eval_implicit_router.py=-12.84,\\\\n    eval_end_to_end.py=-10.70（差 2.14 分）。因 plan-003-baseline-245eps 的 4 个 baseline\\\\n    均用 eval_end_to_end.py 评估，trained-router 必须用同一框架以保证公平比较。CI [-15.25, -6.38] 仍包含\\\\n    always-det -9.47，差异不显著。论文措辞用 \\\\\\\"did not significantly outperform always-deterministic\\\\\\\"。\\\\n  related_experiments:\\\\n  - exp_id: plan-003-eval-implicit\\\\n    role: eval_implicit_router.py result\\\\n    result: '-12.84'\\\\n  - exp_id: plan-003-e2e-ablation-b-correct\\\\n    role: eval_end_to_end.py result (authoritative)\\\\n    result: '-10.70'\\\\n  depends_on:\\\\n  - D035\\\\n- id: D038\\\\n  date: 2026-05-14 09:25 UTC\\\\n  summary: 'Table 1 统一用 eval_end_to_end.py: trained-router = -10.70 (非 -12.84)，与 baseline\\\\n    同框架'\\\\n  rationale: '两个 eval 脚本对同一 ablation-b checkpoint 给出不同结果: eval_implicit_router.py=-12.84,\\\\n    eval_end_to_end.py=-10.70。差异 2.14 分(17%)，推测 fallback/路由判定逻辑不同。plan-003-baseline-245eps\\\\n    的 4 个 baseline (always-int/det/oracle/random) 均用 eval_end_to_end.py 评估，trained-router\\\\n    行也必须用同一脚本保证公平比较。两个数字的 CI 均包含 always-det(-9.47)，差异不显著——论文措辞用 \\\\\\\"did not significantly\\\\n    outperform\\\\\\\"。'\\\\n  related_experiments:\\\\n  - exp_id: plan-003-eval-implicit\\\\n    role: eval_implicit_router.py result\\\\n    result: -12.84 CI[-17.52,-8.45]\\\\n  - exp_id: plan-003-e2e-ablation-b-correct\\\\n    role: eval_end_to_end.py result (authoritative)\\\\n    result: -10.70 CI[-15.25,-6.38]\\\\n  depends_on:\\\\n  - D035\\\\n\\\", \\\"total_chars\\\": 31869, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/decisions.yaml\", \"content\": \"_next_id: 39\\ndecisions:\\n- id: D001\\n  date: 2026-05-13 04:25 UTC\\n  summary: 'MVP 方案: ScienceWorld 信号检测——验证确定性模拟是否在规则驱动任务上优于 LLM 内部推理'\\n  rationale: 12 天 deadline 下必须快速验证核心假设。ScienceWorld 是 primary track，其 JVM 后端提供精确的规则化状态转移，与\\n    LLM 近似推理的差距应该最大。选 5 task types × 10 episodes 的小规模 counterfactual 比较，不训练 router，纯信号检测。Pass\\n    标准 ≥2/5 task types >5pp，基于 ITP-R vs CogRouter 7.4pp 差距的量级。\\n  related_experiments: []\\n  depends_on: []\\n- id: D002\\n  date: 2026-05-13 04:28 UTC\\n  summary: 采纳 Reviewer 全部 4 条 warning，修订 MVP 为 Phase 0 + Phase 1 两阶段方案\\n  rationale: Reviewer 指出 D001 方案 3 个操作层缺陷：(1) counterfactual 方法未明确——改为 episode-level\\n    3-way (always-internal / always-deterministic / oracle-routing)，oracle 作为 selective\\n    routing 上界；(2) N=10 统计功效不足——增加到 20 episodes/task type + bootstrap 90% CI；(3) kill\\n    criteria 不完整——增加 Phase 0 工程 gate、灰区 conditional pass、pre-register 5 task types\\n    (3S+1M+1W)。无额外 GPU 成本，仅设计层修正。\\n  related_experiments: []\\n  depends_on:\\n  - D001\\n- id: D003\\n  date: 2026-05-13 07:43 UTC\\n  summary: GPU0 继续收集 baseline，GPU1 停下修复 tie-break + 致死动作过滤后重跑\\n  rationale: Fork 诊断发现两个方法论缺陷：(1) tie-break >= 使 95% delta=0 步骤 oracle 永远选 internal，oracle\\n    数据不可信；(2) 致死动作 (score=-100) 污染三条线。修 >= 为 >（oracle 仅在 deterministic 严格更优时介入）+ 致死动作过滤。不做\\n    N-step rollout——1-step 局限性是真实发现，MVP 应如实反映。GPU0 baseline 数据有效，不浪费已有进度。\\n  related_experiments:\\n  - exp_id: mvp-p1-gpu0\\n    role: baseline data, continue\\n  - exp_id: mvp-p1-gpu1-vllm\\n    role: kill, fix, rerun\\n  depends_on:\\n  - D002\\n- id: D004\\n  date: 2026-05-13 08:13 UTC\\n  summary: MVP 判定 primary metric 改为 always-deterministic vs always-internal，oracle\\n    降为 supplementary\\n  rationale: 1-step lookahead 在稀疏 reward 下 95% 步骤 delta=0，任何 tie-break 都使 oracle 退化（>=\\n    → always-internal，> → always-deterministic）。这是 1-step 的本质局限而非 bug。直接比较 det vs\\n    internal 能回答核心问题\\\"确定性计算有没有用\\\"，无需 oracle 作为中介。oracle 在密集 reward tasks 上仍有参考价值。\\n  related_experiments: []\\n  depends_on:\\n  - D003\\n- id: D005\\n  date: 2026-05-13 15:25 UTC\\n  summary: MVP Phase 1 判定 PASS — det > internal 在 ≥2/5 task types 上统计显著，oracle > det\\n    信号支持 router 训练\\n  rationale: melt (+40.15, CI [25, 60.15]) 和 change-state (+40.2, CI [25, 60.15])\\n    满足 ≥2/5 Pass 标准。mix-paint (+35.5) 大概率也通过。grow-plant (0.0) 符合预期（pre-registered\\n    weak/对照）。最关键发现：oracle > det（melt +16.7, change-state +14.95, mix-paint +10.0）证明\\n    selective routing 有额外增量——这是 SimGate router 训练的信号来源。信号机制是 death avoidance（避免 -100\\n    致死动作）而非正向引导，论文 framing 需定位为 safety-aware routing。待确认：melt/change-state 数据重复性、mix-paint\\n    CI、boil v3 重跑。\\n  related_experiments:\\n  - exp_id: mvp-p1-gpu0\\n    role: boil data (old code)\\n    result: det-int +30.1\\n  - exp_id: mvp-p1-gpu0-vllm\\n    role: melt+change-state (v3)\\n    result: det-int +40.15/+40.2, CI [25, 60.15]\\n  - exp_id: mvp-p1-gpu1-v3\\n    role: mix-paint+grow-plant (v3)\\n    result: det-int +35.5/0.0\\n  depends_on:\\n  - D004\\n- id: D006\\n  date: 2026-05-13 15:37 UTC\\n  summary: 'Research phase plan revised per Reviewer W1-W5: 2-way first, signal pre-screening,\\n    parameter-controlled ablation, GPU units fixed'\\n  rationale: 'Reviewer 提出 5 个实质性问题全部采纳: (1) C1 \\\"selective > unconditional\\\" 标注为待确认;\\n    (2) 2-way collection 优先，与 MVP 一致且省 33% GPU; (3) plan-001 增加 mini signal detection\\n    前置步骤避免浪费 GPU; (4) plan-004 增加 1.7B implicit 控制条件隔离架构效果; (5) GPU 预算改为 RTX 5090\\n    实际时长。melt/change-state 确认非重复但共享 variations，论文中合并报告。'\\n  related_experiments: []\\n  depends_on:\\n  - D005\\n- id: D007\\n  date: 2026-05-13 17:01 UTC\\n  summary: 'Dream 审稿结果处理: best 4/6, median 3/6, worst 2/6. 三档一致问题修入 framing+plan:\\n    tool-use 文献定位, rule-based baseline, death decomposition'\\n  rationale: 'Dream 三档一致暴露 3 个结构性问题: (1) 缺 tool-use learning 文献 (Toolformer/ART/Chameleon),\\n    核心方法是标准 tool-use SFT pipeline 必须承认并差异化定位; (2) 缺 rule-based routing baseline 无法证明\\n    learned signal; (3) ScienceWorld -100 惩罚放大效应未解构。修入 paper_framing.md (tool-use\\n    定位段 + 3 新 concerns) 和 experiment_plan.yaml (plan-011 rule-based baseline P0, plan-012\\n    death decomposition P0, plan-013 labeling quality P1)。不 re-dream: 改动是补充性 (新 baselines\\n    + 定位), 非方向性 pivot。'\\n  related_experiments: []\\n  depends_on:\\n  - D006\\n- id: D008\\n  date: 2026-05-13 17:09 UTC\\n  summary: 1-step labeling 失败 (tie rate 98.2%), plan-001b 必须改为 episode-terminal counterfactual\\n    labeling\\n  rationale: 'MVP tie-rate 分析: 2880/2894 步 (98.2%) 两种模式 1-step score delta = 0 (稀疏\\n    reward)。非 tie 步几乎全是 catastrophic gap (death penalty)。1-step oracle labeling 下\\n    router 只能学到\\\"避死\\\"——等价于 always-det on death-risk tasks。必须改为 episode-terminal counterfactual\\n    labeling: 每步 fork 环境，两条模式各自继续到 episode 结束，以 final episode score 差异作为 label。Phase\\n    0 已验证 forking 可行 (p95 latency 2.37s)。GPU 成本显著增加——需要 Agent 估算 action divergence\\n    rate 和实际工时。plan-001a (pre-screening) 和 plan-007 (boil rerun) 不受影响，继续运行。'\\n  related_experiments:\\n  - exp_id: mvp-p1-gpu0-vllm\\n    role: source\\n    result: tie rate data from episodes.jsonl\\n  depends_on:\\n  - D007\\n- id: D009\\n  date: 2026-05-13 17:15 UTC\\n  summary: 'Counterfactual labeling 分 pilot + 全量两阶段执行。Pilot: 3 tasks × 10 ep × K=10\\n    on GPU1。Non-tie rate > 30% 则全量 K=10，< 15% 则 pivot。'\\n  rationale: Action divergence rate 73.1% 确认 per-step routing 有足够 action space，但 1-step\\n    tie rate 98.2% 排除了 1-step labeling。Episode-terminal counterfactual labeling (fork\\n    at diverge + K-step continuation) 是必要方案。Full K=20 成本 78h 双卡太高。Pilot 先验证 K=10 的\\n    label quality (non-tie rate)，再决定全量策略。Pilot 选 melt/change-state/mix-paint（MVP 确认有信号），10\\n    ep each（~7-8h 单卡）。如果 K=10 non-tie rate < 15%，per-step routing 可能是 wrong granularity，需要\\n    pivot。\\n  related_experiments: []\\n  depends_on:\\n  - D008\\n- id: D010\\n  date: 2026-05-13 18:13 UTC\\n  summary: C2 重构为 \\\"failure trajectory predictor\\\"，paper_framing v3 更新 Plan C 定位\\n  rationale: Reviewer 分析 Plan C (episode-level labeling) 对论文 story 的三个影响：(1) Router\\n    学到的是 trajectory-level risk prediction 而非 step-level routing，C2 应重构为 \\\"failure trajectory\\n    predictor + diagnostic probe\\\"；(2) Plan C 完全绕开 Dream worst case 的 oracle circularity\\n    攻击（不用 per-step tie-breaking，直接用 episode outcome ground truth）；(3) 不做 class weighting，label\\n    不平衡反映真实分布。Story 一致性提升：safety-aware framing ↔ episode-level labeling ↔ trajectory\\n    risk prediction 三者天然匹配。C1 \\\"selective > unconditional\\\" 的关键指标变为 simulator invocation\\n    ratio（用更少的 simulator calls 达到接近 always-det 效果）。\\n  related_experiments: []\\n  depends_on:\\n  - D010\\n- id: D011\\n  date: 2026-05-13 19:09 UTC\\n  summary: Framing 调整：det 优势 = 纯 death avoidance，non-death 时 internal 略优。C1 机制明确为\\n    \\\"safety-efficiency tradeoff\\\"，router 学习 death-risk detection 而非泛泛路由。Labeling 策略维持\\n    episode-level 但加 death-aware 后处理。\\n  rationale: 13 tasks (8 prescreening + 5 MVP) 一致显示：no-death Δ(D-I) = -4.5 ~ -0.4，det\\n    的全部 30-60 分优势来自 internal 的 41-49% death rate vs det 的 5-12% death rate。这意味着：(1)\\n    always-det 不是最优（safe steps 有性能代价），selective routing 有理论基础；(2) router 的核心任务是 death-risk\\n    detection；(3) plan-001b episode-level labels 将以 death episodes 为主要信号源，non-death\\n    episodes 提供少量 internal labels；(4) plan-012 death decomposition 升为论文核心证据。\\n  related_experiments:\\n  - exp_id: research-prescreening-gpu0\\n    role: evidence\\n    result: '8/25 tasks: aggregate no-death Δ = -4.5, I_death=48.6%, D_death=5.4%'\\n  - exp_id: mvp-p1-gpu1-v3\\n    role: evidence\\n    result: '5 tasks: aggregate no-death Δ = -0.4, I_death=41%, D_death=12%'\\n  depends_on:\\n  - D010\\n  - D008\\n- id: D012\\n  date: 2026-05-13 19:26 UTC\\n  summary: 'D012: Label 不平衡应对——设条件触发点，预筛完成后决定是否 pivot framing'\\n  rationale: 'Reviewer Loop #2 确认 14 tasks 中仅 1 个 internal-preferred（7%），预计全部 25 tasks\\n    中 internal-preferred ≤ 3。93% det 标签 → router SFT 退化为 always-det → C1 \\\"selective\\n    > unconditional\\\" 不成立风险极高。\\n\\n\\n    条件触发：\\n\\n    - 若 internal-preferred < 3/25（<12%）→ 执行 framing pivot：C1 从 \\\"selective > unconditional\\\"\\n    降级为 \\\"det >> internal, 主要机制是 death avoidance\\\"；C2 调整为 \\\"router 学习 death-risk trajectory\\n    prediction\\\"；plan-012 (death decomposition) 升为核心贡献；plan-011 (rule-based baseline)\\n    变关键（learned vs heuristic）\\n\\n    - 若 internal-preferred ≥ 3/25（≥12%）→ 保持现有 framing，plan-002 router SFT 使用 class-weighted\\n    loss 应对不平衡\\n\\n\\n    不选的方案：(b) 人为增加 internal episodes → p-hacking 风险；(c) 加 MATH track → 12 天 DDL 下风险太大\\n\\n\\n    另外 Reviewer 指出 genuine-det 分类中 find-living-thing（+0.25）和 freeze（+2.0）在 n=5 下无统计意义，仅\\n    find-animal（+4.2）可能有真实信号。这进一步削弱 non-death 信号。'\\n  related_experiments:\\n  - exp_id: research-prescreening-gpu0\\n    role: evidence\\n    result: 14/25 tasks analyzed, 93% det-preferred\\n  - exp_id: research-boil-v3-gpu1\\n    role: evidence\\n    result: death avoidance confirmed as sole driver\\n  depends_on: []\\n- id: D013\\n  date: 2026-05-13 19:33 UTC\\n  summary: 'D013: 接受 Reviewer 结构性论证，framing pivot 从\\\"条件触发\\\"升级为\\\"近确定\\\"——C1 改为纯经验发现，C2 重心从\\n    router 转向 labeling method'\\n  rationale: 'Reviewer 指出三个关键判断：\\n\\n    1. Class-weighted loss 无法 salvage selective routing——问题不是 class imbalance，而是 episode-level\\n    labels 把同一 episode 所有步骤（含安全步骤）标为同一 label，router 学到的是 task-type classifier 而非 step-level\\n    risk detector\\n\\n    2. C2 \\\"early warning signals\\\" 脆弱（~30% 有实质），需 plan-005 验证 within-task-type 预测方差\\n\\n    3. Rule-based baseline 有 ~60% 概率让 learned router novelty 归零\\n\\n\\n    Reviewer 建议进一步 pivot：\\n\\n    - C1 完全放弃 \\\"selective > unconditional\\\"，改为纯经验发现：det >> internal，death avoidance\\n    是主要机制\\n\\n    - C2 重心从 router 转向 labeling method：episode-level counterfactual labeling 绕开 per-step\\n    oracle circularity，本身是 methodological contribution\\n\\n    - 这样 plan-011 威胁降低：论文贡献不在于\\\"router 比 keywords 好\\\"，而在于\\\"counterfactual analysis 揭示\\n    death avoidance 机制 + 诊断框架\\\"\\n\\n\\n    评估：Reviewer 的结构性论证正确。Episode-level labels 确实无法教 step-level discrimination（D008\\n    98.2% tie rate → Plan C → 但 Plan C 的标注粒度太粗）。这是一个独立于预筛计数的结构性限制。\\n\\n\\n    决策：framing pivot 近确定执行。仍等预筛完成获取完整数据（论文需要），但 paper_framing.md 立即更新方向。实验计划不变——router\\n    SFT 仍做（负面结果有论文价值），plan-005/011/012 优先级提升。'\\n  related_experiments:\\n  - exp_id: research-prescreening-gpu0\\n    role: pending\\n    result: awaiting final count\\n  - exp_id: research-boil-v3-gpu1\\n    role: evidence\\n    result: oracle > det +10-17pp comes from step-level oracle, not episode-level\\n  depends_on:\\n  - D012\\n  - D011\\n  - D010\\n- id: D014\\n  date: 2026-05-13 20:59 UTC\\n  summary: 'D014: 重新注册 plan-011 rule-based keyword list，排除 connect/disconnect 通用动作词'\\n  rationale: 'Reviewer critical 发现：原 rule_based_keywords.json 包含 \\\"connect\\\"/\\\"disconnect\\\"，这是\\n    ScienceWorld 通用动作词（几乎所有对象交互都用 connect），非科学操作指示词。结果 85.79% 关键词匹配率，184/189 episodes\\n    预测为 det-preferred → rule-based ≈ always-det → 与 learned router 对比无区分度。\\n\\n\\n    重新注册理由：原列表设计时未理解 ScienceWorld 动作词汇表。\\\"connect\\\" 类似 web UI 的 \\\"click\\\"，不指示需要确定性计算的科学操作。\\n\\n\\n    新列表只保留真正的状态变化/科学操作动词：heat, cool, boil, melt, freeze, burn, mix, pour, react, dissolve,\\n    activate, change-state 等。排除：connect, disconnect, move, look, pick up, go, open,\\n    close, focus, examine 等通用交互词。\\n\\n\\n    这不是 post-hoc 修改实验结果——plan-011 尚未正式开始，这是修复实验设计缺陷。新列表需在 plan-011 正式实验前注册并锁定。'\\n  related_experiments:\\n  - exp_id: plan-011\\n    role: design fix\\n    result: keyword list re-registration before experiment starts\\n  depends_on:\\n  - D013\\n- id: D015\\n  date: 2026-05-13 21:53 UTC\\n  summary: 'D015: plan-012 预分析确认核心假设在 30 tasks 上高度稳健 (r=0.989, death_fraction=99%,\\n    Δ_full=+37.9)'\\n  rationale: 从 MVP 5 tasks 扩展到预筛全量 30 tasks / 219 episodes，所有核心指标保持或改善：r 从 0.986→0.989，Δ_full\\n    从 +36.9→+37.9，death_fraction 稳定 99%。Label 分布 det-preferred 41% / internal-preferred\\n    0.5% / no-preference 59%。核心发现方向已确定，plan-001b 收集 20 eps/task 后将提升统计功效但不改变结论方向。death_decomposition.py\\n    (519行) 已就绪。\\n  related_experiments:\\n  - exp_id: research-prescreening-gpu0\\n    role: data_source\\n    result: 30 tasks / 219 episodes 预分析\\n  - exp_id: research-boil-v3-gpu1\\n    role: data_source\\n    result: MVP boil data included\\n  depends_on:\\n  - D013\\n- id: D016\\n  date: 2026-05-13 23:33 UTC\\n  summary: 'D016: find-non-living-thing 方向翻转评估——framing robust 无需 pivot，C2 诊断贡献重心从\\n    router 移向 methodology'\\n  rationale: find-non-living-thing 12/20 eps delta 从 -6.8 收窄到 -2.3，可能翻转。Reviewer 独立确认：(1)\\n    C1 不依赖 internal-preferred 任务存在，翻转后 death avoidance = 100% 更强；(2) C2 \\\"router-as-probe\\\"\\n    措辞需调整——如果 router trivially always-det，诊断价值归属于 labeling methodology 而非 router 本身；(3)\\n    plan-002 结果性质转变为 negative result（trivial one-class classifier），但有论文价值（量化 episode-level\\n    labeling 的粒度限制）；(4) 成本效率论证需明确为 task-category level 而非 per-episode dynamic routing。等\\n    20 eps 全量数据后更新 paper_framing.md 四处文字。\\n  related_experiments:\\n  - exp_id: plan-001b-gpu1\\n    role: data source\\n    result: running, find-non-living-thing 12/20 eps delta=-2.3\\n  depends_on:\\n  - D013\\n  - D015\\n- id: D017\\n  date: 2026-05-14 00:40 UTC\\n  summary: 'C1 claim 采用 Tier B: \\\"Death avoidance ~99% 主导，non-death signal negligible\\\"'\\n  rationale: 30 tasks / 219 episodes 预分析：Δ_full=+37.9, Δ_nd=+0.2, r=0.989, death_fraction=99%。Tier\\n    A (\\\"entirely/唯一\\\") 虽然 provocative 但 find-animal Δ_nd=+4.2 可能成反例；Tier C (\\\"primary\\\")\\n    hedging 过度浪费 r=0.989 的强数据。Tier B 用 \\\"small and inconsistent\\\" 准确反映 -6.8~+4.2 的无系统性方向分布。升档条件：plan-001b\\n    全量 n=20 数据中所有 task 的 Δ_nd bootstrap 95% CI 跨 0 → 升 Tier A。\\n  related_experiments:\\n  - exp_id: plan-001b\\n    role: evidence\\n    result: '30 tasks prescreening: r=0.989, death_fraction=99%, Δ_nd=+0.2'\\n  - exp_id: plan-012\\n    role: planned_validation\\n    result: Full death decomposition on n=20 data will confirm/upgrade tier\\n  depends_on: []\\n- id: D018\\n  date: 2026-05-14 04:55 UTC\\n  summary: C1 claim 从 \\\"~99% death avoidance\\\" 调整为 \\\"~90%\\\"，find-non-living-thing 定位为正面案例\\n  rationale: plan-012 preliminary 显示 death fraction=90.1%（非 99%），因 find-non-living-thing（0%\\n    death rate）拉低。该 task Δ_nd=9.58=Δ_full，证明 router 在零死亡场景仍有 non-trivial 增益，routing\\n    价值超越 death avoidance。与 plan-011（keyword heuristic 失效）互相呼应，强化 learned routing 的必要性。论文分两层报告：overall\\n    ~90% death-dominated + per-task breakdown 展示非死亡信号。\\n  related_experiments:\\n  - exp_id: plan-012\\n    role: evidence\\n    result: death_fraction=90.1%, r=0.967, Δ_nd=2.95 (driven by find-non-living-thing)\\n  - exp_id: plan-011\\n    role: corroboration\\n    result: keyword heuristic 结构性失效，learned routing 不可被简单规则替代\\n  depends_on: []\\n- id: D019\\n  date: 2026-05-14 05:00 UTC\\n  summary: C1 death fraction 报告方式：per-task fraction (10/11) + episode-weighted ~94.5%，不用\\n    per-task mean\\n  rationale: Reviewer 核实发现 death fraction 对聚合方式高度敏感：episode-weighted(plan_c)=~94.5%,\\n    per-task mean=~90.9%, 混合数据=98.75%。per-task mean 被 find-non-living-thing 的 0% 拉偏（二值化效应），episode-weighted\\n    在均匀数据上更公允。论文报告策略：(1) per-task fraction \\\"10/11 tasks death-dominated\\\" 传达定性结论；(2)\\n    episode-weighted ~94.5% 传达定量强度；(3) find-non-living-thing 单独讨论作为 non-death signal\\n    正面案例。D018 的 \\\"~90%\\\" 修正为更精确的 ~94.5%。\\n  related_experiments:\\n  - exp_id: plan-012\\n    role: evidence\\n    result: episode-weighted death fraction ~94.5% on 11 plan_c tasks/235 eps; per-task\\n      mean 90.9% (10/11=100%, 1/11=0%)\\n  depends_on:\\n  - D018\\n- id: D020\\n  date: 2026-05-14 06:43 UTC\\n  summary: plan-002 分类路线：v5 pad_token_id fix 为最后一次尝试，epoch 1 internal recall=0 则 pivot\\n    到生成式\\n  rationale: v1-v4 连续失败，但 v5 的 pad_token_id fix 精准命中 Reviewer 识别的根因（ModelScope Qwen3-1.7B\\n    未设 pad_token_id → CrossEntropyLoss 在 padding tokens 上计算 → 初始 loss 11.5 远超正常 0.69\\n    → 梯度信号被污染 → 退化到 majority class）。plan-004 生成式路线已证明非退化（eval_loss 0.36, internal\\n    recall 51.5%），作为 fallback。v5 是分类路线的 make-or-break 实验。\\n  related_experiments:\\n  - exp_id: plan-002-formal-v4\\n    role: evidence\\n    result: accuracy 91.9% but internal recall=0 across all 3 epochs, degenerate\\n  - exp_id: plan-002-formal-v5\\n    role: test\\n    result: running, pad_token_id fix\\n  - exp_id: plan-004\\n    role: fallback\\n    result: 'generative route: eval_loss 0.36, accuracy 65.4%, internal recall 51.5%'\\n  depends_on: []\\n- id: D021\\n  date: 2026-05-14 06:48 UTC\\n  summary: 修正 D020：pad_token_id 非根因，class_weights auto 才是 loss 异常主因。v5 仍跑完 epoch 1\\n    作对照，同时启动 v6（无 class_weights）\\n  rationale: Reviewer 提供决定性证据链：(1) router_sft_train.py L294-305 在 v3 就已赋值 pad_token_id=151643，v5\\n    只加了 assert；(2) plan-004 v1(无 class_weights)→loss 0.36-0.71 正常，v2(class_weights\\n    auto)→loss 48→42→8→4 爆炸，唯一变量是 class_weights；(3) v4 accuracy 88.3% 证明 pooling 正常工作（若\\n    pad_token_id 坏了应~50%），88.3%≈majority baseline 92.7%是典型多数类退化。结论：4.5x minority weight\\n    + 仅 180 internal 样本 → 模型选择忽略少数类以最小化总加权 loss。v6（去掉 class_weights）是验证此诊断的必要对照。\\n  related_experiments:\\n  - exp_id: plan-004-v1\\n    role: control\\n    result: 无 class_weights, loss 0.36-0.71 正常\\n  - exp_id: plan-004-v2\\n    role: control\\n    result: class_weights auto, loss 48→4 异常，决定性证据\\n  - exp_id: plan-002-formal-v4\\n    role: evidence\\n    result: accuracy 88.3% 证明 pooling 正常，退化是多数类收敛\\n  - exp_id: plan-002-formal-v5\\n    role: running\\n    result: 仍用 class_weights auto, 预计复现 v4 退化\\n  - exp_id: plan-002-formal-v6\\n    role: planned\\n    result: 去掉 class_weights, 验证 loss 是否回到正常范围\\n  depends_on:\\n  - D020\\n- id: D022\\n  date: 2026-05-14 06:51 UTC\\n  summary: plan-002 classification head 定性为 negative baseline，v6 为最终对照后停止迭代\\n  rationale: Reviewer 核实：plan-002 从 dryrun 到 v5 共 5 次迭代 internal recall 均为 0，而 plan-004\\n    implicit router 首次即达 51.5%。pad_token_id 非根因（v4 已修复），class_weights 4.5× 仅解释 loss\\n    数值偏高（不影响退化本质）。真正根因是 classification head 架构无法从当前数据中提取 internal routing 信号。v6（去掉\\n    class_weights、3 epochs）作为最终公平对照——预期仍会退化，用作论文中 explicit router 的 negative baseline，与\\n    plan-004 implicit router 形成对比证据。\\n  related_experiments:\\n  - exp_id: plan-002-formal-v5\\n    role: evidence\\n    result: internal recall=0, eval_loss=0.79, accuracy=87.4%, 与 v3/v4 同样退化\\n  - exp_id: plan-004-v2\\n    role: contrast\\n    result: implicit router internal recall=51.5%, 证明信号可提取但 classification head 架构不行\\n  - exp_id: plan-002-dryrun\\n    role: evidence\\n    result: 无 class_weights 1 epoch 仍 internal recall=0, 排除 class_weights 为退化根因\\n  depends_on: []\\n- id: D023\\n  date: 2026-05-14 07:00 UTC\\n  summary: plan-002 根因修正：pad_token_id 假说被 v5 实证否定，真正根因是 class_weights + gradient clipping\\n    交互\\n  rationale: v5 加入 pad_token_id fix 后 loss 曲线与 v4 完全一致（差异在噪声范围），证伪 pad_token_id 假说。Reviewer\\n    识别出真正根因：class_weights [4.5, 0.5625] 给 internal 样本 4.5x 权重 → loss 爆炸(4-11) → grad_norm\\n    100-600 → 被 max_grad_norm=1.0 裁剪 → internal 有效学习率≈3e-8。该机制同时解释三个现象：(a) train loss\\n    差 10x 但 eval loss 差<2x, (b) grad_norm 100-600 vs dryrun 的 0.5-42, (c) v5 fix 无效。下一步：去掉\\n    class_weights 跑 v6 隔离验证。附带：v4 registry 标 killed 但实际完整训练完毕需更正。\\n  related_experiments:\\n  - exp_id: plan-002-sft-v5\\n    role: evidence\\n    result: pad_token_id fix 无效，loss 曲线与 v4 一致\\n  - exp_id: plan-002-sft-v4\\n    role: evidence\\n    result: registry 标 killed 但实际完整训练(accuracy=91.9%, internal_recall=0%)\\n  - exp_id: plan-002-sft-dryrun\\n    role: control\\n    result: 无 class_weights 时 loss 正常(0.17-1.03)，但也退化(internal_recall=0%)\\n  depends_on: []\\n- id: D024\\n  date: 2026-05-14 07:15 UTC\\n  summary: D021 推翻：class_weights 不是 router 训练退化根因，数据文件差异是首要排查方向\\n  rationale: '双 pipeline 实证否定 class_weights 假说：(1) implicit router plan-004-v3 去掉\\n    class_weights 后 loss 与 v2 完全一致（step 10: 48.15 vs 48.15），零影响；(2) explicit router\\n    plan-002-formal-v6 去掉 class_weights 后仍退化为全 det 预测（f1_internal=0.0, recall_internal=0.0）。唯一非退化结果\\n    ablation-b（internal recall 51.5%）使用了不同数据文件 data/plan-004-implicit/（而非 results/plan_c_test_labels/implicit_sft.jsonl），且用了\\n    upsample_minority。下一步：对比两份数据的格式/分布/内容差异，隔离数据 vs upsample 的各自贡献。'\\n  related_experiments:\\n  - exp_id: plan-004-v3\\n    role: evidence\\n    result: loss identical to v2, class_weights has no effect\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: f1_internal=0.0, class_weights removal ineffective\\n  - exp_id: plan-004-ablation-b\\n    role: reference\\n    result: only non-degenerate model, used different data + upsample\\n  depends_on:\\n  - D021\\n  - D023\\n- id: D025\\n  date: 2026-05-14 07:18 UTC\\n  summary: Classification head 路线确认失败，plan-002 pivot 到 generative approach (implicit\\n    SFT + upsample)\\n  rationale: Reviewer 审查 v6（去掉 class_weights）epoch 1 结果：eval_accuracy 0.929 但 internal\\n    recall=0, balanced_accuracy=0.5，仍全预测 deterministic。v3-v6 四个版本均退化，证实 classification\\n    head 在 89.7%/10.3% 极端不平衡下无法学到少数类信号。根因不是 class_weights（D024）也不是 pad_token_id（D023），而是分类头方法本身的局限。plan-004-ablation-b\\n    的 implicit generative + upsample 方案已验证可行，pivot 到该路线。\\n  related_experiments:\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: 'epoch 1 still degrades: internal recall=0, balanced_accuracy=0.5 despite\\n      removing class_weights'\\n  - exp_id: plan-002-formal-v5\\n    role: evidence\\n    result: degraded with class_weights\\n  - exp_id: plan-004-ablation-b\\n    role: baseline\\n    result: implicit generative + upsample worked\\n  depends_on:\\n  - D024\\n  - D022\\n- id: D026\\n  date: 2026-05-14 07:20 UTC\\n  summary: plan-004 v2/v3/v4 失败根因确认：训练数据标签损坏（no-preference→internal mapping bug），非\\n    class_weights\\n  rationale: Reviewer 独立审计三个 implicit SFT 数据文件发现：v2/v3/v4 使用的 results/plan_c_test_labels/implicit_sft.jsonl\\n    中 66.9% 标记为 internal（真实应为 10.3%），no-preference 步骤被错误映射为 internal。ablation-b 使用正确数据（data/plan-004-implicit/）loss\\n    0.71→0.36 且 internal recall=51.5%；v2/v3 使用错误数据 loss 48→4.4，无论是否有 class_weights。已指令\\n    kill v4 并用修复数据重跑 v5。\\n  related_experiments:\\n  - exp_id: plan-004-v4\\n    role: evidence\\n    result: loss 48→13.7, repeating v2/v3 failure pattern on corrupted data\\n  - exp_id: plan-004-v3\\n    role: evidence\\n    result: loss 48→4.4 on corrupted data, identical to v2 despite no class_weights\\n  - exp_id: plan-004-ablation-b\\n    role: control\\n    result: loss 0.71→0.36, internal recall=51.5% on CORRECT data\\n  depends_on:\\n  - D024\\n- id: D027\\n  date: 2026-05-14 07:31 UTC\\n  summary: generative-v1 双对照提交：grad_accum=8 vs grad_accum=1 并行隔离变量\\n  rationale: Reviewer 修正根因：数据污染只影响 v2，v3/v4 失败的真正 confound 是 upsample_minority 和 gradient_accumulation_steps\\n    同时变化（ablation-b 成功用 upsample=true+ga=1，v3/v4 失败用 upsample=false+ga=8）。generative-v1\\n    原 spec 用 ga=8 有风险，利用双 GPU 并行跑 ga=8 和 ga=1 对照，一次实验同时验证 generative SFT 可行性和 grad_accum\\n    是否为退化因素。\\n  related_experiments:\\n  - exp_id: plan-002-generative-v1\\n    role: subject\\n    result: preparing\\n  - exp_id: plan-004-v4\\n    role: evidence\\n    result: negative (upsample=false+ga=8, internal_recall=0)\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: negative (classification head degenerated)\\n  - exp_id: ablation-b\\n    role: evidence\\n    result: success (upsample=true+ga=1, internal_recall=51.5%)\\n  depends_on: []\\n- id: D028\\n  date: 2026-05-14 07:38 UTC\\n  summary: 暂停论文写作，修复核心数字不一致（至少 3 套数据源混用）\\n  rationale: Reviewer CRITICAL：paper_framing.md（245eps/11tasks）与 experiment_tables.md（249eps/30tasks）与\\n    plan-003 registry（194eps/11tasks）三套数字矛盾，label distribution 差异尤其严重（9 vs 1 个 internal-preferred）。在错误数字上写论文是浪费。需确定唯一权威数据源（plan-012\\n    最终输出），统一所有材料，可能需要在权威集合上重跑 baseline。\\n  related_experiments:\\n  - exp_id: plan-012-decomposition\\n    role: authority\\n    result: 249eps/30tasks 全量分析\\n  - exp_id: plan-003-baseline\\n    role: conflict\\n    result: 194eps/11tasks baseline，数字与 plan-012 不一致\\n  depends_on: []\\n- id: D029\\n  date: 2026-05-14 08:52 UTC\\n  summary: 'Router 训练路线全面评估完毕：classification head 全退化(D025)、generative SFT NEGATIVE、ablation-b\\n    复现失败(v5)。论文以 plan-012 empirical finding 为核心，router 结果作 informative data。Critical\\n    path: e2e eval → D028 修复 → plan-003 baselines → Paper Agent'\\n  rationale: 'Router 训练 8+ 次迭代结果：(1) classification head v3-v6 全退化为 always-det (D025确认)；(2)\\n    generative SFT (plan-002-generative-v1) ga=8 和 ga=1 双对照均 NEGATIVE；(3) ablation-b\\n    唯一成功 (internal_recall=51.5%) 但 v5 严格复现条件下失败。根因：episode-level labels 粒度太粗 (D013)，标签分布极端不平衡\\n    (89.7% det-preferred)，router 结构性受限于 task-level risk classification。\\n\\n\\n    论文策略调整：v3 framing 本身以 empirical finding + methodology 为核心贡献。router 训练结果 (partial\\n    success + systematic failure) 恰好证明 episode-level labeling 的粒度限制——这 IS the finding。ablation-b\\n    的 51.5% recall 说明 signal 可提取但不稳定，与 D013 \\\"task-type classifier\\\" 判断一致。\\n\\n\\n    11 天 DDL critical path：(1) ablation-b e2e eval (当前进行中) → 判断 router 是否能 end-to-end\\n    工作；(2) D028 数据一致性修复 (editorial)；(3) plan-003 baselines (always-int/det/random/oracle\\n    大部分可从 plan-001b 数据后处理)；(4) Paper Agent 启动 (目标 5/17 前交初稿)。plan-005 routing pattern\\n    分析和 plan-013 labeling quality 为 nice-to-have。'\\n  related_experiments:\\n  - exp_id: plan-002-generative-v1\\n    role: evidence\\n    result: NEGATIVE - generative SFT 双对照 (ga=8/ga=1) 均未改善\\n  - exp_id: plan-004-v5\\n    role: evidence\\n    result: NEGATIVE - 严格复现 ablation-b 条件失败\\n  - exp_id: plan-004-ablation-b\\n    role: reference\\n    result: 唯一成功 (internal_recall=51.5%) 但不可复现\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: classification head 最终对照仍退化\\n  - exp_id: plan-012-decomposition\\n    role: core\\n    result: 论文核心数据已到位 (11 tasks/245 eps, r=0.9698)\\n  depends_on:\\n  - D025\\n  - D027\\n  - D028\\n- id: D030\\n  date: 2026-05-14 09:00 UTC\\n  summary: Generative routing negative 结果纳入 C1 叙事：router 训练失败是 death dominance 极端\\n    class imbalance 的必然后果，非独立发现\\n  rationale: 所有 router 训练路线（classification head D025, generative v1, v5）均失败/退化。唯一成功的\\n    ablation-b 无法复现。根因：episode-level labels 极端不平衡（86 det / 9 internal / 150 no-pref\\n    = 3.7% internal），death avoidance 占 90% signal 导致 router 结构性无法学到平衡决策。这一结果 REINFORCES\\n    C1（death dominance）。84.9% logit vs 26.7% generation gap 放入 Discussion 作为 secondary\\n    observation（signal learnable but not reliably expressible）。论文核心贡献不变：empirical\\n    finding (death avoidance) + diagnostic methodology (counterfactual labeling)，非\\n    router 架构。等 v5/ablation-b 调查完毕后 finalize 措辞。\\n  related_experiments:\\n  - exp_id: plan-004-v5\\n    role: evidence\\n    result: 'negative: gen internal_recall 26.7%, logit 84.9%'\\n  - exp_id: plan-002-generative-v1\\n    role: evidence\\n    result: 'negative: gen internal_recall 16.7%'\\n  - exp_id: plan-004-ablation-b\\n    role: anomaly\\n    result: 'success: internal_recall 51.5%, unreproducible'\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: 'negative: classification head degenerated to always-det'\\n  depends_on:\\n  - D029\\n  - D025\\n- id: D031\\n  date: 2026-05-14 09:01 UTC\\n  summary: 发现 v5 未真正复现 ablation-b 配置：ga=8→1 (effective batch 32→4) + 脚本重构，logit-generation\\n    gap 结论需重新验证\\n  rationale: Registry spec 对比发现 ablation-b 用 gradient_accumulation_steps=8（effective\\n    batch=32），v5 用 ga=1（effective batch=4）。此外脚本从无 train 子命令重构为有 train 子命令，说明代码经历过修改。v5\\n    从未在与 ablation-b 相同条件下训练，logit-generation gap 可能是配置/代码差异引入的 artifact 而非 generative\\n    routing 的系统性问题。需用匹配配置重新训练验证。\\n  related_experiments:\\n  - exp_id: ablation-b\\n    role: 原始实验\\n    result: routing 有效但有 logit-generation gap\\n  - exp_id: v5\\n    role: 复现尝试\\n    result: 配置不匹配导致未真正复现\\n  depends_on: []\\n- id: D032\\n  date: 2026-05-14 09:04 UTC\\n  summary: 确认 v5 与 ablation-b 代码级差异：loss 计算(WeightedTrainer vs 标准HF)、数据上采样逻辑、class_weights\\n    全部不同，logit-generation gap 可能是代码重构副产物\\n  rationale: 代码 diff 确认三个影响训练行为的关键差异：(1) ablation-b 用自定义 WeightedTrainer.compute_loss\\n    做 per-sample 加权，v5 用标准 HF Trainer loss；(2) ablation-b 数据加载无内置上采样，v5 默认开启 upsample_ratio=1.0\\n    导致双重平衡；(3) ablation-b 支持 class_weights，v5 完全移除。加上之前发现的 ga=8 vs ga=1，v5 从未在可比条件下复现\\n    ablation-b。需要用 ablation-b 原始代码+原始配置重新训练验证 gap 是否真实存在。\\n  related_experiments:\\n  - exp_id: ablation-b\\n    role: 原始实验\\n    result: 自定义 WeightedTrainer + ga=8\\n  - exp_id: v5\\n    role: 失败的复现\\n    result: 标准 HF Trainer + ga=1 + 双重上采样\\n  depends_on:\\n  - D031\\n- id: D033\\n  date: 2026-05-14 09:14 UTC\\n  summary: 'Framing 定稿 Option B (方法论贡献): Reviewer seed 变体分析确认 router balanced_acc\\n    仅 ~58%(接近随机)，router 架构非贡献点，论文贡献 = 分析方法论 + death avoidance empirical finding'\\n  rationale: 'Reviewer 发现 ablation-b 的 3 个 seed 变体(123/456/789)在 balanced_accuracy\\n    上恒定 57-59%，仅比随机(50%)高 ~8pp，internal_recall 从 51% 到 82% 大幅波动完全由 seed 决定。这意味着：(1)\\n    router 判别力接近随机，\\\"internal_recall=51.5%\\\" 不是固有属性而是 seed=42 的阈值效应；(2) 所有 router 训练路线（classification\\n    head 退化、generative SFT negative、ablation-b 近随机）均未产出有效 router；(3) 论文不应声称 \\\"首个非退化\\n    router\\\"，而应将 router 近随机作为 C1 的补充证据——routing signal 被 death avoidance 主导到 router\\n    几乎无法学到其他信号。选择 Option B: 论文贡献 = episode-level counterfactual 方法论 + death avoidance\\n    占 90% routing signal 的 empirical finding + router 负面结果强化分析叙事。'\\n  related_experiments:\\n  - exp_id: plan-004-ablation-b\\n    role: evidence\\n    result: seed 变体 balanced_acc 57-59% 恒定,接近随机\\n  - exp_id: plan-004-v5\\n    role: evidence\\n    result: negative\\n  - exp_id: plan-002-generative-v1\\n    role: evidence\\n    result: negative\\n  - exp_id: plan-002-formal-v6\\n    role: evidence\\n    result: degenerate always-det\\n  - exp_id: plan-012-decomposition\\n    role: core_finding\\n    result: DAF=90.41%, r=0.9698\\n  depends_on:\\n  - D029\\n  - D030\\n- id: D034\\n  date: 2026-05-14 09:15 UTC\\n  summary: 'D027 更正: ablation-b 使用 gradient_accumulation_steps=8（非 ga=1），D027 原文 \\\"ga=1\\\"\\n    为错误记录'\\n  rationale: Reviewer 审查发现 D027 声称 ablation-b 用 ga=1，D031 声称用 ga=8。Registry spec 命令和\\n    seed 变体的 train_config.json 均确认 ga=8。D027 的 ga=1 描述错误，以本条更正。v5(ga=1) 与 ablation-b(ga=8)\\n    确实不同，D031 的判断方向正确。\\n  related_experiments:\\n  - exp_id: plan-004-ablation-b\\n    role: subject\\n    result: ga=8 confirmed\\n  depends_on:\\n  - D027\\n  - D031\\n- id: D035\\n  date: 2026-05-14 09:17 UTC\\n  summary: Trained router e2e 确认 negative (-12.84 vs always-det -9.47)，纳入 C1 叙事作为正面证据\\n  rationale: plan-003-eval-implicit 用正确 checkpoint (ablation-b adapter) 做 e2e eval，trained\\n    router -12.84 (CI [-17.52, -8.45])，always-det -9.47。CI 包含 -9.47（不显著），但点估计负向。93.5%\\n    路由到 det，仅 16 个 internal 决策导致 catastrophic_failure_rate 升至 19.2% (vs 16.3%)。这完全一致\\n    C1：death avoidance dominance → 少量 misrouting 代价 > 正确路由收益。Paper Table 1 增加此行，Discussion\\n    讨论 router 训练困境。\\n  related_experiments:\\n  - exp_id: plan-003-eval-implicit\\n    role: e2e eval with correct ablation-b checkpoint\\n    result: trained-router=-12.84 vs always-det=-9.47, negative\\n  - exp_id: plan-004-ablation-b\\n    role: source checkpoint\\n    result: internal_recall=51.5% (generation-level non-degenerate)\\n  depends_on: []\\n- id: D036\\n  date: 2026-05-14 09:17 UTC\\n  summary: Ablation-b 跨 seed 复制确认非退化可复现，但 internal_recall 方差 30pp+，决策边界不稳定\\n  rationale: 4 个 seed (42/123/456/789) 的 balanced_accuracy 稳定在 57-59%，确认模型学到了信号。但\\n    internal_recall 从 51.5% 到 81.8%，overall accuracy 从 65.4% 到 39.9%。seed 789 将 67%\\n    样本预测为 internal（真实仅 10.8%）。ga=8 确认为非退化必要条件（vs v5 ga=1 → internal_recall=26.7%）。论文引用\\n    ablation-b 时需标注方差。进一步支持 C1：即使 router 学到非退化信号，决策边界脆弱，实用性有限。\\n  related_experiments:\\n  - exp_id: plan-004-ablation-b\\n    role: original seed 42\\n    result: internal_recall=51.5%, balanced_acc=59.3%\\n  - exp_id: ablation-b-seed123\\n    role: replication\\n    result: internal_recall=57.6%, balanced_acc=57.4%\\n  - exp_id: ablation-b-seed456\\n    role: replication\\n    result: internal_recall=75.8%, balanced_acc=57.5%\\n  - exp_id: ablation-b-seed789\\n    role: replication\\n    result: internal_recall=81.8%, balanced_acc=58.3%\\n  depends_on: []\\n- id: D037\\n  date: 2026-05-14 09:25 UTC\\n  summary: Table 1 统一使用 eval_end_to_end.py，trained-router = -10.70（非 -12.84）\\n  rationale: 两个 eval 脚本对同一 ablation-b checkpoint 给出不同结果：eval_implicit_router.py=-12.84,\\n    eval_end_to_end.py=-10.70（差 2.14 分）。因 plan-003-baseline-245eps 的 4 个 baseline\\n    均用 eval_end_to_end.py 评估，trained-router 必须用同一框架以保证公平比较。CI [-15.25, -6.38] 仍包含\\n    always-det -9.47，差异不显著。论文措辞用 \\\"did not significantly outperform always-deterministic\\\"。\\n  related_experiments:\\n  - exp_id: plan-003-eval-implicit\\n    role: eval_implicit_router.py result\\n    result: '-12.84'\\n  - exp_id: plan-003-e2e-ablation-b-correct\\n    role: eval_end_to_end.py result (authoritative)\\n    result: '-10.70'\\n  depends_on:\\n  - D035\\n- id: D038\\n  date: 2026-05-14 09:25 UTC\\n  summary: 'Table 1 统一用 eval_end_to_end.py: trained-router = -10.70 (非 -12.84)，与 baseline\\n    同框架'\\n  rationale: '两个 eval 脚本对同一 ablation-b checkpoint 给出不同结果: eval_implicit_router.py=-12.84,\\n    eval_end_to_end.py=-10.70。差异 2.14 分(17%)，推测 fallback/路由判定逻辑不同。plan-003-baseline-245eps\\n    的 4 个 baseline (always-int/det/oracle/random) 均用 eval_end_to_end.py 评估，trained-router\\n    行也必须用同一脚本保证公平比较。两个数字的 CI 均包含 always-det(-9.47)，差异不显著——论文措辞用 \\\"did not significantly\\n    outperform\\\"。'\\n  related_experiments:\\n  - exp_id: plan-003-eval-implicit\\n    role: eval_implicit_router.py result\\n    result: -12.84 CI[-17.52,-8.45]\\n  - exp_id: plan-003-e2e-ablation-b-correct\\n    role: eval_end_to_end.py result (authoritative)\\n    result: -10.70 CI[-15.25,-6.38]\\n  depends_on:\\n  - D035\\n\", \"total_chars\": 31869, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `read_project_file` tool doesn't support reading arbitrary artifact files. Let me read the draft directly from the filesystem.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "de33d330-3bcb-4458-bbe9-b6b2c5392972",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYsKXVanYoeb7i4MJQqSTK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16927,
+      "cache_read_input_tokens": 25477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Let me read the draft directly from the filesystem.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "b4c85c6c-071d-4ce7-88b2-24a47d0458c1",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYsKXVanYoeb7i4MJQqSTK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16927,
+      "cache_read_input_tokens": 25477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01DqUfj7rXhjT4CsnCn3uryj`</summary>
+
+```json
+{
+  "pattern": "**/experiments_draft*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "d7c4a6fd-9e7f-4641-875b-bcec74a001f0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SYsKXVanYoeb7i4MJQqSTK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 16927,
+      "cache_read_input_tokens": 25477,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 16927
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-14T11:24:27.524Z_
+
+<details><summary>↩ Tool result · `toolu_01DqUfj7rXhjT4CsnCn3uryj`</summary>
+
+```text
+artifacts/_project/paper/experiments_draft_dd9866.md
+artifacts/_project/paper/experiments_draft.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "882cea74-546c-428a-9181-f3b9ded557d0",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/_project/paper/experiments_draft_dd9866.md",
+      "artifacts/_project/paper/experiments_draft.md"
+    ],
+    "durationMs": 78,
+    "numFiles": 2,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015XvWLp9tk2UnpnXNJNLkkK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/experiments_draft_dd9866.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "f9f3c112-491d-409d-91f2-3e33d6bdd217",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WV5cZL41gF2D7z71xCwSRp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 194,
+      "cache_read_input_tokens": 42404,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 194
+      },
+      "output_tokens": 70,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-14T11:24:30.245Z_
+
+<details><summary>↩ Tool result · `toolu_015XvWLp9tk2UnpnXNJNLkkK`</summary>
+
+```text
+1	# Experiments — Draft v1
+2	
+3	\section{Experiments}
+4	
+5	\subsection{Setup}
+6	\label{sec:exp-setup}
+7	
+8	We evaluate on ScienceWorld \cite{scienceworld-2022}, a text-based interactive environment for elementary science tasks with sparse terminal rewards and a $-100$ penalty upon agent death. Using the counterfactual methodology described in \S\ref{sec:collection}, we collect 245 episode pairs across 11 task types (20--40 episodes per type). The LLM backbone is Qwen2.5-7B-Instruct, served via vLLM, with episodes capped at 30 steps. The internal-reasoning strategy follows the ReAct paradigm \cite{react-2023}; the deterministic strategy uses the environment simulator for exact state transitions.
+9	
+10	\subsection{Death Avoidance Decomposition}
+11	\label{sec:death-decomp}
+12	
+13	The full performance gap between deterministic and internal strategies across 245 episodes is $\Delta_{\text{full}} = +29.60$ points. When we exclude all episodes where either strategy results in agent death, the gap collapses to $\Delta_{\text{no\_death}} = +2.84$. The resulting Death Avoidance Factor (\S\ref{sec:daf}) is 90.41\%: approximately 90\% of the deterministic strategy's advantage over internal reasoning is attributable to death avoidance rather than superior task performance when both agents survive.
+14	
+15	This concentration is consistent across task types. The Pearson correlation between per-task death rate differential (internal minus deterministic) and $\Delta_{\text{full}}$ is $r = 0.9698$ ($p = 8.12 \times 10^{-7}$), as shown in Figure~\ref{fig:decomposition}. Knowing how much more frequently the internal strategy dies is nearly sufficient to predict the full performance gap for a given task type. The internal strategy dies in 42.9\% of episodes compared to 16.3\% for deterministic computation---a 2.6$\times$ ratio that drives the bulk of the observed score difference.
+16	
+17	The episode-level label distribution reflects this asymmetry. Of 245 episodes, 86 are labeled \texttt{det\_preferred}, only 9 \texttt{internal\_preferred}, and 150 \texttt{no\_preference}. The near-absence of internal-preferred labels---combined with the dominance of no-preference labels---indicates that when internal reasoning does not lead to catastrophic failure, it performs comparably to deterministic computation. The few internal-preferred episodes arise from tasks where deterministic computation's rigid action space occasionally produces suboptimal trajectories despite avoiding death.
+18	
+19	One task reveals the residual non-death signal. \texttt{find-non-living-thing} ($n=40$) is the only task type with zero deaths under both strategies, yet it shows $\Delta_{\text{full}} = +9.58$, entirely from non-death performance differences. This confirms that routing value beyond death avoidance exists: deterministic computation can provide advantages through more accurate state tracking even when agents survive. However, this signal is not the dominant factor across the benchmark. Among the 10 death-prone task types, death avoidance overwhelms non-death differences. For example, \texttt{measure-melting-point-unknown} ($n=20$) exhibits death rates of 55\% (internal) and 25\% (deterministic), producing $\Delta_{\text{full}} = +30.05$---a gap driven primarily by the 30-percentage-point death rate differential rather than non-death performance.
+20	
+21	When both modalities survive, their task performance is near-equivalent ($\Delta_{\text{no\_death}} = +2.84$). The value of deterministic computation in this environment is concentrated in preventing catastrophic failures, not in providing positive task guidance.
+22	
+23	\subsection{Baselines}
+24	\label{sec:baselines}
+25	
+26	\begin{table}[t]
+27	\centering
+28	\small
+29	\begin{tabular}{@{}lccc@{}}
+30	\toprule
+31	Strategy & Score & 95\% CI & Death \% \\
+32	\midrule
+33	Always-Internal & $-39.07$ & [$-44.89$, $-33.37$] & 42.9 \\
+34	Always-Deterministic & $-9.47$ & [$-13.66$, $-5.11$] & 16.3 \\
+35	Random & $-22.38$ & [$-27.75$, $-17.09$] & 27.8 \\
+36	Oracle & $-6.58$ & [$-10.65$, $-2.43$] & 14.3 \\
+37	\midrule
+38	Implicit Router & \multicolumn{3}{c}{[PLACEHOLDER]} \\
+39	\bottomrule
+40	\end{tabular}
+41	\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 245 episodes). Confidence intervals computed via bootstrap. The oracle selects the higher-scoring strategy per episode; 96.2\% of its decisions match the always-deterministic strategy.}
+42	\label{tab:baselines}
+43	\end{table}
+44	
+45	Table~\ref{tab:baselines} reports episode-weighted mean scores and death rates for four unconditional strategies. Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points, consistent with $\Delta_{\text{full}}$. The oracle, which selects the higher-scoring strategy per episode, improves only modestly to $-6.58$, with 96.2\% of its routing decisions matching always-deterministic. This \emph{oracle degeneracy} indicates that the optimal episode-level routing policy closely resembles unconditional deterministic computation---the routing signal is insufficient to improve upon simply always choosing the deterministic strategy. Random routing ($-22.38$) falls between the two pure strategies, with a death rate (27.8\%) proportional to its 50/50 allocation.
+46	
+47	Keyword-based routing (\S\ref{sec:rule}) structurally fails to provide meaningful discrimination. ScienceWorld actions use generic interaction verbs (\texttt{pick up}, \texttt{move}, \texttt{connect}) rather than science-specific terms, causing keyword match rates to cluster at extremes: near-total (v1: 85.8\%, degenerating to always-deterministic) or negligible (v2: 4.9\%, v3: 2.8\%, both degenerating to always-internal). No keyword granularity bridges this gap.
+48	
+49	\subsection{Router Training as Diagnostic}
+50	\label{sec:router-diagnostic}
+51	
+52	A natural question is whether the episode-level counterfactual labels can train a step-level router. We investigate this as a diagnostic probe of label informativeness rather than a routing system proposal, testing two architectures.
+53	
+54	\paragraph{Classification head.} We append a linear classification head to the LLM's hidden representations, trained on episode-level routing labels. Across all configurations tested---class weighting, focal loss, minority undersampling, and temperature scaling---the classifier degenerates to predicting always-deterministic (0\% internal recall in all cases). The episode-level labeling granularity does not transfer to step-level classification through this architecture.
+55	
+56	\paragraph{Implicit router.} We fine-tune a smaller model (Qwen3-1.7B) to internalize routing decisions within its generation process. At the logit level, routing patterns emerge: accuracy reaches 74.5\% with balanced accuracy of 79\%, demonstrating that the counterfactual labels encode learnable routing structure beyond what a degenerate always-deterministic predictor captures. At the generation level, however, accuracy drops to 65.36\% with internal recall of 51.5\%, revealing a gap between logit-level pattern recognition and generation-level expression. [PLACEHOLDER: ablation-b end-to-end evaluation results for Table~\ref{tab:baselines}.]
+57	
+58	These results yield two observations. First, the counterfactual labels encode genuine routing patterns at the representation level---the logit-level success rules out uninformative labels as the cause of classification head failure, pointing instead to the episode-to-step granularity mismatch as the bottleneck. Second, while the labels reveal learnable routing patterns at the logit level, generation-level expression of these patterns remains an open challenge. Whether this gap stems from the labeling granularity, the generation decoding process, or model capacity is under investigation; step-level counterfactual labeling may be a productive direction for bridging it.
+59	
+60	\subsection{Limitations}
+61	\label{sec:limitations}
+62	
+63	Our analysis is conducted on a single benchmark (ScienceWorld) with a single LLM backbone (Qwen2.5-7B-Instruct), and generalization to other interactive environments and model scales remains to be established. ScienceWorld's severe $-100$ death penalty may amplify the death avoidance signal; environments with less catastrophic failure penalties could exhibit a lower DAF, though the qualitative finding---death avoidance as a major component of routing signal---may still hold. Our counterfactual labels operate at episode granularity; step-level labeling with denser reward signals is a natural extension that could improve both decomposition resolution and router training. The gap between logit-level and generation-level routing accuracy in the implicit router warrants further investigation.
+64	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "ad28a349-5ed4-457f-9763-d6605bc5224b",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/_project/paper/experiments_draft_dd9866.md",
+      "content": "# Experiments — Draft v1\n\n\\section{Experiments}\n\n\\subsection{Setup}\n\\label{sec:exp-setup}\n\nWe evaluate on ScienceWorld \\cite{scienceworld-2022}, a text-based interactive environment for elementary science tasks with sparse terminal rewards and a $-100$ penalty upon agent death. Using the counterfactual methodology described in \\S\\ref{sec:collection}, we collect 245 episode pairs across 11 task types (20--40 episodes per type). The LLM backbone is Qwen2.5-7B-Instruct, served via vLLM, with episodes capped at 30 steps. The internal-reasoning strategy follows the ReAct paradigm \\cite{react-2023}; the deterministic strategy uses the environment simulator for exact state transitions.\n\n\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\nThe full performance gap between deterministic and internal strategies across 245 episodes is $\\Delta_{\\text{full}} = +29.60$ points. When we exclude all episodes where either strategy results in agent death, the gap collapses to $\\Delta_{\\text{no\\_death}} = +2.84$. The resulting Death Avoidance Factor (\\S\\ref{sec:daf}) is 90.41\\%: approximately 90\\% of the deterministic strategy's advantage over internal reasoning is attributable to death avoidance rather than superior task performance when both agents survive.\n\nThis concentration is consistent across task types. The Pearson correlation between per-task death rate differential (internal minus deterministic) and $\\Delta_{\\text{full}}$ is $r = 0.9698$ ($p = 8.12 \\times 10^{-7}$), as shown in Figure~\\ref{fig:decomposition}. Knowing how much more frequently the internal strategy dies is nearly sufficient to predict the full performance gap for a given task type. The internal strategy dies in 42.9\\% of episodes compared to 16.3\\% for deterministic computation---a 2.6$\\times$ ratio that drives the bulk of the observed score difference.\n\nThe episode-level label distribution reflects this asymmetry. Of 245 episodes, 86 are labeled \\texttt{det\\_preferred}, only 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}. The near-absence of internal-preferred labels---combined with the dominance of no-preference labels---indicates that when internal reasoning does not lead to catastrophic failure, it performs comparably to deterministic computation. The few internal-preferred episodes arise from tasks where deterministic computation's rigid action space occasionally produces suboptimal trajectories despite avoiding death.\n\nOne task reveals the residual non-death signal. \\texttt{find-non-living-thing} ($n=40$) is the only task type with zero deaths under both strategies, yet it shows $\\Delta_{\\text{full}} = +9.58$, entirely from non-death performance differences. This confirms that routing value beyond death avoidance exists: deterministic computation can provide advantages through more accurate state tracking even when agents survive. However, this signal is not the dominant factor across the benchmark. Among the 10 death-prone task types, death avoidance overwhelms non-death differences. For example, \\texttt{measure-melting-point-unknown} ($n=20$) exhibits death rates of 55\\% (internal) and 25\\% (deterministic), producing $\\Delta_{\\text{full}} = +30.05$---a gap driven primarily by the 30-percentage-point death rate differential rather than non-death performance.\n\nWhen both modalities survive, their task performance is near-equivalent ($\\Delta_{\\text{no\\_death}} = +2.84$). The value of deterministic computation in this environment is concentrated in preventing catastrophic failures, not in providing positive task guidance.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-44.89$, $-33.37$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-13.66$, $-5.11$] & 16.3 \\\\\nRandom & $-22.38$ & [$-27.75$, $-17.09$] & 27.8 \\\\\nOracle & $-6.58$ & [$-10.65$, $-2.43$] & 14.3 \\\\\n\\midrule\nImplicit Router & \\multicolumn{3}{c}{[PLACEHOLDER]} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 245 episodes). Confidence intervals computed via bootstrap. The oracle selects the higher-scoring strategy per episode; 96.2\\% of its decisions match the always-deterministic strategy.}\n\\label{tab:baselines}\n\\end{table}\n\nTable~\\ref{tab:baselines} reports episode-weighted mean scores and death rates for four unconditional strategies. Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points, consistent with $\\Delta_{\\text{full}}$. The oracle, which selects the higher-scoring strategy per episode, improves only modestly to $-6.58$, with 96.2\\% of its routing decisions matching always-deterministic. This \\emph{oracle degeneracy} indicates that the optimal episode-level routing policy closely resembles unconditional deterministic computation---the routing signal is insufficient to improve upon simply always choosing the deterministic strategy. Random routing ($-22.38$) falls between the two pure strategies, with a death rate (27.8\\%) proportional to its 50/50 allocation.\n\nKeyword-based routing (\\S\\ref{sec:rule}) structurally fails to provide meaningful discrimination. ScienceWorld actions use generic interaction verbs (\\texttt{pick up}, \\texttt{move}, \\texttt{connect}) rather than science-specific terms, causing keyword match rates to cluster at extremes: near-total (v1: 85.8\\%, degenerating to always-deterministic) or negligible (v2: 4.9\\%, v3: 2.8\\%, both degenerating to always-internal). No keyword granularity bridges this gap.\n\n\\subsection{Router Training as Diagnostic}\n\\label{sec:router-diagnostic}\n\nA natural question is whether the episode-level counterfactual labels can train a step-level router. We investigate this as a diagnostic probe of label informativeness rather than a routing system proposal, testing two architectures.\n\n\\paragraph{Classification head.} We append a linear classification head to the LLM's hidden representations, trained on episode-level routing labels. Across all configurations tested---class weighting, focal loss, minority undersampling, and temperature scaling---the classifier degenerates to predicting always-deterministic (0\\% internal recall in all cases). The episode-level labeling granularity does not transfer to step-level classification through this architecture.\n\n\\paragraph{Implicit router.} We fine-tune a smaller model (Qwen3-1.7B) to internalize routing decisions within its generation process. At the logit level, routing patterns emerge: accuracy reaches 74.5\\% with balanced accuracy of 79\\%, demonstrating that the counterfactual labels encode learnable routing structure beyond what a degenerate always-deterministic predictor captures. At the generation level, however, accuracy drops to 65.36\\% with internal recall of 51.5\\%, revealing a gap between logit-level pattern recognition and generation-level expression. [PLACEHOLDER: ablation-b end-to-end evaluation results for Table~\\ref{tab:baselines}.]\n\nThese results yield two observations. First, the counterfactual labels encode genuine routing patterns at the representation level---the logit-level success rules out uninformative labels as the cause of classification head failure, pointing instead to the episode-to-step granularity mismatch as the bottleneck. Second, while the labels reveal learnable routing patterns at the logit level, generation-level expression of these patterns remains an open challenge. Whether this gap stems from the labeling granularity, the generation decoding process, or model capacity is under investigation; step-level counterfactual labeling may be a productive direction for bridging it.\n\n\\subsection{Limitations}\n\\label{sec:limitations}\n\nOur analysis is conducted on a single benchmark (ScienceWorld) with a single LLM backbone (Qwen2.5-7B-Instruct), and generalization to other interactive environments and model scales remains to be established. ScienceWorld's severe $-100$ death penalty may amplify the death avoidance signal; environments with less catastrophic failure penalties could exhibit a lower DAF, though the qualitative finding---death avoidance as a major component of routing signal---may still hold. Our counterfactual labels operate at episode granularity; step-level labeling with denser reward signals is a natural extension that could improve both decomposition resolution and router training. The gap between logit-level and generation-level routing accuracy in the implicit router warrants further investigation.\n",
+      "numLines": 64,
+      "startLine": 1,
+      "totalLines": 64
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full draft. Let me also look for the `write_paper_section` tool.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "9dcc2145-3b5f-4c63-90b1-b6382a82e76e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUB2XmXxTBmWcE4eGg8dkX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2452,
+      "cache_read_input_tokens": 42598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2452
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+Now let me load the `write_paper_section` tool.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "66392658-95be-4298-8cb9-bce7e1b63038",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUB2XmXxTBmWcE4eGg8dkX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2452,
+      "cache_read_input_tokens": 42598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2452
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01MbA5vwwAwGXaBnjDPLSaNz`</summary>
+
+```json
+{
+  "query": "write paper section",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "c22e6c69-723c-4bbd-a174-82c7bb565801",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MUB2XmXxTBmWcE4eGg8dkX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2452,
+      "cache_read_input_tokens": 42598,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2452
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-14T11:24:33.566Z_
+
+<details><summary>↩ Tool result · `toolu_01MbA5vwwAwGXaBnjDPLSaNz`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "TodoWrite"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "1cc33feb-7440-4afb-bc6f-7c5b23fd7cb2",
+  "tool_use_result": {
+    "matches": [
+      "TodoWrite",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "write paper section",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01A3oBJdusrDsNqhBdUaX2zc`</summary>
+
+```json
+{
+  "query": "write_paper_section edit_paper_section",
+  "max_results": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "b45e80fd-b3ee-4745-a9f9-cd2ad471f1b0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YR3A65G2USboUqbW154w31",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3366,
+      "cache_read_input_tokens": 45050,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 3366
+      },
+      "output_tokens": 53,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-14T11:24:36.172Z_
+
+<details><summary>↩ Tool result · `toolu_01A3oBJdusrDsNqhBdUaX2zc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "3f255c72-3e8e-4f7b-b40d-56e7bc45e56f",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "write_paper_section edit_paper_section",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `write_paper_section` tool wasn't found via keyword search. Let me try searching more specifically for it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "4196f1a7-d325-412d-851f-7b24f1ff31c3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJr2E44CckPWyngtcMTDp7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 462,
+      "cache_read_input_tokens": 48416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 462
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01AMEgSCTrV2y9x5kWuZp4iF`</summary>
+
+```json
+{
+  "query": "+write_paper_section",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "c05530d3-64ac-451e-8ee9-fea34cfc2928",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJr2E44CckPWyngtcMTDp7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 462,
+      "cache_read_input_tokens": 48416,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 462
+      },
+      "output_tokens": 46,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-14T11:24:39.088Z_
+
+<details><summary>↩ Tool result · `toolu_01AMEgSCTrV2y9x5kWuZp4iF`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "6515e539-8fe7-4d0d-be8c-7bb46cbd4727",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "+write_paper_section",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01XAA6MhtXknFskCfyUf3EW8`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__write_paper_section,mcp__agent-ml-research__edit_paper_section",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "d6662c9f-68a6-4734-ac05-405ff424b307",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gjh6BwqBdqa97izgKTGCt7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 395,
+      "cache_read_input_tokens": 48878,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 395
+      },
+      "output_tokens": 68,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-14T11:24:42.275Z_
+
+<details><summary>↩ Tool result · `toolu_01XAA6MhtXknFskCfyUf3EW8`</summary>
+
+```text
+No matching deferred tools found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "cc5298e8-b6b5-4199-a5ab-c91035f95820",
+  "tool_use_result": {
+    "matches": [],
+    "query": "select:mcp__agent-ml-research__write_paper_section,mcp__agent-ml-research__edit_paper_section",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `write_paper_section` tool doesn't exist as a deferred tool. Looking at the `save_project_file` description, it says "paper sections → write_paper_section / edit_paper_section" but these aren't available as separate tools. Let me check if there are MCP tools that match.
+
+Let me search all available MCP tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "c29bce66-64ce-4a83-a034-e823aa530589",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012YYTC49ow2WjbMprXwAt7J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 123,
+      "cache_read_input_tokens": 49273,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 123
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01ADrFS1c8P4adXSciwwcRHY`</summary>
+
+```json
+{
+  "query": "paper section",
+  "max_results": 10
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "6e87ae3b-aefc-48d4-8f2e-ea0acf59cf1e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012YYTC49ow2WjbMprXwAt7J",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 123,
+      "cache_read_input_tokens": 49273,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 123
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-14T11:24:46.661Z_
+
+<details><summary>↩ Tool result · `toolu_01ADrFS1c8P4adXSciwwcRHY`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__append_idea"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "29549ab0-2963-4588-9419-7c7685f9ad3d",
+  "tool_use_result": {
+    "matches": [
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "paper section",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The `write_paper_section` tool doesn't exist as a separate MCP tool. The `save_project_file` description mentions it but it's not available. I'll write the updated draft as an artifact file and register it using `register_artifact`. Let me compose the patched experiments section now.
+
+Let me carefully apply the three modifications:
+
+1. **Table 1**: Replace `[PLACEHOLDER]` with `Trained Router & $-10.70$ & [$-15.25$, $-6.38$] & 17.6 \\`. Add caption/footnote about what Trained Router is. Add analysis paragraph.
+
+
+2. **Section 3.4**: Add seed stability paragraph after implicit router paragraph.
+3. **Section 3.4**: Replace the `[PLACEHOLDER: ablation-b end-to-end evaluation results...]` with actual e2e results showing the trained router's -10.70 score against the always-deterministic baseline at -9.47, a difference of 1.23 points with 17.6% death rate.
+
+Now I'm composing the full updated draft with these three changes integrated. Looking at the seed stability metrics, the balanced accuracy hovers around 58% with minimal variance, which is barely above random chance. The internal recall shows dramatic swings across seeds—ranging from 51% to 82%—suggesting a threshold effect is at play. The core finding here is that the router's behavior is essentially near-random, which becomes the key narrative for D033. Now I'm mapping out the document modifications: replacing the placeholder in the table with the trained router results, updating the caption for clarity, adding analysis after the table, inserting seed stability findings in Section 3.4 after the implicit router discussion, and filling in the remaining placeholder text.
+
+Filling in the end-to-end evaluation results...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "5e113820-5342-41c4-9fae-71e52f3ed587",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAqxbv85kEjBBLXSiss59r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1724,
+      "cache_read_input_tokens": 49396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1724
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+`write_paper_section` isn't available as a standalone tool. I'll write the patched draft to the artifacts directory and register it. Let me compose the three modifications now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "e0027355-8bc1-4d0d-8bed-1590226a7eab",
+  "uuid": "92f88ccf-db00-4a5b-83f3-31c1b0e9dcfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAqxbv85kEjBBLXSiss59r",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1724,
+      "cache_read_input_tokens": 49396,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1724
+      },
+      "output_tokens": 39,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---

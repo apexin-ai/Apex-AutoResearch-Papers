@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c84a943d350838e920e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "data math pilot 50",
+  "task_key": "worker_data_math-pilot-50_20260514T134137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_math-pilot-50_20260514T134137_result.json",
+    "occurrence": 1,
+    "bytes": 1149,
+    "sha256": "6a7f355cac4ded0660a7bf57c56e424d1fe825584745668821f00c1307aef85f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact registered as `art_20260514_c3a7ec`.\n\n---\n\n```\n代码执行率: 41/50 (82%)\nInternal acc: 40/50 (80%)\nCodeInterp acc: 36/50 (72%)\nLabels (raw): det=1, int=5, no-pref=44\nLabels (filtered): det=1, int=5, no-pref=44\nGate: PASS (82% >= 80%)\n```\n\n**关键发现：**\n\n| 指标 | 值 |\n|------|-----|\n| 代码执行率 | 41/50 (82%) — 刚过 80% 门槛 |\n| Internal acc | 40/50 (80%) |\n| CodeInterp acc | 36/50 (72%) |\n| Filtered (0 code rounds) | 9/50 (18%) |\n| 代码轮次分布 | 0轮:9, 1轮:36, 2轮:5 |\n| 平均耗时 | 12.0s/题，总计 599s |\n\n**意外结果：Internal reasoning (80%) 反超 Code Interpreter (72%)。** 这导致 label 分布严重偏向 internal-preferred（5 vs 1 det-preferred），大量 no-preference（44/50）。\n\nFiltering 对 label 分布无影响——9 个被过滤的题本来就是 no-preference（两端同对或同错）。\n\n**需要 Director 决策的点：**\n- 代码执行率 82% 刚过门槛，18% 仍绕过强制 prompt\n- 代码不但没帮忙反而降低了准确率（72% < 80%），可能需要重新评估 MATH 环境下 code interpreter 的价值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/data-math-pilot-50.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0401c96b3573d871c591",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check r7n2 v2 completion",
+  "task_key": "worker_check_r7n2-v2-completion_20260516T033508",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_r7n2-v2-completion_20260516T033508_result.json",
+    "occurrence": 1,
+    "bytes": 1048,
+    "sha256": "87916f4087627bae1db6c979ac2f3dbddd6082d233f75b5bc93f9d4ab29047fd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## r7n2-data-size-ablation-v2 结果\n\n**状态**: KILLED (SIGHUP, EXIT_CODE=129)\n\n**结果文件**: 无。results/ablation_data_size/ 为空，无 checkpoint。\n\n### 运行时间线\n\n| 阶段 | Scale | Seeds | 状态 |\n|------|-------|-------|------|\n| 第一次启动 | 25pct/seed42 | 1 | wandb login error → EXIT_CODE=1 |\n| 第二次启动 | 25pct | 42, 43, 44 | 训练完成 |\n| | 50pct | 42, 43, 44 | 训练完成 |\n| | 75pct | 42, 43, 44 | 训练完成 |\n| | 100pct | 42 | **step 162/165 (98%) 被 SIGHUP 终止** |\n| | 100pct | 43, 44 | 未开始 |\n\n### 关键问题\n\n脚本在所有 scale×seed 全部完成后才一次性写入结果文件。100pct/seed42 在 98% 时被 kill，导致 **全部 9 个已完成的训练结果丢失**（25pct×3 + 50pct×3 + 75pct×3）。\n\n### Registry / Cron\n\n- Registry 已更新：conclusion=killed, status=DONE\n- Cron 已删除\n\n### 下一步\n\n需要完整重跑。建议改进脚本，每完成一个 scale×seed 就增量写入结果，避免再次全损。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-r7n2-v2-completion.md"
+}

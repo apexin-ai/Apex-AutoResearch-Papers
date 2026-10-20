@@ -1,0 +1,101 @@
+paper_key: "ares-2026"
+title: "ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: [Fixed-Low, Fixed-Medium, Fixed-High, Random, GPT-5-Router, Gemini-3-Pro-Router]
+  metrics:
+    - {name: "task_accuracy/reward", direction: "higher_better"}
+    - {name: "total_reasoning_tokens", direction: "lower_better"}
+    - {name: "per_task_tokens", direction: "lower_better"}
+    - {name: "per_step_tokens", direction: "lower_better"}
+  datasets:
+    - {name: "TAU-Bench (Retail)", size: "not specified"}
+    - {name: "TAU-Bench (Airline)", size: "not specified"}
+    - {name: "BrowseComp-Plus", size: "not specified"}
+    - {name: "WebArena", size: "not specified"}
+  ablation_dimensions: [SFT_removal, rationale_removal, reward_normalization, backbone_scaling]
+  training_recipe:
+    optimizer: "Adam"
+    lr: "5e-6 (SFT), 1.5e-6 (RL)"
+    batch_size: "64 (SFT), 32 (RL)"
+    epochs: "3 (SFT), 5 (RL)"
+    warmup_ratio: 0.1
+    weight_decay: 0.01
+    kl_coefficient: 0.01
+    grpo_group_size: 16
+    router_model: "Qwen3-1.7B"
+    backbone_llm: "gpt-oss-20b"
+    hardware: "not specified"
+  method_family: "per-step reasoning effort routing via lightweight LM"
+
+positioning:
+  core_claim: "A lightweight 1.7B router can predict the minimum reasoning effort needed per step, reducing tokens 35-53% while maintaining or improving task accuracy"
+  key_results: "WebArena: 46.5% vs 45.0% high-effort (45% token reduction); TAU-Bench Airline (RL): 42.0% vs 38.0% high (85% token reduction)"
+  limitations:
+    - "Assumes LLM has configurable thinking modes (high/medium/low)"
+    - "Evaluation limited to three agent benchmarks"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "化繁为简型"
+  hook: "Reasoning LLMs incur massive inference cost, yet not all steps need the same thinking depth—some are routine, others demand deep reasoning"
+  tension: "Static reasoning effort wastes compute; random selection fails; existing model routing doesn't exploit intra-model thinking levels and breaks KV cache"
+  key_insight: "Per-step minimum-effort labeling via multi-trial annotation + lightweight router achieves plug-and-play effort allocation that preserves KV cache"
+  argument_chain: "reasoning cost problem → intra-model effort levels → multi-phase data pipeline (trajectory → annotation → rationale) → SFT + GRPO → token reduction with accuracy parity"
+  contribution_framing: "Five contributions: framework, data pipeline, lightweight router, evaluation across 3 benchmarks, token reduction results"
+  intro_structure: "5 paragraphs: reasoning cost → configurable effort levels → static vs dynamic → ARES approach → contribution list"
+  notable_technique: "Multi-phase data pipeline (collect → annotate minimum effort → generate rationale) is a clean, reproducible methodology for creating training data"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Three-panel: (left) traditional model routing cost, (middle) per-step dynamic effort allocation, (right) ARES at optimal frontier"
+    narrative_role: "Positions ARES on the performance-cost frontier, visually distinguishing from model routing"
+    design_elements: ["frontier curve", "method positioning on curve", "three-panel contrast"]
+    visual_style: "Left panel shows model routing scatter, right panel shows ARES as red star on optimal frontier"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "bar_chart"
+      what_compared: "Effort distribution across task steps and action types in WebArena"
+      how_gain_highlighted: "Shows learned pattern: low effort early, high effort later; action-type-specific allocation"
+      design_note: "Two-panel behavioral analysis: step-index distribution + action-type distribution"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "GRPO training dynamics on TAU-Bench Airline"
+      how_gain_highlighted: "High-effort selection drops from 50%+ to <20%, low-effort rises to ~70%"
+      design_note: "Training dynamics plot showing effort distribution converging to efficient allocation"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["reward normalization strategy"]
+      design_note: "Shows normalized cost reward more aggressively suppresses high effort and improves convergence"
+  figure_narrative_role: "Figure 1 (positioning) → Figure 2 (pipeline) → Figure 3 (behavioral analysis) → Figure 4 (training dynamics) → Figure 5 (normalization ablation)"
+
+tables:
+  table_count: 6
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "benchmarks × (accuracy + T_total + T_task + T_step)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "accuracy/reward with token counts"
+    num_baselines: 6
+    design_note: "Multi-granularity token reporting (total, per-task, per-step) enables nuanced efficiency comparison"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: [SFT, rationale]
+      variation_style: "delta_from_base"
+      design_note: "Component ablation showing SFT is most critical, rationale provides 3.5% boost"
+    - table_id: "Table 4"
+      what_varied: [reward_normalization]
+      variation_style: "full_numbers"
+      design_note: "Normalized vs unnormalized cost reward comparison"
+  supplementary_tables:
+    in_appendix: false
+    content: "Dataset statistics (Table 6), RL results (Table 2), generalization (Table 5)"
+    reason: "All tables in main paper"

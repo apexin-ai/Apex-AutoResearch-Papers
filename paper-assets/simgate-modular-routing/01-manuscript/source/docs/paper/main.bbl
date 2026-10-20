@@ -1,0 +1,380 @@
+\begin{thebibliography}{52}
+\providecommand{\natexlab}[1]{#1}
+
+\bibitem[{Achiam et~al.(2017)Achiam, Held, Tamar, and Abbeel}]{achiam2017cpo}
+Joshua Achiam, David Held, Aviv Tamar, and Pieter Abbeel. 2017.
+\newblock Constrained policy optimization.
+\newblock In \emph{Proceedings of the 34th International Conference on Machine
+  Learning (ICML)}, pages 22--31.
+
+\bibitem[{Aggarwal et~al.(2024)Aggarwal, Madaan, Anand, Potharaju, Mishra, Zhou
+  et~al.}]{automix-2024}
+Pranjal Aggarwal, Aman Madaan, Ankit Anand, Srividya~Pranavi Potharaju, Swaroop
+  Mishra, Pei Zhou, and 1 others. 2024.
+\newblock {AutoMix}: Automatically mixing language models.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Alshiekh et~al.(2018)Alshiekh, Bloem, Ehlers, K{\"o}nighofer, Niekum,
+  and Topcu}]{alshiekh2018safe}
+Mohammed Alshiekh, Roderick Bloem, R{\"u}diger Ehlers, Bettina K{\"o}nighofer,
+  Scott Niekum, and Ufuk Topcu. 2018.
+\newblock Safe reinforcement learning via shielding.
+\newblock In \emph{AAAI}.
+
+\bibitem[{Amitai et~al.(2024)Amitai, Septon, and Amir}]{amitai2024explaining}
+Yotam Amitai, Yael Septon, and Ofra Amir. 2024.
+\newblock Explaining reinforcement learning agents through counterfactual
+  action outcomes.
+\newblock In \emph{Proceedings of the AAAI Conference on Artificial
+  Intelligence}.
+
+\bibitem[{Bae et~al.(2025)Bae, Kim, Bayat, Kim, Ha
+  et~al.}]{mixture-of-recursions-2025}
+Sangmin Bae, Yujin Kim, Reza Bayat, Sungnyun Kim, Jiyoun Ha, and 1 others.
+  2025.
+\newblock Mixture-of-recursions: Learning dynamic recursive depths for adaptive
+  token-level computation.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Cameron et~al.(2008)Cameron, Gelbach, and Miller}]{cameron-2008}
+A.~Colin Cameron, Jonah~B. Gelbach, and Douglas~L. Miller. 2008.
+\newblock Bootstrap-based improvements for inference with clustered errors.
+\newblock \emph{The Review of Economics and Statistics}, 90(3):414--427.
+
+\bibitem[{Chen et~al.(2023)Chen, Zaharia, and Zou}]{frugalgpt-2023}
+Lingjiao Chen, Matei Zaharia, and James Zou. 2023.
+\newblock {FrugalGPT}: How to use large language models while reducing cost and
+  improving performance.
+\newblock \emph{arXiv preprint arXiv:2305.05176}.
+
+\bibitem[{Fedus et~al.(2022)Fedus, Zoph, and Shazeer}]{switch-transformer-2022}
+William Fedus, Barret Zoph, and Noam Shazeer. 2022.
+\newblock Switch transformers: Scaling to trillion parameter models with simple
+  and efficient sparsity.
+\newblock \emph{Journal of Machine Learning Research}, 23(120):1--39.
+
+\bibitem[{Feng et~al.(2025)Feng, Huang, Qu, Zhang, Qin et~al.}]{retool-2025}
+Jiazhan Feng, Shijue Huang, Xingwei Qu, Ge~Zhang, Yujia Qin, and 1 others.
+  2025.
+\newblock Retool: Reinforcement learning for strategic tool use in llms.
+\newblock \emph{arXiv preprint arXiv:2504.11536}.
+
+\bibitem[{Gajcin(2023)}]{gajcin2023counterfactual}
+Jasmina Gajcin. 2023.
+\newblock Counterfactual explanations for reinforcement learning agents.
+\newblock In \emph{Proceedings of the International Conference on Autonomous
+  Agents and Multiagent Systems (AAMAS), Doctoral Consortium}.
+
+\bibitem[{Garc\'{i}a and Fern\'{a}ndez(2015)}]{garcia2015comprehensive}
+Javier Garc\'{i}a and Fernando Fern\'{a}ndez. 2015.
+\newblock A comprehensive survey on safe reinforcement learning.
+\newblock \emph{Journal of Machine Learning Research}, 16(1):1437--1480.
+
+\bibitem[{{Gemma Team}(2024)}]{gemma2-2024}
+{Gemma Team}. 2024.
+\newblock Gemma 2: Improving open language models at a practical size.
+\newblock \emph{arXiv preprint arXiv:2408.00118}.
+
+\bibitem[{Grattafiori et~al.(2024)Grattafiori, Dubey, Jauhri, Pandey, Kadian,
+  Al-Dahle, Letman, Mathur, Schelten et~al.}]{llama3-2024}
+Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri, Abhinav Pandey, Abhishek
+  Kadian, Ahmad Al-Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten, and 1
+  others. 2024.
+\newblock The llama 3 herd of models.
+\newblock \emph{arXiv preprint arXiv:2407.21783}.
+
+\bibitem[{Graves(2016)}]{graves2016act}
+Alex Graves. 2016.
+\newblock Adaptive computation time for recurrent neural networks.
+\newblock \emph{arXiv preprint arXiv:1603.08983}.
+
+\bibitem[{Gyevn{\'a}r et~al.(2025)Gyevn{\'a}r, Lucas, Albrecht, and
+  Cohen}]{axis-2026}
+B{\'a}lint Gyevn{\'a}r, Christopher~G. Lucas, Stefano~V. Albrecht, and Shay~B.
+  Cohen. 2025.
+\newblock Integrating counterfactual simulations with language models for
+  explaining multi-agent behaviour.
+\newblock \emph{arXiv preprint arXiv:2505.17801}.
+
+\bibitem[{Hendrycks et~al.(2021)Hendrycks, Burns, Kadavath, Arora, Basart,
+  Tang, Song, and Steinhardt}]{math-2021}
+Dan Hendrycks, Collin Burns, Saurav Kadavath, Akul Arora, Steven Basart, Eric
+  Tang, Dawn Song, and Jacob Steinhardt. 2021.
+\newblock Measuring mathematical problem solving with the {MATH} dataset.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)
+  Datasets and Benchmarks Track}.
+
+\bibitem[{Kaushik et~al.(2020)Kaushik, Hovy, and Lipton}]{kaushik2020learning}
+Divyansh Kaushik, Eduard Hovy, and Zachary~C. Lipton. 2020.
+\newblock Learning the difference that makes a difference with
+  counterfactually-augmented data.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+
+\bibitem[{Lee et~al.(2025)}]{saferoute-2025}
+Seanie Lee and 1 others. 2025.
+\newblock {SafeRoute}: Adaptive model selection for efficient and accurate
+  safety guardrails in {LLMs}.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  ACL}.
+
+\bibitem[{Li et~al.(2026{\natexlab{a}})Li, Wang, Yan, Tian, Xu, Song, Xu, and
+  Cheong}]{salt-2026}
+Jiazheng Li, Yawei Wang, Qiaojing Yan, Yijun Tian, Zhichao Xu, Huan Song,
+  Panpan Xu, and Lin~Lee Cheong. 2026{\natexlab{a}}.
+\newblock {SALT}: Step-level advantage assignment for long-horizon agents via
+  trajectory graph.
+\newblock In \emph{Findings of the Association for Computational Linguistics:
+  EACL 2026}.
+
+\bibitem[{Li et~al.(2026{\natexlab{b}})Li, Zeng, Fang, Liang, Song, Liu, Mi,
+  and Yu}]{cso-2026}
+Mukai Li, Qingcheng Zeng, Tianqing Fang, Zhenwen Liang, Linfeng Song, Qi~Liu,
+  Haitao Mi, and Dong Yu. 2026{\natexlab{b}}.
+\newblock Verified critical step optimization for {LLM} agents.
+\newblock \emph{arXiv preprint arXiv:2602.03412}.
+
+\bibitem[{Liu et~al.(2025)}]{toolace-2025}
+Weiwen Liu and 1 others. 2025.
+\newblock Toolace: Winning the points of {LLM} function calling.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+
+\bibitem[{Liu et~al.(2024)Liu, Yu, Zhang, Xu, Lei, Lai, Gu, Ding, Men, Yang,
+  Zhang, Deng, Zeng, Du, Zhang, Shen, Zhang, Su, Sun, Huang, Zhang, and
+  Tang}]{agentbench-2024}
+Xiao Liu, Hao Yu, Hanchen Zhang, Yifan Xu, Xuanyu Lei, Hanyu Lai, Yu~Gu,
+  Hangliang Ding, Kaiwen Men, Kejuan Yang, Shudan Zhang, Xiang Deng, Aohan
+  Zeng, Zhengxiao Du, Chenhui Zhang, Sheng Shen, Tianjun Zhang, Yu~Su, Huan
+  Sun, and 3 others. 2024.
+\newblock Agentbench: Evaluating llms as agents.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+
+\bibitem[{Lu et~al.(2023)Lu, Peng, Cheng, Galley, Chang, Wu, Zhu, and
+  Gao}]{chameleon-2023}
+Pan Lu, Baolin Peng, Hao Cheng, Michel Galley, Kai-Wei Chang, Ying~Nian Wu,
+  Song-Chun Zhu, and Jianfeng Gao. 2023.
+\newblock Chameleon: Plug-and-play compositional reasoning with large language
+  models.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Natarajan et~al.(2013)Natarajan, Dhillon, Ravikumar, and
+  Tewari}]{natarajan2013learning}
+Nagarajan Natarajan, Inderjit~S. Dhillon, Pradeep Ravikumar, and Ambuj Tewari.
+  2013.
+\newblock Learning with noisy labels.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Ng et~al.(1999)Ng, Harada, and Russell}]{ng1999policy}
+Andrew~Y. Ng, Daishi Harada, and Stuart Russell. 1999.
+\newblock Policy invariance under reward transformations: Theory and
+  application to reward shaping.
+\newblock In \emph{International Conference on Machine Learning (ICML)}.
+
+\bibitem[{Olson et~al.(2021)Olson, Khanna, Neal, Li, and
+  Wong}]{olson2021counterfactual}
+Matthew~L. Olson, Roli Khanna, Lawrence Neal, Fuxin Li, and Weng-Keen Wong.
+  2021.
+\newblock Counterfactual state explanations for reinforcement learning agents
+  via generative deep learning.
+\newblock \emph{Artificial Intelligence}, 295:103455.
+
+\bibitem[{Ong et~al.(2024)Ong, Almahairi, Wu, Chiang, Wu, Gonzalez, Kadous, and
+  Stoica}]{routellm-2024}
+Isaac Ong, Amjad Almahairi, Vincent Wu, Wei-Lin Chiang, Tianhao Wu, Joseph~E.
+  Gonzalez, M~Waleed Kadous, and Ion Stoica. 2024.
+\newblock {RouteLLM}: Learning to route {LLMs} with preference data.
+\newblock \emph{arXiv preprint arXiv:2406.18665}.
+
+\bibitem[{Paranjape et~al.(2023)Paranjape, Lundberg, Singh, Hajishirzi,
+  Zettlemoyer, and Ribeiro}]{art-2023}
+Bhargavi Paranjape, Scott Lundberg, Sameer Singh, Hannaneh Hajishirzi, Luke
+  Zettlemoyer, and Marco~Tulio Ribeiro. 2023.
+\newblock Art: Automatic multi-step reasoning and tool-use for large language
+  models.
+\newblock \emph{arXiv preprint arXiv:2303.09014}.
+
+\bibitem[{Pearl(2009)}]{pearl2009causality}
+Judea Pearl. 2009.
+\newblock \emph{Causality: Models, Reasoning, and Inference}, 2nd edition.
+\newblock Cambridge University Press, Cambridge, UK.
+
+\bibitem[{Pona et~al.(2025)Pona, Kazemi~Mehrabadi, Du, Watson, and
+  Paoletti}]{pona2025abstract}
+Edoardo Pona, Milad Kazemi~Mehrabadi, Yali Du, David Watson, and Nicola
+  Paoletti. 2025.
+\newblock Abstract counterfactuals for language model agents.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Qu et~al.(2024)Qu, Dai, Wei, Cai, Wang, Yin, Xu, and
+  Wen}]{tool-learning-survey-2024}
+Changle Qu, Sunhao Dai, Xiaochi Wei, Hengyi Cai, Shuaiqiang Wang, Dawei Yin,
+  Jun Xu, and Ji-Rong Wen. 2024.
+\newblock Tool learning with large language models: A survey.
+\newblock \emph{arXiv preprint arXiv:2405.17935}.
+
+\bibitem[{Raposo et~al.(2024)Raposo, Ritter, Richards, Lillicrap, Humphreys,
+  and Santoro}]{mixture-of-depths-2024}
+David Raposo, Sam Ritter, Blake Richards, Timothy Lillicrap, Peter~Conway
+  Humphreys, and Adam Santoro. 2024.
+\newblock Mixture-of-depths: Dynamically allocating compute in
+  transformer-based language models.
+\newblock In \emph{International Conference on Machine Learning (ICML)}.
+
+\bibitem[{Ruan et~al.(2024)Ruan, Dong, Wang, Pitis, Zhou, Ba, Dubois, Maddison,
+  and Hashimoto}]{ruan2024failures}
+Yangjun Ruan, Honghua Dong, Andrew Wang, Silviu Pitis, Yongchao Zhou, Jimmy Ba,
+  Yann Dubois, Chris~J. Maddison, and Tatsunori Hashimoto. 2024.
+\newblock Identifying the risks of {LM} agents with an {LM}-emulated sandbox.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+
+\bibitem[{Rubin(1974)}]{rubin1974estimating}
+Donald~B. Rubin. 1974.
+\newblock Estimating causal effects of treatments in randomized and
+  nonrandomized studies.
+\newblock \emph{Journal of Educational Psychology}, 66(5):688--701.
+
+\bibitem[{Schick et~al.(2023)Schick, Dwivedi-Yu, Dess\`{i}, Raileanu, Lomeli,
+  Hambro, Zettlemoyer, Cancedda, and Scialom}]{toolformer-2023}
+Timo Schick, Jane Dwivedi-Yu, Roberto Dess\`{i}, Roberta Raileanu, Maria
+  Lomeli, Eric Hambro, Luke Zettlemoyer, Nicola Cancedda, and Thomas Scialom.
+  2023.
+\newblock Toolformer: Language models can teach themselves to use tools.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Shinn et~al.(2023)Shinn, Cassano, Berman, Gopinath, Narasimhan, and
+  Yao}]{reflexion-2023}
+Noah Shinn, Federico Cassano, Edward Berman, Ashwin Gopinath, Karthik
+  Narasimhan, and Shunyu Yao. 2023.
+\newblock Reflexion: Language agents with verbal reinforcement learning.
+\newblock In \emph{Advances in Neural Information Processing Systems
+  (NeurIPS)}.
+
+\bibitem[{Shridhar et~al.(2021)Shridhar, Yuan, C\^{o}t\'{e}, Bisk, Trischler,
+  and Hausknecht}]{alfworld-2021}
+Mohit Shridhar, Xingdi Yuan, Marc-Alexandre C\^{o}t\'{e}, Yonatan Bisk, Adam
+  Trischler, and Matthew Hausknecht. 2021.
+\newblock Alfworld: Aligning text and embodied environments for interactive
+  learning.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+
+\bibitem[{Sun et~al.(2026)Sun, Liu, Yan, Wang, and Weng}]{when2tool-2026}
+Chung-En Sun, Linbo Liu, Ge~Yan, Zimo Wang, and Tsui-Wei Weng. 2026.
+\newblock {LLM} agents already know when to call tools -- even without
+  reasoning.
+\newblock \emph{arXiv preprint arXiv:2605.09252}.
+
+\bibitem[{Wang et~al.(2022)Wang, Jansen, C\^{o}t\'{e}, and
+  Ammanabrolu}]{scienceworld-2022}
+Ruoyao Wang, Peter Jansen, Marc-Alexandre C\^{o}t\'{e}, and Prithviraj
+  Ammanabrolu. 2022.
+\newblock Scienceworld: Is your agent smarter than a 5th grader?
+\newblock In \emph{Proceedings of the 2022 Conference on Empirical Methods in
+  Natural Language Processing (EMNLP)}.
+
+\bibitem[{Webb(2023)}]{webb-2023}
+Matthew~D. Webb. 2023.
+\newblock Reworking wild bootstrap-based inference for clustered errors.
+\newblock \emph{Canadian Journal of Economics}, 56(3):839--858.
+
+\bibitem[{Wu et~al.(2026)Wu, Das, Amani, Nag, Lee, Gummadi, Ravichander, and
+  Zafar}]{to-call-or-not-2026}
+Qinyuan Wu, Soumi Das, Mahsa Amani, Arijit Nag, Seungeon Lee, Krishna~P.
+  Gummadi, Abhilasha Ravichander, and Muhammad~Bilal Zafar. 2026.
+\newblock To call or not to call: A framework to assess and optimize {LLM} tool
+  calling.
+\newblock \emph{arXiv preprint arXiv:2605.00737}.
+
+\bibitem[{Xin et~al.(2020)Xin, Tang, Lee, Yu, and Lin}]{xin2020deebert}
+Ji~Xin, Raphael Tang, Jaejun Lee, Yaoliang Yu, and Jimmy Lin. 2020.
+\newblock {DeeBERT}: Dynamic early exiting for accelerating {BERT} inference.
+\newblock In \emph{Proceedings of the 58th Annual Meeting of the Association
+  for Computational Linguistics (ACL)}.
+
+\bibitem[{Yang et~al.(2024)Yang, Yang, Zhang, Hui, Zheng, Yu, Li, Liu, Huang
+  et~al.}]{qwen25-2024}
+An~Yang, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo~Zheng, Bowen Yu,
+  Chengyuan Li, Dayiheng Liu, Fei Huang, and 1 others. 2024.
+\newblock Qwen2.5 technical report.
+\newblock \emph{arXiv preprint arXiv:2412.15115}.
+
+\bibitem[{Yang et~al.(2026{\natexlab{a}})Yang, Hou, Wei, Bao, Chang
+  et~al.}]{ares-2026}
+Jingbo Yang, Bairu Hou, Wei Wei, Yujia Bao, Shiyu Chang, and 1 others.
+  2026{\natexlab{a}}.
+\newblock {Ares}: Adaptive reasoning effort selection for efficient {LLM}
+  agents.
+\newblock \emph{arXiv preprint arXiv:2603.07915}.
+
+\bibitem[{Yang et~al.(2026{\natexlab{b}})Yang, Ye, Wei, Zhao, Luo
+  et~al.}]{cogrouter-2026}
+Ruihan Yang, Fanghua Ye, Xiang Wei, Ruoqing Zhao, Kang Luo, and 1 others.
+  2026{\natexlab{b}}.
+\newblock Think fast and slow: Step-level cognitive depth adaptation for llm
+  agents.
+\newblock \emph{arXiv preprint arXiv:2602.12662}.
+
+\bibitem[{Yao et~al.(2023)Yao, Zhao, Yu, Du, Shafran, Narasimhan, and
+  Cao}]{react-2023}
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak Shafran, Karthik Narasimhan,
+  and Yuan Cao. 2023.
+\newblock React: Synergizing reasoning and acting in language models.
+\newblock In \emph{International Conference on Learning Representations
+  (ICLR)}.
+
+\bibitem[{Zeng et~al.(2026)Zeng, You, Liu, Du, Ding, Hou, Wang, Ning, Song, Tu,
+  Cai, and Liu}]{tool-overuse-illusion-2026}
+Yirong Zeng, Shen You, Yufei Liu, Qunyao Du, Xiao Ding, Yutai Hou, Yuxian Wang,
+  Wu~Ning, Haonan Song, Dandan Tu, Bibo Cai, and Ting Liu. 2026.
+\newblock The tool-overuse illusion: Why does {LLM} prefer external tools over
+  internal knowledge?
+\newblock \emph{arXiv preprint arXiv:2604.19749}.
+
+\bibitem[{Zhang et~al.(2026{\natexlab{a}})Zhang, Xia, Zhang, Madrigal, Mallick,
+  Kessler, Ruehle, and Rajmohan}]{budget-aware-routing-2026}
+Caiqi Zhang, Menglin Xia, Xuchao Zhang, Daniel Madrigal, Ankur Mallick, Samuel
+  Kessler, Victor Ruehle, and Saravan Rajmohan. 2026{\natexlab{a}}.
+\newblock Budget-aware agentic routing via boundary-guided training.
+\newblock \emph{arXiv preprint arXiv:2602.21227}.
+
+\bibitem[{Zhang et~al.(2026{\natexlab{b}})Zhang, Xiong, Zhong, Jiang, Yuan, Li,
+  and Lin}]{tool-use-tax-2026}
+Kaituo Zhang, Zhen Xiong, Mingyu Zhong, Zhimeng Jiang, Zhouyuan Yuan, Zhecheng
+  Li, and Ying Lin. 2026{\natexlab{b}}.
+\newblock Are tools all we need? unveiling the tool-use tax in {LLM} agents.
+\newblock \emph{arXiv preprint arXiv:2605.00136}.
+
+\bibitem[{Zhang et~al.(2026{\natexlab{c}})Zhang, Li, Wang, Feng, Yang
+  et~al.}]{mtrouter-2026}
+Yiqun Zhang, Hao Li, Zihan Wang, Shi Feng, Xiaocui Yang, and 1 others.
+  2026{\natexlab{c}}.
+\newblock Mtrouter: Cost-aware multi-turn llm routing with history-model joint
+  embeddings.
+\newblock In \emph{Proceedings of the Annual Meeting of the Association for
+  Computational Linguistics (ACL)}.
+
+\bibitem[{Zhang et~al.(2024)Zhang, Cui, Lu, Zhou, Yang, Wang, and
+  Huang}]{agent-safetybench-2024}
+Zhexin Zhang, Shiyao Cui, Yida Lu, Jingzhuo Zhou, Junxiao Yang, Hongning Wang,
+  and Minlie Huang. 2024.
+\newblock Agent-safetybench: Evaluating the safety of {LLM} agents.
+\newblock \emph{arXiv preprint arXiv:2412.14470}.
+
+\bibitem[{Zhou et~al.(2024)Zhou, Yan, Shlapentokh-Rothman, Wang, and
+  Wang}]{lats-2024}
+Andy Zhou, Kai Yan, Michal Shlapentokh-Rothman, Haohan Wang, and Yu-Xiong Wang.
+  2024.
+\newblock Language agent tree search unifies reasoning, acting, and planning in
+  language models.
+\newblock In \emph{International Conference on Machine Learning (ICML)}.
+
+\end{thebibliography}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-004-ablation-b",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:36:59.120Z",
+    "updated_at": "2026-05-14T05:36:59.120Z"
+  },
+  "timestamp": "2026-05-14T05:36:59.174260+00:00",
+  "trigger": "update_registry"
+}

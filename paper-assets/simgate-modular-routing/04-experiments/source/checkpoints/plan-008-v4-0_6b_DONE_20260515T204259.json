@@ -1,0 +1,36 @@
+{
+  "exp_id": "plan-008-v4-0_6b",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "conclusion": "success",
+    "created_at": "2026-05-15T19:49:32.618Z",
+    "notes": "Sub-experiment of plan-008-router-size-v4; results consolidated into parent entry",
+    "retry_count": 0,
+    "spec": {
+      "account": "root",
+      "backend": "tmux",
+      "checkpoint_path": "checkpoints/plan-008-v4-0_6b-seed{42,43}/",
+      "command": "python src/training/implicit_router_sft.py train (Qwen3-0.6B, seed 42→43 serial)",
+      "data_count": 2040,
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "gpu": "cuda:0",
+      "log_path": "~/runs/simgate-modular-routing/plan-008-v4-0_6b.log",
+      "model_name": "Qwen3-0.6B",
+      "pid": "893681",
+      "seed": "42,43",
+      "server": "westb-13313",
+      "steps_per_epoch": 165,
+      "submitted_at": "2026-05-15T19:49:32.418Z",
+      "submitted_via": "submit_training_job",
+      "tmux_session": "plan-008-v4-0_6b",
+      "trainable_params": "4.6M (0.76%)",
+      "vram_used": "8.7GB/32GB"
+    },
+    "status": "DONE",
+    "updated_at": "2026-05-15T20:42:59.197Z"
+  },
+  "timestamp": "2026-05-15T20:42:59.369329+00:00",
+  "trigger": "update_registry"
+}

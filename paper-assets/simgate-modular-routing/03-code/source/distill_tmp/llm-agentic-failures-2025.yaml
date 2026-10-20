@@ -1,0 +1,74 @@
+paper_key: "llm-agentic-failures-2025"
+title: "How Do LLMs Fail In Agentic Scenarios? A Qualitative Analysis"
+venue: "arXiv 2025"
+full_text_available: true
+
+research:
+  baselines: [Granite-4-Small-32B, Llama-4-Maverick-400B, DeepSeek-V3.1-671B]
+  metrics:
+    - {name: "pooled_accuracy", direction: "higher_better"}
+    - {name: "per_scenario_success_rate", direction: "higher_better"}
+  datasets:
+    - {name: "KAMI v0.1", size: "10 scenarios, 900 execution traces analyzed"}
+  ablation_dimensions: [model_scale, architecture_type, scenario_complexity, explicit_hints]
+  training_recipe:
+    optimizer: "N/A (evaluation study)"
+    lr: "N/A"
+    hardware: "N/A"
+    temperature: 0.4
+    context_window: "32K (non-thinking), 128K (thinking)"
+    max_rounds: 20
+  method_family: "qualitative failure analysis of LLM agents"
+
+positioning:
+  core_claim: "Aggregate benchmark scores obscure systematic failure patterns; qualitative trace analysis reveals four recurring archetypes that determine real-world reliability"
+  key_results: "Granite 58.5%, Maverick 74.6%, DeepSeek V3.1 92.2%; scale ≠ reliability (400B Maverick barely beats 32B Granite on key scenarios)"
+  limitations:
+    - "Manual trace analysis limited to 900 samples (12.5%)"
+    - "Only 3 models analyzed from ~60 tested configurations"
+    - "KAMI v0.1 scope limited to filesystem, CSV, SQL tasks"
+  relation_to_us: "orthogonal"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Models excelling on standard benchmarks often underperform on enterprise-relevant agentic tasks; newer-generation models don't always outperform predecessors"
+  tension: "Aggregate scores reveal nothing about failure characteristics—whether random, systematic, recoverable, or catastrophic"
+  key_insight: "Four recurring failure archetypes emerge across models: premature action without grounding, over-helpfulness under uncertainty, context pollution vulnerability, fragile execution under cognitive load"
+  argument_chain: "benchmark limitations → aggregate score critique → granular trace analysis → failure taxonomy → cross-model patterns → deployment principles"
+  contribution_framing: "Four contributions: (1) 900-trace qualitative analysis, (2) failure taxonomy, (3) evidence against scale assumptions, (4) deployment principles"
+  intro_structure: "4 sections: benchmark limitations → beyond scores → contribution list → paper organization"
+  notable_technique: "Per-scenario drill-down (e.g., Q401: Granite 0/30, DeepSeek 30/30) makes abstract failure modes concrete and memorable"
+
+figures:
+  figure_count: 0
+  figure1:
+    type: "N/A"
+    description: "No figures in this qualitative analysis paper"
+    narrative_role: "N/A"
+    design_elements: []
+    visual_style: "N/A"
+  result_figures: []
+  ablation_figures: []
+  figure_narrative_role: "No figures—relies entirely on detailed textual trace analysis and per-scenario tables"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1 (implicit)"
+    row_axis: "models × scenarios"
+    col_axis: "success_count / total_trials"
+    row_organization: "by_category"
+    col_organization: "grouped_by_scenario_series"
+    highlight_strategy: "per-scenario success counts"
+    statistical_reporting: "X/30 success rate per scenario with pooled accuracy ± std"
+    num_baselines: 3
+    design_note: "Per-scenario granularity (not just aggregated) is the paper's methodological contribution to evaluation"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: [explicit_hints_Q502_vs_Q602]
+      variation_style: "full_numbers"
+      design_note: "Shows explicit hints improve DeepSeek from 52.9% to 87.5%—quantifies the value of prompt engineering for agentic tasks"
+  supplementary_tables:
+    in_appendix: true
+    content: "Test definitions, tool descriptions, sample conversation analysis"
+    reason: "Extensive qualitative evidence requires appendix space"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e634915a581a8f82cf7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval plan 008 v4 1 7b seed44 45 nothinking",
+  "task_key": "worker_eval_plan-008-v4-1_7b-seed44-45-nothinking_20260515T222045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_plan-008-v4-1_7b-seed44-45-nothinking_20260515T222045_result.json",
+    "occurrence": 1,
+    "bytes": 842,
+    "sha256": "3e539b819a70961dc49ef3a622589ee97ed32fc6fbd2c696d9309b6d75fb2b95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== 1.7B seed 44, 45 generation-based nothinking eval ===\nSeed 44: balanced_acc=0.6833, internal_recall=0.8333\nSeed 45: balanced_acc=0.6037, internal_recall=0.8000\n\n=== 完整 4-seed 三模型对比（统一 generation-based nothinking eval）===\n| Model | s42 | s43 | s44 | s45 | Mean±Std |\n|-------|-----|-----|-----|-----|----------|\n| 0.6B  | 0.6241 | 0.5574 | 0.6907 | 0.7333 | 0.6514±0.0771 |\n| 1.7B  | 0.3759 | 0.4574 | 0.6833 | 0.6037 | 0.5301±0.1390 |\n| 4B    | 0.6241 | 0.5463 | 0.6556 | 0.7000 | 0.6315±0.0648 |\n```\n\n1.7B 的 mean 最低（0.5301），且 seed 间方差最大（std=0.1390，远高于 0.6B 的 0.0771 和 4B 的 0.0648）。seed 42/43 表现很差（0.37/0.46），seed 44/45 则接近 0.6B/4B 水平（0.68/0.60），说明 1.7B 在 nothinking 模式下训练稳定性较差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-plan-008-v4-1-7b-seed44-45-nothinking.md"
+}

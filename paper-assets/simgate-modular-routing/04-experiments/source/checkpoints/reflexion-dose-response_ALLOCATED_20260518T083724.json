@@ -1,0 +1,29 @@
+{
+  "exp_id": "reflexion-dose-response",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:32:54.372Z",
+    "updated_at": "2026-05-18T08:37:24.646Z",
+    "hypothesis": "Reflexion dose-response 在 N=5 时 plateau 在 ~27-30%（与 N=3 的 27.0% 差异 <3pp），与 retry 的平坦曲线形成对比：retry 平坦证明重试无效，reflexion 也 plateau 证明即使自我纠错也有结构性上限，共同支撑 death dominance 的收敛上限论点",
+    "parent": "retry-dose-response",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/simgate-modular-routing && mkdir -p logs && bash run_reflexion_dr_wrapper.sh\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "943989",
+      "log_path": "~/runs/simgate-modular-routing/reflexion-dose-response.log",
+      "submitted_at": "2026-05-18T08:35:34.711Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-18T08:37:24.846570+00:00",
+  "trigger": "update_registry"
+}

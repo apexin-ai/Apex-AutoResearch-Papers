@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan-013-labeling-quality",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T12:08:50.100Z",
+    "updated_at": "2026-05-14T12:30:52.495Z",
+    "hypothesis": "Labeling quality analysis: (a) tie rate across episodes, (b) genuine vs tie-break label fraction, (c) strict-only retrain sensitivity. Addresses oracle circularity reviewer concern.",
+    "metrics": {
+      "tie_rate": 0.612,
+      "tie_rate_both_alive": 0.469,
+      "tie_rate_both_died": 0.143,
+      "genuine_det_fraction": 1,
+      "tiebreak_det_fraction": 0,
+      "det_preferred_death_asymmetry": 70,
+      "det_preferred_score_comparison": 16,
+      "strict_retrain_balanced_acc": 0.5729,
+      "strict_retrain_internal_recall": 0.7576,
+      "strict_retrain_det_recall": 0.3883,
+      "ablation_b_mean_balanced_acc": 0.5761,
+      "ablation_b_std_balanced_acc": 0.0047
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T12:30:52.642758+00:00",
+  "trigger": "update_registry"
+}

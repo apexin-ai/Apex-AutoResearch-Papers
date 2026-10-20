@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "400048e2054d981d6310",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval sci concentration index",
+  "task_key": "worker_eval_sci-concentration-index_20260516T175721",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_sci-concentration-index_20260516T175721_result.json",
+    "occurrence": 1,
+    "bytes": 1947,
+    "sha256": "c8e04332e9311edadea5a32d31aeaea6a64caa5a6fce8d44e8bd189113b9538c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Artifact 注册遇到类型问题，但结果已保存在服务器端 `guided_router/sci_results.json` 且 registry 已更新为 DONE。\n\n---\n\n```\n=== Signal Concentration Index Results ===\nSCI (Gini): 0.2147\nTop-1 CR: 14.3% (identify-life-stages-1)\nTop-2 CR: 27.5%\nTop-3 CR: 39.8%\n\nPer-task signal contributions:\n  identify-life-stages-1                       : 14.3% (n=20, Δ_full=47.50, Δ_nd=0.00, death_rate_int=55%)\n  lifespan-longest-lived                       : 13.2% (n=25, Δ_full=44.00, Δ_nd=0.00, death_rate_int=56%)\n  lifespan-longest-lived-then-shortest-lived   : 12.3% (n=20, Δ_full=40.80, Δ_nd=0.00, death_rate_int=45%)\n  inclined-plane-determine-angle               : 10.8% (n=20, Δ_full=36.00, Δ_nd=0.00, death_rate_int=55%)\n  freeze                                       :  9.2% (n=20, Δ_full=30.50, Δ_nd=0.00, death_rate_int=55%)\n  measure-melting-point-unknown-substance       :  9.0% (n=20, Δ_full=30.05, Δ_nd=0.00, death_rate_int=55%)\n  identify-life-stages-2                       :  9.0% (n=20, Δ_full=30.00, Δ_nd=0.00, death_rate_int=50%)\n  find-animal                                  :  8.0% (n=20, Δ_full=26.65, Δ_nd=0.00, death_rate_int=50%)\n  grow-fruit                                   :  7.6% (n=20, Δ_full=25.10, Δ_nd=0.00, death_rate_int=45%)\n  chemistry-mix                                :  6.6% (n=20, Δ_full=21.80, Δ_nd=0.00, death_rate_int=45%)\n  find-non-living-thing                        :  0.0% (n=40, Δ_full=9.58, Δ_nd=9.58, death_rate_int=0%)\n```\n\n**关键发现：** SCI Gini = 0.2147，远低于假设的 ~1.0。Death-avoidance routing signal **不是**集中在少数 task types，而是广泛分布在 10/11 个 task 上（只有 find-non-living-thing 因 0% death rate 无贡献）。这意味着 death avoidance 是系统性现象而非局部特征——router 无法通过 task type 简单区分何时需要 deterministic policy。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-sci-concentration-index.md"
+}

@@ -1,0 +1,1134 @@
+# infra gpu status boil analysis
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 37
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/chats/worker_infra_gpu-status-boil-analysis_20260513T181135.jsonl`
+- **Structured JSON:** [`7fca383c21cf043b6f6c.json`](../../sessions/7f/7fca383c21cf043b6f6c.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+37 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-13T18:14:03.066263+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-13T18:14:03.066586+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-13T18:14:03.066799+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "nvidia-smi --query-gpu=index,utilization.gpu,memory.used,memory.total --format=csv,noheader",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T18:14:03.066947+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ps aux | grep -E \"python|signal_prescreening|phase1_signal\" | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ps aux | grep -E \"python|signal_prescreening|phase1_signal\" | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-13T18:14:03.067138+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"0, 0 %, 28013 MiB, 32607 MiB\\n1, 58 %, 28013 MiB, 32607 MiB\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.8}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-13T18:14:03.067268+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-13T18:14:03.067386+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ps -p 650421 -o pid,etime 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ps -p 650421 -o pid,etime 2>&1",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-13T18:14:03.067504+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-13T18:14:03.067618+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -30 /tmp/research-boil-v3-gpu1.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "tail -30 /tmp/research-boil-v3-gpu1.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T18:14:03.067800+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 188.21it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.22it/s, est. speed input: 842.78 toks/s, output: 97.56 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.22it/s, est. speed input: 842.78 toks/s, output: 97.56 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.22it/s, est. speed input: 842.78 toks/s, output: 97.56 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 185.46it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  4.46it/s, est. speed input: 3311.78 toks/s, output: 98.17 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  4.46it/s, est. speed input: 3311.78 toks/s, output: 98.17 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  4.45it/s, est. speed input: 3311.78 toks/s, output: 98.17 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 121.49it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.25it/s, est. speed input: 845.66 toks/s, output: 97.57 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.25it/s, est. speed input: 845.66 toks/s, output: 97.57 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.25it/s, est. speed input: 845.66 toks/s, output: 97.57 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00
+…[truncated 6412 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-13T18:14:03.068041+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ps aux | grep -E \"python|signal_prescreening|phase1_signal\" | grep -v grep",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ps aux | grep -E \"python|signal_prescreening|phase1_signal\" | grep -v grep",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T18:14:03.068225+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"root        911  0.0  0.0 3574124 79916 ?       Sl   May13   0:26 /root/miniconda3/bin/python /root/miniconda3/bin/tensorboard --host 0.0.0.0 --port 6007 --logdir /root/tf-logs\\nroot        916  0.0  0.0 190524 105456 ?       S    May13   0:01 /root/miniconda3/bin/python /root/miniconda3/bin/jupyter-lab --allow-root --config=/init/jupyter/jupyter_config.py\\nroot       1009  0.0  0.0 28341068 12064 ?      Sl   May13   0:39 /root/miniconda3/lib/python3.12/site-packages/tensorboard_data_server/bin/server --logdir=/root/tf-logs --reload=5 --samples-per-plugin= --port=0 --port-file=/tmp/tensorboard_data_server_21yz6459/port --die-after-stdin --error-file=/tmp/tensorboard_data_server_21yz6459/startup_error\\nroot      14903  9.0  0.0 38320100 288216 ?     Sl   02:10   0:11 java -classpath /root/miniconda3/share/py4j/py4j0.10.9.9.jar:/root/miniconda3/lib/python3.12/site-packages/scienceworld/scienceworld.jar py4j.GatewayServer --die-on-broken-pipe 0\\nroot      16668 17.6  0.0 38519780 348916 ?     Sl   02:10   0:15 java -classpath /root/miniconda3/share/py4j/py4j0.10.9.9.jar:/root/miniconda3/lib/python3.12/site-packages/scienceworld/scienceworld.jar py4j.GatewayServer --die-on-broken-pipe 0\\nroot      22684  587  0.0 38519780 309572 ?     Sl   02:12   0:11 java -classpath /root/miniconda3/share/py4j/py4j0.10.9.9.jar:/root/miniconda3/lib/python3.12/site-packages/scienceworld/scienceworld.jar py4j.GatewayServer --die-on-broken-pipe 0\\nroot      22719  803  0.0 38386660 267956 ?     Sl   02:12   0:08 java -classpath /root/miniconda3/share/py4j/py4j0.10.9.9.jar:/root/miniconda3/lib/python3.12/site-packages/scienceworld/scienceworld.jar py4j.GatewayServer --die-on-broken-pipe 0\\nroot     650421  0.0  0.0   4364  2032 ?        S    00:23   0:00 bash -c source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing/ && CUDA_VISIBLE_DEVICES=1 nohup python src/phase1_
+…[truncated 877 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T18:14:03.068380+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ps -p 650421 -o pid,etime 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ps -p 650421 -o pid,etime 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T18:14:03.068506+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   PID     ELAPSED\\n650421    01:48:39\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T18:14:03.068620+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls -d /root/autodl-tmp/simgate-modular-routing/results/prescreening/*/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls -d /root/autodl-tmp/simgate-modular-routing/results/prescreening/*/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T18:14:03.068734+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -30 /root/autodl-tmp/simgate-modular-routing/results/prescreening/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "tail -30 /root/autodl-tmp/simgate-modular-routing/results/prescreening/summary.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T18:14:03.068855+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-living-thing/\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-plant/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T18:14:03.069086+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.62it/s, est. speed input: 1289.82 toks/s, output: 100.20 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.62it/s, est. speed input: 1289.82 toks/s, output: 100.20 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s, est. speed input: 1289.82 toks/s, output: 100.20 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 172.21it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 1264.65 toks/s, output: 100.21 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 1264.65 toks/s, output: 100.21 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.59it/s, est. speed input: 1264.65 toks/s, output: 100.21 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 177.00it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.92it/s, est. speed input: 1522.62 toks/s, output: 99.84 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.92it/s, est. speed input: 1522.62 toks/s, output: 99.84 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.92it/s, est. speed input: 1522.62 toks/s, output: 99.84 toks/s]\\nscore=8.0 (31s)\\n  [D] always-deterministic... \\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 171.43it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?
+…[truncated 6410 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-13T18:14:03.069304+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/ && grep -c \"episode\" results/research/boil/episodes.jsonl 2>/dev/null || echo \"NO_JSONL\"; ls -la results/research/boil/ 2>/dev/null",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/ && grep -c \"episode\" results/research/boil/episodes.jsonl 2>/dev/null || echo \"NO_JSONL\"; ls -la results/research/boil/ 2>/dev/null",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-13T18:14:03.069444+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"12\\ntotal 512\\ndrwxr-xr-x 2 root root     36 May 14 00:30 .\\ndrwxr-xr-x 3 root root     26 May 14 00:23 ..\\n-rw-r--r-- 1 root root 522071 May 14 02:07 episodes.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-13T18:14:03.069567+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/ && grep -E \"SKIP|>>>|<<<|Done|RUNNING\" results/prescreening/summary.txt 2>/dev/null | tail -40",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/ && grep -E \"SKIP|>>>|<<<|Done|RUNNING\" results/prescreening/summary.txt 2>/dev/null | tail -40",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-13T18:14:03.069695+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"SKIP: boil (MVP-tested)\\nSKIP: change-the-state-of-matter-of (MVP-tested)\\n>>> Running: chemistry-mix at Thu May 14 00:22:49 CST 2026\\n<<< Done: chemistry-mix at Thu May 14 00:42:19 CST 2026\\nSKIP: chemistry-mix-paint-secondary-color (MVP-tested)\\n>>> Running: chemistry-mix-paint-tertiary-color at Thu May 14 00:42:19 CST 2026\\n<<< Done: chemistry-mix-paint-tertiary-color at Thu May 14 01:02:35 CST 2026\\n>>> Running: find-animal at Thu May 14 01:02:35 CST 2026\\n<<< Done: find-animal at Thu May 14 01:23:22 CST 2026\\n>>> Running: find-living-thing at Thu May 14 01:23:22 CST 2026\\n<<< Done: find-living-thing at Thu May 14 01:42:11 CST 2026\\n>>> Running: find-non-living-thing at Thu May 14 01:42:11 CST 2026\\n<<< Done: find-non-living-thing at Thu May 14 02:02:46 CST 2026\\n>>> Running: find-plant at Thu May 14 02:02:46 CST 2026\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T18:14:03.069824+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/ && cat run_prescreening_gpu0.sh 2>/dev/null | grep -E \"TASKS=|task_type\" | head -20",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/ && cat run_prescreening_gpu0.sh 2>/dev/null | grep -E \"TASKS=|task_type\" | head -20",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T18:14:03.069947+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"        --task_type \\\"$task\\\" \\\\\\ndone < notes/scienceworld_task_types.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.07}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-13T18:14:03.070154+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/notes/scienceworld_task_types.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/notes/scienceworld_task_types.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T18:14:03.070296+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# ScienceWorld Task Types (total: 30)\\n# MVP tested: boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant\\n# Generated: 2026-05-13\\n\\n0: boil  # MVP-tested\\n1: change-the-state-of-matter-of  # MVP-tested\\n2: chemistry-mix\\n3: chemistry-mix-paint-secondary-color  # MVP-tested\\n4: chemistry-mix-paint-tertiary-color\\n5: find-animal\\n6: find-living-thing\\n7: find-non-living-thing\\n8: find-plant\\n9: freeze\\n10: grow-fruit\\n11: grow-plant  # MVP-tested\\n12: identify-life-stages-1\\n13: identify-life-stages-2\\n14: inclined-plane-determine-angle\\n15: inclined-plane-friction-named-surfaces\\n16: inclined-plane-friction-unnamed-surfaces\\n17: lifespan-longest-lived\\n18: lifespan-longest-lived-then-shortest-lived\\n19: lifespan-shortest-lived\\n20: measure-melting-point-known-substance\\n21: measure-melting-point-unknown-substance\\n22: melt  # MVP-tested\\n23: mendelian-genetics-known-plant\\n24: mendelian-genetics-unknown-plant\\n25: power-component\\n26: power-component-renewable-vs-nonrenewable-energy\\n27: test-conductivity\\n28: test-conductivity-of-unknown-substances\\n29: use-thermometer\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.72}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T18:14:03.070423+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing/ && tail -3 results/research/boil/episodes.jsonl | python3 -c \"import sys,json; [print(json.loads(l).get('mode','?'), json.loads(l).get('episode_id','?'), json.loads(l).get('final_score', json.loads(l).get('score','?'))) for l in sys.stdin]\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing/ && tail -3 results/research/boil/episodes.jsonl | python3 -c \"import sys,json; [print(json.loads(l).get('mode','?'), json.loads(l).get('episode_id','?'), json.loads(l).get('final_score', json.loads(l).get('score','?'))) for l in sys.stdin]\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T18:14:03.070544+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"bash: line 1: python3: command not found\\n\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-13T18:14:03.070680+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing/ && python -c \"\nimport json\ndata = [json.loads(l) for l in open('results/research/boil/episodes.jsonl')]\nprint(f'Total episodes: {len(data)}')\nfrom collections import Counter\nmodes = Counter(d.get('mode','?') for d in data)\nfor m,c in modes.items():\n    scores = [d.get('final_score', d.get('score', 0)) for d in data if d.get('mode') == m]\n    import statistics\n    print(f'{m}: n={c}, mean={statistics.mean(scores):.2f}, std={statistics.stdev(scores) if len(scores)>1 else 0:.2f}, scores={scores}')\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing/ && python -c \"\nimport json\ndata = [json.loads(l) for l in open('results/research/boil/episodes.jsonl')]\nprint(f'Total episodes: {len(data)}')\nfrom collections import Counter\nmodes = Counter(d.get('mode','?') for d in data)\nfor m,c in modes.items():\n    scores = [d.get('final_score', d.get('score', 0)) for d in data if d.get('mode') == m]\n    import statistics\n    print(f'{m}: n={c}, mean={statistics.mean(scores):.2f}, std={statistics.stdev(scores) if len(scores)>1 else 0:.2f}, scores={scores}')\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-13T18:14:03.070846+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"Total episodes: 12\\n\", \"stderr\": \"Traceback (most recent call last):\\n  File \\\"&lt;string>\\\", line 10, in &lt;module>\\n  File \\\"/root/miniconda3/lib/python3.12/statistics.py\\\", line 486, in mean\\n    raise StatisticsError('mean requires at least one data point')\\nstatistics.StatisticsError: mean requires at least one data point\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.6}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-13T18:14:03.070972+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing/ && python -c \"\nimport json\ndata = [json.loads(l) for l in open('results/research/boil/episodes.jsonl')]\nprint(f'Total episodes: {len(data)}')\nfor d in data:\n    mode = d.get('mode', d.get('routing_mode', '?'))\n    ep = d.get('episode_id', d.get('episode', '?'))\n    score = d.get('final_score', d.get('score', '?'))\n    print(f'  ep={ep} mode={mode} score={score}')\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing/ && python -c \"\nimport json\ndata = [json.loads(l) for l in open('results/research/boil/episodes.jsonl')]\nprint(f'Total episodes: {len(data)}')\nfor d in data:\n    mode = d.get('mode', d.get('routing_mode', '?'))\n    ep = d.get('episode_id', d.get('episode', '?'))\n    score = d.get('final_score', d.get('score', '?'))\n    print(f'  ep={ep} mode={mode} score={score}')\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-13T18:14:03.071122+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total episodes: 12\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n  ep=? mode=? score=?\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-13T18:14:03.071254+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing/ && python -c \"\nimport json\ndata = [json.loads(l) for l in open('results/research/boil/episodes.jsonl')]\nprint('Keys:', list(data[0].keys()))\nprint('First entry (truncated):')\nd = data[0]\nfor k,v in d.items():\n    s = str(v)\n    print(f'  {k}: {s[:120]}')\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing/ && python -c \"\nimport json\ndata = [json.loads(l) for l in open('results/research/boil/episodes.jsonl')]\nprint('Keys:', list(data[0].keys()))\nprint('First entry (truncated):')\nd = data[0]\nfor k,v in d.items():\n    s = str(v)\n    print(f'  {k}: {s[:120]}')\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T18:14:03.071385+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Keys: ['episode_idx', 'variation_idx', 'always_internal', 'always_deterministic', 'oracle_routing']\\nFirst entry (truncated):\\n  episode_idx: 0\\n  variation_idx: 0\\n  always_internal: {'mode': 'always-internal', 'task_name': 'boil', 'variation_idx': 0, 'final_score': -100.0, 'initial_score': 0.0, 'num_s\\n  always_deterministic: {'mode': 'always-deterministic', 'task_name': 'boil', 'variation_idx': 0, 'final_score': 0.0, 'initial_score': 0.0, 'num\\n  oracle_routing: {'mode': 'oracle-routing', 'task_name': 'boil', 'variation_idx': 0, 'final_score': 0.0, 'initial_score': 0.0, 'num_steps\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.87}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T18:14:03.071550+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing/ && python -c \"\nimport json, statistics\ndata = [json.loads(l) for l in open('results/research/boil/episodes.jsonl')]\nprint(f'Boil v3: {len(data)}/20 episodes completed')\nprint()\nfor mode in ['always_internal', 'always_deterministic', 'oracle_routing']:\n    scores = [d[mode]['final_score'] for d in data]\n    print(f'{mode}: mean={statistics.mean(scores):.2f}, std={statistics.stdev(scores):.2f}, n={len(scores)}')\n    print(f'  scores: {scores}')\nprint()\n# MVP comparison\ntry:\n    mvp = [json.loads(l) for l in open('results/mvp/boil/episodes.jsonl')]\n    print(f'--- MVP boil (old code): {len(mvp)} episodes ---')\n    for mode in ['always_internal', 'always_deterministic', 'oracle_routing']:\n        scores = [d[mode]['final_score'] for d in mvp]\n        print(f'{mode}: mean={statistics.mean(scores):.2f}, std={statistics.stdev(scores):.2f}, n={len(scores)}')\nexcept Exception as e:\n    print(f'MVP data error: {e}')\n\"",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing/ && python -c \"\nimport json, statistics\ndata = [json.loads(l) for l in open('results/research/boil/episodes.jsonl')]\nprint(f'Boil v3: {len(data)}/20 episodes completed')\nprint()\nfor mode in ['always_internal', 'always_deterministic', 'oracle_routing']:\n    scores = [d[mode]['final_score'] for d in data]\n    print(f'{mode}: mean={statistics.mean(scores):.2f}, std={statistics.stdev(scores):.2f}, n={len(scores)}')\n    print(f'  scores: {scores}')\nprint()\n# MVP comparison\ntry:\n    mvp = [json.loads(l) for l in open('results/mvp/boil/episodes.jsonl')]\n    print(f'--- MVP boil (old code): {len(mvp)} episodes ---')\n    for mode in ['always_internal', 'always_deterministic', 'oracle_routing']:\n        scores = [d[mode]['final_score'] for d in mvp]\n        print(f'{mode}: mean={statistics.mean(scores):.2f}, std={statistics.stdev(scores):.2f}, n={len(scores)}')\nexcept Exception as e:\n    print(f'MVP data error: {e}')\n\"",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T18:14:03.071688+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Boil v3: 12/20 episodes completed\\n\\nalways_internal: mean=-41.17, std=51.95, n=12\\n  scores: [-100.0, 0.0, 3.0, -100.0, -100.0, -100.0, 0.0, -100.0, 0.0, 0.0, 0.0, 3.0]\\nalways_deterministic: mean=0.92, std=1.73, n=12\\n  scores: [0.0, 0.0, 3.0, 5.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.0]\\noracle_routing: mean=6.33, std=20.08, n=12\\n  scores: [0.0, 0.0, 3.0, 70.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 3.0]\\n\\n--- MVP boil (old code): 20 episodes ---\\nalways_internal: mean=-49.75, std=51.56, n=20\\nalways_deterministic: mean=-19.70, std=41.20, n=20\\noracle_routing: mean=-29.70, std=47.23, n=20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 37 · 2026-05-13T18:14:03.071869+00:00_
+
+## 状态汇总
+
+### GPU 状态
+| GPU | 利用率 | VRAM | 任务 |
+|-----|--------|------|------|
+| GPU0 | 0% (推理间歇) | 28/32 GB | 预筛 `find-plant` |
+| GPU1 | 58% | 28/32 GB | boil v3 (PID 650421, 已运行 1h49m) |
+
+**GPU1 不空闲，boil v3 仍在跑。**
+
+### Boil v3 进度：12/20 episodes
+
+中间结果 vs MVP 对比：
+
+| Mode | v3 (n=12) | MVP (n=20) | 变化 |
+|------|-----------|------------|------|
+| always_internal | **-41.17** | -49.75 | +8.6 |
+| always_deterministic | **0.92** | -19.70 | **+20.6** |
+| oracle_routing | **6.33** | -29.70 | **+36.0** |
+
+v3 各 mode 均大幅优于 MVP。oracle_routing 有一个 episode 达 70.0 分（variation 3），但方差很大。
+
+### 预筛进度（GPU0）
+- 30 总任务，跳过 5 个 MVP 已测
+- 已完成 5/25：chemistry-mix, chemistry-mix-paint-tertiary-color, find-animal, find-living-thing, find-non-living-thing
+- 正在跑第 6 个：find-plant
+- 剩余 19 个，每个约 20 min → 单 GPU 约需 6+ 小时
+
+### 下一步
+boil v3 预计还需 ~30 分钟完成（8 episodes × ~4 min/ep）。完成后 GPU1 空闲，可立即启动 GPU1 分担剩余预筛任务。需要等 boil v3 结束。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_infra_gpu-status-boil-analysis_20260513T181135"
+}
+```
+
+</details>
+
+---

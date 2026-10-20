@@ -1,0 +1,14 @@
+{
+  "exp_id": "grounding-prompt-ablation",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:43:41.255Z",
+    "updated_at": "2026-05-18T21:43:41.255Z"
+  },
+  "timestamp": "2026-05-18T21:43:41.506602+00:00",
+  "trigger": "update_registry"
+}

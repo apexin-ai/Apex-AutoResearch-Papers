@@ -1,0 +1,14 @@
+\section{Related Work}
+
+\paragraph{Tool-Use and Adaptive Computation.}
+Toolformer \cite{toolformer-2024}, ART \cite{art-2023}, Chameleon \cite{chameleon-2024}, and ReTool \cite{retool-2026} learn \emph{which tool} to invoke but do not analyze what signal drives routing.
+CogRouter \cite{cogrouter-2026} routes cognitive depth on ScienceWorld; ARES \cite{ares-2026} reduces token cost via per-step effort selection; Mixture-of-Recursions \cite{mixture-of-recursions-2025} applies adaptive depth via per-token recursive routing.
+These route \emph{how much} to reason; we route \emph{which modality} and diagnose the signal composition---revealing ${\sim}90\%$ is death avoidance.
+
+\paragraph{World Models and Agent Frameworks.}
+ITP \cite{itp-2026} and Dyna-Think \cite{dynathink-2025} route to LLM-based world models inheriting hallucinations; our deterministic modality provides exact state transitions, with counterfactual analysis showing this exactness matters almost exclusively for death avoidance.
+ReAct \cite{react-2023} serves as our internal-reasoning baseline; MTRouter \cite{mtrouter-2026} routes between LLMs for cost optimization.
+Our work diagnoses \emph{what} a learned router captures---the answer is dominated by catastrophic-failure prevention.
+
+\paragraph{Concurrent Work.}
+Concurrent studies examine complementary aspects: cognitive illusions driving tool overuse \cite{tool-overuse-illusion-2026}, hidden-state encoding of tool-call decisions \cite{when2tool-2026}, a ``tool-use tax'' where tools are not always beneficial \cite{tool-use-tax-2026}, and necessity/utility/affordability evaluation \cite{to-call-or-not-2026}. Our death avoidance decomposition provides concrete quantification---${\sim}90\%$ of routing signal stems from catastrophic-failure prevention---grounding these frameworks in interactive-environment evidence.

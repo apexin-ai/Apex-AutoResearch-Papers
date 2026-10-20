@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "370d02a6e9428c0b8829",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis action divergence rate",
+  "task_key": "worker_analysis_action-divergence-rate_20260513T171027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_action-divergence-rate_20260513T171027_result.json",
+    "occurrence": 1,
+    "bytes": 970,
+    "sha256": "6c0e157a4c7eeffe62ddd67e0b1c9276fced5ccbb7e09a1636f8166a6af79c57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。关键结果：\n\n## Action Divergence Analysis\n\n| Task | Steps | Divergence Rate |\n|------|-------|----------------|\n| boil | 548 | **77.2%** |\n| change-the-state-of-matter-of | 600 | **73.0%** |\n| chemistry-mix-paint | 600 | **73.5%** |\n| grow-plant | 600 | **72.7%** |\n| melt | 600 | **69.3%** |\n| **Overall** | **2948** | **73.1%** |\n\nPhase 分布基本均匀（66%–80%），没有明显的 early/late 趋势。\n\n## GPU 成本估算\n\n73.1% divergence rate 意味着 9000 步中有 **6576 个 fork 点**，每个 fork 续跑 20 步：\n\n- 基础 episode 采集：10.0h\n- Fork continuations：146.1h\n- **双卡并行总时长：78.1h**\n- **预估费用：¥403**（2×A6000）\n\n73% 的 divergence rate 远高于预期——几乎每步都要 fork。这意味着 episode-terminal labeling 的 GPU 开销约是基础采集的 **15.6 倍**。可能需要考虑降低 K 值或引入 fork 采样策略来控制成本。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-action-divergence-rate.md"
+}

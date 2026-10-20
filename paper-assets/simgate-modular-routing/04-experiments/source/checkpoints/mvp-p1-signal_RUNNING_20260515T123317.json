@@ -1,0 +1,28 @@
+{
+  "exp_id": "mvp-p1-signal",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T04:50:06.546Z",
+    "updated_at": "2026-05-15T12:33:17.849Z",
+    "spec": {
+      "hypothesis": "Oracle routing 在 strong task types 上显著优于 always-internal，证明 selective routing 存在信号",
+      "description": "Phase 1 信号检测 - 3-way comparison across 5 task types",
+      "parent": "mvp-p0-forking",
+      "command": "N/A (killed before execution)",
+      "server": "westb-13313",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "conclusion": "killed",
+    "checkpoint_path": "N/A (killed)",
+    "log_path": "N/A (killed)"
+  },
+  "timestamp": "2026-05-15T12:33:17.971859+00:00",
+  "trigger": "update_registry"
+}

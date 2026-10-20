@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3691cc0a2ecf9f986d10",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "verify fig1 remote check",
+  "task_key": "worker_verify_fig1-remote-check_20260514T140824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_fig1-remote-check_20260514T140824_result.json",
+    "occurrence": 1,
+    "bytes": 1548,
+    "sha256": "545f6baa796516b15ee3e7869f1c0f837536d9cd1779fe3c63a46a48ced4aa35"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### fig1 PDF 文件状态\n\n| 路径 | 大小 (bytes) | 状态 |\n|------|-------------|------|\n| `paper/fig1_daf_scatter.pdf` | 25,611 | **工作版本** (>25000) |\n| `paper/fig1_death_scatter.pdf` | 24,865 | 损坏/占位符 (<25000) |\n| `paper/figures/fig1_daf_scatter.pdf` | 23,688 | 损坏/占位符 (<25000) |\n| `figures/fig1_daf_scatter.pdf` | 23,688 | 损坏/占位符 (<25000) |\n| `figures/fig1_daf_scatter_broken.pdf` | 23,688 | 损坏/占位符 (<25000) |\n| `results/decomposition_dryrun/fig1_death_scatter.pdf` | 24,865 | 损坏/占位符 (<25000) |\n\n### 生成脚本\n\n**1. `figures/gen_fig1.py`** — DejaVu Sans 已配置，双重设置：\n- L5: `matplotlib.rcParams['pdf.fonttype'] = 42`\n- L6: `matplotlib.rcParams['ps.fonttype'] = 42`\n- L7: `matplotlib.rcParams['font.family'] = 'sans-serif'`\n- L8: `matplotlib.rcParams['font.sans-serif'] = ['DejaVu Sans']`\n- L72-77: `plt.rcParams.update` 中再次设置 `font.family`、`font.sans-serif`、`pdf.fonttype`、`ps.fonttype`\n\n**2. `figures/gen_fig1_broken.py`** — DejaVu Sans 已配置但方式有误：\n- L69: `'font.family': 'DejaVu Sans'` — 直接把字体名赋给 `font.family`（应为 `'sans-serif'`），缺少 `font.sans-serif` 列表\n- 缺少模块级 `rcParams` 字体预设（`gen_fig1.py` 的 L5-8）\n\n`paper/fig1_daf_scatter.pdf` (25,611 bytes) 是唯一的工作版本，由 `gen_fig1.py` 生成。`gen_fig1_broken.py` 的字体配置有问题（`font.family` 应设为 `'sans-serif'` 而非直接用字体名）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-fig1-remote-check.md"
+}

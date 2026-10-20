@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "4659f1e0edec48b1fd23",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "analysis gemma final complete",
+  "task_key": "worker_analysis_gemma-final-complete_20260520T174915",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gemma-final-complete_20260520T174915.log",
+    "occurrence": 1,
+    "bytes": 579287,
+    "sha256": "ca64f900f9964fe3ebbf10b425c4bf452276b142c94a456032b41781d8881343"
+  },
+  "statistics": {
+    "messages": 252,
+    "user_turns": 1,
+    "tool_calls": 79,
+    "roles": {
+      "log": 1,
+      "system": 49,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 79,
+      "tool_result": 79,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 36,
+      "chunks": [
+        {
+          "path": "4659f1e0edec48b1fd23-part-0001.json",
+          "message_count": 36
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 216,
+      "chunks": [
+        {
+          "path": "4659f1e0edec48b1fd23-part-0001.json",
+          "message_count": 144
+        },
+        {
+          "path": "4659f1e0edec48b1fd23-part-0002.json",
+          "message_count": 72
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-gemma-final-complete.md"
+}

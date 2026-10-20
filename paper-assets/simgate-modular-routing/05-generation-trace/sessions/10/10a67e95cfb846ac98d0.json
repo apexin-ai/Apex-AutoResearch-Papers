@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10a67e95cfb846ac98d0",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix fig1 font bug",
+  "task_key": "worker_fix_fig1-font-bug_20260514T122509",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_fig1-font-bug_20260514T122509_result.json",
+    "occurrence": 1,
+    "bytes": 701,
+    "sha256": "f72d2b189381dab6085e72deee22a0e46d6ce6509e4b010acf794bead2d9d1c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成：\n\n1. **根因**：`gen_fig1.py` 使用 `'font.family': 'sans-serif'`（通用族名），matplotlib 回退到缺失 't' glyph 的字体\n2. **修复**：改为 `'font.family': 'DejaVu Sans'`（服务器上可用的具体字体），并添加 `pdf.fonttype: 42` / `ps.fonttype: 42` 强制 TrueType 嵌入\n3. **清除 matplotlib 字体缓存**后重新生成 PDF\n4. **验证**：pdffonts 确认 DejaVu Sans 正确嵌入为 CID TrueType，字体宽度表包含 't' (CID 116, width 392)\n5. **文件已复制**：服务器论文目录 + 本地 `docs/paper/figures/fig1_daf_scatter.pdf`（23688 bytes）\n6. **论文已重编译**：`main.pdf` 5 页，205KB，编译成功"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-fig1-font-bug.md"
+}

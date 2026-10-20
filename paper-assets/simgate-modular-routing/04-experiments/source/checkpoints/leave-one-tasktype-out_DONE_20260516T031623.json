@@ -1,0 +1,27 @@
+{
+  "exp_id": "leave-one-tasktype-out",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:08:05.850Z",
+    "updated_at": "2026-05-16T03:16:23.139Z",
+    "spec": {
+      "command": "python scripts/leave_one_tasktype_out.py",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": "2040 steps / 66 episodes / 11 task types",
+      "model_name": "Qwen3-1.7B (8 seeds 42-49)",
+      "seed": "42-49",
+      "checkpoint_path": "checkpoints/seed-robustness-seed*/final_adapter/",
+      "log_path": "/tmp/leave_one_tasktype_out.log"
+    },
+    "hypothesis": "Leave-one-task-type-out eval: router 在完全未见 task type 上是否 ≈ 50%（随机），确认 routing signal 不跨 task type 迁移，仅学了 task-type 分类。关联 C2 diagnostic。",
+    "conclusion": "failed",
+    "completed_at": "2026-05-16T03:16:23.140Z"
+  },
+  "timestamp": "2026-05-16T03:16:23.307935+00:00",
+  "trigger": "update_registry"
+}

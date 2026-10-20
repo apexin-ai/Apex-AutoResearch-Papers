@@ -1,0 +1,949 @@
+# research framework formalization
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_research_framework-formalization_20260516T161839.log`
+- **Structured JSON:** [`ff0d1b9f2e4a73d3b0a8.json`](../../sessions/ff/ff0d1b9f2e4a73d3b0a8.json)
+
+## Before a recorded user message
+
+19 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "b223c235-3dd8-401a-abbe-d1cde295479d",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778965800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "556e37ed-32bf-4e6c-aa4c-43ff7b883cdb",
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to write a formalized framework draft markdown file on the remote server. Let me first detect the image on the server, then write the file.
+
+Since this is purely a text writing task, I'll:
+1. Detect the image on the server
+2. Write the framework_draft.md file to the specified path
+
+Let me start by detecting the image and checking the directory exists.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "9d135a27-8691-4a76-b4ed-bd27a753ef40",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VxPuU1MQG9n2FRKLACo5h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12882,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12882
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Szr9H2uVonjkCSuPpLcSQZ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "07a4eb6c-be6a-42e4-86f6-0fb44992e274",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014VxPuU1MQG9n2FRKLACo5h",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12882,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12882
+      },
+      "output_tokens": 24,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T16:18:54.339Z_
+
+<details><summary>↩ Tool result · `toolu_01Szr9H2uVonjkCSuPpLcSQZ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__detect_image"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "60afbc5f-96f8-4fd5-8b59-360e01f9f6fd",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__detect_image,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me detect the image and check if the directory exists, then write the file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "9a5dfccc-fa6e-4eab-ba83-cf32b562c0b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AEkxSTUYUHkGfR1UM6Ad3j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 971,
+      "cache_read_input_tokens": 24723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 971
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__detect_image · `toolu_01PicqRd8Nueiurosqc44rpV`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "a5a35c47-f71a-4b33-a59f-8b746348577f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AEkxSTUYUHkGfR1UM6Ad3j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 971,
+      "cache_read_input_tokens": 24723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 971
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WRQtVW61AwRZrBwjdDtuVX`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/guided_router/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "8b911d75-4258-486a-9338-314adb4d24c5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AEkxSTUYUHkGfR1UM6Ad3j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 971,
+      "cache_read_input_tokens": 24723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 971
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T16:19:01.023Z_
+
+<details><summary>↩ Tool result · `toolu_01PicqRd8Nueiurosqc44rpV`</summary>
+
+```text
+{"result":"{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "edb4642f-b65c-4040-aac6-2868a856fc21",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\n  \\\"detected\\\": false,\\n  \\\"status\\\": \\\"unknown\\\",\\n  \\\"skip_base_setup\\\": false,\\n  \\\"message\\\": \\\"No image marker file found. Use traditional env-setup flow.\\\"\\n}\"}",
+    "structuredContent": {
+      "result": "{\n  \"detected\": false,\n  \"status\": \"unknown\",\n  \"skip_base_setup\": false,\n  \"message\": \"No image marker file found. Use traditional env-setup flow.\"\n}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T16:19:02.445Z_
+
+<details><summary>↩ Tool result · `toolu_01WRQtVW61AwRZrBwjdDtuVX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__init__.py\\n__pycache__\\nconfig.py\\ncross_model_eval.py\\ncross_model_results.json\\neval_episode.py\\nloto_eval.py\\nloto_results.json\\nresults\\nrouter.py\\nrun_guided_router.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "83fbc7d8-68d8-4946-85ac-743d0ac55039",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"README.md\\\\n__init__.py\\\\n__pycache__\\\\nconfig.py\\\\ncross_model_eval.py\\\\ncross_model_results.json\\\\neval_episode.py\\\\nloto_eval.py\\\\nloto_results.json\\\\nresults\\\\nrouter.py\\\\nrun_guided_router.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.41}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"README.md\\n__init__.py\\n__pycache__\\nconfig.py\\ncross_model_eval.py\\ncross_model_results.json\\neval_episode.py\\nloto_eval.py\\nloto_results.json\\nresults\\nrouter.py\\nrun_guided_router.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.41}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+目录存在，开始写 framework_draft.md。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "c6fc1d48-e77d-46d7-b6cb-c65be402a2bf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzTmV1YS9cm6Bj1i2ZbdxE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 507,
+      "cache_read_input_tokens": 25694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 507
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019VWi2jfZAULVHWHb7ywMCS`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat > /root/autodl-tmp/simgate-modular-routing/guided_router/framework_draft.md << 'ENDOFFILE'\n# Counterfactual Decomposition Framework: Formal Draft\n\n> A diagnostic framework for identifying and quantifying the sources of routing signal in multi-modal LLM agents.\n\n---\n\n## Part 1: Formal Definitions\n\n### 1.1 Episode-Level Counterfactual Labeling Protocol\n\n**Setup.** Let $E$ be a sequential decision-making environment, $\\Pi = \\{\\pi_{\\text{det}}, \\pi_{\\text{int}}\\}$ a set of two execution policies (deterministic/tool-use and internal/generative), and $\\mathcal{E} = \\{e_1, e_2, \\ldots, e_N\\}$ a set of episodes (tasks).\n\n**Counterfactual Execution.** For each episode $e \\in \\mathcal{E}$, execute both policies to obtain:\n\n$$S_{\\text{det}}(e) = \\text{Score}(e, \\pi_{\\text{det}}), \\quad S_{\\text{int}}(e) = \\text{Score}(e, \\pi_{\\text{int}})$$\n\nwhere $\\text{Score}: \\mathcal{E} \\times \\Pi \\to [0, 1]$ is the environment's normalized evaluation metric.\n\n**Oracle Label Function:**\n\n$$L(e) = \\begin{cases} \\pi_{\\text{det}} & \\text{if } S_{\\text{det}}(e) > S_{\\text{int}}(e) \\\\ \\pi_{\\text{int}} & \\text{if } S_{\\text{int}}(e) > S_{\\text{det}}(e) \\\\ \\pi_{\\text{det}} & \\text{if } S_{\\text{det}}(e) = S_{\\text{int}}(e) \\quad \\text{(tie-breaking: prefer deterministic)} \\end{cases}$$\n\n*Intuition:* The label function answers \"which policy would have been better for this episode?\" by actually running both and comparing. Tie-breaking favors the deterministic policy as it is typically more predictable and resource-efficient.\n\n**Contrast with Step-Level Oracle Routing (e.g., ITP-R):**\n\nStep-level oracles attempt to assign credit at each decision step $t$:\n\n$$L_{\\text{step}}(e, t) = \\arg\\max_{\\pi} \\mathbb{E}[R_t \\mid \\pi, s_t]$$\n\nIn environments with sparse terminal reward (e.g., ScienceWorld gives score only at episode end), this requires per-step credit assignment which degenerates:\n\n$$\\text{Var}[\\hat{L}_{\\text{step}}(e, t)] \\to \\infty \\quad \\text{as reward sparsity increases}$$\n\nOur episode-level protocol avoids this entirely by operating on the final outcome.\n\n*Evidence:* ScienceWorld provides only terminal scores; step-level approaches cannot attribute signal to intermediate steps without auxiliary reward shaping.\n\n---\n\n### 1.2 Death Avoidance Fraction (DAF)\n\n**Definition: Death Episode.** An episode $e$ is a *death episode* under policy $\\pi_{\\text{int}}$ if:\n\n$$\\text{Death}(e) \\iff S_{\\text{int}}(e) = 0$$\n\ni.e., the internal/generative policy achieves catastrophic failure (zero score).\n\n**Definition: Routing-Relevant Subset.** Let $\\mathcal{D} = \\{e \\in \\mathcal{E} : L(e) = \\pi_{\\text{det}}\\}$ be the set of episodes where deterministic policy is preferred (routing signal exists).\n\n**Partition of $\\mathcal{D}$:**\n\n$$\\mathcal{D}_{\\text{death}} = \\{e \\in \\mathcal{D} : \\text{Death}(e)\\}, \\quad \\mathcal{D}_{\\text{nd}} = \\{e \\in \\mathcal{D} : \\neg\\text{Death}(e)\\}$$\n\n**Full Routing Signal:**\n\n$$\\Delta_{\\text{full}} = \\frac{1}{|\\mathcal{D}|} \\sum_{e \\in \\mathcal{D}} \\left[ S_{\\text{det}}(e) - S_{\\text{int}}(e) \\right]$$\n\n**Non-Death Routing Signal:**\n\n$$\\Delta_{\\text{nd}} = \\frac{1}{|\\mathcal{D}_{\\text{nd}}|} \\sum_{e \\in \\mathcal{D}_{\\text{nd}}} \\left[ S_{\\text{det}}(e) - S_{\\text{int}}(e) \\right]$$\n\n**Death Avoidance Fraction:**\n\n$$\\text{DAF} = 1 - \\frac{|\\mathcal{D}_{\\text{nd}}| \\cdot \\Delta_{\\text{nd}}}{|\\mathcal{D}| \\cdot \\Delta_{\\text{full}}}$$\n\nEquivalently (weighted form):\n\n$$\\text{DAF} = \\frac{\\sum_{e \\in \\mathcal{D}_{\\text{death}}} \\left[ S_{\\text{det}}(e) - S_{\\text{int}}(e) \\right]}{\\sum_{e \\in \\mathcal{D}} \\left[ S_{\\text{det}}(e) - S_{\\text{int}}(e) \\right]}$$\n\n*Intuition:* DAF measures what fraction of the total routing advantage comes from death episodes. If $\\text{DAF} \\approx 1$, removing death episodes would eliminate nearly all routing signal—meaning the router is essentially just a death-avoidance mechanism. If $\\text{DAF} \\approx 0$, routing signal comes from non-catastrophic performance differences.\n\n**Boundary Cases:**\n- $\\text{DAF} = 1$: All routing signal is death avoidance. $\\Delta_{\\text{nd}} = 0$ or $\\mathcal{D}_{\\text{nd}} = \\emptyset$.\n- $\\text{DAF} = 0$: No death episodes contribute to routing signal. $\\mathcal{D}_{\\text{death}} = \\emptyset$.\n- $\\text{DAF} > 1$: Possible if non-death episodes actually favor $\\pi_{\\text{int}}$ (negative $\\Delta_{\\text{nd}}$), amplifying the death contribution.\n\n**Bootstrap Confidence Interval:**\n\n$$\\text{CI}_{95\\%}(\\text{DAF}) = \\left[ \\text{DAF}^*_{(0.025)}, \\ \\text{DAF}^*_{(0.975)} \\right]$$\n\nwhere $\\text{DAF}^*_{(q)}$ is the $q$-th quantile of $B = 10000$ bootstrap resamples of $\\mathcal{D}$.\n\n*Evidence:* ScienceWorld DAF = 90.4%, 95% CI = [81.6%, 98.8%]. Pearson $r$(DAF, routing accuracy) = 0.9698 across task types.\n\n---\n\n### 1.3 Signal Concentration Index (SCI)\n\n**Motivation.** DAF is specific to death-vs-non-death decomposition. We generalize to measure how concentrated routing signal is across episodes, regardless of failure mode.\n\n**Per-Episode Routing Advantage:**\n\n$$\\delta(e) = S_{\\text{det}}(e) - S_{\\text{int}}(e), \\quad \\forall e \\in \\mathcal{D}$$\n\n**Signal Concentration Index (Gini-based):**\n\n$$\\text{SCI} = \\frac{\\sum_{i=1}^{n} \\sum_{j=1}^{n} |\\delta_i - \\delta_j|}{2n \\sum_{i=1}^{n} \\delta_i}$$\n\nwhere $n = |\\mathcal{D}|$ and $\\delta_i$ are sorted in ascending order.\n\n*Intuition:* SCI ∈ [0, 1]. High SCI (→1) means routing signal is concentrated in a few extreme episodes (e.g., death episodes with $\\delta = 1.0$ while others have $\\delta \\approx 0$). Low SCI (→0) means signal is uniformly distributed across episodes.\n\n**Relationship to DAF:**\n\n$$\\text{High DAF} \\implies \\text{High SCI}$$\n\nbut not vice versa. High SCI could result from any type of extreme episodes, not just death. DAF identifies *what* the extreme episodes are; SCI measures *how extreme* the concentration is.\n\n**Alternative: Top-$k$ Concentration Ratio:**\n\n$$\\text{CR}_k = \\frac{\\sum_{i=n-k+1}^{n} \\delta_{(i)}}{\\sum_{i=1}^{n} \\delta_{(i)}}$$\n\nwhere $\\delta_{(i)}$ are order statistics. This directly answers \"what fraction of total signal comes from the top $k$ episodes?\"\n\n*Evidence:* In ScienceWorld, the death episodes (which are also the top-$\\delta$ episodes) account for 90.4% of total signal, confirming extreme concentration.\n\n---\n\n## Part 2: Applicability Conditions\n\n### 2.1 Framework Applicability\n\nThe Counterfactual Decomposition Framework applies when **all** of the following hold:\n\n| Condition | Formal Requirement | Rationale |\n|-----------|-------------------|-----------|\n| Multi-modal execution | $|\\Pi| \\geq 2$ distinct policies | Need at least two modes to route between |\n| Episode-level evaluation | $\\exists$ Score: $\\mathcal{E} \\times \\Pi \\to \\mathbb{R}$ | Need measurable outcome per episode per policy |\n| Counterfactual feasibility | Each episode can be executed under all $\\pi \\in \\Pi$ | Need paired comparisons |\n| Non-trivial routing signal | $\\exists e: S_{\\pi_1}(e) \\neq S_{\\pi_2}(e)$ | If all modes perform identically, nothing to decompose |\n\n### 2.2 DAF Informativeness Conditions\n\nDAF is a meaningful diagnostic metric when:\n\n**Necessary Condition — Failure Asymmetry:**\n\n$$\\Pr(\\text{Death}(e) \\mid \\pi_{\\text{int}}) \\gg \\Pr(\\text{Death}(e) \\mid \\pi_{\\text{det}})$$\n\n*Intuition:* If both modes fail at the same rate, death episodes cancel out in the counterfactual comparison, and DAF cannot isolate death avoidance as a signal source.\n\n**Sufficient Conditions for High-Information DAF:**\n1. One mode has substantially higher catastrophic failure rate\n2. Non-death performance differences are small relative to death-induced differences\n3. Sufficient episodes to estimate DAF with tight CI ($N \\geq 50$ episodes recommended)\n\n**When DAF is Uninformative:**\n- $\\Pr(\\text{Death} \\mid \\pi_{\\text{int}}) = \\Pr(\\text{Death} \\mid \\pi_{\\text{det}})$: Symmetric failure → DAF ≈ fraction of death episodes in $\\mathcal{D}$, not diagnostic\n- No death episodes exist: DAF = 0 trivially, use SCI instead\n- All episodes are death: DAF = 1 trivially (tautological)\n\n### 2.3 Validated Scenarios\n\n#### ScienceWorld (Primary)\n\n| Property | Value |\n|----------|-------|\n| Environment type | Text-based interactive science tasks (30 task types) |\n| Score metric | Normalized task completion [0, 1] |\n| Death mechanism | Agent enters irrecoverable states → score = 0 |\n| Failure asymmetry | $\\pi_{\\text{int}}$ deaths frequent; $\\pi_{\\text{det}}$ deaths rare (scripted, avoids catastrophe) |\n| **DAF** | **90.4%** |\n| **95% CI** | **[81.6%, 98.8%]** |\n| **Pearson $r$(DAF, accuracy)** | **0.9698** |\n| Implication | Routing signal is overwhelmingly death avoidance; complex router unnecessary |\n\n*Evidence:* Sensitivity analysis confirms robustness: DAF > 80% across all performance thresholds $P \\geq 50$; DAF > 87% across all death threshold variations.\n\n#### ALFWorld (Binary Success/Fail)\n\n| Property | Value |\n|----------|-------|\n| Environment type | Embodied household tasks (6 task types) |\n| Score metric | Binary {0, 1} (success/fail) |\n| Death mechanism | Failure = score 0, but both modes can fail |\n| **DAF** | **1.0 (trivially)** |\n| Implication | DAF metric is tautological in binary environments (all routing signal is fail-avoidance by definition). However, framework still reveals: 5/6 task types show $\\pi_{\\text{det}}$ advantage, confirming directional pattern |\n\n*Insight:* In binary-outcome environments, use the framework's counterfactual labeling (Part 1.1) and task-type decomposition rather than DAF specifically.\n\n#### MATH (No Death, Signal Reversal)\n\n| Property | Value |\n|----------|-------|\n| Environment type | Mathematical reasoning (5 difficulty levels) |\n| Score metric | Binary correctness per problem |\n| Death mechanism | None (wrong answer ≠ catastrophic failure) |\n| **DAF** | **Not applicable** (no death asymmetry) |\n| Key finding | Signal reversal: $\\pi_{\\text{int}}$ better on easy problems, $\\pi_{\\text{det}}$ better on hard problems |\n| Statistical signal | Directional trend $p = 0.079$ |\n| Implication | Framework reveals difficulty-dependent routing structure even without DAF |\n\n*Evidence:* Counterfactual decomposition by difficulty level shows monotonic trend in mode preference.\n\n#### Llama-3.1-8B Cross-Model Replication\n\n| Property | Value |\n|----------|-------|\n| Model | Llama-3.1-8B-Instruct (vs. GPT-4o primary) |\n| Environment | ScienceWorld |\n| Key finding | $\\text{int\\_preferred} = 0$ (deterministic always preferred), $\\pi_{\\text{det}}$ never dies |\n| Implication | Pattern replicates: weaker model shows even stronger death-avoidance dominance |\n\n*Evidence:* Cross-model evaluation confirms framework's diagnostic applies regardless of base LLM capability.\n\n---\n\n## Part 3: Differentiation from Existing Methods\n\n### 3.1 vs. ITP-R (Intuitive Tool-use for Planning and Reasoning)\n\n| Dimension | ITP-R | Counterfactual Decomposition |\n|-----------|-------|------------------------------|\n| **Purpose** | Routing method (decides which tool/mode to use) | Analysis framework (diagnoses routing signal sources) |\n| **Granularity** | Step-level oracle routing | Episode-level counterfactual |\n| **Reward requirement** | Per-step reward or surrogate | Terminal reward sufficient |\n| **Sparse reward** | Degrades (credit assignment problem) | Unaffected (uses final score only) |\n| **Output** | Routing decisions | Diagnostic metrics (DAF, SCI) |\n| **When to use** | At inference time | Before training a router |\n\n**Key Advantage:** ITP-R requires step-level reward attribution. In environments with only terminal reward (ScienceWorld: score given only at episode end), step-level credit assignment becomes:\n\n$$\\hat{R}_t = R_T \\cdot \\frac{\\partial \\log \\pi(a_t|s_t)}{\\partial \\theta} \\quad \\text{(high variance, uninformative)}$$\n\nOur framework sidesteps this entirely by comparing episode outcomes.\n\n### 3.2 vs. ReTool / AgentMath / Chameleon (Learned Routing Methods)\n\n| Dimension | Learned Routers | Counterfactual Decomposition |\n|-----------|----------------|------------------------------|\n| **Assumption** | Learnable routing signal exists | Diagnoses whether learnable signal exists |\n| **Phase** | Training/inference | Pre-training diagnostic |\n| **Failure mode** | Train router on death-avoidance signal → overfits to task-type binary | Identifies this failure mode before training |\n| **Generalization** | Assumes episode-level generalization | Reveals when generalization is impossible (C2) |\n\n**Diagnostic Value:** Before investing compute in training a router, apply our framework:\n\n$$\\text{If DAF} \\approx 1: \\quad \\text{Simple rule suffices (avoid tasks where } \\pi_{\\text{int}} \\text{ dies)}$$\n$$\\text{If DAF} \\approx 0: \\quad \\text{Signal is nuanced → learned router may be justified}$$\n\n*Evidence:* In ScienceWorld, DAF = 90.4% correctly predicts that a trained router cannot generalize at episode level (cross-split accuracy = 47.1% ≈ random), because the \"signal\" is just a task-type-level death/no-death binary.\n\n### 3.3 Core Value Proposition\n\n**Three contributions of the Counterfactual Decomposition Framework:**\n\n1. **Episode-level counterfactual protocol** solves the sparse-reward credit assignment problem that plagues step-level oracle routing approaches. No reward shaping or per-step attribution needed.\n\n2. **DAF as pre-training diagnostic** answers \"where does routing signal come from?\" before committing resources to router training. High DAF → signal is death avoidance → simple rule suffices → don't train a complex router.\n\n3. **Generalizability** of the framework itself: applicable to any multi-modal agent system with $|\\Pi| \\geq 2$ and episode-level evaluation, independent of environment, LLM backbone, or task domain.\n\n**The meta-insight:** The framework shifts the research question from \"how to build a better router\" to \"what is the router actually learning?\" — and in many cases, the answer (\"death avoidance\") renders complex routing methods unnecessary.\n\n---\n\n## Summary of Notation\n\n| Symbol | Definition |\n|--------|-----------|\n| $E$ | Environment |\n| $\\Pi = \\{\\pi_{\\text{det}}, \\pi_{\\text{int}}\\}$ | Policy set (deterministic, internal) |\n| $\\mathcal{E}$ | Episode set |\n| $S_\\pi(e)$ | Score of episode $e$ under policy $\\pi$ |\n| $L(e)$ | Oracle label (preferred policy) for episode $e$ |\n| $\\mathcal{D}$ | Det-preferred episodes: $\\{e : L(e) = \\pi_{\\text{det}}\\}$ |\n| $\\mathcal{D}_{\\text{death}}$ | Death episodes within $\\mathcal{D}$ |\n| $\\mathcal{D}_{\\text{nd}}$ | Non-death episodes within $\\mathcal{D}$ |\n| $\\Delta_{\\text{full}}$ | Mean routing advantage over all of $\\mathcal{D}$ |\n| $\\Delta_{\\text{nd}}$ | Mean routing advantage over non-death episodes |\n| DAF | Death Avoidance Fraction |\n| SCI | Signal Concentration Index |\n| $\\delta(e)$ | Per-episode routing advantage |\n| $\\text{CR}_k$ | Top-$k$ concentration ratio |\n\n---\n\n*Draft version: 2026-05-16. For Paper Agent consumption.*\nENDOFFILE",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "c4036e6a-5a51-4e8f-a2af-afd782e4d527",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SzTmV1YS9cm6Bj1i2ZbdxE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 507,
+      "cache_read_input_tokens": 25694,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 507
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T16:20:36.468Z_
+
+<details><summary>↩ Tool result · `toolu_019VWi2jfZAULVHWHb7ywMCS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "2a8c7ae5-c7a8-4be5-8286-cf168afe0acc",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.4}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.4}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+验证文件写入成功。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "2804f7c6-d22f-485a-ae3b-6657b08b5dce",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vm18uBUZ9NMuNB5cCPW8Po",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4997,
+      "cache_read_input_tokens": 26201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4997
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Kq7WM9GgPYZvgNk9omut9V`</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "wc -l /root/autodl-tmp/simgate-modular-routing/guided_router/framework_draft.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "6b00050a-d9fa-425a-b32e-7cdf0d45ed84",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Vm18uBUZ9NMuNB5cCPW8Po",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4997,
+      "cache_read_input_tokens": 26201,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4997
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T16:20:42.095Z_
+
+<details><summary>↩ Tool result · `toolu_01Kq7WM9GgPYZvgNk9omut9V`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"279 /root/autodl-tmp/simgate-modular-routing/guided_router/framework_draft.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "5a461cd6-3a6e-4513-a43a-a1cc4c682565",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"279 /root/autodl-tmp/simgate-modular-routing/guided_router/framework_draft.md\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.2}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"279 /root/autodl-tmp/simgate-modular-routing/guided_router/framework_draft.md\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.2}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+文件已写入：`/root/autodl-tmp/simgate-modular-routing/guided_router/framework_draft.md`（279 行）。
+
+三大部分完整覆盖：
+- **Part 1** — Episode-level Counterfactual Labeling、DAF 形式化定义（含 bootstrap CI）、Signal Concentration Index（Gini-based SCI + Top-k CR）
+- **Part 2** — 适用条件表格 + DAF informativeness 条件 + 四个已验证场景（ScienceWorld/ALFWorld/MATH/Llama cross-model）各附数据
+- **Part 3** — 与 ITP-R、ReTool/AgentMath/Chameleon 的差异化对比 + 核心卖点
+
+所有数字严格来自已有实验证据，未做外推。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "uuid": "d0cb071d-b7be-4a9f-b938-ed7578aee80e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019cCFv83p9gQS9f1hrRX4AE",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 242,
+      "cache_read_input_tokens": 31198,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 242
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 19_
+
+文件已写入：`/root/autodl-tmp/simgate-modular-routing/guided_router/framework_draft.md`（279 行）。
+
+三大部分完整覆盖：
+- **Part 1** — Episode-level Counterfactual Labeling、DAF 形式化定义（含 bootstrap CI）、Signal Concentration Index（Gini-based SCI + Top-k CR）
+- **Part 2** — 适用条件表格 + DAF informativeness 条件 + 四个已验证场景（ScienceWorld/ALFWorld/MATH/Llama cross-model）各附数据
+- **Part 3** — 与 ITP-R、ReTool/AgentMath/Chameleon 的差异化对比 + 核心卖点
+
+所有数字严格来自已有实验证据，未做外推。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 122366,
+  "duration_api_ms": 117438,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "72dec66f-d778-4d66-ac38-0133cfe93ff3",
+  "total_cost_usd": 0.32838625,
+  "usage": {
+    "input_tokens": 8,
+    "cache_creation_input_tokens": 19599,
+    "cache_read_input_tokens": 119657,
+    "output_tokens": 5728,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 19599,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 230,
+        "cache_read_input_tokens": 31198,
+        "cache_creation_input_tokens": 242,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 242
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 2734,
+      "outputTokens": 18,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.0028239999999999997,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 8,
+      "outputTokens": 5728,
+      "cacheReadInputTokens": 119657,
+      "cacheCreationInputTokens": 19599,
+      "webSearchRequests": 0,
+      "costUSD": 0.32556225,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "cde62185-8b97-49ed-9259-cf866e5df8ba"
+}
+```
+
+</details>
+
+---

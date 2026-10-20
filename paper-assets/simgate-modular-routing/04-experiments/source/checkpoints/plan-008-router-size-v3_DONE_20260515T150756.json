@@ -1,0 +1,53 @@
+{
+  "exp_id": "plan-008-router-size-v3",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:49:49.991Z",
+    "updated_at": "2026-05-15T15:07:56.584Z",
+    "hypothesis": "Router size ablation v3 (C2): 直接用原始 implicit_router_sft.py（seed-robustness 验证过），只改 --model_name。Qwen3-0.6B / 1.7B (sanity check) / 4B。不写新 wrapper，不改代码。1.7B 应复现 ~0.554-0.576。",
+    "parent": "plan-008-router-size-v2",
+    "spec": {
+      "command": "bash scripts/plan008_v3_run.sh",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": 2040,
+      "model_name": "Qwen3-0.6B / Qwen3-1.7B / Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "data/plan-004-implicit/implicit_sft.jsonl (15% eval split)",
+      "checkpoint_path": "checkpoints/plan-008-v3-qwen3-{0.6b,1.7b,4b}/",
+      "log_path": "logs/plan008_v3.log"
+    },
+    "metrics": {
+      "qwen3_0.6b": {
+        "eval_loss": 0.317,
+        "train_loss": 5.627,
+        "runtime_s": 169,
+        "batch_size": 4,
+        "grad_accum": 8
+      },
+      "qwen3_1.7b": {
+        "eval_loss": 0.378,
+        "train_loss": 10.132,
+        "runtime_s": 183,
+        "batch_size": 4,
+        "grad_accum": 8
+      },
+      "qwen3_4b": {
+        "eval_loss": 0.308,
+        "train_loss": 17.348,
+        "runtime_s": 378,
+        "batch_size": 2,
+        "grad_accum": 16
+      }
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-15T15:07:56.584Z"
+  },
+  "timestamp": "2026-05-15T15:07:56.722841+00:00",
+  "trigger": "update_registry"
+}

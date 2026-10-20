@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ee1670fc22342aeecc3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval backbone scaling check results",
+  "task_key": "worker_eval_backbone-scaling-check-results_20260516T212828",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_backbone-scaling-check-results_20260516T212828_result.json",
+    "occurrence": 1,
+    "bytes": 778,
+    "sha256": "ea5491376ce94d8b574b39355ef235eb4953a9a33351655f3d58ea685e3e3924"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Registry 已更新。实验结果总结：\n\n```\n=== Backbone Scaling Death Rate: Qwen2.5-0.5B ===\n\nPer-task (death = score 0):\n  freeze:                    death 4/5 (80%)\n  lifespan-longest-lived:    death 4/5 (80%)\n  measure-melting-point:     death 4/5 (80%)\n\nOverall: death 12/15 (80.0%)\nComparison: Qwen2.5-7B death rate = 42.9%\nDelta: +37.1pp\n\nConclusion: SUPPORTS \"smaller model → higher death rate\"\n```\n\n0.5B 模型在所有 3 个 task 上表现一致差——几乎每个 episode 都是 score=0（加上 2 个 score=-100 的更极端失败）。唯一非零正分是 melting-point 的一个 episode 得了 7.0 分。相比 7B 的 42.9% death rate，0.5B 的 80% 提供了强证据支持 backbone 容量对 agent 存活的重要性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-backbone-scaling-check-results.md"
+}

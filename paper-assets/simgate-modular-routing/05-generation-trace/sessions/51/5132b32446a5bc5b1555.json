@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5132b32446a5bc5b1555",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra data migration westb to westd",
+  "task_key": "worker_infra_data-migration-westb-to-westd_20260521T050229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_data-migration-westb-to-westd_20260521T050229_result.json",
+    "occurrence": 1,
+    "bytes": 986,
+    "sha256": "5dac04891dfde8c6b7d8a3b6a0a5638858a6582e65d771d5e302377d1c8aa510"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n**迁移完成汇报**\n\n| 目录/文件 | westb-13313 (源) | westd-18266 (目标) | 状态 |\n|---|---|---|---|\n| alfworld_data/ | 2.2G | 2.2G | ✅ |\n| models/ | 115G | 144G* | ✅ |\n| simgate-modular-routing/ | 11G | 11G | ✅ |\n| episodes_full_FINAL.jsonl.gz | 11,507,105,718 bytes | 11,507,105,718 bytes | ✅ |\n| episodes_slim_FINAL.jsonl | 28,782,838,545 bytes | 28,782,838,545 bytes | ✅ |\n| recovery_episodes_full.jsonl.gz | 7,564,770,674 bytes | 7,564,770,674 bytes | ✅ |\n| .hf_cache/ | ✓ | ✓ | ✅ |\n| .autodl/ | ✓ | ✓ | ✅ |\n\n*models/ 目标端比源端大 29G，因为 Meta-Llama-3.1-8B-Instruct 目录在源端是硬链接（du 显示 18M），rsync 没加 `-H` 参数将其展开为完整文件。数据完整性无影响。\n\n- **传输总量**: 138.6 GB (压缩)，实际 200.3 GB\n- **平均速度**: 238 MB/s\n- **westd-18266 剩余空间**: 50G (250G 中已用 201G)\n- **westb-13313 数据未删除**，可安全释放"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-data-migration-westb-to-westd.md"
+}

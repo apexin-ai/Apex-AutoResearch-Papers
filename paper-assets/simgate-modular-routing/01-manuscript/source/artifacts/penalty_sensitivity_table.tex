@@ -1,0 +1,45 @@
+% === Table A: Overall Penalty Sensitivity ===
+\begin{table}[t]
+\centering
+\caption{Sensitivity of $\Delta_{\text{full}}$ and DAF to death penalty magnitude $P$.}
+\label{tab:penalty-sensitivity}
+\begin{tabular}{rrrr}
+\toprule
+$P$ & $\Delta_{\text{full}}(P)$ & $\Delta_{\text{nd}}$ & DAF($P$) \\
+\midrule
+10 & 5.72 & 3.07 & 46.4\% \\
+25 & 9.70 & 3.07 & 68.4\% \\
+50 & 16.33 & 3.07 & 81.2\% \\
+100 & 29.60 & 3.07 & 89.6\% \textbf{*} \\
+200 & 56.13 & 3.07 & 94.5\% \\
+\bottomrule
+\end{tabular}
+\vspace{0.5em}
+\parbox{0.9\linewidth}{\small\textit{Note:} $\Delta_{\text{full}}(P) = \delta \cdot P + \Delta_{\text{nd}}$, where $\delta = 0.2653$ is the death-rate differential and $\Delta_{\text{nd}} = 3.07$ is the penalty-independent score gap. * denotes the default setting used in all experiments.}
+\end{table}
+
+% === Table B: Per-task Sensitivity (P=100 vs P=50) ===
+\begin{table}[t]
+\centering
+\caption{Per-task penalty sensitivity analysis.}
+\label{tab:per-task-penalty}
+\begin{tabular}{lrrrr}
+\toprule
+Task & $n$ & $\delta_i$ & DAF(100) & DAF(50) \\
+\midrule
+chemistry mix & 20 & 0.2000 & 91.7\% & 84.7\% \\
+find animal & 20 & 0.2500 & 93.8\% & 88.3\% \\
+find non living thing & 40 & 0.0000 & 0.0\% & 0.0\% \\
+freeze & 20 & 0.3000 & 98.4\% & 96.8\% \\
+grow fruit & 20 & 0.2500 & 99.6\% & 99.2\% \\
+identify life stages 1 & 20 & 0.4500 & 94.7\% & 90.0\% \\
+identify life stages 2 & 20 & 0.3000 & 100.0\% & 100.0\% \\
+inclined plane determine angle & 20 & 0.3500 & 97.2\% & 94.6\% \\
+lifespan longest lived & 25 & 0.4000 & 90.9\% & 83.3\% \\
+lifespan longest lived then... & 20 & 0.3500 & 85.8\% & 75.1\% \\
+measure melting point unkno... & 20 & 0.3000 & 99.8\% & 99.7\% \\
+\midrule
+Overall & 245 & 0.2653 & 89.6\% & 81.2\% \\
+\bottomrule
+\end{tabular}
+\end{table}

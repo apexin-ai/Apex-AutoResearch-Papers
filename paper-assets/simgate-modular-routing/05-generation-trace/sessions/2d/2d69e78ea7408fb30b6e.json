@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d69e78ea7408fb30b6e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix r7n2 supplement launch",
+  "task_key": "worker_fix_r7n2-supplement-launch_20260516T070432",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_r7n2-supplement-launch_20260516T070432_result.json",
+    "occurrence": 1,
+    "bytes": 433,
+    "sha256": "d78eae3eb54e696fae878799d8ada7f7f2126372d72bf2a76b29a8b4f67d8006"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动。\n\n**结果：**\n- **PID**: 9298\n- **GPU1 显存占用**: 13213 MiB / 32607 MiB\n- **GPU1 利用率**: 41%\n- **训练进度**: 已开始 epoch 1（~12% 完成，约 1 it/s）\n- **tmux session**: `r7n2-supp`\n- **日志**: `/tmp/r7n2_supplement.log`\n\n修复了 `r7n2_scale_study.py` 第 650-653 行的语法错误（`--dry_run` 和 `--scales` 参数定义交错）后训练正常运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-r7n2-supplement-launch.md"
+}

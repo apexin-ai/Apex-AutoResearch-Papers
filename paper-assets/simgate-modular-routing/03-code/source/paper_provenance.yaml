@@ -1,0 +1,1427 @@
+paper:
+  title: ''
+  version: 193
+  generated_at: '2026-05-18T23:52:40.100233+00:00'
+  data_authority: plan-012-full (11 tasks / 245 episodes)
+  data_collection_lineage:
+    note: 245 episodes assembled from multiple recovery runs (GPU0 crashed 3x during
+      collection). No single registry entry covers all data.
+    primary_sources:
+    - registry_id: plan-001b-gpu1
+      conclusion: success
+      tasks:
+      - find-non-living-thing
+      - grow-fruit
+      - inclined-plane
+      - identify-life-stages-2
+      episodes: 80
+    - registry_id: plan-001b-fnlt-v2
+      conclusion: success
+      tasks:
+      - find-non-living-thing
+      episodes: 19
+      note: Supplemental eps 21-39, bringing find-non-living-thing to 40 total
+    - registry_id: plan-001b-gpu1-freeze-chem
+      conclusion: success
+      tasks:
+      - freeze
+      - chemistry-mix
+      episodes: 40
+    gpu0_partial_recoveries:
+      note: Remaining 5 tasks (find-animal, id-life-stages-1, lifespan-longest-lived,
+        lifespan-l-then-s, measure-melting-point) collected across multiple GPU0 crash-recovery
+        cycles. Data assembled from partial completions before each crash.
+      registry_ids:
+      - plan-001b-gpu0
+      - plan-001b-gpu0-v2
+      - plan-001b-gpu0-v4
+      - plan-001b-gpu0-v5
+      - gpu0-v6-lifespan
+      episodes: 105
+    validation: plan-012-full confirmed 245 unique episodes across 11 tasks, no duplicates
+claims:
+- id: C001
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Per-step oracle labeling produces 98% ties on ScienceWorld
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: Oracle degeneracy from paper_framing.md, confirmed by episode-level analysis
+  decisions: []
+  deprecated: true
+- id: C003
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Death avoidance accounts for ~90% of routing signal (DAF 90.41%)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: death_avoidance_fraction
+    value: 0.9041
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions: []
+  deprecated: true
+- id: C006
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Delta_full = +29.60, Delta_no_death = +2.84
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: delta_full
+    value: 29.6
+    source: plan-012-full (11 tasks / 245 eps)
+  - exp_id: plan-012-full
+    metric: delta_nd
+    value: 2.84
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions: []
+  deprecated: true
+- id: C010
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Pearson r = 0.9698, p = 8.12e-07 between death rate differential and performance
+    gap
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: pearson_r
+    value: 0.9698
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions: []
+  deprecated: true
+- id: C015
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Label distribution: 35.1% det-preferred, 3.7% internal-preferred, 61.2% no-preference
+    (86/9/150 out of 245 episodes)'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: label_dist
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions: []
+  deprecated: true
+- id: C021
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Keyword routing structurally fails on ScienceWorld
+  type: qualitative
+  evidence:
+  - exp_id: plan-011-rule-based
+    detail: v1 85.8% always-det, v2 4.9% always-internal, v3 2.8% always-internal
+  decisions: []
+  deprecated: true
+- id: C022
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Death decomposition framework separates routing signal into death-avoidance
+    and non-death components
+  type: methodological
+  evidence:
+  - exp_id: plan-012-full
+    detail: Methodology contribution, folded into counterfactual analysis contribution
+      per Director review
+  decisions:
+  - decision: D-intro-v2-merge
+    detail: 'Director: merge 3 contributions to 2, death decomposition demoted to
+      sub-point of methodology'
+  deprecated: true
+- id: C023
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 10 of 11 task types show death-dominated routing signal; sole exception is
+    find-non-living-thing (zero deaths, Δ=+9.58 all non-death)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: 'Per-task analysis: 10/11 tasks have death as dominant routing mechanism.
+      Exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all non-death
+      performance difference)'
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions:
+  - decision: D-intro-v2-variance
+    detail: 'Director: add per-task variance qualification to avoid misleading aggregate
+      claim'
+  deprecated: true
+- id: C024
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Delta_full = +29.60, Delta_no_death = +2.84, DAF = 90.41%, r = 0.9698
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: Numbers unified to plan-012-full authority (11 tasks / 245 episodes)
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions:
+  - decision: D-intro-v3-numbers
+    detail: 'Director R2: unify numbers to plan-012-full source. Updated 2026-05-14:
+      all values from 11-task full analysis.'
+  deprecated: true
+- id: C025
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Delta_no_death described as 'small but non-negligible relative to the full
+    gap' instead of 'effectively zero'
+  type: qualitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: Δ_nd=+2.84 is 9.6% of Δ_full=+29.60, conservative wording avoids reviewer
+      attack
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions:
+  - decision: D-intro-v3-wording
+    detail: 'Director R2: ''effectively zero'' too strong, Δ_nd/Δ_full=9.6% warrants
+      ''small but non-negligible'' not ''negligible'''
+  deprecated: true
+- id: C026
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Per-step oracle labeling degenerates under sparse rewards (98% ties)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: Oracle degeneracy, referenced from Introduction
+  decisions: []
+  deprecated: true
+- id: C028
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Label distribution: 35.1% det-preferred, 3.7% internal-preferred, 61.2% no-preference
+    (86/9/150 out of 245 episodes)'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: label_dist
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions: []
+  deprecated: true
+- id: C031
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Death asymmetry drives the majority of det_preferred labels (86 det-preferred,
+    DAF=90.41%)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: 'Aggregate DAF=90.41% indicates death avoidance accounts for ~90% of the
+      det-preferred signal. Label distribution: 86 det-preferred / 9 internal-preferred
+      / 150 no-preference'
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions: []
+  deprecated: true
+- id: C035
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: DAF = 1 - (Delta_no_death / Delta_full), DAF = 0.9041
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: death_avoidance_fraction
+    value: 0.9041
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions: []
+  deprecated: true
+- id: C040
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Delta_full = +29.60, Delta_no_death = +2.84
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: Numbers from plan-012-full authority (11 tasks / 245 episodes)
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions:
+  - decision: D-intro-v3-numbers
+    detail: Unified to plan-012-full source
+  deprecated: true
+- id: C046
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 10/11 tasks show death-dominated routing; find-non-living-thing is sole exception
+    (zero deaths, Δ=+9.58)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: Per-task analysis from plan-012-full. find-non-living-thing (n=40, zero
+      deaths, Δ_full=+9.58) is the only task where routing signal is entirely non-death.
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions: []
+  deprecated: true
+- id: C053
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Pearson r = 0.9698 (p = 8.12e-07) between death rate differential and score
+    gap
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: pearson_r
+    value: 0.9698
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions: []
+  deprecated: true
+- id: C061
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Rule-based v1: 85.8% match ≈ always-det; v2: 4.9% ≈ always-internal; v3:
+    2.8% ≈ always-internal'
+  type: quantitative
+  evidence:
+  - exp_id: plan-011-rule-based
+    detail: All three keyword lists degenerate
+  decisions: []
+  deprecated: true
+- id: C070
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: ScienceWorld actions use generic interaction verbs, not science-specific keywords
+  type: qualitative
+  evidence:
+  - exp_id: plan-011-rule-based
+    detail: Structural failure analysis
+  decisions: []
+  deprecated: true
+- id: C071
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Key exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all
+    non-death performance difference)'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: 'find-non-living-thing is the sole outlier in 11-task analysis: n=40,
+      zero deaths in both modalities, Δ_full=+9.58 entirely from non-death performance
+      difference (det-preferred)'
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions:
+  - decision: D-intro-v4-outlier
+    detail: Updated from 30-task 5-outlier description to 11-task single key exception
+  deprecated: true
+- id: C072
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Key exception: find-non-living-thing (zero deaths, all non-death routing
+    signal)'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    detail: Consistent with Introduction key exception description
+    source: plan-012-full (11 tasks / 245 eps)
+  decisions:
+  - decision: D-method-v2-outlier
+    detail: Aligned with Introduction update to 11-task single exception
+  deprecated: true
+- id: C073
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Labeling uses exact (in)equality on integer-valued ScienceWorld scores, no
+    threshold parameter
+  type: methodological
+  evidence:
+  - exp_id: plan-012-full
+    detail: Code classify_episode() uses strict inequality, no tau. Reviewer R1 critical
+      fix.
+  decisions:
+  - decision: D-method-v2-tau
+    detail: 'Reviewer R1 critical: tau does not exist in code, removed from paper'
+  deprecated: true
+- id: C074
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Death avoidance accounts for 90.41% of routing signal (DAF=90.41%)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: DAF
+    value: 90.41%
+  decisions: []
+  deprecated: false
+- id: C076
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Full performance gap delta_full = +29.60 points
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: delta_full
+    value: '+29.60'
+  decisions: []
+  deprecated: false
+- id: C079
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Non-death gap delta_no_death = +2.84
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: delta_no_death
+    value: '+2.84'
+  decisions: []
+  deprecated: false
+- id: C083
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Pearson r=0.9698 (p=8.12e-7) between death rate differential and delta_full
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: pearson_r
+    value: '0.9698'
+  decisions: []
+  deprecated: false
+- id: C088
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Internal strategy dies in 42.9% vs 16.3% for deterministic
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: death_rates
+    value: 42.9/16.3
+  decisions: []
+  deprecated: false
+- id: C094
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Label distribution: 86 det_preferred, 9 internal_preferred, 150 no_preference'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: label_distribution
+    value: 86/9/150
+  decisions: []
+  deprecated: false
+- id: C101
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'find-non-living-thing: n=40, zero deaths, delta_full=+9.58'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: fnlt_delta_full
+    value: '+9.58'
+  decisions: []
+  deprecated: false
+- id: C109
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Always-internal score: -39.07, Always-deterministic: -9.47, Oracle: -6.58,
+    Random: -22.38'
+  type: quantitative
+  evidence:
+  - exp_id: plan-003-baseline-245eps
+    metric: baseline_scores
+    value: -39.07/-9.47/-6.58/-22.38
+  decisions: []
+  deprecated: false
+- id: C118
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Oracle 96.3% decisions match always-deterministic
+  type: quantitative
+  evidence:
+  - exp_id: plan-003-baseline-245eps
+    metric: oracle_det_match
+    value: 96.3%
+  decisions: []
+  deprecated: false
+- id: C128
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Keyword match rates: v1 85.8%, v2 4.9%, v3 2.8%'
+  type: quantitative
+  evidence:
+  - exp_id: plan-011-rule-based
+    metric: keyword_match_rates
+    value: 85.8/4.9/2.8
+  decisions: []
+  deprecated: false
+- id: C139
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Implicit router logit accuracy 74.5%, balanced accuracy 79%
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: logit_accuracy
+    value: 74.5%
+  decisions: []
+  deprecated: true
+- id: C151
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Implicit router generation accuracy 65.36%, internal recall 51.5%
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: generation_accuracy
+    value: 65.36%
+  decisions: []
+  deprecated: false
+- id: C152
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Per-step oracle produces 98.2% tie rate on ScienceWorld
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: step_tie_rate
+    value: 98.2%
+  decisions: []
+  deprecated: false
+- id: C154
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 245 episode pairs across 11 task types (20-40 per type)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: episode_count
+    value: '245'
+  decisions: []
+  deprecated: false
+- id: C157
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: 'Label distribution: 86 (35.1%) det_preferred, 9 (3.7%) internal_preferred,
+    150 (61.2%) no_preference'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: label_distribution
+    value: 86/9/150
+  decisions: []
+  deprecated: false
+- id: C161
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: DAF = 90.41% (delta_full=+29.60, delta_no_death=+2.84)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: DAF
+    value: 90.41%
+  decisions: []
+  deprecated: false
+- id: C166
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Pearson r=0.9698 (p=8.12e-7) across 11 task types
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: pearson_r
+    value: '0.9698'
+  decisions: []
+  deprecated: false
+- id: C172
+  location:
+    section: method
+    paragraph: 0
+    sentence: 0
+  text: Keyword v1 matches 85.8%, v2 matches 4.9%, v3 matches 2.8%
+  type: quantitative
+  evidence:
+  - exp_id: plan-011-rule-based
+    metric: keyword_match_rates
+    value: 85.8/4.9/2.8
+  decisions: []
+  deprecated: false
+- id: C173
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: delta_full = +29.60 points deterministic advantage
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: delta_full
+    value: '+29.60'
+  decisions: []
+  deprecated: false
+- id: C175
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: delta_no_death = +2.84
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: delta_no_death
+    value: '+2.84'
+  decisions: []
+  deprecated: false
+- id: C178
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: DAF = 90.41%
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: DAF
+    value: 90.41%
+  decisions: []
+  deprecated: false
+- id: C182
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: r = 0.9698 (p = 8.12e-7)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: pearson_r
+    value: '0.9698'
+  decisions: []
+  deprecated: false
+- id: C187
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Death rates: 42.9% internal vs 16.3% deterministic'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: death_rates
+    value: 42.9/16.3
+  decisions: []
+  deprecated: false
+- id: C193
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Labels: 86 det, 9 internal, 150 no_preference; 96.2% oracle matches always-det'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: label_distribution
+    value: 86/9/150
+  - exp_id: plan-003-baseline-245eps
+    metric: oracle_det_match
+    value: 96.2%
+  decisions: []
+  deprecated: false
+- id: C200
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 98.2% per-step tie rate
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: step_tie_rate
+    value: 98.2%
+  decisions: []
+  deprecated: false
+- id: C208
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'find-non-living-thing: zero deaths, delta_full=+9.58'
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: fnlt_delta_full
+    value: '+9.58'
+  decisions: []
+  deprecated: false
+- id: C217
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: Logit accuracy 74.5%, balanced accuracy 79%
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: logit_accuracy
+    value: 74.5%
+  decisions: []
+  deprecated: false
+- id: C218
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: Death avoidance accounts for ~90% of routing signal
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: DAF
+    value: 90.41%
+  decisions: []
+  deprecated: true
+- id: C220
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: CogRouter achieves 82.3% on ScienceWorld
+  type: quantitative
+  evidence:
+  - exp_id: cogrouter-paper
+    metric: scienceworld_score
+    value: 82.3%
+  decisions: []
+  deprecated: true
+- id: C223
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: ARES reduces token cost by 52.7%
+  type: quantitative
+  evidence:
+  - exp_id: ares-paper
+    metric: token_reduction
+    value: 52.7%
+  decisions: []
+  deprecated: true
+- id: C224
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: DAF = 90.41%
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: DAF
+    value: 90.41%
+  decisions: []
+  deprecated: true
+- id: C226
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: delta_full = +29.60, delta_no_death = +2.84
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: delta_full
+    value: '+29.60'
+  - exp_id: plan-012-full
+    metric: delta_no_death
+    value: '+2.84'
+  decisions: []
+  deprecated: true
+- id: C229
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: r = 0.9698 (p = 8.12e-7)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: pearson_r
+    value: '0.9698'
+  decisions: []
+  deprecated: true
+- id: C233
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 98.2% per-step tie rate
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: step_tie_rate
+    value: 98.2%
+  decisions: []
+  deprecated: true
+- id: C234
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 98.2% per-step tie rate
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: step_tie_rate
+    value: 98.2%
+  decisions: []
+  deprecated: false
+- id: C236
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: DAF = 90.41%
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: DAF
+    value: 90.41%
+  decisions: []
+  deprecated: false
+- id: C239
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: delta_full = +29.60, delta_no_death = +2.84
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: delta_full
+    value: '+29.60'
+  - exp_id: plan-012-full
+    metric: delta_no_death
+    value: '+2.84'
+  decisions: []
+  deprecated: false
+- id: C243
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: r = 0.9698 (p = 8.12e-7)
+  type: quantitative
+  evidence:
+  - exp_id: plan-012-full
+    metric: pearson_r
+    value: '0.9698'
+  decisions: []
+  deprecated: false
+- id: C244
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Trained router score: -12.84 [-17.52, -8.45], death rate 19.2%'
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: e2e_score
+    value: '-12.84'
+  decisions: []
+  deprecated: false
+- id: C245
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Gradient accumulation 1 → internal recall 26.7% (degenerate); ga=8 → >50%
+    (non-degenerate)
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: ga_ablation
+    value: ga1=26.7%, ga8>50%
+  decisions: []
+  deprecated: false
+- id: C246
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Cross-seed balanced accuracy stable 57-59%, internal recall varies 51.5-81.8%
+    (30pp range)
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: cross_seed_stability
+    value: bal_acc 57-59%, ir 51.5-81.8%
+  decisions: []
+  deprecated: false
+- id: C247
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'E2e: trained router scores -12.84, death 19.2%, routes 229 det / 16 internal
+    (93.5% det), 82.1% routing accuracy'
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: e2e_eval
+    value: -12.84, 19.2%, 93.5% det, 82.1% acc
+  decisions: []
+  deprecated: false
+- id: C248
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Trained router score: -10.70 [-15.25, -6.38], death rate 17.6%'
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: e2e_score_unified
+    value: '-10.70'
+  decisions:
+  - decision: D037
+    note: 'Unified eval script: eval_end_to_end.py for all rows'
+  deprecated: false
+- id: C249
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'Trained router: -10.70 CI [-15.25, -6.38], death 17.6%, 97.0% det allocation,
+    did not significantly outperform always-det'
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: e2e_unified
+    value: -10.70, 17.6%, 97.0% det
+  decisions:
+  - decision: D037
+    note: Unified eval_end_to_end.py; CI overlap → not significant
+  deprecated: false
+- id: C250
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Trained router -10.70 vs always-det -9.47, not significant
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: e2e_score_unified
+    value: -10.70 vs -9.47
+  decisions: []
+  deprecated: false
+- id: C251
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: ga=1 degenerate (internal recall 26.7%), ga=8 non-degenerate (>50%)
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: ga_ablation
+    value: ga1=26.7%, ga8>50%
+  decisions: []
+  deprecated: false
+- id: C252
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'ablation-b logit: accuracy 65.4%, balanced accuracy 59.3%'
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: logit_accuracy
+    value: 65.4%/59.3%
+  decisions:
+  - decision: C1-fix
+    note: v5(74.5%/79%) replaced with ablation-b(65.4%/59.3%) as primary
+  deprecated: false
+- id: C253
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 'ablation-b generation: accuracy 65.4%, internal recall 51.5%'
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: generation_accuracy
+    value: 65.4%/51.5%
+  decisions: []
+  deprecated: false
+- id: C254
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: 'Intro C2: logit balanced accuracy 59.3% (ablation-b, not v5)'
+  type: quantitative
+  evidence:
+  - exp_id: plan-004-ablation-b
+    metric: logit_balanced_accuracy
+    value: 59.3%
+  decisions:
+  - decision: W1-fix
+    note: Replaced v5 74.5%/79% with ablation-b 59.3%
+  deprecated: false
+- id: C255
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Fixed-split balanced accuracy 57.6±0.5%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C256
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Cross-split balanced accuracy 55.4±5.2%
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C257
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: 78.9% of non-tie routing labels from death asymmetry
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C258
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: DAF ~90% at P=100 (penalty-sensitive)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C259
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: r=0.97 with structural coupling caveat
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C260
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: MATH +0.5pp, p=0.81 (N=795, not significant)
+  type: quantitative
+  evidence:
+  - exp_id: math-extension-n800
+    metric: diff_pp
+    value: '+0.5'
+    detail: N=795, internal 73.5% vs code 73.0%, McNemar p=0.81. Supersedes N=300
+      pilot (+4.3pp, p=0.079)
+  decisions:
+  - decision: P0-1-fix
+    detail: Updated from N=300 (+4.3pp, p=0.079) to N=795 (+0.5pp, p=0.81) per paper
+  deprecated: false
+- id: C261
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: On MATH (N=795), internal reasoning and code interpretation perform near-identically
+    (+0.5pp, p=0.81)
+  type: quantitative
+  evidence:
+  - exp_id: math-extension-n800
+    detail: N=795, internal 73.5% vs code 73.0%, McNemar p=0.81, 95% CI [-2.58, 3.58]
+      includes 0. No significant difference.
+  decisions:
+  - decision: P0-1-fix
+    detail: Updated from N=300 (+4.3pp, p=0.079) to N=795 (+0.5pp, p=0.81)
+  deprecated: false
+- id: C262
+  location:
+    section: introduction
+    paragraph: 0
+    sentence: 0
+  text: On ALFWorld (N=135), deterministic success 27.4% vs internal 3.0%, mechanism
+    is information asymmetry not death avoidance
+  type: quantitative
+  evidence:
+  - exp_id: alfworld-cross-env
+    detail: 135 games, det 27.4% vs int 3.0%, advantage from admissible action access
+  decisions: []
+  deprecated: false
+- id: C263
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: 10 of 11 task types show Δ>0 at 95% confidence; chemistry-mix (N=20, Δ=21.8,
+    95% CI [-5.0, 48.6]) is the sole exception
+  type: quantitative
+  evidence:
+  - exp_id: daf-sensitivity-extended
+    detail: Per-task bootstrap CI analysis, 10000 resamples per task type
+  decisions: []
+  deprecated: false
+- id: C264
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 'Pearson r threshold effect: non-significant at P≤25 (r=-0.08 at P=10), emerges
+    at P=50 (r=0.86, p=0.0006), reaches r=0.97 at P=100'
+  type: quantitative
+  evidence:
+  - exp_id: daf-sensitivity-extended
+    detail: 'Penalty sensitivity analysis: Pearson r computed at P=10/25/50/100/200
+      using plan-012-full 11-task data'
+  decisions: []
+  deprecated: true
+- id: C265
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Broader failure definition (T=0, any non-positive score) yields r=-0.13 (p=0.70),
+    correlation dissolves completely
+  type: quantitative
+  evidence:
+  - exp_id: daf-sensitivity-extended
+    detail: 'Threshold sensitivity: T=0 failure definition, Pearson r=-0.13 across
+      11 task types'
+  decisions: []
+  deprecated: true
+- id: C266
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Death is effectively the only component generating differential routing signal
+    in ScienceWorld
+  type: qualitative
+  evidence:
+  - exp_id: daf-sensitivity-extended
+    detail: Δ_nd=2.84 near-uniform across tasks (mean non-death gap=-1.19 excl. find-non-living-thing),
+      death-rate differential has no predictive power at low P
+  decisions: []
+  deprecated: true
+- id: C267
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: MATH internal 81.0% vs deterministic 76.7%, +4.3pp, McNemar p=0.079
+  type: quantitative
+  evidence:
+  - exp_math_cross_env
+  decisions: []
+  deprecated: true
+- id: C269
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: MATH label distribution 30 internal vs 17 deterministic, 84.3% no-preference
+  type: quantitative
+  evidence:
+  - exp_math_cross_env
+  decisions: []
+  deprecated: true
+- id: C272
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: ALFWorld N=135, deterministic advantage from information asymmetry
+  type: qualitative
+  evidence:
+  - exp_alfworld
+  decisions: []
+  deprecated: true
+- id: C276
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: r=-0.13 (p=0.70) when failure defined as non-positive score
+  type: quantitative
+  evidence:
+  - exp_penalty_sensitivity
+  decisions: []
+  deprecated: true
+- id: C281
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Correlation emerges at P>=50 (r=0.86)
+  type: quantitative
+  evidence:
+  - exp_penalty_sensitivity
+  decisions: []
+  deprecated: true
+- id: C287
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: DAF=90.4% at P=100 reframes routing as safety problem
+  type: interpretive
+  evidence:
+  - exp_001_counterfactual
+  decisions: []
+  deprecated: true
+- id: C294
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: Label imbalance 86:9 det-preferred, 150 no-preference
+  type: quantitative
+  evidence:
+  - exp_001_counterfactual
+  decisions: []
+  deprecated: true
+- id: C302
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: 42.9% internal death rate reflects 7B model vulnerability
+  type: quantitative
+  evidence:
+  - exp_001_counterfactual
+  decisions: []
+  deprecated: true
+- id: C303
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: 78.9% of non-tie labels from death asymmetry
+  type: quantitative
+  evidence:
+  - exp_001_counterfactual
+  decisions: []
+  deprecated: true
+- id: C305
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: DAF=90.4% (95% CI [81.6%, 98.8%]) at P=100
+  type: quantitative
+  evidence:
+  - exp_001_counterfactual
+  decisions: []
+  deprecated: true
+- id: C308
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: r=0.97 cross-task correlation
+  type: quantitative
+  evidence:
+  - exp_001_counterfactual
+  decisions: []
+  deprecated: true
+- id: C312
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: MATH +4.3pp, p=0.079
+  type: quantitative
+  evidence:
+  - exp_math_cross_env
+  decisions: []
+  deprecated: true
+- id: C317
+  location:
+    section: conclusion
+    paragraph: 0
+    sentence: 0
+  text: Router 47.1±2.2% on held-out episodes
+  type: quantitative
+  evidence:
+  - exp_router_training
+  decisions: []
+  deprecated: true
+- id: C318
+  location:
+    section: related_work
+    paragraph: 0
+    sentence: 0
+  text: 90.4% of routing signal traces to catastrophic-failure prevention
+  type: quantitative
+  evidence:
+  - exp_001_counterfactual
+  decisions: []
+  deprecated: false
+- id: C319
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Scaling model capacity improves episode-level routing (+9pp at 4B) without
+    improving step-level accuracy (flat ~53% across scales)
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C320
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: Partial r(Δ_full, δ | δ·P) = 0.02, p=0.91, df=27
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C321
+  location:
+    section: experiments
+    paragraph: 0
+    sentence: 0
+  text: MATH post-hoc power=0.42, 80% power requires N=770
+  type: quantitative
+  evidence:
+  - exp_id: math-extension-n800
+    detail: 'N=795 run completed (exceeds N=770 threshold). Result: +0.5pp, p=0.81
+      — the N=300 directional trend (+4.3pp) was noise. Power analysis claim now superseded
+      by actual N=795 result.'
+  decisions:
+  - decision: P0-1-fix
+    detail: 'Power analysis validated: N=795 > N=770 threshold, effect disappeared
+      (0.5pp vs 4.3pp)'
+  deprecated: true
+- id: C322
+  location:
+    section: abstract
+    paragraph: 0
+    sentence: 0
+  text: Across two interventions (Reflexion N=3 34.0%, 72B scaling 34.5%), death rates
+    converge to ~35%, 18pp gap to deterministic
+  type: quantitative
+  evidence:
+  - exp_id: reflexion-dose-response-n345
+    detail: Reflexion N=3 final DR = 34.0% (68/200)
+  - exp_id: backbone-scaling-70b
+    detail: 72B scaling DR = 34.5% (69/200)
+  decisions:
+  - decision: P0-2-fix
+    detail: 'Fixed: was ''three interventions'' but Retry DR=43.5% does not converge
+      to ~35%. Only Reflexion and 72B converge.'
+  deprecated: false
+- id: C323
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: ''
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+- id: C324
+  location:
+    section: discussion
+    paragraph: 0
+    sentence: 0
+  text: ''
+  type: quantitative
+  evidence: []
+  decisions: []
+  deprecated: false
+tables: []
+figures: []
+_completeness:
+  coverage: 47/56
+  claims: 56
+  tables: 0
+  figures: 0
+  tier_counts:
+    tier1: 0
+    tier2: 47
+    tier3: 9
+    tierX: 0
+  last_checked: '2026-05-18T23:52:40.100295+00:00'

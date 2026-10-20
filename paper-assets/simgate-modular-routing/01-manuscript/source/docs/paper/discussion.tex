@@ -1,0 +1,33 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\paragraph{Signal granularity and router failure.}
+The router diagnostic (\S\ref{sec:router-diagnostic}) reveals a structural mismatch: death avoidance is a task-type-level binary property, but step-level features correlate weakly because death risk depends on multi-step trajectories. Six router variants (0.6B--4B) converge on near-chance balanced accuracy ($56$--$59\%$); leave-one-task-out degrades to $50.0\%$, suggesting the router captures only task-type identity rather than a learnable function of step-level observations. Scaling $10{\times}$ to 70B-class models does not attenuate this pattern (DAF $92$--$101\%$), and cross-model death-rate stability ($31$--$49\%$ across five models) confirms death vulnerability is a task-environment property, better addressed through action-space constraints (Appendix~\ref{app:grounding-ablation}) than learned routing policies.
+
+\paragraph{Failure mechanism.}
+All 105 internal-strategy deaths trace to misuse of \texttt{focus on [object]}, ScienceWorld's answer-submission command, applied to irrelevant targets (rooms, doors, inventory items). The action distribution analysis (Figure~\ref{fig:death-action-dist}, Appendix~\ref{app:failure-modes}) shows that \texttt{focus on} is moderately more frequent in death episodes ($5.4\%$ vs.\ $3.4\%$), while Figure~\ref{fig:death-comparison} reveals that within death episodes both strategies exhibit comparable rates (${\sim}5\%$). The higher internal death count reflects more frequent entry into catastrophic states, not different action selection within those states. Among fatal \texttt{focus on} targets, \texttt{workshop} is the most frequent (20.0\%), followed by \texttt{inventory} (17.1\%) and \texttt{kitchen} (10.5\%), indicating a systematic object bias rather than random exploration. Action-space filtering that blocks \texttt{focus on} during the exploration phase reduces death by 19~pp with zero leaks and zero passthroughs (Appendix~\ref{app:grounding-ablation}), confirming shallow behavioral origins amenable to simple interventions.
+
+\paragraph{Oracle degeneracy and practical implications.}
+Always-deterministic matches 96.3\% of oracle decisions (\S\ref{sec:baselines}), capping routing's marginal value at 2.89 points---an \emph{oracle degeneracy} where $\Delta_{\text{nd}} = 2.84$ (9.6\% of total gap). This degeneracy arises because the deterministic strategy already avoids the primary failure mode, leaving only a residual non-death gap for the oracle to exploit. A ${\sim}$50-episode pilot suffices to compute the death-label fraction $f_{\text{death}}$ (the proportion of non-tie labels where exactly one strategy dies) and assess whether learned routing adds value before committing to full-scale router training. Table~\ref{tab:decision-validation} shows the three-stage procedure (Appendix~\ref{app:decision-framework}) correctly classifies all four conditions, including ALFWorld's information-asymmetry signal where DAF $= 0\%$ correctly identifies a non-death mechanism.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrrll@{}}
+\toprule
+Condition & $\Delta$DR & $f_{\text{death}}$ & Prediction & Actual \\
+\midrule
+Qwen-7B (SW) & +26.5 & 78.9\% & det-fixed & det wins \\
+Llama-8B (SW) & +30.0 & $>$75\% & det-fixed & det wins \\
+Qwen-72B (SW) & +27.8 & $>$75\% & det-fixed & det wins \\
+MATH & +0.5 & 0\% & router viable & no signal \\
+\bottomrule
+\end{tabular}}
+\caption{Retrospective validation of the practitioner decision framework. SW = ScienceWorld. The three-stage diagnostic correctly classifies all four conditions (4/4).}
+\label{tab:decision-validation}
+\end{table}
+
+\paragraph{Scope and applicability conditions.}
+The decomposition requires: (i)~binary catastrophic failures with fixed penalty, (ii)~asymmetric failure rates, and (iii)~$P \gg \Delta_\text{nd}$. ScienceWorld satisfies all three; MATH and ALFWorld lack the first. Graded penalties or symmetric failure rates would require DAF extensions. The penalty sensitivity analysis (Table~\ref{tab:penalty-sensitivity}, Appendix~\ref{app:penalty}) confirms that DAF is mechanically driven by $P$: the label fraction (78.9\%) is $P$-invariant, while the score-based DAF ranges from $7.4\%$ at $P{=}0$ to $97.9\%$ at $P{=}500$. In death-dominated settings, targeted safety interventions may outperform general-purpose routing, shifting the problem from ``which strategy to route to'' to ``how to prevent catastrophic actions.''
+

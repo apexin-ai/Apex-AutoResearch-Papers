@@ -1,0 +1,52 @@
+{
+  "schema_version": "1.0",
+  "id": "1cdb0b3a4297d88a5b47",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research dryrun padtoken investigation",
+  "task_key": "worker_research_dryrun-padtoken-investigation_20260514T063900",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_dryrun-padtoken-investigation_20260514T063900_result.json",
+    "occurrence": 1,
+    "bytes": 4476,
+    "sha256": "162e98bd089de041e851187a1fd7028d3cf3cf5041285c16913ed9093223231a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "pad_token_id 在 PEFT 包装后正确保留。现在可以给出最终结论了。\n\n---\n\n## 调查结论\n\n### 核心发现\n\n#### 1. ModelScope Qwen3-1.7B 确实缺少 pad_token_id\n\n```\nmodel.config.pad_token_id = None    ← 加载后\ntokenizer.pad_token_id = 151643     ← tokenizer 正常\n```\n\nModelScope 下载的 `config.json` 完全没有 `pad_token_id` 字段。tokenizer 的 `pad_token` 正常（`<|endoftext|>`，id=151643）。\n\n#### 2. 假设 A 被否定：不是因为 HF cache vs ModelScope 模型版本不同\n\n- 服务器上**没有 HF cache 版 Qwen3**（`find` 搜索结果为空）\n- 两个 adapter_config.json 都指向同一路径：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`\n- 模型文件创建于 **06:51**，早于所有训练运行\n\n#### 3. 两个已知代码版本都有 pad_token_id 修复\n\n```python\n# artifacts 版本 (line 191) 和 src 版本 (line 305) 都有:\nmodel.config.pad_token_id = tokenizer.pad_token_id\n```\n\nPEFT 包装后 pad_token_id 也正确保留（验证为 151643）。\n\n#### 4. 但服务器代码在所有运行之后被修改过\n\n关键时间线：\n| 时间 | 事件 |\n|------|------|\n| 06:51 | ModelScope 模型下载完成 |\n| 13:06 | **dryrun 开始**（`torch_dtype=` → 说明用的是旧代码）|\n| 13:11 | dryrun checkpoint 保存（383步，loss 1.77→0.42）|\n| 13:44 | **formal v3 开始**（`torch_dtype=` → 也是旧代码）|\n| 14:00 | formal v3 完成（loss 5.25→3.89，acc=0%）|\n| 14:39 | formal v4 完成（同样失败）|\n| **14:40** | **router_sft_train.py 被修改**（`torch_dtype→dtype` + 加 assert）|\n\n训练日志中的 `` `torch_dtype` is deprecated! Use `dtype` instead! `` 证明**所有运行时代码用的是 `torch_dtype=`**，而当前服务器代码已改为 `dtype=`。这证明 14:40 的修改包含了调试修复。\n\n#### 5. dryrun 和 formal 用了不同版本的代码\n\n| 维度 | Dryrun checkpoint | Formal v3 |\n|------|-------------------|-----------|\n| 训练步数 | 383（≈1532 样本） | 156（3 epoch × 52） |\n| grad_accum | 1 | 8 |\n| class_weights | 不确定（可能无） | [3.93, 0.57] + upsampling |\n| 初始 loss | 1.77（正常 CE 范围） | 5.25（远超标准 CE） |\n| 最终 acc | 92.3%（全预测多数类） | 0%（全预测少数类） |\n\nformal v3 的初始 loss 5.25 远超标准二分类 CE 初始值（~0.7），但与 **WeightedCETrainer + class_weights=[3.93, 0.57] + 50/50 upsampling** 的加权 CE 一致。\n\ndryrun 的初始 loss 1.77 更接近标准（无加权）CE 的范围，暗示它可能用了 **标准 Trainer**（artifacts 版本，无 class_weights）。\n\n#### 6. plan_c 数据的标签格式是关键线索\n\n```\nplan_c 标签：det-preferred / internal-preferred\nartifacts 版本的 LABEL2ID：{\"internal\": 0, \"deterministic\": 1}  ← 不匹配！会过滤所有样本\nsrc 版本有 RAW_LABEL_MAP：det-preferred → deterministic ← 正确映射\n```\n\nformal v3 成功加载了 2040 条数据 → 用的是 src 版本（有 RAW_LABEL_MAP）。\n\n### 最可能的根因\n\n**存在一个中间代码版本**，在 dryrun 和 formal 之间被部署到服务器：\n- 添加了 RAW_LABEL_MAP、WeightedCETrainer、class_weights、upsampling 等新功能\n- 但在重构过程中**遗漏或删除了 `model.config.pad_token_id = tokenizer.pad_token_id` 这行**\n- formal v3/v4 用这个有缺陷的版本训练，导致 pad_token_id=None\n\n**pad_token_id=None 的具体影响**：在 transformers 4.57.6 中，`Qwen3ForSequenceClassification` 会用最后一个 token（pad token）做分类池化，而不是最后一个真实 token。这导致分类信号极弱。**单独的 pad_token_id=None 会导致模型退化为预测多数类**（如 dryrun 的 92.3% 全预测 deterministic），但**与 class_weights + upsampling 叠加后**，模型被强烈推向预测少数类 → 所有预测变成 internal → loss 爆炸至 4-5 → 完全无法收敛。\n\n**dryrun 不受影响的原因**：dryrun 使用了更早的代码版本（可能是 artifacts 版本或没有 class_weights 的版本），标准 Trainer 对 pad_token_id=None 更鲁棒——模型只是退化为预测多数类（92.3% accuracy），loss 保持正常范围。\n\n14:40 的代码修改重新加入了 `model.config.pad_token_id = tokenizer.pad_token_id` 并添加了 assert 防护，修复了问题。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "internal": 0,
+              "deterministic": 1
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-dryrun-padtoken-investigation.md"
+}

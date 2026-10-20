@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41497bbd83714e8ba590",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh retry dose response feasibility",
+  "task_key": "worker_ssh_retry-dose-response-feasibility_20260518T025841",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_retry-dose-response-feasibility_20260518T025841_result.json",
+    "occurrence": 1,
+    "bytes": 2271,
+    "sha256": "30d9d818378862d016f3a523450b97ff0616698ff10c2ea2c69f61332a931a46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Dry-run 通过。以下是完整汇报。\n\n---\n\n## 可行性检查结果\n\n| 检查项 | 状态 | 详情 |\n|--------|------|------|\n| **代码** | PASS | `src/reflexion_baseline.py` 支持 `--mode retry --max-trials N`，已有完整 `run_trial_loop` + `APIAgent` |\n| **模型** | PASS | `/root/autodl-tmp/models/Qwen2.5-7B-Instruct/` 4 shard safetensors 齐全 |\n| **GPU** | PASS | 4× RTX PRO 6000 96GB 全部空闲 (0MiB/0%) |\n| **vLLM** | **需启动** | 无 vLLM 进程在跑，需先在 cuda:2 (port 8000) 启动 |\n| **数据** | PASS | 既有 reflexion part1+part2 (11 tasks × 20 eps)，`reflexion_summary.json` 可用。N=3 retry baseline 已跑完 (DR=40.9%) |\n| **Task 列表** | PASS | 10 个 death-prone tasks 确认（已排除 `find-non-living-thing`） |\n\n## 脚本信息\n\n- **路径**: `/root/autodl-tmp/simgate-modular-routing/run_retry_dose_response.py`\n- **核心逻辑**: 复用 `src/reflexion_baseline.py` 的 `APIAgent` + `run_trial_loop`，retry 模式（无 reflection）\n- **输出目录**: `results/retry_dose_response/retry_n{1,5,10}/` + 汇总 `dose_response_summary.json`\n\n## 启动命令\n\n```bash\n# 1. 先启动 vLLM (cuda:2, port 8000)\nVLLM_USE_FLASHINFER_SAMPLER=0 CUDA_VISIBLE_DEVICES=2 nohup python -m vllm.entrypoints.openai.api_server \\\n  --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct \\\n  --port 8000 --gpu-memory-utilization 0.9 --trust-remote-code \\\n  > logs/vllm-7b-dose.log 2>&1 &\n\n# 2. 等 vLLM ready 后跑实验\ncd /root/autodl-tmp/simgate-modular-routing\npython run_retry_dose_response.py --n-values 1,5,10 --episodes-per-task 20\n```\n\n## 预估运行时间\n\n- N=1: 200 eps × ~30s/ep ≈ 1.7h\n- N=5: 200 eps × ~2.5min/ep (avg ~3 trials) ≈ 8h\n- N=10: 200 eps × ~4min/ep (avg ~5 trials) ≈ 13h\n- **总计约 20-25 小时**（可考虑双端口 vLLM 并行 N=1 和 N=5 缩短到 ~15h）\n\n## 现有 retry 代码关键参数\n\n- Task 列表: 11 tasks（含 `find-non-living-thing`），dose-response 脚本已排除为 10\n- Episode 数: 20 per task（可调 `--episodes-per-task`）\n- 模型加载: vLLM OpenAI-compatible API（`http://localhost:8000/v1`），model name = `Qwen2.5-7B-Instruct`\n- Max steps per episode: 30\n- Death threshold: score ≤ -100"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-retry-dose-response-feasibility.md"
+}

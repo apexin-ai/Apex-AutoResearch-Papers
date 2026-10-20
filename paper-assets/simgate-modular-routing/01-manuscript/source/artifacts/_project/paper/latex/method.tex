@@ -1,0 +1,29 @@
+\section{Method}
+
+\subsection{Counterfactual Episode Collection}
+\label{sec:collection}
+
+For each task instance, we execute two complete episodes under identical initial conditions. The \emph{pure-internal} episode follows the ReAct paradigm \cite{react-2023}, where the LLM interleaves chain-of-thought reasoning with environment actions. The \emph{pure-deterministic} episode uses the environment simulator to compute exact state transitions. In both cases the LLM selects which action to take; deterministic computation replaces only the state-transition prediction---equivalent to giving the agent a perfect world model.
+
+Each episode pair produces a tuple $(s^{\text{int}}, s^{\text{det}}, d^{\text{int}}, d^{\text{det}})$, where $s$ denotes the terminal score and $d \in \{0,1\}$ indicates agent death. Episodes are capped at 30 steps. The LLM backbone is Qwen2.5-7B-Instruct served via vLLM. ScienceWorld spans 30 task types with a $-100$ death penalty; after prescreening, we collect 245 episode pairs across 11 task types (20--40 per type).
+
+\subsection{Death-Aware Labeling}
+\label{sec:labeling}
+
+Each counterfactual pair receives an episode-level routing label based on $(s^{\text{int}}, s^{\text{det}}, d^{\text{int}}, d^{\text{det}})$. Scores are integer-valued, so we use exact (in)equality. The label is assigned by four mutually exclusive cases:
+
+\begin{enumerate}
+    \item \textbf{Death asymmetry}: $d^{\text{int}} \neq d^{\text{det}}$ $\rightarrow$ surviving strategy preferred.
+    \item \textbf{Both dead}: $d^{\text{int}} = d^{\text{det}} = 1$ $\rightarrow$ \texttt{no\_preference}.
+    \item \textbf{Score gap}: both survive, $s^{\text{det}} \neq s^{\text{int}}$ $\rightarrow$ higher-scoring strategy preferred.
+    \item \textbf{Tied alive}: both survive, $s^{\text{det}} = s^{\text{int}}$ $\rightarrow$ \texttt{no\_preference}.
+\end{enumerate}
+
+\subsection{Death Avoidance Factor}
+\label{sec:daf}
+
+To quantify the contribution of death avoidance to routing signal, we define the Death Avoidance Factor (DAF):
+\begin{equation}
+    \text{DAF} = 1 - \frac{\Delta_{\text{nd}}}{\Delta_{\text{full}}}
+\end{equation}
+where $\Delta_{\text{full}}$ is the mean score gap ($s^{\text{det}} - s^{\text{int}}$) across all episodes and $\Delta_{\text{nd}}$ excludes episodes where either strategy dies.

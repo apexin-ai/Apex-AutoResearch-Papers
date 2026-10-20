@@ -1,0 +1,39 @@
+{
+  "exp_id": "backbone-scaling-death-rate-0.5b",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:47:16.421Z",
+    "updated_at": "2026-05-16T21:34:13.526Z",
+    "hypothesis": "Smaller backbone models have higher death rates because they lack sufficient capacity to maintain coherent multi-step reasoning in interactive environments, leading to more frequent fatal action sequences",
+    "spec": {
+      "command": "python src/episode_level_collection.py --deep_internal --model_path /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B-Instruct --task_types freeze,lifespan-longest-lived,measure-melting-point-unknown-substance --episodes 5 --max_steps 30 --gpu_id 0",
+      "server": "westb-13313",
+      "data_path": "ScienceWorld tasks",
+      "data_count": 15,
+      "model_name": "Qwen2.5-0.5B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "backbone_0.5b_eval.log",
+      "metrics": {
+        "death_rate_overall": "80.0% (12/15)",
+        "death_rate_freeze": "80% (4/5)",
+        "death_rate_lifespan": "80% (4/5)",
+        "death_rate_melting": "80% (4/5)",
+        "delta_vs_7B": "+37.1pp",
+        "baseline_7B_death_rate": "42.9%",
+        "scores_freeze": "0,0,0,-100,0",
+        "scores_lifespan": "0,0,0,-100,0",
+        "scores_melting": "0,0,7.0,0,0"
+      }
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T21:07:11.191Z"
+  },
+  "timestamp": "2026-05-16T21:34:13.996230+00:00",
+  "trigger": "update_registry"
+}

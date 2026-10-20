@@ -1,0 +1,19 @@
+{
+  "exp_id": "mvp-p1-gpu1-vllm",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:10:07.454Z",
+    "updated_at": "2026-05-13T07:10:07.454Z",
+    "spec": {
+      "hypothesis": "vLLM 后端相比 HF transformers 可将 Phase 1 GPU1 实验时间从 ~7h 缩短到 ~3h，且结果一致",
+      "description": "Phase 1 GPU1 重提 - vLLM 后端 (mix-paint + grow-plant)",
+      "parent": "mvp-p1-gpu1"
+    }
+  },
+  "timestamp": "2026-05-13T07:10:07.466585+00:00",
+  "trigger": "update_registry"
+}

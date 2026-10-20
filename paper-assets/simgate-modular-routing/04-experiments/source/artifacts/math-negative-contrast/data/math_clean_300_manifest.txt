@@ -1,0 +1,5 @@
+Path on server: /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_clean_300.jsonl
+Components:
+- math_pilot_rerun_full50.jsonl (offset 0-49, sandbox fixed, 50 problems)
+- math_200_fixed.jsonl (offset 50-104, 55 problems)
+- math_extend_195.jsonl (offset 105-299, 195 problems)

@@ -1,0 +1,37 @@
+{
+  "description": "Per-task death rate (%) for 10 death-prone tasks under Retry and Reflexion at N=1..5",
+  "data_sources": {
+    "retry_all": "westb-13313:/results/retry_dose_response/retry_n5/ (derive N=1..5 from trial[k-1])",
+    "reflexion_n1": "westb-13313:/results/reflexion_dose_response/reflexion_n1/ (independent run, trial[0])",
+    "reflexion_n2": "westb-13313:/results/reflexion_dose_response/reflexion_n2/ (independent run, trial[1])",
+    "reflexion_n3": "westd-18266:/results/reflexion_dose_response/reflexion_n3/ (independent run, trial[2])",
+    "reflexion_n4": "westd-18266:/results/reflexion_dose_response/reflexion_n4/ (independent run, trial[3])",
+    "reflexion_n5": "westd-18266:/results/reflexion_dose_response/reflexion_n5/ (independent run, trial[4])"
+  },
+  "retry": {
+    "chemistry-mix":      {"1": 55, "2": 55, "3": 50, "4": 50, "5": 50},
+    "find-animal":        {"1": 50, "2": 55, "3": 50, "4": 50, "5": 55},
+    "freeze":             {"1": 55, "2": 55, "3": 55, "4": 50, "5": 50},
+    "grow-fruit":         {"1": 45, "2": 50, "3": 45, "4": 40, "5": 50},
+    "identify-life-stages-1":    {"1": 35, "2": 30, "3": 25, "4": 30, "5": 25},
+    "identify-life-stages-2":    {"1": 25, "2": 25, "3": 25, "4": 25, "5": 25},
+    "inclined-plane-determine-angle": {"1": 55, "2": 55, "3": 45, "4": 45, "5": 45},
+    "lifespan-longest-lived":    {"1": 50, "2": 45, "3": 45, "4": 40, "5": 45},
+    "lifespan-longest-lived-then-shortest-lived": {"1": 55, "2": 45, "3": 45, "4": 45, "5": 35},
+    "measure-melting-point-unknown-substance":     {"1": 55, "2": 55, "3": 50, "4": 55, "5": 55},
+    "_overall":           {"1": 48.0, "2": 47.0, "3": 43.5, "4": 43.0, "5": 43.5}
+  },
+  "reflexion": {
+    "chemistry-mix":      {"1": 55, "2": 45, "3": 25, "4": 35, "5": 20},
+    "find-animal":        {"1": 50, "2": 40, "3": 45, "4": 30, "5": 45},
+    "freeze":             {"1": 55, "2": 50, "3": 50, "4": 50, "5": 60},
+    "grow-fruit":         {"1": 50, "2": 35, "3": 30, "4": 25, "5": 25},
+    "identify-life-stages-1":    {"1": 35, "2": 30, "3": 35, "4": 35, "5": 35},
+    "identify-life-stages-2":    {"1": 25, "2": 25, "3": 25, "4": 25, "5": 30},
+    "inclined-plane-determine-angle": {"1": 50, "2": 40, "3": 20, "4": 30, "5": 35},
+    "lifespan-longest-lived":    {"1": 50, "2": 40, "3": 45, "4": 40, "5": 40},
+    "lifespan-longest-lived-then-shortest-lived": {"1": 55, "2": 45, "3": 30, "4": 45, "5": 35},
+    "measure-melting-point-unknown-substance":     {"1": 50, "2": 50, "3": 35, "4": 50, "5": 25},
+    "_overall":           {"1": 47.5, "2": 40.0, "3": 34.0, "4": 36.5, "5": 35.0}
+  }
+}

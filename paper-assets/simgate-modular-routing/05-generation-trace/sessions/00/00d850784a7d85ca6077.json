@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00d850784a7d85ca6077",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "verify generative router code",
+  "task_key": "worker_verify_generative-router-code_20260514T074032",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_generative-router-code_20260514T074032_result.json",
+    "occurrence": 1,
+    "bytes": 3199,
+    "sha256": "3a428e8804834d4f1bc405ee5459dcd2696808b225713c7e7248fd13100ae32c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。报告如下：\n\n---\n\n## 验证报告\n\n### 1. 脚本选择\n\n用 **`generative_router_sft.py`**（24KB，May 14 15:23 更新）。它是 `implicit_router_sft.py` 的专用进化版：\n- 移除 `class_weights` 路径（只保留 upsample）\n- upsample 默认开启\n- 训练中计算 `internal_recall` / `det_recall`（非退化检测关键指标）\n- 显式设置 `pad_token_id`\n\n### 2. Upsample 机制：**sample 级，双重平衡**\n\n**第一层（数据级）**：`load_data()` 中先按 episode (task_type, variation) 做 stratified split，然后对 **train set 内的少数类 sample 直接复制** 至目标比例。`upsample_ratio=1.0` → 补到 1:1。这是 sample 级，不是 episode 级。\n\n**第二层（采样器级）**：`WeightedRandomSampler` 按 inverse-frequency 权重再做 epoch 内均衡采样。\n\n### 3. CLI 参数（`generative_router_sft.py train`）\n\n| 参数 | 默认值 | 说明 |\n|------|--------|------|\n| `--data_dir` | **必填** | 数据路径 |\n| `--output_dir` | `checkpoints/plan-002-generative` | 输出目录 |\n| `--batch_size` | **4** | micro batch |\n| `--gradient_accumulation_steps` | **8** | 梯度累积 |\n| `--upsample_minority` | **True** | 默认开启，`--no_upsample_minority` 关闭 |\n| `--upsample_ratio` | **1.0** | 少数类:多数类目标比 |\n| `--max_steps` | 0 | >0 用于 dry-run |\n| `--epochs` | 3 | |\n| `--lr` | 2e-5 | |\n| `--lora_r` / `--lora_alpha` | 16 / 32 | |\n\n### 4. 数据确认\n\n- **2040 条** 总量（与 ablation-b 一致）\n- 分布：~1830 deterministic / ~210 internal（≈90:10）\n- route_label 样例：`\"deterministic\"` 对应 `[SIMULATE]` 前缀，`\"internal\"` 对应直接输出 action\n\n### 5. Eval 指标\n\n训练中自动计算 `routing_acc`、`internal_recall`、`det_recall`、`internal_n`、`det_n`。`internal_recall` 是非退化关键指标。\n\n### 6. ⚠️ 关键注意：effective batch size 差异\n\n| 实验 | batch_size | grad_accum | **effective batch** |\n|------|-----------|------------|-------------------|\n| generative-v1-ga8 | 4 | 8 | **32** |\n| generative-v1-ga1 | 4 | 1 | **4** |\n| ablation-b (对照) | 32 | 1 | **32** |\n\n**ga1 的 effective batch 只有 4，不是 32。** 如果 Director 的意图是在相同 effective batch (32) 下对比 grad_accum 机制，则 ga1 应设 `--batch_size 32 --gradient_accumulation_steps 1`。如果意图是对比不同 effective batch（32 vs 4）对训练的影响，则当前默认参数即可。\n\n### 7. 提交命令\n\n```bash\n# generative-v1-ga8 (effective batch=32)\npython src/training/generative_router_sft.py train \\\n  --data_dir data/plan-004-implicit/implicit_sft.jsonl \\\n  --output_dir checkpoints/generative-v1-ga8 \\\n  --gradient_accumulation_steps 8\n\n# generative-v1-ga1 (effective batch=4, 除非改 batch_size)\npython src/training/generative_router_sft.py train \\\n  --data_dir data/plan-004-implicit/implicit_sft.jsonl \\\n  --output_dir checkpoints/generative-v1-ga1 \\\n  --gradient_accumulation_steps 1\n```\n\n**代码无需额外修改即可提交。** 唯一需确认的是 ga1 的 effective batch size 是否符合 Director 预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-generative-router-code.md"
+}

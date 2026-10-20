@@ -1,0 +1,29 @@
+paper_key: "envsimbench-2025"
+title: "EnvSimBench: A Benchmark for Evaluating and Improving LLM-Based Environment Simulation"
+venue: "arXiv 2025"
+full_text_available: false
+
+research:
+  baselines: ["frontier LLMs (not specified)"]
+  metrics:
+    - {name: "Config_Match", direction: "higher_better"}
+    - {name: "state_prediction_accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "EnvSimBench", size: "400 samples, 167 environments"}
+  ablation_dimensions: [simultaneous_state_changes, model_size, constraint_driven_MDP]
+  training_recipe:
+    optimizer: "not specified"
+    lr: "not specified"
+    hardware: "not specified"
+    fine_tuned_model_size: "4B"
+  method_family: "LLM environment simulation benchmark"
+
+positioning:
+  core_claim: "Environment simulation fidelity is orthogonal to general reasoning and degrades catastrophically beyond 3 simultaneous state updates (state-change cliff)"
+  key_results: "4B fine-tuned model surpasses all frontier LLMs on Config Match; 90x cost reduction"
+  limitations: []
+  relation_to_us: "complementary"
+
+narrative: "N/A"
+figures: "N/A"
+tables: "N/A"

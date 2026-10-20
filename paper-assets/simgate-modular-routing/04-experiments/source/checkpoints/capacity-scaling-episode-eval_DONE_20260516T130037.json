@@ -1,0 +1,55 @@
+{
+  "exp_id": "capacity-scaling-episode-eval",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T13:00:10.864Z",
+    "updated_at": "2026-05-16T13:00:37.588Z",
+    "spec": {
+      "command": "episode-level eval on 0.6B/4B checkpoints (4 seeds each)",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": 2040,
+      "model_name": "Qwen3-0.6B + Qwen3-4B",
+      "seed": "42,43,44,45",
+      "checkpoint_path": "plan-008-v4-{0_6b,4b}-seed{42-45}/final_adapter",
+      "log_path": "/root/autodl-tmp/simgate-modular-routing/results/capacity_episode_eval/summary.json"
+    },
+    "hypothesis": "R8-W3: Episode-level balanced_acc scales with router capacity. Tests if 1.7B's 47.1% failure is capacity-limited or signal-limited.",
+    "metrics": {
+      "0.6B": {
+        "mean_bal_acc": 0.5067,
+        "std": 0.0262,
+        "seeds": [
+          42,
+          43,
+          44,
+          45
+        ]
+      },
+      "1.7B_ref": {
+        "mean_bal_acc": 0.471,
+        "std": 0.022
+      },
+      "4B": {
+        "mean_bal_acc": 0.5896,
+        "std": 0.0194,
+        "seeds": [
+          42,
+          43,
+          44,
+          45
+        ]
+      },
+      "trend": "monotonic increase with capacity (4B > 0.6B > 1.7B*, 4B significantly above random 50%)",
+      "note": "4B at 58.96% shows genuine episode-level signal. 0.6B slightly above 1.7B may reflect v4 training config differences."
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-16T13:00:37.588Z"
+  },
+  "timestamp": "2026-05-16T13:00:37.779620+00:00",
+  "trigger": "update_registry"
+}

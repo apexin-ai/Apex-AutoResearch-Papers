@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "401c64c0440efcb387f8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 012 death decomposition",
+  "task_key": "worker_code_plan-012-death-decomposition_20260514T041153",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-012-death-decomposition_20260514T041153_result.json",
+    "occurrence": 1,
+    "bytes": 733,
+    "sha256": "ef5531ae2ac13007da3a4e71dc7f479d4afd56c31a29b0e28776dfe849918b20"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行正常，输出格式正确。\n\n结果：\n- 25 个 prescreening task，133 episodes\n- `Delta_full = +45.99`，`Delta_nd = +0.83`，`death_avoidance_fraction = 0.9819`\n- Pearson r = 0.9821 (p ≈ 0)，death rate 差异几乎完美预测 Delta\n- CSV 列：task_name, n_episodes, death_rate_int, death_rate_det, delta_full, delta_nd, delta_penalty_replaced, det_pref, int_pref, no_pref\n\n脚本已写入本地 `/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/src/analysis/death_decomposition.py` 并在服务器上通过了 prescreening 数据验证。如需跑全量数据（含 mvp/plan_c），可以用逗号分隔目录或指定更具体的子目录避免超时。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-012-death-decomposition.md"
+}

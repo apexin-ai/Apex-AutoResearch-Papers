@@ -1,0 +1,93 @@
+paper_key: "dynathink-2025"
+title: "Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in AI Agents"
+venue: "arXiv 2025"
+full_text_available: true
+
+research:
+  baselines: [GPT-4o, Qwen2.5-32B-Instruct, R1-distill-70B, o3-mini, DeepSeek-R1-685B, Direct-Distill-4o, Direct-Distill-R1, Direct-Distill-R1-no-think, DIT-R1, RFT, Vanilla-Dyna]
+  metrics:
+    - {name: "avg_success_rate", direction: "higher_better"}
+    - {name: "best_of_N_success_rate", direction: "higher_better"}
+    - {name: "generation_tokens", direction: "lower_better"}
+    - {name: "world_model_accuracy", direction: "higher_better"}
+  datasets:
+    - {name: "OSWorld", size: "174 test tasks (123 ID, 51 OOD) across 5 domains"}
+  ablation_dimensions: [world_model_data_type, thinking_content, training_components, scaling_WM_data, iterative_policy_training]
+  training_recipe:
+    optimizer: "AdamW with linear scheduler (10% warmup)"
+    lr: "5e-6 (both world model and policy)"
+    world_model_epochs: 2
+    policy_epochs: 3
+    algorithm: "Rejection Sampling (policy), SFT (world model)"
+    max_context: 20480
+    hardware: "8x H100 GPUs"
+    memory_opt: "DeepSpeed Zero-3"
+    base_model: "Qwen2.5-32B-Instruct"
+  method_family: "integrated world model simulation within reasoning"
+
+positioning:
+  core_claim: "Integrating compressed world model simulation into the reasoning chain (Dyna-Think) achieves R1-level BoN performance with 2x fewer tokens using a 32B model vs 685B"
+  key_results: "DDT(critic): 44.3% BoN (all), 49.6% BoN (ID) vs R1 44.8% BoN (all); with 1.2-2.7x tokens vs R1 1.7-4.9x"
+  limitations:
+    - "Long-horizon trajectories limited by context length (20K tokens = 3-4 turns)"
+    - "Smaller models (7B) show limited improvement due to task complexity"
+    - "Evaluated on 5 of 10 OSWorld domains only"
+    - "Needs robust automatic evaluators for synthetic tasks"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "统一框架型"
+  hook: "Unclear what type of 'thinking' is crucial for agent performance in long-horizon tasks, and how to improve it via learning"
+  tension: "Test-time scaling via MCTS requires expensive environment interactions; reasoning models internalize search but it's unclear which thinking components matter"
+  key_insight: "R1-style thinking primarily works through world model simulation—filtering to keep only action-relevant simulation maintains performance with 2x fewer tokens"
+  argument_chain: "thinking mystery → cognitive science parallel → Dyna-Think framework → DIT (distill relevant thinking) → DDT (Dyna-Q inspired joint training) → critique-based WM training → R1 parity at 32B"
+  contribution_framing: "Six contributions: framework, DIT, DDT, evaluation, critique insight, WM-performance correlation"
+  intro_structure: "8 paragraphs: agent promise → test-time scaling → thinking mystery → cognitive science → Dyna-Think proposal → DIT description → DDT description → result summary"
+  notable_technique: "Table 3 (thinking behavior analysis) systematically isolates what matters in R1-style thinking—world model simulation is the key, not general verbose reasoning"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "method_overview"
+    description: "Dyna-Think integrating world model simulation (green) with reasoning and acting; irrelevant thinking in orange"
+    narrative_role: "Shows what gets filtered out (orange) vs kept (green) from R1 thinking, motivating the distillation approach"
+    design_elements: ["color-coded thinking segments", "R1 thinking trace with annotations", "before/after comparison"]
+    visual_style: "Annotated reasoning trace with green (relevant WM simulation) and orange (irrelevant) highlighting"
+  result_figures:
+    - figure_id: "Figure 4b"
+      viz_type: "line_plot"
+      what_compared: "BoN success rate vs scaling world model training data"
+      how_gain_highlighted: "Consistent improvement from 44.3% to ~48% with more WM data"
+      design_note: "Scaling curve with error bars showing data-scaling potential"
+  ablation_figures:
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      dimensions_varied: ["iterative policy training", "with/without eval hints"]
+      design_note: "Shows eval hints significantly improve iterative training (45% vs 38% BoN)"
+  figure_narrative_role: "Figure 1 (thinking analysis) → Figure 2 (framework) → Figure 3 (WM data types) → Figure 4 (scaling) → Figure 5 (iterative training)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 2"
+    row_axis: "methods"
+    col_axis: "(Avg_all + Avg_ID + Avg_OOD) × (BoN_all + BoN_ID + BoN_OOD) × gen_tokens"
+    row_organization: "by_category"
+    col_organization: "grouped_by_metric"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "mean ± std across 3 runs (Avg), BoN across 3 runs"
+    num_baselines: 11
+    design_note: "Both Avg and BoN reported; token generation ratio (relative to GPT-4o baseline); ID/OOD split for generalization assessment"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: [thinking_content, WM_simulation_presence]
+      variation_style: "full_numbers"
+      design_note: "Key table isolating the value of WM simulation in thinking—shows it's the critical ingredient"
+    - table_id: "Table 4"
+      what_varied: [world_model_accuracy_correlation]
+      variation_style: "full_numbers"
+      design_note: "Pearson correlation between WM accuracy and task success validates the causal claim"
+  supplementary_tables:
+    in_appendix: true
+    content: "Dataset statistics (Table 1), per-domain results"
+    reason: "Keep main focus on method comparison and ablations"

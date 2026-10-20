@@ -1,0 +1,64 @@
+{
+  "exp_id": "retry-dose-response",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:58:01.903Z",
+    "updated_at": "2026-05-18T12:48:23.879Z",
+    "hypothesis": "Death rate在retry trials增加时plateau在~35-40%（N=5时与N=3差异<3pp），与reflexion/72B的convergence一致，证明death dominance是结构性上限而非retry机会不足",
+    "parent": "retry-control-baseline",
+    "spec": {
+      "command": "python run_retry_dose_response.py --n-values 5 --episodes-per-task 20 --max-steps 30 --model Qwen2.5-7B-Instruct --api-base http://localhost:8000/v1 --seed 42",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "898407",
+      "log_path": "~/runs/simgate-modular-routing/retry-dose-response.log",
+      "submitted_at": "2026-05-18T06:42:30.697Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/simgate-modular-routing/results/retry_dose_response/",
+      "data_count": 200,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (data collection, not eval)",
+      "eval_data": "10 death-prone ScienceWorld tasks × 20 episodes × N=1..5 retries",
+      "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/results/retry_dose_response/",
+      "wall_clock_seconds": 21953.2,
+      "gpu_hours": 6.1
+    },
+    "notes": "第4次提交(迁移到westb-13313): dry-run通过, PID 898407, cuda:0. 模型路径=/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct. 前3次在westb-14838失败(tmux PATH, vLLM model name, GPU驱动废).",
+    "reproduce": {
+      "finished_at": "2026-05-18T12:42:41.716Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T12:42:46.724101+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "metrics": {
+      "death_rate_n1": 0.512,
+      "death_rate_n3": 0.409,
+      "death_rate_n5": 0.435,
+      "n5_vs_n3_diff_pp": 2.6,
+      "plateau_confirmed": true,
+      "n5_success_rate": 0.11,
+      "n5_avg_trials": 4.66,
+      "n5_total_episodes": 200,
+      "n5_total_deaths": 87
+    },
+    "completed_at": "2026-05-18T12:48:23.879Z"
+  },
+  "timestamp": "2026-05-18T12:48:24.079566+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1362 @@
+# analysis routing patterns
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 45
+- **Recorded user turns:** 0
+- **Tool calls:** 22
+- **Original source:** `logs/chats/worker_analysis_routing-patterns_20260515T114910.jsonl`
+- **Structured JSON:** [`5dcecb00351873701235.json`](../../sessions/5d/5dcecb00351873701235.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+45 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T11:52:11.683373+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T11:52:11.683839+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T11:52:11.684064+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"*.json\" -o -name \"*.jsonl\" -o -name \"*.csv\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"*.json\" -o -name \"*.jsonl\" -o -name \"*.csv\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T11:52:11.684234+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T11:52:11.684366+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"*.json\" -o -name \"*.jsonl\" -o -name \"*.csv\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"*.json\" -o -name \"*.jsonl\" -o -name \"*.csv\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T11:52:11.684574+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/mvp/phase0_validation.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/phase0_validation_v2.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/boil/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/chemistry-mix-paint-secondary-color/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/chemistry-mix-paint-secondary-color/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/melt/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/melt/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/grow-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/grow-plant/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/change-the-state-of-matter-of/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/change-the-state-of-matter-of/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/global_summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/final_analysis.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/final_analysis_det_vs_internal.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/signal_type_summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/summary.json\\n/root/auto
+…[truncated 6376 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T11:52:11.684761+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -path \"*plan*012*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -path \"*plan*012*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T11:52:11.684895+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T11:52:11.685034+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -path \"*plan-012*\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -path \"*plan-012*\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T11:52:11.685162+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_005_analysis/routing_patterns.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_005_analysis/routing_patterns.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T11:52:11.685282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T11:52:11.685613+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"oracle_decisions\\\": {\\n    \\\"total_episodes\\\": 194,\\n    \\\"overall_distribution\\\": {\\n      \\\"no-preference\\\": {\\n        \\\"count\\\": 126,\\n        \\\"rate\\\": 0.6495\\n      },\\n      \\\"det-preferred\\\": {\\n        \\\"count\\\": 61,\\n        \\\"rate\\\": 0.3144\\n      },\\n      \\\"internal-preferred\\\": {\\n        \\\"count\\\": 7,\\n        \\\"rate\\\": 0.0361\\n      }\\n    },\\n    \\\"per_task\\\": {\\n      \\\"chemistry-mix\\\": {\\n        \\\"no-preference\\\": {\\n          \\\"count\\\": 12,\\n          \\\"rate\\\": 0.6\\n        },\\n        \\\"det-preferred\\\": {\\n          \\\"count\\\": 6,\\n          \\\"rate\\\": 0.3\\n        },\\n        \\\"internal-preferred\\\": {\\n          \\\"count\\\": 2,\\n          \\\"rate\\\": 0.1\\n        },\\n        \\\"_n\\\": 20\\n      },\\n      \\\"find-animal\\\": {\\n        \\\"no-preference\\\": {\\n          \\\"count\\\": 13,\\n          \\\"rate\\\": 0.8667\\n        },\\n        \\\"det-preferred\\\": {\\n          \\\"count\\\": 2,\\n          \\\"rate\\\": 0.1333\\n        },\\n        \\\"_n\\\": 15\\n      },\\n      \\\"find-non-living-thing\\\": {\\n        \\\"no-preference\\\": {\\n          \\\"count\\\": 18,\\n          \\\"rate\\\": 0.5143\\n        },\\n        \\\"det-preferred\\\": {\\n          \\\"count\\\": 14,\\n          \\\"rate\\\": 0.4\\n        },\\n        \\\"internal-preferred\\\": {\\n          \\\"count\\\": 3,\\n          \\\"rate\\\": 0.0857\\n        },\\n        \\\"_n\\\": 35\\n      },\\n      \\\"freeze\\\": {\\n        \\\"no-preference\\\": {\\n          \\\"count\\\": 14,\\n          \\\"rate\\\": 0.7\\n        },\\n        \\\"det-preferred\\\": {\\n          \\\"count\\\": 6,\\n          \\\"rate\\\": 0.3\\n        },\\n        \\\"_n\\\": 20\\n      },\\n      \\\"grow-fruit\\\": {\\n        \\\"no-preference\\\": {\\n          \\\"count\\\": 11,\\n      
+…[truncated 8547 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T11:52:11.685807+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T11:52:11.685938+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/': Not a directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T11:52:11.686182+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"episode_summary.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"episode_summary.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T11:52:11.686316+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"labeled_steps.jsonl\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"labeled_steps.jsonl\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T11:52:11.686448+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/grow-fruit/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-1/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/inclined-plane-determine-angle/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived-then-shortest-lived/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-2/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/measure-melting-point-unknown-substance/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/multi_model_pilot/llama31/freeze/episode_summary.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/multi_model_pilot/llama31/find-non-living-thing/episode_summary.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T11:52:11.686593+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/grow-fruit/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-1/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/inclined-plane-determine-angle/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived-then-shortest-lived/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-2/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/measure-melting-point-unknown-substance/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/multi_model_pilot/llama31/freeze/labeled_steps.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/multi_model_pilot/llama31/find-non-living-thing/labeled_steps.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T11:52:11.686751+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -3 /root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -3 /root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T11:52:11.686872+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -3 /root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/labeled_steps.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -3 /root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/labeled_steps.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T11:52:11.687003+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T11:52:11.687153+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode\\\": 0, \\\"variation\\\": 0, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 100.0, \\\"internal_steps\\\": 17, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 1, \\\"variation\\\": 1, \\\"internal_final\\\": 0.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"tied_alive\\\", \\\"reason\\\": \\\"tie\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 30, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 2, \\\"variation\\\": 2, \\\"internal_final\\\": 0.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"tied_alive\\\", \\\"reason\\\": \\\"tie\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 30, \\\"det_steps\\\": 30}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T11:52:11.687320+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"task_type\\\": \\\"freeze\\\", \\\"episode_id\\\": 0, \\\"variation\\\": 0, \\\"step_idx\\\": 0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on door\\\", \\\"action\\\": \\\"connect agent to door to greenhouse\\\", \\\"action_history\\\": [], \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"death_asymmetry\\\", \\\"episode_score_internal\\\": -100.0, \\\"episode_score_det\\\": 0.0, \\\"score_gap\\\": 100.0}\\n{\\\"task_type\\\": \\\"freeze\\\", \\\"episode_id\\\": 0, \\\"variation\\\": 0, \\\"step_idx\\\": 1, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 1 on greenhouse\\\", \\\"action\\\": \\\"connect agent to greenhouse\\\", \\\"action_history\\\": [\\\"connect agent to door to greenhouse\\\"], \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"death_asymmetry\\\", \\\"episode_score_internal\\\": -100.0, \\\"episode_score_det\\\": 0.0, \\\"score_gap\\\": 100.0}\\n{\\\"task_type\\\": \\\"freeze\\\", \\\"episode_id\\\": 0, \\\"variation\\\": 0, \\\"step_idx\\\": 2, \\\"observation\\\": \\\"terminal 1 on air is now connected to terminal 2 on greenhouse\\\", \\\"action\\\": \\\"connect air to greenhouse\\\", \\\"action_history\\\": [\\\"connect agent to door to greenhouse\\\", \\\"connect agent to greenhouse\\\"], \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"death_asymmetry\\\", \\\"episode_score_internal\\\": -100.0, \\\"episode_score_det\\\": 0.0, \\\"score_gap\\\": 100.0}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.58}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T11:52:11.687469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode\\\": 0, \\\"variation\\\": 0, \\\"internal_final\\\": 50.0, \\\"det_final\\\": 58.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 8.0, \\\"internal_steps\\\": 30, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 1, \\\"variation\\\": 1, \\\"internal_final\\\": 0.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"tied_alive\\\", \\\"reason\\\": \\\"tie\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 30, \\\"det_steps\\\": 30}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T11:52:11.687632+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan_c/*/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan_c/*/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T11:52:11.687754+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -1 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -1 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T11:52:11.687883+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/episode_summary.jsonl\\n   40 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/grow-fruit/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-1/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-2/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/inclined-plane-determine-angle/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived-then-shortest-lived/episode_summary.jsonl\\n   25 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/measure-melting-point-unknown-substance/episode_summary.jsonl\\n  245 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T11:52:11.688037+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode\\\": 0, \\\"variation\\\": 0, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 100.0, \\\"internal_steps\\\": 16, \\\"det_steps\\\": 30}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T11:52:11.688205+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T11:52:11.688329+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -- \"-100\" /root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -- \"-100\" /root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T11:52:11.688469+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode\\\": 0, \\\"variation\\\": 0, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 100.0, \\\"internal_steps\\\": 17, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 1, \\\"variation\\\": 1, \\\"internal_final\\\": 0.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"tied_alive\\\", \\\"reason\\\": \\\"tie\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 30, \\\"det_steps\\\": 30}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T11:52:11.688652+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode\\\": 0, \\\"variation\\\": 0, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 100.0, \\\"internal_steps\\\": 17, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 3, \\\"variation\\\": 3, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 10.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 110.0, \\\"internal_steps\\\": 30, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 4, \\\"variation\\\": 4, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 100.0, \\\"internal_steps\\\": 17, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 5, \\\"variation\\\": 5, \\\"internal_final\\\": -100.0, \\\"det_final\\\": -100.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"both_dead\\\", \\\"reason\\\": \\\"both_died\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 20, \\\"det_steps\\\": 25}\\n{\\\"episode\\\": 7, \\\"variation\\\": 7, \\\"internal_final\\\": -100.0, \\\"det_final\\\": -100.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"both_dead\\\", \\\"reason\\\": \\\"both_died\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 16, \\\"det_steps\\\": 25}\\n{\\\"episode\\\": 9, \\\"variation\\\": 9, \\\"internal_final\\\": -100.0, \\\"det_final\\\": -100.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"both_dead\\\", \\\"reason\\\": \\\"both_died\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 12, \\\"det_steps\\\": 15}\\n{\\\"episode\\\": 12, \\\"variation\\\": 12, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\"
+…[truncated 1405 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T11:52:11.688838+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "python3 -c \"import matplotlib; import numpy; import pandas; print('ok')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "python3 -c \"import matplotlib; import numpy; import pandas; print('ok')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T11:52:11.688968+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T11:52:11.689111+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import matplotlib; import numpy; import pandas; print('ok')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"import matplotlib; import numpy; import pandas; print('ok')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T11:52:11.689234+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ok\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.01}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T11:52:11.689366+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "mkdir -p /root/autodl-tmp/simgate-modular-routing/results/routing-patterns /root/autodl-tmp/simgate-modular-routing/scripts",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "mkdir -p /root/autodl-tmp/simgate-modular-routing/results/routing-patterns /root/autodl-tmp/simgate-modular-routing/scripts",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T11:52:11.689487+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T11:52:11.689641+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat > /root/autodl-tmp/simgate-modular-routing/scripts/analyze_routing_patterns.py << 'SCRIPT_EOF'\nimport json\nimport os\nimport glob\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.colors import LinearSegmentedColormap\nfrom collections import defaultdict\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 10,\n    'axes.labelsize': 11,\n    'axes.titlesize': 12,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nDATA_DIR = \"/root/autodl-tmp/simgate-modular-routing/results/plan_c\"\nOUT_DIR = \"/root/autodl-tmp/simgate-modular-routing/results/routing-patterns\"\n\nTASK_SHORT = {\n    'chemistry-mix': 'Chem-Mix',\n    'find-animal': 'Find-Animal',\n    'find-non-living-thing': 'Find-NL',\n    'freeze': 'Freeze',\n    'grow-fruit': 'Grow-Fruit',\n    'identify-life-stages-1': 'Life-Stage-1',\n    'identify-life-stages-2': 'Life-Stage-2',\n    'inclined-plane-determine-angle': 'Incline',\n    'lifespan-longest-lived': 'Lifespan-L',\n    'lifespan-longest-lived-then-shortest-lived': 'Lifespan-LS',\n    'measure-melting-point-unknown-substance': 'Melting-Pt',\n}\n\n# ── Load all episodes ──\nall_eps = []\nfor task_dir in sorted(glob.glob(os.path.join(DATA_DIR, \"*\"))):\n    task_name = os.path.basename(task_dir)\n    ep_file = os.path.join(task_dir, \"episode_summary.jsonl\")\n    if not os.path.exists(ep_file):\n        continue\n    with open(ep_file) as f:\n        for line in f:\n            rec = json.loads(line)\n            rec['task'] = task_name\n            all_eps.append(rec)\n\ndf = pd.DataFrame(all_eps)\nprint(f\"Total episodes: {len(df)}, Tasks: {df['task'].nunique()}\")\n\n# ── A. Per-task routing pattern ──\nprint(\"\\n\" + \"=\"*70)\nprint(\"A. PER-TASK ROUTING PATTERN\")\nprint(\"=\"*70)\n\nrouting_table = []\nfor task in sorted(df['task'].unique()):\n    sub = df[df['task'] == task]\n    n = len(sub)\n    det = (sub['label'] == 'det-preferred').sum()\n    internal = (sub['label'] == 'internal-preferred').sum()\n    nopref = (sub['label'] == 'no-preference').sum()\n    non_tie = det + internal\n    det_ratio = det / non_tie if non_tie > 0 else float('nan')\n    routing_table.append({\n        'task': task,\n        'short': TASK_SHORT.get(task, task),\n        'n': n,\n        'det': det,\n        'internal': internal,\n        'no_pref': nopref,\n        'det_ratio': det_ratio,\n        'det_pct': det / n * 100,\n        'int_pct': internal / n * 100,\n        'nopref_pct': nopref / n * 100,\n    })\n\nrt = pd.DataFrame(routing_table).sort_values('det_ratio', ascending=False)\nprint(f\"\\n{'Task':<42} {'N':>4} {'Det':>4} {'Int':>4} {'NoPr':>4} {'Det/(D+I)':>10}\")\nprint(\"-\"*70)\nfor _, r in rt.iterrows():\n    print(f\"{r['task']:<42} {r['n']:>4} {r['det']:>4} {r['internal']:>4} {r['no_pref']:>4} {r['det_ratio']:>10.3f}\")\n\n# ── B. Death timing analysis ──\nprint(\"\\n\" + \"=\"*70)\nprint(\"B. DEATH TIMING ANALYSIS\")\nprint(\"=\"*70)\n\ninternal_deaths = df[df['internal_final'] == -100.0].copy()\ndet_deaths = df[df['det_final'] == -100.0].copy()\n\ninternal_deaths['death_step'] = internal_deaths['internal_steps']\ndet_deaths['death_step'] = det_deaths['det_steps']\n\ndef bucket(step):\n    if step <= 10:\n        return 'early (1-10)'\n    elif step <= 20:\n        return 'mid (11-20)'\n    else:\n        return 'late (21-30)'\n\ninternal_deaths['bucket'] = internal_deaths['death_step'].apply(bucket)\ndet_deaths['bucket'] = det_deaths['death_step'].apply(bucket)\n\nprint(f\"\\nInternal deaths: {len(internal_deaths)}\")\nprint(f\"  Mean death step: {internal_deaths['death_step'].mean():.1f}\")\nprint(f\"  Median death step: {internal_deaths['death_step'].median():.1f}\")\nfor b in ['early (1-10)', 'mid (11-20)', 'late (21-30)']:\n    c = (internal_deaths['bucket'] == b).sum()\n    print(f\"  {b}: {c} ({c/len(internal_deaths)*100:.1f}%)\")\n\nprint(f\"\\nDeterministic deaths: {len(det_deaths)}\")\nprint(f\"  Mean death step: {det_deaths['death_step'].mean():.1f}\")\nprint(f\"  Median death step: {det_deaths['death_step'].median():.1f}\")\nfor b in ['early (1-10)', 'mid (11-20)', 'late (21-30)']:\n    c = (det_deaths['bucket'] == b).sum()\n    print(f\"  {b}: {c} ({c/len(det_deaths)*100:.1f}%)\")\n\n# Per-task death timing\nprint(\"\\nPer-task internal death timing:\")\nfor task in sorted(df['task'].unique()):\n    sub = internal_deaths[internal_deaths['task'] == task]\n    if len(sub) > 0:\n        print(f\"  {TASK_SHORT.get(task,task):<15}: n={len(sub):>2}, mean_step={sub['death_step'].mean():.1f}, \"\n              f\"early={sum(sub['bucket']=='early (1-10)')}, mid={sum(sub['bucket']=='mid (11-20)')}, late={sum(sub['bucket']=='late (21-30)')}\")\n\n# ── C. Episode length comparison ──\nprint(\"\\n\" + \"=\"*70)\nprint(\"C. EPISODE LENGTH COMPARISON\")\nprint(\"=\"*70)\n\nlength_table = []\nfor task in sorted(df['task'].unique()):\n    sub = df[df['task'] == task]\n    length_table.append({\n        'task': task,\n        'short': TASK_SHORT.get(task, task),\n        'n': len(sub),\n        'int_mean': sub['internal_steps'].mean(),\n        'int_std': sub['internal_steps'].std(),\n        'det_mean': sub['det_steps'].mean(),\n        'det_std': sub['det_steps'].std(),\n        'diff': sub['det_steps'].mean() - sub['internal_steps'].mean(),\n    })\n\nlt = pd.DataFrame(length_table)\nprint(f\"\\n{'Task':<15} {'N':>4} {'Int-Mean':>9} {'Int-Std':>8} {'Det-Mean':>9} {'Det-Std':>8} {'Diff':>6}\")\nprint(\"-\"*60)\nfor _, r in lt.iterrows():\n    print(f\"{r['short']:<15} {r['n']:>4} {r['int_mean']:>9.1f} {r['int_std']:>8.1f} {r['det_mean']:>9.1f} {r['det_std']:>8.1f} {r['diff']:>6.1f}\")\n\n# ════════════════════════════════════════════════════════\n# FIGURES\n# ════════════════════════════════════════════════════════\n\n# ── Figure 1: Routing Heatmap ──\nfig, ax = plt.subplots(figsize=(5, 4.5))\n\nrt_sorted = rt.sort_values('det_ratio', ascending=True)\ntasks_sorted = rt_sorted['short'].values\nheatmap_data = np.array([\n    rt_sorted['det_pct'].values,\n    rt_sorted['int_pct'].values,\n    rt_sorted['nopref_pct'].values,\n]).T\n\ncmap = LinearSegmentedColormap.from_list('custom', ['#f7fbff', '#2171b5'])\nim = ax.imshow(heatmap_data, cmap=cmap, aspect='auto', vmin=0, vmax=100)\n\nax.set_xticks([0, 1, 2])\nax.set_xticklabels(['Det-Preferred', 'Int-Preferred', 'No-Preference'])\nax.set_yticks(range(len(tasks_sorted)))\nax.set_yticklabels(tasks_sorted)\n\nfor i in range(len(tasks_sorted)):\n    for j in range(3):\n        val = heatmap_data[i, j]\n        color = 'white' if val > 50 else 'black'\n        ax.text(j, i, f'{val:.0f}%', ha='center', va='center', color=color, fontsize=8)\n\ncbar = plt.colorbar(im, ax=ax, shrink=0.8, label='Percentage (%)')\nax.set_title('Routing Label Distribution per Task')\nfig.savefig(os.path.join(OUT_DIR, 'routing_heatmap.pdf'))\nprint(f\"\\nSaved routing_heatmap.pdf\")\nplt.close()\n\n# ── Figure 2: Death Timing ──\nfig, axes = plt.subplots(1, 2, figsize=(8, 3.5), sharey=True)\n\nbins = np.arange(0.5, 31.5, 1)\n\naxes[0].hist(internal_deaths['death_step'], bins=bins, color='#d95f02', alpha=0.85, edgecolor='white', linewidth=0.5)\naxes[0].set_xlabel('Death Step')\naxes[0].set_ylabel('Count')\naxes[0].set_title(f'Internal Model (n={len(internal_deaths)})')\naxes[0].axvline(x=10.5, color='gray', linestyle='--', linewidth=0.8, alpha=0.6)\naxes[0].axvline(x=20.5, color='gray', linestyle='--', linewidth=0.8, alpha=0.6)\naxes[0].set_xlim(0, 31)\n\naxes[1].hist(det_deaths['death_step'], bins=bins, color='#1b9e77', alpha=0.85, edgecolor='white', linewidth=0.5)\naxes[1].set_xlabel('Death Step')\naxes[1].set_title(f'Deterministic Model (n={len(det_deaths)})')\naxes[1].axvline(x=10.5, color='gray', linestyle='--', linewidth=0.8, alpha=0.6)\naxes[1].axvline(x=20.5, color='gray', linestyle='--', linewidth=0.8, alpha=0.6)\naxes[1].set_xlim(0, 31)\n\nfig.suptitle('Death Timing Distribution', y=1.02)\nfig.tight_layout()\nfig.savefig(os.path.join(OUT_DIR, 'death_timing.pdf'))\nprint(f\"Saved death_timing.pdf\")\nplt.close()\n\n# ── Figure 3: Episode Length Comparison ──\nfig, ax = plt.subplots(figsize=(7, 4))\n\nlt_sorted = lt.sort_values('diff', ascending=False)\nx = np.arange(len(lt_sorted))\nwidth = 0.35\n\nbars1 = ax.bar(x - width/2, lt_sorted['int_mean'], width, \n               yerr=lt_sorted['int_std'], label='Internal', \n               color='#d95f02', alpha=0.85, capsize=3, error_kw={'linewidth': 0.8})\nbars2 = ax.bar(x + width/2, lt_sorted['det_mean'], width,\n               yerr=lt_sorted['det_std'], label='Deterministic',\n               color='#1b9e77', alpha=0.85, capsize=3, error_kw={'linewidth': 0.8})\n\nax.set_xlabel('Task')\nax.set_ylabel('Mean Episode Length (steps)')\nax.set_title('Episode Length: Internal vs. Deterministic')\nax.set_xticks(x)\nax.set_xticklabels(lt_sorted['short'], rotation=45, ha='right')\nax.legend(loc='lower right')\nax.set_ylim(0, 35)\nax.axhline(y=30, color='gray', linestyle=':', linewidth=0.8, alpha=0.5, label='Max steps')\n\nfig.tight_layout()\nfig.savefig(os.path.join(OUT_DIR, 'episode_length_comparison.pdf'))\nprint(f\"Saved episode_length_comparison.pdf\")\nplt.close()\n\n# ── Summary Stats ──\nprint(\"\\n\" + \"=\"*70)\nprint(\"SUMMARY INSIGHTS\")\nprint(\"=\"*70)\n\ntotal_det = (df['label'] == 'det-preferred').sum()\ntotal_int = (df['label'] == 'internal-preferred').sum()\ntotal_nopref = (df['label'] == 'no-preference').sum()\nprint(f\"\\nOverall: {len(df)} episodes\")\nprint(f\"  Det-preferred: {total_det} ({total_det/len(df)*100:.1f}%)\")\nprint(f\"  Internal-preferred: {total_int} ({total_int/len(df)*100:.1f}%)\")\nprint(f\"  No-preference: {total_nopref} ({total_nopref/len(df)*100:.1f}%)\")\nprint(f\"  Det/(Det+Int): {total_det/(total_det+total_int)*100:.1f}%\")\n\n# Death-conditioned routing\ndeath_eps = df[df['internal_final'] == -100.0]\nno_death_eps = df[df['internal_final'] != -100.0]\nprint(f\"\\nInternal-death episodes: {len(death_eps)}\")\nprint(f\"  Det-preferred: {(death_eps['label']=='det-preferred').sum()} ({(death_eps['label']=='det-preferred').mean()*100:.1f}%)\")\nprint(f\"Non-death episodes: {len(no_death_eps)}\")\nprint(f\"  Det-preferred: {(no_death_eps['label']=='det-preferred').sum()} ({(no_death_eps['label']=='det-preferred').mean()*100:.1f}%)\")\n\n# Which tasks have internal actually better?\nprint(\"\\nTasks where internal-preferred > 0:\")\nfor _, r in rt.iterrows():\n    if r['internal'] > 0:\n        print(f\"  {r['task']}: {r['internal']} episodes ({r['int_pct']:.1f}%)\")\n\nprint(\"\\nDone.\")\nSCRIPT_EOF",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat > /root/autodl-tmp/simgate-modular-routing/scripts/analyze_routing_patterns.py << 'SCRIPT_EOF'\nimport json\nimport os\nimport glob\nimport numpy as np\nimport pandas as pd\nimport matplotlib\nmatplotlib.use('Agg')\nimport matplotlib.pyplot as plt\nfrom matplotlib.colors import LinearSegmentedColormap\nfrom collections import defaultdict\n\nplt.rcParams.update({\n    'font.family': 'serif',\n    'font.serif': ['Times New Roman', 'DejaVu Serif'],\n    'font.size': 10,\n    'axes.labelsize': 11,\n    'axes.titlesize': 12,\n    'xtick.labelsize': 9,\n    'ytick.labelsize': 9,\n    'figure.dpi': 300,\n    'savefig.dpi': 300,\n    'savefig.bbox': 'tight',\n    'savefig.pad_inches': 0.05,\n})\n\nDATA_DIR = \"/root/autodl-tmp/simgate-modular-routing/results/plan_c\"\nOUT_DIR = \"/root/autodl-tmp/simgate-modular-routing/results/routing-patterns\"\n\nTASK_SHORT = {\n    'chemistry-mix': 'Chem-Mix',\n    'find-animal': 'Find-Animal',\n    'find-non-living-thing': 'Find-NL',\n    'freeze': 'Freeze',\n    'grow-fruit': 'Grow-Fruit',\n    'identify-life-stages-1': 'Life-Stage-1',\n    'identify-life-stages-2': 'Life-Stage-2',\n    'inclined-plane-determine-angle': 'Incline',\n    'lifespan-longest-lived': 'Lifespan-L',\n    'lifespan-longest-lived-then-shortest-lived': 'Lifespan-LS',\n    'measure-melting-point-unknown-substance': 'Melting-Pt',\n}\n\n# ── Load all episodes ──\nall_eps = []\nfor task_dir in sorted(glob.glob(os.path.join(DATA_DIR, \"*\"))):\n    task_name = os.path.basename(task_dir)\n    ep_file = os.path.join(task_dir, \"episode_summary.jsonl\")\n    if not os.path.exists(ep_file):\n        continue\n    with open(ep_file) as f:\n        for line in f:\n            rec = json.loads(line)\n            rec['task'] = task_name\n            all_eps.append(rec)\n\ndf = pd.DataFrame(all_eps)\nprint(f\"Total episodes: {len(df)}, Tasks: {df['task'].nunique()}\")\n\n# ── A. Per-task routing pattern ──\nprint(\"\\n\" + \"=\"*70)\nprint(\"A. PER-TASK ROUTING PATTERN\")\nprint(\"=\"*70)\n\nrouting_table = []\nfor task in sorted(df['task'].unique()):\n    sub = df[df['task'] == task]\n    n = len(sub)\n    det = (sub['label'] == 'det-preferred').sum()\n    internal = (sub['label'] == 'internal-preferred').sum()\n    nopref = (sub['label'] == 'no-preference').sum()\n    non_tie = det + internal\n    det_ratio = det / non_tie if non_tie > 0 else float('nan')\n    routing_table.append({\n        'task': task,\n        'short': TASK_SHORT.get(task, task),\n        'n': n,\n        'det': det,\n        'internal': internal,\n        'no_pref': nopref,\n        'det_ratio': det_ratio,\n        'det_pct': det / n * 100,\n        'int_pct': internal / n * 100,\n        'nopref_pct': nopref / n * 100,\n    })\n\nrt = pd.DataFrame(routing_table).sort_values('det_ratio', ascending=False)\nprint(f\"\\n{'Task':<42} {'N':>4} {'Det':>4} {'Int':>4} {'NoPr':>4} {'Det/(D+I)':>10}\")\nprint(\"-\"*70)\nfor _, r in rt.iterrows():\n    print(f\"{r['task']:<42} {r['n']:>4} {r['det']:>4} {r['internal']:>4} {r['no_pref']:>4} {r['det_ratio']:>10.3f}\")\n\n# ── B. Death timing analysis ──\nprint(\"\\n\" + \"=\"*70)\nprint(\"B. DEATH TIMING ANALYSIS\")\nprint(\"=\"*70)\n\ninternal_deaths = df[df['internal_final'] == -100.0].copy()\ndet_deaths = df[df['det_final'] == -100.0].copy()\n\ninternal_deaths['death_step'] = internal_deaths['internal_steps']\ndet_deaths['death_step'] = det_deaths['det_steps']\n\ndef bucket(step):\n    if step <= 10:\n        return 'early (1-10)'\n    elif step <= 20:\n        return 'mid (11-20)'\n    else:\n        return 'late (21-30)'\n\ninternal_deaths['bucket'] = internal_deaths['death_step'].apply(bucket)\ndet_deaths['bucket'] = det_deaths['death_step'].apply(bucket)\n\nprint(f\"\\nInternal deaths: {len(internal_deaths)}\")\nprint(f\"  Mean death step: {internal_deaths['death_step'].mean():.1f}\")\nprint(f\"  Median death step: {internal_deaths['death_step'].median():.1f}\")\nfor b in ['early (1-10)', 'mid (11-20)', 'late (21-30)']:\n    c = (internal_deaths['bucket'] == b).sum()\n    print(f\"  {b}: {c} ({c/len(internal_deaths)*100:.1f}%)\")\n\nprint(f\"\\nDeterministic deaths: {len(det_deaths)}\")\nprint(f\"  Mean death step: {det_deaths['death_step'].mean():.1f}\")\nprint(f\"  Median death step: {det_deaths['death_step'].median():.1f}\")\nfor b in ['early (1-10)', 'mid (11-20)', 'late (21-30)']:\n    c = (det_deaths['bucket'] == b).sum()\n    print(f\"  {b}: {c} ({c/len(det_deaths)*100:.1f}%)\")\n\n# Per-task death timing\nprint(\"\\nPer-task internal death timing:\")\nfor task in sorted(df['task'].unique()):\n    sub = internal_deaths[internal_deaths['task'] == task]\n    if len(sub) > 0:\n        print(f\"  {TASK_SHORT.get(task,task):<15}: n={len(sub):>2}, mean_step={sub['death_step'].mean():.1f}, \"\n              f\"early={sum(sub['bucket']=='early (1-10)')}, mid={sum(sub['bucket']=='mid (11-20)')}, late={sum(sub['bucket']=='late (21-30)')}\")\n\n# ── C. Episode length comparison ──\nprint(\"\\n\" + \"=\"*70)\nprint(\"C. EPISODE LENGTH COMPARISON\")\nprint(\"=\"*70)\n\nlength_table = []\nfor task in sorted(df['task'].unique()):\n    sub = df[df['task'] == task]\n    length_table.append({\n        'task': task,\n        'short': TASK_SHORT.get(task, task),\n        'n': len(sub),\n        'int_mean': sub['internal_steps'].mean(),\n        'int_std': sub['internal_steps'].std(),\n        'det_mean': sub['det_steps'].mean(),\n        'det_std': sub['det_steps'].std(),\n        'diff': sub['det_steps'].mean() - sub['internal_steps'].mean(),\n    })\n\nlt = pd.DataFrame(length_table)\nprint(f\"\\n{'Task':<15} {'N':>4} {'Int-Mean':>9} {'Int-Std':>8} {'Det-Mean':>9} {'Det-Std':>8} {'Diff':>6}\")\nprint(\"-\"*60)\nfor _, r in lt.iterrows():\n    print(f\"{r['short']:<15} {r['n']:>4} {r['int_mean']:>9.1f} {r['int_std']:>8.1f} {r['det_mean']:>9.1f} {r['det_std']:>8.1f} {r['diff']:>6.1f}\")\n\n# ════════════════════════════════════════════════════════\n# FIGURES\n# ════════════════════════════════════════════════════════\n\n# ── Figure 1: Routing Heatmap ──\nfig, ax = plt.subplots(figsize=(5, 4.5))\n\nrt_sorted = rt.sort_values('det_ratio', ascending=True)\ntasks_sorted = rt_sorted['short'].values\nheatmap_data = np.array([\n    rt_sorted['det_pct'].values,\n    rt_sorted['int_pct'].values,\n    rt_sorted['nopref_pct'].values,\n]).T\n\ncmap = LinearSegmentedColormap.from_list('custom', ['#f7fbff', '#2171b5'])\nim = ax.imshow(heatmap_data, cmap=cmap, aspect='auto', vmin=0, vmax=100)\n\nax.set_xticks([0, 1, 2])\nax.set_xticklabels(['Det-Preferred', 'Int-Preferred', 'No-Preference'])\nax.set_yticks(range(len(tasks_sorted)))\nax.set_yticklabels(tasks_sorted)\n\nfor i in range(len(tasks_sorted)):\n    for j in range(3):\n        val = heatmap_data[i, j]\n        color = 'white' if val > 50 else 'black'\n        ax.text(j, i, f'{val:.0f}%', ha='center', va='center', color=color, fontsize=8)\n\ncbar = plt.colorbar(im, ax=ax, shrink=0.8, label='Percentage (%)')\nax.set_title('Routing Label Distribution per Task')\nfig.savefig(os.path.join(OUT_DIR, 'routing_heatmap.pdf'))\nprint(f\"\\nSaved routing_heatmap.pdf\")\nplt.close()\n\n# ── Figure 2: Death Timing ──\nfig, axes = plt.subplots(1, 2, figsize=(8, 3.5), sharey=True)\n\nbins = np.arange(0.5, 31.5, 1)\n\naxes[0].hist(internal_deaths['death_step'], bins=bins, color='#d95f02', alpha=0.85, edgecolor='white', linewidth=0.5)\naxes[0].set_xlabel('Death Step')\naxes[0].set_ylabel('Count')\naxes[0].set_title(f'Internal Model (n={len(internal_deaths)})')\naxes[0].axvline(x=10.5, color='gray', linestyle='--', linewidth=0.8, alpha=0.6)\naxes[0].axvline(x=20.5, color='gray', linestyle='--', linewidth=0.8, alpha=0.6)\naxes[0].set_xlim(0, 31)\n\naxes[1].hist(det_deaths['death_step'], bins=bins, color='#1b9e77', alpha=0.85, edgecolor='white', linewidth=0.5)\naxes[1].set_xlabel('Death Step')\naxes[1].set_title(f'Deterministic Model (n={len(det_deaths)})')\naxes[1].axvline(x=10.5, color='gray', linestyle='--', linewidth=0.8, alpha=0.6)\naxes[1].axvline(x=20.5, color='gray', linestyle='--', linewidth=0.8, alpha=0.6)\naxes[1].set_xlim(0, 31)\n\nfig.suptitle('Death Timing Distribution', y=1.02)\nfig.tight_layout()\nfig.savefig(os.path.join(OUT_DIR, 'death_timing.pdf'))\nprint(f\"Saved death_timing.pdf\")\nplt.close()\n\n# ── Figure 3: Episode Length Comparison ──\nfig, ax = plt.subplots(figsize=(7, 4))\n\nlt_sorted = lt.sort_values('diff', ascending=False)\nx = np.arange(len(lt_sorted))\nwidth = 0.35\n\nbars1 = ax.bar(x - width/2, lt_sorted['int_mean'], width, \n               yerr=lt_sorted['int_std'], label='Internal', \n               color='#d95f02', alpha=0.85, capsize=3, error_kw={'linewidth': 0.8})\nbars2 = ax.bar(x + width/2, lt_sorted['det_mean'], width,\n               yerr=lt_sorted['det_std'], label='Deterministic',\n               color='#1b9e77', alpha=0.85, capsize=3, error_kw={'linewidth': 0.8})\n\nax.set_xlabel('Task')\nax.set_ylabel('Mean Episode Length (steps)')\nax.set_title('Episode Length: Internal vs. Deterministic')\nax.set_xticks(x)\nax.set_xticklabels(lt_sorted['short'], rotation=45, ha='right')\nax.legend(loc='lower right')\nax.set_ylim(0, 35)\nax.axhline(y=30, color='gray', linestyle=':', linewidth=0.8, alpha=0.5, label='Max steps')\n\nfig.tight_layout()\nfig.savefig(os.path.join(OUT_DIR, 'episode_length_comparison.pdf'))\nprint(f\"Saved episode_length_comparison.pdf\")\nplt.close()\n\n# ── Summary Stats ──\nprint(\"\\n\" + \"=\"*70)\nprint(\"SUMMARY INSIGHTS\")\nprint(\"=\"*70)\n\ntotal_det = (df['label'] == 'det-preferred').sum()\ntotal_int = (df['label'] == 'internal-preferred').sum()\ntotal_nopref = (df['label'] == 'no-preference').sum()\nprint(f\"\\nOverall: {len(df)} episodes\")\nprint(f\"  Det-preferred: {total_det} ({total_det/len(df)*100:.1f}%)\")\nprint(f\"  Internal-preferred: {total_int} ({total_int/len(df)*100:.1f}%)\")\nprint(f\"  No-preference: {total_nopref} ({total_nopref/len(df)*100:.1f}%)\")\nprint(f\"  Det/(Det+Int): {total_det/(total_det+total_int)*100:.1f}%\")\n\n# Death-conditioned routing\ndeath_eps = df[df['internal_final'] == -100.0]\nno_death_eps = df[df['internal_final'] != -100.0]\nprint(f\"\\nInternal-death episodes: {len(death_eps)}\")\nprint(f\"  Det-preferred: {(death_eps['label']=='det-preferred').sum()} ({(death_eps['label']=='det-preferred').mean()*100:.1f}%)\")\nprint(f\"Non-death episodes: {len(no_death_eps)}\")\nprint(f\"  Det-preferred: {(no_death_eps['label']=='det-preferred').sum()} ({(no_death_eps['label']=='det-preferred').mean()*100:.1f}%)\")\n\n# Which tasks have internal actually better?\nprint(\"\\nTasks where internal-preferred > 0:\")\nfor _, r in rt.iterrows():\n    if r['internal'] > 0:\n        print(f\"  {r['task']}: {r['internal']} episodes ({r['int_pct']:.1f}%)\")\n\nprint(\"\\nDone.\")\nSCRIPT_EOF",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T11:52:11.689884+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T11:52:11.690042+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 scripts/analyze_routing_patterns.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 scripts/analyze_routing_patterns.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T11:52:11.690217+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Total episodes: 245, Tasks: 11\\n\\n======================================================================\\nA. PER-TASK ROUTING PATTERN\\n======================================================================\\n\\nTask                                          N  Det  Int NoPr  Det/(D+I)\\n----------------------------------------------------------------------\\nfind-animal                                  20    5    0   15      1.000\\nidentify-life-stages-1                       20    9    0   11      1.000\\nfreeze                                       20    6    0   14      1.000\\nmeasure-melting-point-unknown-substance      20    6    0   14      1.000\\ninclined-plane-determine-angle               20    7    0   13      1.000\\nidentify-life-stages-2                       20    6    0   14      1.000\\nlifespan-longest-lived                       25   11    1   13      0.917\\nlifespan-longest-lived-then-shortest-lived   20    8    1   11      0.889\\ngrow-fruit                                   20    6    1   13      0.857\\nfind-non-living-thing                        40   16    4   20      0.800\\nchemistry-mix                                20    6    2   12      0.750\\n\\n======================================================================\\nB. DEATH TIMING ANALYSIS\\n======================================================================\\n\\nInternal deaths: 105\\n  Mean death step: 18.6\\n  Median death step: 17.0\\n  early (1-10): 4 (3.8%)\\n  mid (11-20): 73 (69.5%)\\n  late (21-30): 28 (26.7%)\\n\\nDeterministic deaths: 40\\n  Mean death step: 21.9\\n  Median death step: 23.0\\n  early (1-10): 0 (0.0%)\\n  mid (11-20): 12 (30.0%)\\n  late (21-30): 28 (70.0%)\\n\\nPer-task internal death timing:\\n  Chem-Mix       : n= 9, mean_step=18.0, early=1, mid=4, late=4\\n  Find-Animal    : n=10, mean_step=20.1, early=0, mid=6, late=4\\n  Freeze         : n=11, mean_step=18.0, early=0, mid=9, late=2\\n 
+…[truncated 2437 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T11:52:11.690398+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/routing-patterns/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/routing-patterns/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T11:52:11.690531+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 72\\ndrwxr-xr-x  2 root root   110 May 15 19:51 .\\ndrwxr-xr-x 32 root root  4096 May 15 19:50 ..\\n-rw-r--r--  1 root root 16150 May 15 19:51 death_timing.pdf\\n-rw-r--r--  1 root root 20078 May 15 19:51 episode_length_comparison.pdf\\n-rw-r--r--  1 root root 30208 May 15 19:51 routing_heatmap.pdf\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_routing-patterns_20260515T114910",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-15T11:52:11.690704+00:00_
+
+3 个 PDF 和分析脚本均已就绪。
+
+---
+
+## 产出
+
+### 文件
+- `results/routing-patterns/routing_heatmap.pdf` (30KB)
+- `results/routing-patterns/death_timing.pdf` (16KB)
+- `results/routing-patterns/episode_length_comparison.pdf` (20KB)
+- `scripts/analyze_routing_patterns.py`
+
+### 分析 Summary
+
+**Routing Pattern（245 episodes, 11 tasks）**
+
+| 指标 | 值 |
+|---|---|
+| Det-preferred | 86 (35.1%) |
+| Internal-preferred | 9 (3.7%) |
+| No-preference | 150 (61.2%) |
+| **Det/(Det+Int)** | **90.5%** |
+
+- 6 个 task（Find-Animal, Life-Stage-1/2, Freeze, Melting-Pt, Incline）Det/(Det+Int) = **100%**，无一 episode 偏好 internal
+- 5 个 task 有 internal-preferred episodes，最多的是 Find-NL（4/40=10%）和 Chem-Mix（2/20=10%）
+
+**Death Timing**
+
+| | Internal | Deterministic |
+|---|---|---|
+| 总 death 数 | 105 | 40 |
+| Mean death step | **18.6** | **21.9** |
+| Early (1-10) | 3.8% | 0.0% |
+| **Mid (11-20)** | **69.5%** | 30.0% |
+| Late (21-30) | 26.7% | **70.0%** |
+
+**关键 insight**: Internal model 的 death 集中在 mid-game（steps 11-20, 69.5%），而 deterministic model 的 death 集中在 late-game（steps 21-30, 70.0%）。Internal model 平均早 3.3 步死亡。这说明 internal model 在中期阶段更容易做出致命错误决策。
+
+**Episode Length**
+
+- Internal 平均 episode 长度在所有 task 上都 ≤ deterministic（因为 death 导致提前终止）
+- Find-NL 是唯一例外（两者均为 30.0，该 task 无 death）
+- 差距最大的是 Life-Stage-1（+5.7 步）和 Lifespan-L（+5.2 步）
+
+**Death-conditioned routing**: Internal 死亡的 105 个 episode 中 66.7% 被标记为 det-preferred；无 death 的 140 个 episode 中仅 11.4% 为 det-preferred。Death asymmetry 是 routing label 的主要驱动信号。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_routing-patterns_20260515T114910"
+}
+```
+
+</details>
+
+---

@@ -1,0 +1,354 @@
+direct_competitors: []
+scienceworld_baselines:
+- id: cogrouter-2026
+  arxiv_id: '2602.12662'
+  title: 'Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents'
+  authors: Yang et al.
+  venue: arXiv:2602.12662, Feb 2026
+  relation: complementary
+  relevance: high
+  summary: 'SOTA on ScienceWorld (82.3% with Qwen2.5-7B). Routes between cognitive
+    depth levels (instinct to strategic planning) via CoPO, not between internal vs
+    deterministic computation. Does not analyze WHAT drives routing signal. Cite as
+    SOTA baseline and adaptive computation related work.
+
+    '
+  our_differentiation: 'CogRouter optimizes HOW MUCH to think; we analyze WHAT routing
+    learns (death avoidance = 99%). Different routing dimensions (depth vs modality).
+
+    '
+- id: itp-2026
+  arxiv_id: '2601.08955'
+  title: 'Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models'
+  authors: Liu et al.
+  venue: arXiv:2601.08955, Jan 2026
+  relation: complementary
+  relevance: high
+  summary: 'Extends POIMDP with world model lookahead on ScienceWorld/ALFWorld/WebShop.
+    Adaptive lookahead horizon based on task progress. Uses approximate LLM world
+    model, not deterministic simulator.
+
+    '
+  our_differentiation: 'ITP routes lookahead depth using world model; we route modality
+    (internal vs deterministic) and discover death avoidance dominates. ITP world
+    model is approximate; our deterministic computation is exact.
+
+    '
+- id: mtrouter-2026
+  arxiv_id: '2604.23530'
+  title: 'MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings'
+  authors: Zhang et al.
+  venue: arXiv:2604.23530, ACL 2026
+  relation: complementary
+  relevance: high
+  summary: 'Multi-turn routing between different LLMs on ScienceWorld (53.8 avg score,
+    -58.7% cost vs GPT-5). Routes between model APIs for cost optimization.
+
+    '
+  our_differentiation: 'MTRouter routes between different LLMs (cost-quality tradeoff);
+    we route between reasoning modalities (internal vs deterministic). Different routing
+    targets, different findings. We analyze routing signal composition; they optimize
+    cost.
+
+    '
+tool_use_routing:
+- id: retool-2026
+  arxiv_id: '2504.11536'
+  title: 'ReTool: Reinforcement Learning for Strategic Tool Use in LLMs'
+  authors: Feng et al.
+  venue: arXiv:2504.11536, ICLR 2026
+  relation: complementary
+  relevance: high
+  summary: 'RL framework to learn when to invoke code interpreter for math reasoning.
+    Implicit routing entangled with backbone LLM. AIME2024 67.0% (Qwen2.5-32B).
+
+    '
+  our_differentiation: 'ReTool implicit routing via RL in math domain. SimGate explicit
+    modular router with counterfactual labels in interactive environment. We analyze
+    routing signal composition; they optimize tool usage strategy.
+
+    '
+- id: toolformer-2024
+  title: 'Toolformer: Language Models Can Teach Themselves to Use Tools'
+  authors: Schick et al.
+  venue: NeurIPS 2024
+  relation: background
+  relevance: medium
+  summary: Self-supervised tool-use learning via API call insertion.
+  our_differentiation: 'Hindsight labels from environment forking, not self-supervised.
+    Safety-aware framing, not general tool selection.
+
+    '
+- id: art-2023
+  title: 'ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models'
+  authors: Paranjape et al.
+  venue: '2023'
+  relation: background
+  relevance: medium
+  summary: Automated tool selection via LLM reasoning chains.
+  our_differentiation: Dedicated lightweight router, not LLM-as-router.
+- id: chameleon-2024
+  title: 'Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models'
+  authors: Lu et al.
+  venue: '2024'
+  relation: background
+  relevance: medium
+  summary: LLM-as-planner routing to diverse tools.
+  our_differentiation: 'Single modality (deterministic computation), explicit small
+    router, counterfactual methodology to understand routing signal composition.
+
+    '
+- id: toolkengpt-2024
+  title: 'ToolkenGPT: Augmenting Frozen Language Models with Massive Tools via Tool
+    Embeddings'
+  authors: Hao et al.
+  venue: '2024'
+  relation: background
+  relevance: low
+  summary: Token-level tool triggers via special embeddings.
+  our_differentiation: Step-level routing with counterfactual episode labels.
+adaptive_computation:
+- id: ares-2026
+  arxiv_id: '2603.07915'
+  title: 'ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents'
+  authors: Yang et al.
+  venue: arXiv:2603.07915, Mar 2026
+  relation: complementary
+  relevance: medium
+  summary: 'Lightweight router predicts per-step reasoning effort (low/medium/high).
+    Trained via trajectory filtering + effort annotation + SFT. Reduces tokens by
+    52.7%. Evaluated on TAU-Bench, WebArena, BrowseComp-Plus.
+
+    '
+  our_differentiation: 'Similar router architecture pattern (lightweight SFT router),
+    but routes reasoning effort, not modality. We contribute the empirical finding
+    about death avoidance dominance, not the router design.
+
+    '
+- id: dynathink-2025
+  arxiv_id: '2506.00320'
+  title: 'Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation in
+    AI Agents'
+  venue: arXiv:2506.00320, May 2025
+  relation: complementary
+  relevance: medium
+  summary: 'Integrates world model simulation into agent reasoning loop. Uses critique
+    generation for world model training. 32B Dyna-Think matches 685B R1 with 2x fewer
+    tokens.
+
+    '
+  our_differentiation: 'Dyna-Think synthesizes reasoning and simulation; we analyze
+    the signal composition of routing between them and find death avoidance dominates.
+
+    '
+- id: mixture-of-recursions-2025
+  arxiv_id: '2507.10524'
+  title: 'Mixture-of-Recursions: Learning Dynamic Recursive Depths for Adaptive Token-Level
+    Computation'
+  authors: Bae et al.
+  venue: arXiv:2507.10524, NeurIPS 2025
+  relation: background
+  relevance: low
+  summary: Architecture-level adaptive depth routing via lightweight routers.
+  our_differentiation: Architecture-level, not agent-level routing.
+agent_safety:
+- id: toolsafety-2025
+  title: 'ToolSafety: A Comprehensive Dataset for Enhancing Safety in LLM-Based Agent
+    Tool Invocations'
+  venue: EMNLP 2025
+  relation: complementary
+  relevance: medium
+  summary: '5668 direct harm + 4311 indirect harm + 4311 multi-step samples for tool
+    invocation safety. Covers multi-step interaction vulnerabilities.
+
+    '
+  our_differentiation: 'ToolSafety addresses adversarial/misuse safety of tool calls.
+    We study safety as catastrophic task failure (death) and its role as routing signal.
+    Different safety definitions.
+
+    '
+- id: openagentsafety-2026
+  title: 'OpenAgentSafety: A Comprehensive Benchmark'
+  venue: ICLR 2026
+  relation: background
+  relevance: low
+  summary: 'Agent safety benchmark. Finds individually safe steps compounding into
+    unsafe outcomes over multi-turn interactions.
+
+    '
+- id: llm-agentic-failures-2025
+  arxiv_id: '2512.07497'
+  title: How Do LLMs Fail In Agentic Scenarios? A Qualitative Analysis
+  venue: arXiv:2512.07497, Dec 2025
+  relation: complementary
+  relevance: medium
+  summary: 'Identifies 4 failure archetypes: premature action, over-helpfulness, distractor
+    pollution, fragile execution. Qualitative analysis on 900 traces.
+
+    '
+  our_differentiation: 'They categorize failure types qualitatively; we quantify the
+    dominant failure mechanism (death) and its contribution to routing signal (99%).
+
+    '
+- id: envsimbench-2025
+  title: 'EnvSimBench: State Prediction for LLM Environment Simulation'
+  venue: '2025'
+  relation: complementary
+  relevance: high
+  summary: 'Discovers state-change cliff: LLMs fail catastrophically when multiple
+    state variables require simultaneous updates. Directly explains WHY deterministic
+    computation helps on rule-governed environments.
+
+    '
+  our_differentiation: 'EnvSimBench diagnoses WHERE LLMs fail (multi-variable state
+    transitions); we quantify the CONSEQUENCE (death avoidance = 99% of routing signal).
+    Highly complementary: their finding explains the mechanism behind ours.
+
+    '
+trajectory_methods:
+- id: tsr-2026
+  arxiv_id: '2602.11767'
+  title: 'TSR: Trajectory-Search Rollouts for Multi-Turn RL of LLM Agents'
+  authors: IBM Research
+  venue: arXiv:2602.11767, ICLR 2026
+  relation: complementary
+  relevance: medium
+  summary: 'Tree-search trajectory optimization for multi-turn RL training. Branching
+    at high-uncertainty steps. Up to 15% absolute gains.
+
+    '
+  our_differentiation: 'TSR uses tree search for training optimization; our counterfactual
+    analysis runs complete episodes under pure strategies for diagnostic purposes.
+
+    '
+- id: routerr1-2025
+  title: 'Router-R1: Teaching LLMs Multi-Round Routing and Aggregation via Reinforcement
+    Learning'
+  venue: NeurIPS 2025
+  relation: background
+  relevance: low
+  summary: RL-based multi-LLM routing with reasoning traces.
+other_references:
+- id: react-2023
+  title: 'ReAct: Synergizing Reasoning and Acting in Language Models'
+  relation: background
+  relevance: medium
+- id: dagger-2011
+  title: A Reduction of Imitation Learning to No-Regret Online Learning (DAgger)
+  authors: Ross et al.
+  relation: background
+  relevance: medium
+  summary: Distribution shift in imitation learning. Cited for DAgger gap discussion.
+- id: scienceworld-2022
+  title: 'ScienceWorld: Is your Agent Smarter than a 5th Grader?'
+  venue: EMNLP 2022
+  relation: background
+  relevance: high
+  summary: The benchmark environment used in our experiments.
+papers:
+  cogrouter-2026:
+    arxiv_id: '2602.12662'
+    title: 'Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents'
+    authors: Yang et al.
+    year: 2026
+    venue: arXiv
+    relevance: high
+    role: background
+    verified: false
+  itp-2026:
+    arxiv_id: '2601.08955'
+    title: 'Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models'
+    authors: Liu et al.
+    year: 2026
+    venue: arXiv
+    relevance: high
+    role: background
+    verified: false
+  mtrouter-2026:
+    arxiv_id: '2604.23530'
+    title: 'MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings'
+    authors: Zhang et al.
+    year: 2026
+    venue: ACL 2026
+    relevance: high
+    role: background
+    verified: false
+  retool-2026:
+    arxiv_id: '2504.11536'
+    title: 'ReTool: Reinforcement Learning for Strategic Tool Use in LLMs'
+    authors: Feng et al.
+    year: 2026
+    venue: ICLR 2026
+    relevance: high
+    role: background
+    verified: false
+  ares-2026:
+    arxiv_id: '2603.07915'
+    title: 'ARES: Adaptive Reasoning Effort Selection for Efficient LLM Agents'
+    authors: Yang et al.
+    year: 2026
+    venue: arXiv
+    relevance: medium
+    role: background
+    verified: false
+  dynathink-2025:
+    arxiv_id: '2506.00320'
+    title: 'Dyna-Think: Synergizing Reasoning, Acting, and World Model Simulation
+      in AI Agents'
+    year: 2025
+    venue: arXiv
+    relevance: medium
+    role: background
+    verified: false
+  llm-agentic-failures-2025:
+    arxiv_id: '2512.07497'
+    title: How Do LLMs Fail In Agentic Scenarios? A Qualitative Analysis
+    year: 2025
+    venue: arXiv
+    relevance: medium
+    role: background
+    verified: false
+  tsr-2026:
+    arxiv_id: '2602.11767'
+    title: 'TSR: Trajectory-Search Rollouts for Multi-Turn RL of LLM Agents'
+    authors: IBM Research
+    year: 2026
+    venue: ICLR 2026
+    relevance: medium
+    role: background
+    verified: false
+  envsimbench-2025:
+    title: 'EnvSimBench: State Prediction for LLM Environment Simulation'
+    year: 2025
+    venue: arXiv
+    relevance: high
+    role: background
+    verified: false
+scan_metadata:
+  date: '2026-05-14'
+  keywords_searched:
+  - LLM agent safety + routing / mode switching
+  - death avoidance + language model agent
+  - counterfactual evaluation + interactive environment
+  - ScienceWorld + agent (2025-2026)
+  - modular reasoning + agent safety
+  - CogRouter ScienceWorld
+  - tool use routing learning LLM
+  - deterministic simulation LLM agent catastrophic failure
+  - ITP world model routing ScienceWorld
+  - ReTool code interpreter routing
+  - ARES adaptive reasoning
+  - MTRouter multi-turn routing ScienceWorld
+  - EnvSimBench state prediction
+  - fork-based trajectory evaluation
+  - episode-level evaluation sparse reward
+  - Mixture-of-Depths adaptive computation
+  - Dyna-Think world model
+  - safety-aware tool selection catastrophic action
+  new_papers_found: 12
+  direct_competitors_found: 0
+  novelty_threat: none
+meta:
+  last_updated: '2026-05-22T17:42:17.375Z'
+  total_papers: 9
+categories: []

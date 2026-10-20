@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cff59754bbe0dd84ec2",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp cross split robustness 8seed",
+  "task_key": "worker_exp_cross-split-robustness-8seed_20260516T010054",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_cross-split-robustness-8seed_20260516T010054_result.json",
+    "occurrence": 1,
+    "bytes": 1019,
+    "sha256": "06cc1e2c57af474b09b583d9bce816f151d4b66462bb47d84101b26e4a6bb8bb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果汇总：\n\n### Cross-Split Robustness 结果\n\n| Seed | Cross-Split | Corrected Eval | Δ |\n|------|------------|---------------|-------|\n| 42 | 0.4813 | 0.5761 | -0.0948 |\n| 43 | 0.4792 | 0.4852 | -0.0060 |\n| 44 | 0.4958 | 0.6074 | -0.1116 |\n| 45 | 0.4938 | 0.5467 | -0.0529 |\n| 46 | 0.4854 | 0.4463 | +0.0391 |\n| 47 | 0.4313 | 0.5185 | -0.0872 |\n| 48 | 0.4542 | 0.5370 | -0.0828 |\n| 49 | 0.4479 | 0.6111 | -0.1632 |\n| **Mean** | **0.4711±0.0221** | **0.5410±0.0538** | **-0.0699** |\n\n**结论：NOT split-robust。** |mean Δ| = 7.0pp，远超 2pp 阈值。\n\n关键发现：\n- Episode-level split 的 val set（10 episodes, 300 samples, 80/20 det/int 比例）系统性比 step-level split 得分低约 7pp\n- Cross-split std（2.2pp）远低于 corrected eval std（5.4pp），说明 corrected eval 的高方差来自不同 split seed 选择不同步骤，而非模型本身不稳定\n- 只有 seed 46 在 cross-split 上更高（+3.9pp），其余 7 seeds 均下降"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-cross-split-robustness-8seed.md"
+}

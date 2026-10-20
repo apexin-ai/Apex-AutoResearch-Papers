@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02086bb976aa323ea443",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh crafter seed patch demo",
+  "task_key": "worker_ssh_crafter-seed-patch-demo_20260518T042352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_crafter-seed-patch-demo_20260518T042352_result.json",
+    "occurrence": 1,
+    "bytes": 1181,
+    "sha256": "1258d66a3b20cb30ba8614bb7c94b1813ede4fdb65bf7ca9f461f89ce6872ae0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 5 Episode 基础统计（seed=42, random agent）\n\n| Episode | Steps | Reward | Death | Final Health | Achievements |\n|---------|-------|--------|-------|--------------|-------------|\n| 0 | 180 | 3.10 | Yes | 0 | collect_sapling, collect_wood, place_plant, place_table, wake_up |\n| 1 | 40 | -0.90 | Yes | 0 | (none) |\n| 2 | 135 | 2.10 | Yes | 0 | collect_sapling, place_plant, wake_up |\n| 3 | 254 | 2.10 | Yes | 0 | collect_sapling, place_plant, wake_up |\n| 4 | 148 | 0.10 | Yes | 0 | wake_up |\n\n### 确定性验证：**通过**\n两次 `PYTHONHASHSEED=0 python episode_runner.py --seed 42` 的 JSON 输出完全一致（`diff` 为空）。\n\n### 修改内容\n1. **seed_patch.py** — 创建完成，替换 `World._chunks` 的 `set` 为 `OrderedSet`\n2. **episode_runner.py** — 三处修改：\n   - 导入并调用 `apply_determinism_patch()`\n   - 添加 `random.seed()` + `np.random.seed()` 全局 RNG seeding\n   - 添加 `--output` 参数支持\n\n### 注意\n运行时需要 `PYTHONHASHSEED=0`，因为 crafter 的 `Env.reset()` 用 `hash((seed, episode))` 计算 per-episode seed，Python 3 的 `hash()` 默认随机化。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-crafter-seed-patch-demo.md"
+}

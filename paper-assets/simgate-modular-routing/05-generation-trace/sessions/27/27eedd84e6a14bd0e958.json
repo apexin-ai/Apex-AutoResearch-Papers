@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27eedd84e6a14bd0e958",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "urgent plan006 log check",
+  "task_key": "worker_urgent_plan006-log-check_20260515T161020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_plan006-log-check_20260515T161020_result.json",
+    "occurrence": 1,
+    "bytes": 2003,
+    "sha256": "be2d524f79148d01a58d4d46543ff6d1ad1778e30a3dab12d4c5db0497c2332e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 判定结果：部分成功\n\n### 1. 日志关键内容\n\n| 日志 | 最后状态 |\n|------|---------|\n| GPU1 (`plan006_deep_internal.log`) | `EngineCore Shutdown complete` @ 00:10:38 — 正常关闭（被 kill） |\n| GPU0 (`plan006_gpu0.log`) | `ERROR: Engine core proc EngineCore died unexpectedly` @ 00:10:48 — **非预期崩溃** |\n\nGPU1 被 kill 时连带触发了 GPU0 的 vLLM EngineCore 崩溃（两个进程共享同一台机器的 GPU 驱动层，kill GPU1 的 vLLM 实例影响了 GPU0）。\n\n### 2. Episode 数量\n\n| Task | Episodes | 状态 |\n|------|----------|------|\n| identify-life-stages-1 | **20/20** | ✓ |\n| lifespan-longest-lived | **20/20** | ✓ |\n| find-non-living-thing | **20/20** | ✓ |\n| inclined-plane-determine-angle | **20/20** | ✓ |\n| lifespan-longest-lived-then-shortest-lived | **18/20** | ✗ 缺 2 |\n| chemistry-mix | **13/20** | ✗ 缺 7 |\n| **Total** | **111/120** | **92.5%** |\n\n### 3. 数据质量\n\n结构正确，两个 task 抽样验证通过：\n- 字段完整：`episode_idx`, `variation_idx`, `always_deep_internal` (含 `mode`, `task_name`, `final_score`, `num_steps`, `total_time_s`, `action_history`, `steps`)\n- 每个 step 含：`step`, `action`, `modality=\"deep-internal\"`, `score_before`, `score_after`, `score_delta`, `observation`, `is_dead`\n- `modality: \"deep-internal\"` 标记正确\n\n### 4. GPU 状态\n\n| GPU | 显存占用 | 利用率 |\n|-----|---------|--------|\n| GPU0 | 0 MiB | 0% |\n| GPU1 | 15397 MiB | 0% |\n\nPID 499313 仍存活但 EngineCore 已死，是僵尸进程。GPU1 上残留显存（被 kill 的进程的 vLLM 模型权重未释放）。\n\n### 5. 需要补收\n\n| Task | 缺失 | 起始 episode_idx |\n|------|------|-----------------|\n| lifespan-longest-lived-then-shortest-lived | 2 episodes | idx 18 |\n| chemistry-mix | 7 episodes | idx 13 |\n\n**建议下一步**：kill 僵尸进程 499313，释放 GPU1 显存，然后在单卡上补收这 9 个 episodes。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-plan006-log-check.md"
+}

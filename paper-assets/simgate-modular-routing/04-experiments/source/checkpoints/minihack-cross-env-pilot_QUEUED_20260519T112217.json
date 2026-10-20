@@ -1,0 +1,17 @@
+{
+  "exp_id": "minihack-cross-env-pilot",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T11:15:20.064Z",
+    "updated_at": "2026-05-19T11:22:16.864Z",
+    "hypothesis": "In MiniHack permadeath navigation environments, episode-level counterfactual analysis will reveal death dominance (internal DR significantly > deterministic DR), validating the diagnostic framework's cross-environment applicability beyond ScienceWorld. This tests whether death avoidance as the dominant routing signal is a general phenomenon of LLM agents in irreversible-failure environments, not an artifact of ScienceWorld's specific task design.",
+    "parent": "plan-012-full",
+    "notes": "Reviewer 调整 (D122): (1) Det baseline 定义为 \"rule-based computation with ground-truth state access\" (BFS + 完整地图), 非 generic \"deterministic baseline\"; (2) N=100 per condition (200 total), 非 50+50; (3) Day 2 决策点: 10-ep pilot 后 DR<20% 或 >90% 立即切环境。westd-18266 四卡可用。"
+  },
+  "timestamp": "2026-05-19T11:22:17.106930+00:00",
+  "trigger": "update_registry"
+}

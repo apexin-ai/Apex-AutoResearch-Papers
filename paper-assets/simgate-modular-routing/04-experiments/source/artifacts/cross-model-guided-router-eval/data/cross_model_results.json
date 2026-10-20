@@ -1,0 +1,1 @@
+{\"experiment\":\"cross-model-guided-router-eval\",\"source_model\":\"Qwen-2.5-7B\",\"target_model\":\"Llama-3.1-8B\",\"overall\":{\"balanced_accuracy\":1.0,\"det_recall\":1.0,\"internal_recall\":0.0,\"n_evaluated\":24,\"n_total\":70,\"active_classes\":1},\"comparison\":{\"qwen_in_sample\":0.6292,\"qwen_loto\":0.6292,\"cross_model\":1.0},\"degenerate\":true}

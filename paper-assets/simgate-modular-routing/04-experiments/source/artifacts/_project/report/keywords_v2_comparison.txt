@@ -1,0 +1,8 @@
+v1 vs v2 Keyword Heuristic Comparison
+
+v1 (20 keywords): match rate 86.1%, det-preferred 97.5% (199/204), accuracy 97.7% (83/85). Top: connect(3963), activate(250), freeze(36).
+v2 (17 science verbs): match rate 4.9%, det-preferred 0.5% (1/203), accuracy 1.2% (1/84). Top: activate(250), freeze(36), mix(2).
+
+Analysis: v2 eliminated connect/disconnect false hits (3963->0), but science verbs rarely appear in ScienceWorld actions. v1=always-det, v2=always-internal. Keyword heuristic fails at episode-level.
+
+Server files: results/rule_based_accuracy_v2_test.json, results/rule_based_accuracy_v1_rerun.json, src/rule_based_keywords_v2.json

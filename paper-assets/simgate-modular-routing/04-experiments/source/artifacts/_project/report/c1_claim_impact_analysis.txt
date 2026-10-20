@@ -1,0 +1,11 @@
+C1 Claim Impact Analysis
+
+Two extreme cases form natural experiment pair:
+- find-animal: 100% death-driven signal, 0 score_comparison preference
+- find-non-living-thing: 0% death, delta≈0
+
+Recommended C1 (standard tier): "Death avoidance accounts for ~99% of routing signal (Δ_full=+38.33 vs Δ_nd=+0.48, r=0.986). Non-death performance differences are small and statistically insignificant across 30 task types."
+
+Case study draft (146 words) ready for Results section.
+
+Prediction: 3-4 of 5 genuine-det tasks will converge to death-dominated at 20 eps.

@@ -1,0 +1,50 @@
+{
+  "exp_id": "plan-002-formal",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:28:33.051Z",
+    "updated_at": "2026-05-14T05:35:48.981Z",
+    "hypothesis": "Router SFT 正式训练：Qwen3-1.7B + LoRA r=16, 3 epochs, batch_size=4 + grad_accum=8 (有效 batch=32), class_weights auto + WeightedRandomSampler。诊断性 probe——验证 learned router 能否从 episode-level counterfactual labels 学到 routing signal（尤其 internal-preferred minority class）。Dryrun 确认 pipeline 通但 1 epoch 退化，3 epochs 应足以收敛。",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python src/router_sft_train.py --data_dir results/plan_c --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-002-formal --seed 42 --wandb_project simgate-modular-routing\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "221402",
+      "log_path": "~/runs/simgate-modular-routing/plan-002-formal.log",
+      "submitted_at": "2026-05-14T05:30:17.368Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 258.1,
+      "gpu_hours": 0.07
+    },
+    "server": "westb-13313",
+    "gpu": "cuda:0",
+    "pid": "221402",
+    "log_path": "~/runs/simgate-modular-routing/plan-002-formal.log",
+    "reproduce": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python src/router_sft_train.py --data_dir results/plan_c --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-002-formal --seed 42 --wandb_project simgate-modular-routing\"",
+      "finished_at": "2026-05-14T05:34:34.020Z"
+    },
+    "failure_reason": "Traceback → -packages/urllib3/util/connection.py\", line 85, in create_connection raise err File \"/root/miniconda3/lib/python3.12/site-packages/urllib3/util/connection.py\", line 73, in create_connection sock.connect(sa) OSError: [Errno 101] Network is unreachable",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T05:34:35.495Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T05:34:36.519929+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T05:35:49.036646+00:00",
+  "trigger": "update_registry"
+}

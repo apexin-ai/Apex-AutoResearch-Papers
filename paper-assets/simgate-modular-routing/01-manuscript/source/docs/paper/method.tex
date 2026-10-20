@@ -1,0 +1,84 @@
+\section{Method}
+\label{sec:method}
+
+Our diagnostic framework (Figure~\ref{fig:pipeline}) quantifies what drives routing signal in interactive environments through two components: (i)~episode-level counterfactual labeling that generates routing preferences from paired pure-strategy outcomes (\S\ref{sec:collection}--\ref{sec:labeling}); and (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\S\ref{sec:daf}). A supplementary Signal Concentration Index (SCI; Appendix~\ref{app:sci}) measures whether signal is concentrated in a few task types. Episode-level bootstrap resampling provides 95\% confidence intervals for all metrics.
+
+\subsection{Problem Setup}
+\label{sec:problem-setup}
+
+Consider an interactive environment with observation space $\mathcal{O}$ and action space $\mathcal{A}$. An agent policy $\pi: \mathcal{O}^* \rightarrow \mathcal{A}$ maps observation histories to actions. We define two computation modes $\mathcal{M} = \{{\tt int}, {\tt det}\}$: \textbf{internal} (${\tt int}$), where the agent predicts intermediate observations via chain-of-thought reasoning (ReAct~\citep{react-2023}), with prediction errors compounding across steps; and \textbf{deterministic} (${\tt det}$), which uses the same LLM to generate candidate actions but evaluates them through privileged environment feedback (ground-truth simulator state in ScienceWorld, code interpreter in MATH, admissible-action enumeration in ALFWorld; see \S\ref{sec:cross-env} for environment-specific operationalizations). Crucially, the deterministic strategy does not provide optimal actions; it reduces observation uncertainty by grounding the LLM's choices in verified environment state rather than predicted state. These qualitative differences affect what routing signals the framework can detect. A \emph{routing policy} $\rho: \mathcal{O}^* \rightarrow \mathcal{M}$ selects which computation mode to use at each step; our analysis investigates what signal is available to learn $\rho$.
+
+\subsection{Counterfactual Episode Collection}
+\label{sec:collection}
+
+Per-step oracle labeling degenerates under sparse terminal rewards: on ScienceWorld \citep{scienceworld-2022}, 97.4\% of steps (5{,}935 of 6{,}094 across 11 prescreened task types) produce identical intermediate scores, yielding no per-step routing signal. Episode-level comparison (directly measuring terminal outcomes) is therefore the principled granularity for sparse-reward environments.
+
+\paragraph{Pure-strategy trajectories.}
+For a task instance $t$ and computation mode $m \in \mathcal{M}$, a \emph{pure-strategy trajectory} is the complete episode obtained by applying mode $m$ at every step:
+\begin{equation}
+    \tau_m^{(t)} = (o_1, a_1, o_2, a_2, \ldots, o_T, a_T)
+\end{equation}
+where $T \leq T_{\max}$ is the episode length (capped at $T_{\max} = 30$ steps). Both trajectories $\tau_{\tt int}^{(t)}$ and $\tau_{\tt det}^{(t)}$ are executed under identical initial conditions (same random seed, same task variation), so performance differences arise solely from the computation mode choice.
+
+Each trajectory $\tau$ yields a terminal score $s(\tau) \in \mathbb{Z}$ and a death indicator $d(\tau) \in \{0, 1\}$. When the agent dies ($d = 1$), the environment imposes a penalty: $s(\tau) = -P$ where $P > 0$ ($P = 100$ in ScienceWorld). The episode pair produces a tuple:
+\begin{multline}
+    \bigl(s^{\tt int}, s^{\tt det}, d^{\tt int}, d^{\tt det}\bigr) \triangleq \\
+    \bigl(s(\tau_{\tt int}),\, s(\tau_{\tt det}),\, d(\tau_{\tt int}),\, d(\tau_{\tt det})\bigr)
+\end{multline}
+
+We use Qwen2.5-7B-Instruct~\citep{qwen25-2024} (vLLM v0.21.0) on ScienceWorld \citep{scienceworld-2022}, a text-based environment spanning 30 task types with a $-100$ death penalty; complete prompt templates are provided in Appendix~\ref{app:prompt-templates}. After prescreening, we collect 245 episode pairs across 11 task types (20--40 per type). The framework is applicable to any environment where paired episodes under two computation modes can be collected with binary success/failure indicators. We apply it unchanged to ALFWorld and MATH in \S\ref{sec:math-contrast}--\ref{sec:cross-env}.
+
+\subsection{Episode-Level Labeling}
+\label{sec:labeling}
+
+\begin{algorithm}[t]
+\caption{Episode-Level Counterfactual Labeling}
+\label{alg:labeling}
+\begin{algorithmic}[1]
+\REQUIRE Task instance $t$, computation modes $\mathcal{M} = \{{\tt int}, {\tt det}\}$
+\ENSURE Label $\ell \in \{{\tt det\text{-}pref}, {\tt int\text{-}pref}, {\tt no\text{-}pref}\}$
+\FOR{each $m \in \mathcal{M}$}
+    \STATE Run episode $\tau_m$ with pure-strategy $m$
+    \STATE Record score $s_m$ and death indicator $d_m$
+\ENDFOR
+\IF{$d_{\tt int} = 1$ \AND $d_{\tt det} = 0$}
+    \STATE $\ell \leftarrow {\tt det\text{-}pref}$ \COMMENT{death asymmetry}
+\ELSIF{$d_{\tt int} = 0$ \AND $d_{\tt det} = 1$}
+    \STATE $\ell \leftarrow {\tt int\text{-}pref}$ \COMMENT{death asymmetry}
+\ELSIF{$d_{\tt int} = d_{\tt det} = 1$}
+    \STATE $\ell \leftarrow {\tt no\text{-}pref}$ \COMMENT{both dead}
+\ELSIF{$s_{\tt det} > s_{\tt int}$}
+    \STATE $\ell \leftarrow {\tt det\text{-}pref}$ \COMMENT{score comparison}
+\ELSIF{$s_{\tt int} > s_{\tt det}$}
+    \STATE $\ell \leftarrow {\tt int\text{-}pref}$ \COMMENT{score comparison}
+\ELSE
+    \STATE $\ell \leftarrow {\tt no\text{-}pref}$ \COMMENT{tied alive}
+\ENDIF
+\RETURN $\ell$
+\end{algorithmic}
+\end{algorithm}
+
+We define a labeling function $L$ that maps a counterfactual pair to a routing preference:
+\begin{multline}
+    L\!\bigl(\tau_{\tt int}^{(t)}, \tau_{\tt det}^{(t)}\bigr) \;\rightarrow \\
+    \ell \in \{{\tt det\text{-}pref},\; {\tt int\text{-}pref},\; {\tt no\text{-}pref}\}
+\end{multline}
+
+The labeling function is \emph{death-aware}: it prioritizes survival over score, then compares scores among same-status episodes (Algorithm~\ref{alg:labeling}). Both-dead episodes receive \texttt{no\_preference} because ScienceWorld's fixed $-100$ penalty makes death timing uninformative. ScienceWorld scores are integer-valued, so we use exact (in)equality with no threshold. A quality audit confirming zero tie-breaking artifacts is in Appendix~\ref{app:labeling}. Label distributions are reported in \S\ref{sec:death-decomp}.
+
+\subsection{Death Avoidance Factor}
+\label{sec:daf}
+
+To quantify the contribution of death avoidance to routing signal, we decompose the mean score gap between strategies. Let $\delta = \mathbb{E}[d^{\tt int}] - \mathbb{E}[d^{\tt det}]$ denote the death-rate differential and $\Delta_{\text{nd}}$ the mean score gap restricted to episodes where neither strategy dies. Partitioning episodes by death status, death-asymmetric episodes (where only one strategy dies) contribute a per-episode gap of $P + \bar{s}_{\text{surv}}$, where $\bar{s}_{\text{surv}}$ is the surviving strategy's mean score; when $\bar{s}_{\text{surv}} \ll P$ (in our data, $\bar{s}_{\text{surv}} = 0.87$, or $0.9\%$ of $P$), these episodes contribute ${\approx}\,\delta P$ in aggregate. The full gap thus decomposes as:
+\begin{equation}
+    \Delta_{\text{full}} \approx \underbrace{\delta \cdot P}_{\text{death contribution}} + \Delta_{\text{nd}}
+\end{equation}
+The approximation residual is $29.60 - 29.37 = 0.23$ ($0.8\%$ of $\Delta_{\text{full}}$).
+
+We define the Death Avoidance Factor (DAF) as the fraction of the full score gap attributable to death avoidance:
+\begin{equation}
+    \text{DAF} = 1 - \frac{\Delta_{\text{nd}}}{\Delta_{\text{full}}} \approx \frac{\delta P}{\delta P + \Delta_{\text{nd}}}
+\end{equation}%
+\footnote{When $\Delta_{\text{nd}} < 0$ (deterministic strategy scores lower than internal on non-death episodes), DAF exceeds 1; death avoidance then overcompensates for a non-death disadvantage.}
+
+DAF increases monotonically with $P$ (Table~\ref{tab:penalty-sensitivity}, Appendix~\ref{app:penalty}); we treat the label fraction (78.9\%) as the primary, penalty-invariant diagnostic. In ScienceWorld, $P$ affects only post-hoc score calculation; death rates and $\Delta_{\text{nd}}$ are $P$-invariant by design~\citep{ng1999policy}. Uncertainty is quantified via episode-level bootstrap ($B{=}10{,}000$, percentile 95\% CIs).

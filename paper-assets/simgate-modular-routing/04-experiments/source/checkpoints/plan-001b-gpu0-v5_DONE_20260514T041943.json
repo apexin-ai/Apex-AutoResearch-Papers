@@ -1,0 +1,35 @@
+{
+  "exp_id": "plan-001b-gpu0-v5",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:47:32.668Z",
+    "updated_at": "2026-05-14T04:19:43.102Z",
+    "hypothesis": "GPU0 修正重启：measure-melting-point-unknown-substance 20 eps + lifespan-longest-lived 补 1 ep (ep19)。去重后重启，使用 --reuse_dirs 防止重复。",
+    "spec": {
+      "command": "bash /tmp/run_gpu0_v5.sh (measure-melting-point 20eps → lifespan-longest-lived ep19)",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "698985",
+      "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu0-v5.log",
+      "submitted_at": "2026-05-14T02:42:04Z",
+      "data_path": "results/plan_c/ (measure-melting-point-unknown-substance + lifespan-longest-lived)",
+      "data_count": 21,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "note": "v5 resilient restart. measure-melting-point from scratch (20 eps), lifespan-longest-lived only ep19 (1 ep). Deduped before restart.",
+      "wall_clock_seconds": 5859.1,
+      "gpu_hours": 1.63
+    },
+    "conclusion": "killed",
+    "notes": "Director 指令主动终止。原因：measure-melting-point 已有完整 20 eps（冗余），lifespan-longest-lived 文件损坏（150GB）。GPU0 重启做 lifespan-longest-lived 全量 20 eps 干净重收 (v6)。",
+    "completed_at": "2026-05-14T04:19:43.102Z"
+  },
+  "timestamp": "2026-05-14T04:19:43.157368+00:00",
+  "trigger": "update_registry"
+}

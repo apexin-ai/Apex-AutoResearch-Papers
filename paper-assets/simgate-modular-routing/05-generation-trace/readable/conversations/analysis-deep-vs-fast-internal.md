@@ -1,0 +1,1282 @@
+# analysis deep vs fast internal
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 43
+- **Recorded user turns:** 0
+- **Tool calls:** 21
+- **Original source:** `logs/chats/worker_analysis_deep-vs-fast-internal_20260515T163707.jsonl`
+- **Structured JSON:** [`b7e7c47148ea51a0e6e5.json`](../../sessions/b7/b7e7c47148ea51a0e6e5.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+43 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T16:40:32.192197+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__register_artifact",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T16:40:32.192549+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T16:40:32.192741+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing -name \"collection_meta.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing -name \"collection_meta.json\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-15T16:40:32.192910+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/grow-fruit/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-1/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/inclined-plane-determine-angle/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived-then-shortest-lived/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-2/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/measure-melting-point-unknown-substance/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/multi_model_pilot/llama31/freeze/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/multi_model_pilot/llama31/find-non-living-thing/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/identify-life-stages-1/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/lifespan-longest-lived/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/inclined-plane-determine-angle/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/lifespan-longest-lived-then-shortest-lived/collection_meta.json\\n/root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/chemistry-mix/
+…[truncated 127 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T16:40:32.193167+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/collection_meta.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/collection_meta.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T16:40:32.193311+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/collection_meta.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/collection_meta.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T16:40:32.193462+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"task_name\\\": \\\"find-animal\\\",\\n  \\\"target_episodes\\\": 20,\\n  \\\"reused_episodes\\\": 5,\\n  \\\"new_episodes\\\": 15,\\n  \\\"reuse_sources\\\": [\\n    {\\n      \\\"dir\\\": \\\"results/prescreening\\\",\\n      \\\"count\\\": 5\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T16:40:32.193597+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"task_name\\\": \\\"find-non-living-thing\\\",\\n  \\\"mode\\\": \\\"deep-internal-only\\\",\\n  \\\"target_episodes\\\": 20,\\n  \\\"collected_episodes\\\": 20,\\n  \\\"seed\\\": 42\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T16:40:32.193733+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-15T16:40:32.193852+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T16:40:32.194073+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"collection_meta.json\\nepisode_summary.jsonl\\nepisode_summary.jsonl.bak194\\nepisodes.jsonl\\nepisodes_full.jsonl.gz\\nlabeled_steps.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.22}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T16:40:32.194240+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"collection_meta.json\\nepisode_summary.jsonl\\nepisodes.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T16:40:32.194366+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T16:40:32.194489+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T16:40:32.194632+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode\\\": 0, \\\"variation\\\": 0, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 100.0, \\\"internal_steps\\\": 17, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 1, \\\"variation\\\": 1, \\\"internal_final\\\": 0.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"tied_alive\\\", \\\"reason\\\": \\\"tie\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 30, \\\"det_steps\\\": 30}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.23}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T16:40:32.194766+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode\\\": 0, \\\"variation\\\": 0, \\\"deep_internal_final\\\": 50.0, \\\"deep_internal_steps\\\": 30, \\\"deep_internal_time_s\\\": 69.68355870246887}\\n{\\\"episode\\\": 1, \\\"variation\\\": 1, \\\"deep_internal_final\\\": 0.0, \\\"deep_internal_steps\\\": 30, \\\"deep_internal_time_s\\\": 72.65760684013367}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T16:40:32.194927+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T16:40:32.195113+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T16:40:32.195246+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T16:40:32.195372+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chemistry-mix\\nfind-animal\\nfind-non-living-thing\\nfreeze\\ngrow-fruit\\nidentify-life-stages-1\\nidentify-life-stages-2\\ninclined-plane-determine-angle\\nlifespan-longest-lived\\nlifespan-longest-lived-then-shortest-lived\\nmeasure-melting-point-unknown-substance\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T16:40:32.195495+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chemistry-mix\\nfind-non-living-thing\\nidentify-life-stages-1\\ninclined-plane-determine-angle\\nlifespan-longest-lived\\nlifespan-longest-lived-then-shortest-lived\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.45}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T16:40:32.195802+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_deep_internal\\\": {\\\"mode\\\": \\\"always-deep-internal\\\", \\\"task_name\\\": \\\"find-non-living-thing\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": 50.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 30, \\\"total_time_s\\\": 69.68355870246887, \\\"action_history\\\": [\\\"connect agent to bedroom door\\\", \\\"connect agent to living room\\\", \\\"connect air to kitchen\\\", \\\"connect air to living room\\\", \\\"connect art studio door to door to living room\\\", \\\"connect art studio door to art studio\\\", \\\"connect art studio to kitchen\\\", \\\"connect bedroom door to inventory\\\", \\\"inventory\\\", \\\"connect bedroom to orange\\\", \\\"connect door to kitchen to bedroom\\\", \\\"connect door to greenhouse to door to kitchen\\\", \\\"connect door to greenhouse to greenhouse\\\", \\\"connect greenhouse to door to workshop\\\", \\\"connect door to workshop to door to living room\\\", \\\"connect hallway to inventory\\\", \\\"connect hallway to workshop\\\", \\\"connect orange to workshop\\\", \\\"disconnect workshop\\\", \\\"connect workshop to hallway\\\", \\\"connect workshop to picture\\\", \\\"connect orange to picture\\\", \\\"focus on picture\\\", \\\"focus on inventory\\\", \\\"focus on inventory\\\", \\\"inventory\\\", \\\"eat orange\\\", \\\"disconnect agent\\\", \\\"focus on bedroom\\\", \\\"focus on bedroom door\\\"], \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to bedroom door\\\", \\\"modality\\\": \\\"deep-internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on door\\\", \\\"is_dead\\\": false}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect agent to living room\\\", \\\"modality\\\": \\\"deep-internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\
+…[truncated 8136 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T16:40:32.196049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T16:40:32.196233+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"episode_summary.jsonl\\nepisode_summary.jsonl.bak194\\nepisodes.jsonl\\nlabeled_steps.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T16:40:32.196437+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan_c/*/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan_c/*/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T16:40:32.196578+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/*/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/*/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T16:40:32.196717+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-animal/episode_summary.jsonl\\n   40 /root/autodl-tmp/simgate-modular-routing/results/plan_c/find-non-living-thing/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/freeze/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/grow-fruit/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-1/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/identify-life-stages-2/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/inclined-plane-determine-angle/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived-then-shortest-lived/episode_summary.jsonl\\n   25 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan_c/measure-melting-point-unknown-substance/episode_summary.jsonl\\n  245 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.46}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T16:40:32.196856+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"   20 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/chemistry-mix/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/find-non-living-thing/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/identify-life-stages-1/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/inclined-plane-determine-angle/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/lifespan-longest-lived-then-shortest-lived/episode_summary.jsonl\\n   20 /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/lifespan-longest-lived/episode_summary.jsonl\\n  120 total\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.44}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T16:40:32.197060+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/lifespan-longest-lived/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T16:40:32.197233+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episode_summary.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episode_summary.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T16:40:32.197386+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode\\\": 0, \\\"variation\\\": 0, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 100.0, \\\"internal_steps\\\": 17, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 1, \\\"variation\\\": 1, \\\"internal_final\\\": 0.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"tied_alive\\\", \\\"reason\\\": \\\"tie\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 30, \\\"det_steps\\\": 30}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.29}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-15T16:40:32.197530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode\\\": 0, \\\"variation\\\": 0, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"det-preferred\\\", \\\"signal_source\\\": \\\"score_gap\\\", \\\"reason\\\": \\\"det_higher\\\", \\\"score_gap\\\": 100.0, \\\"internal_steps\\\": 16, \\\"det_steps\\\": 30}\\n{\\\"episode\\\": 1, \\\"variation\\\": 1, \\\"internal_final\\\": 0.0, \\\"det_final\\\": 0.0, \\\"label\\\": \\\"no-preference\\\", \\\"signal_source\\\": \\\"tied_alive\\\", \\\"reason\\\": \\\"tie\\\", \\\"score_gap\\\": 0.0, \\\"internal_steps\\\": 30, \\\"det_steps\\\": 30}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.5}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-15T16:40:32.197720+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat > /tmp/deep_vs_fast_analysis.py << 'PYEOF'\nimport json\nimport os\nimport numpy as np\nfrom scipy import stats\n\nBASE = \"/root/autodl-tmp/simgate-modular-routing/results\"\nFAST_DIR = os.path.join(BASE, \"plan_c\")\nDEEP_DIR = os.path.join(BASE, \"plan-006-deep-internal\")\n\n# Overlapping tasks\nTASKS = [\n    \"chemistry-mix\",\n    \"find-non-living-thing\",\n    \"identify-life-stages-1\",\n    \"inclined-plane-determine-angle\",\n    \"lifespan-longest-lived\",\n    \"lifespan-longest-lived-then-shortest-lived\",\n]\n\nDEATH_SCORE = -100.0\n\ndef load_jsonl(path, max_lines=None):\n    rows = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            if max_lines is not None and i >= max_lines:\n                break\n            rows.append(json.loads(line))\n    return rows\n\ndef compute_stats(scores):\n    arr = np.array(scores, dtype=float)\n    death_mask = arr <= DEATH_SCORE\n    death_rate = death_mask.mean()\n    alive_scores = arr[~death_mask]\n    return {\n        \"n\": len(arr),\n        \"death_rate\": death_rate,\n        \"mean\": arr.mean(),\n        \"std\": arr.std(),\n        \"median\": float(np.median(arr)),\n        \"mean_alive\": float(alive_scores.mean()) if len(alive_scores) > 0 else float('nan'),\n        \"scores\": arr,\n    }\n\nresults = []\n\nfor task in TASKS:\n    fast_path = os.path.join(FAST_DIR, task, \"episode_summary.jsonl\")\n    deep_path = os.path.join(DEEP_DIR, task, \"episode_summary.jsonl\")\n\n    if not os.path.exists(fast_path) or not os.path.exists(deep_path):\n        print(f\"SKIP {task}: missing data\")\n        continue\n\n    # Special handling for identify-life-stages-1: only first 14 episodes\n    max_lines = 14 if task == \"identify-life-stages-1\" else None\n\n    fast_rows = load_jsonl(fast_path, max_lines=max_lines)\n    deep_rows = load_jsonl(deep_path, max_lines=max_lines)\n\n    fast_scores = [r[\"internal_final\"] for r in fast_rows]\n    deep_scores = [r[\"deep_internal_final\"] for r in deep_rows]\n\n    fs = compute_stats(fast_scores)\n    ds = compute_stats(deep_scores)\n\n    # Statistical test: Mann-Whitney U (non-parametric, doesn't assume normality)\n    # Good for potentially non-normal score distributions\n    if len(fast_scores) >= 3 and len(deep_scores) >= 3:\n        u_stat, p_mann = stats.mannwhitneyu(fast_scores, deep_scores, alternative='two-sided')\n        # Also do Welch's t-test for reference\n        t_stat, p_ttest = stats.ttest_ind(fast_scores, deep_scores, equal_var=False)\n    else:\n        u_stat, p_mann, t_stat, p_ttest = float('nan'), float('nan'), float('nan'), float('nan')\n\n    # Effect size: Cohen's d\n    pooled_std = np.sqrt((fs[\"std\"]**2 + ds[\"std\"]**2) / 2)\n    cohens_d = (ds[\"mean\"] - fs[\"mean\"]) / pooled_std if pooled_std > 0 else 0\n\n    results.append({\n        \"task\": task,\n        \"n_fast\": fs[\"n\"],\n        \"n_deep\": ds[\"n\"],\n        \"death_rate_fast\": fs[\"death_rate\"],\n        \"death_rate_deep\": ds[\"death_rate\"],\n        \"mean_fast\": fs[\"mean\"],\n        \"mean_deep\": ds[\"mean\"],\n        \"std_fast\": fs[\"std\"],\n        \"std_deep\": ds[\"std\"],\n        \"median_fast\": fs[\"median\"],\n        \"median_deep\": ds[\"median\"],\n        \"mean_alive_fast\": fs[\"mean_alive\"],\n        \"mean_alive_deep\": ds[\"mean_alive\"],\n        \"p_mann_whitney\": p_mann,\n        \"p_ttest\": p_ttest,\n        \"cohens_d\": cohens_d,\n        \"fast_scores\": fast_scores,\n        \"deep_scores\": deep_scores,\n    })\n\n# Print results\nprint(\"=\" * 120)\nprint(\"DEEP-INTERNAL vs FAST-INTERNAL: Per-Task Comparison\")\nprint(\"=\" * 120)\n\nheader = f\"{'Task':<45} {'n_fast':>6} {'n_deep':>6} {'death%_f':>8} {'death%_d':>8} {'mean_f':>8} {'mean_d':>8} {'std_f':>7} {'std_d':>7} {'p(MW)':>8} {'Cohen_d':>8}\"\nprint(header)\nprint(\"-\" * 120)\n\nfor r in results:\n    print(f\"{r['task']:<45} {r['n_fast']:>6} {r['n_deep']:>6} {r['death_rate_fast']*100:>7.1f}% {r['death_rate_deep']*100:>7.1f}% {r['mean_fast']:>8.1f} {r['mean_deep']:>8.1f} {r['std_fast']:>7.1f} {r['std_deep']:>7.1f} {r['p_mann_whitney']:>8.4f} {r['cohens_d']:>8.2f}\")\n\n# Aggregate analysis\nprint(\"\\n\" + \"=\" * 120)\nprint(\"AGGREGATE ANALYSIS\")\nprint(\"=\" * 120)\n\nall_fast_means = [r[\"mean_fast\"] for r in results]\nall_deep_means = [r[\"mean_deep\"] for r in results]\n\nprint(f\"\\nOverall mean score across tasks:\")\nprint(f\"  Fast-internal: {np.mean(all_fast_means):.2f}\")\nprint(f\"  Deep-internal: {np.mean(all_deep_means):.2f}\")\n\n# Paired comparison across tasks (task-level means)\nif len(results) >= 3:\n    t_paired, p_paired = stats.ttest_rel(all_fast_means, all_deep_means)\n    w_stat, p_wilcoxon = stats.wilcoxon(all_fast_means, all_deep_means)\n    print(f\"\\nPaired t-test (task-level means): t={t_paired:.3f}, p={p_paired:.4f}\")\n    print(f\"Wilcoxon signed-rank test: W={w_stat:.1f}, p={p_wilcoxon:.4f}\")\n\n# Death rate comparison\nall_fast_death = [r[\"death_rate_fast\"] for r in results]\nall_deep_death = [r[\"death_rate_deep\"] for r in results]\nprint(f\"\\nMean death rate across tasks:\")\nprint(f\"  Fast-internal: {np.mean(all_fast_death)*100:.1f}%\")\nprint(f\"  Deep-internal: {np.mean(all_deep_death)*100:.1f}%\")\n\n# Per-task deep wins / fast wins / ties\nprint(\"\\n\" + \"=\" * 120)\nprint(\"DIRECTION OF DIFFERENCE (by mean score)\")\nprint(\"=\" * 120)\ndeep_wins = 0\nfast_wins = 0\nties = 0\nsig_deep = 0\nsig_fast = 0\n\nfor r in results:\n    diff = r[\"mean_deep\"] - r[\"mean_fast\"]\n    sig = \"***\" if r[\"p_mann_whitney\"] < 0.001 else \"**\" if r[\"p_mann_whitney\"] < 0.01 else \"*\" if r[\"p_mann_whitney\"] < 0.05 else \"\"\n    if diff > 0:\n        direction = \"deep > fast\"\n        deep_wins += 1\n        if r[\"p_mann_whitney\"] < 0.05:\n            sig_deep += 1\n    elif diff < 0:\n        direction = \"fast > deep\"\n        fast_wins += 1\n        if r[\"p_mann_whitney\"] < 0.05:\n            sig_fast += 1\n    else:\n        direction = \"tie\"\n        ties += 1\n    print(f\"  {r['task']:<45} diff={diff:>+7.1f}  {direction:<15} {sig}\")\n\nprint(f\"\\nSummary: deep wins {deep_wins}, fast wins {fast_wins}, ties {ties}\")\nprint(f\"Significant (p<0.05): deep wins {sig_deep}, fast wins {sig_fast}\")\n\n# Special analysis: find-non-living-thing death rate\nprint(\"\\n\" + \"=\" * 120)\nprint(\"SPECIAL ANALYSIS: find-non-living-thing\")\nprint(\"=\" * 120)\nfor r in results:\n    if r[\"task\"] == \"find-non-living-thing\":\n        print(f\"  Fast-internal: death={r['death_rate_fast']*100:.0f}%, mean={r['mean_fast']:.1f}, alive_mean={r['mean_alive_fast']:.1f}\")\n        print(f\"  Deep-internal: death={r['death_rate_deep']*100:.0f}%, mean={r['mean_deep']:.1f}, alive_mean={r['mean_alive_deep']:.1f}\")\n        print(f\"  Fast scores: {sorted(r['fast_scores'])}\")\n        print(f\"  Deep scores: {sorted(r['deep_scores'])}\")\n\n# Score distributions per task\nprint(\"\\n\" + \"=\" * 120)\nprint(\"SCORE DISTRIBUTIONS (sorted)\")\nprint(\"=\" * 120)\nfor r in results:\n    print(f\"\\n{r['task']}:\")\n    print(f\"  Fast: {sorted(r['fast_scores'])}\")\n    print(f\"  Deep: {sorted(r['deep_scores'])}\")\n\n# 3-way routing signal analysis\nprint(\"\\n\" + \"=\" * 120)\nprint(\"3-WAY ROUTING SIGNAL ANALYSIS\")\nprint(\"=\" * 120)\nprint(\"\\nFor 3-way routing to be justified, deep-internal should show a DISTINCT pattern from fast-internal.\")\nprint(\"Specifically: there should be tasks where deep-internal is clearly better AND tasks where fast-internal is sufficient.\")\nprint()\n\ndistinct_tasks = []\nfor r in results:\n    diff = r[\"mean_deep\"] - r[\"mean_fast\"]\n    death_diff = r[\"death_rate_fast\"] - r[\"death_rate_deep\"]\n    pattern = \"\"\n    if r[\"p_mann_whitney\"] < 0.05:\n        if diff > 0:\n            pattern = \"DEEP_SIGNIFICANTLY_BETTER\"\n        else:\n            pattern = \"FAST_SIGNIFICANTLY_BETTER\"\n    elif abs(diff) < 5:\n        pattern = \"EQUIVALENT\"\n    else:\n        pattern = f\"TREND_{'DEEP' if diff > 0 else 'FAST'}_BETTER (not sig)\"\n    \n    distinct_tasks.append((r[\"task\"], pattern, diff, death_diff))\n    print(f\"  {r['task']:<45} {pattern:<35} score_diff={diff:>+7.1f}  death_diff={death_diff*100:>+6.1f}%\")\n\nPYEOF\npython3 /tmp/deep_vs_fast_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat > /tmp/deep_vs_fast_analysis.py << 'PYEOF'\nimport json\nimport os\nimport numpy as np\nfrom scipy import stats\n\nBASE = \"/root/autodl-tmp/simgate-modular-routing/results\"\nFAST_DIR = os.path.join(BASE, \"plan_c\")\nDEEP_DIR = os.path.join(BASE, \"plan-006-deep-internal\")\n\n# Overlapping tasks\nTASKS = [\n    \"chemistry-mix\",\n    \"find-non-living-thing\",\n    \"identify-life-stages-1\",\n    \"inclined-plane-determine-angle\",\n    \"lifespan-longest-lived\",\n    \"lifespan-longest-lived-then-shortest-lived\",\n]\n\nDEATH_SCORE = -100.0\n\ndef load_jsonl(path, max_lines=None):\n    rows = []\n    with open(path) as f:\n        for i, line in enumerate(f):\n            if max_lines is not None and i >= max_lines:\n                break\n            rows.append(json.loads(line))\n    return rows\n\ndef compute_stats(scores):\n    arr = np.array(scores, dtype=float)\n    death_mask = arr <= DEATH_SCORE\n    death_rate = death_mask.mean()\n    alive_scores = arr[~death_mask]\n    return {\n        \"n\": len(arr),\n        \"death_rate\": death_rate,\n        \"mean\": arr.mean(),\n        \"std\": arr.std(),\n        \"median\": float(np.median(arr)),\n        \"mean_alive\": float(alive_scores.mean()) if len(alive_scores) > 0 else float('nan'),\n        \"scores\": arr,\n    }\n\nresults = []\n\nfor task in TASKS:\n    fast_path = os.path.join(FAST_DIR, task, \"episode_summary.jsonl\")\n    deep_path = os.path.join(DEEP_DIR, task, \"episode_summary.jsonl\")\n\n    if not os.path.exists(fast_path) or not os.path.exists(deep_path):\n        print(f\"SKIP {task}: missing data\")\n        continue\n\n    # Special handling for identify-life-stages-1: only first 14 episodes\n    max_lines = 14 if task == \"identify-life-stages-1\" else None\n\n    fast_rows = load_jsonl(fast_path, max_lines=max_lines)\n    deep_rows = load_jsonl(deep_path, max_lines=max_lines)\n\n    fast_scores = [r[\"internal_final\"] for r in fast_rows]\n    deep_scores = [r[\"deep_internal_final\"] for r in deep_rows]\n\n    fs = compute_stats(fast_scores)\n    ds = compute_stats(deep_scores)\n\n    # Statistical test: Mann-Whitney U (non-parametric, doesn't assume normality)\n    # Good for potentially non-normal score distributions\n    if len(fast_scores) >= 3 and len(deep_scores) >= 3:\n        u_stat, p_mann = stats.mannwhitneyu(fast_scores, deep_scores, alternative='two-sided')\n        # Also do Welch's t-test for reference\n        t_stat, p_ttest = stats.ttest_ind(fast_scores, deep_scores, equal_var=False)\n    else:\n        u_stat, p_mann, t_stat, p_ttest = float('nan'), float('nan'), float('nan'), float('nan')\n\n    # Effect size: Cohen's d\n    pooled_std = np.sqrt((fs[\"std\"]**2 + ds[\"std\"]**2) / 2)\n    cohens_d = (ds[\"mean\"] - fs[\"mean\"]) / pooled_std if pooled_std > 0 else 0\n\n    results.append({\n        \"task\": task,\n        \"n_fast\": fs[\"n\"],\n        \"n_deep\": ds[\"n\"],\n        \"death_rate_fast\": fs[\"death_rate\"],\n        \"death_rate_deep\": ds[\"death_rate\"],\n        \"mean_fast\": fs[\"mean\"],\n        \"mean_deep\": ds[\"mean\"],\n        \"std_fast\": fs[\"std\"],\n        \"std_deep\": ds[\"std\"],\n        \"median_fast\": fs[\"median\"],\n        \"median_deep\": ds[\"median\"],\n        \"mean_alive_fast\": fs[\"mean_alive\"],\n        \"mean_alive_deep\": ds[\"mean_alive\"],\n        \"p_mann_whitney\": p_mann,\n        \"p_ttest\": p_ttest,\n        \"cohens_d\": cohens_d,\n        \"fast_scores\": fast_scores,\n        \"deep_scores\": deep_scores,\n    })\n\n# Print results\nprint(\"=\" * 120)\nprint(\"DEEP-INTERNAL vs FAST-INTERNAL: Per-Task Comparison\")\nprint(\"=\" * 120)\n\nheader = f\"{'Task':<45} {'n_fast':>6} {'n_deep':>6} {'death%_f':>8} {'death%_d':>8} {'mean_f':>8} {'mean_d':>8} {'std_f':>7} {'std_d':>7} {'p(MW)':>8} {'Cohen_d':>8}\"\nprint(header)\nprint(\"-\" * 120)\n\nfor r in results:\n    print(f\"{r['task']:<45} {r['n_fast']:>6} {r['n_deep']:>6} {r['death_rate_fast']*100:>7.1f}% {r['death_rate_deep']*100:>7.1f}% {r['mean_fast']:>8.1f} {r['mean_deep']:>8.1f} {r['std_fast']:>7.1f} {r['std_deep']:>7.1f} {r['p_mann_whitney']:>8.4f} {r['cohens_d']:>8.2f}\")\n\n# Aggregate analysis\nprint(\"\\n\" + \"=\" * 120)\nprint(\"AGGREGATE ANALYSIS\")\nprint(\"=\" * 120)\n\nall_fast_means = [r[\"mean_fast\"] for r in results]\nall_deep_means = [r[\"mean_deep\"] for r in results]\n\nprint(f\"\\nOverall mean score across tasks:\")\nprint(f\"  Fast-internal: {np.mean(all_fast_means):.2f}\")\nprint(f\"  Deep-internal: {np.mean(all_deep_means):.2f}\")\n\n# Paired comparison across tasks (task-level means)\nif len(results) >= 3:\n    t_paired, p_paired = stats.ttest_rel(all_fast_means, all_deep_means)\n    w_stat, p_wilcoxon = stats.wilcoxon(all_fast_means, all_deep_means)\n    print(f\"\\nPaired t-test (task-level means): t={t_paired:.3f}, p={p_paired:.4f}\")\n    print(f\"Wilcoxon signed-rank test: W={w_stat:.1f}, p={p_wilcoxon:.4f}\")\n\n# Death rate comparison\nall_fast_death = [r[\"death_rate_fast\"] for r in results]\nall_deep_death = [r[\"death_rate_deep\"] for r in results]\nprint(f\"\\nMean death rate across tasks:\")\nprint(f\"  Fast-internal: {np.mean(all_fast_death)*100:.1f}%\")\nprint(f\"  Deep-internal: {np.mean(all_deep_death)*100:.1f}%\")\n\n# Per-task deep wins / fast wins / ties\nprint(\"\\n\" + \"=\" * 120)\nprint(\"DIRECTION OF DIFFERENCE (by mean score)\")\nprint(\"=\" * 120)\ndeep_wins = 0\nfast_wins = 0\nties = 0\nsig_deep = 0\nsig_fast = 0\n\nfor r in results:\n    diff = r[\"mean_deep\"] - r[\"mean_fast\"]\n    sig = \"***\" if r[\"p_mann_whitney\"] < 0.001 else \"**\" if r[\"p_mann_whitney\"] < 0.01 else \"*\" if r[\"p_mann_whitney\"] < 0.05 else \"\"\n    if diff > 0:\n        direction = \"deep > fast\"\n        deep_wins += 1\n        if r[\"p_mann_whitney\"] < 0.05:\n            sig_deep += 1\n    elif diff < 0:\n        direction = \"fast > deep\"\n        fast_wins += 1\n        if r[\"p_mann_whitney\"] < 0.05:\n            sig_fast += 1\n    else:\n        direction = \"tie\"\n        ties += 1\n    print(f\"  {r['task']:<45} diff={diff:>+7.1f}  {direction:<15} {sig}\")\n\nprint(f\"\\nSummary: deep wins {deep_wins}, fast wins {fast_wins}, ties {ties}\")\nprint(f\"Significant (p<0.05): deep wins {sig_deep}, fast wins {sig_fast}\")\n\n# Special analysis: find-non-living-thing death rate\nprint(\"\\n\" + \"=\" * 120)\nprint(\"SPECIAL ANALYSIS: find-non-living-thing\")\nprint(\"=\" * 120)\nfor r in results:\n    if r[\"task\"] == \"find-non-living-thing\":\n        print(f\"  Fast-internal: death={r['death_rate_fast']*100:.0f}%, mean={r['mean_fast']:.1f}, alive_mean={r['mean_alive_fast']:.1f}\")\n        print(f\"  Deep-internal: death={r['death_rate_deep']*100:.0f}%, mean={r['mean_deep']:.1f}, alive_mean={r['mean_alive_deep']:.1f}\")\n        print(f\"  Fast scores: {sorted(r['fast_scores'])}\")\n        print(f\"  Deep scores: {sorted(r['deep_scores'])}\")\n\n# Score distributions per task\nprint(\"\\n\" + \"=\" * 120)\nprint(\"SCORE DISTRIBUTIONS (sorted)\")\nprint(\"=\" * 120)\nfor r in results:\n    print(f\"\\n{r['task']}:\")\n    print(f\"  Fast: {sorted(r['fast_scores'])}\")\n    print(f\"  Deep: {sorted(r['deep_scores'])}\")\n\n# 3-way routing signal analysis\nprint(\"\\n\" + \"=\" * 120)\nprint(\"3-WAY ROUTING SIGNAL ANALYSIS\")\nprint(\"=\" * 120)\nprint(\"\\nFor 3-way routing to be justified, deep-internal should show a DISTINCT pattern from fast-internal.\")\nprint(\"Specifically: there should be tasks where deep-internal is clearly better AND tasks where fast-internal is sufficient.\")\nprint()\n\ndistinct_tasks = []\nfor r in results:\n    diff = r[\"mean_deep\"] - r[\"mean_fast\"]\n    death_diff = r[\"death_rate_fast\"] - r[\"death_rate_deep\"]\n    pattern = \"\"\n    if r[\"p_mann_whitney\"] < 0.05:\n        if diff > 0:\n            pattern = \"DEEP_SIGNIFICANTLY_BETTER\"\n        else:\n            pattern = \"FAST_SIGNIFICANTLY_BETTER\"\n    elif abs(diff) < 5:\n        pattern = \"EQUIVALENT\"\n    else:\n        pattern = f\"TREND_{'DEEP' if diff > 0 else 'FAST'}_BETTER (not sig)\"\n    \n    distinct_tasks.append((r[\"task\"], pattern, diff, death_diff))\n    print(f\"  {r['task']:<45} {pattern:<35} score_diff={diff:>+7.1f}  death_diff={death_diff*100:>+6.1f}%\")\n\nPYEOF\npython3 /tmp/deep_vs_fast_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T16:40:32.198139+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cat > /tmp/deep_vs_fast_analysis.py << \\\\'PYEOF\\\\'\\\\nimport json\\\\nimport os\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\n\\\\nBASE = \\\"/root/autodl-tmp/simgate-modular-routing/results\\\"\\\\nFAST_DIR = os.path.join(BASE, \\\"plan_c\\\")\\\\nDEEP_DIR = os.path.join(BASE, \\\"plan-006-deep-internal\\\")\\\\n\\\\n# Overlapping tasks\\\\nTASKS = [\\\\n    \\\"chemistry-mix\\\",\\\\n    \\\"find-non-living-thing\\\",\\\\n    \\\"identify-life-stages-1\\\",\\\\n    \\\"inclined-plane-determine-angle\\\",\\\\n    \\\"lifespan-longest-lived\\\",\\\\n    \\\"lifespan-longest-lived-then-shortest-lived\\\",\\\\n]\\\\n\\\\nDEATH_SCORE = -100.0\\\\n\\\\ndef load_jsonl(path, max_lines=None):\\\\n    rows = []\\\\n    with open(path) as f:\\\\n        for i, line in enumerate(f):\\\\n            if max_lines is not None and i >= max_lines:\\\\n                break\\\\n            rows.append(json.loads(line))\\\\n    return rows\\\\n\\\\ndef compute_stats(scores):\\\\n    arr = np.array(scores, dtype=float)\\\\n    death_mask = arr <= DEATH_SCORE\\\\n    death_rate = death_mask.mean()\\\\n    alive_scores = arr[~death_mask]\\\\n    return {\\\\n        \\\"n\\\": len(arr),\\\\n        \\\"death_rate\\\": death_rate,\\\\n        \\\"mean\\\": arr.mean(),\\\\n        \\\"std\\\": arr.std(),\\\\n        \\\"median\\\": float(np.median(arr)),\\\\n        \\\"mean_alive\\\": float(alive_scores.mean()) if len(alive_scores) > 0 else float(\\\\'nan\\\\'),\\\\n        \\\"scores\\\": arr,\\\\n    }\\\\n\\\\nresults = []\\\\n\\\\nfor task in TASKS:\\\\n    fast_path = os.path.join(FAST_DIR, task, \\\"episode_summary.jsonl\\\")\\\\n    deep_path = os.path.join(DEEP_DIR, task, \\\"episode_summary.jsonl\\\")\\\\n\\\\n    if not os.path.exists(fast_path) or not os.path.exists(deep_path):\\\\n        print(f\\\"SKIP {task}: missing data\\\")\\\\n        continue\\
+…[truncated 8372 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T16:40:32.198369+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/miniconda3/bin/python3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/miniconda3/bin/python3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T16:40:32.198513+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T16:40:32.198639+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/deep_vs_fast_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 /tmp/deep_vs_fast_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T16:40:32.198812+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"========================================================================================================================\\nDEEP-INTERNAL vs FAST-INTERNAL: Per-Task Comparison\\n========================================================================================================================\\nTask                                          n_fast n_deep death%_f death%_d   mean_f   mean_d   std_f   std_d    p(MW)  Cohen_d\\n------------------------------------------------------------------------------------------------------------------------\\nchemistry-mix                                     20     20    45.0%    55.0%    -43.5    -53.5    51.3    51.6   0.5992    -0.19\\nfind-non-living-thing                             40     20     0.0%     0.0%     18.9     26.6    24.7    25.2   0.2680     0.31\\nidentify-life-stages-1                            14     14    50.0%    50.0%    -50.0    -50.0    50.0    50.0   1.0000     0.00\\ninclined-plane-determine-angle                    20     20    55.0%    50.0%    -55.0    -50.0    49.7    50.0   0.7665     0.10\\nlifespan-longest-lived                            25     20    56.0%    55.0%    -54.0    -55.0    52.8    49.7   0.9685    -0.02\\nlifespan-longest-lived-then-shortest-lived        20     20    45.0%    45.0%    -45.0    -43.4    49.7    51.7   0.8771     0.03\\n\\n========================================================================================================================\\nAGGREGATE ANALYSIS\\n========================================================================================================================\\n\\nOverall mean score across tasks:\\n  Fast-internal: -38.11\\n  Deep-internal: -37.55\\n\\nPaired t-test (task-level means): t=-0.224, p=0.8315\\nWilcoxon signed-rank test: W=6.0, p=0.8125\\n\\nMean death rate across tasks:\\n  Fast-internal: 41.8%\\n  Deep-internal: 42.5%\\n\\n==============================================
+…[truncated 5142 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T16:40:32.199051+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/deep_vs_fast_analysis.md",
+  "content": "# Deep-Internal vs Fast-Internal 对比分析\n\n**日期**: 2026-05-15\n**数据来源**: `results/plan_c/`（fast-internal）, `results/plan-006-deep-internal/`（deep-internal）\n\n## 数据概况\n\n6 个重叠 task，fast-internal 取自 plan_c 的 `internal_final`，deep-internal 取自 plan-006-deep-internal 的 `deep_internal_final`。\n- identify-life-stages-1：仅取前 14 episodes（避免伪重复）\n- Death 判定：score ≤ -100\n\n## Per-Task 对比表\n\n| Task | n_fast | n_deep | death%_fast | death%_deep | mean_fast | mean_deep | p (MW) | Cohen's d |\n|------|--------|--------|-------------|-------------|-----------|-----------|--------|-----------|\n| chemistry-mix | 20 | 20 | 45.0% | 55.0% | -43.5 | -53.5 | 0.599 | -0.19 |\n| find-non-living-thing | 40 | 20 | 0.0% | 0.0% | 18.9 | 26.6 | 0.268 | +0.31 |\n| identify-life-stages-1 | 14 | 14 | 50.0% | 50.0% | -50.0 | -50.0 | 1.000 | 0.00 |\n| inclined-plane-determine-angle | 20 | 20 | 55.0% | 50.0% | -55.0 | -50.0 | 0.767 | +0.10 |\n| lifespan-longest-lived | 25 | 20 | 56.0% | 55.0% | -54.0 | -55.0 | 0.969 | -0.02 |\n| lifespan-longest-lived-then-shortest-lived | 20 | 20 | 45.0% | 45.0% | -45.0 | -43.4 | 0.877 | +0.03 |\n\n## Aggregate 统计\n\n| 指标 | Fast-internal | Deep-internal |\n|------|--------------|---------------|\n| 跨 task 平均分 | -38.11 | -37.55 |\n| 平均 death rate | 41.8% | 42.5% |\n\n- **Paired t-test**（task-level means）: t = -0.224, **p = 0.832**\n- **Wilcoxon signed-rank**: W = 6.0, **p = 0.813**\n\n## Direction of Difference\n\n| Task | Δ (deep - fast) | Direction | Significant? |\n|------|-----------------|-----------|-------------|\n| chemistry-mix | -10.0 | fast > deep | No |\n| find-non-living-thing | +7.7 | deep > fast | No |\n| identify-life-stages-1 | 0.0 | tie | — |\n| inclined-plane-determine-angle | +5.0 | deep > fast | No |\n| lifespan-longest-lived | -1.0 | fast > deep | No |\n| lifespan-longest-lived-then-shortest-lived | +1.6 | deep > fast | No |\n\n**Deep wins 3, Fast wins 2, Ties 1 — 无一达到 p < 0.05。**\n\n## Special Analysis: find-non-living-thing\n\n两种 mode 均 0% death rate（这是唯一没有死亡的 task）。Deep-internal 均值略高（26.6 vs 18.9），但 p = 0.268，不显著。注意 fast-internal 样本量更大（40 vs 20），分布形态相似：大量 0 分 + 部分 50/58 分。\n\n## Score 分布特征\n\n大多数 task 呈现**双峰分布**：\n- **死亡峰**：score = -100（除 find-non-living-thing 外所有 task 都有 45-56% 的死亡率）\n- **存活峰**：score = 0（存活但未完成）或少量正分\n\n两种 mode 在每个 task 上的分布形态高度一致，无结构性差异。\n\n## 结论\n\n### Deep-internal 是否提供额外 routing signal？\n\n**否。** 证据：\n\n1. **6 个 task 无一显著差异**（最小 p = 0.268），效应量均为 negligible 到 small（|d| ≤ 0.31）\n2. **Aggregate 完全等价**：均分差 0.56，paired tests p > 0.8\n3. **Death rate 几乎相同**：41.8% vs 42.5%，无 survival advantage\n4. **分布形态无结构差异**：同一 task 的 score 分布在两种 mode 下高度相似\n5. **唯一的\"趋势\"**（find-non-living-thing +7.7 分）远未达到统计显著，且该 task 本身就是最容易的（0% death rate），routing 价值有限\n\n### 3-way routing 是否有数据支撑？\n\n**不支撑。** 3-way routing（deterministic vs fast-internal vs deep-internal）要求 deep-internal 和 fast-internal 在至少部分 task 上表现出系统性差异，使得 router 有理由区分选择。当前数据显示两者在所有 task 上统计等价——router 无法基于 episode 特征有效区分应该调用 deep 还是 fast。\n\n### 建议\n\n**维持 2-way routing（deterministic vs internal）**，将 fast-internal 作为 internal mode 的代表。理由：\n- deep-internal 成本更高（thinking token 消耗）但未带来可测量的性能提升\n- 样本量（每 task 14-40 episodes）足以检测中等以上效应（power analysis: n=20 可检测 d≥0.9 at α=0.05, 80% power），当前效应量远小于此\n- 如需扩展 routing 维度，应优先考虑其他信号（如 task complexity features），而非 internal mode 细分\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/deep_vs_fast_analysis.md",
+    "content": "# Deep-Internal vs Fast-Internal 对比分析\n\n**日期**: 2026-05-15\n**数据来源**: `results/plan_c/`（fast-internal）, `results/plan-006-deep-internal/`（deep-internal）\n\n## 数据概况\n\n6 个重叠 task，fast-internal 取自 plan_c 的 `internal_final`，deep-internal 取自 plan-006-deep-internal 的 `deep_internal_final`。\n- identify-life-stages-1：仅取前 14 episodes（避免伪重复）\n- Death 判定：score ≤ -100\n\n## Per-Task 对比表\n\n| Task | n_fast | n_deep | death%_fast | death%_deep | mean_fast | mean_deep | p (MW) | Cohen's d |\n|------|--------|--------|-------------|-------------|-----------|-----------|--------|-----------|\n| chemistry-mix | 20 | 20 | 45.0% | 55.0% | -43.5 | -53.5 | 0.599 | -0.19 |\n| find-non-living-thing | 40 | 20 | 0.0% | 0.0% | 18.9 | 26.6 | 0.268 | +0.31 |\n| identify-life-stages-1 | 14 | 14 | 50.0% | 50.0% | -50.0 | -50.0 | 1.000 | 0.00 |\n| inclined-plane-determine-angle | 20 | 20 | 55.0% | 50.0% | -55.0 | -50.0 | 0.767 | +0.10 |\n| lifespan-longest-lived | 25 | 20 | 56.0% | 55.0% | -54.0 | -55.0 | 0.969 | -0.02 |\n| lifespan-longest-lived-then-shortest-lived | 20 | 20 | 45.0% | 45.0% | -45.0 | -43.4 | 0.877 | +0.03 |\n\n## Aggregate 统计\n\n| 指标 | Fast-internal | Deep-internal |\n|------|--------------|---------------|\n| 跨 task 平均分 | -38.11 | -37.55 |\n| 平均 death rate | 41.8% | 42.5% |\n\n- **Paired t-test**（task-level means）: t = -0.224, **p = 0.832**\n- **Wilcoxon signed-rank**: W = 6.0, **p = 0.813**\n\n## Direction of Difference\n\n| Task | Δ (deep - fast) | Direction | Significant? |\n|------|-----------------|-----------|-------------|\n| chemistry-mix | -10.0 | fast > deep | No |\n| find-non-living-thing | +7.7 | deep > fast | No |\n| identify-life-stages-1 | 0.0 | tie | — |\n| inclined-plane-determine-angle | +5.0 | deep > fast | No |\n| lifespan-longest-lived | -1.0 | fast > deep | No |\n| lifespan-longest-lived-then-shortest-lived | +1.6 | deep > fast | No |\n\n**Deep wins 3, Fast wins 2, Ties 1 — 无一达到 p < 0.05。**\n\n## Special Analysis: find-non-living-thing\n\n两种 mode 均 0% death rate（这是唯一没有死亡的 task）。Deep-internal 均值略高（26.6 vs 18.9），但 p = 0.268，不显著。注意 fast-internal 样本量更大（40 vs 20），分布形态相似：大量 0 分 + 部分 50/58 分。\n\n## Score 分布特征\n\n大多数 task 呈现**双峰分布**：\n- **死亡峰**：score = -100（除 find-non-living-thing 外所有 task 都有 45-56% 的死亡率）\n- **存活峰**：score = 0（存活但未完成）或少量正分\n\n两种 mode 在每个 task 上的分布形态高度一致，无结构性差异。\n\n## 结论\n\n### Deep-internal 是否提供额外 routing signal？\n\n**否。** 证据：\n\n1. **6 个 task 无一显著差异**（最小 p = 0.268），效应量均为 negligible 到 small（|d| ≤ 0.31）\n2. **Aggregate 完全等价**：均分差 0.56，paired tests p > 0.8\n3. **Death rate 几乎相同**：41.8% vs 42.5%，无 survival advantage\n4. **分布形态无结构差异**：同一 task 的 score 分布在两种 mode 下高度相似\n5. **唯一的\"趋势\"**（find-non-living-thing +7.7 分）远未达到统计显著，且该 task 本身就是最容易的（0% death rate），routing 价值有限\n\n### 3-way routing 是否有数据支撑？\n\n**不支撑。** 3-way routing（deterministic vs fast-internal vs deep-internal）要求 deep-internal 和 fast-internal 在至少部分 task 上表现出系统性差异，使得 router 有理由区分选择。当前数据显示两者在所有 task 上统计等价——router 无法基于 episode 特征有效区分应该调用 deep 还是 fast。\n\n### 建议\n\n**维持 2-way routing（deterministic vs internal）**，将 fast-internal 作为 internal mode 的代表。理由：\n- deep-internal 成本更高（thinking token 消耗）但未带来可测量的性能提升\n- 样本量（每 task 14-40 episodes）足以检测中等以上效应（power analysis: n=20 可检测 d≥0.9 at α=0.05, 80% power），当前效应量远小于此\n- 如需扩展 routing 维度，应优先考虑其他信号（如 task complexity features），而非 internal mode 细分\n"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T16:40:32.199257+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/deep_vs_fast_analysis.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T16:40:32.199394+00:00_
+
+called mcp__agent-ml-research__register_artifact
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact</summary>
+
+```json
+{
+  "name": "deep_vs_fast_analysis",
+  "type": "report",
+  "description": "Deep-internal vs fast-internal per-task comparison with statistical tests, score distributions, and 3-way routing feasibility assessment",
+  "project": "simgate-modular-routing",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/deep_vs_fast_analysis.md",
+  "tags": "['analysis', 'routing', 'deep-internal', 'fast-internal', 'statistics']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "tool_args": {
+    "name": "deep_vs_fast_analysis",
+    "type": "report",
+    "description": "Deep-internal vs fast-internal per-task comparison with statistical tests, score distributions, and 3-way routing feasibility assessment",
+    "project": "simgate-modular-routing",
+    "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/deep_vs_fast_analysis.md",
+    "tags": "['analysis', 'routing', 'deep-internal', 'fast-internal', 'statistics']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T16:40:32.199541+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260515_040b1c\", \"name\": \"deep_vs_fast_analysis\", \"type\": \"report\", \"description\": \"Deep-internal vs fast-internal per-task comparison with statistical tests, score distributions, and 3-way routing feasibility assessment\", \"path\": \"projects/simgate-modular-routing/artifacts/_project/report/deep_vs_fast_analysis.md\", \"url\": null, \"project\": \"simgate-modular-routing\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-15T16:40:22.985297+00:00\", \"tags\": [\"analysis\", \"routing\", \"deep-internal\", \"fast-internal\", \"statistics\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707",
+  "tool": "mcp__agent-ml-research__register_artifact",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 43 · 2026-05-15T16:40:32.199713+00:00_
+
+## 结果
+
+**3-way routing 没有数据支撑，2-way suffices。**
+
+核心发现：
+
+| 维度 | Fast-internal | Deep-internal | 差异 |
+|------|--------------|---------------|------|
+| 跨 task 平均分 | -38.11 | -37.55 | Δ=0.56, p=0.83 |
+| 平均 death rate | 41.8% | 42.5% | 几乎相同 |
+| 显著差异 task 数 | — | — | **0 / 6** |
+
+6 个重叠 task 无一达到 p < 0.05（Mann-Whitney U）。效应量全部 negligible（|d| ≤ 0.31）。Score 分布形态在两种 mode 下高度一致——都是"死亡（-100）或低分（0）"的双峰结构。
+
+**find-non-living-thing** 是唯一有趋势的 task（deep 26.6 vs fast 18.9），但 p=0.27 且该 task 0% death rate，routing 价值本身有限。
+
+**结论**：Deep-internal 的额外 thinking cost 未换来可测量的性能提升。Router 无法有效区分何时该调用 deep vs fast。维持 2-way routing（deterministic vs internal），以 fast-internal 代表 internal mode。
+
+报告已写入 `artifacts/deep_vs_fast_analysis.md`。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_deep-vs-fast-internal_20260515T163707"
+}
+```
+
+</details>
+
+---

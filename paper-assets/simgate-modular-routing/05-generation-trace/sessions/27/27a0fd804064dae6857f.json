@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "27a0fd804064dae6857f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code rule based baseline",
+  "task_key": "worker_code_rule-based-baseline_20260513T183202",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rule-based-baseline_20260513T183202_result.json",
+    "occurrence": 1,
+    "bytes": 585,
+    "sha256": "6952628502a48d3cf4827b109344e9c76911ba6baa2e618e442cbefa23c69383"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本已写入 `/root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py` 并通过 `--help` 验证。\n\n核心逻辑：\n- `route_by_keywords()` 检查 observation + valid_actions 中是否匹配预注册关键词，返回路由决策和匹配到的关键词\n- deterministic 路由复用 phase1 的 fork-based 评估（含 death filter）\n- internal 路由调用 `agent.select_action_react()`\n- 每步记录 `route_decision` 和 `keyword_matched`\n- 脚本启动时打印 keyword file MD5 hash\n- 输出 JSONL + summary JSON，格式与设计规范一致"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rule-based-baseline.md"
+}

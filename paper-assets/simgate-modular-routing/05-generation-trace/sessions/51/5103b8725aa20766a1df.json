@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5103b8725aa20766a1df",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "audit discussion stale data",
+  "task_key": "worker_audit_discussion-stale-data_20260515T154401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_discussion-stale-data_20260515T154401_result.json",
+    "occurrence": 1,
+    "bytes": 3047,
+    "sha256": "f438706c6a3a72f43a9ba05c7bae6452cffde17866300c33e1feca7010bd925b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部检查完毕。以下是发现的所有问题：\n\n---\n\n## 问题汇总\n\n### 一、旧数据（pilot-50 残留）\n\n存在于 **3 个文件**，内容完全相同：\n\n| # | 文件 | 行号 | 内容 | 类型 |\n|---|------|------|------|------|\n| 1 | **服务器** `paper/discussion.tex` | L5 | `Internal reasoning achieved 80\\% accuracy versus 72\\% for code interpreter, with 88\\% of problems showing no modality preference (label distribution: 1 det, 5 int, 44 no-pref)` | 旧数据 |\n| 2 | **服务器** `paper/latex_build/discussion.tex` | L5 | 同上 | 旧数据（构建副本） |\n| 3 | **本地** `artifacts/_project/paper/latex/discussion.tex` | L5 | 同上 | 旧数据 |\n\n**修复方向**：用 MATH 300 题的正式数据替换——`docs/paper/discussion.tex` 已有更新版本：81.0% vs 76.7%、84.3% no-preference、17 det / 30 int / 253 no-pref。应将这三个文件同步为 `docs/paper/discussion.tex` 的内容。\n\n---\n\n### 二、TODO 注释\n\n| # | 文件 | 行号 | 内容 | 状态 |\n|---|------|------|------|------|\n| 4 | **本地** `artifacts/_project/paper/latex/discussion.tex` | L10 | `% TODO: ALFWorld results pending; add cross-environment comparison if signal emerges` | 已完成，应删除 |\n| 5 | **服务器** `paper/discussion.tex` | L7 | `% TODO: Replace pilot-50 numbers with math-200-fixed results when available` | 已完成，应删除 |\n| 6 | **服务器** `paper/discussion.tex` | L12 | `% TODO: ALFWorld results pending; add cross-environment comparison if signal emerges` | 已完成，应删除 |\n| 7 | **服务器** `paper/latex_build/discussion.tex` | L7, L12 | 同 #5, #6 | 已完成，应删除 |\n\n**修复方向**：`docs/paper/discussion.tex` 已经包含 MATH 300 数据和 ALFWorld 结果（Table 3），这些 TODO 对应的工作已完成。直接删除这些 TODO 行。\n\n---\n\n### 三、Dream Report 中的占位符 arXiv ID\n\n| # | 文件 | 行号 | 内容 | 类型 |\n|---|------|------|------|------|\n| 8 | `artifacts/dream_reports/.../best/paper.tex` | L284,289,294 | `arXiv:2401.xxxxx`, `arXiv:2405.xxxxx`, `arXiv:2504.xxxxx` | 占位引用 |\n| 9 | `artifacts/dream_reports/.../worst/paper.tex` | L271,276 | `arXiv:2405.XXXXX` | 占位引用 |\n\n**修复方向**：dream reports 是自动生成的草稿，如不纳入正式论文可忽略。如需使用，需补全真实 arXiv ID。\n\n---\n\n### 四、文件版本不一致\n\n存在 **4 个版本**的 discussion.tex：\n\n| 位置 | 状态 |\n|------|------|\n| `docs/paper/discussion.tex` | **最新**（MATH 300 + ALFWorld + 完整 Discussion） |\n| `artifacts/_project/paper/latex/discussion.tex` | **过时**（pilot-50 数据 + 1 个 TODO） |\n| 服务器 `paper/discussion.tex` | **过时**（pilot-50 数据 + 2 个 TODO） |\n| 服务器 `paper/latex_build/discussion.tex` | **过时**（同上，构建副本） |\n\n**修复方向**：以 `docs/paper/discussion.tex` 为准，同步到服务器的 `paper/discussion.tex`，然后重新构建 `latex_build/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-discussion-stale-data.md"
+}

@@ -1,0 +1,46 @@
+{
+  "exp_id": "plan-001b-gpu1",
+  "project": "simgate-modular-routing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:10:04.310Z",
+    "updated_at": "2026-05-14T01:45:49.350Z",
+    "spec": {
+      "command": "python src/episode_level_collection.py --task_types find-non-living-thing,...,identify-life-stages-2 --episodes 20 --gpu_id 1",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "773109",
+      "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu1.log",
+      "submitted_at": "2026-05-13T22:10:04.279Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ScienceWorld API (4 tasks x 20 eps)",
+      "data_count": 80,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "hypothesis": "Episode-level data collection for 4 tasks (1 internal-pref: find-non-living-thing + 3 death-dom: grow-fruit, inclined-plane-determine-angle, identify-life-stages-2), 20 eps/task, reusing prescreening 5 eps. find-non-living-thing needs follow-up to reach 40 eps total.",
+    "notes": "Part of plan-001b approved by Director. Tasks: find-non-living-thing (20 eps first pass, needs extra 20 to reach 40 target), grow-fruit, inclined-plane-determine-angle, identify-life-stages-2. 80 new eps this run. Follow-up needed for find-non-living extra 20 eps.",
+    "reproduce": {
+      "finished_at": "2026-05-14T01:42:06.391Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T01:42:07.322977+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T01:45:49.409091+00:00",
+  "trigger": "update_registry"
+}

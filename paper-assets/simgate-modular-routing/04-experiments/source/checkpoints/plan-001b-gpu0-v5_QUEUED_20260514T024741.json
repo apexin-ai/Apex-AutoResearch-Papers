@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-001b-gpu0-v5",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:47:32.668Z",
+    "updated_at": "2026-05-14T02:47:41.060Z",
+    "hypothesis": "GPU0 修正重启：measure-melting-point-unknown-substance 20 eps + lifespan-longest-lived 补 1 ep (ep19)。去重后重启，使用 --reuse_dirs 防止重复。"
+  },
+  "timestamp": "2026-05-14T02:47:41.104416+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20b35c3c0fb6828cb4a3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis plan 005 routing pattern",
+  "task_key": "worker_analysis_plan-005-routing-pattern_20260514T014249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-005-routing-pattern_20260514T014249_result.json",
+    "occurrence": 1,
+    "bytes": 1015,
+    "sha256": "9430d2273ef4e8bf2b1bfe9f424b024a3025ae04a2831a4ab16b1a8cd8575e52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。输出总结：\n\n**30 tasks / 314 episodes 分析结果：**\n\n| 分类 | Task 数 | 占比 |\n|---|---|---|\n| death-dominated | 25 | 83.3% |\n| genuine-det | 3 | 10.0% |\n| internal-preferred | 2 | 6.7% |\n\n**C1 支持数据：** Weighted mean DAF = **98.09%**，其中 17/25 death-dominated tasks DAF = 1.0（非死亡优势完全为零）。Internal 死亡 144 次 vs deterministic 37 次（3.89x），失败模式全部为 focus-action 探索循环。\n\n**输出文件（服务器 `results/plan005/analysis/`）：**\n- `task_classification.json` — 30 tasks 分类 + 关键指标\n- `heatmap_data.csv` — Figure 1 数据矩阵（DAF 降序）\n- `taxonomy_summary.json` — 分类统计 + C1 claim 分析\n\n**注意：** 与预分析（19 death-dominated / 5 genuine-det / 1 internal-preferred on 25 tasks）相比，新增 5 个 task 后 death-dominated 增加到 25，genuine-det 从 5 降到 3，internal-preferred 从 1 增到 2。整体结论更强化了 C1 claim。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-005-routing-pattern.md"
+}

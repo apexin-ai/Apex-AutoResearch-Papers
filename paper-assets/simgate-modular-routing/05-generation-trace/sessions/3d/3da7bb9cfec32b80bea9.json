@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3da7bb9cfec32b80bea9",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_16.md",
+  "task_key": "loop_16",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_16.md",
+    "occurrence": 1,
+    "bytes": 2832,
+    "sha256": "c93f1b38bfd5cb3382126c518513035f3367e6a9d22928211956aa2b64318d22"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 16\nreason: idle_timeout\nupdated: '2026-05-16T12:48:43+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目只能用 westb-13313 的 cuda:0 和 cuda:1（gpu_ids 白名单）\n- r7n2 系列实验已确认 negative（数据 scaling 无效），不要再跑更多 scale 变体\n- ALFWorld DAF 数字是 tautological（binary env），论文中只引用 qualitative evidence，禁止引用 DAF=100% 的数值\n- MATH 结果 p=0.079，只能用 \"directional trend\" 措辞，不能说 significant\n- EMNLP DDL 2026-05-25，剩 9 天，所有决策以此为锚\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090\n- 工作目录：/root/autodl-tmp/simgate-modular-routing/\n- Python：conda base（/root/miniconda3/bin/python）\n- 数据：data/plan-004-implicit/implicit_sft.jsonl (1733 samples)\n- 活跃进程：llama-cross-model-v2 (PID 961982, tmux 未知, cuda:0, 预计 ~12:00 UTC 完成)\n- cuda:1 空闲（r7n2-supplement-100-200 刚失败释放）\n\n### 3. 📊 当前状态\n- 刚收到 r7n2-supplement-100-200 失败回调（EXIT_CODE=1），已派 Worker `worker_diagnose_r7n2-supplement-100-200_20260516T073754` 去读日志诊断，**尚未收到回调**\n- llama-cross-model-v2 仍在 RUNNING（cuda:0，Llama-3.1-8B 跑 7 task types × 10 eps，预计 12:00 UTC）\n- cuda:1 当前空闲 — 失职状态，需要 Director 决策下一步用途\n- 用户尚未选定 method 创新方向（A/B/C），这是 main track 的 BLOCKER\n\n### 4. 📋 待办\n- Worker 诊断回调到达 → 判断 r7n2-supplement 是否值得重跑（大概率不值得，因为 r7n2-r3 已跑 7/21 含 800% 全部 negative，100%/200% 几乎确定同样 negative）→ 更新 registry notes → 汇报 Director\n- llama-cross-model-v2 完成回调 → 分析 cross-model DAF 是否复现 death avoidance pattern → 更新 C3 claim 强度 → 汇报 Director\n- Director 选定 method 方向 (A/B/C) → 立即铺对应实验代码到 cuda:1\n- cuda:1 空闲需向 Director 汇报，建议用于 method 方向实验或其他 preemptive defense\n\n### 5. 🎯 战略上下文\n- 核心发现：ScienceWorld routing signal 90.4% 来自 death avoidance（C1 SOLID，CI [81.6%, 98.8%], r=0.97）\n- C2 negative 证据链 COMPLETE：router episode-level 泛化≈随机（cross-split 47.1%, majority-vote 50%, scaling 无效, LOTO 7/11 全 det）\n- C3 cross-model 是当前最弱 claim，llama-cross-model-v2 是补强的关键实验\n- 论文状态：6 项修正已完成，审稿 issues 全部 action done，等 llama 结果 + method 方向 + Round 8 审稿\n- 易错点：r7n2-supplement 失败不影响大局（r7n2-r3 已经给出足够 negative evidence），不要花时间修复重跑，除非 Director 明确要求\n- 决策链：D094(C1精确化) → D093(preemptive experiments) → D092(Outcome B confirmed) → D089(C2定调)\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-16.md"
+}

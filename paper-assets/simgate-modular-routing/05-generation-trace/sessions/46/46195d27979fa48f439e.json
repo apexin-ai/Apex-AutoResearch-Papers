@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "46195d27979fa48f439e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research ablation b replication",
+  "task_key": "worker_research_ablation-b-replication_20260514T084716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ablation-b-replication_20260514T084716_result.json",
+    "occurrence": 1,
+    "bytes": 445,
+    "sha256": "ceca976f4f7bd994b4d548b44c43d70e865efc90c1513c44416f221e77fbe1b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n**核心结论**：\n- **ga=8 确认**：ablation-b 用了 ga=8（步数反推 165 = ceil(434/8)×3），spec 正确，数据分析表 ga=1 有误\n- **复现成功 3/3**：所有 seed 产出非退化 generation-level router，balanced_accuracy 稳定在 57-59%\n- **存在 recall tradeoff 偏移**：新 seed 普遍比原始 seed42 更偏向预测 internal（可能因训练脚本 data split 方式已更新）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-ablation-b-replication.md"
+}

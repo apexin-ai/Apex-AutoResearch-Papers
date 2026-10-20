@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "20fa9462bb827a3a007d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "urgent kill gpu1 prevent collision",
+  "task_key": "worker_urgent_kill-gpu1-prevent-collision_20260515T160542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_kill-gpu1-prevent-collision_20260515T160542_result.json",
+    "occurrence": 1,
+    "bytes": 522,
+    "sha256": "e91325d896e5b2fb18708a3daa1d807e89795ae51d4c17ac4a2880ff2d27926b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n| 项目 | 状态 |\n|------|------|\n| GPU1 (PID 485807) | **已 kill**，普通 kill 即成功 |\n| GPU0 (PID 499313) | **正常运行**，GPU0 utilization 100%，正在跑 inclined-plane-determine-angle |\n| GPU1 显存 | 已释放（28013 MiB used → 0% utilization） |\n| task 4 数据 | **18/20 episodes** 已收集 |\n| 需补收 | **2 episodes**（lifespan-longest-lived-then-shortest-lived, ep 19-20） |\n\n数据碰撞已避免。task 4 差 2 个 episode，后续可单独补收。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-kill-gpu1-prevent-collision.md"
+}

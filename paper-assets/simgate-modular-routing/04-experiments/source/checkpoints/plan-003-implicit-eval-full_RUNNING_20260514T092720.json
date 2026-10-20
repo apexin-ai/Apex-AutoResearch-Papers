@@ -1,0 +1,27 @@
+{
+  "exp_id": "plan-003-implicit-eval-full",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:27:09.398Z",
+    "updated_at": "2026-05-14T09:27:20.879Z",
+    "spec": {
+      "command": "python3 src/eval_implicit_router.py --adapter checkpoints/plan-004-implicit/final_adapter --output results/plan-003-eval-implicit/",
+      "server": "westb-13313",
+      "data_path": "episodes_slim_FINAL.jsonl (245 episodes)",
+      "data_count": 245,
+      "model_name": "Qwen2.5-7B + plan-004-implicit/final_adapter (ablation-b implicit SFT)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan-004-implicit/final_adapter",
+      "eval_data": "245 episodes / 11 tasks / 2160 steps",
+      "parent": "plan-004-implicit-train",
+      "checkpoint_path": "checkpoints/plan-004-implicit/final_adapter",
+      "log_path": "results/plan-003-eval-implicit/"
+    }
+  },
+  "timestamp": "2026-05-14T09:27:20.991137+00:00",
+  "trigger": "update_registry"
+}

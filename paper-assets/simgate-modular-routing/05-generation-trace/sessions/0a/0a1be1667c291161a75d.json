@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a1be1667c291161a75d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh 14838 process diagnosis",
+  "task_key": "worker_ssh_14838-process-diagnosis_20260517T215256",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_14838-process-diagnosis_20260517T215256_result.json",
+    "occurrence": 1,
+    "bytes": 489,
+    "sha256": "2ddd0aeef7293aa20ccc07cb3dffc9b7d3e9b9075a04a8b6ca499af346aab6db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "诊断完成，结果已写入 `artifacts/14838_diagnosis.md`。\n\n**摘要：**\n\n| GPU | 状态 | 说明 |\n|-----|------|------|\n| 0 | DEAD | vLLM EngineDeadError 崩溃（engine core 内部异常） |\n| 1 | ALIVE | PID 69734 正常运行，正在跑最后一个 task (measure-melting-point)，即将完成 |\n| 2 | DEAD | PID 540229 不存在 |\n| 3 | — | 空闲 |\n\n**GPU 0, 2, 3 三卡空闲可用。** cuda:1 预计短期内完成全部 7 个 task 的收集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-14838-process-diagnosis.md"
+}

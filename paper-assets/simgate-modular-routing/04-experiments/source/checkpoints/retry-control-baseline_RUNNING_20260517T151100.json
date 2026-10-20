@@ -1,0 +1,26 @@
+{
+  "exp_id": "retry-control-baseline",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:10:35.303Z",
+    "updated_at": "2026-05-17T15:11:00.113Z",
+    "hypothesis": "Retry（无 reflexion 自我纠错）能否同样降低 death rate；如果 retry 效果与 reflexion 相当，则 reflexion 的收益来自重试机会而非自我纠错机制",
+    "parent": "reflexion-internal-baseline",
+    "spec": {
+      "command": "python reflexion_baseline.py --mode retry --tasks <task_names> --episodes-per-task 20 --max-trials 3 --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --api-base http://localhost:8002/v1 --output-dir /root/autodl-tmp/simgate-modular-routing/outputs/retry-control --max-steps 30 --seed 42",
+      "server": "westb-14838",
+      "data_path": "ScienceWorld environment interactive episodes",
+      "data_count": "220 episodes (11 tasks x 20 episodes)",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (episode collection)",
+      "eval_data": "ScienceWorld environment interactive episodes"
+    }
+  },
+  "timestamp": "2026-05-17T15:11:00.305862+00:00",
+  "trigger": "update_registry"
+}

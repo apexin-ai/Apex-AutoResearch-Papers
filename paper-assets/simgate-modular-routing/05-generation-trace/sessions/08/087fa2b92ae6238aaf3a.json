@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "087fa2b92ae6238aaf3a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research reference audit 2025 2026",
+  "task_key": "worker_research_reference-audit-2025-2026_20260523T093226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_reference-audit-2025-2026_20260523T093226_result.json",
+    "occurrence": 1,
+    "bytes": 447,
+    "sha256": "6c6cf7d2c4812f4d4245f44ecc69260a72c5ce263bc8a9a765726257baa0ac96"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。17 条引用全部确认真实存在，无虚构引用。\n\n发现 2 个需修正的问题：\n1. **`salt-2026`**：已正式发表于 Findings of EACL 2026，bib 仍标为 arXiv preprint (year=2025)，建议更新为会议版本\n2. **`ares-2026`**：arXiv 官方标题用 \"Ares\"（非全大写），bib 写成 \"ARES\"，建议改为 `{Ares}` 匹配原文\n\n报告已写入 `artifacts/r31_reference_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-reference-audit-2025-2026.md"
+}

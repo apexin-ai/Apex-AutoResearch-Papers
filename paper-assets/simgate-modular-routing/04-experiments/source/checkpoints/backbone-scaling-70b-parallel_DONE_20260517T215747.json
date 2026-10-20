@@ -1,0 +1,42 @@
+{
+  "exp_id": "backbone-scaling-70b-parallel",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:22:17.222Z",
+    "updated_at": "2026-05-17T21:57:47.100Z",
+    "hypothesis": "72B AWQ TP=1 在 westb-14838 cuda:1 上并行收集剩余 7 tasks（与 westb-13313 分担），加速 backbone-scaling-70b 的数据收集",
+    "parent": "backbone-scaling-70b",
+    "spec": {
+      "command": "python src/reflexion_baseline.py --mode retry --tasks grow-fruit,identify-life-stages-1,identify-life-stages-2,inclined-plane-determine-angle,lifespan-longest-lived,lifespan-longest-lived-then-shortest-lived,measure-melting-point-unknown-substance --episodes-per-task 20 --max-trials 1 --model Qwen2.5-72B-Instruct-AWQ --api-base http://localhost:8003/v1 --output-dir results/backbone_72b/ --max-steps 30 --seed 42",
+      "server": "westb-14838",
+      "data_path": "ScienceWorld environment interactive episodes",
+      "data_count": "140 episodes (7 tasks x 20 episodes)",
+      "model_name": "Qwen2.5-72B-Instruct-AWQ",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen2.5-72B-Instruct-AWQ (downloaded via modelscope)",
+      "eval_data": "ScienceWorld 7 remaining task types"
+    },
+    "metrics": {
+      "server": "westb-14838",
+      "gpus": "cuda:0+1+2 (3x TP=1)",
+      "pids": {
+        "cuda0": 321045,
+        "cuda1": 69734,
+        "cuda2": 321159
+      },
+      "cuda0_progress": "1 task done, 2nd task 2/20",
+      "cuda1_progress": "inclined-plane in progress",
+      "cuda2_progress": "1 task done, 2nd task 2/20"
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/results/backbone_72b/",
+    "log_path": "/tmp/72b-cuda0.log, /tmp/72b-cuda2.log, /tmp/72b-collect.log, /tmp/72b-supplement-measure.log",
+    "completed_at": "2026-05-17T21:57:47.100Z"
+  },
+  "timestamp": "2026-05-17T21:57:47.465658+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1026 @@
+{
+  "schema_version": "1.0",
+  "id": "251290e1271383873f3e",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "research arr submission prep",
+  "task_key": "worker_research_arr-submission-prep_20260517T182252",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_arr-submission-prep_20260517T182252.jsonl",
+    "occurrence": 1,
+    "bytes": 47903,
+    "sha256": "bbfb4d344a04bead86dd0ae70b3004697340e5f8d306be2902ac3d17dcadb298"
+  },
+  "statistics": {
+    "messages": 51,
+    "user_turns": 0,
+    "tool_calls": 26,
+    "roles": {
+      "tool_call": 26,
+      "tool_result": 25
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-17T18:27:18.178681+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-17T18:27:18.179112+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/method.tex\ndocs/paper/abstract.tex\ndocs/paper/main.tex\ndocs/paper/introduction.tex\ndocs/paper/conclusion.tex\ndocs/paper/related_work.tex\ndocs/paper/experiments.tex\ndocs/paper/discussion.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-17T18:27:18.179295+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/",
+              "description": "List paper directory contents"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-17T18:27:18.179428+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-17T18:27:18.179558+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-17T18:27:18.179686+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 732\ndrwxr-xr-x 5 ubuntu ubuntu   4096 May 17 17:28 .\ndrwxr-xr-x 4 ubuntu ubuntu   4096 May 13 05:45 ..\n-rw-r--r-- 1 ubuntu ubuntu    715 May 14 11:28 SETUP_NOTES.md\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 17 17:15 _pdf_images\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 14 21:19 _pdf_images_r5\n-rw-r--r-- 1 ubuntu ubuntu   1130 May 17 17:12 abstract.tex\n-rw-r--r-- 1 ubuntu ubuntu  11615 May 14 11:41 acl.sty\n-rw-r--r-- 1 ubuntu ubuntu  45186 May 14 11:41 acl_natbib.bst\n-rw-r--r-- 1 ubuntu ubuntu    705 May 17 17:16 conclusion.tex\n-rw-r--r-- 1 ubuntu ubuntu   2804 May 17 17:28 discussion.tex\n-rw-r--r-- 1 ubuntu ubuntu  11295 May 17 17:24 experiments.tex\ndrwxr-xr-x 2 ubuntu ubuntu   4096 May 17 15:50 figures\n-rw-r--r-- 1 ubuntu ubuntu   6496 May 17 17:15 introduction.tex\n-rw-r--r-- 1 ubuntu ubuntu  40694 May 17 17:28 main.aux\n-rw-r--r-- 1 ubuntu ubuntu  13762 May 17 17:28 main.bbl\n-rw-r--r-- 1 ubuntu ubuntu   1295 May 17 17:28 main.blg\n-rw-r--r-- 1 ubuntu ubuntu  21423 May 17 17:29 main.fdb_latexmk\n-rw-r--r-- 1 ubuntu ubuntu  23742 May 17 17:28 main.fls\n-rw-r--r-- 1 ubuntu ubuntu  31182 May 17 17:28 main.log\n-rw-r--r-- 1 ubuntu ubuntu   4404 May 17 17:28 main.out\n-rw-r--r-- 1 ubuntu ubuntu 417228 May 17 17:28 main.pdf\n-rw-r--r-- 1 ubuntu ubuntu  27215 May 17 17:12 main.tex\n-rw-r--r-- 1 ubuntu ubuntu   9442 May 17 15:00 method.tex\n-rw-r--r-- 1 ubuntu ubuntu  12289 May 17 15:41 references.bib\n-rw-r--r-- 1 ubuntu ubuntu   3800 May 17 17:18 related_work.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-17T18:27:18.179835+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-17T18:27:18.180157+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\\usepackage{graphicx}\n11\t\\graphicspath{{figures/}}\n12\t\\usepackage{booktabs}\n13\t\\usepackage{amsmath}\n14\t\\usepackage{amssymb}\n15\t\\usepackage{algorithm}\n16\t\\usepackage{algorithmic}\n17\t\n18\t\\title{Death Avoidance as the Dominant Routing Signal:\\\\A Counterfactual Analysis on ScienceWorld}\n19\t\n20\t\\author{Anonymous}\n21\t\n22\t\\begin{document}\n23\t\\maketitle\n24\t\n25\t\\input{abstract}\n26\t\\input{introduction}\n27\t\\input{method}\n28\t\\input{experiments}\n29\t\\input{related_work}\n30\t\\input{discussion}\n31\t\\input{conclusion}\n32\t\n33\t\\section*{Limitations}\n34\t\n35\t\\paragraph{Environmental scope.}\n36\tOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct); generalization requires further validation. The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\ref{app:penalty}). The 19 excluded task types (63\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\\S\\ref{sec:cross-env}, \\S\\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. The Llama-3.1-8B-Instruct pilot (7 task types, $N{=}70$; Appendix~\\ref{app:cross-model}) confirms direction-consistent death patterns, though both models are in the 7--8B parameter range; validation at larger scales remains future work.\n37\t\n38\t\\paragraph{Methodological constraints.}\n39\tOur internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-o\n…[truncated 26515 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-17T18:27:18.180350+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-17T18:27:18.180548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\n3\tWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types show no routing signal (both strategies time out). An anti-cherry-picking analysis confirms that prescreening does not select for death-prone tasks (Appendix~\\ref{app:per-task}).\n4\t\n5\t\\subsection{Death Avoidance Decomposition}\n6\t\\label{sec:death-decomp}\n7\t\n8\t\\begin{figure}[t]\n9\t\\centering\n10\t\\includegraphics[width=\\columnwidth]{figures/fig1_daf_scatter.pdf}\n11\t\\caption{Per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$, $p < 10^{-6}$, $n = 11$ task types.}\n12\t\\label{fig:decomposition}\n13\t\\end{figure}\n14\t\n15\tAcross 245 episodes, $\\Delta_{\\text{full}} = +29.60$; excluding death episodes, $\\Delta_{\\text{nd}} = +2.84$, yielding DAF $= 90.4\\%$ (95\\% CI: $[81.6\\%, 98.8\\%]$; at the default $P{=}100$). The penalty-independent death-asymmetry label fraction is 78.9\\% (75 of 95 non-tie labels). Given observed $\\delta = 0.265$ and $P = 100$, the predicted DAF $= \\delta P / (\\delta P + \\Delta_{\\text{nd}}) = 26.5 / 29.37 \\approx 90.3\\%$, closely matching the observed value; DAF is thus a derived quantity once $\\delta$, $P$, and $\\Delta_{\\text{nd}}$ are known, while the 78.9\\% label fraction is the penalty-independent empirical finding. Of these 75, 54 (72.0\\%) reduce to ties when the death penalty is removed entirely: in those episodes, both modalities score zero without death, so the only reason one strategy outscored the other was avoiding the $-100$ penalty. Death avoidance is not merely the dominant but often the \\emph{sole} discriminating signal between modalities. The remaining 21 death-asymmetry labels involve episodes where the surviving strategy also earned positive score, but the death penalty still accounts for the majority of the score gap.\n16\t\n17\t\\paragraph{Per-task correlation structure.}\n18\tThe internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic (2.6$\\\n…[truncated 9639 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-17T18:27:18.180702+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ARR 2026 responsible NLP research checklist template latex"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-17T18:27:18.180827+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ACL ARR 2026 submission guidelines format requirements page limit"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-17T18:27:18.180980+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ARR 2026 responsible NLP research checklist template latex\"\n\nLinks: [{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://aclrollingreview.org/static/responsibleNLPresearch.pdf\"},{\"title\":\"ARR Responsible NLP Research checklist\",\"url\":\"http://aclrollingreview.org/responsibleNLPresearch/\"},{\"title\":\"GitHub - acl-org/responsibleNLPresearch: templates and other documents regarding responsible NLP research\",\"url\":\"https://github.com/acl-org/responsibleNLPresearch\"},{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://openreview.net/attachment?id=yGhYSEj8ln0&name=responsible_NLP_research\"},{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://arxiv.org/html/2402.13374v1\"},{\"title\":\"Authors Beware: Common Submission Problems\",\"url\":\"http://aclrollingreview.org/authorchecklist\"},{\"title\":\"Call for Main Conference Papers - EMNLP 2026\",\"url\":\"https://2026.emnlp.org/calls/main_conference_papers/\"},{\"title\":\"Main Track Handbook 2026\",\"url\":\"https://neurips.cc/Conferences/2026/MainTrackHandbook\"},{\"title\":\"EMNLP 2026 LaTeX Template | ACL Style Files & Overleaf | Underleaf\",\"url\":\"https://www.underleaf.ai/templates/emnlp\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review\",\"url\":\"http://aclrollingreview.org/cfp\"}]\n\nBased on the search results, I found information about the ARR Responsible NLP Research checklist for 2026:\n\nThe ARR Responsible NLP Research checklist is designed to encourage best practices for responsible research, addressing issues of research ethics, societal impact and reproducibility.\n\nThe ACL organization maintains a repository containing templates and other documents regarding responsible NLP research practices in the ACL community. This repository is available on GitHub at https://github.com/acl-org/responsibleNLPresearch, which contains the actual templates.\n\nFor the PDF version of the checklist itself, you can access it directly at: https://aclrollingreview.org/static/responsibleNLPresearch.pdf\n\nWhen compl\n…[truncated 712 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-17T18:27:18.181179+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ACL ARR 2026 submission guidelines format requirements page limit\"\n\nLinks: [{\"title\":\"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"Main Conference - ACL 2026\",\"url\":\"https://2026.aclweb.org/calls/main_conference_papers/\"},{\"title\":\"Call for Main Conference Papers -\",\"url\":\"https://2026.eacl.org/calls/papers/\"},{\"title\":\"EACL 2026: First Call for Papers | ACL Member Portal\",\"url\":\"https://www.aclweb.org/portal/content/eacl-2026-first-call-papers\"},{\"title\":\"Authors Beware: Common Submission Problems – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authorchecklist\"},{\"title\":\"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"Paper formatting guidelines - ACLPUB\",\"url\":\"https://acl-org.github.io/ACLPUB/formatting.html\"},{\"title\":\"Author Guidelines for Student Research Workshop Papers -\",\"url\":\"https://2026.eacl.org/calls/srw/guidelines/\"},{\"title\":\"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/dates\"},{\"title\":\"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/acguidelines\"}]\n\nBased on the search results, here are the key ACL ARR 2026 submission guidelines regarding format requirements and page limits:\n\n## Page Limits\n\nShort papers have a maximum of 4 content pages, and long papers have a maximum of 8 content pages. Upon acceptance, final versions of accepted papers will be given one additional page of content (up to 9 pages for long papers, up to 5 pages for short papers) to address reviewers' comments.\n\n## Sectio\n…[truncated 895 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-17T18:27:18.181357+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:github.com acl-org responsibleNLPresearch checklist latex template tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-17T18:27:18.181488+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "ARR responsible NLP checklist questions full list 2024 2025 2026 sections",
+              "allowed_domains": "['aclrollingreview.org']"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-17T18:27:18.181610+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-17T18:27:18.181733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\begin{abstract}\n2\tModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability, yet no systematic methodology exists for diagnosing \\emph{what} drives routing decisions. We introduce an episode-level counterfactual framework that decomposes routing signal into death-avoidance and non-death components. Applied to ScienceWorld (11 task types, 245 episodes, Qwen2.5-7B-Instruct), \\textbf{78.9\\% of non-tie routing labels} arise from death asymmetry: the internal strategy's hallucination-induced failures trigger catastrophic agent death, while the deterministic strategy survives. Agent improvement baselines (Reflexion, retry) confirm that death dominance is structural: retry does not reduce death rate, and Reflexion only partially reduces it while the gap to deterministic remains large. Cross-environment contrasts confirm framework predictions: on MATH ($N{=}795$), no routing signal emerges without catastrophic failure ($p = 0.81$). We predict that stronger backbones will lower death-avoidance fractions as capability reduces catastrophic failure rates.\n3\t\\end{abstract}\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-17T18:27:18.181854+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-17T18:27:18.182096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method}\n2\t\\label{sec:method}\n3\t\n4\tOur diagnostic framework quantifies what drives routing signal in interactive environments through three components: (i)~episode-level counterfactual labeling that generates routing preferences from paired pure-strategy outcomes (\\S\\ref{sec:collection}--\\ref{sec:labeling}); (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\\S\\ref{sec:daf}); and (iii)~the Signal Concentration Index (SCI), which measures whether routing signal is concentrated in a few task types or distributed systematically (Appendix~\\ref{app:sci}). Episode-level bootstrap resampling provides 95\\% confidence intervals for all metrics.\n5\t\n6\t\\subsection{Problem Setup}\n7\t\\label{sec:problem-setup}\n8\t\n9\tConsider an interactive environment $\\mathcal{E}$ with state space $\\mathcal{S}$, observation space $\\mathcal{O}$, and action space $\\mathcal{A}$. An agent follows a policy $\\pi: \\mathcal{O}^* \\rightarrow \\mathcal{A}$ that maps observation histories to actions. At each step $t$, the agent receives observation $o_t$, selects action $a_t = \\pi(o_1, \\ldots, o_t)$, and the environment transitions to state $s_{t+1}$.\n10\t\n11\tWe define a modality set $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$ governing how the agent processes state transitions:\n12\t\\begin{itemize}\n13\t    \\item \\textbf{Internal} ($m = {\\tt int}$): The agent uses its own generation to predict intermediate observations. The LLM interleaves chain-of-thought reasoning with environment actions following the ReAct paradigm \\cite{react-2023}, but prediction errors compound across steps.\n14\t    \\item \\textbf{Deterministic} ($m = {\\tt det}$): The agent receives ground-truth observations from the environment simulator at each step, equivalent to access to a perfect dynamics model. Action selection remains with the LLM; only the state-transition prediction is replaced.\n15\t\\end{itemize}\n16\t\n17\t\\noindent We restrict $\\mathcal{M}$ to two modaliti\n…[truncated 7770 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-17T18:27:18.182277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-17T18:27:18.182438+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\n3\tLarge language models deployed as interactive agents must repeatedly decide \\emph{how} to compute: reason internally, or delegate to an external tool.\n4\tA Qwen2.5-7B-Instruct agent navigating ScienceWorld \\cite{scienceworld-2022}, a text-based science simulation with 30 task types, faces this choice at every step. Tracking temperature thresholds, container states, and multi-step procedures via internal reasoning is error-prone: the model may hallucinate that water has boiled when the stove was never activated, or that an object has been moved when the action was invalid. Deterministic external computation (environment simulators, code interpreters) eliminates such hallucinations via exact state transitions. The practical question for agent design is therefore: \\emph{when should an agent route computation externally versus reasoning internally?}\n5\t\n6\tExisting routing approaches frame this as a capability or efficiency decision.\n7\tToolformer \\cite{toolformer-2023} teaches models to insert API calls when doing so reduces perplexity; ART \\cite{art-2023} decomposes tasks into tool-augmented programs; Chameleon \\cite{chameleon-2023} selects among heterogeneous modules (search, code, vision) per subtask.\n8\tMore recent adaptive-computation methods route to different reasoning depths \\cite{cogrouter-2026,ares-2026} or model tiers \\cite{mtrouter-2026}.\n9\tThe shared assumption is that routing signal stems from diverse sources (accuracy, latency, capability matching) and that a learned router can exploit this signal to improve over any fixed strategy.\n10\tBut this assumption has never been systematically verified: \\emph{what actually drives the value of routing decisions in interactive environments?}\n11\tIf routing value traces to a single failure mode, practitioners can replace complex learned routers with simpler safety-aware policies at lower computational cost and deployment risk.\n12\t\n13\tWe propose a \\emph{formal diagnostic framework} for answeri\n…[truncated 4604 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-17T18:27:18.182585+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-17T18:27:18.182724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Discussion}\n2\t\\label{sec:discussion}\n3\t\n4\t\\paragraph{Why the router fails: task-type-level signal.}\n5\tThe router diagnostic (\\S\\ref{sec:router-diagnostic}) reveals a structural mismatch: death avoidance is a task-type-level binary property (10 of 11 types carry death risk), but step-level features correlate weakly with this signal because death risk depends on multi-step state trajectories, not individual action semantics. The 4B router's episode-level improvement ($59.0\\%$) without step-level gains ($56$--$59\\%$, flat) confirms that capacity scaling captures task-type classification rather than generalizable routing features.\n6\t\n7\t\\paragraph{Non-triviality of death dominance.}\n8\tThree lines of evidence argue that death avoidance is not trivially remediable. First, preliminary 72B results (4/11 tasks) show death rates remaining substantially above deterministic (31--50\\%) even at larger scale, with task-level variation but no death-prone task reaching deterministic-level safety. Second, retry without self-correction (44.5\\%) does not improve over single-trial baseline (42.9\\%): brute-force repetition cannot overcome structural state hallucination. Third, \\texttt{find-non-living-thing} exhibits 0\\% death across all conditions, so death risk is task-specific, not a blanket model deficiency. Only targeted self-correction (Reflexion) partially reduces death to 31.4\\%, with the gap to deterministic (16.3\\%) remaining large.\n9\t\n10\t\\paragraph{Scaling predictions.}\n11\tStronger backbones should lower the death-avoidance fraction as capability reduces catastrophic failure rates. The Llama pilot ($\\delta = +34.3\\%$) versus Qwen ($\\delta = +26.6\\%$) is consistent in the capability-increase direction. Preliminary evidence (Qwen2.5-0.5B, $N{=}15$) suggests the relationship is non-monotonic: very weak models exhibit low death rates from inability to reach dangerous states. We predict that in any environment where one modality triggers irreversible catastrophic failures \n…[truncated 840 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-17T18:27:18.182860+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-17T18:27:18.183018+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\n3\t\\paragraph{Tool Use and External Computation in LLMs.}\n4\tA growing body of work augments language models with external tools \\citep{tool-learning-survey-2024}.\n5\tToolformer \\cite{toolformer-2023} teaches LLMs to insert API calls via self-supervised loss filtering; ToolkenGPT \\cite{toolkengpt-2023} represents tools as special tokens; ART \\cite{art-2023} decomposes tasks into tool-augmented programs; Chameleon \\cite{chameleon-2023} composes heterogeneous modules per subtask; ReTool \\cite{retool-2025} applies RL to discover when code execution is preferable to chain-of-thought.\n6\tThese focus on \\emph{learning to use tools}; we ask a prior question: \\emph{what signal drives the routing decision?}\n7\tRecent concurrent work sharpens this question: \\citet{tool-overuse-illusion-2026} identify a cognitive-illusion effect where LLMs default to external tools even when internal knowledge suffices, finding that tool overuse correlates with model uncertainty rather than task difficulty. \\citet{when2tool-2026} show tool-call decisions are encoded in hidden states before reasoning, \\citet{tool-use-tax-2026} quantify a ``tool-use tax,'' and \\citet{to-call-or-not-2026} propose a necessity--utility--affordability framework. Our decomposition provides environment-grounded evidence: in ScienceWorld, 78.9\\% of routing labels trace to catastrophic-failure prevention.\n8\t\n9\t\\paragraph{Adaptive Computation and Routing.}\n10\tCogRouter \\cite{cogrouter-2026} adapts reasoning depth per step, ARES \\cite{ares-2026} selects among reasoning effort levels, Mixture-of-Recursions \\cite{mixture-of-recursions-2025} learns token-level recursion depths, and MTRouter \\cite{mtrouter-2026} addresses multi-turn routing.\n11\tRouteLLM \\citep{routellm-2024} learns routers from preference data to select between strong and weak models.\n12\tThese optimize \\emph{how} to route; we reveal \\emph{why} routing helps: in interactive environments, the dominant signal is catastrophic-failure avoida\n…[truncated 1860 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-17T18:27:18.183170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-17T18:27:18.183292+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\n3\tWe presented a diagnostic framework for decomposing routing signal in modular LLM agents via episode-level counterfactual analysis. Applied to ScienceWorld (245 episodes, 11 task types), 78.9\\% of non-tie routing labels arise from death asymmetry; agent improvement baselines (Reflexion, retry) confirm this is structural. Cross-domain contrasts support framework predictions: MATH shows no routing signal without catastrophic failure; ALFWorld identifies information asymmetry as an alternative mechanism. Replication in permadeath environments (NetHack~\\citep{nethack-2020}, Crafter~\\citep{crafter-2022}) and evaluation with stronger backbones are the most direct open directions.\n4\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-17T18:27:18.183440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:github.com acl-org responsibleNLPresearch checklist latex template tex\"\n\nLinks: [{\"title\":\"GitHub - acl-org/responsibleNLPresearch: templates and other documents regarding responsible NLP research\",\"url\":\"https://github.com/acl-org/responsibleNLPresearch\"},{\"title\":\"GitHub - acl-org/acl-style-files: Official style files for papers submitted to venues of the Association for Computational Linguistics · GitHub\",\"url\":\"https://github.com/acl-org/acl-style-files\"},{\"title\":\"aclrollingreview/responsibleNLPresearch.md at master · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/master/responsibleNLPresearch.md\"},{\"title\":\"acl-style-files/acl_latex.tex at master · acl-org/acl-style-files\",\"url\":\"https://github.com/acl-org/acl-style-files/blob/master/acl_latex.tex\"},{\"title\":\"GitHub - queirozfcom/acl-template-latex: Simple template for ACL papers · GitHub\",\"url\":\"https://github.com/queirozfcom/acl-template-latex\"},{\"title\":\"aclrollingreview/authorchecklist.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/authorchecklist.md\"},{\"title\":\"acl-org - Association for Computational Linguistics\",\"url\":\"https://github.com/acl-org\"},{\"title\":\"aclrollingreview/cfp.md at master · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/master/cfp.md\"},{\"title\":\"aclrollingreview/responsibleNLPresearch.md at main · acl-org/aclrollingreview\",\"url\":\"https://github.com/acl-org/aclrollingreview/blob/main/responsibleNLPresearch.md\"},{\"title\":\"ACLPUB/templates/proceedings/book.tex at master · acl-org/ACLPUB\",\"url\":\"https://github.com/acl-org/ACLPUB/blob/master/templates/proceedings/book.tex\"}]\n\nThe search has found relevant results related to your query. Here's what I found:\n\n**Primary Result:**\n\nThe main repository is at https://github.com/acl-org/responsibleNLPresearch, which contains templates and other documents regarding responsible NLP research pr\n…[truncated 724 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-17T18:27:18.183618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"ARR responsible NLP checklist questions full list 2024 2025 2026 sections\"\n\nLinks: [{\"title\":\"ARR Responsible NLP Research checklist\",\"url\":\"http://aclrollingreview.org/responsibleNLPresearch/\"},{\"title\":\"Responsible NLP Research Checklist\",\"url\":\"https://aclrollingreview.org/static/responsibleNLPresearch.pdf\"},{\"title\":\"Authors Guidelines\",\"url\":\"http://aclrollingreview.org/authors\"},{\"title\":\"Authors Beware: Common Submission Problems\",\"url\":\"http://aclrollingreview.org/authorchecklist\"},{\"title\":\"EMNLP 2025 to include Responsible NLP Checklists as Paper Appendices\",\"url\":\"http://aclrollingreview.org/responsible-nlp-checklist-appendices\"},{\"title\":\"CALL FOR PAPERS – ACL Rolling Review\",\"url\":\"http://aclrollingreview.org/cfp\"},{\"title\":\"ARR Reviewer Guidelines\",\"url\":\"http://aclrollingreview.org/reviewerguidelines\"},{\"title\":\"Guidelines for Ethics Reviewing\",\"url\":\"http://aclrollingreview.org/ethicsreviewertutorial\"},{\"title\":\"Arr Changes December\",\"url\":\"http://aclrollingreview.org/ARR-changes-December/\"},{\"title\":\"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics\",\"url\":\"http://aclrollingreview.org/\"}]\n\nI found information about the ARR (ACL Rolling Review) Responsible NLP Research checklist. Based on the search results, here's what I can tell you:\n\n## About the ARR Responsible NLP Checklist\n\nThe ARR Responsible NLP Research checklist is designed to encourage best practices for responsible research, addressing issues of research ethics, societal impact and reproducibility.\n\n## Development and Purpose\n\nThis checklist was developed by Marine Carpuat, Marie-Catherine de Marneffe and Ivan Vladimir Meza Ruiz, the NAACL 2022 program chairs, working with Jesse Dodge, and with the ARR editors in chief. Additional input was provided by the other NAACL 2022 reproducibility chairs, Margot Mieskes, Anna Rogers, and the ACL Ethics Committee.\n\n## Key Sections\n\nIt covers areas such as: [ethics and reprod\n…[truncated 729 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebSearch",
+            "elapsed_ms": 2
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-17T18:27:18.183789+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-17T18:27:18.183911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-17T18:27:18.184047+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/responsibleNLPresearch/",
+              "prompt": "Extract the complete list of all checklist questions, organized by section (A, B, C, D, E, etc.). For each question, include the question number, the full text, and any sub-questions. I need every single question verbatim."
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-17T18:27:18.184173+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/authorchecklist",
+              "prompt": "Extract all common submission problems and formatting requirements listed on this page. Include anonymization rules, page limits, formatting checks, and any desk rejection criteria."
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-17T18:27:18.184296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/cfp",
+              "prompt": "Extract the complete submission requirements: page limits for long/short papers, required sections, formatting rules, anonymity requirements, supplementary material rules, and any other submission guidelines."
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-17T18:27:18.184428+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review: Common Submission Problems & Formatting Requirements\n\n## Scope & Dual Submissions\n- Papers must contribute to computational language processing within ARR's scope\n- No simultaneous submissions to other archival venues\n- Resubmissions require acknowledgment of prior versions with change summaries\n- \"Salami-sliced\" papers risk desk rejection\n\n## Author & Reviewer Requirements\n- All authors finalized before submission; no post-submission changes allowed\n- Every author must complete OpenReview profiles beforehand\n- Authors must participate in peer review within 48 hours of deadline\n- Non-compliance may trigger desk rejection\n\n## Anonymization Rules\n- No explicit references to authors' prior work or identity disclosure\n- Supplementary materials must be anonymized\n- Acknowledgements section must be excluded\n- No links to tracked services (Dropbox, etc.)\n- Preprint status field must be completed accurately\n\n## Page Limits & Formatting\n- Long papers: 8 pages; short papers: 4 pages (excluding limitations/ethics sections)\n- Papers must follow \"ACL formatting guidelines\" with current templates\n- Required \"Limitations\" section placed per official guidelines\n- Optional \"Ethical considerations\" section titled explicitly\n- Appendices must be double-column formatted\n- Use ACL pubcheck tool to validate formatting\n\n## Desk Rejection Criteria\n- Papers violating CFP requirements face rejection\n- \"Full text exclusively addressed to human readers\"; machine manipulation attempts rejected\n- Inappropriate or misleading responsible NLP checklists can trigger rejection\n- Papers with misuse of generative AI violate authorship policies\n\n## Responsible NLP Checklist\n- Must be completed appropriately with specific justifications\n- Avoid generic \"yes\" responses for irrelevant questions\n- Disclose generative AI usage per ACL policy"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-17T18:27:18.184638+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Checklist Questions\n\n## Section A: For Every Submission\n\n**A1.** \"Did you describe the _limitations_ of your work?\"\n\n**A2.** \"Did you discuss any potential _risks_ of your work?\"\n\n## Section B: Scientific Artifacts\n\n**B1.** \"Did you cite the creators of artifacts you used?\"\n\n**B2.** \"Did you discuss the _license or terms_ for use and / or distribution of any artifacts?\"\n\n**B3.** \"Did you discuss if your use of existing artifact(s) was consistent with their _intended use_...?\"\n\n**B4.** \"Did you discuss the steps taken to check whether the data...contains any _information that names or uniquely identifies individual people_ or _offensive content_...?\"\n\n**B5.** \"Did you provide documentation of the artifacts, e.g., coverage of domains, languages, and linguistic phenomena...?\"\n\n**B6.** \"Did you report relevant statistics like the number of examples, details of train / test / dev splits...?\"\n\n## Section C: Computational Experiments\n\n**C1.** \"Did you report the _number of parameters_ in the models used, the _total computational budget_...and _computing infrastructure_ used?\"\n\n**C2.** \"Did you discuss the experimental setup, including _hyperparameter search_ and _best-found hyperparameter_ values?\"\n\n**C3.** \"Did you report _descriptive statistics_ about your results...and is it transparent whether you are reporting the max, mean, etc...?\"\n\n**C4.** \"If you used existing packages...did you report the implementation, model, and parameter settings used?\"\n\n## Section D: Human Annotators/Participants\n\n**D1.** \"Did you report the full text of instructions given to participants...?\"\n\n**D2.** \"Did you report information about how you recruited...and paid participants, and discuss if such _payment is adequate_...?\"\n\n**D3.** \"Did you discuss whether and how _consent_ was obtained from people...?\"\n\n**D4.** \"Was the data collection protocol _approved (or determined exempt)_ by an ethics review board?\"\n\n**D5.** \"Did you report the basic demographic and geographic ch\n…[truncated 163 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-17T18:27:18.184854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# ACL Rolling Review Submission Requirements\n\n## Page Limits\n\n**Long Papers:**\n- Up to 8 pages of content\n- Unlimited space for limitations section (required) and optional ethical considerations\n- Unlimited reference pages\n\n**Short Papers:**\n- Up to 4 pages of content\n- Unlimited space for limitations section (required) and optional ethical considerations\n- Unlimited reference pages\n\n*Papers exceeding length requirements or lacking a limitations section face desk rejection.*\n\n## Required Sections\n\n1. **Limitations Section** (mandatory): A dedicated section at paper's end, before references, discussing work constraints. Cannot introduce new methods or results.\n\n2. **Responsible NLP Checklist** (mandatory): Must be completed as part of submission; incorrect or misleading completion risks desk rejection.\n\n3. **Ethical Considerations** (recommended): Optional section discussing ethical impact and broader implications.\n\n## Formatting Requirements\n\n- Must follow the official ACL style template from GitHub\n- Adhere to \"*ACL\" conference formatting guidelines regarding paper size, margins, and font\n- No modifications to style files permitted\n- Submissions violating format requirements face rejection without review\n\n## Anonymity Requirements\n\nPapers must:\n- Exclude author names and affiliations\n- Avoid self-references revealing identity (e.g., rephrase \"We previously showed\" as \"Smith previously showed\")\n- Not reference materials unavailable to reviewers\n- Fully anonymize supplementary materials and repository links\n- Avoid Dropbox and similar download-tracking services\n\n*Anonymity violations result in desk rejection.*\n\n## Supplementary Materials\n\n**Allowed formats:**\n- Appendices (following double-column format with approved exceptions)\n- Software (.tgz or .zip archives)\n- Data (separate .tgz or .zip archives)\n\n**Requirements:**\n- Must be fully anonymized\n- Appendices don't count toward page limits\n- Reviewers aren't required to review appendices\n- Critical technical content\n…[truncated 616 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-17T18:27:18.185078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "pdfinfo /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf 2>/dev/null || echo \"pdfinfo not available\"",
+              "description": "Check PDF metadata and page count"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-17T18:27:18.185228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Title:           \nSubject:         \nKeywords:        \nAuthor:          \nCreator:         LaTeX with hyperref\nProducer:        pdfTeX-1.40.28\nCreationDate:    Sun May 17 17:28:59 2026 UTC\nModDate:         Sun May 17 17:28:59 2026 UTC\nCustom Metadata: yes\nMetadata Stream: no\nTagged:          no\nUserProperties:  no\nSuspects:        no\nForm:            none\nJavaScript:      no\nPages:           15\nEncrypted:       no\nPage size:       595.276 x 841.89 pts (A4)\nPage rot:        0\nFile size:       417228 bytes\nOptimized:       no\nPDF version:     1.7"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-17T18:27:18.185362+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "(my |our previous|our earlier|I |we previously|github\\.com/[^a]|our code|our implementation)",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content",
+              "-i": "True"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-17T18:27:18.185507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/related_work.tex:5:Toolformer \\cite{toolformer-2023} teaches LLMs to insert API calls via self-supervised loss filtering; ToolkenGPT \\cite{toolkengpt-2023} represents tools as special tokens; ART \\cite{art-2023} decomposes tasks into tool-augmented programs; Chameleon \\cite{chameleon-2023} composes heterogeneous modules per subtask; ReTool \\cite{retool-2025} applies RL to discover when code execution is preferable to chain-of-thought.\ndocs/paper/experiments.tex:21:The Signal Concentration Index (SCI $= 0.2147$; Appendix~\\ref{app:sci}) confirms low concentration: the top-3 task types account for only $39.8\\%$ of total death-rate differential. One outlier, \\texttt{find-non-living-thing}, has zero deaths ($\\Delta = +9.58$ from non-death scores alone); all 10 remaining types exhibit death-asymmetry-driven routing labels.\ndocs/paper/experiments.tex:24:Episode-level bootstrap ($B = 10{,}000$) yields 95\\% CI $[81.6\\%, 98.8\\%]$ for DAF; per-task CIs confirm $\\Delta > 0$ for 10 of 11 types. Cluster bootstrap ($K{=}11$) yields $[73.3\\%, 100\\%]$; with $K < 40$ this should be interpreted cautiously~\\citep{cameron-2008}.\ndocs/paper/experiments.tex:47:\\caption{Internal-strategy death rates under agent improvement methods. Retry $N{=}191$ (2 of 11 task types pending due to API timeout; excluding these yields identical conclusions). Reflexion partially reduces death but the gap to deterministic remains large.}\ndocs/paper/experiments.tex:56:[Omitted long matching line]\ndocs/paper/experiments.tex:91:Strategy & Score & 95\\% CI & Death \\% \\\\\ndocs/paper/main.tex:59:where $n_k$ is the number of episodes and $\\delta_k = d_k^{\\tt int} - d_k^{\\tt det}$ is the per-task death-rate differential. The SCI is the Gini coefficient over $\\{c_1, \\ldots, c_K\\}$:\ndocs/paper/main.tex:61:    \\text{SCI} = \\frac{\\sum_{i=1}^K \\sum_{j=1}^K |c_i - c_j|}{2K \\sum_{k=1}^K c_k}\ndocs/paper/main.tex:79:Task & $n$ & $\\Delta_\\text{full}$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & D / I / N \\\\\ndoc\n…[truncated 1377 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-17T18:27:18.185647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/acl.sty",
+              "limit": "30"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-17T18:27:18.185778+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% This is the LaTex style file for *ACL.\n2\t% The official sources can be found at\n3\t%\n4\t%     https://github.com/acl-org/acl-style-files/\n5\t%\n6\t% This package is activated by adding\n7\t%\n8\t%    \\usepackage{acl}\n9\t%\n10\t% to your LaTeX file. When submitting your paper for review, add the \"review\" option:\n11\t%\n12\t%    \\usepackage[review]{acl}\n13\t\n14\t\\newif\\ifacl@finalcopy\n15\t\\newif\\ifacl@anonymize\n16\t\\newif\\ifacl@linenumbers\n17\t\\newif\\ifacl@pagenumbers\n18\t\\DeclareOption{final}{\\acl@finalcopytrue\\acl@anonymizefalse\\acl@linenumbersfalse\\acl@pagenumbersfalse}\n19\t\\DeclareOption{review}{\\acl@finalcopyfalse\\acl@anonymizetrue\\acl@linenumberstrue\\acl@pagenumberstrue}\n20\t\\DeclareOption{preprint}{\\acl@finalcopytrue\\acl@anonymizefalse\\acl@linenumbersfalse\\acl@pagenumberstrue}\n21\t\\ExecuteOptions{final} % final copy is the default\n22\t\n23\t% include hyperref, unless user specifies nohyperref option like this:\n24\t% \\usepackage[nohyperref]{acl}\n25\t\\newif\\ifacl@hyperref\n26\t\\DeclareOption{hyperref}{\\acl@hyperreftrue}\n27\t\\DeclareOption{nohyperref}{\\acl@hyperreffalse}\n28\t\\ExecuteOptions{hyperref} % default is to use hyperref\n29\t\\ProcessOptions\\relax\n30\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-17T18:27:18.185912+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Grep"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Grep",
+            "tool_args": {
+              "pattern": "\\\\author|\\\\affiliation|\\\\email|\\\\institution",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+              "glob": "*.tex",
+              "output_mode": "content"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-17T18:27:18.186060+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "docs/paper/main.tex:20:\\author{Anonymous}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Grep",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-17T18:27:18.186265+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://aclrollingreview.org/responsible-nlp-checklist-appendices",
+              "prompt": "Extract the full details about including the Responsible NLP checklist as an appendix in paper submissions. What is the format? Is it required? Does it count toward page limits? What LaTeX code or template should be used?"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-17T18:27:18.186429+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/figures/",
+              "description": "List figures directory"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-17T18:27:18.186555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total 104\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 17 15:50 .\ndrwxr-xr-x 5 ubuntu ubuntu  4096 May 17 17:28 ..\n-rw-r--r-- 1 ubuntu ubuntu 24317 May 14 15:13 fig1_daf_scatter.pdf\n-rw-r--r-- 1 ubuntu ubuntu  2823 May 14 15:13 gen_fig1.py\n-rw-r--r-- 1 ubuntu ubuntu  3650 May 15 10:51 gen_pipeline.py\n-rw-r--r-- 1 ubuntu ubuntu  2478 May 17 15:50 gen_signal_reversal.py\n-rw-r--r-- 1 ubuntu ubuntu 34660 May 15 10:51 pipeline_overview.pdf\n-rw-r--r-- 1 ubuntu ubuntu 24361 May 17 15:50 signal_reversal.pdf"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-17T18:27:18.186676+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf",
+              "pages": "1-8"
+            }
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-17T18:27:18.186790+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "PDF pages extracted: 8 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf (407.4KB)"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_arr-submission-prep_20260517T182252",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000051"
+        }
+      ],
+      "message_count": 51
+    }
+  ],
+  "readable_path": "readable/conversations/research-arr-submission-prep.md"
+}

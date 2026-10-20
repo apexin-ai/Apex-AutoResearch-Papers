@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5066dbd87b5be098751c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops kill vllm gpu0",
+  "task_key": "worker_ops_kill-vllm-gpu0_20260514T144753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_kill-vllm-gpu0_20260514T144753_result.json",
+    "occurrence": 1,
+    "bytes": 296,
+    "sha256": "cc2c4006ff217491f9eb7b7008ce7f4dbd21b3c5afe91da6b197902d8f814ece"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n| GPU | 显存占用 | 显存空闲 |\n|-----|---------|---------|\n| 0 | **0 MiB** | 32110 MiB |\n| 1 | 28013 MiB | 4098 MiB |\n\nPID 293838 (vLLM server) 已被 SIGTERM 正常终止，GPU 0 的 ~28GB 显存已完全释放。GPU 1 上仍有其他进程占用显存。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-kill-vllm-gpu0.md"
+}

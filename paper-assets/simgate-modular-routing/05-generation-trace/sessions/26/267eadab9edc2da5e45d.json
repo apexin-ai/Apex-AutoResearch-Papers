@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "267eadab9edc2da5e45d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "audit reference check",
+  "task_key": "worker_audit_reference-check_20260514T112756",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_reference-check_20260514T112756_result.json",
+    "occurrence": 1,
+    "bytes": 942,
+    "sha256": "bab83ed71f71e6f1d33611f6a54ea98af2d6483ece6b3483a40bb999cf5b8ddf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果汇总：\n\n**✅ 已验证（3 条）**：scienceworld-2022、react-2023、art-2023\n\n**⚠️ 已修正（9 条）**：\n- toolformer：年份 2024→2023（NeurIPS 2023）\n- chameleon：年份 2024→2023（NeurIPS 2023），类型 article→inproceedings\n- retool：年份 2026→2025（arXiv 2504 = 2025 年 4 月）\n- cogrouter：第一作者 Yang, Jiahao → Yang, Ruihan\n- ares：第一作者 Yang, Zhuoqun → Yang, Jingbo\n- mixture-of-recursions：第一作者 Bae, Jongho → Bae, Sangmin\n- mtrouter：第一作者 Zhang, Yifan → Zhang, Yiqun\n- itp：第一作者 Liu, Haoyu → Liu, Youwei\n- dynathink：作者 Anonymous → Yu, Xiao\n\n**❌ 疑似幻觉（1 条）**：envsimbench-2026 — 全网无任何可验证来源，保留在 bib 中但需要你确认是否有真实出处，否则应删除或替换。\n\n报告路径：`artifacts/_project/paper/reference_audit_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-reference-check.md"
+}

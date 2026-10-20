@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2dbee96b728ae25e5cda",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper data consistency fixes",
+  "task_key": "worker_paper_data-consistency-fixes_20260521T094505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_data-consistency-fixes_20260521T094505_result.json",
+    "occurrence": 1,
+    "bytes": 1312,
+    "sha256": "3981d096d54fb1e015e6474b89ac3d83823c9cd56877471278b7ec76bc48b933"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功（24 pages, 无错误）。旧数字已全部清除。\n\n---\n\n## 修复结果汇总\n\n### Fix 1 (MATH label 分布) — 已修复\n- **来源**: `analysis_n800.json` (N=795)\n- **旧值**: Det%=12.0, Int%=13.5, NoPref%=74.6\n- **新值**: Det%=7.3, Int%=8.3, NoPref%=84.4\n- **修改位置**:\n  - `main.tex` L509 (Table L.1)\n  - `experiments.tex` L80 (§5.4 MATH 段落)\n  - `figures/gen_signal_reversal.py` L27-29 (图表数据)\n\n### Fix 2 (Gemma DAF CI) — 无需修改\n- `unified_episode_bootstrap.json` (B=10000) 给出 CI = [79.5%, 98.4%]，**与论文完全一致**\n- `gemma_scienceworld_counterfactual/analysis.json` 中的 [68.8%, 100.0%] 是用不同 bootstrap 方法独立计算的结果，非权威来源\n\n### Fix 3 (Step counts) — 已修复\n- **来源**: 245-episode `episodes.jsonl`, 逐 episode 计算 aligned step comparison\n- **旧值**: 5,726/5,878 (97.4%)\n- **新值**: 5,667/6,094 (93.0%)\n- **原因**: 245 vs 194 episodes; `find-non-living-thing` (40 ep, 76.9% tie rate) 拉低整体——该 task 无死亡，策略间中间分数差异较大\n- **修改位置**:\n  - `method.tex` L14 (§3.2 主段落)\n  - `method.tex` L75 (§3.5 scope 段落)\n  - `introduction.tex` L10, L15 (两处引用)\n  - `main.tex` L121 (Appendix B labeling audit)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-data-consistency-fixes.md"
+}

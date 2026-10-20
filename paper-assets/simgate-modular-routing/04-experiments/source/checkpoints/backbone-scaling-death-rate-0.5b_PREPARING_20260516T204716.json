@@ -1,0 +1,14 @@
+{
+  "exp_id": "backbone-scaling-death-rate-0.5b",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:47:16.421Z",
+    "updated_at": "2026-05-16T20:47:16.422Z"
+  },
+  "timestamp": "2026-05-16T20:47:16.598605+00:00",
+  "trigger": "update_registry"
+}

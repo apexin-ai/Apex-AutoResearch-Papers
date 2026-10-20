@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ec06199cb5b5ae9f756",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper long paper math update",
+  "task_key": "worker_paper_long-paper-math-update_20260515T090022",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_long-paper-math-update_20260515T090022_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "2e66dc361b66d614eeeca1ef3b382b9592d3ca6e293dbb829a6c6aa53c08d611"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处已更新：\n\n- **main.tex** Limitations 段落：50题pilot → 300题evaluation，accuracy/CI/label分布全部更新，措辞从 \"preliminary signal\" 改为 \"statistically significant signal reversal\"，保留了个体CI重叠的说明。\n- **discussion.tex** Cross-environment evidence 段落：同步更新为300题数据，加入contingency table (215/40/30/15)，删除 known bug caveat 和 \"in progress\" 说法，措辞升级为显著反转。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-long-paper-math-update.md"
+}

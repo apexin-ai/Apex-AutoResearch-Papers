@@ -1,0 +1,47 @@
+{
+  "exp_id": "death-risk-routing-analysis",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:13.001Z",
+    "updated_at": "2026-05-17T09:08:58.693Z",
+    "hypothesis": "基于 task-type death risk 的简单 threshold routing 能否优于 always-det；如果能，说明 analytical framework 不只诊断问题还指向解决方案",
+    "parent": "plan-005-routing-patterns",
+    "conclusion": "negative",
+    "metrics": {
+      "optimal_threshold": 0,
+      "optimal_score": -11.03,
+      "baseline_always_det": -9.47,
+      "baseline_always_internal": -39.07,
+      "delta_vs_det": -1.56,
+      "bootstrap_ci_diff": [
+        -8.87,
+        5.92
+      ],
+      "zero_death_tasks": [
+        "find-non-living-thing"
+      ],
+      "zero_death_task_internal_mean": 18.9,
+      "zero_death_task_det_mean": 28.5,
+      "other_tasks_death_rate_range": "45-56%",
+      "n_episodes": 245,
+      "n_task_types": 11
+    },
+    "spec": {
+      "command": "python scripts/death_risk_routing.py (inline analysis)",
+      "server": "westb-13313",
+      "data_path": "episodes_slim_FINAL.jsonl",
+      "data_count": 245,
+      "model_name": "N/A (analysis only)",
+      "seed": 42,
+      "checkpoint_path": "N/A",
+      "log_path": "N/A"
+    },
+    "completed_at": "2026-05-17T09:08:58.694Z"
+  },
+  "timestamp": "2026-05-17T09:08:58.881106+00:00",
+  "trigger": "update_registry"
+}

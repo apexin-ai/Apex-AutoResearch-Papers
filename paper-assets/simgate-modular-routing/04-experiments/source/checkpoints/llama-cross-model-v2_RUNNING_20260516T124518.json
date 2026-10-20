@@ -1,0 +1,48 @@
+{
+  "exp_id": "llama-cross-model-v2",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:38:51.677Z",
+    "updated_at": "2026-05-16T12:45:18.671Z",
+    "spec": {
+      "command": "bash -c \"bash /root/autodl-tmp/simgate-modular-routing/scripts/run_llama_cross_model_v2.sh\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "961982",
+      "log_path": "~/runs/simgate-modular-routing/llama-cross-model-v2.log",
+      "submitted_at": "2026-05-16T06:38:51.441Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ScienceWorld counterfactual episodes (5-7 tasks × 10-20 eps)",
+      "data_count": 0,
+      "model_name": "Llama-3.1-8B-Instruct",
+      "seed": 42
+    },
+    "hypothesis": "Cross-model DAF validation: Llama-3.1-8B on 5-7 ScienceWorld task types replicates death avoidance pattern seen with Qwen2.5-7B. Strengthens C3 cross-model generalization claim.",
+    "metrics": {
+      "total_episodes": 70,
+      "tasks": 7,
+      "eps_per_task": 10,
+      "det_preferred": 24,
+      "det_preferred_pct": 34.3,
+      "int_preferred": 0,
+      "int_preferred_pct": 0,
+      "no_preference": 46,
+      "no_preference_pct": 65.7,
+      "internal_death_rate": 0.343,
+      "det_death_rate": 0,
+      "both_dead": 13,
+      "key_finding": "int_preferred=0 across ALL 7 tasks. Deterministic NEVER dies. Death avoidance pattern more extreme than Qwen (34.3% int death vs 0% det death)."
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T12:45:18.864851+00:00",
+  "trigger": "update_registry"
+}

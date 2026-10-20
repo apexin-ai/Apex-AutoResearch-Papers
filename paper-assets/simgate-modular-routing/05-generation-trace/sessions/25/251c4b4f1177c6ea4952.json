@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "251c4b4f1177c6ea4952",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix align docs to method tex",
+  "task_key": "worker_fix_align-docs-to-method-tex_20260516T190103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_align-docs-to-method-tex_20260516T190103_result.json",
+    "occurrence": 1,
+    "bytes": 589,
+    "sha256": "a45942731e810245b2f89ddaca7f8b03356dc591f823cf616895c262922b8a53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修改完成。验证 checklist：\n\n| # | 要求 | 状态 |\n|---|------|------|\n| 1 | Death indicator 使用 `d(τ) ∈ {0,1}` 双策略形式 | ✓ 两文件均改为 `d(τ_int)` 和 `d(τ_det)` 独立记录 |\n| 2 | Score 无归一化假设 | ✓ `Score → ℤ`，整数，death = -P |\n| 3 | Three-way labeling（det-pref / int-pref / no-preference） | ✓ 六分支 cases，ties → no-pref |\n| 4 | Δ_nd = 双策略均存活子集 | ✓ `E_nd = {e : d(τ_det)=0 ∧ d(τ_int)=0}` |\n| 5 | LOTO 62.92% 标注 keyword-leaked | ✓ 注释已加（line 81） |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-align-docs-to-method-tex.md"
+}

@@ -1,0 +1,82 @@
+{
+  "exp_id": "plan-004-v5",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T08:02:08.110Z",
+    "updated_at": "2026-05-14T08:29:20.912Z",
+    "spec": {
+      "command": "implicit_router_sft.py train",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "247838",
+      "log_path": "~/runs/simgate-modular-routing/plan-004-v5.log",
+      "submitted_at": "2026-05-14T08:03:12.287Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": 2040,
+      "model_name": "Qwen3-1.7B",
+      "seed": 42,
+      "wall_clock_seconds": 1297.4,
+      "gpu_hours": 0.36
+    },
+    "hypothesis": "Implicit router SFT v5：严格复现 ablation-b 成功条件——data/plan-004-implicit/ + upsample_minority + gradient_accumulation_steps=1（有效 batch=4）。与 v3 区别：(1) 正确数据路径（非 results/plan_c_test_labels/），(2) 加 upsample，(3) ga=1 而非 ga=8。目标：复现 ablation-b 的 internal recall ~51.5%，确认 upsample + 小 batch 是成功关键。",
+    "checkpoint_path": "checkpoints/plan-004-v5/final_adapter",
+    "log_path": "~/runs/simgate-modular-routing/plan-004-v5.log",
+    "metrics": {
+      "logit_level": {
+        "accuracy": 0.7451,
+        "balanced_accuracy": 0.7905,
+        "internal_recall": 0.8485,
+        "eval_loss": 0.2382,
+        "note": "From Trainer eval during training (logit-level, not generation)"
+      },
+      "generation_eval": {
+        "accuracy": 0.5333,
+        "balanced_accuracy": 0.4148,
+        "internal_recall": 0.2667,
+        "internal_precision": 0.0635,
+        "internal_f1": 0.0941,
+        "det_recall": 0.563,
+        "det_precision": 0.8736,
+        "det_f1": 0.6862,
+        "confusion_matrix": [
+          [
+            152,
+            118
+          ],
+          [
+            22,
+            8
+          ]
+        ],
+        "confusion_labels": [
+          "deterministic",
+          "internal"
+        ],
+        "n_val": 300,
+        "val_label_dist": {
+          "internal": 30,
+          "deterministic": 270
+        },
+        "pred_dist": {
+          "deterministic": 174,
+          "internal": 126
+        },
+        "enable_thinking": "identical results for thinking_on, thinking_off, and thinking_on+strip"
+      }
+    },
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T08:24:49.661Z",
+    "notes": "复现成功且大幅超越 ablation-b。v5 vs ablation-b: accuracy 74.5% vs 65.4%, balanced_acc 79.1% vs 59.3%, internal_recall 84.9% vs 51.5%。模型不再退化（非全 deterministic），internal recall 远超 30% 阈值。trade-off: internal_precision 27.7%（73/273 deterministic 被误判为 internal），模型倾向过度预测 internal。训练 3 epoch / 172s，eval_loss 0.238。配置：data/plan-004-implicit/ + upsample_minority + ga=1 + batch_size=4 + Qwen3-1.7B。"
+  },
+  "timestamp": "2026-05-14T08:29:21.019907+00:00",
+  "trigger": "update_registry"
+}

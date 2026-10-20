@@ -1,0 +1,18 @@
+Plan-010 Cross-Task Transfer Results
+
+Physical to Life:
+  Train size: 612 steps
+  In-domain balanced accuracy: 0.4242 CI95=[0.3148, 0.5000]
+  Cross-domain balanced accuracy: 0.4979 CI95=[0.5485, 0.6008]
+  Transfer gap: -0.0737
+
+Life to Physical:
+  Train size: 1123 steps
+  In-domain balanced accuracy: 0.5770 CI95=[0.4619, 0.5990]
+  Cross-domain balanced accuracy: 0.4924 CI95=[0.4764, 0.5500]
+  Transfer gap: +0.0846
+
+Server: westb-13313
+Remote paths:
+  results/plan-010-cross-task-physical-to-life-seed42/results.json
+  results/plan-010-cross-task-life-to-physical-seed42/results.json

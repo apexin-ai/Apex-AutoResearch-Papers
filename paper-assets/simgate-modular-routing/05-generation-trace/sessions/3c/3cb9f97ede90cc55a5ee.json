@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cb9f97ede90cc55a5ee",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh verify death criteria discrepancy",
+  "task_key": "worker_ssh_verify-death-criteria-discrepancy_20260519T104723",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_verify-death-criteria-discrepancy_20260519T104723_result.json",
+    "occurrence": 1,
+    "bytes": 4385,
+    "sha256": "5d404598e96f470aaeaaa4a193521ee5fc27df663883d12b5e3f8a9a04dd7bfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整分析结果如下。\n\n---\n\n## 核查结论\n\n**两种方法的数字都是\"正确\"的，差异来源于统计口径不同：**\n\n| 方法 | 定义 | find-animal | lifespan-longest-lived |\n|------|------|:-----------:|:----------------------:|\n| Method A | `always_internal` 的 death 数 | **8** | **7** |\n| Method B | 有任意 mode 死亡的 **episode 数** | **10** | **8** |\n\n---\n\n## find-animal 详细 (20 episodes)\n\n| ep | int_score | int_dead | det_score | det_dead |\n|----|-----------|----------|-----------|----------|\n| 0  | -100      | **T**    | 8         | F        |\n| 1  | 0         | F        | 0         | F        |\n| 2  | 8         | F        | 8         | F        |\n| 3  | 0         | F        | **-100**  | **T**    |\n| 4  | -100      | **T**    | 0         | F        |\n| 5  | -100      | **T**    | -100      | **T**    |\n| 6  | 0         | F        | 0         | F        |\n| 7  | -100      | **T**    | -100      | **T**    |\n| 8  | 8         | F        | 8         | F        |\n| 9  | -100      | **T**    | 0         | F        |\n| 10 | 0         | F        | 0         | F        |\n| 11 | 0         | F        | 0         | F        |\n| 12 | -100      | **T**    | -100      | **T**    |\n| 13 | 0         | F        | 0         | F        |\n| 14 | 0         | F        | 0         | F        |\n| 15 | -100      | **T**    | 0         | F        |\n| 16 | 0         | F        | **-100**  | **T**    |\n| 17 | 0         | F        | 17        | F        |\n| 18 | -100      | **T**    | 0         | F        |\n| 19 | 0         | F        | 0         | F        |\n\n- Internal deaths: **8** (ep 0,4,5,7,9,12,15,18)\n- Det deaths: **5** (ep 3,5,7,12,16)\n- Both-dead episodes: **3** (ep 5,7,12)\n- **Det-only deaths (int alive, det dead): ep 3, 16** → 这 2 个 episode 造成 8→10 的差异\n\n## lifespan-longest-lived 详细 (20 episodes)\n\n| ep | int_score | int_dead | det_score | det_dead |\n|----|-----------|----------|-----------|----------|\n| 0  | -100      | **T**    | 0         | F        |\n| 1  | 0         | F        | 0         | F        |\n| 2  | 0         | F        | 0         | F        |\n| 3  | -100      | **T**    | 50        | F        |\n| 4  | -100      | **T**    | 0         | F        |\n| 5  | 0         | F        | **-100**  | **T**    |\n| 6  | 0         | F        | 0         | F        |\n| 7  | -100      | **T**    | 0         | F        |\n| 8  | 0         | F        | 0         | F        |\n| 9  | -100      | **T**    | 0         | F        |\n| 10-14 | 0     | F        | 0         | F        |\n| 15 | -100      | **T**    | 0         | F        |\n| 16 | 50        | F        | 50        | F        |\n| 17 | 50        | F        | 50        | F        |\n| 18 | -100      | **T**    | 0         | F        |\n| 19 | 0         | F        | 0         | F        |\n\n- Internal deaths: **7** (ep 0,3,4,7,9,15,18)\n- Det deaths: **1** (ep 5)\n- **Det-only death: ep 5** → 这 1 个 episode 造成 7→8 的差异\n\n## 全 11 task 汇总\n\n| Task | int_dead | det_dead | total_events | ep_with_any_death | int==ep_any? |\n|------|:--------:|:--------:|:------------:|:-----------------:|:------------:|\n| chemistry-mix | 9 | 4 | 13 | 9 | YES |\n| **find-animal** | **8** | **5** | **13** | **10** | **NO** |\n| find-non-living-thing | 0 | 0 | 0 | 0 | YES |\n| freeze | 9 | 0 | 9 | 9 | YES |\n| grow-fruit | 9 | 1 | 10 | 9 | YES |\n| identify-life-stages-1 | 11 | 2 | 13 | 11 | YES |\n| identify-life-stages-2 | 9 | 1 | 10 | 9 | YES |\n| inclined-plane-determine-angle | 9 | 4 | 13 | 9 | YES |\n| **lifespan-longest-lived** | **7** | **1** | **8** | **8** | **NO** |\n| lifespan-longest-lived-then-shortest | 10 | 4 | 14 | 10 | YES |\n| measure-melting-point-unknown | 10 | 3 | 13 | 10 | YES |\n\n只有 find-animal 和 lifespan-longest-lived 两个 task 出现不一致（NO），因为这两个 task 存在 **det-only death episodes**（internal 存活但 det 死亡）。其余 9 个 task 的 det deaths 全部发生在 internal 也死亡的 episode 中，所以两种统计口径结果相同。\n\n## is_dead vs score==-100 一致性\n\n额外验证：在 `episodes.jsonl` 中，`final_score==-100` 和最后一步 `is_dead==true` 在所有 episode 的所有 mode 中**完全一致**，没有 mismatch。两种判断死亡的方式等价。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-verify-death-criteria-discrepancy.md"
+}

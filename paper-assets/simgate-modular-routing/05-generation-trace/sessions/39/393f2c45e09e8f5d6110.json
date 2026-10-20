@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "393f2c45e09e8f5d6110",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh excluded tasks analysis",
+  "task_key": "worker_ssh_excluded-tasks-analysis_20260518T035952",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_excluded-tasks-analysis_20260518T035952_result.json",
+    "occurrence": 1,
+    "bytes": 1219,
+    "sha256": "829d9e87b11fbbe564695ffb47afdd1f95bbf5b89295362847d9b0d197bb2e0d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，报告已写入 `artifacts/excluded_tasks_analysis.md`。\n\n核心发现：\n\n**18/19 excluded task types (95%) 展示 death asymmetry**，唯一例外是 grow-plant（两种策略都无死亡）。\n\n关键对比数据：\n| 指标 | Excluded (19) | Included (11) |\n|------|--------------|---------------|\n| Mean int death rate | 53.9% | 46.5% |\n| Mean det death rate | 15.8% | 17.8% |\n| Mean ΔDR | **+38.2 pp** | +28.7 pp |\n| Tasks with ΔDR > 0 | 95% | 91% |\n\nExcluded tasks 的 death asymmetry 实际**高于** included tasks，完全反驳 cherry-picking 假说。\n\n报告包含：\n1. 所有 19 个 excluded tasks 的完整 death rate 表（含 Group A/B/C 分组）\n2. LaTeX-ready 表格（`\\label{tab:excluded-death}`）\n3. Appendix C 可直接插入的分析段落\n4. experiments.tex 和 main.tex 三处措辞的具体修改建议（当前 \"both strategies time out\" 表述不准确）\n\n**注意**：你提供的 included task list 与论文 per-task table 不一致。论文实际包含 identify-life-stages-1/2 和 inclined-plane-determine-angle，不包含 grow-plant/use-thermometer/measure-melting-point-known。本分析使用论文中的正确分类。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-excluded-tasks-analysis.md"
+}

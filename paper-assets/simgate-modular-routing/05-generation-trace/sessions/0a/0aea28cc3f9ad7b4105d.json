@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0aea28cc3f9ad7b4105d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper math n250 revision",
+  "task_key": "worker_paper_math-n250-revision_20260515T090715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_math-n250-revision_20260515T090715_result.json",
+    "occurrence": 1,
+    "bytes": 906,
+    "sha256": "f9b2eff1d5f53565e3c969e8e24aa1cabc3a1939a7853010539c76eb079a4eba"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个文件已更新。变更摘要：\n\n**main.tex** (Limitations → Cross-environment evidence):\n- N=300 → N=250 clean problems，加脚注说明排除 50 pilot 题及原因\n- 数字更新：81.7/76.7 → 82.0/77.6，CI 对应更新，差异 +5.0 → +4.4\n- \"statistically significant signal reversal\" → \"directional reversal … though not statistically significant at the 95% level\"\n- 删除具体 label 计数（9/25/266），改为 \"over 88% of the 250 problems\"\n- \"routing signal reverses\" → \"deterministic strategy's advantage vanishes\"\n\n**discussion.tex** (Discussion → Cross-environment evidence):\n- 同样的数字和措辞更新\n- 删除 contingency table 具体数字（215/40/30/15）\n- \"suggests not---and in fact reverses\" → \"suggests not\"（去掉过强措辞）\n- \"routing signal reverses\" → \"routing signal vanishes or reverses\""
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-math-n250-revision.md"
+}

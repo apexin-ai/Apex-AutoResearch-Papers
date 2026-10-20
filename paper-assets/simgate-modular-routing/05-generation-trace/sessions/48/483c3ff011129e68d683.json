@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "483c3ff011129e68d683",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval task type classifier q3",
+  "task_key": "worker_eval_task-type-classifier-q3_20260516T200346",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_task-type-classifier-q3_20260516T200346_result.json",
+    "occurrence": 1,
+    "bytes": 895,
+    "sha256": "9956e13b192bfd4587fcd646f7810045efb73ff00bacaf71f17d8d1658b42c18"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果：\n\n```\n=== Task-type Classifier Results ===\n\nMajority vote per task type:\n  所有 11 个 task type 的 majority label 都是 no-pref（50%–75%）\n  Overall accuracy: 61.2%\n  Balanced accuracy: 33.3%（≈ 随机三分类）\n\nLogistic Regression (5-fold CV):\n  Mean accuracy: 60.0% (±2.4%)\n  Mean balanced accuracy: 32.8% (±1.0%)\n\nLOOCV accuracy: 61.2%\n```\n\n**结论：routing signal 不是 task-type-level property。** Accuracy 61.2% 远低于 80% 阈值，balanced accuracy 仅 33.3%（等同随机猜测）。分类器退化为全部预测 no-pref（因为 no-pref 占 150/245 = 61%），无法区分 det-pref 和 int-pref。Task type 单独不能预测 routing label——routing 决策发生在 episode 层面，取决于 episode-specific 因素而非 task 类型。\n\n结果已保存到 `guided_router/task_classifier_results.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-task-type-classifier-q3.md"
+}

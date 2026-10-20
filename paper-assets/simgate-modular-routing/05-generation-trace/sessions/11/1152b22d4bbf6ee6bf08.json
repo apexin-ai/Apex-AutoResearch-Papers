@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1152b22d4bbf6ee6bf08",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "reviewer / loop_20.md",
+  "task_key": "loop_20",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_20.md",
+    "occurrence": 1,
+    "bytes": 3398,
+    "sha256": "a18087d83657c63d8e91ef9c94e861530eef7f3d81a96040e05e5981b6cea0c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 20\nreason: max_wall_time\nupdated: '2026-05-23T19:41:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 论文 primary metric 是 **78.9% label fraction**（penalty-independent），不是 DAF 90.4%（penalty-dependent）。任何审查中如果 Agent 用 DAF 作为 headline 而忽略 label fraction，要标 warning\n- DAF CI 正确值是 **[81.1%, 99.0%]**（unified_episode_bootstrap.json, B=10,000）。旧版 [81.6%, 98.8%] 已淘汰——如果在任何文件中看到旧 CI，立即标 critical\n- 72B int-preferred = **5**（不是 0）。这个数字在 R30 之前被错误记录为 0，已在 R30 batch1 修正。如果 registry 或论文出现 int_preferred=0，必须核实\n- 验证远端 GitHub repo 不要依赖服务器本地 repo 的 `refs/remotes/origin/main`——实际 push 可能来自不同 worker 的独立副本\n\n### 2. 🖥️ 基础设施快照\n- 服务器：**westd-18266** (root)，工作目录 `/root/autodl-tmp/simgate-modular-routing`\n- 本地 workspace：`/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/`\n- 论文源码：本地 `docs/paper/`（这是最新版，服务器上的 paper/ 可能滞后）\n- 匿名 repo：`https://github.com/anonymous-nlp-2026/simgate-modular-routing.git`（commit `c184e4e`，已验证 PASS）\n- 关键数据文件在服务器：`results/unified_episode_bootstrap.json`（DAF CI 权威来源）、`results/seed123_decomposition/report.json`、`data/scienceworld-counterfactual/summary.json`\n- 无活跃进程/训练——项目处于提交阶段\n\n### 3. 📊 当前状态\n**DDL 2026-05-25，论文已提交就绪。** 本 session 完成的审查：\n- ✅ 最终全文审读（7 维度 all PASS，预估 Overall 3.0-3.5 Findings）\n- ✅ 新增 Figure 2（label decomposition）+ Figure 3（DAF scatter 从 appendix 移入）验收：7/7 PASS\n- ✅ 匿名 repo push 验收：经 4 轮迭代最终 PASS（GitHub commit `c184e4e`）\n- ✅ 之前完成：R31 验证、reference audit（68 entries all real）、data audit（127 claims, 5 high-risk verified）、seed=123 集成验收\n- Registry 无 RUNNING 实验，全部 DONE\n- 无待处理的 Worker 回调\n\n### 4. 📋 待办\n- Director 通知提交完成 → 确认 OpenReview PDF 与本地 main.pdf 一致（page count、figure 数量）\n- 如果 ARR 审稿意见返回 → 加载 `rebuttal` skill，按四维度审查 Agent 的 rebuttal 草稿\n- 如果 Director 要求 camera-ready 修改 → 重新验证所有数字与 registry 一致性\n\n### 5. 🎯 战略上下文\n- **核心结论**：ScienceWorld 中 78.9% 的 routing signal 来自 death asymmetry，这是 diagnostic finding 而非 method contribution，结构性天花板 ~3.0 Findings\n- **三个阴性结果已诚实报告**：router inconclusive（§3.6）、MATH 无信号、ALFWorld DAF=0%\n- **最易判断错的事**：bootstrap CI 有两个来源——per-model `analysis.json`（每个模型单独 bootstrap）和 `unified_episode_bootstrap.json`（三模型联合 bootstrap, B=10,000）。**论文用的是后者**。不要因为 per-model 文件的 CI 不同就报 critical\n- **seed=123 是真实 Qwen 实验**（D112-D113），不是 Gemma 的误标。DAF=89.68%，N=220，已写入 §3.1 + Appendix J\n- **salt-2026 的 bib**：应从 arXiv preprint 更新为 Findings of EACL 2026（ACL Anthology: 2026.findings-eacl.247），这个 warning 未被修复但不影响审稿\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-20-copy-2.md"
+}

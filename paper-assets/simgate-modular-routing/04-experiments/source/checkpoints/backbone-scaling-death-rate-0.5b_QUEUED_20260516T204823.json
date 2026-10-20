@@ -1,0 +1,15 @@
+{
+  "exp_id": "backbone-scaling-death-rate-0.5b",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T20:47:16.421Z",
+    "updated_at": "2026-05-16T20:48:23.132Z",
+    "hypothesis": "Smaller backbone (0.5B) has higher death rate than 7B (42.9%) in ScienceWorld, supporting prediction that stronger models → lower death rate → lower DAF."
+  },
+  "timestamp": "2026-05-16T20:48:23.327390+00:00",
+  "trigger": "update_registry"
+}

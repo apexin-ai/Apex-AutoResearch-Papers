@@ -1,0 +1,1 @@
+accuracy=53.3%, balanced_accuracy=41.5%, internal_recall=26.7%, det_recall=56.3%. Confusion: det->det=152, det->int=118, int->det=22, int->int=8. Three thinking modes identical. Conclusion: negative (below 30% threshold).

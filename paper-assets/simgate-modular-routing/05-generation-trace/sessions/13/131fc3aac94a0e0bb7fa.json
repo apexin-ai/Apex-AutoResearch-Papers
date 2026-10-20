@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "131fc3aac94a0e0bb7fa",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnosis melt check and latex",
+  "task_key": "worker_diagnosis_melt-check-and-latex_20260519T235258",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_melt-check-and-latex_20260519T235258_result.json",
+    "occurrence": 1,
+    "bytes": 690,
+    "sha256": "c08be390f055b5f463e0419c1d000ab9064ee7a49d51b8e42dfa6f7f232f23c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "报告已写入 `artifacts/extended-task-validation/final_latex_table.md`。\n\n**状态总结：**\n\n- **Melt**: 11/20 episodes，rerun 在跑（首次 run 因 vllm EngineDeadError 崩溃后重启）\n- **LaTeX 表格**: 已生成 4-task 版本（melt 行标 `---`），附带 5-task 占位模板\n- **4-task 聚合**: n=80, Int DR=52.5%, Det DR=18.8%, ΔDR=+33.8pp, D/I/N=30/1/49\n- **DAF**: 聚合 DAF=**0.987** — 98.7% 的 det-vs-int 差距来自死亡不对称。37 个双存活 episode 中 Δ_nd 仅 0.46 分，几乎可忽略。只有 find-living-thing 有微弱的非死亡差异（DAF=0.954），其余三个任务 DAF=1.000（非死亡 episode 完全平局）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-melt-check-and-latex.md"
+}

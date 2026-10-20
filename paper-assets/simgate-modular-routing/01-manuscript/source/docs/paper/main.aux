@@ -1,0 +1,1851 @@
+\relax 
+\bibstyle{acl_natbib}
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\citation{toolformer-2023}
+\citation{art-2023,chameleon-2023}
+\citation{cogrouter-2026,ares-2026}
+\citation{mtrouter-2026,budget-aware-routing-2026}
+\citation{scienceworld-2022}
+\@LN@col{1}
+\@LN{0}{0}
+\@LN{1}{0}
+\@LN{2}{0}
+\@LN{3}{0}
+\@LN{4}{0}
+\@LN{5}{0}
+\@LN{6}{0}
+\@LN{7}{0}
+\@LN{8}{0}
+\@LN{9}{0}
+\@LN{10}{0}
+\@LN{11}{0}
+\@LN{12}{0}
+\@LN{13}{0}
+\@LN{14}{0}
+\@LN{15}{0}
+\@LN{16}{0}
+\@LN{17}{0}
+\@LN{18}{0}
+\@LN{19}{0}
+\@LN{20}{0}
+\@LN{21}{0}
+\@LN{22}{0}
+\@LN{23}{0}
+\@LN{24}{0}
+\@LN{25}{0}
+\@LN{26}{0}
+\@LN{27}{0}
+\@LN{28}{0}
+\@LN{29}{0}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{1}{section.1}\protected@file@percent }
+\@LN{30}{0}
+\@LN{31}{0}
+\@LN{32}{0}
+\@LN{33}{0}
+\@LN{34}{0}
+\@LN{35}{0}
+\@LN{36}{0}
+\@LN{37}{0}
+\@LN{38}{0}
+\@LN@col{2}
+\@LN{39}{0}
+\@LN{40}{0}
+\@LN{41}{0}
+\@LN{42}{0}
+\@LN{43}{0}
+\@LN{44}{0}
+\@LN{45}{0}
+\@LN{46}{0}
+\@LN{47}{0}
+\@LN{48}{0}
+\@LN{49}{0}
+\@LN{50}{0}
+\@LN{51}{0}
+\@LN{52}{0}
+\@LN{53}{0}
+\@LN{54}{0}
+\@LN{55}{0}
+\@LN{56}{0}
+\@LN{57}{0}
+\@LN{58}{0}
+\@LN{59}{0}
+\@LN{60}{0}
+\@LN{61}{0}
+\@LN{62}{0}
+\@LN{63}{0}
+\@LN{64}{0}
+\@LN{65}{0}
+\@LN{66}{0}
+\@LN{67}{0}
+\@LN{68}{0}
+\@LN{69}{0}
+\@LN{70}{0}
+\@LN{71}{0}
+\@LN{72}{0}
+\@LN{73}{0}
+\@LN{74}{0}
+\@LN{75}{0}
+\@LN{76}{0}
+\@LN{77}{0}
+\@LN{78}{0}
+\@LN{79}{0}
+\citation{toolformer-2023,toolace-2025}
+\citation{art-2023,chameleon-2023}
+\citation{retool-2025,tool-learning-survey-2024}
+\citation{when2tool-2026}
+\citation{tool-use-tax-2026}
+\citation{to-call-or-not-2026,tool-overuse-illusion-2026}
+\citation{graves2016act}
+\citation{mixture-of-recursions-2025}
+\citation{cogrouter-2026,ares-2026}
+\citation{mtrouter-2026}
+\citation{routellm-2024,frugalgpt-2023,automix-2024}
+\citation{budget-aware-routing-2026}
+\citation{olson2021counterfactual,gajcin2023counterfactual,amitai2024explaining}
+\citation{pona2025abstract}
+\citation{axis-2026}
+\citation{cso-2026}
+\citation{kaushik2020learning}
+\citation{scienceworld-2022}
+\citation{alfworld-2021}
+\citation{agentbench-2024}
+\citation{react-2023}
+\citation{reflexion-2023}
+\citation{lats-2024}
+\citation{salt-2026}
+\citation{garcia2015comprehensive,achiam2017cpo}
+\citation{alshiekh2018safe}
+\citation{ruan2024failures,saferoute-2025,agent-safetybench-2024}
+\citation{mixture-of-depths-2024,xin2020deebert}
+\citation{switch-transformer-2022}
+\citation{rubin1974estimating}
+\citation{pearl2009causality}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Counterfactual episode collection and analysis pipeline. Each task instance is run under both pure strategies independently, producing episode-level labels via Algorithm~\ref {alg:labeling}.}}{2}{figure.caption.1}\protected@file@percent }
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:pipeline}{{1}{2}{Counterfactual episode collection and analysis pipeline. Each task instance is run under both pure strategies independently, producing episode-level labels via Algorithm~\ref {alg:labeling}}{figure.caption.1}{}}
+\@LN@col{1}
+\@LN{80}{1}
+\@LN{81}{1}
+\@LN{82}{1}
+\@LN{83}{1}
+\@LN{84}{1}
+\@LN{85}{1}
+\@LN{86}{1}
+\@LN{87}{1}
+\@LN{88}{1}
+\@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tool-Augmented Agents and Adaptive Routing.}{2}{section*.3}\protected@file@percent }
+\@LN{89}{1}
+\@LN{90}{1}
+\@LN{91}{1}
+\@LN{92}{1}
+\@LN{93}{1}
+\@LN{94}{1}
+\@LN{95}{1}
+\@LN{96}{1}
+\@LN{97}{1}
+\@LN{98}{1}
+\@LN{99}{1}
+\@LN{100}{1}
+\@LN{101}{1}
+\@LN{102}{1}
+\@LN{103}{1}
+\@LN{104}{1}
+\@LN{105}{1}
+\@LN{106}{1}
+\@LN{107}{1}
+\@LN{108}{1}
+\@LN{109}{1}
+\@LN{110}{1}
+\@LN{111}{1}
+\@LN{112}{1}
+\@LN@col{2}
+\@LN{113}{1}
+\@LN{114}{1}
+\@LN{115}{1}
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual Methods and Agent Environments.}{2}{section*.4}\protected@file@percent }
+\@LN{116}{1}
+\@LN{117}{1}
+\@LN{118}{1}
+\@LN{119}{1}
+\@LN{120}{1}
+\@LN{121}{1}
+\@LN{122}{1}
+\@LN{123}{1}
+\@LN{124}{1}
+\@LN{125}{1}
+\@LN{126}{1}
+\@LN{127}{1}
+\@LN{128}{1}
+\@LN{129}{1}
+\@LN{130}{1}
+\@LN{131}{1}
+\@LN{132}{1}
+\@LN{133}{1}
+\@LN{134}{1}
+\@LN{135}{1}
+\@LN{136}{1}
+\@LN{137}{1}
+\@LN{138}{1}
+\@LN{139}{1}
+\@writefile{toc}{\contentsline {paragraph}{Safe RL, Agent Safety, and Causal Inference.}{2}{section*.5}\protected@file@percent }
+\@LN{140}{1}
+\@LN{141}{1}
+\@LN{142}{1}
+\@LN{143}{1}
+\@LN{144}{1}
+\@LN{145}{1}
+\@LN{146}{1}
+\citation{react-2023}
+\citation{scienceworld-2022}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Non-\texttt  {connect} action distribution comparison between internal (left) and deterministic (right) strategies within death episodes. Both strategies exhibit comparable \texttt  {focus on} rates (${\sim }5\%$); the internal strategy's higher death count (105 vs.\ 40) reflects more frequent entry into catastrophic states, not different action selection within those states.}}{3}{figure.caption.2}\protected@file@percent }
+\newlabel{fig:death-comparison}{{2}{3}{Non-\texttt {connect} action distribution comparison between internal (left) and deterministic (right) strategies within death episodes. Both strategies exhibit comparable \texttt {focus on} rates (${\sim }5\%$); the internal strategy's higher death count (105 vs.\ 40) reflects more frequent entry into catastrophic states, not different action selection within those states}{figure.caption.2}{}}
+\@LN@col{1}
+\@LN{147}{2}
+\@LN{148}{2}
+\@LN{149}{2}
+\@LN{150}{2}
+\@LN{151}{2}
+\@LN{152}{2}
+\@LN{153}{2}
+\@LN{154}{2}
+\@LN{155}{2}
+\@LN{156}{2}
+\@LN{157}{2}
+\@LN{158}{2}
+\@LN{159}{2}
+\@LN{160}{2}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Method}{3}{section.3}\protected@file@percent }
+\newlabel{sec:method}{{3}{3}{Method}{section.3}{}}
+\@LN{161}{2}
+\@LN{162}{2}
+\@LN{163}{2}
+\@LN{164}{2}
+\@LN{165}{2}
+\@LN{166}{2}
+\@LN{167}{2}
+\@LN{168}{2}
+\@LN{169}{2}
+\@LN{170}{2}
+\@LN{171}{2}
+\@LN{172}{2}
+\@LN{173}{2}
+\@LN{174}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Problem Setup}{3}{subsection.3.1}\protected@file@percent }
+\newlabel{sec:problem-setup}{{3.1}{3}{Problem Setup}{subsection.3.1}{}}
+\@LN{175}{2}
+\@LN{176}{2}
+\@LN@col{2}
+\@LN{177}{2}
+\@LN{178}{2}
+\@LN{179}{2}
+\@LN{180}{2}
+\@LN{181}{2}
+\@LN{182}{2}
+\@LN{183}{2}
+\@LN{184}{2}
+\@LN{185}{2}
+\@LN{186}{2}
+\@LN{187}{2}
+\@LN{188}{2}
+\@LN{189}{2}
+\@LN{190}{2}
+\@LN{191}{2}
+\@LN{192}{2}
+\@LN{193}{2}
+\@LN{194}{2}
+\@LN{195}{2}
+\@LN{196}{2}
+\@LN{197}{2}
+\@LN{198}{2}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Counterfactual Episode Collection}{3}{subsection.3.2}\protected@file@percent }
+\newlabel{sec:collection}{{3.2}{3}{Counterfactual Episode Collection}{subsection.3.2}{}}
+\@LN{199}{2}
+\@LN{200}{2}
+\@LN{201}{2}
+\@LN{202}{2}
+\@LN{203}{2}
+\@LN{204}{2}
+\@LN{205}{2}
+\@LN{206}{2}
+\citation{qwen25-2024}
+\citation{scienceworld-2022}
+\citation{ng1999policy}
+\@LN@col{1}
+\@writefile{toc}{\contentsline {paragraph}{Pure-strategy trajectories.}{4}{section*.6}\protected@file@percent }
+\@LN{207}{3}
+\@LN{208}{3}
+\@LN{209}{3}
+\@LN{210}{3}
+\@LN{211}{3}
+\@LN{212}{3}
+\@LN{213}{3}
+\@LN{214}{3}
+\@LN{215}{3}
+\@LN{216}{3}
+\@LN{217}{3}
+\@LN{218}{3}
+\@LN{219}{3}
+\@LN{220}{3}
+\@LN{221}{3}
+\@LN{222}{3}
+\@LN{223}{3}
+\@LN{224}{3}
+\@LN{225}{3}
+\@LN{226}{3}
+\@LN{227}{3}
+\@LN{228}{3}
+\@LN{229}{3}
+\@LN{230}{3}
+\@LN{231}{3}
+\@LN{232}{3}
+\@LN{233}{3}
+\@LN{234}{3}
+\@LN{235}{3}
+\@LN{236}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Episode-Level Labeling}{4}{subsection.3.3}\protected@file@percent }
+\newlabel{sec:labeling}{{3.3}{4}{Episode-Level Labeling}{subsection.3.3}{}}
+\@LN{237}{3}
+\@LN{238}{3}
+\@LN{239}{3}
+\@LN{240}{3}
+\@LN{241}{3}
+\@LN{242}{3}
+\@LN{243}{3}
+\@LN{244}{3}
+\@LN{245}{3}
+\@LN{246}{3}
+\@LN{247}{3}
+\@LN{248}{3}
+\@LN{249}{3}
+\@LN{250}{3}
+\@LN@col{2}
+\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces Episode-Level Counterfactual Labeling}}{4}{algorithm.1}\protected@file@percent }
+\newlabel{alg:labeling}{{1}{4}{Episode-Level Counterfactual Labeling}{algorithm.1}{}}
+\@LN{251}{3}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Death Avoidance Factor}{4}{subsection.3.4}\protected@file@percent }
+\newlabel{sec:daf}{{3.4}{4}{Death Avoidance Factor}{subsection.3.4}{}}
+\@LN{252}{3}
+\@LN{253}{3}
+\@LN{254}{3}
+\@LN{255}{3}
+\@LN{256}{3}
+\@LN{257}{3}
+\@LN{258}{3}
+\@LN{259}{3}
+\@LN{260}{3}
+\@LN{261}{3}
+\@LN{262}{3}
+\@LN{263}{3}
+\@LN{264}{3}
+\@LN{265}{3}
+\@LN{266}{3}
+\@LN{267}{3}
+\@LN{268}{3}
+\@LN{269}{3}
+\@LN{270}{3}
+\@LN{271}{3}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Per-task death rate differential vs.\ performance gap ($n{=}11$ task types). The near-perfect correlation ($r = 0.97$) is a structural consequence of death dominance (DAF $\to 1 \Rightarrow r \to 1$), not an independent finding. The sole outlier (\texttt  {find-non-living-thing}, diamond marker) has zero deaths; its $\Delta _{\text  {full}} = +9.58$ arises entirely from non-death score differences.}}{5}{figure.caption.7}\protected@file@percent }
+\newlabel{fig:decomposition}{{3}{5}{Per-task death rate differential vs.\ performance gap ($n{=}11$ task types). The near-perfect correlation ($r = 0.97$) is a structural consequence of death dominance (DAF $\to 1 \Rightarrow r \to 1$), not an independent finding. The sole outlier (\texttt {find-non-living-thing}, diamond marker) has zero deaths; its $\Delta _{\text {full}} = +9.58$ arises entirely from non-death score differences}{figure.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Internal-strategy death rates under improvement methods. Top: all 11 tasks. Bottom: 10 death-prone tasks (\texttt  {find-non-living-thing} excluded). No intervention approaches deterministic-level safety.}}{5}{table.caption.8}\protected@file@percent }
+\newlabel{tab:agent-improvement}{{1}{5}{Internal-strategy death rates under improvement methods. Top: all 11 tasks. Bottom: 10 death-prone tasks (\texttt {find-non-living-thing} excluded). No intervention approaches deterministic-level safety}{table.caption.8}{}}
+\@LN{272}{4}
+\@LN{273}{4}
+\@LN{274}{4}
+\@LN{275}{4}
+\@LN{276}{4}
+\@LN{277}{4}
+\@LN{278}{4}
+\@LN{279}{4}
+\@LN{280}{4}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Experiments}{5}{section.4}\protected@file@percent }
+\newlabel{sec:experiments}{{4}{5}{Experiments}{section.4}{}}
+\@LN{281}{4}
+\@LN{282}{4}
+\@LN{283}{4}
+\@LN{284}{4}
+\@LN{285}{4}
+\@LN{286}{4}
+\@LN{287}{4}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Action sequences for 6 representative death episodes. The fatal \texttt  {focus on} (arrow) appears in final steps after long \texttt  {connect} sequences (``connect loop $\to $ fatal focus'').}}{5}{figure.caption.9}\protected@file@percent }
+\newlabel{fig:death-timeline}{{4}{5}{Action sequences for 6 representative death episodes. The fatal \texttt {focus on} (arrow) appears in final steps after long \texttt {connect} sequences (``connect loop $\to $ fatal focus'')}{figure.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Per-task decomposition. D\%: death rate for internal/deterministic. D/I/N: det-preferred / int-preferred / no-preference labels. $\dagger $\,Only task with zero deaths; $n{=}40$ (two batches).}}{5}{table.caption.10}\protected@file@percent }
+\newlabel{tab:per-task}{{2}{5}{Per-task decomposition. D\%: death rate for internal/deterministic. D/I/N: det-preferred / int-preferred / no-preference labels. $\dagger $\,Only task with zero deaths; $n{=}40$ (two batches)}{table.caption.10}{}}
+\@LN{288}{4}
+\@LN{289}{4}
+\@LN{290}{4}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Death Avoidance Decomposition}{5}{subsection.4.1}\protected@file@percent }
+\newlabel{sec:death-decomp}{{4.1}{5}{Death Avoidance Decomposition}{subsection.4.1}{}}
+\@LN{291}{4}
+\@LN{292}{4}
+\@LN{293}{4}
+\@LN{294}{4}
+\@LN{295}{4}
+\@LN{296}{4}
+\@LN{297}{4}
+\@LN{298}{4}
+\@LN{299}{4}
+\@LN{300}{4}
+\@LN{301}{4}
+\@LN{302}{4}
+\@LN{303}{4}
+\@LN{304}{4}
+\@LN{305}{4}
+\@writefile{toc}{\contentsline {paragraph}{Per-task structure.}{5}{section*.11}\protected@file@percent }
+\@LN{306}{4}
+\@LN{307}{4}
+\citation{llama3-2024}
+\citation{gemma2-2024}
+\citation{reflexion-2023}
+\citation{math-2021}
+\citation{alfworld-2021}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Cross-model and cross-environment summary. SW = ScienceWorld, ALF = ALFWorld. Death dominance replicates across three 7--9B families and intensifies under $10{\times }$ scaling; ALFWorld shows information-asymmetry signal; MATH shows none. DR = death rate (\%).}}{6}{table.caption.13}\protected@file@percent }
+\newlabel{tab:cross-model-env}{{3}{6}{Cross-model and cross-environment summary. SW = ScienceWorld, ALF = ALFWorld. Death dominance replicates across three 7--9B families and intensifies under $10{\times }$ scaling; ALFWorld shows information-asymmetry signal; MATH shows none. DR = death rate (\%)}{table.caption.13}{}}
+\@LN{308}{5}
+\@LN{309}{5}
+\@LN{310}{5}
+\@LN{311}{5}
+\@LN{312}{5}
+\@LN{313}{5}
+\@LN{314}{5}
+\@writefile{toc}{\contentsline {paragraph}{Binary structure and robustness.}{6}{section*.12}\protected@file@percent }
+\@LN{315}{5}
+\@LN{316}{5}
+\@LN{317}{5}
+\@LN{318}{5}
+\@LN{319}{5}
+\@LN{320}{5}
+\@LN{321}{5}
+\@LN{322}{5}
+\@LN{323}{5}
+\@LN{324}{5}
+\@LN{325}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Multi-Model Validation (7--9B Tier)}{6}{subsection.4.2}\protected@file@percent }
+\newlabel{sec:cross-model}{{4.2}{6}{Multi-Model Validation (7--9B Tier)}{subsection.4.2}{}}
+\@LN{326}{5}
+\@LN{327}{5}
+\@LN{328}{5}
+\@LN{329}{5}
+\@LN{330}{5}
+\@LN{331}{5}
+\@LN{332}{5}
+\@LN{333}{5}
+\@LN{334}{5}
+\@LN{335}{5}
+\@LN{336}{5}
+\@LN{337}{5}
+\@LN{338}{5}
+\@LN{339}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Agent Improvement Baselines}{6}{subsection.4.3}\protected@file@percent }
+\newlabel{sec:agent-improvement}{{4.3}{6}{Agent Improvement Baselines}{subsection.4.3}{}}
+\@LN{340}{5}
+\@LN{341}{5}
+\@LN{342}{5}
+\@LN{343}{5}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Leave-one-task-out DAF sensitivity (label fraction). Removing any death-prone task changes DAF by $\leq $3.0\,pp. $\dagger $\,Sole death-free task; removal raises DAF to 100\% by construction.}}{6}{table.caption.14}\protected@file@percent }
+\newlabel{tab:loto-daf}{{4}{6}{Leave-one-task-out DAF sensitivity (label fraction). Removing any death-prone task changes DAF by $\leq $3.0\,pp. $\dagger $\,Sole death-free task; removal raises DAF to 100\% by construction}{table.caption.14}{}}
+\@LN{344}{5}
+\@LN{345}{5}
+\@LN{346}{5}
+\@LN{347}{5}
+\@LN{348}{5}
+\@LN{349}{5}
+\@LN{350}{5}
+\@LN{351}{5}
+\@LN{352}{5}
+\@LN{353}{5}
+\@LN{354}{5}
+\@writefile{toc}{\contentsline {paragraph}{Dose-response analysis.}{6}{section*.15}\protected@file@percent }
+\@LN{355}{5}
+\@LN{356}{5}
+\@LN{357}{5}
+\@LN{358}{5}
+\@LN{359}{5}
+\@LN{360}{5}
+\@LN{361}{5}
+\@LN{362}{5}
+\@LN{363}{5}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Cross-Environment Boundary Probes}{6}{subsection.4.4}\protected@file@percent }
+\newlabel{sec:math-contrast}{{4.4}{6}{Cross-Environment Boundary Probes}{subsection.4.4}{}}
+\newlabel{sec:cross-env}{{4.4}{6}{Cross-Environment Boundary Probes}{subsection.4.4}{}}
+\@LN{364}{5}
+\@LN{365}{5}
+\@LN{366}{5}
+\@LN{367}{5}
+\@LN{368}{5}
+\@LN{369}{5}
+\@LN{370}{5}
+\@LN{371}{5}
+\@LN{372}{5}
+\@LN{373}{5}
+\@LN{374}{5}
+\citation{natarajan2013learning}
+\@LN@col{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Death rate vs.\ trial count for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Reflexion drops steeply through $N{=}3$ then plateaus; Retry is nearly flat. Horizontal lines: 72B ($30.6\%$) and deterministic ($16.3\%$) baselines. Error bands: Wilson 95\% CIs.}}{7}{figure.caption.16}\protected@file@percent }
+\newlabel{fig:dose-response}{{5}{7}{Death rate vs.\ trial count for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Reflexion drops steeply through $N{=}3$ then plateaus; Retry is nearly flat. Horizontal lines: 72B ($30.6\%$) and deterministic ($16.3\%$) baselines. Error bands: Wilson 95\% CIs}{figure.caption.16}{}}
+\@LN{375}{6}
+\@LN{376}{6}
+\@LN{377}{6}
+\@LN{378}{6}
+\@LN{379}{6}
+\@LN{380}{6}
+\@LN{381}{6}
+\@LN{382}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Baselines}{7}{subsection.4.5}\protected@file@percent }
+\newlabel{sec:baselines}{{4.5}{7}{Baselines}{subsection.4.5}{}}
+\@LN{383}{6}
+\@LN{384}{6}
+\@LN{385}{6}
+\@LN{386}{6}
+\@LN{387}{6}
+\@LN{388}{6}
+\@LN{389}{6}
+\@LN{390}{6}
+\@LN{391}{6}
+\@LN{392}{6}
+\@LN{393}{6}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Router Training: Inconclusive Results}{7}{subsection.4.6}\protected@file@percent }
+\newlabel{sec:router-diagnostic}{{4.6}{7}{Router Training: Inconclusive Results}{subsection.4.6}{}}
+\@LN{394}{6}
+\@LN{395}{6}
+\@LN{396}{6}
+\@LN{397}{6}
+\@LN{398}{6}
+\@LN{399}{6}
+\@LN{400}{6}
+\@LN{401}{6}
+\@LN{402}{6}
+\@LN{403}{6}
+\@LN@col{2}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Cross-environment label distributions. ScienceWorld and ALFWorld both favor deterministic via different mechanisms (death avoidance vs.\ information asymmetry); MATH shows no routing signal.}}{7}{figure.caption.17}\protected@file@percent }
+\newlabel{fig:signal-reversal}{{6}{7}{Cross-environment label distributions. ScienceWorld and ALFWorld both favor deterministic via different mechanisms (death avoidance vs.\ information asymmetry); MATH shows no routing signal}{figure.caption.17}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Episode-weighted mean scores on ScienceWorld (11 task types, 245 episodes). $\dagger $\,Single seed (42); see Appendix~\ref {app:seed-robustness} for 8-seed robustness.}}{7}{table.caption.18}\protected@file@percent }
+\newlabel{tab:baselines}{{5}{7}{Episode-weighted mean scores on ScienceWorld (11 task types, 245 episodes). $\dagger $\,Single seed (42); see Appendix~\ref {app:seed-robustness} for 8-seed robustness}{table.caption.18}{}}
+\@LN{404}{6}
+\@LN{405}{6}
+\@LN{406}{6}
+\@LN{407}{6}
+\@LN{408}{6}
+\@LN{409}{6}
+\@LN{410}{6}
+\@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{7}{section.5}\protected@file@percent }
+\newlabel{sec:discussion}{{5}{7}{Discussion}{section.5}{}}
+\@writefile{toc}{\contentsline {paragraph}{Signal granularity and router failure.}{7}{section*.19}\protected@file@percent }
+\@LN{411}{6}
+\@LN{412}{6}
+\@LN{413}{6}
+\@LN{414}{6}
+\@LN{415}{6}
+\@LN{416}{6}
+\@LN{417}{6}
+\@LN{418}{6}
+\@LN{419}{6}
+\@LN{420}{6}
+\@LN{421}{6}
+\@LN{422}{6}
+\@LN{423}{6}
+\@LN{424}{6}
+\@LN{425}{6}
+\@LN{426}{6}
+\@LN{427}{6}
+\citation{react-2023}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces Retrospective validation of the practitioner decision framework. SW = ScienceWorld. The three-stage diagnostic correctly classifies all four conditions (4/4).}}{8}{table.caption.22}\protected@file@percent }
+\newlabel{tab:decision-validation}{{6}{8}{Retrospective validation of the practitioner decision framework. SW = ScienceWorld. The three-stage diagnostic correctly classifies all four conditions (4/4)}{table.caption.22}{}}
+\@writefile{toc}{\contentsline {paragraph}{Failure mechanism.}{8}{section*.20}\protected@file@percent }
+\@LN{428}{7}
+\@LN{429}{7}
+\@LN{430}{7}
+\@LN{431}{7}
+\@LN{432}{7}
+\@LN{433}{7}
+\@LN{434}{7}
+\@LN{435}{7}
+\@LN{436}{7}
+\@LN{437}{7}
+\@LN{438}{7}
+\@LN{439}{7}
+\@LN{440}{7}
+\@LN{441}{7}
+\@LN{442}{7}
+\@LN{443}{7}
+\@LN{444}{7}
+\@LN{445}{7}
+\@LN{446}{7}
+\@LN{447}{7}
+\@LN{448}{7}
+\@writefile{toc}{\contentsline {paragraph}{Oracle degeneracy and practical implications.}{8}{section*.21}\protected@file@percent }
+\@LN{449}{7}
+\@LN{450}{7}
+\@LN{451}{7}
+\@LN{452}{7}
+\@LN{453}{7}
+\@LN{454}{7}
+\@LN{455}{7}
+\@LN{456}{7}
+\@LN{457}{7}
+\@LN{458}{7}
+\@LN{459}{7}
+\@LN{460}{7}
+\@LN{461}{7}
+\@LN{462}{7}
+\@LN{463}{7}
+\@LN{464}{7}
+\@LN{465}{7}
+\@writefile{toc}{\contentsline {paragraph}{Scope and applicability conditions.}{8}{section*.23}\protected@file@percent }
+\@LN{466}{7}
+\@LN{467}{7}
+\@LN{468}{7}
+\@LN@col{2}
+\@LN{469}{7}
+\@LN{470}{7}
+\@LN{471}{7}
+\@LN{472}{7}
+\@LN{473}{7}
+\@LN{474}{7}
+\@LN{475}{7}
+\@LN{476}{7}
+\@LN{477}{7}
+\@LN{478}{7}
+\@LN{479}{7}
+\@LN{480}{7}
+\@LN{481}{7}
+\@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{8}{section.6}\protected@file@percent }
+\@LN{482}{7}
+\@LN{483}{7}
+\@LN{484}{7}
+\@LN{485}{7}
+\@LN{486}{7}
+\@LN{487}{7}
+\@LN{488}{7}
+\@LN{489}{7}
+\@LN{490}{7}
+\@LN{491}{7}
+\@LN{492}{7}
+\@LN{493}{7}
+\@LN{494}{7}
+\@LN{495}{7}
+\@LN{496}{7}
+\@LN{497}{7}
+\@LN{498}{7}
+\@LN{499}{7}
+\@LN{500}{7}
+\@LN{501}{7}
+\@LN{502}{7}
+\@LN{503}{7}
+\@LN{504}{7}
+\@LN{505}{7}
+\@LN{506}{7}
+\@LN{507}{7}
+\@LN{508}{7}
+\@LN{509}{7}
+\@LN{510}{7}
+\@LN{511}{7}
+\@LN{512}{7}
+\@LN{513}{7}
+\@LN{514}{7}
+\@LN{515}{7}
+\@LN{516}{7}
+\@LN{517}{7}
+\bibdata{references}
+\bibcite{achiam2017cpo}{{1}{2017}{{Achiam et~al.}}{{Achiam, Held, Tamar, and Abbeel}}}
+\bibcite{automix-2024}{{2}{2024}{{Aggarwal et~al.}}{{Aggarwal, Madaan, Anand, Potharaju, Mishra, Zhou et~al.}}}
+\bibcite{alshiekh2018safe}{{3}{2018}{{Alshiekh et~al.}}{{Alshiekh, Bloem, Ehlers, K{\"o}nighofer, Niekum, and Topcu}}}
+\bibcite{amitai2024explaining}{{4}{2024}{{Amitai et~al.}}{{Amitai, Septon, and Amir}}}
+\bibcite{mixture-of-recursions-2025}{{5}{2025}{{Bae et~al.}}{{Bae, Kim, Bayat, Kim, Ha et~al.}}}
+\bibcite{cameron-2008}{{6}{2008}{{Cameron et~al.}}{{Cameron, Gelbach, and Miller}}}
+\bibcite{frugalgpt-2023}{{7}{2023}{{Chen et~al.}}{{Chen, Zaharia, and Zou}}}
+\bibcite{switch-transformer-2022}{{8}{2022}{{Fedus et~al.}}{{Fedus, Zoph, and Shazeer}}}
+\bibcite{retool-2025}{{9}{2025}{{Feng et~al.}}{{Feng, Huang, Qu, Zhang, Qin et~al.}}}
+\bibcite{gajcin2023counterfactual}{{10}{2023}{{Gajcin}}{{}}}
+\bibcite{garcia2015comprehensive}{{11}{2015}{{Garc\'{i}a and Fern\'{a}ndez}}{{}}}
+\bibcite{gemma2-2024}{{12}{2024}{{Gemma Team}}{{}}}
+\bibcite{llama3-2024}{{13}{2024}{{Grattafiori et~al.}}{{Grattafiori, Dubey, Jauhri, Pandey, Kadian, Al-Dahle, Letman, Mathur, Schelten et~al.}}}
+\bibcite{graves2016act}{{14}{2016}{{Graves}}{{}}}
+\bibcite{axis-2026}{{15}{2025}{{Gyevn{\'a}r et~al.}}{{Gyevn{\'a}r, Lucas, Albrecht, and Cohen}}}
+\bibcite{math-2021}{{16}{2021}{{Hendrycks et~al.}}{{Hendrycks, Burns, Kadavath, Arora, Basart, Tang, Song, and Steinhardt}}}
+\bibcite{kaushik2020learning}{{17}{2020}{{Kaushik et~al.}}{{Kaushik, Hovy, and Lipton}}}
+\bibcite{saferoute-2025}{{18}{2025}{{Lee et~al.}}{{}}}
+\bibcite{salt-2026}{{19}{2026{a}}{{Li et~al.}}{{Li, Wang, Yan, Tian, Xu, Song, Xu, and Cheong}}}
+\bibcite{cso-2026}{{20}{2026{b}}{{Li et~al.}}{{Li, Zeng, Fang, Liang, Song, Liu, Mi, and Yu}}}
+\bibcite{toolace-2025}{{21}{2025}{{Liu et~al.}}{{}}}
+\bibcite{agentbench-2024}{{22}{2024}{{Liu et~al.}}{{Liu, Yu, Zhang, Xu, Lei, Lai, Gu, Ding, Men, Yang, Zhang, Deng, Zeng, Du, Zhang, Shen, Zhang, Su, Sun, Huang, Zhang, and Tang}}}
+\@LN@col{1}
+\@LN{518}{8}
+\@LN{519}{8}
+\@LN{520}{8}
+\@LN{521}{8}
+\@LN{522}{8}
+\@LN{523}{8}
+\@LN{524}{8}
+\@LN{525}{8}
+\@LN{526}{8}
+\@LN{527}{8}
+\@LN{528}{8}
+\@LN{529}{8}
+\@LN{530}{8}
+\@LN{531}{8}
+\@LN{532}{8}
+\@LN{533}{8}
+\@LN{534}{8}
+\@LN{535}{8}
+\@LN{536}{8}
+\@LN{537}{8}
+\@LN{538}{8}
+\@LN{539}{8}
+\@LN{540}{8}
+\@LN{541}{8}
+\@LN{542}{8}
+\@LN{543}{8}
+\@LN{544}{8}
+\@LN{545}{8}
+\@LN{546}{8}
+\@LN{547}{8}
+\@LN{548}{8}
+\@LN{549}{8}
+\@LN{550}{8}
+\@LN{551}{8}
+\@LN{552}{8}
+\@LN{553}{8}
+\@LN{554}{8}
+\@LN{555}{8}
+\@LN{556}{8}
+\@LN{557}{8}
+\@LN{558}{8}
+\@LN{559}{8}
+\@LN{560}{8}
+\@LN{561}{8}
+\@LN{562}{8}
+\@LN{563}{8}
+\@LN{564}{8}
+\@LN{565}{8}
+\@LN{566}{8}
+\@LN{567}{8}
+\@LN{568}{8}
+\@LN@col{2}
+\@LN{569}{8}
+\@LN{570}{8}
+\@LN{571}{8}
+\@LN{572}{8}
+\@LN{573}{8}
+\@LN{574}{8}
+\@LN{575}{8}
+\@LN{576}{8}
+\@LN{577}{8}
+\@LN{578}{8}
+\@LN{579}{8}
+\@LN{580}{8}
+\@LN{581}{8}
+\@LN{582}{8}
+\@LN{583}{8}
+\@LN{584}{8}
+\@LN{585}{8}
+\@LN{586}{8}
+\@LN{587}{8}
+\@LN{588}{8}
+\@LN{589}{8}
+\@LN{590}{8}
+\@LN{591}{8}
+\@LN{592}{8}
+\@LN{593}{8}
+\@LN{594}{8}
+\@LN{595}{8}
+\@LN{596}{8}
+\@LN{597}{8}
+\@LN{598}{8}
+\@LN{599}{8}
+\@LN{600}{8}
+\@LN{601}{8}
+\@LN{602}{8}
+\@LN{603}{8}
+\@LN{604}{8}
+\@LN{605}{8}
+\@LN{606}{8}
+\@LN{607}{8}
+\@LN{608}{8}
+\@LN{609}{8}
+\@LN{610}{8}
+\@LN{611}{8}
+\@LN{612}{8}
+\@LN{613}{8}
+\@LN{614}{8}
+\@LN{615}{8}
+\@LN{616}{8}
+\@LN{617}{8}
+\@LN{618}{8}
+\@LN{619}{8}
+\@LN{620}{8}
+\@LN{621}{8}
+\@LN{622}{8}
+\bibcite{chameleon-2023}{{23}{2023}{{Lu et~al.}}{{Lu, Peng, Cheng, Galley, Chang, Wu, Zhu, and Gao}}}
+\bibcite{natarajan2013learning}{{24}{2013}{{Natarajan et~al.}}{{Natarajan, Dhillon, Ravikumar, and Tewari}}}
+\bibcite{ng1999policy}{{25}{1999}{{Ng et~al.}}{{Ng, Harada, and Russell}}}
+\bibcite{olson2021counterfactual}{{26}{2021}{{Olson et~al.}}{{Olson, Khanna, Neal, Li, and Wong}}}
+\bibcite{routellm-2024}{{27}{2024}{{Ong et~al.}}{{Ong, Almahairi, Wu, Chiang, Wu, Gonzalez, Kadous, and Stoica}}}
+\bibcite{art-2023}{{28}{2023}{{Paranjape et~al.}}{{Paranjape, Lundberg, Singh, Hajishirzi, Zettlemoyer, and Ribeiro}}}
+\bibcite{pearl2009causality}{{29}{2009}{{Pearl}}{{}}}
+\bibcite{pona2025abstract}{{30}{2025}{{Pona et~al.}}{{Pona, Kazemi~Mehrabadi, Du, Watson, and Paoletti}}}
+\bibcite{tool-learning-survey-2024}{{31}{2024}{{Qu et~al.}}{{Qu, Dai, Wei, Cai, Wang, Yin, Xu, and Wen}}}
+\bibcite{mixture-of-depths-2024}{{32}{2024}{{Raposo et~al.}}{{Raposo, Ritter, Richards, Lillicrap, Humphreys, and Santoro}}}
+\bibcite{ruan2024failures}{{33}{2024}{{Ruan et~al.}}{{Ruan, Dong, Wang, Pitis, Zhou, Ba, Dubois, Maddison, and Hashimoto}}}
+\bibcite{rubin1974estimating}{{34}{1974}{{Rubin}}{{}}}
+\bibcite{toolformer-2023}{{35}{2023}{{Schick et~al.}}{{Schick, Dwivedi-Yu, Dess\`{i}, Raileanu, Lomeli, Hambro, Zettlemoyer, Cancedda, and Scialom}}}
+\bibcite{reflexion-2023}{{36}{2023}{{Shinn et~al.}}{{Shinn, Cassano, Berman, Gopinath, Narasimhan, and Yao}}}
+\bibcite{alfworld-2021}{{37}{2021}{{Shridhar et~al.}}{{Shridhar, Yuan, C\^{o}t\'{e}, Bisk, Trischler, and Hausknecht}}}
+\bibcite{when2tool-2026}{{38}{2026}{{Sun et~al.}}{{Sun, Liu, Yan, Wang, and Weng}}}
+\bibcite{scienceworld-2022}{{39}{2022}{{Wang et~al.}}{{Wang, Jansen, C\^{o}t\'{e}, and Ammanabrolu}}}
+\bibcite{webb-2023}{{40}{2023}{{Webb}}{{}}}
+\bibcite{to-call-or-not-2026}{{41}{2026}{{Wu et~al.}}{{Wu, Das, Amani, Nag, Lee, Gummadi, Ravichander, and Zafar}}}
+\bibcite{xin2020deebert}{{42}{2020}{{Xin et~al.}}{{Xin, Tang, Lee, Yu, and Lin}}}
+\bibcite{qwen25-2024}{{43}{2024}{{Yang et~al.}}{{Yang, Yang, Zhang, Hui, Zheng, Yu, Li, Liu, Huang et~al.}}}
+\bibcite{ares-2026}{{44}{2026{a}}{{Yang et~al.}}{{Yang, Hou, Wei, Bao, Chang et~al.}}}
+\bibcite{cogrouter-2026}{{45}{2026{b}}{{Yang et~al.}}{{Yang, Ye, Wei, Zhao, Luo et~al.}}}
+\@LN@col{1}
+\@LN{623}{9}
+\@LN{624}{9}
+\@LN{625}{9}
+\@LN{626}{9}
+\@LN{627}{9}
+\@LN{628}{9}
+\@LN{629}{9}
+\@LN{630}{9}
+\@LN{631}{9}
+\@LN{632}{9}
+\@LN{633}{9}
+\@LN{634}{9}
+\@LN{635}{9}
+\@LN{636}{9}
+\@LN{637}{9}
+\@LN{638}{9}
+\@LN{639}{9}
+\@LN{640}{9}
+\@LN{641}{9}
+\@LN{642}{9}
+\@LN{643}{9}
+\@LN{644}{9}
+\@LN{645}{9}
+\@LN{646}{9}
+\@LN{647}{9}
+\@LN{648}{9}
+\@LN{649}{9}
+\@LN{650}{9}
+\@LN{651}{9}
+\@LN{652}{9}
+\@LN{653}{9}
+\@LN{654}{9}
+\@LN{655}{9}
+\@LN{656}{9}
+\@LN{657}{9}
+\@LN{658}{9}
+\@LN{659}{9}
+\@LN{660}{9}
+\@LN{661}{9}
+\@LN{662}{9}
+\@LN{663}{9}
+\@LN{664}{9}
+\@LN{665}{9}
+\@LN{666}{9}
+\@LN{667}{9}
+\@LN{668}{9}
+\@LN{669}{9}
+\@LN{670}{9}
+\@LN{671}{9}
+\@LN{672}{9}
+\@LN{673}{9}
+\@LN{674}{9}
+\@LN{675}{9}
+\@LN{676}{9}
+\@LN{677}{9}
+\@LN@col{2}
+\@LN{678}{9}
+\@LN{679}{9}
+\@LN{680}{9}
+\@LN{681}{9}
+\@LN{682}{9}
+\@LN{683}{9}
+\@LN{684}{9}
+\@LN{685}{9}
+\@LN{686}{9}
+\@LN{687}{9}
+\@LN{688}{9}
+\@LN{689}{9}
+\@LN{690}{9}
+\@LN{691}{9}
+\@LN{692}{9}
+\@LN{693}{9}
+\@LN{694}{9}
+\@LN{695}{9}
+\@LN{696}{9}
+\@LN{697}{9}
+\@LN{698}{9}
+\@LN{699}{9}
+\@LN{700}{9}
+\@LN{701}{9}
+\@LN{702}{9}
+\@LN{703}{9}
+\@LN{704}{9}
+\@LN{705}{9}
+\@LN{706}{9}
+\@LN{707}{9}
+\@LN{708}{9}
+\@LN{709}{9}
+\@LN{710}{9}
+\@LN{711}{9}
+\@LN{712}{9}
+\@LN{713}{9}
+\@LN{714}{9}
+\@LN{715}{9}
+\@LN{716}{9}
+\@LN{717}{9}
+\@LN{718}{9}
+\@LN{719}{9}
+\@LN{720}{9}
+\@LN{721}{9}
+\@LN{722}{9}
+\@LN{723}{9}
+\@LN{724}{9}
+\@LN{725}{9}
+\@LN{726}{9}
+\@LN{727}{9}
+\@LN{728}{9}
+\@LN{729}{9}
+\@LN{730}{9}
+\bibcite{react-2023}{{46}{2023}{{Yao et~al.}}{{Yao, Zhao, Yu, Du, Shafran, Narasimhan, and Cao}}}
+\bibcite{tool-overuse-illusion-2026}{{47}{2026}{{Zeng et~al.}}{{Zeng, You, Liu, Du, Ding, Hou, Wang, Ning, Song, Tu, Cai, and Liu}}}
+\bibcite{budget-aware-routing-2026}{{48}{2026{a}}{{Zhang et~al.}}{{Zhang, Xia, Zhang, Madrigal, Mallick, Kessler, Ruehle, and Rajmohan}}}
+\bibcite{tool-use-tax-2026}{{49}{2026{b}}{{Zhang et~al.}}{{Zhang, Xiong, Zhong, Jiang, Yuan, Li, and Lin}}}
+\bibcite{mtrouter-2026}{{50}{2026{c}}{{Zhang et~al.}}{{Zhang, Li, Wang, Feng, Yang et~al.}}}
+\bibcite{agent-safetybench-2024}{{51}{2024}{{Zhang et~al.}}{{Zhang, Cui, Lu, Zhou, Yang, Wang, and Huang}}}
+\bibcite{lats-2024}{{52}{2024}{{Zhou et~al.}}{{Zhou, Yan, Shlapentokh-Rothman, Wang, and Wang}}}
+\citation{scienceworld-2022}
+\@LN@col{1}
+\@LN{731}{10}
+\@LN{732}{10}
+\@LN{733}{10}
+\@LN{734}{10}
+\@LN{735}{10}
+\@LN{736}{10}
+\@LN{737}{10}
+\@LN{738}{10}
+\@LN{739}{10}
+\@LN{740}{10}
+\@LN{741}{10}
+\@LN{742}{10}
+\@LN{743}{10}
+\@LN{744}{10}
+\@LN{745}{10}
+\@LN{746}{10}
+\@LN{747}{10}
+\@LN{748}{10}
+\@LN{749}{10}
+\@LN{750}{10}
+\@LN{751}{10}
+\@LN{752}{10}
+\@LN{753}{10}
+\@LN{754}{10}
+\@LN{755}{10}
+\@LN{756}{10}
+\@LN{757}{10}
+\@LN{758}{10}
+\@LN{759}{10}
+\@LN{760}{10}
+\@LN{761}{10}
+\@LN{762}{10}
+\@LN{763}{10}
+\@LN{764}{10}
+\@LN{765}{10}
+\@LN{766}{10}
+\@LN{767}{10}
+\@LN{768}{10}
+\@LN{769}{10}
+\@LN{770}{10}
+\@LN{771}{10}
+\@LN{772}{10}
+\@LN{773}{10}
+\@LN{774}{10}
+\@LN{775}{10}
+\@LN{776}{10}
+\@LN{777}{10}
+\@LN{778}{10}
+\@LN{779}{10}
+\@LN{780}{10}
+\@LN{781}{10}
+\@LN{782}{10}
+\@LN{783}{10}
+\@LN@col{2}
+\@LN{784}{10}
+\@LN{785}{10}
+\@LN{786}{10}
+\@LN{787}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Signal Concentration Index}{11}{appendix.A}\protected@file@percent }
+\newlabel{app:sci}{{A}{11}{Signal Concentration Index}{appendix.A}{}}
+\@LN{788}{10}
+\@LN{789}{10}
+\@LN{790}{10}
+\@LN{791}{10}
+\@LN{792}{10}
+\@LN{793}{10}
+\@LN{794}{10}
+\@LN{795}{10}
+\@LN{796}{10}
+\@LN{797}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Labeling Quality Audit}{11}{appendix.B}\protected@file@percent }
+\newlabel{app:labeling}{{B}{11}{Labeling Quality Audit}{appendix.B}{}}
+\@LN{798}{10}
+\@LN{799}{10}
+\@LN{800}{10}
+\@LN{801}{10}
+\@LN{802}{10}
+\@LN{803}{10}
+\@LN{804}{10}
+\@LN{805}{10}
+\@LN{806}{10}
+\@LN{807}{10}
+\@LN{808}{10}
+\@LN{809}{10}
+\@LN{810}{10}
+\@LN{811}{10}
+\@LN{812}{10}
+\@LN{813}{10}
+\@LN{814}{10}
+\@LN{815}{10}
+\@LN{816}{10}
+\@LN{817}{10}
+\@LN{818}{10}
+\@LN{819}{10}
+\@LN{820}{10}
+\@LN{821}{10}
+\@LN{822}{10}
+\@LN{823}{10}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Per-Task Decomposition}{11}{appendix.C}\protected@file@percent }
+\newlabel{app:per-task}{{C}{11}{Per-Task Decomposition}{appendix.C}{}}
+\@LN{824}{10}
+\@LN{825}{10}
+\@LN{826}{10}
+\citation{cameron-2008,webb-2023}
+\@LN@col{1}
+\@LN{827}{11}
+\@LN{828}{11}
+\@LN{829}{11}
+\@LN{830}{11}
+\@LN{831}{11}
+\@writefile{toc}{\contentsline {paragraph}{Task selection and anti-cherry-picking.}{12}{section*.26}\protected@file@percent }
+\@LN{832}{11}
+\@LN{833}{11}
+\@LN{834}{11}
+\@LN{835}{11}
+\@LN{836}{11}
+\@LN{837}{11}
+\@LN{838}{11}
+\@LN{839}{11}
+\@LN{840}{11}
+\@LN{841}{11}
+\@LN{842}{11}
+\@LN{843}{11}
+\@LN{844}{11}
+\@LN{845}{11}
+\@LN{846}{11}
+\@LN{847}{11}
+\@LN{848}{11}
+\@LN{849}{11}
+\@LN{850}{11}
+\@LN{851}{11}
+\@LN{852}{11}
+\@LN{853}{11}
+\@LN{854}{11}
+\@LN{855}{11}
+\@LN{856}{11}
+\@LN{857}{11}
+\@LN{858}{11}
+\@LN{859}{11}
+\@LN{860}{11}
+\@LN{861}{11}
+\@LN{862}{11}
+\@LN{863}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Correlation Robustness}{12}{appendix.D}\protected@file@percent }
+\newlabel{app:correlation}{{D}{12}{Correlation Robustness}{appendix.D}{}}
+\@LN{864}{11}
+\@LN{865}{11}
+\@LN{866}{11}
+\@LN{867}{11}
+\@LN{868}{11}
+\@LN{869}{11}
+\@LN{870}{11}
+\@writefile{toc}{\contentsline {section}{\numberline {E}Cluster Bootstrap Sensitivity Analysis}{12}{appendix.E}\protected@file@percent }
+\newlabel{app:wild-cluster}{{E}{12}{Cluster Bootstrap Sensitivity Analysis}{appendix.E}{}}
+\@LN{871}{11}
+\@LN{872}{11}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Death-rate analysis of all 19 excluded task types. D\%: death rate (score $\leq -100$). $\Delta $DR = D\%\textsubscript  {int} $-$ D\%\textsubscript  {det}. 18 of 19 excluded tasks (95\%) exhibit positive death asymmetry ($\Delta $DR $\geq +20$\,pp). Exclusion groups: A = development set (excluded to prevent circular evaluation), B = taxonomically redundant with an included family representative, C = agent-floor tasks (backbone achieves near-zero progress regardless of strategy). The mean $\Delta $DR among excluded tasks ($+38.2$\,pp) exceeds that of included tasks ($+28.7$\,pp), confirming that task selection does not bias toward death-prone tasks. Group B--C estimates are based on $n{=}5$ prescreening episodes per task and should be interpreted as directional evidence rather than precise rate estimates.}}{12}{table.caption.27}\protected@file@percent }
+\newlabel{tab:excluded-death}{{7}{12}{Death-rate analysis of all 19 excluded task types. D\%: death rate (score $\leq -100$). $\Delta $DR = D\%\textsubscript {int} $-$ D\%\textsubscript {det}. 18 of 19 excluded tasks (95\%) exhibit positive death asymmetry ($\Delta $DR $\geq +20$\,pp). Exclusion groups: A = development set (excluded to prevent circular evaluation), B = taxonomically redundant with an included family representative, C = agent-floor tasks (backbone achieves near-zero progress regardless of strategy). The mean $\Delta $DR among excluded tasks ($+38.2$\,pp) exceeds that of included tasks ($+28.7$\,pp), confirming that task selection does not bias toward death-prone tasks. Group B--C estimates are based on $n{=}5$ prescreening episodes per task and should be interpreted as directional evidence rather than precise rate estimates}{table.caption.27}{}}
+\@LN{873}{11}
+\@LN{874}{11}
+\@LN{875}{11}
+\@LN{876}{11}
+\@LN{877}{11}
+\@LN{878}{11}
+\@LN{879}{11}
+\@LN{880}{11}
+\@LN{881}{11}
+\@LN{882}{11}
+\@LN{883}{11}
+\@LN{884}{11}
+\@LN{885}{11}
+\@LN{886}{11}
+\@LN{887}{11}
+\@LN{888}{11}
+\@LN{889}{11}
+\@LN{890}{11}
+\@LN{891}{11}
+\@LN{892}{11}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {8}{\ignorespaces Leave-one-out Pearson $r$ for the death rate differential vs.\ $\Delta _{\text  {full}}$ correlation. Full $r = 0.970$; LOO range $[0.963, 0.980]$. No single task type is a leverage point.}}{13}{table.caption.28}\protected@file@percent }
+\newlabel{tab:loo}{{8}{13}{Leave-one-out Pearson $r$ for the death rate differential vs.\ $\Delta _{\text {full}}$ correlation. Full $r = 0.970$; LOO range $[0.963, 0.980]$. No single task type is a leverage point}{table.caption.28}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {9}{\ignorespaces Cluster-level tests of death-rate asymmetry ($K{=}11$ task clusters, 245 episodes). 10 of 11 clusters show internal DR $>$ deterministic DR; the sole exception (\texttt  {find-non-living-thing}) has zero deaths under both strategies. Cohen's $d = 3.02$. The exact permutation $p = 0.002$ ($4/2{,}048$) reflects the near-unanimous directional consistency.}}{13}{table.caption.29}\protected@file@percent }
+\newlabel{tab:wild-cluster}{{9}{13}{Cluster-level tests of death-rate asymmetry ($K{=}11$ task clusters, 245 episodes). 10 of 11 clusters show internal DR $>$ deterministic DR; the sole exception (\texttt {find-non-living-thing}) has zero deaths under both strategies. Cohen's $d = 3.02$. The exact permutation $p = 0.002$ ($4/2{,}048$) reflects the near-unanimous directional consistency}{table.caption.29}{}}
+\@LN{893}{12}
+\@LN{894}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {F}Per-Task Death Rate Confidence Intervals}{13}{appendix.F}\protected@file@percent }
+\newlabel{app:per-task-ci}{{F}{13}{Per-Task Death Rate Confidence Intervals}{appendix.F}{}}
+\@LN{895}{12}
+\@LN{896}{12}
+\@LN{897}{12}
+\@LN{898}{12}
+\@LN{899}{12}
+\@LN{900}{12}
+\@LN{901}{12}
+\@LN{902}{12}
+\@LN{903}{12}
+\@LN{904}{12}
+\@LN{905}{12}
+\@LN{906}{12}
+\@LN{907}{12}
+\@LN{908}{12}
+\@LN{909}{12}
+\@LN{910}{12}
+\@LN{911}{12}
+\@LN{912}{12}
+\@LN{913}{12}
+\@LN{914}{12}
+\@LN@col{2}
+\@LN{915}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {G}Leave-One-Task-Out DAF Sensitivity}{13}{appendix.G}\protected@file@percent }
+\newlabel{app:loto-daf}{{G}{13}{Leave-One-Task-Out DAF Sensitivity}{appendix.G}{}}
+\@LN{916}{12}
+\@LN{917}{12}
+\@LN{918}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {H}Per-Task Dose-Response Breakdown}{13}{appendix.H}\protected@file@percent }
+\newlabel{app:dose-response}{{H}{13}{Per-Task Dose-Response Breakdown}{appendix.H}{}}
+\@LN{919}{12}
+\@LN{920}{12}
+\@LN{921}{12}
+\@LN{922}{12}
+\@LN{923}{12}
+\@LN{924}{12}
+\@LN{925}{12}
+\@LN{926}{12}
+\@LN{927}{12}
+\@writefile{toc}{\contentsline {paragraph}{Statistical power.}{13}{section*.30}\protected@file@percent }
+\@LN{928}{12}
+\@LN{929}{12}
+\@LN{930}{12}
+\@LN{931}{12}
+\@LN{932}{12}
+\@LN{933}{12}
+\@LN{934}{12}
+\@writefile{lot}{\contentsline {table}{\numberline {10}{\ignorespaces Per-task death rates (\%) for Reflexion at $N{=}3$, 4, 5 on 10 death-prone tasks ($n{=}20$ per task). Aggregate death rates confirm stabilization at $N \geq 3$ (range: $34.0$--$36.5\%$).}}{13}{table.caption.31}\protected@file@percent }
+\newlabel{tab:dose-response-detail}{{10}{13}{Per-task death rates (\%) for Reflexion at $N{=}3$, 4, 5 on 10 death-prone tasks ($n{=}20$ per task). Aggregate death rates confirm stabilization at $N \geq 3$ (range: $34.0$--$36.5\%$)}{table.caption.31}{}}
+\@LN{935}{12}
+\@writefile{toc}{\contentsline {section}{\numberline {I}Router Training Details}{13}{appendix.I}\protected@file@percent }
+\newlabel{app:router-details}{{I}{13}{Router Training Details}{appendix.I}{}}
+\@LN{936}{12}
+\@LN{937}{12}
+\@LN{938}{12}
+\@LN{939}{12}
+\@LN{940}{12}
+\@LN{941}{12}
+\@LN{942}{12}
+\@LN{943}{12}
+\@LN{944}{12}
+\@LN{945}{12}
+\@LN{946}{12}
+\citation{qwen25-2024}
+\@LN@col{1}
+\@LN{947}{13}
+\@LN{948}{13}
+\@LN{949}{13}
+\@LN{950}{13}
+\@LN{951}{13}
+\@LN{952}{13}
+\@LN{953}{13}
+\@LN{954}{13}
+\@LN{955}{13}
+\@LN{956}{13}
+\@LN{957}{13}
+\@LN{958}{13}
+\@LN{959}{13}
+\@writefile{toc}{\contentsline {paragraph}{Evaluation methods.}{14}{section*.32}\protected@file@percent }
+\@LN{960}{13}
+\@LN{961}{13}
+\@LN{962}{13}
+\@LN{963}{13}
+\@LN{964}{13}
+\@LN{965}{13}
+\@LN{966}{13}
+\@LN{967}{13}
+\@LN{968}{13}
+\@LN{969}{13}
+\@LN{970}{13}
+\@LN{971}{13}
+\@LN{972}{13}
+\@LN{973}{13}
+\@LN{974}{13}
+\@LN{975}{13}
+\@LN{976}{13}
+\@writefile{lot}{\contentsline {table}{\numberline {11}{\ignorespaces Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\pm $std.}}{14}{table.caption.33}\protected@file@percent }
+\newlabel{tab:hyperparams}{{11}{14}{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\pm $std}{table.caption.33}{}}
+\@writefile{toc}{\contentsline {paragraph}{Agent inference parameters.}{14}{section*.34}\protected@file@percent }
+\@LN{977}{13}
+\@LN{978}{13}
+\@LN{979}{13}
+\@LN{980}{13}
+\@LN{981}{13}
+\@LN@col{2}
+\@LN{982}{13}
+\@LN{983}{13}
+\@LN{984}{13}
+\@LN{985}{13}
+\@LN{986}{13}
+\@LN{987}{13}
+\@writefile{toc}{\contentsline {section}{\numberline {J}Seed Robustness}{14}{appendix.J}\protected@file@percent }
+\newlabel{app:seed-robustness}{{J}{14}{Seed Robustness}{appendix.J}{}}
+\@writefile{toc}{\contentsline {paragraph}{Counterfactual collection seed.}{14}{section*.35}\protected@file@percent }
+\@LN{988}{13}
+\@LN{989}{13}
+\@LN{990}{13}
+\@LN{991}{13}
+\@LN{992}{13}
+\@LN{993}{13}
+\@LN{994}{13}
+\@LN{995}{13}
+\@LN{996}{13}
+\@LN{997}{13}
+\@LN{998}{13}
+\@LN{999}{13}
+\@LN{1000}{13}
+\@LN{1001}{13}
+\@LN{1002}{13}
+\@LN{1003}{13}
+\@LN{1004}{13}
+\@writefile{toc}{\contentsline {paragraph}{Router training seed.}{14}{section*.36}\protected@file@percent }
+\@LN{1005}{13}
+\@LN{1006}{13}
+\@LN{1007}{13}
+\@LN{1008}{13}
+\@LN{1009}{13}
+\@LN{1010}{13}
+\@LN{1011}{13}
+\@LN{1012}{13}
+\@LN{1013}{13}
+\@LN{1014}{13}
+\@LN{1015}{13}
+\@LN{1016}{13}
+\@LN{1017}{13}
+\@LN{1018}{13}
+\@LN{1019}{13}
+\@LN{1020}{13}
+\@LN{1021}{13}
+\@LN{1022}{13}
+\@LN{1023}{13}
+\@LN{1024}{13}
+\@LN{1025}{13}
+\@LN{1026}{13}
+\@LN{1027}{13}
+\@LN{1028}{13}
+\@LN{1029}{13}
+\@LN{1030}{13}
+\@LN{1031}{13}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {12}{\ignorespaces Per-seed router performance under cross-split evaluation (8 seeds, generation-based, \texttt  {enable\_thinking=False}). Step-level evaluation allows steps from the same episode in both train and validation sets (same-episode leakage). Episode-level evaluation holds out entire episodes; the resulting $47.1 \pm 2.2\%$ is below the 50\% chance baseline. A text augmentation ablation (Table~\ref {tab:text-augmentation}) confirms this failure persists under the current data distribution and augmentation regime.}}{15}{table.caption.37}\protected@file@percent }
+\newlabel{tab:seed-robustness}{{12}{15}{Per-seed router performance under cross-split evaluation (8 seeds, generation-based, \texttt {enable\_thinking=False}). Step-level evaluation allows steps from the same episode in both train and validation sets (same-episode leakage). Episode-level evaluation holds out entire episodes; the resulting $47.1 \pm 2.2\%$ is below the 50\% chance baseline. A text augmentation ablation (Table~\ref {tab:text-augmentation}) confirms this failure persists under the current data distribution and augmentation regime}{table.caption.37}{}}
+\@LN{1032}{14}
+\@writefile{toc}{\contentsline {paragraph}{Text augmentation ablation.}{15}{section*.38}\protected@file@percent }
+\@LN{1033}{14}
+\@LN{1034}{14}
+\@LN{1035}{14}
+\@LN{1036}{14}
+\@LN{1037}{14}
+\@LN{1038}{14}
+\@LN{1039}{14}
+\@LN{1040}{14}
+\@LN{1041}{14}
+\@LN{1042}{14}
+\@LN{1043}{14}
+\@LN{1044}{14}
+\@LN{1045}{14}
+\@LN{1046}{14}
+\@LN{1047}{14}
+\@LN{1048}{14}
+\@LN{1049}{14}
+\@LN{1050}{14}
+\@LN{1051}{14}
+\@LN{1052}{14}
+\@LN{1053}{14}
+\@LN{1054}{14}
+\@LN{1055}{14}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {13}{\ignorespaces Text augmentation ablation: episode-level balanced accuracy across training set sizes (25\%--800\% of original via paraphrase, $32{\times }$ range). Internal recall $= 0.0$ at all scales (complete majority-class collapse). Det\%: fraction of deterministic-preferred labels in training data. The 50\% scale is a single seed; all others report mean$\pm $std across seeds.}}{15}{table.caption.39}\protected@file@percent }
+\newlabel{tab:text-augmentation}{{13}{15}{Text augmentation ablation: episode-level balanced accuracy across training set sizes (25\%--800\% of original via paraphrase, $32{\times }$ range). Internal recall $= 0.0$ at all scales (complete majority-class collapse). Det\%: fraction of deterministic-preferred labels in training data. The 50\% scale is a single seed; all others report mean$\pm $std across seeds}{table.caption.39}{}}
+\@LN{1056}{14}
+\@LN{1057}{14}
+\@LN{1058}{14}
+\@LN{1059}{14}
+\@LN{1060}{14}
+\@LN{1061}{14}
+\@LN{1062}{14}
+\@LN{1063}{14}
+\@LN{1064}{14}
+\@LN{1065}{14}
+\@LN{1066}{14}
+\@LN{1067}{14}
+\@LN{1068}{14}
+\@LN{1069}{14}
+\@LN{1070}{14}
+\@LN{1071}{14}
+\@LN{1072}{14}
+\@LN{1073}{14}
+\@LN{1074}{14}
+\@LN{1075}{14}
+\@LN{1076}{14}
+\@LN{1077}{14}
+\@LN{1078}{14}
+\@LN{1079}{14}
+\@writefile{toc}{\contentsline {paragraph}{Per-task-type evaluation breakdown.}{15}{section*.40}\protected@file@percent }
+\@LN{1080}{14}
+\@LN{1081}{14}
+\@LN{1082}{14}
+\@LN{1083}{14}
+\@LN{1084}{14}
+\@LN{1085}{14}
+\@LN{1086}{14}
+\@LN{1087}{14}
+\@LN{1088}{14}
+\@LN{1089}{14}
+\@LN{1090}{14}
+\@LN{1091}{14}
+\@LN{1092}{14}
+\@LN@col{1}
+\@LN{1093}{15}
+\@LN{1094}{15}
+\@LN{1095}{15}
+\@LN{1096}{15}
+\@LN{1097}{15}
+\@LN{1098}{15}
+\@LN{1099}{15}
+\@LN{1100}{15}
+\@LN{1101}{15}
+\@LN{1102}{15}
+\@LN{1103}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {K}Penalty Sensitivity Analysis}{16}{appendix.K}\protected@file@percent }
+\newlabel{app:penalty}{{K}{16}{Penalty Sensitivity Analysis}{appendix.K}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {14}{\ignorespaces Sensitivity of DAF to death penalty magnitude $P$. $\Delta _{\text  {nd}} = 2.84$ is invariant; as $P$ increases, $\Delta _{\text  {full}} \approx \delta P + \Delta _{\text  {nd}}$ grows, mechanically increasing DAF. \textsuperscript  {*}Default ScienceWorld setting. Bootstrap 95\% CIs ($B{=}10{,}000$).}}{16}{table.caption.41}\protected@file@percent }
+\newlabel{tab:penalty-sensitivity}{{14}{16}{Sensitivity of DAF to death penalty magnitude $P$. $\Delta _{\text {nd}} = 2.84$ is invariant; as $P$ increases, $\Delta _{\text {full}} \approx \delta P + \Delta _{\text {nd}}$ grows, mechanically increasing DAF. \textsuperscript {*}Default ScienceWorld setting. Bootstrap 95\% CIs ($B{=}10{,}000$)}{table.caption.41}{}}
+\@LN{1104}{15}
+\@LN{1105}{15}
+\@LN{1106}{15}
+\@LN{1107}{15}
+\@LN{1108}{15}
+\@LN{1109}{15}
+\@writefile{toc}{\contentsline {paragraph}{Mechanism boundary: death specificity.}{16}{section*.42}\protected@file@percent }
+\@LN{1110}{15}
+\@LN{1111}{15}
+\@LN{1112}{15}
+\@LN{1113}{15}
+\@LN{1114}{15}
+\@LN{1115}{15}
+\@LN{1116}{15}
+\@LN{1117}{15}
+\@LN{1118}{15}
+\@LN{1119}{15}
+\@LN{1120}{15}
+\@LN{1121}{15}
+\@LN{1122}{15}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {15}{\ignorespaces Pearson $r$ between per-task death-rate differential and $\Delta _{\text  {full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \geq 50$, which reflects the transition from non-death-dominated to death-dominated score gaps. \textsuperscript  {*}Default ScienceWorld setting.}}{16}{table.caption.43}\protected@file@percent }
+\newlabel{tab:penalty-correlation}{{15}{16}{Pearson $r$ between per-task death-rate differential and $\Delta _{\text {full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \geq 50$, which reflects the transition from non-death-dominated to death-dominated score gaps. \textsuperscript {*}Default ScienceWorld setting}{table.caption.43}{}}
+\@LN{1123}{15}
+\@LN{1124}{15}
+\@LN{1125}{15}
+\@LN{1126}{15}
+\@LN{1127}{15}
+\@LN{1128}{15}
+\@LN{1129}{15}
+\@LN{1130}{15}
+\@LN{1131}{15}
+\@LN{1132}{15}
+\@LN{1133}{15}
+\@LN{1134}{15}
+\@LN{1135}{15}
+\@LN{1136}{15}
+\@writefile{toc}{\contentsline {section}{\numberline {L}Cross-Environment Details}{16}{appendix.L}\protected@file@percent }
+\newlabel{app:cross-env-details}{{L}{16}{Cross-Environment Details}{appendix.L}{}}
+\@LN{1137}{15}
+\@LN{1138}{15}
+\@writefile{lot}{\contentsline {table}{\numberline {16}{\ignorespaces Cross-environment label distribution. ``Deterministic'' denotes qualitatively different computation modes: ScienceWorld = oracle simulator with ground-truth state; MATH = Python code interpreter; ALFWorld = admissible-action enumeration. $\dagger $\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}}{16}{table.caption.44}\protected@file@percent }
+\newlabel{tab:cross-env}{{16}{16}{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different computation modes: ScienceWorld = oracle simulator with ground-truth state; MATH = Python code interpreter; ALFWorld = admissible-action enumeration. $\dagger $\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance}{table.caption.44}{}}
+\@LN{1139}{15}
+\@LN{1140}{15}
+\@LN{1141}{15}
+\@LN{1142}{15}
+\@LN{1143}{15}
+\@LN{1144}{15}
+\@LN{1145}{15}
+\@LN{1146}{15}
+\@LN{1147}{15}
+\citation{math-2021}
+\@LN@col{1}
+\@LN{1148}{16}
+\@LN{1149}{16}
+\@LN{1150}{16}
+\@LN{1151}{16}
+\@writefile{lot}{\contentsline {table}{\numberline {17}{\ignorespaces Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\Delta _{\text  {full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\Delta _{\text  {full}}$ descending.}}{17}{table.caption.45}\protected@file@percent }
+\newlabel{tab:alfworld-pertask}{{17}{17}{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\Delta _{\text {full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\Delta _{\text {full}}$ descending}{table.caption.45}{}}
+\@writefile{toc}{\contentsline {paragraph}{MATH subset composition.}{17}{section*.46}\protected@file@percent }
+\@LN{1152}{16}
+\@LN{1153}{16}
+\@LN{1154}{16}
+\@LN{1155}{16}
+\@LN{1156}{16}
+\@LN{1157}{16}
+\@LN{1158}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {M}Cross-Model Verification}{17}{appendix.M}\protected@file@percent }
+\newlabel{app:cross-model}{{M}{17}{Cross-Model Verification}{appendix.M}{}}
+\@LN{1159}{16}
+\@LN{1160}{16}
+\@LN{1161}{16}
+\@LN{1162}{16}
+\@LN{1163}{16}
+\@LN{1164}{16}
+\@LN{1165}{16}
+\@LN{1166}{16}
+\@LN{1167}{16}
+\@LN{1168}{16}
+\@LN{1169}{16}
+\@LN{1170}{16}
+\@LN{1171}{16}
+\@LN{1172}{16}
+\@LN{1173}{16}
+\@LN{1174}{16}
+\@LN{1175}{16}
+\@LN{1176}{16}
+\@LN{1177}{16}
+\@LN{1178}{16}
+\@LN{1179}{16}
+\@LN{1180}{16}
+\@writefile{toc}{\contentsline {paragraph}{Cross-model and cross-environment summary.}{17}{section*.48}\protected@file@percent }
+\@LN{1181}{16}
+\@LN{1182}{16}
+\@LN{1183}{16}
+\@LN@col{2}
+\@writefile{lot}{\contentsline {table}{\numberline {18}{\ignorespaces Per-task Llama-3.1-8B cross-model replication ($N{=}20$ per task). D/I/N: deterministic-preferred / internal-preferred / no-preference. Sorted by $\Delta $ DR descending.}}{17}{table.caption.47}\protected@file@percent }
+\newlabel{tab:cross-model-detail}{{18}{17}{Per-task Llama-3.1-8B cross-model replication ($N{=}20$ per task). D/I/N: deterministic-preferred / internal-preferred / no-preference. Sorted by $\Delta $ DR descending}{table.caption.47}{}}
+\@LN{1184}{16}
+\@writefile{toc}{\contentsline {section}{\numberline {N}Failure Mode Analysis}{17}{appendix.N}\protected@file@percent }
+\newlabel{app:failure-modes}{{N}{17}{Failure Mode Analysis}{appendix.N}{}}
+\@LN{1185}{16}
+\@LN{1186}{16}
+\@LN{1187}{16}
+\@LN{1188}{16}
+\@LN{1189}{16}
+\@LN{1190}{16}
+\@LN{1191}{16}
+\@LN{1192}{16}
+\@LN{1193}{16}
+\@LN{1194}{16}
+\@LN{1195}{16}
+\@LN{1196}{16}
+\@LN{1197}{16}
+\@LN{1198}{16}
+\@LN{1199}{16}
+\@LN{1200}{16}
+\@LN{1201}{16}
+\@LN{1202}{16}
+\@LN{1203}{16}
+\@LN{1204}{16}
+\@LN{1205}{16}
+\@LN{1206}{16}
+\@LN{1207}{16}
+\@LN{1208}{16}
+\@LN{1209}{16}
+\@LN{1210}{16}
+\@LN{1211}{16}
+\@LN{1212}{16}
+\@LN{1213}{16}
+\newlabel{tab:death-taxonomy}{{N}{17}{Failure Mode Analysis}{appendix.N}{}}
+\@LN{1214}{16}
+\@writefile{toc}{\contentsline {paragraph}{Representative examples.}{17}{section*.49}\protected@file@percent }
+\@LN{1215}{16}
+\@LN{1216}{16}
+\@LN{1217}{16}
+\@LN{1218}{16}
+\@LN@col{1}
+\@LN{1219}{17}
+\@LN{1220}{17}
+\@LN{1221}{17}
+\@LN{1222}{17}
+\@LN{1223}{17}
+\@LN{1224}{17}
+\@LN{1225}{17}
+\@LN{1226}{17}
+\@LN{1227}{17}
+\@LN{1228}{17}
+\@writefile{toc}{\contentsline {paragraph}{Action distribution analysis.}{18}{section*.50}\protected@file@percent }
+\@LN{1229}{17}
+\@LN{1230}{17}
+\@LN{1231}{17}
+\@LN{1232}{17}
+\@LN{1233}{17}
+\@LN{1234}{17}
+\@LN{1235}{17}
+\@LN{1236}{17}
+\@LN{1237}{17}
+\@LN{1238}{17}
+\@LN{1239}{17}
+\@LN{1240}{17}
+\@LN{1241}{17}
+\@LN{1242}{17}
+\@LN{1243}{17}
+\@LN{1244}{17}
+\@LN{1245}{17}
+\@LN{1246}{17}
+\@LN{1247}{17}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Action distribution for the internal (LLM) strategy in death ($n{=}105$) vs.\ non-death ($n{=}140$) episodes. Left: full distribution (both dominated by \texttt  {connect}). Right: non-\texttt  {connect} actions zoomed. \texttt  {focus on} is moderately more frequent in death episodes ($5.4\%$ vs.\ $3.4\%$), while non-death episodes show higher rates of observation and object interaction.}}{18}{figure.caption.51}\protected@file@percent }
+\newlabel{fig:death-action-dist}{{7}{18}{Action distribution for the internal (LLM) strategy in death ($n{=}105$) vs.\ non-death ($n{=}140$) episodes. Left: full distribution (both dominated by \texttt {connect}). Right: non-\texttt {connect} actions zoomed. \texttt {focus on} is moderately more frequent in death episodes ($5.4\%$ vs.\ $3.4\%$), while non-death episodes show higher rates of observation and object interaction}{figure.caption.51}{}}
+\@LN{1248}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {O}Grounding Ablation}{18}{appendix.O}\protected@file@percent }
+\newlabel{app:grounding-ablation}{{O}{18}{Grounding Ablation}{appendix.O}{}}
+\@LN{1249}{17}
+\@LN{1250}{17}
+\@LN{1251}{17}
+\@LN{1252}{17}
+\@LN@col{2}
+\@writefile{toc}{\contentsline {paragraph}{Prompt warning.}{18}{section*.52}\protected@file@percent }
+\@LN{1253}{17}
+\@LN{1254}{17}
+\@LN{1255}{17}
+\@LN{1256}{17}
+\@LN{1257}{17}
+\@LN{1258}{17}
+\@LN{1259}{17}
+\@LN{1260}{17}
+\@writefile{toc}{\contentsline {paragraph}{Action-space filtering.}{18}{section*.53}\protected@file@percent }
+\@LN{1261}{17}
+\@LN{1262}{17}
+\@LN{1263}{17}
+\@LN{1264}{17}
+\@LN{1265}{17}
+\@LN{1266}{17}
+\@LN{1267}{17}
+\@LN{1268}{17}
+\@writefile{toc}{\contentsline {paragraph}{Per-task variation.}{18}{section*.54}\protected@file@percent }
+\@LN{1269}{17}
+\@LN{1270}{17}
+\@LN{1271}{17}
+\@LN{1272}{17}
+\@LN{1273}{17}
+\@LN{1274}{17}
+\@LN{1275}{17}
+\@LN{1276}{17}
+\@writefile{toc}{\contentsline {paragraph}{Post-ablation counterfactual decomposition.}{18}{section*.55}\protected@file@percent }
+\@LN{1277}{17}
+\@LN{1278}{17}
+\@LN{1279}{17}
+\@LN{1280}{17}
+\@LN{1281}{17}
+\@LN{1282}{17}
+\@LN{1283}{17}
+\@LN{1284}{17}
+\@LN{1285}{17}
+\@LN{1286}{17}
+\@LN{1287}{17}
+\@LN{1288}{17}
+\@LN{1289}{17}
+\@LN{1290}{17}
+\@LN{1291}{17}
+\@LN{1292}{17}
+\@LN{1293}{17}
+\@LN{1294}{17}
+\@LN{1295}{17}
+\@writefile{toc}{\contentsline {section}{\numberline {P}Ablation Studies}{18}{appendix.P}\protected@file@percent }
+\newlabel{app:ablations}{{P}{18}{Ablation Studies}{appendix.P}{}}
+\@writefile{toc}{\contentsline {paragraph}{Capacity scaling.}{18}{section*.56}\protected@file@percent }
+\@LN{1296}{17}
+\@LN{1297}{17}
+\@LN{1298}{17}
+\@LN{1299}{17}
+\@LN{1300}{17}
+\@LN{1301}{17}
+\@LN@col{1}
+\@writefile{lot}{\contentsline {table}{\numberline {19}{\ignorespaces Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\%$, $p < 0.005$).}}{19}{table.caption.57}\protected@file@percent }
+\newlabel{tab:capacity}{{19}{19}{Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\%$, $p < 0.005$)}{table.caption.57}{}}
+\@LN{1302}{18}
+\@LN{1303}{18}
+\@LN{1304}{18}
+\@LN{1305}{18}
+\@LN{1306}{18}
+\@LN{1307}{18}
+\@LN{1308}{18}
+\@LN{1309}{18}
+\@LN{1310}{18}
+\@LN{1311}{18}
+\@LN{1312}{18}
+\@writefile{toc}{\contentsline {paragraph}{Generative router.}{19}{section*.58}\protected@file@percent }
+\@LN{1313}{18}
+\@LN{1314}{18}
+\@LN{1315}{18}
+\@LN{1316}{18}
+\@LN{1317}{18}
+\@writefile{toc}{\contentsline {paragraph}{Leave-one-task-type-out routing.}{19}{section*.59}\protected@file@percent }
+\@LN{1318}{18}
+\@LN{1319}{18}
+\@LN{1320}{18}
+\@LN{1321}{18}
+\@LN{1322}{18}
+\@LN{1323}{18}
+\@LN{1324}{18}
+\@LN{1325}{18}
+\@LN{1326}{18}
+\@LN{1327}{18}
+\@LN{1328}{18}
+\@writefile{toc}{\contentsline {paragraph}{Death-proximal labeling.}{19}{section*.60}\protected@file@percent }
+\@LN{1329}{18}
+\@LN{1330}{18}
+\@LN{1331}{18}
+\@LN{1332}{18}
+\@LN{1333}{18}
+\@LN{1334}{18}
+\@LN{1335}{18}
+\@writefile{toc}{\contentsline {paragraph}{Reasoning depth.}{19}{section*.61}\protected@file@percent }
+\@LN{1336}{18}
+\@LN{1337}{18}
+\@LN{1338}{18}
+\@LN{1339}{18}
+\@LN{1340}{18}
+\@LN@col{2}
+\@LN{1341}{18}
+\@LN{1342}{18}
+\@LN{1343}{18}
+\@LN{1344}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {Q}Threshold Routing Analysis}{19}{appendix.Q}\protected@file@percent }
+\newlabel{sec:threshold-routing}{{Q}{19}{Threshold Routing Analysis}{appendix.Q}{}}
+\@LN{1345}{18}
+\@LN{1346}{18}
+\@LN{1347}{18}
+\@LN{1348}{18}
+\@LN{1349}{18}
+\@LN{1350}{18}
+\@writefile{lot}{\contentsline {table}{\numberline {20}{\ignorespaces Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \texttt  {find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\% CI for the difference: $[-8.87, +5.92]$.}}{19}{table.caption.62}\protected@file@percent }
+\newlabel{tab:threshold-routing}{{20}{19}{Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \texttt {find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\% CI for the difference: $[-8.87, +5.92]$}{table.caption.62}{}}
+\@LN{1351}{18}
+\@LN{1352}{18}
+\@LN{1353}{18}
+\@LN{1354}{18}
+\@LN{1355}{18}
+\@LN{1356}{18}
+\@LN{1357}{18}
+\@writefile{toc}{\contentsline {section}{\numberline {R}Practitioner Decision Framework}{19}{appendix.R}\protected@file@percent }
+\newlabel{app:decision-framework}{{R}{19}{Practitioner Decision Framework}{appendix.R}{}}
+\@LN{1358}{18}
+\@LN{1359}{18}
+\@LN{1360}{18}
+\@LN{1361}{18}
+\@writefile{toc}{\contentsline {paragraph}{Stage 1: Pilot collection (${\sim }$50 episodes).}{19}{section*.63}\protected@file@percent }
+\@LN{1362}{18}
+\@LN{1363}{18}
+\@LN{1364}{18}
+\@LN{1365}{18}
+\@LN{1366}{18}
+\@writefile{toc}{\contentsline {paragraph}{Stage 2: Death dominance check.}{19}{section*.64}\protected@file@percent }
+\@LN{1367}{18}
+\@LN{1368}{18}
+\@LN{1369}{18}
+\@LN{1370}{18}
+\@LN{1371}{18}
+\@writefile{toc}{\contentsline {paragraph}{Stage 3: Decision.}{19}{section*.65}\protected@file@percent }
+\@LN{1372}{18}
+\@LN{1373}{18}
+\@LN{1374}{18}
+\@LN{1375}{18}
+\@LN@col{1}
+\@LN{1376}{19}
+\@LN{1377}{19}
+\@LN{1378}{19}
+\@writefile{toc}{\contentsline {paragraph}{Retrospective validation.}{20}{section*.66}\protected@file@percent }
+\@LN{1379}{19}
+\@LN{1380}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {21}{\ignorespaces Retrospective validation of the decision framework. All four conditions are correctly classified (4/4).}}{20}{table.caption.67}\protected@file@percent }
+\newlabel{tab:decision-framework}{{21}{20}{Retrospective validation of the decision framework. All four conditions are correctly classified (4/4)}{table.caption.67}{}}
+\@LN{1381}{19}
+\@LN{1382}{19}
+\@LN{1383}{19}
+\@LN{1384}{19}
+\@LN{1385}{19}
+\@LN{1386}{19}
+\@LN{1387}{19}
+\@LN{1388}{19}
+\@LN{1389}{19}
+\@writefile{toc}{\contentsline {paragraph}{Threshold calibration.}{20}{section*.68}\protected@file@percent }
+\@LN{1390}{19}
+\@LN{1391}{19}
+\@LN{1392}{19}
+\@LN{1393}{19}
+\@LN{1394}{19}
+\@LN{1395}{19}
+\@LN{1396}{19}
+\@LN{1397}{19}
+\@LN{1398}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {S}Extended Validation of Excluded Tasks}{20}{appendix.S}\protected@file@percent }
+\newlabel{app:extended-validation}{{S}{20}{Extended Validation of Excluded Tasks}{appendix.S}{}}
+\@LN{1399}{19}
+\@LN{1400}{19}
+\@LN{1401}{19}
+\@LN{1402}{19}
+\@writefile{lot}{\contentsline {table}{\numberline {22}{\ignorespaces Extended validation ($n{=}20$) of representative excluded task types. All five tasks confirm death asymmetry; mean $\Delta $DR $= +32.0$\,pp is consistent with the $n{=}5$ prescreening estimate for these same tasks (Table~\ref {tab:excluded-death}).}}{20}{table.caption.69}\protected@file@percent }
+\newlabel{tab:extended-val}{{22}{20}{Extended validation ($n{=}20$) of representative excluded task types. All five tasks confirm death asymmetry; mean $\Delta $DR $= +32.0$\,pp is consistent with the $n{=}5$ prescreening estimate for these same tasks (Table~\ref {tab:excluded-death})}{table.caption.69}{}}
+\@LN{1403}{19}
+\@LN{1404}{19}
+\@LN{1405}{19}
+\@LN@col{2}
+\@LN{1406}{19}
+\@LN{1407}{19}
+\@LN{1408}{19}
+\@writefile{toc}{\contentsline {section}{\numberline {T}Agent Prompt Templates}{20}{appendix.T}\protected@file@percent }
+\newlabel{app:prompt-templates}{{T}{20}{Agent Prompt Templates}{appendix.T}{}}
+\@LN{1409}{19}
+\@LN{1410}{19}
+\@LN{1411}{19}
+\@LN{1412}{19}
+\@LN{1413}{19}
+\@writefile{toc}{\contentsline {paragraph}{System prompt (shared).}{20}{section*.70}\protected@file@percent }
+\@LN{1414}{19}
+\@LN{1415}{19}
+\@LN{1416}{19}
+\@LN{1417}{19}
+\@writefile{toc}{\contentsline {paragraph}{Internal (ReAct) user template.}{20}{section*.71}\protected@file@percent }
+\@LN{1418}{19}
+\@LN{1419}{19}
+\@LN{1420}{19}
+\@LN{1421}{19}
+\@LN{1422}{19}
+\@writefile{toc}{\contentsline {paragraph}{Deterministic candidate generation template.}{20}{section*.72}\protected@file@percent }
+\@LN{1423}{19}
+\@LN{1424}{19}
+\@LN{1425}{19}
+\@LN@col{1}
+\@LN{1426}{20}
+\@LN{1427}{20}
+\@LN{1428}{20}
+\@writefile{toc}{\contentsline {paragraph}{Reflexion self-reflection prompt.}{21}{section*.73}\protected@file@percent }
+\@LN{1429}{20}
+\@LN{1430}{20}
+\@LN{1431}{20}
+\@LN{1432}{20}
+\@LN{1433}{20}
+\@writefile{toc}{\contentsline {paragraph}{Grounding warning (ablation).}{21}{section*.74}\protected@file@percent }
+\@LN{1434}{20}
+\@LN{1435}{20}
+\@LN{1436}{20}
+\@LN{1437}{20}
+\@LN@col{2}
+\@LN{1438}{20}
+\@LN{1439}{20}
+\@LN{1440}{20}
+\@LN{1441}{20}
+\@LN{1442}{20}
+\@LN{1443}{20}
+\@LN{1444}{20}
+\@LN{1445}{20}
+\@writefile{toc}{\contentsline {section}{\numberline {U}Non-Death Episode Case Study}{21}{appendix.U}\protected@file@percent }
+\newlabel{app:non-death-case-study}{{U}{21}{Non-Death Episode Case Study}{appendix.U}{}}
+\@LN{1446}{20}
+\@LN{1447}{20}
+\@LN{1448}{20}
+\@LN{1449}{20}
+\@LN{1450}{20}
+\@LN{1451}{20}
+\@LN{1452}{20}
+\@LN{1453}{20}
+\@LN{1454}{20}
+\@LN{1455}{20}
+\@writefile{toc}{\contentsline {paragraph}{Deterministic-preferred: knowledge retrieval advantage.}{21}{section*.75}\protected@file@percent }
+\@LN{1456}{20}
+\@LN{1457}{20}
+\@LN{1458}{20}
+\@LN{1459}{20}
+\@LN{1460}{20}
+\@LN{1461}{20}
+\@LN{1462}{20}
+\@LN{1463}{20}
+\@LN{1464}{20}
+\@LN{1465}{20}
+\@LN{1466}{20}
+\@LN{1467}{20}
+\@LN{1468}{20}
+\@LN{1469}{20}
+\@writefile{toc}{\contentsline {paragraph}{Internal-preferred: semantic reasoning advantage.}{21}{section*.76}\protected@file@percent }
+\@LN{1470}{20}
+\@LN{1471}{20}
+\@LN{1472}{20}
+\@LN{1473}{20}
+\@LN{1474}{20}
+\@LN{1475}{20}
+\@LN{1476}{20}
+\@LN@col{1}
+\@LN{1477}{21}
+\@LN{1478}{21}
+\@LN{1479}{21}
+\@LN{1480}{21}
+\@LN{1481}{21}
+\@LN{1482}{21}
+\@LN{1483}{21}
+\@LN{1484}{21}
+\@writefile{toc}{\contentsline {paragraph}{Systematic analysis of non-death labels.}{22}{section*.77}\protected@file@percent }
+\@LN{1485}{21}
+\@LN{1486}{21}
+\@LN{1487}{21}
+\@LN{1488}{21}
+\@LN{1489}{21}
+\@LN{1490}{21}
+\@LN{1491}{21}
+\@writefile{lot}{\contentsline {table}{\numberline {23}{\ignorespaces Non-death non-tie episode classification. Hallucination-induced: agent's state model is incorrect (e.g., believing \texttt  {eat} completes the task). Object selection quality: both strategies succeed but choose different-value objects. Action selection: correct state model but suboptimal action sequences.}}{22}{table.caption.78}\protected@file@percent }
+\newlabel{tab:non-death-taxonomy}{{23}{22}{Non-death non-tie episode classification. Hallucination-induced: agent's state model is incorrect (e.g., believing \texttt {eat} completes the task). Object selection quality: both strategies succeed but choose different-value objects. Action selection: correct state model but suboptimal action sequences}{table.caption.78}{}}
+\@LN{1492}{21}
+\@LN{1493}{21}
+\@LN{1494}{21}
+\@LN{1495}{21}
+\@LN{1496}{21}
+\@LN{1497}{21}
+\@LN{1498}{21}
+\@LN{1499}{21}
+\@LN{1500}{21}
+\@LN{1501}{21}
+\@LN{1502}{21}
+\@LN{1503}{21}
+\@LN{1504}{21}
+\@LN{1505}{21}
+\@LN{1506}{21}
+\@LN{1507}{21}
+\@LN{1508}{21}
+\@LN{1509}{21}
+\@LN{1510}{21}
+\@writefile{toc}{\contentsline {section}{\numberline {V}Use of AI Assistance}{22}{appendix.V}\protected@file@percent }
+\@LN{1511}{21}
+\@LN{1512}{21}
+\@LN@col{2}
+\gdef \@abspage@last{22}

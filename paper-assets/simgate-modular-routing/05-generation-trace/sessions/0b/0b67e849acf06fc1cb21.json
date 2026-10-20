@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0b67e849acf06fc1cb21",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "investigate trainer eval split",
+  "task_key": "worker_investigate_trainer-eval-split_20260515T225009",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_investigate_trainer-eval-split_20260515T225009_result.json",
+    "occurrence": 1,
+    "bytes": 2787,
+    "sha256": "44aa83c02dc48aea2607e2d966a7100d298a64070943a887a8978fee29654aca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在可以做完整对比了。两个 split 函数的算法完全不同。\n\n---\n\n## === Trainer eval split 验证 ===\n\n### 1. Trainer eval_dataset 来源\n`load_implicit_sft_data`（L201-204）。`train` 函数调用：\n```python\ntrain_records, val_records = load_implicit_sft_data(path, eval_split=args.eval_split, seed=args.seed)\n```\n然后 `val_dataset = ImplicitSFTDataset(val_records, ...)` 传给 `Trainer(eval_dataset=val_dataset)`。\n\n**Trainer eval 确实使用训练脚本内部的 split，与训练数据不重叠。** 但 Trainer eval **只报告 `eval_loss`**，没有 `compute_metrics`，不产生 `balanced_acc`。\n\n### 2. summary.json 中的 balanced_acc 并非来自 Trainer eval\n`seed_robustness.py` 的 `eval_router_metrics` 函数导入了 `eval_routing_metrics.load_val_split`，用 **generation-based eval** 计算 balanced_acc。\n\n### 3. 两个 split 算法不同\n\n| | 训练 `load_implicit_sft_data` | Eval `load_val_split` |\n|---|---|---|\n| 分组粒度 | `task_type` | `(task_type, variation)` |\n| 算法 | 手动 shuffle + 前15%切片 | `sklearn.train_test_split` |\n| Stratify | 按 task_type 隐式均分 | 按 episode 多数 route_label |\n| RNG | `random.Random(seed)` | `sklearn random_state` + `random.Random` |\n\n**相同 seed 下，两个函数产生的 val set 不同。** eval 的 \"val\" 集可能包含训练时的 train 样本 → data leakage。\n\n### 4. Split seed\n都来自 `--seed` 参数（seed-robustness 中 42/43/44/45），但由于算法不同，相同 seed 不保证相同划分。\n\n### 5. 结论\n\n```\n=== Trainer eval split 验证 ===\n\n1. Trainer eval_dataset 来源：load_implicit_sft_data ✓（与训练同源）\n2. Split 算法：per-task_type stratified（手动 shuffle + 切片）\n3. Split seed：来自 --seed 参数\n4. Trainer eval 只报告 eval_loss，不报告 balanced_acc\n5. summary.json 的 balanced_acc 来自 eval_routing_metrics.load_val_split\n   — 这是 generation-based eval，使用不同的 split 算法\n   — 分组粒度不同（task_type vs task_type+variation）\n   — 算法不同（手动切片 vs sklearn.train_test_split）\n   — 存在 data leakage 风险：eval \"val\" 集可能包含训练集样本\n6. 4-seed 55.4±5.2% 数据【需要修正】— 不是来自 Trainer eval，\n   而是来自与训练 split 不一致的 generation-based eval\n```\n\n**影响范围**: `seed_robustness.py` 中每个 seed 的 balanced_acc 和 internal_recall 都受影响。eval_loss 不受影响（来自 Trainer eval，使用正确的 split）。修正方案：让 `eval_router_metrics.load_val_split` 直接复用 `load_implicit_sft_data` 的 split 逻辑，或在 `seed_robustness.py` 中直接调用 `load_implicit_sft_data` 获取 val_records。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/investigate-trainer-eval-split.md"
+}

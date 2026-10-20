@@ -1,0 +1,38 @@
+{
+  "exp_id": "gemma-scienceworld-cross-model",
+  "project": "simgate-modular-routing",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T05:58:29.798Z",
+    "updated_at": "2026-05-20T06:31:51.438Z",
+    "hypothesis": "Gemma-2-9B-it on ScienceWorld will show death dominance (DAF > 80%) consistent with Qwen2.5-7B (90.4%) and Llama-3.1-8B (88.2%), extending the cross-model-family evidence from 2 to 3 independent model families and strengthening the claim that death avoidance dominates routing signal regardless of model architecture.",
+    "spec": {
+      "command": "bash scripts/run_gemma_gpu0.sh (cuda:0, 6 tasks) + bash scripts/run_gemma_gpu1.sh (cuda:1, 5 tasks)",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "data_path": "11 ScienceWorld tasks (10 death-prone + find-non-living-thing)",
+      "data_count": 440,
+      "model_name": "gemma-2-9b-it",
+      "seed": 42,
+      "model_path": "/root/autodl-tmp/models/gemma-2-9b-it/AI-ModelScope/gemma-2-9b-it",
+      "temperature": 0.3,
+      "max_steps": 30,
+      "episodes_per_task": 20,
+      "strategies": "internal,deterministic",
+      "tmux_sessions": [
+        "gemma-gpu0",
+        "gemma-gpu1"
+      ],
+      "checkpoint_source": "AI-ModelScope/gemma-2-9b-it (ModelScope)",
+      "eval_data": "11 ScienceWorld tasks × 20 episodes × 2 conditions (always-internal + always-deterministic)"
+    }
+  },
+  "timestamp": "2026-05-20T06:31:51.670295+00:00",
+  "trigger": "update_registry"
+}

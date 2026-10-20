@@ -1,0 +1,60 @@
+{
+  "schema_version": "1.0",
+  "id": "3511154f131a574de5c5",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose modelscope vs hf config",
+  "task_key": "worker_diagnose_modelscope-vs-hf-config_20260514T063051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_modelscope-vs-hf-config_20260514T063051_result.json",
+    "occurrence": 1,
+    "bytes": 4266,
+    "sha256": "4b2ce0bd76bfbf5baa4b1291c516543c7b47e39ff0bf0157c1cee3d03a9e0af8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成全部检查。以下是完整报告。\n\n---\n\n## 完整对比报告\n\n### 1. config.json：ModelScope vs HuggingFace — **完全一致**\n\n两个版本的 `config.json` 逐字节相同，关键字段：\n\n| 字段 | ModelScope | HuggingFace |\n|------|-----------|-------------|\n| `vocab_size` | 151936 | 151936 |\n| `pad_token_id` | **未设置 (None)** | **未设置 (None)** |\n| `eos_token_id` | 151645 | 151645 |\n| `bos_token_id` | 151643 | 151643 |\n| `tie_word_embeddings` | true | true |\n| `torch_dtype` | bfloat16 | bfloat16 |\n| `hidden_size` | 2048 | 2048 |\n| `num_hidden_layers` | 28 | 28 |\n| `architectures` | Qwen3ForCausalLM | Qwen3ForCausalLM |\n| `transformers_version` | 4.51.0 | 4.51.0 |\n\n**结论：config.json 无差异。问题不在 ModelScope vs HuggingFace 的模型文件。**\n\n### 2. tokenizer_config.json — **完全一致**\n\n| 字段 | ModelScope | HuggingFace |\n|------|-----------|-------------|\n| `pad_token` | `<\\|endoftext\\|>` | `<\\|endoftext\\|>` |\n| `eos_token` | `<\\|im_end\\|>` | `<\\|im_end\\|>` |\n| `tokenizer_class` | Qwen2Tokenizer | Qwen2Tokenizer |\n| `model_max_length` | 131072 | 131072 |\n\n### 3. Tokenizer 加载后 — **完全一致**\n\n| 字段 | ModelScope | HuggingFace |\n|------|-----------|-------------|\n| `pad_token` | `<\\|endoftext\\|>` (id=151643) | `<\\|endoftext\\|>` (id=151643) |\n| `eos_token` | `<\\|im_end\\|>` (id=151645) | `<\\|im_end\\|>` (id=151645) |\n| `vocab_size` | 151643 | 151643 |\n| `len(tokenizer)` | 151669 | 151669 |\n| special tokens | 14 个，完全一致 | 14 个，完全一致 |\n\n### 4. generation_config.json — 仅 ModelScope 目录有\n\n```json\n{\n    \"bos_token_id\": 151643,\n    \"do_sample\": true,\n    \"eos_token_id\": [151645, 151643],\n    \"pad_token_id\": 151643,\n    \"temperature\": 0.6,\n    \"top_k\": 20,\n    \"top_p\": 0.95\n}\n```\n\n注意：`generation_config.json` 中的 `pad_token_id: 151643` **不会被 `AutoConfig.from_pretrained` 读取**，只影响生成。\n\n### 5. 分类头初始化\n\n```\nConfig num_labels: 2\nConfig problem_type: None\nConfig pad_token_id: None  ← ⚠️\nScore head: Linear(in_features=2048, out_features=2, bias=False)\nScore weight shape: [2, 2048]\nScore weight stats: mean=0.000137, std=0.0201\nScore weight range: [-0.069, 0.080]\n```\n\n分类头权重随机初始化，统计量正常。\n\n### 6. 🔴 关键发现：Sequence Classification 的 pooling 逻辑\n\n从源码提取的实际 pooling 逻辑：\n\n```python\nif self.config.pad_token_id is None and batch_size != 1:\n    raise ValueError(\"Cannot handle batch sizes > 1 if no padding token is defined.\")\nif self.config.pad_token_id is None:\n    last_non_pad_token = -1   # ← 始终取最后一个 position\nelif input_ids is not None:\n    # 找到最右边的非 pad token\n    non_pad_mask = (input_ids != self.config.pad_token_id)\n    last_non_pad_token = (token_indices * non_pad_mask).argmax(-1)\n```\n\n**`config.pad_token_id = None` 时：**\n- batch_size > 1 → 直接 **raise ValueError**（训练应该崩溃）\n- batch_size == 1 → 取最后一个 position（如果有 padding，取到的是 pad token 的 hidden state → 垃圾输入给分类头）\n\n---\n\n## 🔴 高亮结论\n\n1. **ModelScope 与 HuggingFace 的 config/tokenizer 完全一致，零差异。** 原始假设\"问题在 ModelScope 模型\"不成立——两者是同一份文件。\n\n2. **核心问题：`config.pad_token_id = None`，但 `tokenizer.pad_token_id = 151643`。** 这是 Qwen3 原始 config 的\"设计\"——config.json 中没有 `pad_token_id` 字段。这意味着：\n   - `Qwen3ForSequenceClassification` 在 batch_size > 1 时会 **crash**\n   - batch_size == 1 时，pooling 取最后一个 position（可能是 pad token）\n\n3. **dryrun 与 v3/v4 的 loss 差异，原因不在模型文件差异，而在训练代码是否正确设置了 `config.pad_token_id = tokenizer.pad_token_id`。** 需要对比 dryrun 和 v3/v4 的训练脚本，看谁设了、谁没设。"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "bos_token_id": 151643,
+              "do_sample": true,
+              "eos_token_id": [
+                151645,
+                151643
+              ],
+              "pad_token_id": 151643,
+              "temperature": 0.6,
+              "top_k": 20,
+              "top_p": 0.95
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-modelscope-vs-hf-config.md"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "plan-001b-gpu1-rebalance",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:48:05.077Z",
+    "updated_at": "2026-05-15T12:33:25.965Z",
+    "hypothesis": "GPU 负载均衡：GPU1 接管 find-non-living-thing extra 20 eps + GPU0 未开始的 freeze/chemistry-mix 各 20 eps，加速 plan-001b 完成",
+    "spec": {
+      "command": "episode_level_collection.py (rebalance)",
+      "server": "westb-13313",
+      "data_path": "N/A",
+      "data_count": 0,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "note": "GPU rebalancing: GPU1 takes over 3 tasks to parallel GPU0. GPU0 continues its remaining tasks (lifespan-longest-lived + measure-melting-point). GPU0 may also run freeze/chemistry-mix later but GPU1 should finish first."
+    },
+    "conclusion": "killed",
+    "notes": "已废弃：GPU0-v3 已接管 freeze/chemistry-mix 数据收集。find-non-living-thing extra 20 eps 由 plan-001b-gpu1-extra 独立处理。",
+    "checkpoint_path": "N/A (killed)",
+    "log_path": "N/A (killed)",
+    "completed_at": "2026-05-15T12:33:25.965Z"
+  },
+  "timestamp": "2026-05-15T12:33:26.094696+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,91 @@
+{
+  "exp_id": "alfworld-llama-v3",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-20T09:55:26.199Z",
+    "updated_at": "2026-05-20T11:07:30.325Z",
+    "spec": {
+      "command": "python src/alfworld_counterfactual.py --model_path /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --output results/alfworld_llama_counterfactual/episodes.jsonl --n_tasks 0 --gpu_id 0 --seed 42",
+      "server": "westb-13313",
+      "data_path": "ALFWorld json_2.1.1/valid_seen (135 games)",
+      "data_count": 135,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "westb-13313:/root/autodl-tmp/simgate-modular-routing/results/alfworld_llama_counterfactual/",
+      "log_path": "westb-13313:/root/autodl-tmp/simgate-modular-routing/logs/alfworld_llama_v3.log"
+    },
+    "hypothesis": "Llama-3.1-8B on ALFWorld will show information asymmetry (not death) as the dominant routing mechanism, consistent with Qwen2.5-7B findings (25.9% det-preferred, DAF=0%), confirming the framework diagnoses environment-specific mechanisms regardless of model family.",
+    "conclusion": "success",
+    "metrics": {
+      "total_episodes": 135,
+      "det_preferred": 16,
+      "det_preferred_pct": 11.9,
+      "int_preferred": 0,
+      "int_preferred_pct": 0,
+      "no_preference": 119,
+      "no_preference_pct": 88.1,
+      "det_leaning_non_tie": 100,
+      "DAF": 0,
+      "DAF_note": "no death mechanism in ALFWorld",
+      "delta_full": 0.1185,
+      "bootstrap_ci_det_pref_pct": [
+        6.7,
+        17.8
+      ],
+      "bootstrap_ci_delta_full": [
+        0.0667,
+        0.1778
+      ],
+      "per_task": {
+        "look_at_obj_in_light": {
+          "n": 13,
+          "det": 1,
+          "int": 0,
+          "tie": 12
+        },
+        "pick_and_place": {
+          "n": 32,
+          "det": 12,
+          "int": 0,
+          "tie": 20
+        },
+        "pick_clean_then_place": {
+          "n": 27,
+          "det": 2,
+          "int": 0,
+          "tie": 25
+        },
+        "pick_cool_then_place": {
+          "n": 24,
+          "det": 1,
+          "int": 0,
+          "tie": 23
+        },
+        "pick_heat_then_place": {
+          "n": 16,
+          "det": 0,
+          "int": 0,
+          "tie": 16
+        },
+        "pick_two_obj_and_place": {
+          "n": 23,
+          "det": 0,
+          "int": 0,
+          "tie": 23
+        }
+      },
+      "qwen_comparison": {
+        "qwen_det_pref_pct": 25.9,
+        "llama_det_pref_pct": 11.9,
+        "pattern_consistent": true
+      }
+    },
+    "completed_at": "2026-05-20T11:07:30.325Z"
+  },
+  "timestamp": "2026-05-20T11:07:30.569073+00:00",
+  "trigger": "update_registry"
+}

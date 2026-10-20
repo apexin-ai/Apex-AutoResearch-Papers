@@ -1,0 +1,1 @@
+Cross-Model Comparison (ScienceWorld DAF):\nQwen2.5-7B: DAF=90.4% [81.3,99.1], IntDR=42.9%, DetDR=16.3%, ΔDR=+26.5pp\nLlama-3.1-8B: DAF=88.2% [80.2,95.1], IntDR=41.4%, DetDR=11.4%, ΔDR=+30.0pp\nGemma-2-9B: DAF=89.7% [68.8,100.0], IntDR=36.4%, DetDR=14.1%, ΔDR=+22.3pp

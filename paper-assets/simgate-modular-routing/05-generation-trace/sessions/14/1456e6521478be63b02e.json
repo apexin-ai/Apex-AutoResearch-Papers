@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1456e6521478be63b02e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval capacity 1 7b 4seed check",
+  "task_key": "worker_eval_capacity-1_7b-4seed-check_20260517T003136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_capacity-1_7b-4seed-check_20260517T003136_result.json",
+    "occurrence": 1,
+    "bytes": 923,
+    "sha256": "c72a3ceac3ea2c00271c632cfc9f15ae5044ed93282dd7b7d1de40aba4105292"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练+eval 已完成。结果如下：\n\n```\n=== Capacity Scaling 1.7B (4-seed) Results ===\n\nStatus: COMPLETED\n\nPer-seed episode-level balanced_acc:\n  seed42: 44.37%\n  seed43: 43.54%\n  seed44: 42.71%\n  seed45: 41.67%\n  Mean: 43.07% (std: 1.00%)\n\nComparison:\n  0.6B (4 seeds): 50.7%\n  1.7B (4 seeds, new): 43.1%\n  1.7B (8 seeds, old): 47.1%\n  4B (4 seeds): 58.96%\n\nNon-monotonicity: REAL (worse than both 0.6B and old 1.7B run)\n```\n\n结果文件：`/root/autodl-tmp/simgate-modular-routing/results/capacity_episode_eval/1_7b_4seed_summary.json`\n\n问题严重：1.7B 新跑的 4-seed 结果 (43.1%) 不仅低于 0.6B (50.7%)，还低于之前 1.7B 8-seed 的 47.1%。det_recall 在 seed45 上跳到 73.3% 但 int_recall 只有 10%，说明模型严重偏向某一类。这可能指向训练配置问题（learning rate、epochs、data split）而非真实的 capacity scaling 失败。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-capacity-1-7b-4seed-check.md"
+}

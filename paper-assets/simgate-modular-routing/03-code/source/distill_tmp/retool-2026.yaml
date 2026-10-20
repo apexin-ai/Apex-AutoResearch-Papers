@@ -1,0 +1,87 @@
+paper_key: "retool-2026"
+title: "ReTool: Reinforcement Learning for Strategic Tool Use in LLMs"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines: [Qwen2.5-Math-72B-Instruct, Qwen2.5-Math-72B-Instruct-TIR, Sky-T1, DeepSeek-R1-Zero-Qwen-32B, QwQ-32B-Preview, s1-32B, o1-preview, text-based-RL, cold-start-only]
+  metrics:
+    - {name: "AIME accuracy (pass@1)", direction: "higher_better"}
+  datasets:
+    - {name: "AIME 2024", size: "30 problems"}
+    - {name: "AIME 2025", size: "30 problems"}
+  ablation_dimensions: [with_without_CI, with_without_RL, code_ratio_evolution, response_length]
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "1e-6"
+    batch_size: 512
+    training_steps: 400
+    max_seq_length: 16384
+    kl_coefficient: 0.0
+    framework: "VeRL"
+    algorithm: "PPO"
+    base_model: "Qwen2.5-32B-Instruct"
+    hardware: "not specified"
+  method_family: "RL for tool-integrated reasoning"
+
+positioning:
+  core_claim: "RL with interleaved code execution enables LLMs to learn strategic tool use that surpasses both text-only reasoning and supervised tool-use approaches"
+  key_results: "AIME2024: 67.0% (Qwen backbone), 72.5% (DeepSeek backbone) vs o1-preview 44.6%; response length reduced ~40%"
+  limitations:
+    - "Evaluation limited to mathematical reasoning (AIME)"
+    - "No explicit limitations section provided"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Reasoning models excel at textual reasoning but struggle when structured problem-solving (geometry, equations) is needed"
+  tension: "Prompting and SFT are limited to imitating curated data distributions, failing to generalize tool-use strategies"
+  key_insight: "RL enables exploration of flexible reasoning trajectories with outcome-based feedback, discovering emergent behaviors like self-correction and earlier code invocation"
+  argument_chain: "tool-use gap → prompting/SFT limitation → cold-start + RL framework → interleaved code execution → emergent tool-use behaviors → AIME SOTA"
+  contribution_framing: "Three contributions: (1) RL framework with code interpreter, (2) behavioral analysis of training dynamics, (3) SOTA on AIME"
+  intro_structure: "4 paragraphs: reasoning model limitation → existing approach gaps → ReTool solution → contribution list"
+  notable_technique: "Rich behavioral analysis (6-panel Figure 3) showing training dynamics—response length, code ratio, code lines, correct code, pass rate, invocation timing—tells a compelling evolution story"
+
+figures:
+  figure_count: 8
+  figure1:
+    type: "teaser_result"
+    description: "AIME 2024 & 2025 scores comparing ReTool vs text-based RL baseline"
+    narrative_role: "Immediately establishes the performance gap that motivates the approach"
+    design_elements: ["bar chart comparison", "clear performance gap visualization"]
+    visual_style: "Simple bar chart with two models compared across two benchmarks"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "6 behavioral metrics during RL training evolution"
+      how_gain_highlighted: "Shows emergent behaviors (code ratio increase, response shortening, earlier invocation)"
+      design_note: "6-panel grid showing training dynamics is highly compelling—tells the 'learning to use tools' story visually"
+    - figure_id: "Figure 4"
+      viz_type: "qualitative_comparison"
+      what_compared: "Aha moment: model discovers and self-corrects undefined function error"
+      how_gain_highlighted: "Qualitative example of emergent self-correction behavior"
+      design_note: "Narrative case study showing 'aha moment' during training"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (result teaser) → Figure 2 (method contrast) → Figure 3 (training dynamics) → Figure 4 (aha moment) → Figure 5 (code purpose analysis) → Figure 6 (case study)"
+
+tables:
+  table_count: 1
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "AIME2024 × AIME2025"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "pass@1 averaged over 32 repetitions"
+    num_baselines: 10
+    design_note: "Clean single table with three ablation rows (w/o training, w/o CI, w/o RL) integrated at bottom"
+  ablation_tables:
+    - table_id: "Table 1 (bottom rows)"
+      what_varied: [training, code_interpreter, RL]
+      variation_style: "full_numbers"
+      design_note: "Ablation integrated directly into main result table rather than separate table"
+  supplementary_tables:
+    in_appendix: false
+    content: "N/A"
+    reason: "N/A"

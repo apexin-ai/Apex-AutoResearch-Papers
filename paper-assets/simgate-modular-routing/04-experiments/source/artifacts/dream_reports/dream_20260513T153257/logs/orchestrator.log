@@ -1,0 +1,3 @@
+2026-05-13 16:04:41,236 INFO    core.tools.feishu  create_chat: name='simgate-modular-routing-审稿群' → chat_id=oc_0b622d6038b969b96148ee8a163a1a0c
+2026-05-13 16:04:41,239 INFO    core.tools.dream  [dream] auto-created Group C for project=simgate-modular-routing: oc_0b622d6038b969b96148ee8a163a1a0c
+2026-05-13 16:04:41,330 INFO    core.session_server  [session_server] wrote /home/ubuntu/.agent-ml-research-idea_gen_0509_12/config/mcp_config_dream_review_director.json

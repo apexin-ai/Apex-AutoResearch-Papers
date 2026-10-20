@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0dac45e5a1a4977043ac",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper writing discussion plan013",
+  "task_key": "worker_paper_writing_discussion-plan013_20260514T143641",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_discussion-plan013_20260514T143641_result.json",
+    "occurrence": 1,
+    "bytes": 1163,
+    "sha256": "858733bb8cc181d3bc0c2fab3765b15e622c6b46206b8b868d3cf77e65cb0000"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已添加。数字一致性检查：\n\n| 数字 | Limitations 段落 | 论文其他处 | Registry | 一致? |\n|------|-----------------|-----------|----------|-------|\n| 245 episodes | ✓ | experiments.tex L6 | - | ✓ |\n| 150 no_preference (61.2%) | 150/245=61.2% | experiments.tex L22 | 61.2% | ✓ |\n| 86 det + 9 int = 95 | 75+20=95 | experiments.tex L22 | 95 genuine | ✓ |\n| 70+5 death asymmetry | 75 | - | 70+5 | ✓ |\n| 16+4 score comparison | 20 | - | 16+4 | ✓ |\n| 97.4% step tie rate | ✓ | method.tex L6 | 97.39%→97.4% | ✓ |\n| 57.3% strict-only | ✓ | - | 0.5729 | ✓ |\n| 57.6±0.5% full-label | ✓ | - | 0.5761±0.005 | ✓ |\n\n段落约 135 words，覆盖了全部要求：\n1. **Oracle circularity 回应** — 0% tie-break labels, 100% genuine\n2. **排除数据** — 61.2% tied episodes excluded, 分 both-alive/both-dead\n3. **训练 label 审计** — 95 labels 全部 genuine，按 death asymmetry / score comparison 分解\n4. **Strict-only retrain** — balanced_acc within 1σ，score-comparison labels 贡献可忽略\n5. **Step-level tie rate** — 97.4% 引用 §2.1，motivate episode-level approach"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-discussion-plan013.md"
+}

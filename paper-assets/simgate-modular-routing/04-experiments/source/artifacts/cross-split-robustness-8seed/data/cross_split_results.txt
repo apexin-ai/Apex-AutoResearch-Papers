@@ -1,0 +1,18 @@
+Cross-Split Robustness Results (episode-level sklearn seed=42, test_size=0.15)
+
+Val: 300 samples from 10 episodes (240 det / 60 int)
+
+Seed  Cross-Split  Corrected   Delta
+  42      0.4813     0.5761  -0.0948
+  43      0.4792     0.4852  -0.0060
+  44      0.4958     0.6074  -0.1116
+  45      0.4938     0.5467  -0.0529
+  46      0.4854     0.4463  +0.0391
+  47      0.4313     0.5185  -0.0872
+  48      0.4542     0.5370  -0.0828
+  49      0.4479     0.6111  -0.1632
+Mean      0.4711     0.5410  -0.0699
+ Std      0.0221     0.0538
+
+Split-robust: NO (|mean delta|=7.0pp > 2pp threshold)
+Server path: results/cross_split_eval/cross_split_results.json

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "154b642c2ac21f49d685",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "exp r7n2 data size ablation fix",
+  "task_key": "worker_exp_r7n2-data-size-ablation-fix_20260516T011633",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_r7n2-data-size-ablation-fix_20260516T011633_result.json",
+    "occurrence": 1,
+    "bytes": 551,
+    "sha256": "3410d372e97fe7d0f3f5b1d5494939b6f1fda78a1adc83ee354760deb5098d53"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练已成功启动，模型路径修复生效。当前状态：\n\n- **Seed 42** 第一个 scale 已完成（Balanced acc: 0.5000, Internal recall: 1.0000）\n- **Seed 43** 正在训练中（13/42 steps, ~31%）\n- 模型加载正常：`Loading checkpoint shards: 100%|██████████| 2/2`\n\n**注意**：日志开头有 wandb 报错 `No API key configured`，但脚本似乎捕获了异常继续运行，训练本身不受影响。如果需要 wandb 日志记录，后续需要在服务器上执行 `wandb login`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-r7n2-data-size-ablation-fix.md"
+}

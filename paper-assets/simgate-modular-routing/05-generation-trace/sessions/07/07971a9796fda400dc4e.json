@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "07971a9796fda400dc4e",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_5_1778804395.md",
+  "task_key": "loop_5_1778804395",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778804395.md",
+    "occurrence": 1,
+    "bytes": 3005,
+    "sha256": "df28047ff3e70f7cbe05db17e1fbc6f8270e72635f8c9997eafa3a03e560b13b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_wall_time\nupdated: '2026-05-15T00:19:26+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 论文已通过 R5 验证审稿（3.5/5 Weak Accept），所有 critical/major RESOLVED。**不要重复任何 R1-R5 修改**\n- 论文源文件在 `docs/paper/`，正文必须 ≤4 页（ARR short paper）。当前编译通过：4 页正文 + 3 页 Limitations/Ethics/Refs/Appendices = 7 页\n- `discussion.tex` 是孤立文件（未被 main.tex \\input），不要试图修复或删除\n- toolformer bib key 叫 `toolformer-2024` 但 year=2023 / venue=NeurIPS——内容正确，key 是 cosmetic，不要改\n\n### 2. 🖥️ 基础设施快照\n- 本地工作目录：`/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/`\n- 论文目录：`docs/paper/`（main.tex + abstract/introduction/method/experiments/related_work/conclusion.tex + references.bib）\n- 编译命令：`cd docs/paper && pdflatex main && bibtex main && pdflatex main && pdflatex main`\n- 远程服务器 `westb-13313`：本机无 SSH config，无法直连。实验数据在远程 `results/plan_c/` 和 `results/plan_012_decomposition/`，需通过 Worker SSH 访问\n- GPU cuda:0/1 热备（Director 分配），无活跃训练\n- 无活跃 Worker / Cron / tmux session\n\n### 3. 📊 当前状态\n刚完成 Reviewer 审查反馈的 3 项修复（实际只改了 conclusion.tex 1 处 \"balanced accuracy\"，其余 2 项已在之前轮次修复到位）。已编译验证通过，已向 Director 汇报。\n\nRegistry 状态（上次读取）：无 RUNNING/PREPARING 实验。plan-012-full (DONE), plan-004-ablation-b (DONE), plan-002-formal-v4 (最后状态未确认)。\n\n等待中：Director 下一步指令（可能是 ARR 提交准备、最终 PDF 视觉审查、或远程同步）。\n\n### 4. 📋 待办\n- Director 发 ARR 提交指令 → 准备提交包（PDF + 补充材料 + 作者信息）\n- Director 要求远程同步 → spawn Worker 把 `docs/paper/` 推送到 westb-13313\n- Director 要求最终审阅 → 用 paper-visual-review skill 做 PDF 视觉检查\n- plan-002-formal-v4 结果到达 → 更新 registry，看是否需要补充论文数据（Table 2B explicit router）\n\n### 5. 🎯 战略上下文\n- **核心结论**：DAF=90.41%，death avoidance 是 ScienceWorld routing signal 的主要来源。trained router balanced accuracy 58.1±0.8%，无法显著超过 always-deterministic\n- **关键数值链**：Δ_full=+29.60, Δ_nd=+2.84, r=0.9698, ρ=0.986, 245 episodes, 11 tasks, 86/9/150 labels, 42.9% vs 16.3% death rates\n- **Δ_nd 有两个值**：2.84（主文 strict neither-died）和 3.07（Appendix E penalty sensitivity 含 both-died）。已在 Appendix E table caption 解释，不要试图\"统一\"\n- **易错**：每次 session 重置都会回到 R3 状态试图重做修改。论文已是 R5 后最新版，不要重复任何修改\n- **78.9% 是 penalty-independent companion metric**（75/95 non-tie labels from death asymmetry），与 DAF 90.41% 互补但含义不同\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778804395.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "32fe41ff44580c697291",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "train plan 008 router size v4",
+  "task_key": "worker_train_plan-008-router-size-v4_20260515T194652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_train_plan-008-router-size-v4_20260515T194652_result.json",
+    "occurrence": 1,
+    "bytes": 833,
+    "sha256": "7ae253ecd89f67df5e4329aa4474a6aaa8741d931e818add9feeb33d15b2ad7a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "训练确认正常。\n\n**0.6B Loss 曲线（epoch 1）：** 3.14 → 2.08 → 0.96 → 0.63 → 0.51（快速收敛，符合预期）\n\n4B 还没有 loss 输出（进度还在前 37/165 步），稍后再看。\n\n**执行报告：**\n\n| 任务 | GPU | PID | VRAM | 速度 | 状态 |\n|------|-----|-----|------|------|------|\n| Qwen3-0.6B (seed42→43) | cuda:0 | 893681 | 8.7/32 GB | ~1.02 it/s | Epoch 1 进行中，loss 0.51 |\n| Qwen3-4B (seed42→43) | cuda:1 | 893825 | 17.5/32 GB | ~1.10 s/it | Epoch 1 进行中 |\n\n**预计时间：**\n- 每个 seed: 165 steps × 3 epochs = 495 steps\n- 0.6B: ~495s/seed ≈ 8.3 min/seed → 2 seeds ~17 min\n- 4B: ~545s/seed ≈ 9.1 min/seed → 2 seeds ~18 min\n- 两个 GPU 约 **18-20 分钟**后全部完成\n\nRegistry 已更新为 RUNNING，plan-id 已关联。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/train-plan-008-router-size-v4.md"
+}

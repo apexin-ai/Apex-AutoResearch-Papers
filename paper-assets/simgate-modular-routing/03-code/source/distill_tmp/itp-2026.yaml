@@ -1,0 +1,99 @@
+paper_key: "itp-2026"
+title: "Imagine-then-Plan: Agent Learning from Adaptive Lookahead with World Models"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: [CoT, ReAct, RAP, SFT, WKM, IWM]
+  metrics:
+    - {name: "success_rate", direction: "higher_better"}
+  datasets:
+    - {name: "ALFWorld", size: "140 test episodes"}
+    - {name: "ScienceWorld", size: "194 test-seen + 151 test-unseen"}
+  ablation_dimensions: [online_RL_removal, fixed_vs_adaptive_horizon, random_vs_adaptive_lookahead, world_model_backbone]
+  training_recipe:
+    optimizer: "AdamW (warmup) + A2C (online)"
+    lr: "2e-5 (warmup), 5e-6 (A2C)"
+    batch_size: "per_device=1, gradient_accum=16"
+    epochs: "3 (warmup)"
+    lora_r: 8
+    lora_alpha: 16
+    discount: 0.99
+    lookahead_penalty: 0.2
+    step_cost: 0.01
+    hardware: "2x NVIDIA A100 80GB"
+    base_models: "Qwen2.5-7B, Qwen3-8B, Llama-3-8B-Instruct"
+    K_max: "5 (ALFWorld), 8 (ScienceWorld)"
+  method_family: "world-model-guided adaptive lookahead for agent RL"
+
+positioning:
+  core_claim: "Adaptive lookahead with world model imagination enables agents to rehearse actions in a mental sandbox, outperforming both fixed-horizon and reactive approaches"
+  key_results: "ALFWorld: 88.57% (Qwen3-8B ITPR) vs 82.14% IWM and 70.71% SFT; ScienceWorld-unseen: 56.95% vs 54.30% IWM"
+  limitations:
+    - "Evaluation limited to interactive text-based benchmarks"
+    - "World model inference overhead compared to reactive agents"
+    - "World model may hallucinate leading to unsafe actions"
+    - "Increased inference-time computation and energy cost"
+  relation_to_us: "complementary"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "LLM agents suffer from 'shallow grounding'—they perceive the environment but lack causal understanding of how actions reshape it"
+  tension: "Existing world model methods use rigid strategies (single-step verification or fixed-horizon rollouts) failing to capture long-term dependencies and wasting compute"
+  key_insight: "POIMDP formulation + adaptive horizon selection lets the agent decide HOW FAR to look ahead at each step, balancing foresight vs computational cost"
+  argument_chain: "shallow grounding → rigid lookahead limitation → POIMDP formulation → adaptive horizon (ITPI inference-free + ITPR RL-trained) → world model imagination + reflection → SOTA on embodied tasks"
+  contribution_framing: "Three contributions: (1) POIMDP formalization, (2) ITP framework with two variants, (3) comprehensive evaluation showing improvements and insights"
+  intro_structure: "5 paragraphs: agent limitation → world model potential → rigid strategy critique → ITP proposal → contribution summary"
+  notable_technique: "Two variants (training-free ITPI + RL-trained ITPR) showing the framework works both as inference-time enhancement and as trainable component"
+
+figures:
+  figure_count: 6
+  figure1:
+    type: "method_overview"
+    description: "Comparison of ITP (dual-stream: observable present + imaginable future) vs conventional single-stream agent learning"
+    narrative_role: "Establishes the conceptual difference between reactive and imagination-augmented agents"
+    design_elements: ["dual-stream architecture diagram", "present vs future pathways", "feedback loop"]
+    visual_style: "Schematic showing two information streams converging at decision point"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Success rate vs fixed lookahead horizons; computational cost comparison"
+      how_gain_highlighted: "ITP maintains high SR across k values while fixed approaches peak then degrade"
+      design_note: "Left-right layout: performance vs efficiency, showing ITP dominates both dimensions"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "ITP vs random lookahead baselines"
+      how_gain_highlighted: "ITP dominates at all computational budgets"
+      design_note: "Normalized budget metric enables fair comparison across different lookahead strategies"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["with/without online RL"]
+      design_note: "Simple ablation showing critical role of online reinforcement training"
+    - figure_id: "Figure 6"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["world model backbone choice"]
+      design_note: "Sensitivity analysis: ITPI sensitive to backbone quality, ITPR more robust"
+  figure_narrative_role: "Figure 1 (concept) → Figure 2 (full method) → Figure 3 (ablation) → Figure 4 (horizon analysis) → Figure 5 (random comparison) → Figure 6 (backbone sensitivity)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "benchmarks × task_categories"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "success rate"
+    num_baselines: 6
+    design_note: "Separates prompting-based and training-based methods; includes per-task-category breakdown for ALFWorld"
+  ablation_tables:
+    - table_id: "Table 3"
+      what_varied: [avg_lookahead_steps]
+      variation_style: "full_numbers"
+      design_note: "Shows learned adaptive K values differ by task complexity"
+  supplementary_tables:
+    in_appendix: true
+    content: "Hyperparameters (Table 4), prompt templates"
+    reason: "Training details for reproducibility"

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "44514d86d35839537e06",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code math negative contrast",
+  "task_key": "worker_code_math-negative-contrast_20260515T070629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_math-negative-contrast_20260515T070629_result.json",
+    "occurrence": 1,
+    "bytes": 106,
+    "sha256": "56fa03ba15afecaeb1a5f392033a3a79f2152623ba467dc6f703a668430e271e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验正在跑。4.5 分钟后自动检查进度，完成后自动执行合并和分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-math-negative-contrast.md"
+}

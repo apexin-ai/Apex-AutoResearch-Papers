@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06f1d870dc4d99da32f3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra kill vllm westd",
+  "task_key": "worker_infra_kill-vllm-westd_20260521T093323",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_kill-vllm-westd_20260521T093323_result.json",
+    "occurrence": 1,
+    "bytes": 136,
+    "sha256": "a9cea3bad800b2f1cf77afa0bbba7cbfd08d2575cb278a747ae548959e6bc6ef"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进程 970664 已不存在，cuda:0 显存已释放（0MiB / 97887MiB）。vLLM 进程已经自行退出，无需 kill。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-kill-vllm-westd.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "344cee45ec1b2a042207",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "eval ablation b e2e correct",
+  "task_key": "worker_eval_ablation-b-e2e-correct_20260514T091045",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_eval_ablation-b-e2e-correct_20260514T091045_result.json",
+    "occurrence": 1,
+    "bytes": 1080,
+    "sha256": "f00b300cebe10973753c8e3597cf97989499547107c0048b382ce3917d45aa54"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。\n\n---\n\n## 结果汇总\n\n**实验**: `plan-003-e2e-ablation-b-correct`  \n**Checkpoint**: `checkpoints/plan-004-implicit/final_adapter` (ablation-b, internal_recall=51.52%)  \n**结论**: **NEGATIVE** — trained-router 未超过 always-det baseline\n\n### 核心指标\n\n| 指标 | trained-router | always-det | oracle |\n|------|---------------|------------|--------|\n| continuous_score | **-10.70** [-15.25, -6.38] | -9.47 | -6.58 |\n| success_rate | 0.237 | — | — |\n| death_rate | 0.176 | — | — |\n| sim_ratio | 0.970 | — | — |\n| delta vs always-det | **-1.23** | — | — |\n\n### 关键问题\n\n1. **sim_ratio=97%** — router 几乎把所有 episode 都路由到 deterministic，等于一个略差的 always-det\n2. **fallback=70.6%** — 245 episodes 中只有 68 个有 step data，173 个直接 fallback 到 deterministic\n3. **唯一正分 task**: find-non-living-thing (+28.68, 62.5% success, 0% death)\n4. **高 death rate tasks**: freeze (30%), find-animal (25%), inclined-plane (25%), measure-melting-point (25%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/eval-ablation-b-e2e-correct.md"
+}

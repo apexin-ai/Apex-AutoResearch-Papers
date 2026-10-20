@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "40b81a45174fa3fe6e80",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code llama 70b setup",
+  "task_key": "worker_code_llama-70b-setup_20260523T221712",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama-70b-setup_20260523T221712.log",
+    "occurrence": 1,
+    "bytes": 1107950,
+    "sha256": "8243e3b96f48482e039f96511028ba20f3d9c0637fc2475d5dce5c4c162a808b"
+  },
+  "statistics": {
+    "messages": 751,
+    "user_turns": 1,
+    "tool_calls": 283,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 177,
+      "tool_call": 283,
+      "tool_result": 283,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 735,
+      "chunks": [
+        {
+          "path": "40b81a45174fa3fe6e80-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "40b81a45174fa3fe6e80-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "40b81a45174fa3fe6e80-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "40b81a45174fa3fe6e80-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "40b81a45174fa3fe6e80-part-0005.json",
+          "message_count": 15
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "40b81a45174fa3fe6e80-part-0005.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-llama-70b-setup.md"
+}

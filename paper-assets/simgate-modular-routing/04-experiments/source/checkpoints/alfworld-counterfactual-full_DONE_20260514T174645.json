@@ -1,0 +1,40 @@
+{
+  "exp_id": "alfworld-counterfactual-full",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T13:56:11.695Z",
+    "updated_at": "2026-05-14T17:46:45.652Z",
+    "spec": {
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python src/alfworld_counterfactual.py --n_tasks 140 --output results/alfworld_counterfactual/episodes.jsonl --seed 42",
+      "server": "westb-13313",
+      "data_path": "/root/autodl-tmp/alfworld_data/json_2.1.1/valid_seen",
+      "data_count": 140,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "gpu": "cuda:1",
+      "tmux_session": "alfworld_cf",
+      "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/episodes.jsonl",
+      "log_path": "/root/autodl-tmp/simgate-modular-routing/results/alfworld_counterfactual/run.log"
+    },
+    "hypothesis": "ALFWorld 全量 counterfactual 收集: 135 games, 6 task types. Internal (no admissible actions) vs Deterministic (with admissible actions). 预计 ~3.5h. D044: 不承诺纳入论文，看结果决定是否作为 supplementary/future work.",
+    "conclusion": "success",
+    "metrics": {
+      "n_games": 135,
+      "det_preferred": 35,
+      "internal_preferred": 2,
+      "no_preference": 98,
+      "det_preferred_pct": 25.9,
+      "internal_preferred_pct": 1.5,
+      "no_preference_pct": 72.6,
+      "det_success_rate": 27.4,
+      "internal_success_rate": 3
+    },
+    "completed_at": "2026-05-14T17:46:45.653Z"
+  },
+  "timestamp": "2026-05-14T17:46:45.771178+00:00",
+  "trigger": "update_registry"
+}

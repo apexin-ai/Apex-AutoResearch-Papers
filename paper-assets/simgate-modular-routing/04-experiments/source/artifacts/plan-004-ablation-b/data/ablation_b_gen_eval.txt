@@ -1,0 +1,6 @@
+ablation-b generation-level eval results:
+accuracy=0.6536, balanced_accuracy=0.5927, internal_recall=0.5152, det_recall=0.6703
+confusion_matrix: [[17,16],[90,183]] (labels: internal, deterministic)
+logit-generation gap: 0.0 (identical to logit-level)
+n_val=306, enable_thinking=false
+Server result path: results/ablation_b_gen_eval.json

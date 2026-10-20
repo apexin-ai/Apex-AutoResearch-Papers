@@ -1,0 +1,34 @@
+{
+  "exp_id": "plan-012-full",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:02:42.659Z",
+    "updated_at": "2026-05-14T06:04:03.678Z",
+    "hypothesis": "Death decomposition 全量分析：11 tasks / 245 episodes。plan-001b 完整数据上的最终版。核心发现：death avoidance fraction=90.41%, Δ_full=29.60, Δ_nd=2.84, r=0.9698 (p=8.12e-07)。",
+    "conclusion": "success",
+    "checkpoint_path": "results/plan_012_decomposition/",
+    "log_path": "results/plan_012_decomposition/",
+    "metrics": {
+      "delta_full": 29.6,
+      "delta_nd": 2.84,
+      "death_avoidance_fraction": 0.9041,
+      "pearson_r": 0.9698,
+      "pearson_p": 8.12e-07,
+      "tasks": 11,
+      "episodes": 245,
+      "death_rate_int": 0.429,
+      "death_rate_det": 0.163,
+      "label_dist": {
+        "det_preferred": 86,
+        "internal_preferred": 9,
+        "no_preference": 150
+      }
+    }
+  },
+  "timestamp": "2026-05-14T06:04:03.751835+00:00",
+  "trigger": "update_registry"
+}

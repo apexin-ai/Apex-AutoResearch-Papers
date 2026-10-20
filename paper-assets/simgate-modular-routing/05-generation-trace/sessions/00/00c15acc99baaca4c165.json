@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "00c15acc99baaca4c165",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix main tex merge",
+  "task_key": "worker_fix_main-tex-merge_20260514T132822",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_main-tex-merge_20260514T132822_result.json",
+    "occurrence": 1,
+    "bytes": 1273,
+    "sha256": "8d1b88bd37b34fea9dc153baae4946daff3d4f96879bfb866635e4571f5139c1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，5 页 PDF，无错误。\n\n合并完成。本地和远程已同步一致（编辑在本地完成后上传到远程）。\n\n### 合并结果摘要\n\n| 检查项 | 状态 |\n|--------|------|\n| `representation-to-generation gap` 不存在 | PASS |\n| `logit-to-generation gap` 不存在 | PASS |\n| `96.2` 不存在 | PASS |\n| `98.2` 不存在 | PASS |\n| `65.4%` (GA=8) 在正确位置 | PASS |\n| `96.3%` 在 experiments/conclusion/introduction | PASS |\n| `97.4%` tie rate 在 abstract/intro/method | PASS |\n| `95% Bootstrap CIs` 在 Table 1 caption | PASS |\n| Limitations + Ethics Statement 独立 section | PASS |\n| Related Work 含 ARES 52.7%, Dyna-Think 685B 细节 | PASS |\n| `logit--generation gap` (em-dash) 在 Limitations | PASS |\n| 编译通过 | PASS |\n\n### 具体变更\n\n- **main.tex**: `logit-to-generation` → `logit--generation`\n- **experiments.tex**: `Bootstrap CIs` → `95% Bootstrap CIs`, `96.2%` → `96.3%` (×2)\n- **introduction.tex**: `96.2%` → `96.3%`\n- **conclusion.tex**: `96.2%` → `96.3%`\n- **related_work.tex**: ARES 加 `reduces token cost by 52.7%`, Dyna-Think 加 `matching 685B performance with 32B at half the token cost`\n- **abstract.tex / method.tex**: 无变更（本地已正确）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-main-tex-merge.md"
+}

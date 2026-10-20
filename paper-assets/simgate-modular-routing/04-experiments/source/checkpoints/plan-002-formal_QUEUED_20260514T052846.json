@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-002-formal",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:28:33.051Z",
+    "updated_at": "2026-05-14T05:28:46.144Z",
+    "hypothesis": "Router SFT 正式训练：Qwen3-1.7B + LoRA r=16, 3 epochs, batch_size=4 + grad_accum=8 (有效 batch=32), class_weights auto + WeightedRandomSampler。诊断性 probe——验证 learned router 能否从 episode-level counterfactual labels 学到 routing signal（尤其 internal-preferred minority class）。Dryrun 确认 pipeline 通但 1 epoch 退化，3 epochs 应足以收敛。"
+  },
+  "timestamp": "2026-05-14T05:28:46.195764+00:00",
+  "trigger": "update_registry"
+}

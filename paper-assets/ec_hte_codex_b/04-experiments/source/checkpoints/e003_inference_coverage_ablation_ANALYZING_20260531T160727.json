@@ -1,0 +1,42 @@
+{
+  "exp_id": "e003_inference_coverage_ablation",
+  "project": "ec_hte_codex_b",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-31T16:04:09.578Z",
+    "updated_at": "2026-05-31T16:07:27.030Z",
+    "plan_id": "plan-e003",
+    "parent": "e002_budgeted_confusion_estimation_r1",
+    "hypothesis": "For finite-budget partial-pooling EC-HTE, accounting for confusion-matrix estimation uncertainty with sandwich or paired bootstrap intervals improves subgroup CATE CI coverage relative to a naive outcome-only delta interval.",
+    "spec": {
+      "command": "bash -c \"set -euo pipefail; cd /root/ec_hte; mkdir -p docs/results logs; /root/miniconda3/bin/python experiments/e003_inference_coverage_ablation.py --n 5000 --reps 120 --budget 1000 --bootstrap 80 --seed 20260531 --out docs/results/e003_inference_coverage_ablation.json 2>&1 | tee logs/e003_inference_coverage_ablation.log\"",
+      "server": "seetacloud-11934",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "7384",
+      "log_path": "~/runs/ec_hte_codex_b/e003_inference_coverage_ablation.log",
+      "submitted_at": "2026-05-31T16:07:05.579Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "server": "seetacloud-11934",
+    "gpu": "cuda:0",
+    "gpu_ids": [
+      "cuda:0"
+    ],
+    "account": "root",
+    "pid": "7384",
+    "log_path": "~/runs/ec_hte_codex_b/e003_inference_coverage_ablation.log",
+    "reproduce": {
+      "command": "bash -c \"set -euo pipefail; cd /root/ec_hte; mkdir -p docs/results logs; /root/miniconda3/bin/python experiments/e003_inference_coverage_ablation.py --n 5000 --reps 120 --budget 1000 --bootstrap 80 --seed 20260531 --out docs/results/e003_inference_coverage_ablation.json 2>&1 | tee logs/e003_inference_coverage_ablation.log\"",
+      "finished_at": "2026-05-31T16:07:26.979Z"
+    }
+  },
+  "timestamp": "2026-05-31T16:07:27.055763+00:00",
+  "trigger": "update_registry"
+}

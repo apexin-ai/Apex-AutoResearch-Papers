@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e9653c255e4717729f3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research long paper skeleton",
+  "task_key": "worker_research_long-paper-skeleton_20260515T080004",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_long-paper-skeleton_20260515T080004_result.json",
+    "occurrence": 1,
+    "bytes": 890,
+    "sha256": "8ff749428a9062336847422dacbb9c89cadee09f48f30a4f5b75d9870b4cbde0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 份文档已完成并注册:\n\n1. **`long_paper_results_summary.md`** — 8 个实验的统一格式汇总，每个含目标、关键数据、结论、支撑 claim 映射。所有数字来自 registry metrics。\n\n2. **`long_paper_figures_tables.md`** — 按 section 列出 23 个 figures/tables：5 个已有可复用，3 个需扩展升级，15 个需新建。正文需新建 10 个 items（含 motivating figure、pipeline figure、algorithm box、MATH 表、signal reversal 对比图等）。\n\n3. **`appendix_promotion_plan.md`** — 3 个完全升级（per-task table→§4.1, router comparison→§4.5, keyword failure→§4.5），2 个部分升级（labeling audit 核心结论→§4.1, penalty formula→§3），2 个保留 appendix（correlation LOO, hyperparameters）。升级内容估计占 ~1.4 pages，总空间预算 ~4.9 pages（偏紧但可行）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-long-paper-skeleton.md"
+}

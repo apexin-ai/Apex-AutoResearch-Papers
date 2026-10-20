@@ -1,0 +1,46 @@
+{
+  "exp_id": "plan-002-formal-v6",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 1,
+    "created_at": "2026-05-14T06:57:27.371Z",
+    "updated_at": "2026-05-14T07:28:12.694Z",
+    "reproduce": {
+      "finished_at": "2026-05-14T07:02:29.300Z"
+    },
+    "failure_reason": "EXIT_CODE=1 (generic error — check log tail)",
+    "completed_at": "2026-05-14T07:02:30.836Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T07:02:32.205412+00:00"
+        }
+      ],
+      "previous_failure": {
+        "conclusion": "failed"
+      }
+    },
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-002-formal-v6 --seed 42\"",
+      "pid": 240633,
+      "log_path": "/root/autodl-tmp/simgate-modular-routing/checkpoints/plan-002-formal-v6/train.log",
+      "data_path": "results/plan_c/ (11 tasks)",
+      "data_count": "2040 samples (train 1620: det=1440/int=180 | val 420: det=390/int=30)",
+      "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16",
+      "seed": 42,
+      "server": "westb-13313",
+      "gpu": "cuda:0"
+    },
+    "notes": "初次启动 OOM（GPU0 内存争抢，step 30/153 被杀），自动重启 PID 240633。Epoch 1 eval: accuracy=0.929, f1_macro=0.481, f1_internal=0.0, recall_internal=0.0。去掉 class_weights 后模型在 89.7%/10.3% 不平衡数据上仍退化为全 deterministic 预测。dtype 实际为 fp32（启动早于 torch_dtype 修正）。",
+    "conclusion": "negative",
+    "checkpoint_path": "checkpoints/plan-002-formal-v6/",
+    "log_path": "checkpoints/plan-002-formal-v6/train.log"
+  },
+  "timestamp": "2026-05-14T07:28:12.777648+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,66 @@
+{
+  "exp_id": "plan-008-v4-4b-e2e",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:37:58.279Z",
+    "updated_at": "2026-05-17T04:19:42.988Z",
+    "hypothesis": "4B router (episode-level 59%) 在 end-to-end deployment 中能否超越 always-det baseline (-9.47 mean score)。若超过：larger capacity translates to marginal deployment gain at disproportionate cost。若未超过：进一步强化 analytical framework > learned routing at all tested scales。",
+    "parent": "plan-008-v4-4b",
+    "spec": {
+      "command": "python src/eval_end_to_end.py --router_type generative --router_checkpoint checkpoints/plan-008-v4-4b-seed42/final_adapter --base_model /root/autodl-tmp/models/Qwen/Qwen3-4B --data_dir results/plan_c/ --output_dir results/eval_4b_e2e/ --conditions trained-router --gpu_id 0",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "559163",
+      "log_path": "~/runs/simgate-modular-routing/plan-008-v4-4b-e2e.log",
+      "submitted_at": "2026-05-17T03:40:22.573Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "results/plan_c/",
+      "data_count": 275,
+      "model_name": "Qwen3-4B + LoRA (plan-008-v4-4b-seed42)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan-008-v4-4b-seed42/final_adapter",
+      "eval_data": "ScienceWorld 275 episodes, 11 tasks",
+      "checkpoint_path": "results/eval_4b_e2e/",
+      "wall_clock_seconds": 2360.4,
+      "gpu_hours": 0.66
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T04:16:44.662Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-17T04:16:49.532376+00:00"
+        }
+      ]
+    },
+    "conclusion": "negative",
+    "metrics": {
+      "continuous_score_mean": -10.72,
+      "ci_low": -15.69,
+      "ci_high": -5.52,
+      "delta_vs_always_det": -1.25,
+      "death_rate": 0.167,
+      "success_rate": 0.207,
+      "sim_ratio": 0.956,
+      "fallback_rate": 0.68,
+      "n_episodes": 275,
+      "n_tasks": 11,
+      "baseline_always_det": -9.47,
+      "comparison_1.7b_router": -10.7
+    },
+    "completed_at": "2026-05-17T04:19:42.988Z"
+  },
+  "timestamp": "2026-05-17T04:19:43.174557+00:00",
+  "trigger": "update_registry"
+}

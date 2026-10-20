@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "09e8cbbb287225e40cef",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "reviewer / loop_2.md",
+  "task_key": "loop_2",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_2.md",
+    "occurrence": 1,
+    "bytes": 5253,
+    "sha256": "a55090ee464edf412dd81ff7b253fb6488f31e1fc504dbe248d45074ad1fcf1e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 2\nreason: max_wall_time\nupdated: '2026-05-13T23:34:10+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- 本项目 GPU 白名单：cuda:0 和 cuda:1（westb-13313 双卡 RTX 5090）。越界使用立即 CRITICAL。\n- plan-001b-gpu0-v2 使用 CUDA_VISIBLE_DEVICES=0，plan-001b-gpu1 使用 CUDA_VISIBLE_DEVICES=1。不可交叉。\n- vLLM 孤儿进程问题已发生 3 次：每次 GPU0 崩溃都留下 VLLM::EngineCore 子进程占满显存。v2 代码加了 `cleanup_gpu_processes()`，但仍需警惕——审查 GPU 状态时必须用 `nvidia-smi --query-compute-apps` 核对实际占用 PID，不能只信 registry status。\n- 根目录 `results/death_decomposition_report.json` 曾被覆盖为 2-task 部分数据（已修复恢复为 30-task 版本），下游脚本读此文件时注意验证 n_tasks。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313(root)，工作目录 `/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- 激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：`/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct`（vLLM 推理用，~28GB/卡）\n- Qwen3-1.7B（router SFT 用）：**尚未下载到服务器**，需提前拉取\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- W&B：项目 `simgate-router-sft`（router SFT 用），数据收集阶段无 W&B\n- 活跃进程：\n  - plan-001b-gpu0-v2: PID 852795（wrapper）/ 853847（VLLM::EngineCore），cuda:0，tmux\n  - plan-001b-gpu1: PID 773109（wrapper）/ 774317（VLLM::EngineCore），cuda:1，tmux\n- 日志：`~/runs/simgate-modular-routing/plan-001b-gpu{0-v2,1}.log`\n\n### 3. 📊 当前状态\n**刚完成**：审查 plan-002 router SFT 代码修复（metric 改 f1_macro、episode-level split、删除 stale postprocess_to_sft.py）+ 评估 find-non-living-thing 方向翻转对论文 framing 的影响（结论：framing robust，无需 pivot）。\n\n**RUNNING 实验**：\n- `plan-001b-gpu0-v2`：7 tasks × 20 eps episode-level 数据收集（find-animal, identify-life-stages-1, lifespan-longest-lived-then-shortest, lifespan-longest-lived, measure-melting-point-unknown-substance, freeze, chemistry-mix）。运行 ~1.5h，正在处理 find-animal。\n- `plan-001b-gpu1`：4 tasks × 20 eps（find-non-living-thing, grow-fruit, inclined-plane-determine-angle, identify-life-stages-2）。find-non-living-thing 12/20 eps 完成（7 new + 5 reused），正在采集 ep12+。\n\n**等待中**：无 pending worker 回调。Director 已收到我的 framing 评估，可能后续下达 paper_framing.md 文字更新指令。\n\n### 4. 📋 待办（条件触发式）\n- plan-001b-gpu1 完成 find-non-living-thing 全部 20 eps → 核实最终 delta 方向（当前 -2.3，可能翻转）。若翻转 → 确认 paper_framing.md 数值更新（C1 ~1%→0%，range 更新）\n- plan-001b-gpu1 开始 grow-fruit/inclined-plane/identify-life-stages-2 → 常规审查（GPU 利用率 + label 分布）\n- plan-001b-gpu0-v2 产出 find-animal 结果 → 交叉验证与 prescreening 数据一致性（prescreening find-animal: 3 det-preferred, 2 no-preference, 60% int_death）\n- plan-001b-gpu0-v2 到达 measure-melting-point-unknown-substance → 重点关注：这是 death_avoidance 最低任务（59.4%），n=9 reuse + 11 new，验证 genuine non-death signal 是否在更多数据下稳定\n- 任一 GPU 进程消失但 registry 仍 RUNNING → 检查 `/tmp/agent-ml-exit/plan-001b-gpu{0-v2,1}.exit` 确认 exit code，查 nvidia-smi 是否有孤儿 vLLM 进程\n- Router SFT 训练启动前 → 验证 Qwen3-1.7B 已下载、labeled_steps.jsonl 样本量足够（min_internal_samples=10）\n\n### 5. 🎯 战略上下文\n**核心结论链**：D001(MVP)→D005(PASS)→D008(1-step fails, 98% ties)→D013(framing pivot: C1=death avoidance empirical finding, C2=methodology)→D015(30 tasks confirm r=0.989)\n\n**论文贡献**不是 router 架构，是 (1) death avoidance = ~99% routing signal 的经验发现 + (2) episode-level counterfactual labeling 方法论。Router SFT (plan-002) 预计产出 negative result（trivial always-det classifier），这本身有论文价值。\n\n**最容易判断错的事**：\n1. **不要因 GPU1 速度\"慢\"而报警**——~4-6 min/episode 是 ScienceWorld 环境交互的正常速度（Java 进程 + 30 steps × 2 modes），不是 GPU/vLLM 瓶颈。之前我误判过一次（UTC/CST 时区混淆导致错误计算）。\n2. **不要把 find-non-living-thing 方向翻转当 CRITICAL**——Director 已确认 framing robust。这是 INFO/WARNING 级别事件，只需数值更新。\n3. **measure-melting-point n=9 不是 bug**——prescreening 目录确实有 9 episodes（不是标准 5），reuse adapter 正确处理。这是 death_avoidance 最低的任务（59.4%），是论文中 \"genuine routing signal beyond death\" 的关键证据，值得重点关注。\n4. **postprocess_to_sft.py 已被删除**——不要去找它。router_sft_train.py 直接读 plan_c/{task}/labeled_steps.jsonl。\n5. **根目录 death_decomposition_report.json 已修复**——完整 30-task 版本（30.6KB），不再是之前的 2-task 残留。但 `decomposition_dryrun/` 子目录仍有完整备份 + 3 个 figure PDF/PNG。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-2-copy-3.md"
+}

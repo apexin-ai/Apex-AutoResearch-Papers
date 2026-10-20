@@ -1,0 +1,3080 @@
+# analysis negative results audit
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 53
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_analysis_negative-results-audit_20260518T214028.log`
+- **Structured JSON:** [`ee94842f985e30c031b9.json`](../../sessions/ee/ee94842f985e30c031b9.json)
+
+## Before a recorded user message
+
+53 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__read_registry",
+    "mcp__agent-ml-research__register_artifact",
+    "mcp__agent-ml-research__save_project_file",
+    "mcp__agent-ml-research__update_registry"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "979cb48d-d571-49b4-bdbc-63fea4b9363e",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779157800,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "431ff306-3497-4a25-85a8-0aaebe56e629",
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+我来执行这个任务。先获取所有阴性实验数据和论文相关文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "194a4518-8562-4cbf-9625-87e5b9746b3b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXUTJL8AgrT7i4Cyw99bY4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13095,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13095
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_014eVSjzfeGQWPs5AJ6tCyXm`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "f241519d-4e35-4f38-bbcc-edfc1925d62c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GXUTJL8AgrT7i4Cyw99bY4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13095,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 13095
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-18T21:40:42.302Z_
+
+<details><summary>↩ Tool result · `toolu_014eVSjzfeGQWPs5AJ6tCyXm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "15a3f213-3497-44a7-b87a-427667603895",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 25
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me fetch the registry data and paper_framing.md in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "e2bac33a-1692-40e1-80b1-b36830adaa60",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcFaNq7668zzxWuh7ysWBk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 24936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1426
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01YZw1Pdes3zFEFfg7YHQ8GC`</summary>
+
+```json
+{
+  "filters": {
+    "conclusion": "negative"
+  },
+  "fields": [
+    "*"
+  ],
+  "project": "simgate-modular-routing",
+  "limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "d2228446-2625-4fbf-b673-047b82706633",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcFaNq7668zzxWuh7ysWBk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 24936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1426
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01Sgk82ecAciyLTzFxnRWSUc`</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "file": "paper_framing.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "a69e2f7a-0ef4-4596-bb7a-402fab31b62e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UcFaNq7668zzxWuh7ysWBk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1426,
+      "cache_read_input_tokens": 24936,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1426
+      },
+      "output_tokens": 25,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-18T21:40:47.795Z_
+
+<details><summary>↩ Tool result · `toolu_01YZw1Pdes3zFEFfg7YHQ8GC`</summary>
+
+```text
+Error: result (60,157 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "3dcf1d06-31a6-4240-bfe2-7902f52caeb8",
+  "tool_use_result": {
+    "content": "Error: result (60,157 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt.\nFormat: JSON with schema: {result: string}\nUse offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.\nREQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:\n- You MUST read the content from the file at /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt in sequential chunks until 100% of the content has been read.\n- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.\n- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***\n",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"retry-control-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T15:10:35.303Z\", \"updated_at\": \"2026-05-17T18:44:28.020Z\", \"hypothesis\": \"Retry（无 reflexion 自我纠错）能否同样降低 death rate；如果 retry 效果与 reflexion 相当，则 reflexion 的收益来自重试机会而非自我纠错机制\", \"parent\": \"reflexion-internal-baseline\", \"spec\": {\"command\": \"python reflexion_baseline.py --mode retry --tasks &lt;task_names> --episodes-per-task 20 --max-trials 3 --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --api-base http://localhost:8002/v1 --output-dir /root/autodl-tmp/simgate-modular-routing/outputs/retry-control --max-steps 30 --seed 42\", \"server\": \"westb-14838\", \"data_path\": \"ScienceWorld environment interactive episodes\", \"data_count\": \"220 episodes (11 tasks x 20 episodes)\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/simgate-modular-routing/outputs/retry-control/\", \"log_path\": \"/tmp/retry-supplement.log\"}, \"metrics\": {\"death_rate\": 0.409, \"success_rate\": 0.141, \"episodes_collected\": 220, \"episodes_target\": 220, \"deaths\": 90, \"successes\": 31, \"supplement_identify_life_stages_1\": \"9 eps, 6 deaths, 1 success\", \"supplement_identify_life_stages_2\": \"20 eps, 5 deaths, 1 success\"}, \"conclusion\": \"negative\", \"reproduce\": {\"finished_at\": \"2026-05-17T18:41:23.628Z\"}, \"failure_reason\": \"N/A (false alarm: process completed normally, cron misdetected due to no W&B sentinel)\", \"completed_at\": \"2026-05-17T18:41:24.090Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T18:41:30.919179+00:00\"}]}, \"notes\": \"Cron 误判: supplement 进程正常完成 40 episodes (identify-life-stages-1: 20eps, identify-life-stages-2: 20eps) 后正常退出, cron 因无 W&B sentinel 标记 failed。实际数据完整 220/220 episodes。结论: retry DR=40.9% ≈ baseline 42.9%, 无显著改善, 确认 reflexion 收益来自自我纠错机制而非单纯重试机会。\"}, \"reflexion-internal-baseline-b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:57:51.606Z\", \"updated_at\": \"2026-05-17T16:53:44.380Z\", \"hypothesis\": \"Reflexion baseline Part 2 (tasks 7-11): 与 part 1 并行收集，验证 reflexion 对 death rate 的影响\", \"parent\": \"reflexion-internal-baseline\", \"spec\": {\"command\": \"/root/miniconda3/bin/python src/reflexion_baseline.py --mode reflexion --tasks identify-life-stages-2,inclined-plane-determine-angle,lifespan-longest-lived,lifespan-longest-lived-then-shortest-lived,measure-melting-point-unknown-substance --api-base http://localhost:8001/v1 --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --output-dir results/reflexion_baseline_part2/ --episodes-per-task 20 --max-trials 3\", \"server\": \"westb-14838\", \"gpu\": \"cuda:3\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"data_path\": \"ScienceWorld environment (5 tasks: identify-life-stages-2, inclined-plane-determine-angle, lifespan-longest-lived, lifespan-longest-lived-then-shortest-lived, measure-melting-point-unknown-substance)\", \"data_count\": 100, \"seed\": 42, \"pid\": 20483, \"log_path\": \"/root/autodl-tmp/simgate-modular-routing/results/reflexion_baseline_part2/\", \"checkpoint_source\": \"N/A (episode collection)\", \"eval_data\": \"ScienceWorld environment interactive episodes\", \"checkpoint_path\": \"N/A (episode collection, no checkpoint)\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-17T16:53:44.380Z\"}, \"reflexion-internal-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:43:12.035Z\", \"updated_at\": \"2026-05-17T16:53:37.464Z\", \"hypothesis\": \"Reflexion 通过自我纠错降低 internal modality 的 death rate；如果 death rate 降至 <20%（接近 det 的 16.3%），则 death dominance 不再成立\", \"parent\": \"plan-012-full\", \"spec\": {\"command\": \"/root/miniconda3/bin/python src/reflexion_baseline.py --mode reflexion --tasks chemistry-mix,find-animal,find-non-living-thing,freeze,grow-fruit,identify-life-stages-1 --api-base http://localhost:8000/v1 --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --output-dir results/reflexion_baseline_part1/ --episodes-per-task 20 --max-trials 3\", \"server\": \"westb-14838\", \"gpu\": \"cuda:2\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"data_path\": \"ScienceWorld environment (6 tasks: chemistry-mix, find-animal, find-non-living-thing, freeze, grow-fruit, identify-life-stages-1)\", \"data_count\": 120, \"seed\": 42, \"pid\": 20371, \"log_path\": \"/root/autodl-tmp/simgate-modular-routing/results/reflexion_baseline_part1/ + results/reflexion_baseline_part2/\", \"checkpoint_source\": \"N/A (episode collection)\", \"eval_data\": \"ScienceWorld environment interactive episodes\", \"checkpoint_path\": \"N/A (episode collection, no checkpoint)\"}, \"notes\": \"tmux路径=/root/miniconda3/bin/tmux; 模型需用完整路径/root/autodl-tmp/models/Qwen2.5-7B-Instruct; VLLM_USE_FLASHINFER_SAMPLER=0 for Blackwell; submit_training_job不可用(tmux不在PATH)\", \"metrics\": {\"death_rate\": 0.314, \"death_rate_part1\": 0.292, \"death_rate_part2\": 0.34, \"success_rate\": 0.173, \"t1_death_rate\": 0.418, \"rescue_rate\": 0.293, \"mean_score_all\": -26.3, \"mean_score_alive\": 7.4, \"episodes\": 220}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-17T16:53:37.464Z\"}, \"death-risk-routing-analysis\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T08:43:13.001Z\", \"updated_at\": \"2026-05-17T09:08:58.693Z\", \"hypothesis\": \"基于 task-type death risk 的简单 threshold routing 能否优于 always-det；如果能，说明 analytical framework 不只诊断问题还指向解决方案\", \"parent\": \"plan-005-routing-patterns\", \"conclusion\": \"negative\", \"metrics\": {\"optimal_threshold\": 0, \"optimal_score\": -11.03, \"baseline_always_det\": -9.47, \"baseline_always_internal\": -39.07, \"delta_vs_det\": -1.56, \"bootstrap_ci_diff\": [-8.87, 5.92], \"zero_death_tasks\": [\"find-non-living-thing\"], \"zero_death_task_internal_mean\": 18.9, \"zero_death_task_det_mean\": 28.5, \"other_tasks_death_rate_range\": \"45-56%\", \"n_episodes\": 245, \"n_task_types\": 11}, \"spec\": {\"command\": \"python scripts/death_risk_routing.py (inline analysis)\", \"server\": \"westb-13313\", \"data_path\": \"episodes_slim_FINAL.jsonl\", \"data_count\": 245, \"model_name\": \"N/A (analysis only)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"N/A\"}, \"completed_at\": \"2026-05-17T09:08:58.694Z\"}, \"plan-008-v4-4b-e2e\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T03:37:58.279Z\", \"updated_at\": \"2026-05-17T04:24:14.690Z\", \"hypothesis\": \"4B router (episode-level 59%) 在 end-to-end deployment 中能否超越 always-det baseline (-9.47 mean score)。若超过：larger capacity translates to marginal deployment gain at disproportionate cost。若未超过：进一步强化 analytical framework > learned routing at all tested scales。\", \"parent\": \"plan-008-v4-4b\", \"spec\": {\"command\": \"python src/eval_end_to_end.py --router_type generative --router_checkpoint checkpoints/plan-008-v4-4b-seed42/final_adapter --base_model /root/autodl-tmp/models/Qwen/Qwen3-4B --data_dir results/plan_c/ --output_dir results/eval_4b_e2e/ --conditions trained-router --gpu_id 0\", \"server\": \"westb-13313\", \"gpu\": [\"cuda:0\"], \"pid\": \"559163\", \"log_path\": \"~/runs/simgate-modular-routing/plan-008-v4-4b-e2e.log\", \"submitted_at\": \"2026-05-17T03:40:22.573Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"results/plan_c/\", \"data_count\": 275, \"model_name\": \"Qwen3-4B + LoRA (plan-008-v4-4b-seed42)\", \"seed\": 42, \"checkpoint_source\": \"checkpoints/plan-008-v4-4b-seed42/final_adapter\", \"eval_data\": \"ScienceWorld 275 episodes, 11 tasks\", \"checkpoint_path\": \"results/eval_4b_e2e/\", \"wall_clock_seconds\": 2360.4, \"gpu_hours\": 0.66}, \"reproduce\": {\"finished_at\": \"2026-05-17T04:16:44.662Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T04:16:49.532376+00:00\"}]}, \"conclusion\": \"negative\", \"metrics\": {\"unfiltered_275eps\": {\"continuous_score_mean\": -10.72, \"ci_low\": -15.69, \"ci_high\": -5.52, \"delta_vs_always_det\": -1.25, \"death_rate\": 0.167, \"fallback_rate\": 0.68, \"n_episodes\": 275}, \"filtered_245eps\": {\"continuous_score_mean\": -12.03, \"ci_low\": -17.82, \"ci_high\": -6.45, \"delta_vs_always_det\": -2.56, \"delta_vs_1.7b\": -1.33, \"death_rate\": 0.1878, \"success_rate\": 0.2327, \"sim_ratio\": 0.0531, \"fallback_rate\": 0.9469, \"n_episodes\": 245}, \"baseline_always_det\": -9.47, \"comparison_1.7b_router\": -10.7}, \"completed_at\": \"2026-05-17T04:19:42.988Z\"}, \"plan-004-ablation-b-seed789\": {\"completed_at\": \"2026-05-14T09:20:49.911Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T09:19:57.342Z\", \"hypothesis\": \"ablation-b seed 变体 (seed=789)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。\", \"metrics\": {\"generation_level\": {\"accuracy\": 0.3987, \"balanced_accuracy\": 0.5831, \"det_recall\": 0.348, \"internal_recall\": 0.8182}, \"note\": \"Seed 变体。balanced_acc ~58% 恒定，accuracy=39.87% 最低因最偏 internal。确认阈值效应。\", \"parent\": \"plan-004-ablation-b\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"checkpoints/plan-004-implicit-seed789/final_adapter\", \"command\": \"python src/training/implicit_router_sft.py --seed 789 --gradient_accumulation_steps 8 --upsample_minority --data_path data/plan-004-implicit/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --output_dir checkpoints/plan-004-implicit-seed789\", \"data_count\": 2040, \"data_path\": \"data/plan-004-implicit/implicit_sft.jsonl\", \"log_path\": \"checkpoints/plan-004-implicit-seed789/train.log\", \"model_name\": \"Qwen3-1.7B + LoRA r=16\", \"seed\": 789, \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:37:35.559Z\", \"parent\": \"plan-004-ablation-b\"}, \"plan-004-ablation-b-seed456\": {\"completed_at\": \"2026-05-14T09:20:49.150Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T09:19:56.275Z\", \"hypothesis\": \"ablation-b seed 变体 (seed=456)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。\", \"metrics\": {\"generation_level\": {\"accuracy\": 0.4314, \"balanced_accuracy\": 0.5748, \"det_recall\": 0.3919, \"internal_recall\": 0.7576}, \"note\": \"Seed 变体。balanced_acc ~58% 恒定，accuracy=43.14% 低是因为偏 internal 预测。阈值效应。\", \"parent\": \"plan-004-ablation-b\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"checkpoints/plan-004-implicit-seed456/final_adapter\", \"command\": \"python src/training/implicit_router_sft.py --seed 456 --gradient_accumulation_steps 8 --upsample_minority --data_path data/plan-004-implicit/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --output_dir checkpoints/plan-004-implicit-seed456\", \"data_count\": 2040, \"data_path\": \"data/plan-004-implicit/implicit_sft.jsonl\", \"log_path\": \"checkpoints/plan-004-implicit-seed456/train.log\", \"model_name\": \"Qwen3-1.7B + LoRA r=16\", \"seed\": 456, \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:37:34.993Z\", \"parent\": \"plan-004-ablation-b\"}, \"plan-004-ablation-b-seed123\": {\"completed_at\": \"2026-05-14T09:20:48.224Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T09:19:54.935Z\", \"hypothesis\": \"ablation-b seed 变体 (seed=123)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。\", \"metrics\": {\"generation_level\": {\"accuracy\": 0.5719, \"balanced_accuracy\": 0.5736, \"det_recall\": 0.5714, \"internal_recall\": 0.5758}, \"note\": \"Seed 变体。balanced_acc ~58% 恒定，internal_recall 波动是阈值效应。Router 判别力接近随机。\", \"parent\": \"plan-004-ablation-b\"}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"checkpoints/plan-004-implicit-seed123/final_adapter\", \"command\": \"python src/training/implicit_router_sft.py --seed 123 --gradient_accumulation_steps 8 --upsample_minority --data_path data/plan-004-implicit/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --output_dir checkpoints/plan-004-implicit-seed123\", \"data_count\": 2040, \"data_path\": \"data/plan-004-implicit/implicit_sft.jsonl\", \"log_path\": \"checkpoints/plan-004-implicit-seed123/train.log\", \"model_name\": \"Qwen3-1.7B + LoRA r=16\", \"seed\": 123, \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:37:34.073Z\", \"parent\": \"plan-004-ablation-b\"}, \"backbone-scaling-death-rate-0.5b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T20:47:16.421Z\", \"updated_at\": \"2026-05-17T03:37:33.044Z\", \"hypothesis\": \"Smaller backbone models have higher death rates because they lack sufficient capacity to maintain coherent multi-step reasoning in interactive environments, leading to more frequent fatal action sequences\", \"spec\": {\"command\": \"python src/episode_level_collection.py --deep_internal --model_path /root/autodl-tmp/models/Qwen/Qwen2.5-0.5B-Instruct --task_types freeze,lifespan-longest-lived,measure-melting-point-unknown-substance --episodes 5 --max_steps 30 --gpu_id 0\", \"server\": \"westb-13313\", \"data_path\": \"ScienceWorld tasks\", \"data_count\": 15, \"model_name\": \"Qwen2.5-0.5B-Instruct\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"backbone_0.5b_eval.log\", \"metrics\": {\"death_rate_overall\": \"13.3% (2/15)\", \"death_rate_freeze\": \"0% (0/5)\", \"death_rate_lifespan\": \"20% (1/5)\", \"death_rate_melting\": \"20% (1/5)\", \"delta_vs_7B\": \"-44.6pp\", \"baseline_7B_death_rate\": \"~58%\", \"scores_freeze\": \"0,0,0,-100,0\", \"scores_lifespan\": \"0,0,0,-100,0\", \"scores_melting\": \"0,0,7.0,0,0\", \"note\": \"score=0 is NOT death, only score=-100 is death. Inverted U-shape.\"}}, \"failure_reason\": \"startup recovery: RUNNING with no cron and no server/pid info\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-16T21:07:11.191Z\", \"metrics\": {\"death_rate_overall\": \"13.3% (2/15)\", \"death_rate_freeze\": \"0% (0/5)\", \"death_rate_lifespan\": \"20% (1/5)\", \"death_rate_melting\": \"20% (1/5)\", \"delta_vs_7B\": \"-44.6pp\", \"baseline_7B_death_rate\": \"~58%\", \"score_breakdown\": \"12× score=0 (no progress), 1× score=7.0, 2× score=-100 (death)\", \"note\": \"0.5B too weak to reach dangerous states; score=0 ≠ death; inverted U-shape relationship between capability and death rate\"}, \"parent\": \"capacity-scaling-episode-eval\"}, \"r7n2-supplement-100-200\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T07:01:12.975Z\", \"updated_at\": \"2026-05-17T03:37:32.172Z\", \"spec\": {\"command\": \"python src/r7n2_scale_study.py --scales 100pct 200pct --seeds 42 43 --batch_size 4 --epochs 3\", \"server\": \"westb-13313\", \"data_path\": \"data/plan-004-implicit/implicit_sft.jsonl\", \"data_count\": \"100%=1733, 200%=3466 samples\", \"model_name\": \"Qwen3-1.7B\", \"seed\": \"42, 43\", \"pid\": \"9298\", \"log_path\": \"/tmp/r7n2_supplement.log\", \"tmux_session\": \"r7n2-supp\", \"gpu_mem\": \"13213MiB/32607MiB\"}, \"hypothesis\": \"Supplement r7n2 data scaling with 100%/200% scales (filling gap between 50% and 800%). Expect same majority-class collapse pattern as other scales, confirming monotonic non-improvement.\", \"reproduce\": {\"finished_at\": \"2026-05-16T07:36:44.952Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-16T07:36:47.507Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T07:36:51.095220+00:00\"}]}, \"metrics\": {\"100pct\": {\"bal_acc_mean\": 0.499, \"bal_acc_std\": 0.001, \"int_recall\": 0, \"seeds\": [42, 43]}, \"200pct\": {\"bal_acc_mean\": 0.5, \"bal_acc_std\": 0, \"int_recall\": 0, \"seeds\": [42, 43]}, \"conclusion_note\": \"Confirms Outcome B: 100%/200% scales show same majority-class collapse (int_recall=0.0) as 25%/50%/800%. EXIT_CODE=1 is saturation early-stop, not failure.\"}, \"parent\": \"r7n2-data-size-ablation-r3\"}, \"plan-003-e2e-ablation-b-correct\": {\"checkpoint_path\": \"checkpoints/plan-004-implicit/final_adapter\", \"completed_at\": \"2026-05-14T09:22:24.835Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T09:21:57.921Z\", \"hypothesis\": \"End-to-end eval of ablation-b (correct checkpoint: plan-004-implicit/final_adapter, internal_recall=51.52%) on 245 episodes / 11 tasks. Test C1: trained-router > always-det (-9.47).\", \"log_path\": \"results/eval_ablation_b_e2e_correct/\", \"metrics\": {\"baseline_always_det\": -9.47, \"baseline_oracle\": -6.58, \"continuous_score_ci_high\": -6.38, \"continuous_score_ci_low\": -15.25, \"continuous_score_mean\": -10.7, \"death_rate\": 0.1755, \"delta_vs_always_det\": -1.23, \"estimated_llm_tokens\": 1464400, \"fallback_count\": 173, \"fallback_rate\": 0.7061, \"n_episodes\": 245, \"n_tasks\": 11, \"sim_ratio\": 0.9703, \"success_rate\": 0.2367}, \"notes\": \"**NEGATIVE: trained-router (-10.70) worse than always-det (-9.47) by 1.23 pts.**\\n\\n正确 checkpoint: checkpoints/plan-004-implicit/final_adapter (ablation-b seed42)。\\nCI [-15.25, -6.38] 包含 -9.47，差异不显著但 point estimate 更差。\\n\\n关键指标：\\n- sim_ratio=97.0% — router 几乎全部路由到 deterministic\\n- fallback_rate=70.6% — 173/245 episodes 无 step data，直接 fallback 到 deterministic\\n- death_rate=17.6%\\n- 唯一正分 task: find-non-living-thing (+28.68, 62.5% success, 0% death)\\n\\n**论文意义**：即使项目内判别力最高的 router (balanced_acc=58.1%)，e2e 表现仍 ≤ always-det。强力支撑 C1：death avoidance 主导下 router 无法学到有效 signal，trained routing 不如简单 always-deterministic。\", \"retry_count\": 0, \"spec\": {\"checkpoint_source\": \"checkpoints/plan-004-implicit/final_adapter\", \"command\": \"python src/eval_end_to_end.py --router_type generative --router_checkpoint checkpoints/plan-004-implicit/final_adapter --base_model /root/autodl-tmp/models/Qwen/Qwen3-1.7B --data_dir results/plan_c/ --output_dir results/eval_ablation_b_e2e_correct/ --conditions trained-router --gpu_id 0\", \"data_count\": 245, \"data_path\": \"results/plan_c/\", \"eval_data\": \"results/plan_c/ (245 episodes, 11 tasks)\", \"hypothesis\": \"End-to-end eval of ablation-b (correct checkpoint: plan-004-implicit/final_adapter, internal_recall=51.52%) on 245 episodes / 11 tasks. Test C1: trained-router > always-det (-9.47).\", \"model_name\": \"Qwen3-1.7B + LoRA (plan-004-implicit/final_adapter)\", \"parent\": \"plan-004-implicit\", \"seed\": 42, \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:37:31.215Z\", \"parent\": \"plan-003-implicit-eval-full\"}, \"plan-003-implicit-eval-full\": {\"completed_at\": \"2026-05-14T09:27:34.228Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T09:27:09.398Z\", \"hypothesis\": \"Step-level implicit routing eval of ablation-b (plan-004-implicit/final_adapter) on 245 episodes / 11 tasks via eval_implicit_router.py. Score -12.84 worse than always-det baseline -9.47.\", \"metrics\": {\"catastrophic_failure_rate\": 0.192, \"ci_high\": -8.45, \"ci_low\": -17.52, \"continuous_score\": -12.84, \"det_recall\": 0.86, \"episode_routing_accuracy\": 0.821, \"internal_recall\": 0.444, \"n_episodes\": 245, \"n_steps\": 2160, \"n_tasks\": 11, \"oracle_det_preferred\": 86, \"oracle_internal_preferred\": 9, \"oracle_no_preference\": 150, \"routing_det\": 229, \"routing_internal\": 16, \"sim_invocation_ratio\": 0.941, \"step_routing_accuracy\": 0.602, \"success_rate\": 0.22}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"checkpoints/plan-004-implicit/final_adapter\", \"checkpoint_source\": \"checkpoints/plan-004-implicit/final_adapter\", \"command\": \"python3 src/eval_implicit_router.py --adapter checkpoints/plan-004-implicit/final_adapter --output results/plan-003-eval-implicit/\", \"data_count\": 245, \"data_path\": \"episodes_slim_FINAL.jsonl (245 episodes)\", \"eval_data\": \"245 episodes / 11 tasks / 2160 steps\", \"log_path\": \"results/plan-003-eval-implicit/\", \"model_name\": \"Qwen2.5-7B + plan-004-implicit/final_adapter (ablation-b implicit SFT)\", \"parent\": \"plan-004-implicit-train\", \"seed\": 42, \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T03:37:30.292Z\", \"parent\": \"plan-004-ablation-b\"}, \"plan-004-v5\": {\"checkpoint_path\": \"checkpoints/plan-004-v5/final_adapter\", \"completed_at\": \"2026-05-14T08:24:49.661Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T08:02:08.110Z\", \"hypothesis\": \"Implicit router SFT v5：严格复现 ablation-b 成功条件——data/plan-004-implicit/ + upsample_minority + gradient_accumulation_steps=1（有效 batch=4）。与 v3 区别：(1) 正确数据路径（非 results/plan_c_test_labels/），(2) 加 upsample，(3) ga=1 而非 ga=8。目标：复现 ablation-b 的 internal recall ~51.5%，确认 upsample + 小 batch 是成功关键。\", \"log_path\": \"~/runs/simgate-modular-routing/plan-004-v5.log\", \"metrics\": {\"generation_eval_INVALIDATED\": {\"note\": \"OLD — used wrong split (sklearn episode-level, n_val=300). INVALIDATED.\", \"balanced_accuracy\": 0.4148, \"n_val\": 300}, \"corrected_generation_eval\": {\"balanced_accuracy\": 0.7533, \"accuracy\": 0.688, \"internal_recall\": 0.833, \"internal_precision\": 0.217, \"det_recall\": 0.673, \"det_precision\": 0.974, \"n_val\": 305, \"confusion_matrix\": {\"true_det_pred_det\": 185, \"true_det_pred_int\": 90, \"true_int_pred_det\": 5, \"true_int_pred_int\": 25}, \"gt_dist\": {\"det\": 275, \"int\": 30}, \"pred_dist\": {\"det\": 190, \"int\": 115}, \"eval_pipeline\": \"corrected_eval.py (training's load_implicit_sft_data split, seed=42, per-task step-level stratified)\", \"enable_thinking\": false}, \"logit_level\": {\"balanced_accuracy\": 0.7905, \"eval_loss\": 0.2382, \"internal_recall\": 0.8485, \"note\": \"From Trainer eval during training (logit-level, not generation). Uses training's own split — safe.\"}}, \"notes\": \"plan-004-v5 是 ga=1 implicit router（与主 router ga=8 implicit router 的对比，二者均用 implicit_router_sft.py 训练，差异仅为 gradient_accumulation_steps=1 vs 8）。\\n\\n**Logit-level (Trainer eval, 训练时)**: accuracy=74.5%, balanced_acc=79.1%, internal_recall=84.9% — 看起来成功。\\n**Generation-based eval (旧, sklearn split)**: accuracy=53.3%, balanced_acc=41.5%, internal_recall=26.7% — 实际失败。\\n\\ninternal_recall=26.7% < 30% 判定线 → conclusion 改为 negative。\\n\\n三种 thinking 模式（thinking_on, thinking_off, thinking_on+strip）结果完全一致，说明 thinking mode 不是根因。\\n\\nD078: corrected_eval.py (matched split) 显示 balanced_acc=75.3%, 但这是 split-sensitive overfitting artifact。同一 checkpoint 三种 split 下: matched=75.3%, eval-template-fix=59.4%, sklearn=41.5%, Δ(max-min)=34pp。对照 ga=8 仅 Δ≈0.5pp。ga=1 effective batch=4 导致模型 memorize split boundary。ga=8 remains recommended setting (split-robust)。conclusion 维持 negative。\\n\\n补充：corrected_eval.py val set (305 samples, step-level split) ≠ training val set (300 samples, episode-level split). Data leakage likely. 75.3% is unreliable. Do not cite in paper.\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"implicit_router_sft.py train\", \"data_count\": 2040, \"data_path\": \"data/plan-004-implicit/implicit_sft.jsonl\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 0.36, \"log_path\": \"~/runs/simgate-modular-routing/plan-004-v5.log\", \"model_name\": \"Qwen3-1.7B\", \"pid\": \"247838\", \"seed\": 42, \"server\": \"westb-13313\", \"submitted_at\": \"2026-05-14T08:03:12.287Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 1297.4}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:56:10.387Z\", \"parent\": \"plan-004-v4\"}, \"plan-002-formal-v4\": {\"checkpoint_path\": \"checkpoints/plan-002-formal-v4/checkpoint-153\", \"completed_at\": \"2026-05-14T06:31:04.652Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T06:22:49.207Z\", \"gpu\": \"cuda:0\", \"hypothesis\": \"Router SFT v4：三项修复——(1) stratified val split (sklearn train_test_split stratify=labels, val 有 30 internal + 390 det), (2) 移除 upsample_minority 只保留 class_weights auto [4.50, 0.5625], (3) 互斥检查防止过补偿。Qwen3-1.7B + LoRA r=16 (0.37% trainable), 3 epochs, batch_size=4 + grad_accum=8, 2040 samples (1830 det / 210 internal)。\", \"log_path\": \"~/runs/simgate-modular-routing/plan-002-formal-v4.log\", \"metrics\": {\"class_weights\": {\"deterministic\": 0.5625, \"internal\": 4.5}, \"eval_accuracy\": 0.919, \"eval_balanced_accuracy\": 0.5, \"internal_precision\": 0, \"internal_recall\": 0, \"is_degenerate\": true, \"note\": \"训练完整完成（TRAINING_COMPLETE + checkpoint-153 + eval_report.json），但退化为全部预测 deterministic。之前误标 killed。真正问题：class_weights [4.5, 0.5625] + max_grad_norm=1.0 交互导致 internal 有效学习率≈0\"}, \"notes\": \"【更正 D023】v4 实际完整训练完毕（有 TRAINING_COMPLETE + checkpoint-153 + eval_report.json），之前误标 killed。accuracy=91.9% 但 internal_recall=0%（退化为全 deterministic）。根因：class_weights [4.5, 0.5625] 使含 internal 微批次 loss 爆炸(5-11)、grad_norm 100-600，被 max_grad_norm=1.0 裁剪后 internal 有效学习率≈lr×1/600≈3e-8（等于零）。dryrun 无 class_weights 时 loss 正常(0.17-1.03)。\", \"pid\": \"230992\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v4 --seed 42\\\"\"}, \"retry_count\": 0, \"server\": \"westb-13313\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v4 --seed 42\\\"\", \"data_count\": \"2040 samples (train 1620: det=1440/int=180 | val 420: det=390/int=30)\", \"data_path\": \"results/plan_c/ (11 tasks, all complete)\", \"fixes_from_v3\": [\"stratified val split via sklearn train_test_split(stratify=labels)\", \"removed --upsample_minority, only --class_weights auto\", \"mutual exclusion check: class_weights + upsample_minority triggers auto-disable of upsample\"], \"gpu\": [\"cuda:0\"], \"gpu_hours\": 0.13, \"log_path\": \"~/runs/simgate-modular-routing/plan-002-formal-v4.log\", \"model_name\": \"/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)\", \"pid\": \"230992\", \"seed\": 42, \"server\": \"westb-13313\", \"submitted_at\": \"2026-05-14T06:23:07.864Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 476.8}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:56:09.476Z\", \"parent\": \"plan-002-formal-v3\"}, \"plan-002-formal-v6\": {\"checkpoint_path\": \"checkpoints/plan-002-formal-v6/\", \"completed_at\": \"2026-05-14T07:02:30.836Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T06:57:27.371Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-14T07:02:32.205412+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"log_path\": \"checkpoints/plan-002-formal-v6/train.log\", \"notes\": \"初次启动 OOM（GPU0 内存争抢，step 30/153 被杀），自动重启 PID 240633。Epoch 1 eval: accuracy=0.929, f1_macro=0.481, f1_internal=0.0, recall_internal=0.0。去掉 class_weights 后模型在 89.7%/10.3% 不平衡数据上仍退化为全 deterministic 预测。dtype 实际为 fp32（启动早于 torch_dtype 修正）。\", \"reproduce\": {\"finished_at\": \"2026-05-14T07:02:29.300Z\"}, \"retry_count\": 1, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-002-formal-v6 --seed 42\\\"\", \"data_count\": \"2040 samples (train 1620: det=1440/int=180 | val 420: det=390/int=30)\", \"data_path\": \"results/plan_c/ (11 tasks)\", \"gpu\": \"cuda:0\", \"log_path\": \"/root/autodl-tmp/simgate-modular-routing/checkpoints/plan-002-formal-v6/train.log\", \"model_name\": \"/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16\", \"pid\": 240633, \"seed\": 42, \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:56:05.481Z\", \"hypothesis\": \"Formal router training v6 with corrected data preprocessing and hyperparameter tuning resolves training instability from v4-v5, producing a router that converges to balanced accuracy above majority-class baseline.\", \"parent\": \"plan-002-formal-v5\"}, \"plan-003-eval-implicit\": {\"completed_at\": \"2026-05-14T09:12:08.237Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T09:11:52.155Z\", \"metrics\": {\"WARNING\": \"trained router (-12.84) worse than always-det (-9.47) by 3.37 points\", \"baselines\": {\"always_det\": -9.47, \"always_internal\": -39.07, \"oracle\": -6.58, \"random\": -22.38}, \"catastrophic_failure_rate\": {\"ci_high\": 0.2327, \"ci_low\": 0.151, \"mean\": 0.1918}, \"continuous_score\": {\"ci_high\": -8.45, \"ci_low\": -17.52, \"mean\": -12.84, \"n\": 245}, \"episode_routing_accuracy\": {\"accuracy\": 0.8211, \"correct\": 78, \"total\": 95}, \"routing_distribution\": {\"deterministic\": 229, \"internal\": 16}, \"simulator_invocation_ratio\": 0.9411, \"step_routing_accuracy\": {\"accuracy\": 0.6023, \"correct\": 1301, \"total\": 2160}, \"success_rate\": {\"ci_high\": 0.2653, \"ci_low\": 0.1796, \"mean\": 0.2204}}, \"retry_count\": 0, \"spec\": {\"checkpoint_path\": \"checkpoints/plan-004-implicit/final_adapter\", \"checkpoint_source\": \"checkpoints/plan-004-implicit/final_adapter\", \"command\": \"python src/eval_implicit_router.py --output_dir results/plan-003-eval-implicit\", \"data_count\": 245, \"data_path\": \"results/plan_c\", \"eval_data\": \"results/plan_c (245 episodes, 2040 steps, 11 tasks)\", \"log_path\": \"/tmp/eval_implicit_router.log\", \"model_name\": \"Qwen3-1.7B + ablation-b LoRA\", \"parent\": \"plan-004-implicit\", \"seed\": 42, \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:56:03.286Z\", \"hypothesis\": \"An implicit router (fine-tuned LLM) trained on counterfactual step-level labels achieves end-to-end episode scores matching or exceeding always-deterministic strategy, validating that counterfactual labels contain actionable routing signal.\", \"parent\": \"plan-003-baseline-245eps\"}, \"plan-010-cross-task-v2\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T17:59:53.817Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-15T17:30:55.550Z\", \"gpu\": \"cuda:0,cuda:1\", \"metrics\": {\"life_to_physical\": {\"cross_domain_balanced_acc\": 0.4924, \"cross_domain_ci95\": [0.424, 0.5593], \"in_domain_balanced_acc\": 0.577, \"in_domain_ci95\": [0.4531, 0.6894], \"train_size\": 1123, \"transfer_gap\": 0.0846}, \"note\": \"physical→life in-domain=0.4242 < chance (n=612 insufficient). CI recomputed on balanced_acc (was incorrectly computed on raw accuracy).\", \"physical_to_life\": {\"cross_domain_balanced_acc\": 0.4979, \"cross_domain_ci95\": [0.4547, 0.5382], \"in_domain_balanced_acc\": 0.4242, \"in_domain_ci95\": [0.2424, 0.6061], \"train_size\": 612, \"transfer_gap\": -0.0737}}, \"reproduce\": {\"gpu\": \"cuda:0,cuda:1\", \"server\": \"westb-13313\", \"started_at\": \"2026-05-15T17:31:50.224Z\"}, \"retry_count\": 0, \"server\": \"westb-13313\", \"spec\": {\"checkpoint_path\": \"checkpoints/plan-010-cross-task-*-seed42/final_adapter\", \"command\": \"python src/cross_task_transfer.py --train_domain {physical,life} --eval_domain {life,physical} --gpu {0,1} --seed 42\", \"data_count\": 2040, \"data_path\": \"data/plan-004-v3/implicit_sft.jsonl\", \"domain_split\": {\"life\": [\"find-animal\", \"find-non-living-thing\", \"grow-fruit\", \"identify-life-stages-1\", \"identify-life-stages-2\", \"lifespan-longest-lived\", \"lifespan-longest-lived-then-shortest-lived\"], \"physical\": [\"chemistry-mix\", \"freeze\", \"measure-melting-point-unknown-substance\", \"inclined-plane-determine-angle\"]}, \"gpu_budget_hours\": 5, \"hyperparams\": {\"batch_size\": 8, \"effective_batch_size\": 32, \"epochs\": 3, \"gradient_accumulation_steps\": 4, \"lora_alpha\": 32, \"lora_r\": 16, \"lr\": 2e-05, \"upsample_minority\": true}, \"hypothesis\": \"Cross-task transfer: chemistry-trained router → physics eval (GPU0) + physics-trained router → chemistry eval (GPU1) 并行。验证 routing signal（主要是 death avoidance）是否跨 task domain 迁移。正迁移 → C2 泛化性增强；负迁移 → task-specific patterns 存在。\", \"log_path\": \"results/plan-010-cross-task-*-seed42/results.json\", \"model_name\": \"Qwen3-1.7B\", \"plan_id\": \"plan-010\", \"seed\": 42, \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:55:52.908Z\", \"hypothesis\": \"Routing signal learned from one task-type cluster transfers to held-out clusters, enabling cross-domain routing without task-specific counterfactual data collection.\", \"parent\": \"plan-010-cross-task-transfer\"}, \"plan-004-v4\": {\"checkpoint_path\": \"checkpoints/plan-004-v4/final_adapter\", \"completed_at\": \"2026-05-14T07:28:11.778Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T07:16:04.007Z\", \"log_path\": \"checkpoints/plan-004-v4/train.log\", \"notes\": \"## 状态报告 (2026-05-14)\\n\\n### 训练完成\\n- 状态: DONE (EXIT_CODE=0)\\n- 运行时长: 150.3s (~2.5min)\\n- 进度: 147/147 steps, 3 epochs\\n- Adapter 保存: checkpoints/plan-004-v4/final_adapter\\n\\n### 数据\\n- 文件: results/plan_c_test_labels/implicit_sft.jsonl (1814行)\\n- 与 v2/v3 使用同一数据文件\\n- Split: 53 train / 10 val episodes → 1558 train / 256 val steps\\n- Route labels (train): internal=1048, deterministic=510\\n\\n### Loss 曲线\\n| Epoch | Train Loss | Grad Norm |\\n|-------|-----------|-----------|\\n| 0.21  | 48.1538   | 122.03    |\\n| 0.41  | 42.0474   | 131.02    |\\n| 0.62  | 26.1077   | 94.05     |\\n| 0.82  | 13.7082   | 51.81     |\\n| 1.02  | 8.463     | 36.91     |\\n| 1.23  | 6.8562    | 27.10     |\\n| 1.43  | 6.0505    | 15.74     |\\n| 1.64  | 5.9014    | 15.58     |\\n| 1.84  | 5.0414    | 10.27     |\\n| 2.04  | 4.5778    | 10.58     |\\n| 2.25  | 4.4344    | 16.18     |\\n| 2.45  | 4.153     | 14.26     |\\n| 2.66  | 4.4794    | 11.85     |\\n| 2.86  | 4.3672    | 14.33     |\\n\\n平均 train_loss: 12.74\\n\\n### Eval Loss\\n- Epoch 1: 0.9549\\n- Epoch 2: 0.5524\\n- Epoch 3: 0.4922\\n\\n### Checkpoints\\ncheckpoint-49, checkpoint-98, final_adapter\\n\\n### 与 v2/v3 对比（关键发现）\\n- **v4 step 10 loss = 48.1538，与 v2/v3 的 48.15 完全一致**\\n- 三个版本使用同一数据文件 (results/plan_c_test_labels/implicit_sft.jsonl)\\n- ablation-b 用不同数据 (data/plan-004-implicit/)，loss 正常 (0.36-0.71)\\n- **结论：数据文件是初始 loss 异常高的根因，非 class_weights**\\n\\n### 异常：train loss vs eval loss 巨大差距\\n- Train loss 终态 ~4.4 vs eval loss 0.49\\n- 可能原因: 训练 loss 含 class_weights 加权，eval loss 是原始 CE；或数据格式/标签问题导致训练目标与评估目标不一致\", \"parent\": \"plan-004-v3\", \"retry_count\": 0, \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v4 --seed 42 --gpu_id 0\\\"\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 0.19, \"log_path\": \"~/runs/simgate-modular-routing/plan-004-v4.log\", \"pid\": \"243301\", \"server\": \"westb-13313\", \"submitted_at\": \"2026-05-14T07:16:33.465Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 698.3}, \"status\": \"DONE\", \"updated_at\": \"2026-05-17T02:55:31.504Z\", \"hypothesis\": \"Iterative training refinement (v4 config with corrected data pipeline) resolves convergence issues from v3, achieving stable training loss and meaningful routing accuracy above majority-class baseline on held-out episodes.\"}, \"cross-model-guided-router-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:03:49.372Z\", \"updated_at\": \"2026-05-16T15:44:47.527Z\", \"hypothesis\": \"Qwen-derived death risk labels transfer to Llama: applying Qwen task-type routing rule on Llama episodes yields balanced_acc > 50%, validating cross-model transferability of the routing signal.\", \"spec\": {\"command\": \"python guided_router/cross_model_eval.py\", \"server\": \"westb-13313\", \"data_path\": \"/root/autodl-tmp/simgate-modular-routing/data/llama-cross-model-v2/\", \"data_count\": 70, \"model_name\": \"Llama-3.1-8B\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"/root/autodl-tmp/simgate-modular-routing/guided_router/cross_model_results.json\"}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-16T15:27:45.095Z\", \"metrics\": {\"bal_acc\": 1, \"degenerate\": true, \"note\": \"not a valid transfer test, confirms always-det optimal for Llama, 0 internal-preferred episodes\"}}, \"loto-guided-router-eval\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T15:03:47.677Z\", \"updated_at\": \"2026-05-16T15:44:42.130Z\", \"hypothesis\": \"LOTO protocol: task-type death risk is a generalizable routing feature. If guided router LOTO balanced_acc > 50%, the routing rule transfers to unseen task types (eliminates data leakage concern).\", \"conclusion\": \"negative\", \"metrics\": {\"blind_loto_bal_acc\": 0.5, \"keyword_leaked_bal_acc\": 0.6292, \"note\": \"blind strategies = always-det, keyword variant leaks task identity\"}, \"spec\": {\"command\": \"python guided_router/loto_eval.py\", \"server\": \"westb-13313\", \"data_path\": \"guided_router/ episode data\", \"data_count\": \"11 task types, 11-fold LOTO\", \"model_name\": \"guided_router (rule-based)\", \"seed\": \"N/A\", \"checkpoint_path\": \"N/A\", \"log_path\": \"guided_router/loto_results.json\"}, \"completed_at\": \"2026-05-16T15:44:09.037Z\"}, \"r7n2-data-size-ablation-r3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T04:01:41.336Z\", \"updated_at\": \"2026-05-16T05:08:31.134Z\", \"spec\": {\"command\": \"python src/r7n2_scale_study.py\", \"server\": \"westb-13313\", \"gpu\": [\"cuda:0\"], \"pid\": \"934738\", \"data_path\": \"data/plan-004-implicit/implicit_sft.jsonl\", \"data_count\": \"2040 steps, scales: 25%/50%/75%/100%/200%/400%/800%\", \"model_name\": \"Qwen3-1.7B\", \"seed\": \"42,43,44\", \"log_path\": \"results/ablation_r3/\", \"note\": \"Round 3: incremental save, eval batch=2, dual eval (step+episode). Actual scales include 200%/400%/800% (synthetic augmentation). 6/14 done + 1 in progress. All episode-level bal_acc ≈ 50%.\"}, \"hypothesis\": \"R7-N2 reviewer concern: router diagnostic 低 balanced_acc 可能是数据不足导致。通过 data scaling (25%/50%/75%/100%) 验证 balanced_acc 是否随数据量上升。双套 eval: step-level + episode-level。\", \"conclusion\": \"negative\", \"metrics\": {\"completed_runs\": \"7/21 (25%×3, 50%×1, 800%×3)\", \"step_bal_acc\": {\"25pct\": \"0.497±0.009\", \"50pct\": \"0.493\", \"800pct\": \"0.511±0.007\"}, \"episode_bal_acc\": {\"25pct\": \"0.495±0.003\", \"50pct\": \"0.515\", \"800pct\": \"0.510±0.011\"}, \"int_recall_range\": \"0.0-0.083\", \"model_behavior\": \"majority-class collapse at all scales\"}, \"checkpoint_path\": \"results/ablation_r3/\", \"completed_at\": \"2026-05-16T05:08:24.296Z\", \"notes\": \"Outcome B confirmed: 32x data scaling (433→13880) produces no improvement in episode-level balanced accuracy. All scales show majority-class collapse (int_recall ≈ 0). Root cause: extreme class imbalance (~97.7% deterministic at 800pct) + death-dominated labels make routing signal too thin for supervised classification. Script ran 7/21 planned runs (skipped middle scales after early evidence of flatline).\"}, \"leave-one-tasktype-out\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T03:08:05.850Z\", \"updated_at\": \"2026-05-16T03:34:37.597Z\", \"spec\": {\"command\": \"python scripts/leave_one_tasktype_out.py\", \"server\": \"westb-13313\", \"data_path\": \"/root/autodl-tmp/simgate-modular-routing/data/plan-004-implicit/implicit_sft.jsonl\", \"data_count\": 2040, \"model_name\": \"Qwen2.5-1.5B + LoRA router (seeds 42-49)\", \"seed\": \"42-49\", \"checkpoint_path\": \"checkpoints/seed-robustness-seed{42..49}/final_adapter\", \"log_path\": \"/tmp/leave_one_tasktype_out.log\"}, \"hypothesis\": \"Leave-one-task-type-out eval: router 在完全未见 task type 上是否 ≈ 50%（随机），确认 routing signal 不跨 task type 迁移，仅学了 task-type 分类。关联 C2 diagnostic。\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-16T03:16:23.140Z\", \"metrics\": {\"grand_mean_balanced_acc\": \"0.5976±0.0184\", \"eval_type\": \"step-level, 8 seeds, 4 two-class types\", \"single_class_types\": \"7/11 (all deterministic, router has no discriminative ability)\", \"two_class_types\": \"4/11\", \"grow-fruit\": 0.6715, \"find-non-living-thing\": 0.5986, \"lifespan-longest-then-shortest\": 0.57, \"chemistry-mix\": 0.5503}, \"notes\": \"Per-task-type evaluation breakdown（现有 checkpoint 按 task type 分解评估），不是 leave-one-out cross-validation with retraining。7/11 task types 全 deterministic（single class），仅 4 types 有两类可算 balanced_acc。Step-level 弱信号存在（grand mean 59.8%）但不改变 episode-level 随机的结论。论文引用时措辞需区分 per-type breakdown vs LOTO CV。\"}, \"majority-vote-baseline\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T01:42:20.661Z\", \"updated_at\": \"2026-05-16T01:52:37.111Z\", \"spec\": {\"command\": \"python scripts/majority_vote_baseline.py\", \"server\": \"westb-13313\", \"data_path\": \"data/plan-004-implicit/implicit_sft.jsonl\", \"data_count\": \"2040 steps / 66 episodes\", \"model_name\": \"N/A (baseline, no model)\", \"seed\": \"split_seeds 42,123,456\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/majority_vote_baseline/results.json\"}, \"conclusion\": \"negative\", \"hypothesis\": \"Task-type majority-vote baseline 是否 ≈ router cross-split balanced_acc (47.1%)，确认 signal 完全在 task-type level。\", \"metrics\": {\"tt_majvote_bal_acc_seed42\": 0.5, \"tt_majvote_bal_acc_seed123\": 1, \"tt_majvote_bal_acc_seed456\": 1, \"router_mean_bal_acc\": 0.4711, \"train_det_pct\": 91.4, \"note\": \"All 11 task_types majority=det. Seeds 123/456 val set 100% det (degenerate). Router < always-det baseline.\"}, \"completed_at\": \"2026-05-16T01:42:42.658Z\", \"notes\": \"所有 11 个 task type 多数类均为 deterministic (train_det_pct=91.4%)，task-type majority vote = always-predict-deterministic = balanced_acc 0.50。Router cross-split 8-seed 均值 0.471±0.022，低于此 trivial baseline。Registry conclusion 改 negative 因为实验结果对 router 是负面信号。\"}, \"cross-split-robustness-8seed\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T00:56:31.692Z\", \"updated_at\": \"2026-05-16T01:21:59.963Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 python scripts/cross_split_eval.py --gpu_id 0\\\"\", \"server\": \"westb-13313\", \"gpu\": [\"cuda:1\"], \"pid\": \"919592\", \"log_path\": \"~/runs/simgate-modular-routing/cross-split-robustness-8seed.log\", \"submitted_at\": \"2026-05-16T01:05:31.570Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A (eval only)\", \"wall_clock_seconds\": 861.2, \"gpu_hours\": 0.24}, \"hypothesis\": \"验证 8-seed router checkpoints 在独立 split（非训练 split）上的 balanced_acc 是否与 corrected_eval（55.7±5.0%）一致（Δ<2pp），确认 ga=8 训练 split-robust、论文数字可靠。\", \"notes\": \"Cross-split NOT robust (Δ=-7.0pp > 2pp threshold). Episode-level split (sklearn seed=42, 10 val episodes, 300 samples, 80%/20% det/int) gives mean=47.1±2.2% vs corrected_eval step-level split 54.1±5.4%. Cross-split std much lower (2.2pp vs 5.4pp) suggesting episode composition dominates variance. Per-seed deltas range from -0.6pp (seed43) to -16.3pp (seed49).\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-16T01:19:52.721Z\"}, \"plan-006-deep-internal\": {\"completed_at\": \"2026-05-15T16:15:22.636Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-15T14:30:17.277Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-15T16:15:29.096824+00:00\"}]}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"hypothesis\": \"2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic 配对，为 3-way router 训练提供数据。如果 deep-internal 分数显著高于 fast-internal → 3-way routing 有价值；如果差异小 → 2-way suffices。\", \"metrics\": {\"data_quality\": \"passed\", \"episodes_per_task\": 20, \"note\": \"identify-life-stages-1 has only 14 unique variations; episodes 14-19 reuse variations 0-5 (pseudo-duplicates). Use first 14 episodes for this task in analysis.\", \"tasks\": 6, \"total_episodes\": 120}, \"reproduce\": {\"finished_at\": \"2026-05-15T16:15:23.921Z\"}, \"retry_count\": 0, \"spec\": {\"command\": \"GPU1: python src/episode_level_collection.py --task_types 'find-non-living-thing,lifespan-longest-lived-then-shortest-lived' | GPU0: python src/episode_level_collection.py --task_types 'inclined-plane-determine-angle,chemistry-mix'\", \"data_count\": \"6 tasks x 20 episodes = 120 episodes\", \"data_path\": \"results/plan-006-deep-internal/\", \"gpu0_pid\": 499308, \"model_name\": \"Qwen2.5-7B-Instruct\", \"parallelized_at\": \"2026-05-15T15:37:00Z\", \"seed\": 42, \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T17:35:55.458Z\"}, \"plan-002-generative-v1\": {\"account\": \"root\", \"checkpoint_path\": \"N/A (negative conclusion, no usable checkpoint)\", \"completed_at\": \"2026-05-14T08:44:34.766Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T07:24:07.881Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-14T08:05:49.828787+00:00\"}]}, \"gpu\": \"cuda:0\", \"hypothesis\": \"Generative router SFT: 基于 ablation-b 成功经验（internal_recall=51.5%），用修正数据 data/plan-004-implicit/（2040 samples, 11 tasks, no-preference 已丢弃），upsample_minority=true 平衡类别（internal 180→1560），generative token prediction 而非 classification head。Qwen3-1.7B + LoRA r=16, 3 epochs, batch_size=4, grad_accum=8。目标: internal_recall > 30% 且不退化。\", \"log_path\": \"~/runs/simgate-modular-routing/plan-002-generative-v1.log\", \"metrics\": {\"balanced_accuracy\": 0.4667, \"confusion_matrix\": [[5, 25], [63, 207]], \"det_f1\": 0.8247, \"det_precision\": 0.8922, \"det_recall\": 0.7667, \"internal_f1\": 0.102, \"internal_precision\": 0.0735, \"internal_recall\": 0.1667, \"note\": \"enable_thinking=False required for Qwen3 inference; with thinking mode, model outputs &lt;think> tags causing all-internal parsing failure\", \"pred_dist\": {\"deterministic\": 232, \"internal\": 68}, \"routing_accuracy\": 0.7067, \"train_eval_loss\": 0.26, \"train_final_loss\": 0.2, \"val_label_dist\": {\"deterministic\": 270, \"internal\": 30}, \"val_size\": 300}, \"notes\": \"重新评估路由指标（generation-based eval, enable_thinking=False）。结果：accuracy=70.67%（偏高因多数类偏向），balanced_accuracy=46.67%，internal_recall=16.67%（5/30），det_recall=76.67%（207/270）。两种 thinking 模式对比：thinking_on+strip 在50 samples 上 internal_recall=0/5, thinking_off 同样 0/5。模型输出两种类别（pred: 232 det / 68 internal），但路由预测与真实标签不相关。vs ablation-b internal_recall=51.5%，generative-v1 显著退步。此前 notes 声称 internal_recall=51.85% 可能来自 logit-level eval（非 generation），不能反映实际推理行为。结论改为 negative。\", \"pid\": \"247424\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/generative_router_sft.py train --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --output_dir checkpoints/plan-002-generative-v1 --seed 42 --gpu_id 0\\\"\", \"finished_at\": \"2026-05-14T08:05:48.190Z\", \"gpu\": \"cuda:0\", \"server\": \"westb-13313\", \"started_at\": \"2026-05-14T07:33:07.703Z\", \"training_hours\": 0.54}, \"retry_count\": 0, \"server\": \"westb-13313\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/generative_router_sft.py train --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --output_dir checkpoints/plan-002-generative-v1 --seed 42 --gpu_id 0\\\"\", \"gpu\": [\"cuda:0\"], \"gpu_hours\": 0.75, \"log_path\": \"~/runs/simgate-modular-routing/plan-002-generative-v1.log\", \"pid\": \"247424\", \"server\": \"westb-13313\", \"submitted_at\": \"2026-05-14T07:59:25.033Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 2709.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T08:44:34.766Z\"}, \"plan-004-v3\": {\"account\": \"root\", \"completed_at\": \"2026-05-14T07:11:46.286Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T07:06:51.091Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_failed\", \"ts\": \"2026-05-14T07:11:47.584882+00:00\"}]}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"gpu\": \"cuda:1\", \"hypothesis\": \"Implicit router SFT v3：修复两个 bug——(1) 去掉 class_weights auto（D023 根因），(2) 用 plan_c/ 11 task 重生成数据修复 no-preference→internal 映射 bug。与 plan-002-formal-v6（explicit classification head, 同样无 class_weights）对照。2040 samples from 11 tasks, no-preference 已丢弃。\", \"log_path\": \"~/runs/simgate-modular-routing/plan-004-v3.log\", \"notes\": \"## 数据文件差异分析 (2026-05-14)\\n\\n### 三个数据文件确认\\n| | ablation-b | v2 | v3 |\\n|---|---|---|---|\\n| 路径 | data/plan-004-implicit/implicit_sft.jsonl | results/plan_c_test_labels/implicit_sft.jsonl | data/plan-004-v3/implicit_sft.jsonl |\\n| MD5 | c9b59e04de78... | eb9daacc7f97... | **c9b59e04de78... (=ablation-b)** |\\n| 样本数 | 2040 | 1814 | 2040 |\\n| 文件大小 | 1,578,366 bytes | 1,398,021 bytes | 1,578,366 bytes |\\n\\n**v3 和 ablation-b 的数据文件 100% 相同（MD5 一致）。**\\n\\n### Schema（三个文件一致）\\nfields: messages, task_type, variation, step_idx, route_label\\n\\n### 标签分布\\n- ablation-b / v3: **deterministic 1830 (89.7%), internal 210 (10.3%)**\\n- v2: **internal 1214 (66.9%), deterministic 600 (33.1%)** ← 标签比例完全反转！\\n\\n### Task Type 分布\\n- ablation-b / v3: 11 个 task_type，以 find-non-living-thing(510), chemistry-mix(240) 为主\\n- v2: **仅 4 个 task_type**：find-non-living-thing(600), find-animal(554), grow-fruit(390), identify-life-stages-1(270)\\n\\n### 文本长度\\n- ablation-b / v3: n=2040, min=52, max=166, mean=87 words\\n- v2: n=1814, min=52, max=200, mean=90 words\\n\\n### 前 3 条样本对比\\nablation-b/v3 首条: chemistry-mix/variation 0/step 0, [SIMULATE] connect agent to door to kitchen, route=deterministic\\nv2 首条: find-non-living-thing/variation 0/step 0, [SIMULATE] connect agent to art studio door, route=deterministic\\n\\n### 训练配置对比（真正变量）\\n| | ablation-b (正常) | v2 (异常) | v3 (异常) |\\n|---|---|---|---|\\n| 脚本 | training/implicit_router_sft.py | 同左 | 同左 |\\n| 数据 | data/plan-004-implicit (2040) | results/plan_c_test_labels (1814) | data/plan-004-v3 (2040, **=ablation-b**) |\\n| upsample_minority | **true** | false | false |\\n| class_weights | 无 | \\\"auto\\\" | null |\\n| gradient_accumulation | 1 (默认) | 8 | 8 |\\n| batch_size | 4 | 4 | 4 |\\n| 有效batch | 4 | 32 | 32 |\\n\\n### 训练曲线对比\\n| | ablation-b | v2 | v3 |\\n|---|---|---|---|\\n| Step 10 loss | 5.25 | 48.15 | 48.15 (用户报告) |\\n| Epoch 1 eval_loss | ~0.68 | 0.95 | [无 train.log] |\\n| Epoch 3 eval_loss | 0.36 | **0.49 (收敛了!)** | [无 train.log] |\\n| 平均 train_loss | 1.26 | 12.74 | [无数据] |\\n\\n**重要发现: v2 虽然起步 loss=48，但最终 eval_loss 收敛到 0.49，模型实际上学到了。**\\n\\n### class_weights 代码分析\\nclass_weights 在 WeightedTrainer.compute_loss() 中正确实现：\\n- sample_idx 由 ImplicitSFTDataset.__getitem__() 返回 (line 85)\\n- PaddingCollator.__call__() 正确传递 (line 128-136)\\n- compute_loss() 中 `inputs.pop(\\\"sample_idx\\\")` 获取，条件 `self._class_weights is not None and sample_indices is not None` 控制 (line 227)\\n- v2 (class_weights=\\\"auto\\\"): 权重 internal=0.743, det=1.527，正确计算并应用\\n- v3 (class_weights=null): 无权重，`loss = per_sample_loss.mean()`\\n\\n**class_weights 代码本身没有 bug。v2 和 v3 的 step 10 loss 一致（48.15），证明 class_weights 不是 loss 差异的主因。** class_weights 只是对 per-sample loss 的乘法缩放（0.74x~1.53x），不会改变 loss 的数量级。\\n\\n### plan-002-formal-v6 数据路径\\n- 数据来源: `results/plan_c/` 目录（11 个 task_type 子目录的 labeled_steps.jsonl）\\n- 加载: 2040 samples from 11 files\\n- 标签分布: deterministic 1830 (89.7%), internal 210 (10.3%)\\n- 与 ablation-b 的 implicit 数据是**同源数据，但格式不同**（explicit router 用 observation+action_history+label 格式，implicit 用 messages chat 格式）\\n- **plan-002-formal-v6 也退化了**: 全预测 deterministic (internal: 0/30, deterministic: 390/390)\\n\\n### 结论：根因判定\\n\\n**\\\"数据文件不同\\\"假说被证伪（对 v3）**：v3 使用和 ablation-b 完全相同的数据（MD5 一致），但仍然异常。\\n\\n**真正的变量是训练策略的组合**：\\n1. **`upsample_minority: true`**（ablation-b 独有）：在 89.7% deterministic 的极端不平衡数据上，WeightedRandomSampler 确保 internal 样本被充分采样。没有它，模型每 batch 几乎只看到 deterministic 样本。\\n2. **`gradient_accumulation_steps: 1 vs 8`**：有效 batch 4 vs 32。较大 batch + 无上采样 = 每步看到的 internal 样本更少。\\n\\n**v2 的数据确实不同**（标签比例反转：internal 67% vs 10%，只有 4 个 task_type），但 v2 依然收敛了（eval_loss 0.49）。这说明数据差异导致训练行为不同，但不是致命问题。\\n\\n**建议下一步**：\\n- 用 ablation-b 的配置（upsample_minority=true, gradient_accumulation=1）重跑 v3 数据，验证是否恢复正常 loss\\n- 对 v2 跑 eval 看是否也退化\", \"parent\": \"plan-004-v2\", \"pid\": \"241329\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v3 --seed 42 --gpu_id 0\\\"\", \"finished_at\": \"2026-05-14T07:11:44.941Z\", \"gpu\": \"cuda:1\", \"server\": \"westb-13313\", \"started_at\": \"2026-05-14T07:07:13.844Z\", \"training_hours\": 0.08}, \"retry_count\": 0, \"server\": \"westb-13313\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir data/plan-004-v3/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v3 --seed 42 --gpu_id 0\", \"data_count\": \"2040 (train 1740: det=1560/int=180 | val 300: det=270/int=30)\", \"data_path\": \"data/plan-004-v3/implicit_sft.jsonl\", \"gpu\": [\"cuda:1\"], \"gpu_hours\": 0.03, \"log_path\": \"~/runs/simgate-modular-routing/plan-004-v3.log\", \"model_name\": \"/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)\", \"pid\": \"242217\", \"seed\": 42, \"server\": \"westb-13313\", \"submitted_at\": \"2026-05-14T07:09:57Z\", \"submitted_via\": \"submit_training_job\", \"wall_clock_seconds\": 109.3}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T07:24:34.751Z\"}, \"plan-002-formal-v5\": {\"checkpoint_path\": \"checkpoints/plan-002-formal-v5\", \"completed_at\": \"2026-05-14T07:02:34.719Z\", \"conclusion\": \"negative\", \"created_at\": \"2026-05-14T06:37:37.792Z\", \"extra\": {\"hook_events\": [{\"action\": \"agent\", \"event\": \"on_complete\", \"ts\": \"2026-05-14T06:59:40.919578+00:00\"}]}, \"gpu\": \"cuda:0\", \"hypothesis\": \"Router SFT v5：pad_token_id fix。v3/v4 loss 异常根因确认为 model.config.pad_token_id=None（ModelScope 下载的 Qwen3-1.7B 未设置 pad_token_id，导致分类头 loss 计算错误）。Fix：模型加载后立即设 model.config.pad_token_id = tokenizer.pad_token_id (151643)。其余配置与 v4 相同：stratified split + 无 upsample + class_weights auto + 互斥检查。Qwen3-1.7B + LoRA r=16 (0.37% trainable), 3 epochs, batch_size=4 + grad_accum=8, 2040 samples (1830 det / 210 internal)。\", \"log_path\": \"~/runs/simgate-modular-routing/plan-002-formal-v5.log\", \"metrics\": {\"class_weights\": {\"deterministic\": 0.5625, \"internal\": 4.5}, \"eval_accuracy\": 0.9167, \"eval_balanced_accuracy\": 0.4936, \"eval_f1_macro\": 0.47, \"eval_loss_epoch1\": 0.79, \"eval_loss_epoch2\": 0.78, \"grad_norm_range\": \"70-604\", \"is_degenerate\": true, \"note\": \"Metrics corrected per eval_report.json (D023 Reviewer audit). class_weights auto inflates train loss (4-11) and destabilizes training (grad_norm 604). Model degenerates to all-deterministic.\", \"per_class\": {\"deterministic\": {\"f1\": 0.938, \"precision\": 0.928, \"recall\": 0.987}, \"internal\": {\"f1\": 0, \"precision\": 0, \"recall\": 0}}, \"train_loss_avg\": 5.59}, \"notes\": \"D021 确认：class_weights auto [4.5, 0.5625] 是 v3/v4/v5 loss 异常的根因。train_loss 4-11 (正常应 0.5-0.7)，grad_norm 604，internal recall=0。pad_token_id fix 无效（代码中已存在）。v6 对照实验：移除 class_weights，验证 loss 是否恢复正常。\", \"parent\": \"plan-002-formal-v4\", \"pid\": \"235437\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v5 --seed 42\\\"\", \"finished_at\": \"2026-05-14T06:59:38.153Z\"}, \"retry_count\": 0, \"server\": \"westb-13313\", \"spec\": {\"account\": \"root\", \"backend\": \"tmux\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=0 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/router_sft_train.py --data_dir results/plan_c --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-002-formal-v5 --seed 42\\\"\", \"data_count\": \"2040 samples (train 1620: det=1440/int=180 | val 420: det=390/int=30)\", \"data_path\": \"results/plan_c/ (11 tasks, all complete)\", \"fixes_from_v4\": [\"assert tokenizer.pad_token_id is not None (line 306)\", \"torch_dtype→dtype deprecated fix (line 303)\", \"pad_token_id already existed at line 305 — this run confirms whether it's effective\"], \"gpu\": [\"cuda:0\"], \"gpu_hours\": 0.36, \"inherits_from_v4\": [\"stratified val split\", \"no upsample_minority\", \"class_weights auto only\", \"mutual exclusion check\"], \"log_path\": \"~/runs/simgate-modular-routing/plan-002-formal-v5.log\", \"model_name\": \"/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)\", \"pid\": \"235437\", \"seed\": 42, \"server\": \"westb-13313\", \"submitted_at\": \"2026-05-14T06:40:45Z\", \"submitted_via\": \"submit_on_allocated\", \"wall_clock_seconds\": 1309.7}, \"status\": \"DONE\", \"updated_at\": \"2026-05-14T07:08:19.782Z\"}}, \"count\": 28, \"total\": 28, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.3926}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-18T21:40:47.814Z_
+
+<details><summary>↩ Tool result · `toolu_01Sgk82ecAciyLTzFxnRWSUc`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/paper_framing.md\", \"content\": \"# Paper Framing — simgate-modular-routing\\n\\n## Target Venue\\n- **EMNLP 2026 Main Conference — Long Paper (8 pages + references)**\\n- Deadline: ARR May 25, 2026 (10 days remaining)\\n- D050: Upgraded from short paper (4p, Findings) per user directive\\n\\n## Core Insight\\n\\nLLM agents on rule-governed environments face catastrophic failures from hallucinated state transitions. Deterministic external computation (environment simulators, code interpreters) eliminates these failures — but what exactly does routing learn? We introduce episode-level counterfactual analysis (per-step oracle labeling degenerates to 97.4% ties in sparse-reward settings) and discover that **death avoidance accounts for ~90% of routing signal** on ScienceWorld (Δ_full=+29.60 [A], Δ_nd=+2.84 [A], DAF=90.41% [A]; Pearson r=0.9698, p=8.12e-07 [A] across 11 task types / 245 episodes [A]; source: plan-012-full). Non-death performance difference is small but non-negligible (Δ_nd/Δ_full=9.6% [A]). Key exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all non-death performance difference) [A]. The contribution is the empirical finding (death avoidance dominance) + the diagnostic methodology (episode-level counterfactual labeling), not the router architecture itself.\\n\\n## Core Claims (3 claims for long paper)\\n\\n**C1 (Death avoidance dominates routing signal)**: On ScienceWorld, deterministic simulation dramatically outperforms LLM reasoning (Δ_full=+29.60 [A]), with **death avoidance as the dominant mechanism** (90.41% of the performance gap [A], measured by Δ decomposition; plan-012-full, 11 tasks / 245 eps [A]). Episode-level label distribution: det-preferred 86 / internal-preferred 9 / no-preference 150 (out of 245 episodes) [A]. Death rates: internal 42.9% / deterministic 16.3% [A]. Non-death score deltas are small but non-negligible (Δ_nd=+2.84 [A], 9.6% of Δ_full [A]). Key exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all non-death performance difference) [A]. Pearson r=0.9698 (p=8.12e-07) [A] between per-task death rate difference and Δ_full across 11 task types [A]. The value of deterministic computation in interactive environments is concentrated in catastrophic failure prevention, not positive task guidance.\\n\\n**C2 (Episode-level counterfactual labeling methodology + informative router negative)**: Per-step oracle labeling degenerates in sparse-reward environments (97.4% tie rate on ScienceWorld). Episode-level counterfactual analysis — running complete episodes under pure-internal and pure-deterministic strategies — overcomes this circularity and reveals the death-avoidance mechanism. Router training (Qwen3-1.7B on counterfactual labels) yields an **informative negative result**: step-level matched eval achieves 55.4±5.2% balanced accuracy, but episode-level independent eval drops to 47.1±2.2% (8-seed cross-split) — **below the trivial majority-vote baseline (50.0%)**. Data-size ablation (r7n2, intermediates: 5/5 evals = 0.50, all-internal predictions) suggests scaling data does not overcome the signal deficit. The methodology contribution is the counterfactual labeling framework itself; the router negative result is presented honestly and is consistent with C1's finding that routing signal is overwhelmingly task-type-level (death risk), leaving insufficient step-level signal for learned routing (D089).\\n\\n**C3 (Cross-model generality + cross-domain contrast)** [NEW for long paper]:\\n- **Cross-model mechanism verification** [Llama-3.1-8B pilot, D054→D055 corrected]: Death dominance fully replicates across model families — **both mechanism and direction consistent**. Llama pilot (freeze + find-non-living-thing, N=10): freeze's only non-tie label = death_asymmetry (internal died, det survived — same direction as Qwen where internal death rate 42.9% vs det 16.3%); find-non-living-thing has 0 deaths, all labels from score_comparison (consistent with Qwen). Llama-8B substantially weaker on ScienceWorld (most scores 0, >80% no-preference expected at scale), limiting full-scale comparison — pilot positioned as mechanism verification, not performance validation.\\n- **Cross-domain negative contrast** [MATH, N=795]: In environments WITHOUT catastrophic failure penalties (MATH: no death, no -100), the routing signal disappears — internal reasoning and code interpretation perform near-identically (+0.5pp, McNemar p=0.81, N=795). Label distribution: 66 internal-preferred / 58 det-preferred (ratio 1.14:1) vs ScienceWorld's 9 / 86 (ratio 0.10:1). The N=300 pilot showed a directional +4.3pp trend (p=0.079), but the powered N=795 extension confirms the effect is not significant — consistent with the death-avoidance mechanism: no catastrophic failures → no routing signal. Source: math-extension-n800.\\n\\n**D013 note**: C1 no longer claims \\\"selective > unconditional.\\\" Router confirmed ≈ always-det on episode-level eval (47.1% < majority-vote 50.0%, D089). This IS the finding — the router negative result demonstrates that death avoidance signal is task-type-level and non-learnable at the step level with available data. Keyword heuristic also structurally fails (D014).\\n\\n## Positioning vs Tool-Use Literature (Dream-driven addition)\\n\\n**Critical gap identified by all 3 Dream tiers**: The core pipeline (counterfactual labels → SFT small classifier → selective invocation) is standard in tool-use learning. Must position against:\\n- **Toolformer** (Schick et al. 2024): Self-supervised tool-use learning via API call insertion. SimGate differs: hindsight labels from environment forking (not self-supervised), safety-aware framing (not general tool selection).\\n- **ART** (Paranjape et al. 2023): Automated tool selection via LLM reasoning. SimGate: dedicated lightweight router, not LLM-as-router.\\n- **Chameleon** (Lu et al. 2024): LLM-as-planner routing to diverse tools. SimGate: single modality (deterministic computation), explicit small router.\\n- **ToolkenGPT** (Hao et al. 2024): Token-level tool triggers. SimGate: step-level routing with counterfactual labels.\\n\\n**Our differentiation**: (1) Episode-level counterfactual labeling — overcomes per-step oracle circularity in sparse-reward environments (97.4% tie rate), providing ground-truth episode outcomes rather than tie-break artifacts. (2) Empirical finding: death avoidance accounts for ~90% of routing signal [A] — quantifies WHERE and WHY tool invocation helps (catastrophic failure prevention, not positive guidance). (3) Honest negative on learned routing — router fails to generalize beyond training episodes (47.1% < majority-vote 50.0%), confirming signal is task-type-level, not step-level learnable. (4) The contribution is the finding + methodology, not the router architecture — this distinguishes from \\\"we built a better tool selector\\\" papers.\\n\\n**Paper must include a dedicated Related Work section** (not just intro paragraphs). Minimum coverage: tool-use learning (Toolformer, ART, Chameleon), adaptive computation (CogRouter, ARES, Mixture-of-Depths), world model routing (ITP-R, Dyna-Think), agent frameworks (ReAct).\\n\\n## Story Spine\\n\\n- **Problem**: LLM agents hallucinate state transitions on rule-governed environments (temperature physics, chemical reactions), leading to catastrophic failures. ITP-R routes to an approximate LLM world model but underperforms pure internal reasoning (62.58 vs CogRouter 84.6 on ScienceWorld). ReTool/AgentMath learn when to invoke code interpreters but use implicit routing entangled with the backbone. Tool-use learning methods (Toolformer, ART, Chameleon) learn general tool selection but don't specialize for catastrophic failure prevention or use counterfactual trajectory labeling.\\n\\n- **Our framing**: We use episode-level counterfactual analysis to understand WHAT routing learns. Per-step oracle labeling degenerates (97.4% tie rate on ScienceWorld), so we run complete episodes under pure-internal and pure-deterministic strategies, comparing episode-level outcomes. Key finding: ~90% of routing signal is death avoidance [A] — deterministic computation's value is almost entirely concentrated in preventing catastrophic failures (-100 penalties). Non-death performance difference is small but non-negligible (Δ_nd=+2.84, 9.6% of Δ_full [A]). Router training on these labels yields an informative negative: episode-level independent eval 47.1±2.2% falls below the trivial majority-vote baseline (50.0%), and data-size ablation intermediates show no improvement with scaling (D089). The signal is overwhelmingly task-type-level (death risk), with insufficient step-level structure for learned routing.\\n\\n- **Headline result template**: \\\"Episode-level counterfactual analysis across 11 ScienceWorld task types (245 episodes) [A] reveals that death avoidance accounts for 90.41% of routing signal [A] between internal LLM reasoning and deterministic computation (Δ_full=+29.60, Δ_nd=+2.84 [A]; r=0.9698, p=8.12e-07 [A]). We propose this analysis as a diagnostic methodology for understanding when and why tool invocation helps LLM agents.\\\"\\n\\n## Paper Structure (8-page long paper)\\n\\n| Section | Pages | Content |\\n|---------|-------|---------|\\n| Abstract | 0.3 | Counterfactual analysis framing, death avoidance finding (multi-model), headline numbers, cross-domain evidence |\\n| Introduction | 1.2 | Problem (LLM catastrophic failures) + gap (per-step oracle degeneracy) + contribution (methodology + finding + cross-model/domain validation) |\\n| Related Work | 1.0 | Tool-use learning (Toolformer/ART/Chameleon/ToolkenGPT), adaptive computation (CogRouter/ARES/MoD), world model routing (ITP-R/Dyna-Think), safe RL, counterfactual-in-RL (Amitai/Gajcin/Olson) |\\n| Method | 1.5 | Full formalism: counterfactual framework definition, labeling pipeline (pseudocode/algorithm), DAF derivation + properties, router architecture, death decomposition framework |\\n| Experiments | 3.0 | §4.1 ScienceWorld death decomposition (core, Qwen2.5-7B); §4.2 Multi-model validation (Model B on same tasks); §4.3 Cross-domain negative contrast: MATH 795 problems (internal ≈ code interpreter → confirms death avoidance mechanism); §4.4 Temporal analysis + failure modes; §4.5 Ablations (router, labeling quality, keyword baseline structural failure) |\\n| Discussion | 0.5 | Implications for router design, scaling predictions (stronger models → lower death rate → lower DAF), when methodology applies vs doesn't |\\n| Conclusion | 0.5 | Summary + limitations + future work |\\n| References | ~1.0 | Not counted in 8-page limit |\\n\\n## Anticipated Reviewer Concerns & Mitigations\\n\\n1. **\\\"Novelty is incremental — just SFT a small model to classify\\\"**\\n   - Mitigation: Contribution is the empirical finding (death avoidance mechanism) + the counterfactual labeling methodology, not the router. Router negative result (47.1% < majority-vote 50.0%) actually strengthens the story: it confirms routing signal is task-type-level. Explicit vs implicit ablation quantifies the gap.\\n\\n2. **\\\"Only one benchmark (ScienceWorld)\\\"**\\n   - Mitigation [UPGRADED for long paper]: Multi-model validation (§4.2) shows finding holds across model families. MATH 795-problem evaluation (§4.3) demonstrates cross-domain applicability (code interpreter as deterministic oracle). ALFWorld exploratory evidence in Discussion.\\n\\n3. **\\\"Comparison unfair — CogRouter uses RL (CoPO), you use SFT\\\"**\\n   - Mitigation: Our primary comparison is SimGate vs ablated baselines (always-internal, always-deterministic, random, heuristic) — all same training budget. CogRouter/ITP-R cited from papers for context.\\n\\n4. **\\\"Death avoidance is trivial — just always use deterministic\\\"**\\n   - Mitigation: We do NOT claim selective > unconditional deterministic. Our contribution is the empirical finding that death avoidance dominates routing signal (~90% [A]), and the methodology that reveals this. Always-deterministic is a strong baseline — the interesting question is WHY (death avoidance), not WHETHER to route selectively. Plan-011 rule-based comparison + plan-012 death decomposition quantify this.\\n\\n5. **\\\"DAgger gap — SFT on pure-strategy trajectories may not transfer to mixed-strategy deployment\\\"**\\n   - Mitigation: Acknowledge explicitly (cite Ross et al. 2011). Plan C exacerbates this: router trains on always-internal/always-deterministic trajectories but deploys on mixed. Report train/test gap. If significant, discuss DAgger-style iterative relabeling as extension. Note: Plan C's episode-level labels avoid oracle circularity (no per-step tie-breaking), which is a methodological advantage even if distribution shift remains.\\n\\n6. **\\\"ScienceWorld's -100 penalty inflates gains\\\"** (Dream all 3 tiers)\\n   - Mitigation: Report gains WITH and WITHOUT death episodes separately. If non-death gains are small, honestly acknowledge that the primary value is catastrophic failure prevention — this IS our framing. Also report: what fraction of routing labels are genuine vs tie-break artifacts.\\n\\n7. **\\\"Missing tool-use literature — this is just Toolformer\\\"** (Dream all 3 tiers, CRITICAL)\\n   - Mitigation: Dedicated Related Work section. Position against Toolformer/ART/Chameleon. Differentiation: counterfactual trajectory labeling (not self-supervised), safety-aware framing (not general tool selection), explicit modular router (not LLM-as-router). (4) Episode-level counterfactual labeling — overcomes per-step oracle circularity in sparse-reward environments (97.4% tie rate).\\n\\n8. **\\\"Rule-based routing baseline missing\\\"** (Dream median + worst)\\n   - Mitigation: **D014 resolved — keyword routing structurally fails.** Two keyword lists tested: v1 (generic verbs incl. connect) → ≈always-det (85.8%); v2 (science-only: heat/boil/melt/freeze) → ≈always-internal (4.9%, near-zero hits). ScienceWorld actions use generic interaction verbs, not science keywords. Paper positions this as \\\"structural failure analysis\\\" — keyword heuristics fundamentally cannot capture routing signal in this environment, supporting the need for learned/observation-based approaches. D014: keywords v2 (science-only verbs), v1 had connect/disconnect degeneracy.\\n\\n## Venue Fit Risks (Long Paper, Main Track)\\n\\n- EMNLP LLM Agents track is a natural fit (tool use + planning + evaluation)\\n- Long paper needs: breadth (multi-model + cross-domain) + depth (temporal analysis + failure taxonomy) + methodology contribution\\n- Risk: \\\"Analysis paper, no method contribution\\\" — mitigate by positioning counterfactual labeling framework as reusable methodology, not just one-off analysis. Algorithm box + formal definitions elevate from ad hoc to principled.\\n- Risk: \\\"Death avoidance is the only signal\\\" — mitigate: multi-model validation shows it's a general phenomenon; MATH shows methodology generalizes; Discussion section addresses when/why this applies.\\n- Risk: Router ≈ always-det → novelty concern. **D014: keyword routing structurally fails on ScienceWorld** — positive finding supporting learned approaches.\\n- Risk: Scaling concern (stronger models → less death → less routing signal) — address honestly in Discussion as a feature not bug: the methodology DETECTS when routing adds value.\\n\\n## Key Differences from IDEA_BRIEF / Short Paper\\n\\n1. **D050 scope expansion**: From short paper (4p, ScienceWorld only) to long paper (8p, multi-model + cross-domain).\\n2. **C3 added**: Cross-model generality claim (pending multi-model experiment).\\n3. **MATH upgraded**: From \\\"future work\\\" to §4.3 full evaluation (795 problems).\\n4. **Structure**: Full Related Work + Discussion sections; Method expanded with formalism.\\n5. **Framing unchanged**: Core insight remains death avoidance dominance + diagnostic methodology.\\n\\n## Robustness Check (30-task prescreening, appendix only)\\n\\nA broader prescreening analysis across 30 task types / 249 episodes [B] provides robustness support: Δ_full=+38.33 [B], Δ_nd=+0.48 [B], DAF=98.75% [B], r=0.9864 [B]. The higher DAF in prescreening reflects the inclusion of many low-n task types where death dominance is even more pronounced. These numbers appear only in the appendix.\\n\\n## 数据源权威声明\\n\\n- **主表（A）**: plan-012-full, 11 tasks / 245 episodes — 所有主文引用\\n- **Robustness（B）**: prescreening, 30 tasks / 249 episodes — 仅 appendix\\n- **绝对不引用**: death_decomposition_report.json（文件名误导，实际是 30-task 数据）\\n- **绝对不引用**: results/plan_c_test_labels/implicit_sft.jsonl（标签损坏，no-preference→internal 映射错误）\\n\", \"total_chars\": 16306, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "aeb1e216-be03-43bb-9870-189b236a64bf",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/paper_framing.md\\\", \\\"content\\\": \\\"# Paper Framing — simgate-modular-routing\\\\n\\\\n## Target Venue\\\\n- **EMNLP 2026 Main Conference — Long Paper (8 pages + references)**\\\\n- Deadline: ARR May 25, 2026 (10 days remaining)\\\\n- D050: Upgraded from short paper (4p, Findings) per user directive\\\\n\\\\n## Core Insight\\\\n\\\\nLLM agents on rule-governed environments face catastrophic failures from hallucinated state transitions. Deterministic external computation (environment simulators, code interpreters) eliminates these failures — but what exactly does routing learn? We introduce episode-level counterfactual analysis (per-step oracle labeling degenerates to 97.4% ties in sparse-reward settings) and discover that **death avoidance accounts for ~90% of routing signal** on ScienceWorld (Δ_full=+29.60 [A], Δ_nd=+2.84 [A], DAF=90.41% [A]; Pearson r=0.9698, p=8.12e-07 [A] across 11 task types / 245 episodes [A]; source: plan-012-full). Non-death performance difference is small but non-negligible (Δ_nd/Δ_full=9.6% [A]). Key exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all non-death performance difference) [A]. The contribution is the empirical finding (death avoidance dominance) + the diagnostic methodology (episode-level counterfactual labeling), not the router architecture itself.\\\\n\\\\n## Core Claims (3 claims for long paper)\\\\n\\\\n**C1 (Death avoidance dominates routing signal)**: On ScienceWorld, deterministic simulation dramatically outperforms LLM reasoning (Δ_full=+29.60 [A]), with **death avoidance as the dominant mechanism** (90.41% of the performance gap [A], measured by Δ decomposition; plan-012-full, 11 tasks / 245 eps [A]). Episode-level label distribution: det-preferred 86 / internal-preferred 9 / no-preference 150 (out of 245 episodes) [A]. Death rates: internal 42.9% / deterministic 16.3% [A]. Non-death score deltas are small but non-negligible (Δ_nd=+2.84 [A], 9.6% of Δ_full [A]). Key exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all non-death performance difference) [A]. Pearson r=0.9698 (p=8.12e-07) [A] between per-task death rate difference and Δ_full across 11 task types [A]. The value of deterministic computation in interactive environments is concentrated in catastrophic failure prevention, not positive task guidance.\\\\n\\\\n**C2 (Episode-level counterfactual labeling methodology + informative router negative)**: Per-step oracle labeling degenerates in sparse-reward environments (97.4% tie rate on ScienceWorld). Episode-level counterfactual analysis — running complete episodes under pure-internal and pure-deterministic strategies — overcomes this circularity and reveals the death-avoidance mechanism. Router training (Qwen3-1.7B on counterfactual labels) yields an **informative negative result**: step-level matched eval achieves 55.4±5.2% balanced accuracy, but episode-level independent eval drops to 47.1±2.2% (8-seed cross-split) — **below the trivial majority-vote baseline (50.0%)**. Data-size ablation (r7n2, intermediates: 5/5 evals = 0.50, all-internal predictions) suggests scaling data does not overcome the signal deficit. The methodology contribution is the counterfactual labeling framework itself; the router negative result is presented honestly and is consistent with C1's finding that routing signal is overwhelmingly task-type-level (death risk), leaving insufficient step-level signal for learned routing (D089).\\\\n\\\\n**C3 (Cross-model generality + cross-domain contrast)** [NEW for long paper]:\\\\n- **Cross-model mechanism verification** [Llama-3.1-8B pilot, D054→D055 corrected]: Death dominance fully replicates across model families — **both mechanism and direction consistent**. Llama pilot (freeze + find-non-living-thing, N=10): freeze's only non-tie label = death_asymmetry (internal died, det survived — same direction as Qwen where internal death rate 42.9% vs det 16.3%); find-non-living-thing has 0 deaths, all labels from score_comparison (consistent with Qwen). Llama-8B substantially weaker on ScienceWorld (most scores 0, >80% no-preference expected at scale), limiting full-scale comparison — pilot positioned as mechanism verification, not performance validation.\\\\n- **Cross-domain negative contrast** [MATH, N=795]: In environments WITHOUT catastrophic failure penalties (MATH: no death, no -100), the routing signal disappears — internal reasoning and code interpretation perform near-identically (+0.5pp, McNemar p=0.81, N=795). Label distribution: 66 internal-preferred / 58 det-preferred (ratio 1.14:1) vs ScienceWorld's 9 / 86 (ratio 0.10:1). The N=300 pilot showed a directional +4.3pp trend (p=0.079), but the powered N=795 extension confirms the effect is not significant — consistent with the death-avoidance mechanism: no catastrophic failures → no routing signal. Source: math-extension-n800.\\\\n\\\\n**D013 note**: C1 no longer claims \\\\\\\"selective > unconditional.\\\\\\\" Router confirmed ≈ always-det on episode-level eval (47.1% < majority-vote 50.0%, D089). This IS the finding — the router negative result demonstrates that death avoidance signal is task-type-level and non-learnable at the step level with available data. Keyword heuristic also structurally fails (D014).\\\\n\\\\n## Positioning vs Tool-Use Literature (Dream-driven addition)\\\\n\\\\n**Critical gap identified by all 3 Dream tiers**: The core pipeline (counterfactual labels → SFT small classifier → selective invocation) is standard in tool-use learning. Must position against:\\\\n- **Toolformer** (Schick et al. 2024): Self-supervised tool-use learning via API call insertion. SimGate differs: hindsight labels from environment forking (not self-supervised), safety-aware framing (not general tool selection).\\\\n- **ART** (Paranjape et al. 2023): Automated tool selection via LLM reasoning. SimGate: dedicated lightweight router, not LLM-as-router.\\\\n- **Chameleon** (Lu et al. 2024): LLM-as-planner routing to diverse tools. SimGate: single modality (deterministic computation), explicit small router.\\\\n- **ToolkenGPT** (Hao et al. 2024): Token-level tool triggers. SimGate: step-level routing with counterfactual labels.\\\\n\\\\n**Our differentiation**: (1) Episode-level counterfactual labeling — overcomes per-step oracle circularity in sparse-reward environments (97.4% tie rate), providing ground-truth episode outcomes rather than tie-break artifacts. (2) Empirical finding: death avoidance accounts for ~90% of routing signal [A] — quantifies WHERE and WHY tool invocation helps (catastrophic failure prevention, not positive guidance). (3) Honest negative on learned routing — router fails to generalize beyond training episodes (47.1% < majority-vote 50.0%), confirming signal is task-type-level, not step-level learnable. (4) The contribution is the finding + methodology, not the router architecture — this distinguishes from \\\\\\\"we built a better tool selector\\\\\\\" papers.\\\\n\\\\n**Paper must include a dedicated Related Work section** (not just intro paragraphs). Minimum coverage: tool-use learning (Toolformer, ART, Chameleon), adaptive computation (CogRouter, ARES, Mixture-of-Depths), world model routing (ITP-R, Dyna-Think), agent frameworks (ReAct).\\\\n\\\\n## Story Spine\\\\n\\\\n- **Problem**: LLM agents hallucinate state transitions on rule-governed environments (temperature physics, chemical reactions), leading to catastrophic failures. ITP-R routes to an approximate LLM world model but underperforms pure internal reasoning (62.58 vs CogRouter 84.6 on ScienceWorld). ReTool/AgentMath learn when to invoke code interpreters but use implicit routing entangled with the backbone. Tool-use learning methods (Toolformer, ART, Chameleon) learn general tool selection but don't specialize for catastrophic failure prevention or use counterfactual trajectory labeling.\\\\n\\\\n- **Our framing**: We use episode-level counterfactual analysis to understand WHAT routing learns. Per-step oracle labeling degenerates (97.4% tie rate on ScienceWorld), so we run complete episodes under pure-internal and pure-deterministic strategies, comparing episode-level outcomes. Key finding: ~90% of routing signal is death avoidance [A] — deterministic computation's value is almost entirely concentrated in preventing catastrophic failures (-100 penalties). Non-death performance difference is small but non-negligible (Δ_nd=+2.84, 9.6% of Δ_full [A]). Router training on these labels yields an informative negative: episode-level independent eval 47.1±2.2% falls below the trivial majority-vote baseline (50.0%), and data-size ablation intermediates show no improvement with scaling (D089). The signal is overwhelmingly task-type-level (death risk), with insufficient step-level structure for learned routing.\\\\n\\\\n- **Headline result template**: \\\\\\\"Episode-level counterfactual analysis across 11 ScienceWorld task types (245 episodes) [A] reveals that death avoidance accounts for 90.41% of routing signal [A] between internal LLM reasoning and deterministic computation (Δ_full=+29.60, Δ_nd=+2.84 [A]; r=0.9698, p=8.12e-07 [A]). We propose this analysis as a diagnostic methodology for understanding when and why tool invocation helps LLM agents.\\\\\\\"\\\\n\\\\n## Paper Structure (8-page long paper)\\\\n\\\\n| Section | Pages | Content |\\\\n|---------|-------|---------|\\\\n| Abstract | 0.3 | Counterfactual analysis framing, death avoidance finding (multi-model), headline numbers, cross-domain evidence |\\\\n| Introduction | 1.2 | Problem (LLM catastrophic failures) + gap (per-step oracle degeneracy) + contribution (methodology + finding + cross-model/domain validation) |\\\\n| Related Work | 1.0 | Tool-use learning (Toolformer/ART/Chameleon/ToolkenGPT), adaptive computation (CogRouter/ARES/MoD), world model routing (ITP-R/Dyna-Think), safe RL, counterfactual-in-RL (Amitai/Gajcin/Olson) |\\\\n| Method | 1.5 | Full formalism: counterfactual framework definition, labeling pipeline (pseudocode/algorithm), DAF derivation + properties, router architecture, death decomposition framework |\\\\n| Experiments | 3.0 | §4.1 ScienceWorld death decomposition (core, Qwen2.5-7B); §4.2 Multi-model validation (Model B on same tasks); §4.3 Cross-domain negative contrast: MATH 795 problems (internal ≈ code interpreter → confirms death avoidance mechanism); §4.4 Temporal analysis + failure modes; §4.5 Ablations (router, labeling quality, keyword baseline structural failure) |\\\\n| Discussion | 0.5 | Implications for router design, scaling predictions (stronger models → lower death rate → lower DAF), when methodology applies vs doesn't |\\\\n| Conclusion | 0.5 | Summary + limitations + future work |\\\\n| References | ~1.0 | Not counted in 8-page limit |\\\\n\\\\n## Anticipated Reviewer Concerns & Mitigations\\\\n\\\\n1. **\\\\\\\"Novelty is incremental — just SFT a small model to classify\\\\\\\"**\\\\n   - Mitigation: Contribution is the empirical finding (death avoidance mechanism) + the counterfactual labeling methodology, not the router. Router negative result (47.1% < majority-vote 50.0%) actually strengthens the story: it confirms routing signal is task-type-level. Explicit vs implicit ablation quantifies the gap.\\\\n\\\\n2. **\\\\\\\"Only one benchmark (ScienceWorld)\\\\\\\"**\\\\n   - Mitigation [UPGRADED for long paper]: Multi-model validation (§4.2) shows finding holds across model families. MATH 795-problem evaluation (§4.3) demonstrates cross-domain applicability (code interpreter as deterministic oracle). ALFWorld exploratory evidence in Discussion.\\\\n\\\\n3. **\\\\\\\"Comparison unfair — CogRouter uses RL (CoPO), you use SFT\\\\\\\"**\\\\n   - Mitigation: Our primary comparison is SimGate vs ablated baselines (always-internal, always-deterministic, random, heuristic) — all same training budget. CogRouter/ITP-R cited from papers for context.\\\\n\\\\n4. **\\\\\\\"Death avoidance is trivial — just always use deterministic\\\\\\\"**\\\\n   - Mitigation: We do NOT claim selective > unconditional deterministic. Our contribution is the empirical finding that death avoidance dominates routing signal (~90% [A]), and the methodology that reveals this. Always-deterministic is a strong baseline — the interesting question is WHY (death avoidance), not WHETHER to route selectively. Plan-011 rule-based comparison + plan-012 death decomposition quantify this.\\\\n\\\\n5. **\\\\\\\"DAgger gap — SFT on pure-strategy trajectories may not transfer to mixed-strategy deployment\\\\\\\"**\\\\n   - Mitigation: Acknowledge explicitly (cite Ross et al. 2011). Plan C exacerbates this: router trains on always-internal/always-deterministic trajectories but deploys on mixed. Report train/test gap. If significant, discuss DAgger-style iterative relabeling as extension. Note: Plan C's episode-level labels avoid oracle circularity (no per-step tie-breaking), which is a methodological advantage even if distribution shift remains.\\\\n\\\\n6. **\\\\\\\"ScienceWorld's -100 penalty inflates gains\\\\\\\"** (Dream all 3 tiers)\\\\n   - Mitigation: Report gains WITH and WITHOUT death episodes separately. If non-death gains are small, honestly acknowledge that the primary value is catastrophic failure prevention — this IS our framing. Also report: what fraction of routing labels are genuine vs tie-break artifacts.\\\\n\\\\n7. **\\\\\\\"Missing tool-use literature — this is just Toolformer\\\\\\\"** (Dream all 3 tiers, CRITICAL)\\\\n   - Mitigation: Dedicated Related Work section. Position against Toolformer/ART/Chameleon. Differentiation: counterfactual trajectory labeling (not self-supervised), safety-aware framing (not general tool selection), explicit modular router (not LLM-as-router). (4) Episode-level counterfactual labeling — overcomes per-step oracle circularity in sparse-reward environments (97.4% tie rate).\\\\n\\\\n8. **\\\\\\\"Rule-based routing baseline missing\\\\\\\"** (Dream median + worst)\\\\n   - Mitigation: **D014 resolved — keyword routing structurally fails.** Two keyword lists tested: v1 (generic verbs incl. connect) → ≈always-det (85.8%); v2 (science-only: heat/boil/melt/freeze) → ≈always-internal (4.9%, near-zero hits). ScienceWorld actions use generic interaction verbs, not science keywords. Paper positions this as \\\\\\\"structural failure analysis\\\\\\\" — keyword heuristics fundamentally cannot capture routing signal in this environment, supporting the need for learned/observation-based approaches. D014: keywords v2 (science-only verbs), v1 had connect/disconnect degeneracy.\\\\n\\\\n## Venue Fit Risks (Long Paper, Main Track)\\\\n\\\\n- EMNLP LLM Agents track is a natural fit (tool use + planning + evaluation)\\\\n- Long paper needs: breadth (multi-model + cross-domain) + depth (temporal analysis + failure taxonomy) + methodology contribution\\\\n- Risk: \\\\\\\"Analysis paper, no method contribution\\\\\\\" — mitigate by positioning counterfactual labeling framework as reusable methodology, not just one-off analysis. Algorithm box + formal definitions elevate from ad hoc to principled.\\\\n- Risk: \\\\\\\"Death avoidance is the only signal\\\\\\\" — mitigate: multi-model validation shows it's a general phenomenon; MATH shows methodology generalizes; Discussion section addresses when/why this applies.\\\\n- Risk: Router ≈ always-det → novelty concern. **D014: keyword routing structurally fails on ScienceWorld** — positive finding supporting learned approaches.\\\\n- Risk: Scaling concern (stronger models → less death → less routing signal) — address honestly in Discussion as a feature not bug: the methodology DETECTS when routing adds value.\\\\n\\\\n## Key Differences from IDEA_BRIEF / Short Paper\\\\n\\\\n1. **D050 scope expansion**: From short paper (4p, ScienceWorld only) to long paper (8p, multi-model + cross-domain).\\\\n2. **C3 added**: Cross-model generality claim (pending multi-model experiment).\\\\n3. **MATH upgraded**: From \\\\\\\"future work\\\\\\\" to §4.3 full evaluation (795 problems).\\\\n4. **Structure**: Full Related Work + Discussion sections; Method expanded with formalism.\\\\n5. **Framing unchanged**: Core insight remains death avoidance dominance + diagnostic methodology.\\\\n\\\\n## Robustness Check (30-task prescreening, appendix only)\\\\n\\\\nA broader prescreening analysis across 30 task types / 249 episodes [B] provides robustness support: Δ_full=+38.33 [B], Δ_nd=+0.48 [B], DAF=98.75% [B], r=0.9864 [B]. The higher DAF in prescreening reflects the inclusion of many low-n task types where death dominance is even more pronounced. These numbers appear only in the appendix.\\\\n\\\\n## 数据源权威声明\\\\n\\\\n- **主表（A）**: plan-012-full, 11 tasks / 245 episodes — 所有主文引用\\\\n- **Robustness（B）**: prescreening, 30 tasks / 249 episodes — 仅 appendix\\\\n- **绝对不引用**: death_decomposition_report.json（文件名误导，实际是 30-task 数据）\\\\n- **绝对不引用**: results/plan_c_test_labels/implicit_sft.jsonl（标签损坏，no-preference→internal 映射错误）\\\\n\\\", \\\"total_chars\\\": 16306, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/paper_framing.md\", \"content\": \"# Paper Framing — simgate-modular-routing\\n\\n## Target Venue\\n- **EMNLP 2026 Main Conference — Long Paper (8 pages + references)**\\n- Deadline: ARR May 25, 2026 (10 days remaining)\\n- D050: Upgraded from short paper (4p, Findings) per user directive\\n\\n## Core Insight\\n\\nLLM agents on rule-governed environments face catastrophic failures from hallucinated state transitions. Deterministic external computation (environment simulators, code interpreters) eliminates these failures — but what exactly does routing learn? We introduce episode-level counterfactual analysis (per-step oracle labeling degenerates to 97.4% ties in sparse-reward settings) and discover that **death avoidance accounts for ~90% of routing signal** on ScienceWorld (Δ_full=+29.60 [A], Δ_nd=+2.84 [A], DAF=90.41% [A]; Pearson r=0.9698, p=8.12e-07 [A] across 11 task types / 245 episodes [A]; source: plan-012-full). Non-death performance difference is small but non-negligible (Δ_nd/Δ_full=9.6% [A]). Key exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all non-death performance difference) [A]. The contribution is the empirical finding (death avoidance dominance) + the diagnostic methodology (episode-level counterfactual labeling), not the router architecture itself.\\n\\n## Core Claims (3 claims for long paper)\\n\\n**C1 (Death avoidance dominates routing signal)**: On ScienceWorld, deterministic simulation dramatically outperforms LLM reasoning (Δ_full=+29.60 [A]), with **death avoidance as the dominant mechanism** (90.41% of the performance gap [A], measured by Δ decomposition; plan-012-full, 11 tasks / 245 eps [A]). Episode-level label distribution: det-preferred 86 / internal-preferred 9 / no-preference 150 (out of 245 episodes) [A]. Death rates: internal 42.9% / deterministic 16.3% [A]. Non-death score deltas are small but non-negligible (Δ_nd=+2.84 [A], 9.6% of Δ_full [A]). Key exception: find-non-living-thing (n=40, zero deaths, Δ_full=+9.58, all non-death performance difference) [A]. Pearson r=0.9698 (p=8.12e-07) [A] between per-task death rate difference and Δ_full across 11 task types [A]. The value of deterministic computation in interactive environments is concentrated in catastrophic failure prevention, not positive task guidance.\\n\\n**C2 (Episode-level counterfactual labeling methodology + informative router negative)**: Per-step oracle labeling degenerates in sparse-reward environments (97.4% tie rate on ScienceWorld). Episode-level counterfactual analysis — running complete episodes under pure-internal and pure-deterministic strategies — overcomes this circularity and reveals the death-avoidance mechanism. Router training (Qwen3-1.7B on counterfactual labels) yields an **informative negative result**: step-level matched eval achieves 55.4±5.2% balanced accuracy, but episode-level independent eval drops to 47.1±2.2% (8-seed cross-split) — **below the trivial majority-vote baseline (50.0%)**. Data-size ablation (r7n2, intermediates: 5/5 evals = 0.50, all-internal predictions) suggests scaling data does not overcome the signal deficit. The methodology contribution is the counterfactual labeling framework itself; the router negative result is presented honestly and is consistent with C1's finding that routing signal is overwhelmingly task-type-level (death risk), leaving insufficient step-level signal for learned routing (D089).\\n\\n**C3 (Cross-model generality + cross-domain contrast)** [NEW for long paper]:\\n- **Cross-model mechanism verification** [Llama-3.1-8B pilot, D054→D055 corrected]: Death dominance fully replicates across model families — **both mechanism and direction consistent**. Llama pilot (freeze + find-non-living-thing, N=10): freeze's only non-tie label = death_asymmetry (internal died, det survived — same direction as Qwen where internal death rate 42.9% vs det 16.3%); find-non-living-thing has 0 deaths, all labels from score_comparison (consistent with Qwen). Llama-8B substantially weaker on ScienceWorld (most scores 0, >80% no-preference expected at scale), limiting full-scale comparison — pilot positioned as mechanism verification, not performance validation.\\n- **Cross-domain negative contrast** [MATH, N=795]: In environments WITHOUT catastrophic failure penalties (MATH: no death, no -100), the routing signal disappears — internal reasoning and code interpretation perform near-identically (+0.5pp, McNemar p=0.81, N=795). Label distribution: 66 internal-preferred / 58 det-preferred (ratio 1.14:1) vs ScienceWorld's 9 / 86 (ratio 0.10:1). The N=300 pilot showed a directional +4.3pp trend (p=0.079), but the powered N=795 extension confirms the effect is not significant — consistent with the death-avoidance mechanism: no catastrophic failures → no routing signal. Source: math-extension-n800.\\n\\n**D013 note**: C1 no longer claims \\\"selective > unconditional.\\\" Router confirmed ≈ always-det on episode-level eval (47.1% < majority-vote 50.0%, D089). This IS the finding — the router negative result demonstrates that death avoidance signal is task-type-level and non-learnable at the step level with available data. Keyword heuristic also structurally fails (D014).\\n\\n## Positioning vs Tool-Use Literature (Dream-driven addition)\\n\\n**Critical gap identified by all 3 Dream tiers**: The core pipeline (counterfactual labels → SFT small classifier → selective invocation) is standard in tool-use learning. Must position against:\\n- **Toolformer** (Schick et al. 2024): Self-supervised tool-use learning via API call insertion. SimGate differs: hindsight labels from environment forking (not self-supervised), safety-aware framing (not general tool selection).\\n- **ART** (Paranjape et al. 2023): Automated tool selection via LLM reasoning. SimGate: dedicated lightweight router, not LLM-as-router.\\n- **Chameleon** (Lu et al. 2024): LLM-as-planner routing to diverse tools. SimGate: single modality (deterministic computation), explicit small router.\\n- **ToolkenGPT** (Hao et al. 2024): Token-level tool triggers. SimGate: step-level routing with counterfactual labels.\\n\\n**Our differentiation**: (1) Episode-level counterfactual labeling — overcomes per-step oracle circularity in sparse-reward environments (97.4% tie rate), providing ground-truth episode outcomes rather than tie-break artifacts. (2) Empirical finding: death avoidance accounts for ~90% of routing signal [A] — quantifies WHERE and WHY tool invocation helps (catastrophic failure prevention, not positive guidance). (3) Honest negative on learned routing — router fails to generalize beyond training episodes (47.1% < majority-vote 50.0%), confirming signal is task-type-level, not step-level learnable. (4) The contribution is the finding + methodology, not the router architecture — this distinguishes from \\\"we built a better tool selector\\\" papers.\\n\\n**Paper must include a dedicated Related Work section** (not just intro paragraphs). Minimum coverage: tool-use learning (Toolformer, ART, Chameleon), adaptive computation (CogRouter, ARES, Mixture-of-Depths), world model routing (ITP-R, Dyna-Think), agent frameworks (ReAct).\\n\\n## Story Spine\\n\\n- **Problem**: LLM agents hallucinate state transitions on rule-governed environments (temperature physics, chemical reactions), leading to catastrophic failures. ITP-R routes to an approximate LLM world model but underperforms pure internal reasoning (62.58 vs CogRouter 84.6 on ScienceWorld). ReTool/AgentMath learn when to invoke code interpreters but use implicit routing entangled with the backbone. Tool-use learning methods (Toolformer, ART, Chameleon) learn general tool selection but don't specialize for catastrophic failure prevention or use counterfactual trajectory labeling.\\n\\n- **Our framing**: We use episode-level counterfactual analysis to understand WHAT routing learns. Per-step oracle labeling degenerates (97.4% tie rate on ScienceWorld), so we run complete episodes under pure-internal and pure-deterministic strategies, comparing episode-level outcomes. Key finding: ~90% of routing signal is death avoidance [A] — deterministic computation's value is almost entirely concentrated in preventing catastrophic failures (-100 penalties). Non-death performance difference is small but non-negligible (Δ_nd=+2.84, 9.6% of Δ_full [A]). Router training on these labels yields an informative negative: episode-level independent eval 47.1±2.2% falls below the trivial majority-vote baseline (50.0%), and data-size ablation intermediates show no improvement with scaling (D089). The signal is overwhelmingly task-type-level (death risk), with insufficient step-level structure for learned routing.\\n\\n- **Headline result template**: \\\"Episode-level counterfactual analysis across 11 ScienceWorld task types (245 episodes) [A] reveals that death avoidance accounts for 90.41% of routing signal [A] between internal LLM reasoning and deterministic computation (Δ_full=+29.60, Δ_nd=+2.84 [A]; r=0.9698, p=8.12e-07 [A]). We propose this analysis as a diagnostic methodology for understanding when and why tool invocation helps LLM agents.\\\"\\n\\n## Paper Structure (8-page long paper)\\n\\n| Section | Pages | Content |\\n|---------|-------|---------|\\n| Abstract | 0.3 | Counterfactual analysis framing, death avoidance finding (multi-model), headline numbers, cross-domain evidence |\\n| Introduction | 1.2 | Problem (LLM catastrophic failures) + gap (per-step oracle degeneracy) + contribution (methodology + finding + cross-model/domain validation) |\\n| Related Work | 1.0 | Tool-use learning (Toolformer/ART/Chameleon/ToolkenGPT), adaptive computation (CogRouter/ARES/MoD), world model routing (ITP-R/Dyna-Think), safe RL, counterfactual-in-RL (Amitai/Gajcin/Olson) |\\n| Method | 1.5 | Full formalism: counterfactual framework definition, labeling pipeline (pseudocode/algorithm), DAF derivation + properties, router architecture, death decomposition framework |\\n| Experiments | 3.0 | §4.1 ScienceWorld death decomposition (core, Qwen2.5-7B); §4.2 Multi-model validation (Model B on same tasks); §4.3 Cross-domain negative contrast: MATH 795 problems (internal ≈ code interpreter → confirms death avoidance mechanism); §4.4 Temporal analysis + failure modes; §4.5 Ablations (router, labeling quality, keyword baseline structural failure) |\\n| Discussion | 0.5 | Implications for router design, scaling predictions (stronger models → lower death rate → lower DAF), when methodology applies vs doesn't |\\n| Conclusion | 0.5 | Summary + limitations + future work |\\n| References | ~1.0 | Not counted in 8-page limit |\\n\\n## Anticipated Reviewer Concerns & Mitigations\\n\\n1. **\\\"Novelty is incremental — just SFT a small model to classify\\\"**\\n   - Mitigation: Contribution is the empirical finding (death avoidance mechanism) + the counterfactual labeling methodology, not the router. Router negative result (47.1% < majority-vote 50.0%) actually strengthens the story: it confirms routing signal is task-type-level. Explicit vs implicit ablation quantifies the gap.\\n\\n2. **\\\"Only one benchmark (ScienceWorld)\\\"**\\n   - Mitigation [UPGRADED for long paper]: Multi-model validation (§4.2) shows finding holds across model families. MATH 795-problem evaluation (§4.3) demonstrates cross-domain applicability (code interpreter as deterministic oracle). ALFWorld exploratory evidence in Discussion.\\n\\n3. **\\\"Comparison unfair — CogRouter uses RL (CoPO), you use SFT\\\"**\\n   - Mitigation: Our primary comparison is SimGate vs ablated baselines (always-internal, always-deterministic, random, heuristic) — all same training budget. CogRouter/ITP-R cited from papers for context.\\n\\n4. **\\\"Death avoidance is trivial — just always use deterministic\\\"**\\n   - Mitigation: We do NOT claim selective > unconditional deterministic. Our contribution is the empirical finding that death avoidance dominates routing signal (~90% [A]), and the methodology that reveals this. Always-deterministic is a strong baseline — the interesting question is WHY (death avoidance), not WHETHER to route selectively. Plan-011 rule-based comparison + plan-012 death decomposition quantify this.\\n\\n5. **\\\"DAgger gap — SFT on pure-strategy trajectories may not transfer to mixed-strategy deployment\\\"**\\n   - Mitigation: Acknowledge explicitly (cite Ross et al. 2011). Plan C exacerbates this: router trains on always-internal/always-deterministic trajectories but deploys on mixed. Report train/test gap. If significant, discuss DAgger-style iterative relabeling as extension. Note: Plan C's episode-level labels avoid oracle circularity (no per-step tie-breaking), which is a methodological advantage even if distribution shift remains.\\n\\n6. **\\\"ScienceWorld's -100 penalty inflates gains\\\"** (Dream all 3 tiers)\\n   - Mitigation: Report gains WITH and WITHOUT death episodes separately. If non-death gains are small, honestly acknowledge that the primary value is catastrophic failure prevention — this IS our framing. Also report: what fraction of routing labels are genuine vs tie-break artifacts.\\n\\n7. **\\\"Missing tool-use literature — this is just Toolformer\\\"** (Dream all 3 tiers, CRITICAL)\\n   - Mitigation: Dedicated Related Work section. Position against Toolformer/ART/Chameleon. Differentiation: counterfactual trajectory labeling (not self-supervised), safety-aware framing (not general tool selection), explicit modular router (not LLM-as-router). (4) Episode-level counterfactual labeling — overcomes per-step oracle circularity in sparse-reward environments (97.4% tie rate).\\n\\n8. **\\\"Rule-based routing baseline missing\\\"** (Dream median + worst)\\n   - Mitigation: **D014 resolved — keyword routing structurally fails.** Two keyword lists tested: v1 (generic verbs incl. connect) → ≈always-det (85.8%); v2 (science-only: heat/boil/melt/freeze) → ≈always-internal (4.9%, near-zero hits). ScienceWorld actions use generic interaction verbs, not science keywords. Paper positions this as \\\"structural failure analysis\\\" — keyword heuristics fundamentally cannot capture routing signal in this environment, supporting the need for learned/observation-based approaches. D014: keywords v2 (science-only verbs), v1 had connect/disconnect degeneracy.\\n\\n## Venue Fit Risks (Long Paper, Main Track)\\n\\n- EMNLP LLM Agents track is a natural fit (tool use + planning + evaluation)\\n- Long paper needs: breadth (multi-model + cross-domain) + depth (temporal analysis + failure taxonomy) + methodology contribution\\n- Risk: \\\"Analysis paper, no method contribution\\\" — mitigate by positioning counterfactual labeling framework as reusable methodology, not just one-off analysis. Algorithm box + formal definitions elevate from ad hoc to principled.\\n- Risk: \\\"Death avoidance is the only signal\\\" — mitigate: multi-model validation shows it's a general phenomenon; MATH shows methodology generalizes; Discussion section addresses when/why this applies.\\n- Risk: Router ≈ always-det → novelty concern. **D014: keyword routing structurally fails on ScienceWorld** — positive finding supporting learned approaches.\\n- Risk: Scaling concern (stronger models → less death → less routing signal) — address honestly in Discussion as a feature not bug: the methodology DETECTS when routing adds value.\\n\\n## Key Differences from IDEA_BRIEF / Short Paper\\n\\n1. **D050 scope expansion**: From short paper (4p, ScienceWorld only) to long paper (8p, multi-model + cross-domain).\\n2. **C3 added**: Cross-model generality claim (pending multi-model experiment).\\n3. **MATH upgraded**: From \\\"future work\\\" to §4.3 full evaluation (795 problems).\\n4. **Structure**: Full Related Work + Discussion sections; Method expanded with formalism.\\n5. **Framing unchanged**: Core insight remains death avoidance dominance + diagnostic methodology.\\n\\n## Robustness Check (30-task prescreening, appendix only)\\n\\nA broader prescreening analysis across 30 task types / 249 episodes [B] provides robustness support: Δ_full=+38.33 [B], Δ_nd=+0.48 [B], DAF=98.75% [B], r=0.9864 [B]. The higher DAF in prescreening reflects the inclusion of many low-n task types where death dominance is even more pronounced. These numbers appear only in the appendix.\\n\\n## 数据源权威声明\\n\\n- **主表（A）**: plan-012-full, 11 tasks / 245 episodes — 所有主文引用\\n- **Robustness（B）**: prescreening, 30 tasks / 249 episodes — 仅 appendix\\n- **绝对不引用**: death_decomposition_report.json（文件名误导，实际是 30-task 数据）\\n- **绝对不引用**: results/plan_c_test_labels/implicit_sft.jsonl（标签损坏，no-preference→internal 映射错误）\\n\", \"total_chars\": 16306, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The registry data is too large to read directly. I need to read it in chunks. Let me also check for paper tex files. Let me read the registry data and look for paper files in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "013299f0-2db3-415c-b35f-a45fe09b40b7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7frk761ykzGVFWUTUCApw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5505,
+      "cache_read_input_tokens": 26362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5505
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13_
+
+Registry 数据量很大，需要分块读取。同时查看论文 tex 文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "d05a9df1-0a52-4833-8a9e-482e6ec5fa39",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7frk761ykzGVFWUTUCApw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5505,
+      "cache_read_input_tokens": 26362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5505
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TkFWcD3Sv2xRiWbjekbfEC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt",
+  "limit": 300
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "e7323b2b-7d36-4bc6-8f27-d2024e8035e3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7frk761ykzGVFWUTUCApw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5505,
+      "cache_read_input_tokens": 26362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5505
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-18T21:40:55.704Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01TkFWcD3Sv2xRiWbjekbfEC`</summary>
+
+```text
+File content (25401 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "14e39e03-1f81-4bb1-b2a4-c28c4fb05b6a",
+  "tool_use_result": "Error: File content (25401 tokens) exceeds maximum allowed tokens (25000). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file."
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01MCbLu87hQspveLbBauASPu`</summary>
+
+```json
+{
+  "pattern": "**/*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "06e153e1-6123-4bee-b8a2-b0d76216ce80",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01L7frk761ykzGVFWUTUCApw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5505,
+      "cache_read_input_tokens": 26362,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 5505
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-18T21:40:56.012Z_
+
+<details><summary>↩ Tool result · `toolu_01MCbLu87hQspveLbBauASPu`</summary>
+
+```text
+artifacts/dream_reports/dream_20260513T153257/best/paper.tex
+artifacts/dream_reports/dream_20260513T153257/median/paper.tex
+artifacts/dream_reports/dream_20260513T153257/worst/paper.tex
+artifacts/_project/paper/abstract.tex
+artifacts/_project/paper/main_b09c23.tex
+artifacts/_project/paper/main.tex
+artifacts/_project/paper/conclusion.tex
+artifacts/penalty_sensitivity_table.tex
+artifacts/plan-012-penalty-sensitivity/report/penalty_sensitivity_table.tex
+artifacts/_project/paper/latex/experiments.tex
+artifacts/_project/paper/latex/method.tex
+artifacts/_project/paper/latex/abstract.tex
+artifacts/_project/paper/latex/related_work.tex
+artifacts/_project/paper/latex/introduction.tex
+artifacts/_project/paper/latex/conclusion.tex
+artifacts/_project/paper/latex/main.tex
+artifacts/_project/paper/cross_env_summary_table.tex
+artifacts/_project/paper/latex/discussion.tex
+artifacts/plan-012-penalty-curve/data/penalty_sensitivity_table.tex
+docs/paper/method.tex
+docs/paper/responsibleNLPchecklist.tex
+docs/paper/related_work.tex
+docs/paper/conclusion.tex
+docs/paper/introduction.tex
+docs/paper/discussion.tex
+artifacts/_project/paper/leave_one_task_out_daf_table.tex
+artifacts/appendix/leave_one_task_out_daf_table.tex
+artifacts/_project/paper/per_task_dose_response_table.tex
+artifacts/appendix/per_task_dose_response_table.tex
+docs/paper/abstract.tex
+docs/paper/main.tex
+docs/paper/experiments.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "a3954a71-1547-4ab5-9978-2e5d6ee4d7fe",
+  "tool_use_result": {
+    "filenames": [
+      "artifacts/dream_reports/dream_20260513T153257/best/paper.tex",
+      "artifacts/dream_reports/dream_20260513T153257/median/paper.tex",
+      "artifacts/dream_reports/dream_20260513T153257/worst/paper.tex",
+      "artifacts/_project/paper/abstract.tex",
+      "artifacts/_project/paper/main_b09c23.tex",
+      "artifacts/_project/paper/main.tex",
+      "artifacts/_project/paper/conclusion.tex",
+      "artifacts/penalty_sensitivity_table.tex",
+      "artifacts/plan-012-penalty-sensitivity/report/penalty_sensitivity_table.tex",
+      "artifacts/_project/paper/latex/experiments.tex",
+      "artifacts/_project/paper/latex/method.tex",
+      "artifacts/_project/paper/latex/abstract.tex",
+      "artifacts/_project/paper/latex/related_work.tex",
+      "artifacts/_project/paper/latex/introduction.tex",
+      "artifacts/_project/paper/latex/conclusion.tex",
+      "artifacts/_project/paper/latex/main.tex",
+      "artifacts/_project/paper/cross_env_summary_table.tex",
+      "artifacts/_project/paper/latex/discussion.tex",
+      "artifacts/plan-012-penalty-curve/data/penalty_sensitivity_table.tex",
+      "docs/paper/method.tex",
+      "docs/paper/responsibleNLPchecklist.tex",
+      "docs/paper/related_work.tex",
+      "docs/paper/conclusion.tex",
+      "docs/paper/introduction.tex",
+      "docs/paper/discussion.tex",
+      "artifacts/_project/paper/leave_one_task_out_daf_table.tex",
+      "artifacts/appendix/leave_one_task_out_daf_table.tex",
+      "artifacts/_project/paper/per_task_dose_response_table.tex",
+      "artifacts/appendix/per_task_dose_response_table.tex",
+      "docs/paper/abstract.tex",
+      "docs/paper/main.tex",
+      "docs/paper/experiments.tex"
+    ],
+    "durationMs": 19,
+    "numFiles": 32,
+    "truncated": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me use jq to extract the data from the registry JSON, and also read the paper tex files. First, let me parse the registry data more efficiently.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "e1a6318b-66ab-409a-b7cf-c98dbee54576",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MkfLQZi6iuQesBcZQ39JjD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 31867,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 19_
+
+用 jq 提取关键字段，避免读取全文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "48b865a8-05ab-42fd-98fd-050bc7465850",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MkfLQZi6iuQesBcZQ39JjD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 31867,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01PjDwemXw4xLSUjPgyrEW6D`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result.get('experiments', result) if isinstance(result, dict) else result\nif isinstance(experiments, dict) and 'experiments' in experiments:\n    experiments = experiments['experiments']\nprint(f'Type: {type(experiments)}')\nif isinstance(experiments, list):\n    print(f'Count: {len(experiments)}')\n    if experiments:\n        print(f'Keys: {list(experiments[0].keys())}')\nelif isinstance(experiments, dict):\n    print(f'Count: {len(experiments)}')\n    first_key = list(experiments.keys())[0]\n    print(f'First key: {first_key}')\n    print(f'Keys: {list(experiments[first_key].keys())}')\n\"",
+  "description": "Parse registry JSON structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "a92529f6-67d8-45d8-91d7-9064cddade54",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MkfLQZi6iuQesBcZQ39JjD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 31867,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 856
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-18T21:41:03.088Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01PjDwemXw4xLSUjPgyrEW6D`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 17, in &lt;module>
+    print(f'Keys: {list(experiments[first_key].keys())}')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'bool' object has no attribute 'keys'
+Type: &lt;class 'dict'>
+Count: 4
+First key: success
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "076bd87d-10b6-4ce7-a60c-007d0e1cf82c",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 17, in &lt;module>\n    print(f'Keys: {list(experiments[first_key].keys())}')\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAttributeError: 'bool' object has no attribute 'keys'\nType: &lt;class 'dict'>\nCount: 4\nFirst key: success"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HXUwQPNgzEdzhp7bwXhVec`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nprint('Top keys:', list(result.keys()))\nexps = result.get('experiments', [])\nprint(f'Experiments count: {len(exps)}')\nif exps:\n    print(f'Exp keys: {list(exps[0].keys())}')\n    print(f'First exp_id: {exps[0].get(\\\"exp_id\\\", \\\"N/A\\\")}')\n\"",
+  "description": "Parse registry JSON top-level structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "8d57f06a-c93c-4b8d-bacd-6dede4675d8f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PZF9W3Vj152mmg1X9U1cRV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 558,
+      "cache_read_input_tokens": 32723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 558
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-18T21:41:08.969Z_
+
+<details><summary>↩ Tool result · `toolu_01HXUwQPNgzEdzhp7bwXhVec`</summary>
+
+```text
+Top keys: ['success', 'data', 'error', 'metadata']
+Experiments count: 0
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "f28bd7ae-ce25-4dbb-b637-004eb45f72d1",
+  "tool_use_result": {
+    "stdout": "Top keys: ['success', 'data', 'error', 'metadata']\nExperiments count: 0",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_019sFvTdP1hwCfxPwTC8sDWG`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nd = result.get('data', {})\nprint('Data type:', type(d))\nif isinstance(d, dict):\n    print('Data keys:', list(d.keys())[:10])\nelif isinstance(d, list):\n    print('Data count:', len(d))\n    if d:\n        print('First item keys:', list(d[0].keys()))\n\"",
+  "description": "Inspect data field structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "984d04df-9fb2-4e6e-bfb4-ec3ec8d362ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SkGqBKDVrfU7tmtZbQNNQs",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 442,
+      "cache_read_input_tokens": 33281,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 442
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-18T21:41:13.349Z_
+
+<details><summary>↩ Tool result · `toolu_019sFvTdP1hwCfxPwTC8sDWG`</summary>
+
+```text
+Data type: &lt;class 'dict'>
+Data keys: ['experiments', 'count', 'total', 'baseline']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "e46366ec-5069-470a-9312-385b708f9cb8",
+  "tool_use_result": {
+    "stdout": "Data type: &lt;class 'dict'>\nData keys: ['experiments', 'count', 'total', 'baseline']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01HhFo3WJ5Posna6eYtSraM7`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Count: {len(exps)}')\nprint(f'First exp keys: {list(exps[0].keys())}')\n# Print summary of all experiments\nfor e in exps:\n    eid = e.get('exp_id', 'N/A')\n    hyp = (e.get('hypothesis', '') or '')[:100]\n    parent = e.get('parent', '')\n    metrics = e.get('metrics', {})\n    status = e.get('status', '')\n    print(f'---')\n    print(f'exp_id: {eid}')\n    print(f'hypothesis: {hyp}')\n    print(f'parent: {parent}')\n    print(f'status: {status}')\n    print(f'metrics: {json.dumps(metrics)[:200]}')\n\" 2>&1",
+  "description": "Extract all negative experiments summary"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "33d0b35c-ef75-4ef8-b5ac-91ec82b1ddd0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FvHAhNci5dDFVeRaVE2BcZ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 326,
+      "cache_read_input_tokens": 33723,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 326
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-18T21:41:20.987Z_
+
+<details><summary>↩ Tool result · reported error · `toolu_01HhFo3WJ5Posna6eYtSraM7`</summary>
+
+```text
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    print(f'First exp keys: {list(exps[0].keys())}')
+                                  ~~~~^^^
+KeyError: 0
+Count: 28
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "04aebd0c-c2cc-4e97-bf29-160798c491d3",
+  "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"&lt;string>\", line 7, in &lt;module>\n    print(f'First exp keys: {list(exps[0].keys())}')\n                                  ~~~~^^^\nKeyError: 0\nCount: 28"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01JAEwiVTPd5kUBqijARjmaV`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(f'Type: {type(exps)}')\nif isinstance(exps, dict):\n    keys = list(exps.keys())\n    print(f'Count: {len(keys)}')\n    first = keys[0]\n    print(f'First key: {first}')\n    print(f'First value keys: {list(exps[first].keys())}')\n\"",
+  "description": "Check experiment dict structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "65bc3098-394d-4cd0-89ba-b7ae29cc576b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ANAdyMBqEvaynz1qwTn4Pw",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 503,
+      "cache_read_input_tokens": 34049,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 503
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-18T21:41:25.736Z_
+
+<details><summary>↩ Tool result · `toolu_01JAEwiVTPd5kUBqijARjmaV`</summary>
+
+```text
+Type: &lt;class 'dict'>
+Count: 28
+First key: retry-control-baseline
+First value keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'spec', 'metrics', 'conclusion', 'reproduce', 'failure_reason', 'completed_at', 'extra', 'notes']
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "533279e3-1c89-4f35-ba7d-b8b9aa25a9ed",
+  "tool_use_result": {
+    "stdout": "Type: &lt;class 'dict'>\nCount: 28\nFirst key: retry-control-baseline\nFirst value keys: ['status', 'retry_count', 'created_at', 'updated_at', 'hypothesis', 'parent', 'spec', 'metrics', 'conclusion', 'reproduce', 'failure_reason', 'completed_at', 'extra', 'notes']",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CoFzUykmXzefbghWKTwcDy`</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/4bf4cbed-5a93-41c3-acab-5657c3970c8b/tool-results/mcp-agent-ml-research-read_registry-1779140447779.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\n\nfor eid, e in exps.items():\n    hyp = (e.get('hypothesis') or '')[:150]\n    parent = e.get('parent') or ''\n    metrics = e.get('metrics') or {}\n    status = e.get('status', '')\n    notes = (e.get('notes') or '')[:200]\n    failure = (e.get('failure_reason') or '')[:200]\n    print(f'=== {eid} ===')\n    print(f'  status: {status}')\n    print(f'  parent: {parent}')\n    print(f'  hypothesis: {hyp}')\n    print(f'  metrics: {json.dumps(metrics, ensure_ascii=False)[:300]}')\n    print(f'  notes: {notes}')\n    print(f'  failure_reason: {failure}')\n    print()\n\" 2>&1",
+  "description": "Extract all 28 negative experiments with details",
+  "timeout": 30000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "5c57163f-868a-4c11-b82e-d53e8b195677",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012RLfHf52idpdPijqphg14j",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 405,
+      "cache_read_input_tokens": 34552,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 405
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-18T21:41:32.302Z_
+
+<details><summary>↩ Tool result · `toolu_01CoFzUykmXzefbghWKTwcDy`</summary>
+
+```text
+=== retry-control-baseline ===
+  status: DONE
+  parent: reflexion-internal-baseline
+  hypothesis: Retry（无 reflexion 自我纠错）能否同样降低 death rate；如果 retry 效果与 reflexion 相当，则 reflexion 的收益来自重试机会而非自我纠错机制
+  metrics: {"death_rate": 0.409, "success_rate": 0.141, "episodes_collected": 220, "episodes_target": 220, "deaths": 90, "successes": 31, "supplement_identify_life_stages_1": "9 eps, 6 deaths, 1 success", "supplement_identify_life_stages_2": "20 eps, 5 deaths, 1 success"}
+  notes: Cron 误判: supplement 进程正常完成 40 episodes (identify-life-stages-1: 20eps, identify-life-stages-2: 20eps) 后正常退出, cron 因无 W&B sentinel 标记 failed。实际数据完整 220/220 episodes。结论: retry DR=40.9% ≈ baseline 42.9%,
+  failure_reason: N/A (false alarm: process completed normally, cron misdetected due to no W&B sentinel)
+
+=== reflexion-internal-baseline-b ===
+  status: DONE
+  parent: reflexion-internal-baseline
+  hypothesis: Reflexion baseline Part 2 (tasks 7-11): 与 part 1 并行收集，验证 reflexion 对 death rate 的影响
+  metrics: {}
+  notes: 
+  failure_reason: 
+
+=== reflexion-internal-baseline ===
+  status: DONE
+  parent: plan-012-full
+  hypothesis: Reflexion 通过自我纠错降低 internal modality 的 death rate；如果 death rate 降至 <20%（接近 det 的 16.3%），则 death dominance 不再成立
+  metrics: {"death_rate": 0.314, "death_rate_part1": 0.292, "death_rate_part2": 0.34, "success_rate": 0.173, "t1_death_rate": 0.418, "rescue_rate": 0.293, "mean_score_all": -26.3, "mean_score_alive": 7.4, "episodes": 220}
+  notes: tmux路径=/root/miniconda3/bin/tmux; 模型需用完整路径/root/autodl-tmp/models/Qwen2.5-7B-Instruct; VLLM_USE_FLASHINFER_SAMPLER=0 for Blackwell; submit_training_job不可用(tmux不在PATH)
+  failure_reason: 
+
+=== death-risk-routing-analysis ===
+  status: DONE
+  parent: plan-005-routing-patterns
+  hypothesis: 基于 task-type death risk 的简单 threshold routing 能否优于 always-det；如果能，说明 analytical framework 不只诊断问题还指向解决方案
+  metrics: {"optimal_threshold": 0, "optimal_score": -11.03, "baseline_always_det": -9.47, "baseline_always_internal": -39.07, "delta_vs_det": -1.56, "bootstrap_ci_diff": [-8.87, 5.92], "zero_death_tasks": ["find-non-living-thing"], "zero_death_task_internal_mean": 18.9, "zero_death_task_det_mean": 28.5, "othe
+  notes: 
+  failure_reason: 
+
+=== plan-008-v4-4b-e2e ===
+  status: DONE
+  parent: plan-008-v4-4b
+  hypothesis: 4B router (episode-level 59%) 在 end-to-end deployment 中能否超越 always-det baseline (-9.47 mean score)。若超过：larger capacity translates to marginal deployme
+  metrics: {"unfiltered_275eps": {"continuous_score_mean": -10.72, "ci_low": -15.69, "ci_high": -5.52, "delta_vs_always_det": -1.25, "death_rate": 0.167, "fallback_rate": 0.68, "n_episodes": 275}, "filtered_245eps": {"continuous_score_mean": -12.03, "ci_low": -17.82, "ci_high": -6.45, "delta_vs_always_det": -2
+  notes: 
+  failure_reason: 
+
+=== plan-004-ablation-b-seed789 ===
+  status: DONE
+  parent: plan-004-ablation-b
+  hypothesis: ablation-b seed 变体 (seed=789)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。
+  metrics: {"generation_level": {"accuracy": 0.3987, "balanced_accuracy": 0.5831, "det_recall": 0.348, "internal_recall": 0.8182}, "note": "Seed 变体。balanced_acc ~58% 恒定，accuracy=39.87% 最低因最偏 internal。确认阈值效应。", "parent": "plan-004-ablation-b"}
+  notes: 
+  failure_reason: 
+
+=== plan-004-ablation-b-seed456 ===
+  status: DONE
+  parent: plan-004-ablation-b
+  hypothesis: ablation-b seed 变体 (seed=456)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。
+  metrics: {"generation_level": {"accuracy": 0.4314, "balanced_accuracy": 0.5748, "det_recall": 0.3919, "internal_recall": 0.7576}, "note": "Seed 变体。balanced_acc ~58% 恒定，accuracy=43.14% 低是因为偏 internal 预测。阈值效应。", "parent": "plan-004-ablation-b"}
+  notes: 
+  failure_reason: 
+
+=== plan-004-ablation-b-seed123 ===
+  status: DONE
+  parent: plan-004-ablation-b
+  hypothesis: ablation-b seed 变体 (seed=123)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。
+  metrics: {"generation_level": {"accuracy": 0.5719, "balanced_accuracy": 0.5736, "det_recall": 0.5714, "internal_recall": 0.5758}, "note": "Seed 变体。balanced_acc ~58% 恒定，internal_recall 波动是阈值效应。Router 判别力接近随机。", "parent": "plan-004-ablation-b"}
+  notes: 
+  failure_reason: 
+
+=== backbone-scaling-death-rate-0.5b ===
+  status: DONE
+  parent: capacity-scaling-episode-eval
+  hypothesis: Smaller backbone models have higher death rates because they lack sufficient capacity to maintain coherent multi-step reasoning in interactive environ
+  metrics: {"death_rate_overall": "13.3% (2/15)", "death_rate_freeze": "0% (0/5)", "death_rate_lifespan": "20% (1/5)", "death_rate_melting": "20% (1/5)", "delta_vs_7B": "-44.6pp", "baseline_7B_death_rate": "~58%", "score_breakdown": "12× score=0 (no progress), 1× score=7.0, 2× score=-100 (death)", "note": "0.5
+  notes: 
+  failure_reason: startup recovery: RUNNING with no cron and no server/pid info
+
+=== r7n2-supplement-100-200 ===
+  status: DONE
+  parent: r7n2-data-size-ablation-r3
+  hypothesis: Supplement r7n2 data scaling with 100%/200% scales (filling gap between 50% and 800%). Expect same majority-class collapse pattern as other scales, co
+  metrics: {"100pct": {"bal_acc_mean": 0.499, "bal_acc_std": 0.001, "int_recall": 0, "seeds": [42, 43]}, "200pct": {"bal_acc_mean": 0.5, "bal_acc_std": 0, "int_recall": 0, "seeds": [42, 43]}, "conclusion_note": "Confirms Outcome B: 100%/200% scales show same majority-class collapse (int_recall=0.0) as 25%/50%/
+  notes: 
+  failure_reason: EXIT_CODE=1 (generic error — check log tail)
+
+=== plan-003-e2e-ablation-b-correct ===
+  status: DONE
+  parent: plan-003-implicit-eval-full
+  hypothesis: End-to-end eval of ablation-b (correct checkpoint: plan-004-implicit/final_adapter, internal_recall=51.52%) on 245 episodes / 11 tasks. Test C1: train
+  metrics: {"baseline_always_det": -9.47, "baseline_oracle": -6.58, "continuous_score_ci_high": -6.38, "continuous_score_ci_low": -15.25, "continuous_score_mean": -10.7, "death_rate": 0.1755, "delta_vs_always_det": -1.23, "estimated_llm_tokens": 1464400, "fallback_count": 173, "fallback_rate": 0.7061, "n_episo
+  notes: **NEGATIVE: trained-router (-10.70) worse than always-det (-9.47) by 1.23 pts.**
+
+正确 checkpoint: checkpoints/plan-004-implicit/final_adapter (ablation-b seed42)。
+CI [-15.25, -6.38] 包含 -9.47，差异不显著但 poi
+  failure_reason: 
+
+=== plan-003-implicit-eval-full ===
+  status: DONE
+  parent: plan-004-ablation-b
+  hypothesis: Step-level implicit routing eval of ablation-b (plan-004-implicit/final_adapter) on 245 episodes / 11 tasks via eval_implicit_router.py. Score -12.84 
+  metrics: {"catastrophic_failure_rate": 0.192, "ci_high": -8.45, "ci_low": -17.52, "continuous_score": -12.84, "det_recall": 0.86, "episode_routing_accuracy": 0.821, "internal_recall": 0.444, "n_episodes": 245, "n_steps": 2160, "n_tasks": 11, "oracle_det_preferred": 86, "oracle_internal_preferred": 9, "oracle
+  notes: 
+  failure_reason: 
+
+=== plan-004-v5 ===
+  status: DONE
+  parent: plan-004-v4
+  hypothesis: Implicit router SFT v5：严格复现 ablation-b 成功条件——data/plan-004-implicit/ + upsample_minority + gradient_accumulation_steps=1（有效 batch=4）。与 v3 区别：(1) 正确数据路
+  metrics: {"generation_eval_INVALIDATED": {"note": "OLD — used wrong split (sklearn episode-level, n_val=300). INVALIDATED.", "balanced_accuracy": 0.4148, "n_val": 300}, "corrected_generation_eval": {"balanced_accuracy": 0.7533, "accuracy": 0.688, "internal_recall": 0.833, "internal_precision": 0.217, "det_re
+  notes: plan-004-v5 是 ga=1 implicit router（与主 router ga=8 implicit router 的对比，二者均用 implicit_router_sft.py 训练，差异仅为 gradient_accumulation_steps=1 vs 8）。
+
+**Logit-level (Trainer eval, 训练时)**: accuracy=74.5%, bal
+  failure_reason: 
+
+=== plan-002-formal-v4 ===
+  status: DONE
+  parent: plan-002-formal-v3
+  hypothesis: Router SFT v4：三项修复——(1) stratified val split (sklearn train_test_split stratify=labels, val 有 30 internal + 390 det), (2) 移除 upsample_minority 只保留 cla
+  metrics: {"class_weights": {"deterministic": 0.5625, "internal": 4.5}, "eval_accuracy": 0.919, "eval_balanced_accuracy": 0.5, "internal_precision": 0, "internal_recall": 0, "is_degenerate": true, "note": "训练完整完成（TRAINING_COMPLETE + checkpoint-153 + eval_report.json），但退化为全部预测 deterministic。之前误标 killed。真正问题：cl
+  notes: 【更正 D023】v4 实际完整训练完毕（有 TRAINING_COMPLETE + checkpoint-153 + eval_report.json），之前误标 killed。accuracy=91.9% 但 internal_recall=0%（退化为全 deterministic）。根因：class_weights [4.5, 0.5625] 使含 internal 微批次 loss 爆炸
+  failure_reason: 
+
+=== plan-002-formal-v6 ===
+  status: DONE
+  parent: plan-002-formal-v5
+  hypothesis: Formal router training v6 with corrected data preprocessing and hyperparameter tuning resolves training instability from v4-v5, producing a router tha
+  metrics: {}
+  notes: 初次启动 OOM（GPU0 内存争抢，step 30/153 被杀），自动重启 PID 240633。Epoch 1 eval: accuracy=0.929, f1_macro=0.481, f1_internal=0.0, recall_internal=0.0。去掉 class_weights 后模型在 89.7%/10.3% 不平衡数据上仍退化为全 deterministic 预测。dty
+  failure_reason: EXIT_CODE=1 (generic error — check log tail)
+
+=== plan-003-eval-implicit ===
+  status: DONE
+  parent: plan-003-baseline-245eps
+  hypothesis: An implicit router (fine-tuned LLM) trained on counterfactual step-level labels achieves end-to-end episode scores matching or exceeding always-determ
+  metrics: {"WARNING": "trained router (-12.84) worse than always-det (-9.47) by 3.37 points", "baselines": {"always_det": -9.47, "always_internal": -39.07, "oracle": -6.58, "random": -22.38}, "catastrophic_failure_rate": {"ci_high": 0.2327, "ci_low": 0.151, "mean": 0.1918}, "continuous_score": {"ci_high": -8.
+  notes: 
+  failure_reason: 
+
+=== plan-010-cross-task-v2 ===
+  status: DONE
+  parent: plan-010-cross-task-transfer
+  hypothesis: Routing signal learned from one task-type cluster transfers to held-out clusters, enabling cross-domain routing without task-specific counterfactual d
+  metrics: {"life_to_physical": {"cross_domain_balanced_acc": 0.4924, "cross_domain_ci95": [0.424, 0.5593], "in_domain_balanced_acc": 0.577, "in_domain_ci95": [0.4531, 0.6894], "train_size": 1123, "transfer_gap": 0.0846}, "note": "physical→life in-domain=0.4242 < chance (n=612 insufficient). CI recomputed on b
+  notes: 
+  failure_reason: 
+
+=== plan-004-v4 ===
+  status: DONE
+  parent: plan-004-v3
+  hypothesis: Iterative training refinement (v4 config with corrected data pipeline) resolves convergence issues from v3, achieving stable training loss and meaning
+  metrics: {}
+  notes: ## 状态报告 (2026-05-14)
+
+### 训练完成
+- 状态: DONE (EXIT_CODE=0)
+- 运行时长: 150.3s (~2.5min)
+- 进度: 147/147 steps, 3 epochs
+- Adapter 保存: checkpoints/plan-004-v4/final_adapter
+
+### 数据
+- 文件: results/plan_c_test_lab
+  failure_reason: 
+
+=== cross-model-guided-router-eval ===
+  status: DONE
+  parent: 
+  hypothesis: Qwen-derived death risk labels transfer to Llama: applying Qwen task-type routing rule on Llama episodes yields balanced_acc > 50%, validating cross-m
+  metrics: {"bal_acc": 1, "degenerate": true, "note": "not a valid transfer test, confirms always-det optimal for Llama, 0 internal-preferred episodes"}
+  notes: 
+  failure_reason: 
+
+=== loto-guided-router-eval ===
+  status: DONE
+  parent: 
+  hypothesis: LOTO protocol: task-type death risk is a generalizable routing feature. If guided router LOTO balanced_acc > 50%, the routing rule transfers to unseen
+  metrics: {"blind_loto_bal_acc": 0.5, "keyword_leaked_bal_acc": 0.6292, "note": "blind strategies = always-det, keyword variant leaks task identity"}
+  notes: 
+  failure_reason: 
+
+=== r7n2-data-size-ablation-r3 ===
+  status: DONE
+  parent: 
+  hypothesis: R7-N2 reviewer concern: router diagnostic 低 balanced_acc 可能是数据不足导致。通过 data scaling (25%/50%/75%/100%) 验证 balanced_acc 是否随数据量上升。双套 eval: step-level + e
+  metrics: {"completed_runs": "7/21 (25%×3, 50%×1, 800%×3)", "step_bal_acc": {"25pct": "0.497±0.009", "50pct": "0.493", "800pct": "0.511±0.007"}, "episode_bal_acc": {"25pct": "0.495±0.003", "50pct": "0.515", "800pct": "0.510±0.011"}, "int_recall_range": "0.0-0.083", "model_behavior": "majority-class collapse a
+  notes: Outcome B confirmed: 32x data scaling (433→13880) produces no improvement in episode-level balanced accuracy. All scales show majority-class collapse (int_recall ≈ 0). Root cause: extreme class imbala
+  failure_reason: 
+
+=== leave-one-tasktype-out ===
+  status: DONE
+  parent: 
+  hypothesis: Leave-one-task-type-out eval: router 在完全未见 task type 上是否 ≈ 50%（随机），确认 routing signal 不跨 task type 迁移，仅学了 task-type 分类。关联 C2 diagnostic。
+  metrics: {"grand_mean_balanced_acc": "0.5976±0.0184", "eval_type": "step-level, 8 seeds, 4 two-class types", "single_class_types": "7/11 (all deterministic, router has no discriminative ability)", "two_class_types": "4/11", "grow-fruit": 0.6715, "find-non-living-thing": 0.5986, "lifespan-longest-then-shortes
+  notes: Per-task-type evaluation breakdown（现有 checkpoint 按 task type 分解评估），不是 leave-one-out cross-validation with retraining。7/11 task types 全 deterministic（single class），仅 4 types 有两类可算 balanced_acc。Step-lev
+  failure_reason: 
+
+=== majority-vote-baseline ===
+  status: DONE
+  parent: 
+  hypothesis: Task-type majority-vote baseline 是否 ≈ router cross-split balanced_acc (47.1%)，确认 signal 完全在 task-type level。
+  metrics: {"tt_majvote_bal_acc_seed42": 0.5, "tt_majvote_bal_acc_seed123": 1, "tt_majvote_bal_acc_seed456": 1, "router_mean_bal_acc": 0.4711, "train_det_pct": 91.4, "note": "All 11 task_types majority=det. Seeds 123/456 val set 100% det (degenerate). Router < always-det baseline."}
+  notes: 所有 11 个 task type 多数类均为 deterministic (train_det_pct=91.4%)，task-type majority vote = always-predict-deterministic = balanced_acc 0.50。Router cross-split 8-seed 均值 0.471±0.022，低于此 trivial baseline。Reg
+  failure_reason: 
+
+=== cross-split-robustness-8seed ===
+  status: DONE
+  parent: 
+  hypothesis: 验证 8-seed router checkpoints 在独立 split（非训练 split）上的 balanced_acc 是否与 corrected_eval（55.7±5.0%）一致（Δ<2pp），确认 ga=8 训练 split-robust、论文数字可靠。
+  metrics: {}
+  notes: Cross-split NOT robust (Δ=-7.0pp > 2pp threshold). Episode-level split (sklearn seed=42, 10 val episodes, 300 samples, 80%/20% det/int) gives mean=47.1±2.2% vs corrected_eval step-level split 54.1±5.4
+  failure_reason: 
+
+=== plan-006-deep-internal ===
+  status: DONE
+  parent: 
+  hypothesis: 2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic
+  metrics: {"data_quality": "passed", "episodes_per_task": 20, "note": "identify-life-stages-1 has only 14 unique variations; episodes 14-19 reuse variations 0-5 (pseudo-duplicates). Use first 14 episodes for this task in analysis.", "tasks": 6, "total_episodes": 120}
+  notes: 
+  failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed
+
+=== plan-002-generative-v1 ===
+  status: DONE
+  parent: 
+  hypothesis: Generative router SFT: 基于 ablation-b 成功经验（internal_recall=51.5%），用修正数据 data/plan-004-implicit/（2040 samples, 11 tasks, no-preference 已丢弃），upsample_min
+  metrics: {"balanced_accuracy": 0.4667, "confusion_matrix": [[5, 25], [63, 207]], "det_f1": 0.8247, "det_precision": 0.8922, "det_recall": 0.7667, "internal_f1": 0.102, "internal_precision": 0.0735, "internal_recall": 0.1667, "note": "enable_thinking=False required for Qwen3 inference; with thinking mode, mod
+  notes: 重新评估路由指标（generation-based eval, enable_thinking=False）。结果：accuracy=70.67%（偏高因多数类偏向），balanced_accuracy=46.67%，internal_recall=16.67%（5/30），det_recall=76.67%（207/270）。两种 thinking 模式对比：thinking_on+strip 
+  failure_reason: 
+
+=== plan-004-v3 ===
+  status: DONE
+  parent: plan-004-v2
+  hypothesis: Implicit router SFT v3：修复两个 bug——(1) 去掉 class_weights auto（D023 根因），(2) 用 plan_c/ 11 task 重生成数据修复 no-preference→internal 映射 bug。与 plan-002-formal-v6（e
+  metrics: {}
+  notes: ## 数据文件差异分析 (2026-05-14)
+
+### 三个数据文件确认
+| | ablation-b | v2 | v3 |
+|---|---|---|---|
+| 路径 | data/plan-004-implicit/implicit_sft.jsonl | results/plan_c_test_labels/implicit_sft.jsonl | data/plan-004-v3/
+  failure_reason: EXIT_CODE=129 (non-zero)
+
+=== plan-002-formal-v5 ===
+  status: DONE
+  parent: plan-002-formal-v4
+  hypothesis: Router SFT v5：pad_token_id fix。v3/v4 loss 异常根因确认为 model.config.pad_token_id=None（ModelScope 下载的 Qwen3-1.7B 未设置 pad_token_id，导致分类头 loss 计算错误）。Fix：模型加载后
+  metrics: {"class_weights": {"deterministic": 0.5625, "internal": 4.5}, "eval_accuracy": 0.9167, "eval_balanced_accuracy": 0.4936, "eval_f1_macro": 0.47, "eval_loss_epoch1": 0.79, "eval_loss_epoch2": 0.78, "grad_norm_range": "70-604", "is_degenerate": true, "note": "Metrics corrected per eval_report.json (D02
+  notes: D021 确认：class_weights auto [4.5, 0.5625] 是 v3/v4/v5 loss 异常的根因。train_loss 4-11 (正常应 0.5-0.7)，grad_norm 604，internal recall=0。pad_token_id fix 无效（代码中已存在）。v6 对照实验：移除 class_weights，验证 loss 是否恢复正常。
+  failure_reason:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "08467d70-3490-4bfd-b238-a7c0319d85ef",
+  "tool_use_result": {
+    "stdout": "=== retry-control-baseline ===\n  status: DONE\n  parent: reflexion-internal-baseline\n  hypothesis: Retry（无 reflexion 自我纠错）能否同样降低 death rate；如果 retry 效果与 reflexion 相当，则 reflexion 的收益来自重试机会而非自我纠错机制\n  metrics: {\"death_rate\": 0.409, \"success_rate\": 0.141, \"episodes_collected\": 220, \"episodes_target\": 220, \"deaths\": 90, \"successes\": 31, \"supplement_identify_life_stages_1\": \"9 eps, 6 deaths, 1 success\", \"supplement_identify_life_stages_2\": \"20 eps, 5 deaths, 1 success\"}\n  notes: Cron 误判: supplement 进程正常完成 40 episodes (identify-life-stages-1: 20eps, identify-life-stages-2: 20eps) 后正常退出, cron 因无 W&B sentinel 标记 failed。实际数据完整 220/220 episodes。结论: retry DR=40.9% ≈ baseline 42.9%,\n  failure_reason: N/A (false alarm: process completed normally, cron misdetected due to no W&B sentinel)\n\n=== reflexion-internal-baseline-b ===\n  status: DONE\n  parent: reflexion-internal-baseline\n  hypothesis: Reflexion baseline Part 2 (tasks 7-11): 与 part 1 并行收集，验证 reflexion 对 death rate 的影响\n  metrics: {}\n  notes: \n  failure_reason: \n\n=== reflexion-internal-baseline ===\n  status: DONE\n  parent: plan-012-full\n  hypothesis: Reflexion 通过自我纠错降低 internal modality 的 death rate；如果 death rate 降至 <20%（接近 det 的 16.3%），则 death dominance 不再成立\n  metrics: {\"death_rate\": 0.314, \"death_rate_part1\": 0.292, \"death_rate_part2\": 0.34, \"success_rate\": 0.173, \"t1_death_rate\": 0.418, \"rescue_rate\": 0.293, \"mean_score_all\": -26.3, \"mean_score_alive\": 7.4, \"episodes\": 220}\n  notes: tmux路径=/root/miniconda3/bin/tmux; 模型需用完整路径/root/autodl-tmp/models/Qwen2.5-7B-Instruct; VLLM_USE_FLASHINFER_SAMPLER=0 for Blackwell; submit_training_job不可用(tmux不在PATH)\n  failure_reason: \n\n=== death-risk-routing-analysis ===\n  status: DONE\n  parent: plan-005-routing-patterns\n  hypothesis: 基于 task-type death risk 的简单 threshold routing 能否优于 always-det；如果能，说明 analytical framework 不只诊断问题还指向解决方案\n  metrics: {\"optimal_threshold\": 0, \"optimal_score\": -11.03, \"baseline_always_det\": -9.47, \"baseline_always_internal\": -39.07, \"delta_vs_det\": -1.56, \"bootstrap_ci_diff\": [-8.87, 5.92], \"zero_death_tasks\": [\"find-non-living-thing\"], \"zero_death_task_internal_mean\": 18.9, \"zero_death_task_det_mean\": 28.5, \"othe\n  notes: \n  failure_reason: \n\n=== plan-008-v4-4b-e2e ===\n  status: DONE\n  parent: plan-008-v4-4b\n  hypothesis: 4B router (episode-level 59%) 在 end-to-end deployment 中能否超越 always-det baseline (-9.47 mean score)。若超过：larger capacity translates to marginal deployme\n  metrics: {\"unfiltered_275eps\": {\"continuous_score_mean\": -10.72, \"ci_low\": -15.69, \"ci_high\": -5.52, \"delta_vs_always_det\": -1.25, \"death_rate\": 0.167, \"fallback_rate\": 0.68, \"n_episodes\": 275}, \"filtered_245eps\": {\"continuous_score_mean\": -12.03, \"ci_low\": -17.82, \"ci_high\": -6.45, \"delta_vs_always_det\": -2\n  notes: \n  failure_reason: \n\n=== plan-004-ablation-b-seed789 ===\n  status: DONE\n  parent: plan-004-ablation-b\n  hypothesis: ablation-b seed 变体 (seed=789)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。\n  metrics: {\"generation_level\": {\"accuracy\": 0.3987, \"balanced_accuracy\": 0.5831, \"det_recall\": 0.348, \"internal_recall\": 0.8182}, \"note\": \"Seed 变体。balanced_acc ~58% 恒定，accuracy=39.87% 最低因最偏 internal。确认阈值效应。\", \"parent\": \"plan-004-ablation-b\"}\n  notes: \n  failure_reason: \n\n=== plan-004-ablation-b-seed456 ===\n  status: DONE\n  parent: plan-004-ablation-b\n  hypothesis: ablation-b seed 变体 (seed=456)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。\n  metrics: {\"generation_level\": {\"accuracy\": 0.4314, \"balanced_accuracy\": 0.5748, \"det_recall\": 0.3919, \"internal_recall\": 0.7576}, \"note\": \"Seed 变体。balanced_acc ~58% 恒定，accuracy=43.14% 低是因为偏 internal 预测。阈值效应。\", \"parent\": \"plan-004-ablation-b\"}\n  notes: \n  failure_reason: \n\n=== plan-004-ablation-b-seed123 ===\n  status: DONE\n  parent: plan-004-ablation-b\n  hypothesis: ablation-b seed 变体 (seed=123)。验证 ablation-b 的 generation-level routing 在不同 seed 下的稳定性。ga=8, upsample_minority=true, data/plan-004-implicit/。\n  metrics: {\"generation_level\": {\"accuracy\": 0.5719, \"balanced_accuracy\": 0.5736, \"det_recall\": 0.5714, \"internal_recall\": 0.5758}, \"note\": \"Seed 变体。balanced_acc ~58% 恒定，internal_recall 波动是阈值效应。Router 判别力接近随机。\", \"parent\": \"plan-004-ablation-b\"}\n  notes: \n  failure_reason: \n\n=== backbone-scaling-death-rate-0.5b ===\n  status: DONE\n  parent: capacity-scaling-episode-eval\n  hypothesis: Smaller backbone models have higher death rates because they lack sufficient capacity to maintain coherent multi-step reasoning in interactive environ\n  metrics: {\"death_rate_overall\": \"13.3% (2/15)\", \"death_rate_freeze\": \"0% (0/5)\", \"death_rate_lifespan\": \"20% (1/5)\", \"death_rate_melting\": \"20% (1/5)\", \"delta_vs_7B\": \"-44.6pp\", \"baseline_7B_death_rate\": \"~58%\", \"score_breakdown\": \"12× score=0 (no progress), 1× score=7.0, 2× score=-100 (death)\", \"note\": \"0.5\n  notes: \n  failure_reason: startup recovery: RUNNING with no cron and no server/pid info\n\n=== r7n2-supplement-100-200 ===\n  status: DONE\n  parent: r7n2-data-size-ablation-r3\n  hypothesis: Supplement r7n2 data scaling with 100%/200% scales (filling gap between 50% and 800%). Expect same majority-class collapse pattern as other scales, co\n  metrics: {\"100pct\": {\"bal_acc_mean\": 0.499, \"bal_acc_std\": 0.001, \"int_recall\": 0, \"seeds\": [42, 43]}, \"200pct\": {\"bal_acc_mean\": 0.5, \"bal_acc_std\": 0, \"int_recall\": 0, \"seeds\": [42, 43]}, \"conclusion_note\": \"Confirms Outcome B: 100%/200% scales show same majority-class collapse (int_recall=0.0) as 25%/50%/\n  notes: \n  failure_reason: EXIT_CODE=1 (generic error — check log tail)\n\n=== plan-003-e2e-ablation-b-correct ===\n  status: DONE\n  parent: plan-003-implicit-eval-full\n  hypothesis: End-to-end eval of ablation-b (correct checkpoint: plan-004-implicit/final_adapter, internal_recall=51.52%) on 245 episodes / 11 tasks. Test C1: train\n  metrics: {\"baseline_always_det\": -9.47, \"baseline_oracle\": -6.58, \"continuous_score_ci_high\": -6.38, \"continuous_score_ci_low\": -15.25, \"continuous_score_mean\": -10.7, \"death_rate\": 0.1755, \"delta_vs_always_det\": -1.23, \"estimated_llm_tokens\": 1464400, \"fallback_count\": 173, \"fallback_rate\": 0.7061, \"n_episo\n  notes: **NEGATIVE: trained-router (-10.70) worse than always-det (-9.47) by 1.23 pts.**\n\n正确 checkpoint: checkpoints/plan-004-implicit/final_adapter (ablation-b seed42)。\nCI [-15.25, -6.38] 包含 -9.47，差异不显著但 poi\n  failure_reason: \n\n=== plan-003-implicit-eval-full ===\n  status: DONE\n  parent: plan-004-ablation-b\n  hypothesis: Step-level implicit routing eval of ablation-b (plan-004-implicit/final_adapter) on 245 episodes / 11 tasks via eval_implicit_router.py. Score -12.84 \n  metrics: {\"catastrophic_failure_rate\": 0.192, \"ci_high\": -8.45, \"ci_low\": -17.52, \"continuous_score\": -12.84, \"det_recall\": 0.86, \"episode_routing_accuracy\": 0.821, \"internal_recall\": 0.444, \"n_episodes\": 245, \"n_steps\": 2160, \"n_tasks\": 11, \"oracle_det_preferred\": 86, \"oracle_internal_preferred\": 9, \"oracle\n  notes: \n  failure_reason: \n\n=== plan-004-v5 ===\n  status: DONE\n  parent: plan-004-v4\n  hypothesis: Implicit router SFT v5：严格复现 ablation-b 成功条件——data/plan-004-implicit/ + upsample_minority + gradient_accumulation_steps=1（有效 batch=4）。与 v3 区别：(1) 正确数据路\n  metrics: {\"generation_eval_INVALIDATED\": {\"note\": \"OLD — used wrong split (sklearn episode-level, n_val=300). INVALIDATED.\", \"balanced_accuracy\": 0.4148, \"n_val\": 300}, \"corrected_generation_eval\": {\"balanced_accuracy\": 0.7533, \"accuracy\": 0.688, \"internal_recall\": 0.833, \"internal_precision\": 0.217, \"det_re\n  notes: plan-004-v5 是 ga=1 implicit router（与主 router ga=8 implicit router 的对比，二者均用 implicit_router_sft.py 训练，差异仅为 gradient_accumulation_steps=1 vs 8）。\n\n**Logit-level (Trainer eval, 训练时)**: accuracy=74.5%, bal\n  failure_reason: \n\n=== plan-002-formal-v4 ===\n  status: DONE\n  parent: plan-002-formal-v3\n  hypothesis: Router SFT v4：三项修复——(1) stratified val split (sklearn train_test_split stratify=labels, val 有 30 internal + 390 det), (2) 移除 upsample_minority 只保留 cla\n  metrics: {\"class_weights\": {\"deterministic\": 0.5625, \"internal\": 4.5}, \"eval_accuracy\": 0.919, \"eval_balanced_accuracy\": 0.5, \"internal_precision\": 0, \"internal_recall\": 0, \"is_degenerate\": true, \"note\": \"训练完整完成（TRAINING_COMPLETE + checkpoint-153 + eval_report.json），但退化为全部预测 deterministic。之前误标 killed。真正问题：cl\n  notes: 【更正 D023】v4 实际完整训练完毕（有 TRAINING_COMPLETE + checkpoint-153 + eval_report.json），之前误标 killed。accuracy=91.9% 但 internal_recall=0%（退化为全 deterministic）。根因：class_weights [4.5, 0.5625] 使含 internal 微批次 loss 爆炸\n  failure_reason: \n\n=== plan-002-formal-v6 ===\n  status: DONE\n  parent: plan-002-formal-v5\n  hypothesis: Formal router training v6 with corrected data preprocessing and hyperparameter tuning resolves training instability from v4-v5, producing a router tha\n  metrics: {}\n  notes: 初次启动 OOM（GPU0 内存争抢，step 30/153 被杀），自动重启 PID 240633。Epoch 1 eval: accuracy=0.929, f1_macro=0.481, f1_internal=0.0, recall_internal=0.0。去掉 class_weights 后模型在 89.7%/10.3% 不平衡数据上仍退化为全 deterministic 预测。dty\n  failure_reason: EXIT_CODE=1 (generic error — check log tail)\n\n=== plan-003-eval-implicit ===\n  status: DONE\n  parent: plan-003-baseline-245eps\n  hypothesis: An implicit router (fine-tuned LLM) trained on counterfactual step-level labels achieves end-to-end episode scores matching or exceeding always-determ\n  metrics: {\"WARNING\": \"trained router (-12.84) worse than always-det (-9.47) by 3.37 points\", \"baselines\": {\"always_det\": -9.47, \"always_internal\": -39.07, \"oracle\": -6.58, \"random\": -22.38}, \"catastrophic_failure_rate\": {\"ci_high\": 0.2327, \"ci_low\": 0.151, \"mean\": 0.1918}, \"continuous_score\": {\"ci_high\": -8.\n  notes: \n  failure_reason: \n\n=== plan-010-cross-task-v2 ===\n  status: DONE\n  parent: plan-010-cross-task-transfer\n  hypothesis: Routing signal learned from one task-type cluster transfers to held-out clusters, enabling cross-domain routing without task-specific counterfactual d\n  metrics: {\"life_to_physical\": {\"cross_domain_balanced_acc\": 0.4924, \"cross_domain_ci95\": [0.424, 0.5593], \"in_domain_balanced_acc\": 0.577, \"in_domain_ci95\": [0.4531, 0.6894], \"train_size\": 1123, \"transfer_gap\": 0.0846}, \"note\": \"physical→life in-domain=0.4242 < chance (n=612 insufficient). CI recomputed on b\n  notes: \n  failure_reason: \n\n=== plan-004-v4 ===\n  status: DONE\n  parent: plan-004-v3\n  hypothesis: Iterative training refinement (v4 config with corrected data pipeline) resolves convergence issues from v3, achieving stable training loss and meaning\n  metrics: {}\n  notes: ## 状态报告 (2026-05-14)\n\n### 训练完成\n- 状态: DONE (EXIT_CODE=0)\n- 运行时长: 150.3s (~2.5min)\n- 进度: 147/147 steps, 3 epochs\n- Adapter 保存: checkpoints/plan-004-v4/final_adapter\n\n### 数据\n- 文件: results/plan_c_test_lab\n  failure_reason: \n\n=== cross-model-guided-router-eval ===\n  status: DONE\n  parent: \n  hypothesis: Qwen-derived death risk labels transfer to Llama: applying Qwen task-type routing rule on Llama episodes yields balanced_acc > 50%, validating cross-m\n  metrics: {\"bal_acc\": 1, \"degenerate\": true, \"note\": \"not a valid transfer test, confirms always-det optimal for Llama, 0 internal-preferred episodes\"}\n  notes: \n  failure_reason: \n\n=== loto-guided-router-eval ===\n  status: DONE\n  parent: \n  hypothesis: LOTO protocol: task-type death risk is a generalizable routing feature. If guided router LOTO balanced_acc > 50%, the routing rule transfers to unseen\n  metrics: {\"blind_loto_bal_acc\": 0.5, \"keyword_leaked_bal_acc\": 0.6292, \"note\": \"blind strategies = always-det, keyword variant leaks task identity\"}\n  notes: \n  failure_reason: \n\n=== r7n2-data-size-ablation-r3 ===\n  status: DONE\n  parent: \n  hypothesis: R7-N2 reviewer concern: router diagnostic 低 balanced_acc 可能是数据不足导致。通过 data scaling (25%/50%/75%/100%) 验证 balanced_acc 是否随数据量上升。双套 eval: step-level + e\n  metrics: {\"completed_runs\": \"7/21 (25%×3, 50%×1, 800%×3)\", \"step_bal_acc\": {\"25pct\": \"0.497±0.009\", \"50pct\": \"0.493\", \"800pct\": \"0.511±0.007\"}, \"episode_bal_acc\": {\"25pct\": \"0.495±0.003\", \"50pct\": \"0.515\", \"800pct\": \"0.510±0.011\"}, \"int_recall_range\": \"0.0-0.083\", \"model_behavior\": \"majority-class collapse a\n  notes: Outcome B confirmed: 32x data scaling (433→13880) produces no improvement in episode-level balanced accuracy. All scales show majority-class collapse (int_recall ≈ 0). Root cause: extreme class imbala\n  failure_reason: \n\n=== leave-one-tasktype-out ===\n  status: DONE\n  parent: \n  hypothesis: Leave-one-task-type-out eval: router 在完全未见 task type 上是否 ≈ 50%（随机），确认 routing signal 不跨 task type 迁移，仅学了 task-type 分类。关联 C2 diagnostic。\n  metrics: {\"grand_mean_balanced_acc\": \"0.5976±0.0184\", \"eval_type\": \"step-level, 8 seeds, 4 two-class types\", \"single_class_types\": \"7/11 (all deterministic, router has no discriminative ability)\", \"two_class_types\": \"4/11\", \"grow-fruit\": 0.6715, \"find-non-living-thing\": 0.5986, \"lifespan-longest-then-shortes\n  notes: Per-task-type evaluation breakdown（现有 checkpoint 按 task type 分解评估），不是 leave-one-out cross-validation with retraining。7/11 task types 全 deterministic（single class），仅 4 types 有两类可算 balanced_acc。Step-lev\n  failure_reason: \n\n=== majority-vote-baseline ===\n  status: DONE\n  parent: \n  hypothesis: Task-type majority-vote baseline 是否 ≈ router cross-split balanced_acc (47.1%)，确认 signal 完全在 task-type level。\n  metrics: {\"tt_majvote_bal_acc_seed42\": 0.5, \"tt_majvote_bal_acc_seed123\": 1, \"tt_majvote_bal_acc_seed456\": 1, \"router_mean_bal_acc\": 0.4711, \"train_det_pct\": 91.4, \"note\": \"All 11 task_types majority=det. Seeds 123/456 val set 100% det (degenerate). Router < always-det baseline.\"}\n  notes: 所有 11 个 task type 多数类均为 deterministic (train_det_pct=91.4%)，task-type majority vote = always-predict-deterministic = balanced_acc 0.50。Router cross-split 8-seed 均值 0.471±0.022，低于此 trivial baseline。Reg\n  failure_reason: \n\n=== cross-split-robustness-8seed ===\n  status: DONE\n  parent: \n  hypothesis: 验证 8-seed router checkpoints 在独立 split（非训练 split）上的 balanced_acc 是否与 corrected_eval（55.7±5.0%）一致（Δ<2pp），确认 ga=8 训练 split-robust、论文数字可靠。\n  metrics: {}\n  notes: Cross-split NOT robust (Δ=-7.0pp > 2pp threshold). Episode-level split (sklearn seed=42, 10 val episodes, 300 samples, 80%/20% det/int) gives mean=47.1±2.2% vs corrected_eval step-level split 54.1±5.4\n  failure_reason: \n\n=== plan-006-deep-internal ===\n  status: DONE\n  parent: \n  hypothesis: 2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic\n  metrics: {\"data_quality\": \"passed\", \"episodes_per_task\": 20, \"note\": \"identify-life-stages-1 has only 14 unique variations; episodes 14-19 reuse variations 0-5 (pseudo-duplicates). Use first 14 episodes for this task in analysis.\", \"tasks\": 6, \"total_episodes\": 120}\n  notes: \n  failure_reason: process dead 5× with no sentinel/W&B — auto-resolved as failed\n\n=== plan-002-generative-v1 ===\n  status: DONE\n  parent: \n  hypothesis: Generative router SFT: 基于 ablation-b 成功经验（internal_recall=51.5%），用修正数据 data/plan-004-implicit/（2040 samples, 11 tasks, no-preference 已丢弃），upsample_min\n  metrics: {\"balanced_accuracy\": 0.4667, \"confusion_matrix\": [[5, 25], [63, 207]], \"det_f1\": 0.8247, \"det_precision\": 0.8922, \"det_recall\": 0.7667, \"internal_f1\": 0.102, \"internal_precision\": 0.0735, \"internal_recall\": 0.1667, \"note\": \"enable_thinking=False required for Qwen3 inference; with thinking mode, mod\n  notes: 重新评估路由指标（generation-based eval, enable_thinking=False）。结果：accuracy=70.67%（偏高因多数类偏向），balanced_accuracy=46.67%，internal_recall=16.67%（5/30），det_recall=76.67%（207/270）。两种 thinking 模式对比：thinking_on+strip \n  failure_reason: \n\n=== plan-004-v3 ===\n  status: DONE\n  parent: plan-004-v2\n  hypothesis: Implicit router SFT v3：修复两个 bug——(1) 去掉 class_weights auto（D023 根因），(2) 用 plan_c/ 11 task 重生成数据修复 no-preference→internal 映射 bug。与 plan-002-formal-v6（e\n  metrics: {}\n  notes: ## 数据文件差异分析 (2026-05-14)\n\n### 三个数据文件确认\n| | ablation-b | v2 | v3 |\n|---|---|---|---|\n| 路径 | data/plan-004-implicit/implicit_sft.jsonl | results/plan_c_test_labels/implicit_sft.jsonl | data/plan-004-v3/\n  failure_reason: EXIT_CODE=129 (non-zero)\n\n=== plan-002-formal-v5 ===\n  status: DONE\n  parent: plan-002-formal-v4\n  hypothesis: Router SFT v5：pad_token_id fix。v3/v4 loss 异常根因确认为 model.config.pad_token_id=None（ModelScope 下载的 Qwen3-1.7B 未设置 pad_token_id，导致分类头 loss 计算错误）。Fix：模型加载后\n  metrics: {\"class_weights\": {\"deterministic\": 0.5625, \"internal\": 4.5}, \"eval_accuracy\": 0.9167, \"eval_balanced_accuracy\": 0.4936, \"eval_f1_macro\": 0.47, \"eval_loss_epoch1\": 0.79, \"eval_loss_epoch2\": 0.78, \"grad_norm_range\": \"70-604\", \"is_degenerate\": true, \"note\": \"Metrics corrected per eval_report.json (D02\n  notes: D021 确认：class_weights auto [4.5, 0.5625] 是 v3/v4/v5 loss 异常的根因。train_loss 4-11 (正常应 0.5-0.7)，grad_norm 604，internal recall=0。pad_token_id fix 无效（代码中已存在）。v6 对照实验：移除 class_weights，验证 loss 是否恢复正常。\n  failure_reason:",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all 28 negative experiments. Let me also read the paper tex files to check which negative results are already discussed. Let me read the key sections: experiments, discussion, conclusion.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "0165f647-3863-4f14-bbcc-e516c0d059d9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017F5XG4PgUAZwQCoCfgYAPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7357,
+      "cache_read_input_tokens": 34957,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7357
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+现在读取论文章节，确认已讨论的阴性结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "6ae803b2-0106-49a9-b1f1-b51ff3e4d82f",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017F5XG4PgUAZwQCoCfgYAPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7357,
+      "cache_read_input_tokens": 34957,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7357
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WkRQEKnfnSAbKsSwNtjxHv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "efe35570-e092-41a7-bb22-86af4b5f777c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017F5XG4PgUAZwQCoCfgYAPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7357,
+      "cache_read_input_tokens": 34957,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7357
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-18T21:41:38.271Z_
+
+<details><summary>↩ Tool result · `toolu_01WkRQEKnfnSAbKsSwNtjxHv`</summary>
+
+```text
+1	\section{Experiments}
+2	
+3	We analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\Delta\text{DR} = +38.2$\,pp exceeding the included tasks' $+28.7$\,pp (Appendix~\ref{app:per-task}).
+4	
+5	\subsection{Death Avoidance Decomposition}
+6	\label{sec:death-decomp}
+7	
+8	\begin{figure}[t]
+9	\centering
+10	\includegraphics[width=\columnwidth]{figures/fig1_daf_scatter.pdf}
+11	\caption{Per-task scatter: death rate differential (internal $-$ deterministic) vs.\ performance gap ($\Delta_{\text{full}}$). $r = 0.97$, $p < 10^{-6}$, $n = 11$ task types.}
+12	\label{fig:decomposition}
+13	\end{figure}
+14	
+15	Across 245 episodes, $\Delta_{\text{full}} = +29.60$; excluding death episodes, $\Delta_{\text{nd}} = +2.84$, yielding DAF $= 90.4\%$ (95\% CI: $[81.6\%, 98.8\%]$; at the default $P{=}100$). The penalty-independent death-asymmetry label fraction is 78.9\% (75 of 95 non-tie labels). Given observed $\delta = 0.265$ and $P = 100$, the predicted DAF $= \delta P / (\delta P + \Delta_{\text{nd}}) = 26.5 / 29.37 \approx 90.3\%$, closely matching the observed value; DAF is thus a derived quantity once $\delta$, $P$, and $\Delta_{\text{nd}}$ are known, while the 78.9\% label fraction is the penalty-independent empirical finding. Of these 75, 54 (72.0\%) reduce to ties when the death penalty is removed entirely: in those episodes, both modalities score zero without death, so the only reason one strategy outscored the other was avoiding the $-100$ penalty. Death avoidance is not merely the dominant but often the \emph{sole} discriminating signal between modalities. The remaining 21 death-asymmetry labels involve episodes where the surviving strategy also earned positive score, but the death penalty still accounts for the majority of the score gap.
+16	
+17	\paragraph{Per-task correlation structure.}
+18	The internal strategy dies in 42.9\% of episodes versus 16.3\% for deterministic (2.6$\times$), consistent with the internal strategy's reliance on self-generated observations that compound prediction errors across steps. Per-task, death rate differential correlates with $\Delta_{\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\ref{fig:decomposition}). Since $P$ is constant across all task types, $\Delta_{\text{full}} = P \cdot \delta + \Delta_{\text{nd}}$ makes $\Delta_{\text{full}}$ a linear function of $\delta$ with residual $\Delta_{\text{nd}}$; when DAF $\rightarrow 1$, this residual vanishes and $r \rightarrow 1$ by construction. The near-perfect correlation is therefore a mathematical consequence of death dominance, not an independent empirical finding. We retain it as an internal consistency check. The correlation drops below significance at $P \leq 25$ (Appendix~\ref{app:penalty}). Of 245 episodes, 86 are \texttt{det\_preferred}, 9 \texttt{internal\_preferred}, and 150 \texttt{no\_preference}.
+19	
+20	\paragraph{Signal concentration.}
+21	The Signal Concentration Index (SCI $= 0.2147$; Appendix~\ref{app:sci}) confirms low concentration: the top-3 task types account for only $39.8\%$ of total death-rate differential. One outlier, \texttt{find-non-living-thing}, has zero deaths ($\Delta = +9.58$ from non-death scores alone); all 10 remaining types exhibit death-asymmetry-driven routing labels.
+22	
+23	\paragraph{Sensitivity analysis.}
+24	Episode-level bootstrap ($B = 10{,}000$) yields 95\% CI $[81.6\%, 98.8\%]$ for DAF; per-task CIs confirm $\Delta > 0$ for 10 of 11 types. Cluster bootstrap ($K{=}11$, resampling task types) yields a wider $[73.0\%, 100\%]$; with $K < 40$ this should be interpreted cautiously~\citep{cameron-2008}. A wild cluster bootstrap ($K{=}11$ task clusters, $B{=}9{,}999$) confirms significance at the cluster level ($p < 0.001$, Cohen's $d = 3.02$, 95\% CI $[0.73, 1.00]$; Appendix~\ref{app:wild-cluster}). Both intervals exclude 50\%, confirming that death avoidance accounts for a majority of routing signal under resampling. A leave-one-task-out analysis confirms DAF stability: removing any single death-prone task changes DAF by at most 3.0\,pp (range: 75.9\%--78.9\%; Appendix~\ref{app:loto-daf}). Across all 28 death-prone tasks (included and excluded), internal DR exceeds deterministic DR in every case (100\% directional consistency), with pooled $\Delta = +37.3\%$ (95\% CI: $[29.7\%, 44.4\%]$); 15 of 28 are individually significant, with the 13 non-significant cases entirely explained by small sample size ($n{=}5$; Appendix~\ref{app:per-task-ci}). An 8-seed cross-validation of the router ($47.1 \pm 2.2\%$ episode-level balanced accuracy, all seeds below chance) confirms that the failure to learn routing generalizes across data splits (Appendix~\ref{app:seed-robustness}).
+25	
+26	\paragraph{Seed robustness.}
+27	A full replication with an independent environment seed (seed$=$123, $N{=}220$, 11 tasks, strictly 20 episodes per task; the primary seed$=$42 analysis uses $N{=}245$ with 20--40 episodes per task) yields DAF $= 89.7\%$, within 0.7~pp of the primary analysis ($90.4\%$). The death-asymmetry label fraction rises from $78.9\%$ (seed$=$42) to $86.5\%$ (seed$=$123), and the non-death score differential is virtually identical ($\Delta_{\text{nd}} = 2.83$ vs.\ $2.84$), with per-task death-rate correlation $r = 0.94$. Internal and deterministic death rates shift modestly ($45.5\%$ vs.\ $42.9\%$ and $20.9\%$ vs.\ $16.3\%$, respectively), but the asymmetry and its downstream effect on routing signal are stable across seeds. \texttt{find-non-living-thing} exhibits zero deaths under both seeds, remaining the sole task with score-based (rather than death-based) routing signal, further confirming that the remaining 10 tasks' signal derives almost entirely from death asymmetry. Death dominance is not a seed artifact.
+28	
+29	\subsection{Multi-Model Validation}
+30	\label{sec:cross-model}
+31	
+32	A Llama-3.1-8B-Instruct~\citep{llama3-2024} replication on 7 task types ($N{=}70$) shows the death-avoidance pattern reproduces and intensifies: internal death rate $34.3\%$ vs.\ deterministic $0\%$ (cf.\ Qwen: $42.9\%$ vs.\ $16.3\%$), with zero internal-preferred episodes (24 det-preferred, 46 no-preference). With $N{=}70$ and zero internal-preferred labels, this preliminary pilot demonstrates directional consistency of the death mechanism across model families, not full framework replication, which would require a larger sample and independent environment. Both models are in the 7--8B range; $10{\times}$ scaling results (\S\ref{sec:agent-improvement}) and Reflexion experiments confirm that death dominance persists across capability levels (Appendix~\ref{app:cross-model}).
+33	
+34	\subsection{Agent Improvement Baselines}
+35	\label{sec:agent-improvement}
+36	
+37	\begin{table}[t]
+38	\centering
+39	\small
+40	\begin{tabular}{@{}lrr@{}}
+41	\toprule
+42	Condition & Death\% & $N$ \\
+43	\midrule
+44	Single-trial baseline & 42.9 & 245 \\
+45	Retry ($5{\times}$) & 43.5$^\ddagger$ & 200 \\
+46	Reflexion ($3{\times}$) & 31.4 & 220 \\
+47	Qwen2.5-72B ($10{\times}$ scale) & 34.5$^\dagger$ & 200 \\
+48	Deterministic baseline & 16.3 & 245 \\
+49	\bottomrule
+50	\end{tabular}
+51	\caption{Internal-strategy death rates under agent improvement methods. $\dagger$\,72B death rate is the aggregate over 200 episodes across 10 death-prone tasks; \texttt{find-non-living-thing} excluded (0\% death at both scales). $\ddagger$\,Retry $N{=}5$ death rate on the same 10 death-prone tasks ($n{=}200$); see dose-response analysis. Reflexion partially reduces death but the gap to deterministic remains large.}
+52	\label{tab:agent-improvement}
+53	\end{table}
+54	
+55	We test whether agent-level improvement reduces death dominance. Retry gives the agent three attempts per episode without self-correction; Reflexion~\citep{reflexion-2023} adds verbal self-reflection between trials (Table~\ref{tab:agent-improvement}). Retry yields only marginal reduction on death-prone tasks ($43.5\%$ at $N{=}5$ vs.\ $48.0\%$ baseline, $\Delta = -4.5$~pp; see dose-response analysis below). Reflexion reduces death to 31.4\% by rescuing 29.3\% of first-trial deaths (27 of 92), but the gap to deterministic (16.3\%) remains 15.1~pp. Trial~1 death rate under Reflexion (41.8\%) matches the single-trial baseline; the reduction comes from cross-trial self-correction, not from the Reflexion prompt itself. Trial~3 adds minimal rescue beyond Trial~2 (net $+4$). Scaling from 7B to Qwen2.5-72B ($10{\times}$ parameters) moderately reduces aggregate death rate from ${\sim}$51\% to ${\sim}$35\% ($\Delta \approx -17$~pp) across death-prone tasks (Table~\ref{tab:agent-improvement}), but does not approach deterministic-level safety (16.3\%). Task-level variation ranges from $+5$~pp (chemistry-mix, where 72B performs slightly worse) to $-31$~pp (lifespan-longest-lived). This variation suggests that scaling yields large reductions in biological-reasoning tasks ($-15$ to $-31$~pp) but provides no benefit for chemical state tracking (chemistry-mix: $+5$~pp; Appendix~\ref{app:cross-model}). The 31.4\% in Table~\ref{tab:agent-improvement} covers all 11 tasks; on the 10 death-prone tasks, Reflexion achieves ${\sim}$35\%, the figure reported in the Abstract. Recomputing DAF with 72B as the internal strategy ($N{=}220$) yields $90.9\%$ (95\% CI: $[83.9\%, 97.3\%]$), nearly identical to the 7B value ($90.4\%$); the death-asymmetry label fraction rises from $78.9\%$ (7B) to $84.3\%$ (72B). On death-prone tasks ($N{=}200$), DAF reaches $99.5\%$ ($[98.0\%, 100.2\%]$) with $95.9\%$ of labels driven by death asymmetry. A matched 10-task comparison confirms scale-independence: 8 of 10 death-prone tasks maintain DAF $= 100\%$ at both 7B and 72B; episode-weighted DAF declines only from $100\%$ to $97.5\%$. No task shifts from death-dominated to performance-dominated at $10{\times}$ scale. Scaling lowers death rate but leaves death dominance structurally intact.
+56	
+57	\paragraph{Dose-response analysis.}
+58	To characterize the marginal value of additional trials, we extend both Retry and Reflexion to $N{=}5$ trials on the 10 death-prone tasks ($n{=}200$ per condition; Figure~\ref{fig:dose-response}). Retry is nearly flat: death rate decreases from $48.0\%$ ($N{=}1$) to $43.5\%$ ($N{=}5$), a $4.5$~pp reduction across five trials. Reflexion shows a qualitatively different pattern: a steep initial decline from $47.5\%$ ($N{=}1$) to $34.0\%$ ($N{=}3$, $\Delta = -13.5$~pp, $z = 2.86$, $p < 0.005$), followed by a plateau at $34$--$36.5\%$ for $N \geq 3$ (pairwise $z$-tests $p > 0.5$, Wilson CIs overlapping). That Reflexion at $N{=}3$ ($34.0\%$) converges to nearly the same floor as $10{\times}$ capability scaling ($34.5\%$, 72B) suggests a shared structural bound: both interventions attenuate death but cannot close the ${\sim}$18~pp gap to deterministic execution ($16.3\%$). The contrast illuminates the mechanism: Retry's per-trial conditional death rate remains constant at ${\sim}48\%$, confirming that the agent does not learn between blind retries. Reflexion's per-trial rate declines from $47.5\%$ to ${\sim}31\%$ at Trial~3 before a modest uptick at Trials~4--5; this non-monotonicity is a descriptive observation (Wilson CIs overlap across all $N \geq 3$ conditions) rather than evidence of over-reflexion degradation (per-task breakdown in Appendix~\ref{app:dose-response}).
+59	
+60	\begin{figure}[t]
+61	\centering
+62	\includegraphics[width=\columnwidth]{figures/dose_response.pdf}
+63	\caption{Death rate as a function of trial count ($N$) for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Retry (blue) is nearly flat; Reflexion (red) drops steeply through $N{=}3$ then plateaus. Horizontal lines: 72B scaling baseline ($34.5\%$) and deterministic baseline ($16.3\%$). Error bands: Wilson 95\% CIs.}
+64	\label{fig:dose-response}
+65	\end{figure}
+66	
+67	\subsection{Cross-Domain Negative Contrast: MATH}
+68	\label{sec:math-contrast}
+69	
+70	On MATH Level~4--5~\citep{math-2021} ($N{=}795$ problems, code interpreter as deterministic modality), internal reasoning and code interpretation achieve near-identical accuracy: $73.5\%$ vs.\ $73.0\%$ ($+0.5$~pp, McNemar $p = 0.81$, 95\% CI $[-2.6, +3.6]$~pp). The label distribution is balanced (107 \texttt{int\_preferred} vs.\ 95 \texttt{det\_preferred}, 74.6\% \texttt{no\_preference}), ruling out routing signal ${\geq}3.6$~pp at $\alpha{=}0.05$. Without catastrophic failure, modality routing confers no advantage.
+71	
+72	\subsection{Cross-Environment Contrasts}
+73	\label{sec:cross-env}
+74	
+75	We evaluate two additional environments lacking catastrophic death penalties. The ``deterministic'' modality differs by environment: an oracle simulator (ScienceWorld), a code interpreter (MATH), or admissible-action access (ALFWorld). These are not equivalent modality switches: each instantiates ``deterministic computation'' through a qualitatively different mechanism. Results across environments should therefore be interpreted as boundary probes of framework applicability rather than direct replications. The framework's diagnostic value lies in identifying different mechanisms (death avoidance in ScienceWorld, null signal in MATH, information asymmetry in ALFWorld) across heterogeneous settings (Figure~\ref{fig:signal-reversal}).
+76	
+77	\begin{figure}[t]
+78	\centering
+79	\includegraphics[width=\columnwidth]{figures/signal_reversal.pdf}
+80	\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both show deterministic preference, but through different mechanisms: death avoidance (ScienceWorld) vs.\ information asymmetry from admissible-action access (ALFWorld). MATH shows balanced labels, confirming no routing signal without catastrophic failure. ``Deterministic'' denotes qualitatively different modalities per environment (Table~\ref{tab:cross-env}).}
+81	\label{fig:signal-reversal}
+82	\end{figure}
+83	
+84	\paragraph{ALFWorld.} ALFWorld~\citep{alfworld-2021} is a text-based household environment (6 task types, 135 games, max 50 steps). The deterministic strategy additionally receives admissible actions, an information asymmetry rather than a computation mode switch. The success rate gap is 27.4\% vs.\ 3.0\%, with 35 deterministic-preferred, 2 internal-preferred, and 98 no-preference labels (96 both-fail). The deterministic advantage stems from the information gap rather than death avoidance, a qualitatively different mechanism that the framework diagnoses without modification.
+85	
+86	\begin{table}[t]
+87	\centering
+88	\small
+89	\resizebox{\columnwidth}{!}{%
+90	\begin{tabular}{@{}lccccc@{}}
+91	\toprule
+92	Environment & $N$ & Det\% & Int\% & NoPref\% & Death? \\
+93	\midrule
+94	ScienceWorld & 245 & 35.1 & 3.7 & 61.2 & Yes ($-100$) \\
+95	MATH & 795 & 12.0 & 13.5 & 74.6 & No \\
+96	ALFWorld & 135 & 25.9 & 1.5 & 72.6 & No\textsuperscript{$\dagger$} \\
+97	\bottomrule
+98	\end{tabular}}
+99	\caption{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different modalities: an oracle simulator providing ground-truth state (ScienceWorld), a code interpreter executing symbolic computation (MATH), or admissible-action access providing action-space pruning (ALFWorld). Only ScienceWorld satisfies all framework assumptions (paired modalities, binary catastrophic outcomes, sparse rewards); MATH and ALFWorld lack catastrophic outcomes and serve as boundary probes. $\dagger$\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}
+100	\label{tab:cross-env}
+101	\end{table}
+102	
+103	\subsection{Baselines}
+104	\label{sec:baselines}
+105	
+106	\begin{table}[t]
+107	\centering
+108	\small
+109	\resizebox{\columnwidth}{!}{%
+110	\begin{tabular}{@{}lccc@{}}
+111	\toprule
+112	Strategy & Score & 95\% CI & Death \% \\
+113	\midrule
+114	Always-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\
+115	Always-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\
+116	Random & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\
+117	Oracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\
+118	\midrule
+119	Trained Router$^\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\
+120	\bottomrule
+121	\end{tabular}}
+122	\caption{Episode-weighted mean scores on ScienceWorld (11 tasks, 245 episodes). $\dagger$\,Single random seed (42) per episode pair; see Appendix~\ref{app:seed-robustness} for 8-seed robustness analysis.}
+123	\label{tab:baselines}
+124	\end{table}
+125	
+126	Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\% of decisions matching always-deterministic, an \emph{oracle degeneracy}: the optimal routing policy closely resembles unconditional deterministic computation.
+127	
+128	\subsection{Router Training as Diagnostic Probe}
+129	\label{sec:router-diagnostic}
+130	
+131	We probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The primary bound on performance is the oracle margin: only 2.89 points separate the oracle ($-6.58$) from always-deterministic ($-9.47$), capping routing upside regardless of router quality. A secondary confound is that ${\sim}27.7\%$ of step-level labels are misaligned with their episode-level assignment, further limiting step-level learnability. These two factors are logically independent: a narrow oracle margin limits routing value even with perfectly accurate labels, while mislabeling degrades learning even if the margin were large. In this setting, the oracle margin is the binding constraint: the 2.89-point ceiling means routing can recover at most modest gains regardless of label quality. An implicit router (Qwen3, LoRA fine-tuned; Appendix~\ref{app:router-details}) is trained at three scales (0.6B, 1.7B, 4B) with identical 4-seed configurations. Step-level balanced accuracy is flat across scales ($56.4 \pm 3.5\%$, $58.2 \pm 4.0\%$, $59.2 \pm 3.5\%$; all within seed variance); step-level discrimination is not capacity-sensitive. At episode level, only 4B exceeds the always-deterministic baseline ($59.0 \pm 1.9\%$, $p < 0.005$; Appendix~\ref{app:ablations}), while 0.6B ($50.7 \pm 2.6\%$) and 1.7B ($43.1 \pm 1.0\%$) remain at or below chance. The 1.7B dip is robust across seeds (range $41.7$--$44.4\%$). We hypothesize that the 1.7B model has sufficient capacity to memorize death-correlated patterns in the training set but insufficient capacity to learn a generalizable routing policy, resulting in spurious anti-correlation; future work should examine per-class routing decisions to test this hypothesis. This non-monotonic pattern, combined with universally low internal recall, reinforces that learned routing does not scale predictably with capacity at current data scales. Unlike single-step tool-calling, the multi-step nature of this routing problem (10--50 actions with compounding state uncertainty) creates inherent label noise between step-level decisions and episode-level outcomes.
+132	
+133	\paragraph{End-to-end deployment.} Deployed in the full ScienceWorld loop ($N{=}245$), the 4B router scores $-12.03$ (95\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$; overlapping CIs). Paraphrase-based augmentation ($25\%$--$800\%$, synthetic oversampling without new environment interactions) provides no improvement (Appendix~\ref{app:seed-robustness}); augmentation inflates the majority class without generating novel internal-preferred patterns (only 9 of 245 base episodes are internal-preferred), so real-data collection may be necessary but the $3.7\%$ base rate makes it expensive. The agent improvement results (\S\ref{sec:agent-improvement}) reinforce this ceiling: even Reflexion-level intervention leaves a 15.1~pp death gap to deterministic. Failure mode, augmentation, and ablation details in Appendices~\ref{app:failure-modes}--\ref{app:ablations}.
+134	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "e842f3f4-2796-4d5d-b016-549bbbe2015a",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\nWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\\Delta\\text{DR} = +38.2$\\,pp exceeding the included tasks' $+28.7$\\,pp (Appendix~\\ref{app:per-task}).\n\n\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$, $p < 10^{-6}$, $n = 11$ task types.}\n\\label{fig:decomposition}\n\\end{figure}\n\nAcross 245 episodes, $\\Delta_{\\text{full}} = +29.60$; excluding death episodes, $\\Delta_{\\text{nd}} = +2.84$, yielding DAF $= 90.4\\%$ (95\\% CI: $[81.6\\%, 98.8\\%]$; at the default $P{=}100$). The penalty-independent death-asymmetry label fraction is 78.9\\% (75 of 95 non-tie labels). Given observed $\\delta = 0.265$ and $P = 100$, the predicted DAF $= \\delta P / (\\delta P + \\Delta_{\\text{nd}}) = 26.5 / 29.37 \\approx 90.3\\%$, closely matching the observed value; DAF is thus a derived quantity once $\\delta$, $P$, and $\\Delta_{\\text{nd}}$ are known, while the 78.9\\% label fraction is the penalty-independent empirical finding. Of these 75, 54 (72.0\\%) reduce to ties when the death penalty is removed entirely: in those episodes, both modalities score zero without death, so the only reason one strategy outscored the other was avoiding the $-100$ penalty. Death avoidance is not merely the dominant but often the \\emph{sole} discriminating signal between modalities. The remaining 21 death-asymmetry labels involve episodes where the surviving strategy also earned positive score, but the death penalty still accounts for the majority of the score gap.\n\n\\paragraph{Per-task correlation structure.}\nThe internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic (2.6$\\times$), consistent with the internal strategy's reliance on self-generated observations that compound prediction errors across steps. Per-task, death rate differential correlates with $\\Delta_{\\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\\ref{fig:decomposition}). Since $P$ is constant across all task types, $\\Delta_{\\text{full}} = P \\cdot \\delta + \\Delta_{\\text{nd}}$ makes $\\Delta_{\\text{full}}$ a linear function of $\\delta$ with residual $\\Delta_{\\text{nd}}$; when DAF $\\rightarrow 1$, this residual vanishes and $r \\rightarrow 1$ by construction. The near-perfect correlation is therefore a mathematical consequence of death dominance, not an independent empirical finding. We retain it as an internal consistency check. The correlation drops below significance at $P \\leq 25$ (Appendix~\\ref{app:penalty}). Of 245 episodes, 86 are \\texttt{det\\_preferred}, 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}.\n\n\\paragraph{Signal concentration.}\nThe Signal Concentration Index (SCI $= 0.2147$; Appendix~\\ref{app:sci}) confirms low concentration: the top-3 task types account for only $39.8\\%$ of total death-rate differential. One outlier, \\texttt{find-non-living-thing}, has zero deaths ($\\Delta = +9.58$ from non-death scores alone); all 10 remaining types exhibit death-asymmetry-driven routing labels.\n\n\\paragraph{Sensitivity analysis.}\nEpisode-level bootstrap ($B = 10{,}000$) yields 95\\% CI $[81.6\\%, 98.8\\%]$ for DAF; per-task CIs confirm $\\Delta > 0$ for 10 of 11 types. Cluster bootstrap ($K{=}11$, resampling task types) yields a wider $[73.0\\%, 100\\%]$; with $K < 40$ this should be interpreted cautiously~\\citep{cameron-2008}. A wild cluster bootstrap ($K{=}11$ task clusters, $B{=}9{,}999$) confirms significance at the cluster level ($p < 0.001$, Cohen's $d = 3.02$, 95\\% CI $[0.73, 1.00]$; Appendix~\\ref{app:wild-cluster}). Both intervals exclude 50\\%, confirming that death avoidance accounts for a majority of routing signal under resampling. A leave-one-task-out analysis confirms DAF stability: removing any single death-prone task changes DAF by at most 3.0\\,pp (range: 75.9\\%--78.9\\%; Appendix~\\ref{app:loto-daf}). Across all 28 death-prone tasks (included and excluded), internal DR exceeds deterministic DR in every case (100\\% directional consistency), with pooled $\\Delta = +37.3\\%$ (95\\% CI: $[29.7\\%, 44.4\\%]$); 15 of 28 are individually significant, with the 13 non-significant cases entirely explained by small sample size ($n{=}5$; Appendix~\\ref{app:per-task-ci}). An 8-seed cross-validation of the router ($47.1 \\pm 2.2\\%$ episode-level balanced accuracy, all seeds below chance) confirms that the failure to learn routing generalizes across data splits (Appendix~\\ref{app:seed-robustness}).\n\n\\paragraph{Seed robustness.}\nA full replication with an independent environment seed (seed$=$123, $N{=}220$, 11 tasks, strictly 20 episodes per task; the primary seed$=$42 analysis uses $N{=}245$ with 20--40 episodes per task) yields DAF $= 89.7\\%$, within 0.7~pp of the primary analysis ($90.4\\%$). The death-asymmetry label fraction rises from $78.9\\%$ (seed$=$42) to $86.5\\%$ (seed$=$123), and the non-death score differential is virtually identical ($\\Delta_{\\text{nd}} = 2.83$ vs.\\ $2.84$), with per-task death-rate correlation $r = 0.94$. Internal and deterministic death rates shift modestly ($45.5\\%$ vs.\\ $42.9\\%$ and $20.9\\%$ vs.\\ $16.3\\%$, respectively), but the asymmetry and its downstream effect on routing signal are stable across seeds. \\texttt{find-non-living-thing} exhibits zero deaths under both seeds, remaining the sole task with score-based (rather than death-based) routing signal, further confirming that the remaining 10 tasks' signal derives almost entirely from death asymmetry. Death dominance is not a seed artifact.\n\n\\subsection{Multi-Model Validation}\n\\label{sec:cross-model}\n\nA Llama-3.1-8B-Instruct~\\citep{llama3-2024} replication on 7 task types ($N{=}70$) shows the death-avoidance pattern reproduces and intensifies: internal death rate $34.3\\%$ vs.\\ deterministic $0\\%$ (cf.\\ Qwen: $42.9\\%$ vs.\\ $16.3\\%$), with zero internal-preferred episodes (24 det-preferred, 46 no-preference). With $N{=}70$ and zero internal-preferred labels, this preliminary pilot demonstrates directional consistency of the death mechanism across model families, not full framework replication, which would require a larger sample and independent environment. Both models are in the 7--8B range; $10{\\times}$ scaling results (\\S\\ref{sec:agent-improvement}) and Reflexion experiments confirm that death dominance persists across capability levels (Appendix~\\ref{app:cross-model}).\n\n\\subsection{Agent Improvement Baselines}\n\\label{sec:agent-improvement}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lrr@{}}\n\\toprule\nCondition & Death\\% & $N$ \\\\\n\\midrule\nSingle-trial baseline & 42.9 & 245 \\\\\nRetry ($5{\\times}$) & 43.5$^\\ddagger$ & 200 \\\\\nReflexion ($3{\\times}$) & 31.4 & 220 \\\\\nQwen2.5-72B ($10{\\times}$ scale) & 34.5$^\\dagger$ & 200 \\\\\nDeterministic baseline & 16.3 & 245 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Internal-strategy death rates under agent improvement methods. $\\dagger$\\,72B death rate is the aggregate over 200 episodes across 10 death-prone tasks; \\texttt{find-non-living-thing} excluded (0\\% death at both scales). $\\ddagger$\\,Retry $N{=}5$ death rate on the same 10 death-prone tasks ($n{=}200$); see dose-response analysis. Reflexion partially reduces death but the gap to deterministic remains large.}\n\\label{tab:agent-improvement}\n\\end{table}\n\nWe test whether agent-level improvement reduces death dominance. Retry gives the agent three attempts per episode without self-correction; Reflexion~\\citep{reflexion-2023} adds verbal self-reflection between trials (Table~\\ref{tab:agent-improvement}). Retry yields only marginal reduction on death-prone tasks ($43.5\\%$ at $N{=}5$ vs.\\ $48.0\\%$ baseline, $\\Delta = -4.5$~pp; see dose-response analysis below). Reflexion reduces death to 31.4\\% by rescuing 29.3\\% of first-trial deaths (27 of 92), but the gap to deterministic (16.3\\%) remains 15.1~pp. Trial~1 death rate under Reflexion (41.8\\%) matches the single-trial baseline; the reduction comes from cross-trial self-correction, not from the Reflexion prompt itself. Trial~3 adds minimal rescue beyond Trial~2 (net $+4$). Scaling from 7B to Qwen2.5-72B ($10{\\times}$ parameters) moderately reduces aggregate death rate from ${\\sim}$51\\% to ${\\sim}$35\\% ($\\Delta \\approx -17$~pp) across death-prone tasks (Table~\\ref{tab:agent-improvement}), but does not approach deterministic-level safety (16.3\\%). Task-level variation ranges from $+5$~pp (chemistry-mix, where 72B performs slightly worse) to $-31$~pp (lifespan-longest-lived). This variation suggests that scaling yields large reductions in biological-reasoning tasks ($-15$ to $-31$~pp) but provides no benefit for chemical state tracking (chemistry-mix: $+5$~pp; Appendix~\\ref{app:cross-model}). The 31.4\\% in Table~\\ref{tab:agent-improvement} covers all 11 tasks; on the 10 death-prone tasks, Reflexion achieves ${\\sim}$35\\%, the figure reported in the Abstract. Recomputing DAF with 72B as the internal strategy ($N{=}220$) yields $90.9\\%$ (95\\% CI: $[83.9\\%, 97.3\\%]$), nearly identical to the 7B value ($90.4\\%$); the death-asymmetry label fraction rises from $78.9\\%$ (7B) to $84.3\\%$ (72B). On death-prone tasks ($N{=}200$), DAF reaches $99.5\\%$ ($[98.0\\%, 100.2\\%]$) with $95.9\\%$ of labels driven by death asymmetry. A matched 10-task comparison confirms scale-independence: 8 of 10 death-prone tasks maintain DAF $= 100\\%$ at both 7B and 72B; episode-weighted DAF declines only from $100\\%$ to $97.5\\%$. No task shifts from death-dominated to performance-dominated at $10{\\times}$ scale. Scaling lowers death rate but leaves death dominance structurally intact.\n\n\\paragraph{Dose-response analysis.}\nTo characterize the marginal value of additional trials, we extend both Retry and Reflexion to $N{=}5$ trials on the 10 death-prone tasks ($n{=}200$ per condition; Figure~\\ref{fig:dose-response}). Retry is nearly flat: death rate decreases from $48.0\\%$ ($N{=}1$) to $43.5\\%$ ($N{=}5$), a $4.5$~pp reduction across five trials. Reflexion shows a qualitatively different pattern: a steep initial decline from $47.5\\%$ ($N{=}1$) to $34.0\\%$ ($N{=}3$, $\\Delta = -13.5$~pp, $z = 2.86$, $p < 0.005$), followed by a plateau at $34$--$36.5\\%$ for $N \\geq 3$ (pairwise $z$-tests $p > 0.5$, Wilson CIs overlapping). That Reflexion at $N{=}3$ ($34.0\\%$) converges to nearly the same floor as $10{\\times}$ capability scaling ($34.5\\%$, 72B) suggests a shared structural bound: both interventions attenuate death but cannot close the ${\\sim}$18~pp gap to deterministic execution ($16.3\\%$). The contrast illuminates the mechanism: Retry's per-trial conditional death rate remains constant at ${\\sim}48\\%$, confirming that the agent does not learn between blind retries. Reflexion's per-trial rate declines from $47.5\\%$ to ${\\sim}31\\%$ at Trial~3 before a modest uptick at Trials~4--5; this non-monotonicity is a descriptive observation (Wilson CIs overlap across all $N \\geq 3$ conditions) rather than evidence of over-reflexion degradation (per-task breakdown in Appendix~\\ref{app:dose-response}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/dose_response.pdf}\n\\caption{Death rate as a function of trial count ($N$) for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Retry (blue) is nearly flat; Reflexion (red) drops steeply through $N{=}3$ then plateaus. Horizontal lines: 72B scaling baseline ($34.5\\%$) and deterministic baseline ($16.3\\%$). Error bands: Wilson 95\\% CIs.}\n\\label{fig:dose-response}\n\\end{figure}\n\n\\subsection{Cross-Domain Negative Contrast: MATH}\n\\label{sec:math-contrast}\n\nOn MATH Level~4--5~\\citep{math-2021} ($N{=}795$ problems, code interpreter as deterministic modality), internal reasoning and code interpretation achieve near-identical accuracy: $73.5\\%$ vs.\\ $73.0\\%$ ($+0.5$~pp, McNemar $p = 0.81$, 95\\% CI $[-2.6, +3.6]$~pp). The label distribution is balanced (107 \\texttt{int\\_preferred} vs.\\ 95 \\texttt{det\\_preferred}, 74.6\\% \\texttt{no\\_preference}), ruling out routing signal ${\\geq}3.6$~pp at $\\alpha{=}0.05$. Without catastrophic failure, modality routing confers no advantage.\n\n\\subsection{Cross-Environment Contrasts}\n\\label{sec:cross-env}\n\nWe evaluate two additional environments lacking catastrophic death penalties. The ``deterministic'' modality differs by environment: an oracle simulator (ScienceWorld), a code interpreter (MATH), or admissible-action access (ALFWorld). These are not equivalent modality switches: each instantiates ``deterministic computation'' through a qualitatively different mechanism. Results across environments should therefore be interpreted as boundary probes of framework applicability rather than direct replications. The framework's diagnostic value lies in identifying different mechanisms (death avoidance in ScienceWorld, null signal in MATH, information asymmetry in ALFWorld) across heterogeneous settings (Figure~\\ref{fig:signal-reversal}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/signal_reversal.pdf}\n\\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both show deterministic preference, but through different mechanisms: death avoidance (ScienceWorld) vs.\\ information asymmetry from admissible-action access (ALFWorld). MATH shows balanced labels, confirming no routing signal without catastrophic failure. ``Deterministic'' denotes qualitatively different modalities per environment (Table~\\ref{tab:cross-env}).}\n\\label{fig:signal-reversal}\n\\end{figure}\n\n\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} is a text-based household environment (6 task types, 135 games, max 50 steps). The deterministic strategy additionally receives admissible actions, an information asymmetry rather than a computation mode switch. The success rate gap is 27.4\\% vs.\\ 3.0\\%, with 35 deterministic-preferred, 2 internal-preferred, and 98 no-preference labels (96 both-fail). The deterministic advantage stems from the information gap rather than death avoidance, a qualitatively different mechanism that the framework diagnoses without modification.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nEnvironment & $N$ & Det\\% & Int\\% & NoPref\\% & Death? \\\\\n\\midrule\nScienceWorld & 245 & 35.1 & 3.7 & 61.2 & Yes ($-100$) \\\\\nMATH & 795 & 12.0 & 13.5 & 74.6 & No \\\\\nALFWorld & 135 & 25.9 & 1.5 & 72.6 & No\\textsuperscript{$\\dagger$} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different modalities: an oracle simulator providing ground-truth state (ScienceWorld), a code interpreter executing symbolic computation (MATH), or admissible-action access providing action-space pruning (ALFWorld). Only ScienceWorld satisfies all framework assumptions (paired modalities, binary catastrophic outcomes, sparse rewards); MATH and ALFWorld lack catastrophic outcomes and serve as boundary probes. $\\dagger$\\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}\n\\label{tab:cross-env}\n\\end{table}\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\\\\nRandom & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\\\\nOracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\\\\n\\midrule\nTrained Router$^\\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 tasks, 245 episodes). $\\dagger$\\,Single random seed (42) per episode pair; see Appendix~\\ref{app:seed-robustness} for 8-seed robustness analysis.}\n\\label{tab:baselines}\n\\end{table}\n\nAlways-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic, an \\emph{oracle degeneracy}: the optimal routing policy closely resembles unconditional deterministic computation.\n\n\\subsection{Router Training as Diagnostic Probe}\n\\label{sec:router-diagnostic}\n\nWe probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The primary bound on performance is the oracle margin: only 2.89 points separate the oracle ($-6.58$) from always-deterministic ($-9.47$), capping routing upside regardless of router quality. A secondary confound is that ${\\sim}27.7\\%$ of step-level labels are misaligned with their episode-level assignment, further limiting step-level learnability. These two factors are logically independent: a narrow oracle margin limits routing value even with perfectly accurate labels, while mislabeling degrades learning even if the margin were large. In this setting, the oracle margin is the binding constraint: the 2.89-point ceiling means routing can recover at most modest gains regardless of label quality. An implicit router (Qwen3, LoRA fine-tuned; Appendix~\\ref{app:router-details}) is trained at three scales (0.6B, 1.7B, 4B) with identical 4-seed configurations. Step-level balanced accuracy is flat across scales ($56.4 \\pm 3.5\\%$, $58.2 \\pm 4.0\\%$, $59.2 \\pm 3.5\\%$; all within seed variance); step-level discrimination is not capacity-sensitive. At episode level, only 4B exceeds the always-deterministic baseline ($59.0 \\pm 1.9\\%$, $p < 0.005$; Appendix~\\ref{app:ablations}), while 0.6B ($50.7 \\pm 2.6\\%$) and 1.7B ($43.1 \\pm 1.0\\%$) remain at or below chance. The 1.7B dip is robust across seeds (range $41.7$--$44.4\\%$). We hypothesize that the 1.7B model has sufficient capacity to memorize death-correlated patterns in the training set but insufficient capacity to learn a generalizable routing policy, resulting in spurious anti-correlation; future work should examine per-class routing decisions to test this hypothesis. This non-monotonic pattern, combined with universally low internal recall, reinforces that learned routing does not scale predictably with capacity at current data scales. Unlike single-step tool-calling, the multi-step nature of this routing problem (10--50 actions with compounding state uncertainty) creates inherent label noise between step-level decisions and episode-level outcomes.\n\n\\paragraph{End-to-end deployment.} Deployed in the full ScienceWorld loop ($N{=}245$), the 4B router scores $-12.03$ (95\\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$; overlapping CIs). Paraphrase-based augmentation ($25\\%$--$800\\%$, synthetic oversampling without new environment interactions) provides no improvement (Appendix~\\ref{app:seed-robustness}); augmentation inflates the majority class without generating novel internal-preferred patterns (only 9 of 245 base episodes are internal-preferred), so real-data collection may be necessary but the $3.7\\%$ base rate makes it expensive. The agent improvement results (\\S\\ref{sec:agent-improvement}) reinforce this ceiling: even Reflexion-level intervention leaves a 15.1~pp death gap to deterministic. Failure mode, augmentation, and ablation details in Appendices~\\ref{app:failure-modes}--\\ref{app:ablations}.\n",
+      "numLines": 134,
+      "startLine": 1,
+      "totalLines": 134
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01E6S4nxy7Uz3k1gyDm1A42h`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "c097fec8-9dc4-4a0f-876b-2a4e719f8434",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017F5XG4PgUAZwQCoCfgYAPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7357,
+      "cache_read_input_tokens": 34957,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7357
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-18T21:41:39.249Z_
+
+<details><summary>↩ Tool result · `toolu_01E6S4nxy7Uz3k1gyDm1A42h`</summary>
+
+```text
+1	\section{Discussion}
+2	\label{sec:discussion}
+3	
+4	\paragraph{Why the router fails: task-type-level signal.}
+5	The router diagnostic (\S\ref{sec:router-diagnostic}) reveals a structural mismatch: death avoidance is a task-type-level binary property (10 of 11 types carry death risk), but step-level features correlate weakly with this signal because death risk depends on multi-step state trajectories, not individual action semantics. The 4B router's episode-level improvement ($59.0\%$) without step-level gains ($56$--$59\%$, flat) confirms that capacity scaling captures task-type classification rather than generalizable routing features. A per-class confusion matrix of the 1.7B router reveals that 33\% of steps in death episodes are mispredicted as ``internal'' (routing to the LLM in precisely the situations where it dies), with internal-class precision of only 0.14. The router's prediction rate is similar across death and non-death episodes, confirming that it cannot detect death risk from step-level features.
+6	
+7	\paragraph{Non-triviality of death dominance.}
+8	Three qualitatively different interventions all fail to close the gap to deterministic-level safety (16.3\%). Retry is nearly ineffective even at $N{=}5$ trials ($43.5\%$ vs.\ $48.0\%$ baseline on death-prone tasks, $\Delta = -4.5$~pp; Figure~\ref{fig:dose-response}). Reflexion shows a steep initial decline to $34.0\%$ at $N{=}3$ ($\Delta = -13.5$~pp, $p < 0.005$) but plateaus thereafter ($34$--$36.5\%$ for $N \geq 3$, pairwise $p > 0.5$). $10{\times}$ capability scaling reduces death rate to $34.5\%$ (72B). Two independent intervention pathways, verbal self-correction (Reflexion $N{=}3$: $34.0\%$, 95\% Wilson CI $[27.8\%, 40.8\%]$) and $10{\times}$ parameter scaling (72B: $34.5\%$, $[28.0\%, 41.0\%]$), converge to overlapping confidence intervals, suggesting a shared structural bound set by the internal strategy's lack of ground-truth state access rather than limitations of either intervention individually. The convergence is a descriptive observation given overlapping CIs, not a precision claim. All three interventions leave the gap to deterministic execution (16.3\%) at ${\sim}$18~pp or more (Retry $43.5\%$, Reflexion $34.0\%$, 72B $34.5\%$). \texttt{find-non-living-thing} exhibits 0\% death across all conditions, confirming that death risk is task-specific. Compounding state estimation errors across multi-step trajectories create catastrophic failures that single-axis improvements attenuate but do not eliminate. Tree search with environment feedback and frontier models remain untested. Prior tool-routing work \citep{toolformer-2023,art-2023,chameleon-2023} operates in non-interactive settings where individual tool calls are independent; in multi-step interactive environments, the finding is not that death exists but that the death-rate differential ($\delta = 26.6$~pp) and its downstream effects resist all three tested intervention axes.
+9	
+10	\paragraph{Anatomy of catastrophic failure.}
+11	All 105 internal-strategy deaths trace to a single action pattern: \texttt{focus on [object]}. In ScienceWorld, \texttt{focus on} is the answer-submission action; the LLM systematically misuses it as a general interaction command, applying it to irrelevant targets (rooms, doors, inventory items) and thereby submitting incorrect answers that trigger the $-100$ penalty. A taxonomy of death episodes (Appendix~\ref{app:failure-modes}) identifies action-space grounding failure as the root cause: the majority of dying agents correctly parse the task description but cannot ground their understanding in valid action primitives. The dominant failure mode is not comprehension failure but inability to translate task understanding into correct actions. Within death episodes, both strategies exhibit comparable \texttt{focus on} rates (${\sim}5\%$; Figure~\ref{fig:death-comparison}); the internal strategy's higher death count (105 vs.\ 40) reflects more frequent entry into catastrophic states rather than different action selection within those states. Among fatal targets, \texttt{workshop} remains the most frequent (20.0\%), followed by \texttt{inventory} (17.1\%) and \texttt{kitchen} (10.5\%), indicating a systematic object bias rather than random exploration (Figure~\ref{fig:death-action-dist}). This specificity suggests that targeted interventions (action-space filtering, grounding-aware prompting) could reduce death rates more effectively than general capability scaling.
+12	
+13	\paragraph{Oracle degeneracy and routing value.}
+14	The oracle router matches always-deterministic on 96.3\% of decisions, improving score by only 2.89 points ($-6.58$ vs.\ $-9.47$). This \emph{oracle degeneracy} challenges a core assumption of routing research: that learning to switch between modalities yields substantial gains over any fixed strategy. When death dominance holds, the optimal policy is near-degenerate because the dominant signal (avoiding catastrophic failure) uniformly favors deterministic computation. Practitioners should first verify that the oracle margin justifies the complexity of a learned router before investing in routing infrastructure.
+15	
+16	\paragraph{Scaling predictions.}
+17	Stronger backbones lower death rates but do not eliminate death dominance: Qwen2.5-72B reduces aggregate death from ${\sim}$51\% to ${\sim}$35\% ($-17$~pp), yet DAF remains $90.9\%$ (vs.\ $90.4\%$ at 7B), and the gap to deterministic (16.3\%) remains ${\sim}$18~pp. The Llama pilot ($\delta = +34.3\%$) versus Qwen-7B ($\delta = +26.6\%$) is consistent in the capability-increase direction. Preliminary evidence (Qwen2.5-0.5B, $N{=}15$) suggests the relationship is non-monotonic: very weak models exhibit low death rates from inability to reach dangerous states. Our results suggest that in environments where one modality triggers irreversible catastrophic failures with severe penalties, death avoidance will dominate routing signal; self-correction mechanisms can selectively reduce death-driven signal but are unlikely to eliminate death dominance.
+18	
+19	\paragraph{When to use deterministic computation.}
+20	Our framework provides a practical diagnostic sequence for practitioners deploying modular agents. First, identify whether the target environment contains catastrophic failure mechanisms (permadeath, irreversible penalties). Second, estimate the death-rate asymmetry between internal and deterministic strategies using a small pilot (${\sim}$50 episodes suffice for directional signal). Third, if death-asymmetry labels dominate the routing signal, a fixed deterministic strategy is likely to match or exceed a learned router at substantially lower deployment complexity. The MATH negative control ($p = 0.81$) confirms that this diagnostic correctly identifies environments where routing adds no value.
+21	
+22	\paragraph{DAF and framework applicability.}
+23	DAF increases monotonically with $P$ (Appendix~\ref{app:penalty}); the penalty-independent label fraction (78.9\%) is the more informative primary diagnostic. The framework requires paired episodes under two modalities, binary catastrophic outcomes, and sparse rewards. ScienceWorld satisfies all three; MATH lacks catastrophic outcomes (negative control); ALFWorld lacks them too, and the framework identifies information asymmetry as the alternative mechanism. When $P$ is small relative to $\Delta_{\text{nd}}$, DAF degrades (at $P{=}0$, DAF $= 7.5\%$); the framework is most informative when catastrophic penalties dominate non-death score differences. NetHack~\citep{nethack-2020} and Crafter~\citep{crafter-2022}, both featuring permadeath, are the most direct replication targets; recent LLM agent benchmarks in these environments \citep{balrog-2025,netplay-2024} provide the infrastructure for such evaluation.
+24	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "108cbf38-7d7b-4b16-852b-54b5e0b5d634",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/discussion.tex",
+      "content": "\\section{Discussion}\n\\label{sec:discussion}\n\n\\paragraph{Why the router fails: task-type-level signal.}\nThe router diagnostic (\\S\\ref{sec:router-diagnostic}) reveals a structural mismatch: death avoidance is a task-type-level binary property (10 of 11 types carry death risk), but step-level features correlate weakly with this signal because death risk depends on multi-step state trajectories, not individual action semantics. The 4B router's episode-level improvement ($59.0\\%$) without step-level gains ($56$--$59\\%$, flat) confirms that capacity scaling captures task-type classification rather than generalizable routing features. A per-class confusion matrix of the 1.7B router reveals that 33\\% of steps in death episodes are mispredicted as ``internal'' (routing to the LLM in precisely the situations where it dies), with internal-class precision of only 0.14. The router's prediction rate is similar across death and non-death episodes, confirming that it cannot detect death risk from step-level features.\n\n\\paragraph{Non-triviality of death dominance.}\nThree qualitatively different interventions all fail to close the gap to deterministic-level safety (16.3\\%). Retry is nearly ineffective even at $N{=}5$ trials ($43.5\\%$ vs.\\ $48.0\\%$ baseline on death-prone tasks, $\\Delta = -4.5$~pp; Figure~\\ref{fig:dose-response}). Reflexion shows a steep initial decline to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $p < 0.005$) but plateaus thereafter ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$). $10{\\times}$ capability scaling reduces death rate to $34.5\\%$ (72B). Two independent intervention pathways, verbal self-correction (Reflexion $N{=}3$: $34.0\\%$, 95\\% Wilson CI $[27.8\\%, 40.8\\%]$) and $10{\\times}$ parameter scaling (72B: $34.5\\%$, $[28.0\\%, 41.0\\%]$), converge to overlapping confidence intervals, suggesting a shared structural bound set by the internal strategy's lack of ground-truth state access rather than limitations of either intervention individually. The convergence is a descriptive observation given overlapping CIs, not a precision claim. All three interventions leave the gap to deterministic execution (16.3\\%) at ${\\sim}$18~pp or more (Retry $43.5\\%$, Reflexion $34.0\\%$, 72B $34.5\\%$). \\texttt{find-non-living-thing} exhibits 0\\% death across all conditions, confirming that death risk is task-specific. Compounding state estimation errors across multi-step trajectories create catastrophic failures that single-axis improvements attenuate but do not eliminate. Tree search with environment feedback and frontier models remain untested. Prior tool-routing work \\citep{toolformer-2023,art-2023,chameleon-2023} operates in non-interactive settings where individual tool calls are independent; in multi-step interactive environments, the finding is not that death exists but that the death-rate differential ($\\delta = 26.6$~pp) and its downstream effects resist all three tested intervention axes.\n\n\\paragraph{Anatomy of catastrophic failure.}\nAll 105 internal-strategy deaths trace to a single action pattern: \\texttt{focus on [object]}. In ScienceWorld, \\texttt{focus on} is the answer-submission action; the LLM systematically misuses it as a general interaction command, applying it to irrelevant targets (rooms, doors, inventory items) and thereby submitting incorrect answers that trigger the $-100$ penalty. A taxonomy of death episodes (Appendix~\\ref{app:failure-modes}) identifies action-space grounding failure as the root cause: the majority of dying agents correctly parse the task description but cannot ground their understanding in valid action primitives. The dominant failure mode is not comprehension failure but inability to translate task understanding into correct actions. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$; Figure~\\ref{fig:death-comparison}); the internal strategy's higher death count (105 vs.\\ 40) reflects more frequent entry into catastrophic states rather than different action selection within those states. Among fatal targets, \\texttt{workshop} remains the most frequent (20.0\\%), followed by \\texttt{inventory} (17.1\\%) and \\texttt{kitchen} (10.5\\%), indicating a systematic object bias rather than random exploration (Figure~\\ref{fig:death-action-dist}). This specificity suggests that targeted interventions (action-space filtering, grounding-aware prompting) could reduce death rates more effectively than general capability scaling.\n\n\\paragraph{Oracle degeneracy and routing value.}\nThe oracle router matches always-deterministic on 96.3\\% of decisions, improving score by only 2.89 points ($-6.58$ vs.\\ $-9.47$). This \\emph{oracle degeneracy} challenges a core assumption of routing research: that learning to switch between modalities yields substantial gains over any fixed strategy. When death dominance holds, the optimal policy is near-degenerate because the dominant signal (avoiding catastrophic failure) uniformly favors deterministic computation. Practitioners should first verify that the oracle margin justifies the complexity of a learned router before investing in routing infrastructure.\n\n\\paragraph{Scaling predictions.}\nStronger backbones lower death rates but do not eliminate death dominance: Qwen2.5-72B reduces aggregate death from ${\\sim}$51\\% to ${\\sim}$35\\% ($-17$~pp), yet DAF remains $90.9\\%$ (vs.\\ $90.4\\%$ at 7B), and the gap to deterministic (16.3\\%) remains ${\\sim}$18~pp. The Llama pilot ($\\delta = +34.3\\%$) versus Qwen-7B ($\\delta = +26.6\\%$) is consistent in the capability-increase direction. Preliminary evidence (Qwen2.5-0.5B, $N{=}15$) suggests the relationship is non-monotonic: very weak models exhibit low death rates from inability to reach dangerous states. Our results suggest that in environments where one modality triggers irreversible catastrophic failures with severe penalties, death avoidance will dominate routing signal; self-correction mechanisms can selectively reduce death-driven signal but are unlikely to eliminate death dominance.\n\n\\paragraph{When to use deterministic computation.}\nOur framework provides a practical diagnostic sequence for practitioners deploying modular agents. First, identify whether the target environment contains catastrophic failure mechanisms (permadeath, irreversible penalties). Second, estimate the death-rate asymmetry between internal and deterministic strategies using a small pilot (${\\sim}$50 episodes suffice for directional signal). Third, if death-asymmetry labels dominate the routing signal, a fixed deterministic strategy is likely to match or exceed a learned router at substantially lower deployment complexity. The MATH negative control ($p = 0.81$) confirms that this diagnostic correctly identifies environments where routing adds no value.\n\n\\paragraph{DAF and framework applicability.}\nDAF increases monotonically with $P$ (Appendix~\\ref{app:penalty}); the penalty-independent label fraction (78.9\\%) is the more informative primary diagnostic. The framework requires paired episodes under two modalities, binary catastrophic outcomes, and sparse rewards. ScienceWorld satisfies all three; MATH lacks catastrophic outcomes (negative control); ALFWorld lacks them too, and the framework identifies information asymmetry as the alternative mechanism. When $P$ is small relative to $\\Delta_{\\text{nd}}$, DAF degrades (at $P{=}0$, DAF $= 7.5\\%$); the framework is most informative when catastrophic penalties dominate non-death score differences. NetHack~\\citep{nethack-2020} and Crafter~\\citep{crafter-2022}, both featuring permadeath, are the most direct replication targets; recent LLM agent benchmarks in these environments \\citep{balrog-2025,netplay-2024} provide the infrastructure for such evaluation.\n",
+      "numLines": 24,
+      "startLine": 1,
+      "totalLines": 24
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MrsQC1oAP7KdhtXzCersBR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "ac43846e-56a5-4418-8cb9-f7fa6e59800c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017F5XG4PgUAZwQCoCfgYAPX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7357,
+      "cache_read_input_tokens": 34957,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 7357
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-18T21:41:39.305Z_
+
+<details><summary>↩ Tool result · `toolu_01MrsQC1oAP7KdhtXzCersBR`</summary>
+
+```text
+1	\section{Conclusion}
+2	
+3	We presented a diagnostic framework for decomposing routing signal in modular LLM agents via episode-level counterfactual analysis. Applied to ScienceWorld (245 episodes, 11 task types), 78.9\% of non-tie routing labels arise from death asymmetry; agent improvement baselines (retry, $10{\times}$ scaling, Reflexion) confirm this is robust. Cross-domain contrasts support framework predictions: MATH shows no routing signal without catastrophic failure; ALFWorld identifies information asymmetry as an alternative mechanism. Replication in permadeath environments (NetHack~\citep{nethack-2020}, Crafter~\citep{crafter-2022}), building on recent LLM agent benchmarks \citep{balrog-2025,netplay-2024}, and evaluation with stronger backbones are the most direct open directions.
+4	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "f95d5f02-aff0-45a1-a931-1c526bd76a5c",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\n\nWe presented a diagnostic framework for decomposing routing signal in modular LLM agents via episode-level counterfactual analysis. Applied to ScienceWorld (245 episodes, 11 task types), 78.9\\% of non-tie routing labels arise from death asymmetry; agent improvement baselines (retry, $10{\\times}$ scaling, Reflexion) confirm this is robust. Cross-domain contrasts support framework predictions: MATH shows no routing signal without catastrophic failure; ALFWorld identifies information asymmetry as an alternative mechanism. Replication in permadeath environments (NetHack~\\citep{nethack-2020}, Crafter~\\citep{crafter-2022}), building on recent LLM agent benchmarks \\citep{balrog-2025,netplay-2024}, and evaluation with stronger backbones are the most direct open directions.\n",
+      "numLines": 4,
+      "startLine": 1,
+      "totalLines": 4
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 40_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a comprehensive picture. Let me also check the introduction for any negative results discussed there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "6de35da4-ec8b-4287-8993-7d2f52ae2649",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011a1GVFJBx9ac1A7CXfetQD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9148,
+      "cache_read_input_tokens": 42314,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9148
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41_
+
+Now let me also check the introduction and related work for mentions of negative results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "3c80ae8f-e894-481a-a6af-d83099ccce52",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011a1GVFJBx9ac1A7CXfetQD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9148,
+      "cache_read_input_tokens": 42314,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9148
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Wgq5ohZTRKitxdpVgSr3rQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "002e9efd-5f62-4e68-ac58-c6a19f8f272c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011a1GVFJBx9ac1A7CXfetQD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9148,
+      "cache_read_input_tokens": 42314,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 9148
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-18T21:41:44.648Z_
+
+<details><summary>↩ Tool result · `toolu_01Wgq5ohZTRKitxdpVgSr3rQ`</summary>
+
+```text
+1	\section{Introduction}
+2	
+3	Large language models deployed as interactive agents must repeatedly decide \emph{how} to compute: reason internally, or delegate to an external tool.
+4	A Qwen2.5-7B-Instruct agent navigating ScienceWorld \cite{scienceworld-2022}, a text-based science simulation with 30 task types, faces this choice at every step. Tracking temperature thresholds, container states, and multi-step procedures via internal reasoning is error-prone: the model may hallucinate that water has boiled when the stove was never activated, or that an object has been moved when the action was invalid. Deterministic external computation (environment simulators, code interpreters) eliminates such hallucinations via exact state transitions. The practical question for agent design is therefore: \emph{when should an agent route computation externally versus reasoning internally?}
+5	
+6	Existing routing approaches frame this as a capability or efficiency decision.
+7	Toolformer \cite{toolformer-2023} teaches models to insert API calls when doing so reduces perplexity; ART \cite{art-2023} decomposes tasks into tool-augmented programs; Chameleon \cite{chameleon-2023} selects among heterogeneous modules (search, code, vision) per subtask.
+8	More recent adaptive-computation methods route to different reasoning depths \cite{cogrouter-2026,ares-2026} or model tiers \cite{mtrouter-2026}.
+9	Concurrent analyses of when and whether to invoke tools~\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026} further presuppose diverse routing signals.
+10	The shared assumption is that routing signal stems from diverse sources (accuracy, latency, capability matching) and that a learned router can exploit this signal to improve over any fixed strategy.
+11	But no prior work has systematically decomposed what drives routing decisions in interactive environments. Without such a decomposition, the field cannot distinguish settings where diverse routing signals justify learned routers from those where a single failure mode dominates and a fixed strategy suffices.
+12	
+13	We propose a \emph{formal diagnostic framework} for answering this question. The framework comprises (i)~episode-level counterfactual labeling under pure strategies (\S\ref{sec:collection}--\ref{sec:labeling}), and (ii)~the Death Avoidance Factor (DAF), a penalty-dependent metric that decomposes the routing score gap into death-avoidance and non-death components (\S\ref{sec:daf}). Applied to ScienceWorld, \textbf{78.9\% of non-tie routing labels arise from death asymmetry} (75 of 95), a penalty-independent finding that holds regardless of how death is penalized. Under ScienceWorld's specific penalty structure ($P{=}100$), the penalty-weighted DAF reaches $90.4\%$ (95\% CI: $[81.6\%, 98.8\%]$), consistent with the predicted value from observed $\delta{=}0.265$ and $P{=}100$.
+14	The internal strategy's hallucination-induced failures trigger catastrophic agent death (a $-100$ penalty), while the deterministic strategy survives the same episodes.
+15	Once death episodes are removed, the performance gap collapses to $\Delta_{\text{nd}} = +2.84$. A per-task consistency check ($r = 0.97$) confirms that the near-perfect correlation is a mathematical consequence of death dominance when $P$ is constant (\S\ref{sec:death-decomp}).
+16	
+17	This framework addresses a methodological gap.
+18	The standard approach to generating routing labels, per-step oracle comparison, degenerates under sparse rewards.
+19	In ScienceWorld, non-zero reward arrives only at episode termination; 97.4\% of steps (across 11 prescreened task types) produce identical scores regardless of modality, so no step-level signal exists (\S\ref{sec:collection}).
+20	Keyword-based heuristics also fail structurally, as ScienceWorld actions lack science-specific terminology (\S\ref{sec:baselines}).
+21	Our counterfactual approach runs complete episodes under pure-internal (ReAct \cite{react-2023}) and pure-deterministic strategies, then compares episode outcomes to generate routing labels (\S\ref{sec:collection}). The framework is applicable to any environment with controllable modality comparison and binary catastrophic outcomes, requiring only paired episode outcomes under two modalities.
+22	
+23	Two cross-context checks probe the specificity of this finding.
+24	First, a MATH Level~4--5 evaluation ($N{=}795$ problems, code interpreter as deterministic modality) confirms no routing signal without catastrophic failure: internal reasoning and code interpretation achieve near-identical accuracy ($73.5\%$ vs.\ $73.0\%$, $p = 0.81$).
+25	Second, a preliminary cross-model pilot with Llama-3.1-8B-Instruct (7 task types, $N{=}70$) shows direction-consistent death patterns, with a larger death-rate differential ($+34.3\%$ vs.\ $+26.6\%$ for Qwen; Appendix~\ref{app:cross-model}).
+26	Agent improvement baselines confirm that death dominance is robust: retry yields only marginal reduction, while $10{\times}$ model scaling (72B) and Reflexion~\citep{reflexion-2023} each reduce death rates to ${\sim}$35\% through independent mechanisms, yet neither closes the ${\sim}$18~pp gap to deterministic (\S\ref{sec:agent-improvement}).
+27	An exploratory router (Qwen3 LoRA, 0.6B--4B) yields flat step-level balanced accuracy ($56$--$59\%$); at episode level, only 4B exceeds the always-deterministic baseline (\S\ref{sec:router-diagnostic}).
+28	
+29	Our contributions are:
+30	\begin{enumerate}
+31	    \item \textbf{An episode-level counterfactual diagnostic framework} for decomposing routing signal in interactive environments, with dual penalty-independent and penalty-dependent metrics (Algorithm~\ref{alg:labeling}) and router training as a diagnostic probe of label informativeness. The framework requires only paired episode outcomes under two modalities with binary catastrophic indicators (\S\ref{sec:collection}--\ref{sec:daf}, \S\ref{sec:router-diagnostic}).
+32	
+33	    \item \textbf{Evidence that death dominance is robust and routing value is near-degenerate}: 78.9\% of non-tie routing labels arise from death asymmetry, with DAF $= 90.4\%$ at $P{=}100$. The oracle router degenerates to unconditional deterministic computation (96.3\% decision overlap). Retry, $10{\times}$ model scaling, and Reflexion each fail to close the ${\sim}$18~pp gap to deterministic execution. A failure mode taxonomy identifies the root mechanism: 100\% of internal-strategy deaths stem from a single action-space grounding failure (\S\ref{sec:death-decomp}--\ref{sec:agent-improvement}, Appendix~\ref{app:failure-modes}).
+34	
+35	    \item \textbf{Cross-environment boundary probes}: MATH ($N{=}795$) confirms the predicted null ($p = 0.81$); ALFWorld ($N{=}135$) identifies information asymmetry as an alternative mechanism; a Llama pilot ($N{=}70$) shows cross-model directional consistency. These are boundary probes of framework applicability, not direct replications (\S\ref{sec:math-contrast}--\ref{sec:cross-model}).
+36	\end{enumerate}
+37	
+38	
+39	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "b68aed64-02c0-4c63-a12a-7b499e119dae",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\nLarge language models deployed as interactive agents must repeatedly decide \\emph{how} to compute: reason internally, or delegate to an external tool.\nA Qwen2.5-7B-Instruct agent navigating ScienceWorld \\cite{scienceworld-2022}, a text-based science simulation with 30 task types, faces this choice at every step. Tracking temperature thresholds, container states, and multi-step procedures via internal reasoning is error-prone: the model may hallucinate that water has boiled when the stove was never activated, or that an object has been moved when the action was invalid. Deterministic external computation (environment simulators, code interpreters) eliminates such hallucinations via exact state transitions. The practical question for agent design is therefore: \\emph{when should an agent route computation externally versus reasoning internally?}\n\nExisting routing approaches frame this as a capability or efficiency decision.\nToolformer \\cite{toolformer-2023} teaches models to insert API calls when doing so reduces perplexity; ART \\cite{art-2023} decomposes tasks into tool-augmented programs; Chameleon \\cite{chameleon-2023} selects among heterogeneous modules (search, code, vision) per subtask.\nMore recent adaptive-computation methods route to different reasoning depths \\cite{cogrouter-2026,ares-2026} or model tiers \\cite{mtrouter-2026}.\nConcurrent analyses of when and whether to invoke tools~\\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026} further presuppose diverse routing signals.\nThe shared assumption is that routing signal stems from diverse sources (accuracy, latency, capability matching) and that a learned router can exploit this signal to improve over any fixed strategy.\nBut no prior work has systematically decomposed what drives routing decisions in interactive environments. Without such a decomposition, the field cannot distinguish settings where diverse routing signals justify learned routers from those where a single failure mode dominates and a fixed strategy suffices.\n\nWe propose a \\emph{formal diagnostic framework} for answering this question. The framework comprises (i)~episode-level counterfactual labeling under pure strategies (\\S\\ref{sec:collection}--\\ref{sec:labeling}), and (ii)~the Death Avoidance Factor (DAF), a penalty-dependent metric that decomposes the routing score gap into death-avoidance and non-death components (\\S\\ref{sec:daf}). Applied to ScienceWorld, \\textbf{78.9\\% of non-tie routing labels arise from death asymmetry} (75 of 95), a penalty-independent finding that holds regardless of how death is penalized. Under ScienceWorld's specific penalty structure ($P{=}100$), the penalty-weighted DAF reaches $90.4\\%$ (95\\% CI: $[81.6\\%, 98.8\\%]$), consistent with the predicted value from observed $\\delta{=}0.265$ and $P{=}100$.\nThe internal strategy's hallucination-induced failures trigger catastrophic agent death (a $-100$ penalty), while the deterministic strategy survives the same episodes.\nOnce death episodes are removed, the performance gap collapses to $\\Delta_{\\text{nd}} = +2.84$. A per-task consistency check ($r = 0.97$) confirms that the near-perfect correlation is a mathematical consequence of death dominance when $P$ is constant (\\S\\ref{sec:death-decomp}).\n\nThis framework addresses a methodological gap.\nThe standard approach to generating routing labels, per-step oracle comparison, degenerates under sparse rewards.\nIn ScienceWorld, non-zero reward arrives only at episode termination; 97.4\\% of steps (across 11 prescreened task types) produce identical scores regardless of modality, so no step-level signal exists (\\S\\ref{sec:collection}).\nKeyword-based heuristics also fail structurally, as ScienceWorld actions lack science-specific terminology (\\S\\ref{sec:baselines}).\nOur counterfactual approach runs complete episodes under pure-internal (ReAct \\cite{react-2023}) and pure-deterministic strategies, then compares episode outcomes to generate routing labels (\\S\\ref{sec:collection}). The framework is applicable to any environment with controllable modality comparison and binary catastrophic outcomes, requiring only paired episode outcomes under two modalities.\n\nTwo cross-context checks probe the specificity of this finding.\nFirst, a MATH Level~4--5 evaluation ($N{=}795$ problems, code interpreter as deterministic modality) confirms no routing signal without catastrophic failure: internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, $p = 0.81$).\nSecond, a preliminary cross-model pilot with Llama-3.1-8B-Instruct (7 task types, $N{=}70$) shows direction-consistent death patterns, with a larger death-rate differential ($+34.3\\%$ vs.\\ $+26.6\\%$ for Qwen; Appendix~\\ref{app:cross-model}).\nAgent improvement baselines confirm that death dominance is robust: retry yields only marginal reduction, while $10{\\times}$ model scaling (72B) and Reflexion~\\citep{reflexion-2023} each reduce death rates to ${\\sim}$35\\% through independent mechanisms, yet neither closes the ${\\sim}$18~pp gap to deterministic (\\S\\ref{sec:agent-improvement}).\nAn exploratory router (Qwen3 LoRA, 0.6B--4B) yields flat step-level balanced accuracy ($56$--$59\\%$); at episode level, only 4B exceeds the always-deterministic baseline (\\S\\ref{sec:router-diagnostic}).\n\nOur contributions are:\n\\begin{enumerate}\n    \\item \\textbf{An episode-level counterfactual diagnostic framework} for decomposing routing signal in interactive environments, with dual penalty-independent and penalty-dependent metrics (Algorithm~\\ref{alg:labeling}) and router training as a diagnostic probe of label informativeness. The framework requires only paired episode outcomes under two modalities with binary catastrophic indicators (\\S\\ref{sec:collection}--\\ref{sec:daf}, \\S\\ref{sec:router-diagnostic}).\n\n    \\item \\textbf{Evidence that death dominance is robust and routing value is near-degenerate}: 78.9\\% of non-tie routing labels arise from death asymmetry, with DAF $= 90.4\\%$ at $P{=}100$. The oracle router degenerates to unconditional deterministic computation (96.3\\% decision overlap). Retry, $10{\\times}$ model scaling, and Reflexion each fail to close the ${\\sim}$18~pp gap to deterministic execution. A failure mode taxonomy identifies the root mechanism: 100\\% of internal-strategy deaths stem from a single action-space grounding failure (\\S\\ref{sec:death-decomp}--\\ref{sec:agent-improvement}, Appendix~\\ref{app:failure-modes}).\n\n    \\item \\textbf{Cross-environment boundary probes}: MATH ($N{=}795$) confirms the predicted null ($p = 0.81$); ALFWorld ($N{=}135$) identifies information asymmetry as an alternative mechanism; a Llama pilot ($N{=}70$) shows cross-model directional consistency. These are boundary probes of framework applicability, not direct replications (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).\n\\end{enumerate}\n\n\n",
+      "numLines": 39,
+      "startLine": 1,
+      "totalLines": 39
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 44_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need. Let me compile the audit report. I have:
+
+1. All 28 negative experiments from the registry
+2. The paper_framing.md (which describes what the paper covers)
+3. The actual paper tex files (experiments, discussion, conclusion, introduction)
+
+Let me classify each of the 28 experiments:
+
+1. **retry-control-baseline** - Retry without reflexion, DR=40.9% ≈ baseline 42.9%. Paper discusses retry in §4.3 Agent Improvement Baselines and Discussion. → **[已讨论]**
+
+
+2. **reflexion-internal-baseline-b** - Companion data collection split to reflexion-internal-baseline with empty metrics. → **[基础设施]**
+3. **reflexion-internal-baseline** - Reflexion DR=31.4%, underperforms det's 16.3%, extensively covered in §4.3 and Discussion. → **[已讨论]**
+4. **death-risk-routing-analysis** - Task-type death risk threshold routing fails to beat always-det (optimal=-11.03 vs always-det=-9.47), relating to oracle degeneracy discussed in the paper. → **[已讨论]**
+5. **plan-008-v4-4b-e2e** - 4B router end-to-end deployment scores -12.03 versus always-det's -9.47, directly addressed in §4.5. → **[已讨论]**
+6-8. **plan-004-ablation-b seed variants** - Multiple seed runs (789, 456, 123) with balanced accuracy around 58%, part of router training diagnostics and seed robustness analysis mentioned in §4.5, all aggregated into the 8-seed analysis. → **[已讨论]**
+9. **backbone-scaling-death-rate-0.5b** - The 0.5B backbone shows 13.3% death rate compared to 7B's ~58%, which the Discussion explains as weak models being unable to reach dangerous states. → **[已讨论]**
+10. **r7n2-supplement-100-200** - Data scaling experiments at 100% and 200% scales exhibit the same majority-class collapse pattern, consistent with the paper's finding that data-size ablations show no improvement. → **[已讨论]**
+11. **plan-003-e2e-ablation-b-correct** - End-to-end evaluation of the trained router achieves -10.70, underperforming always-det's -9.47, which §4.5 directly discusses.
+12. **plan-003-implicit-eval-full** - Step-level implicit routing evaluation scores -12.84, covered in §4.5. → **[已讨论]**
+13. **plan-004-v5** - Implicit router SFT variant with ga=1 compared against the main router's ga=8 setting. → **[已过时]**
+14. **plan-002-formal-v4** - Router SFT v4 degenerates to all deterministic predictions due to a class_weights training bug causing loss explosion. → **[基础设施]**
+15. **plan-002-formal-v6** - Router SFT v6 iteration.
+
+Still training router...
+
+16. **plan-003-eval-implicit** - Same trained router (-12.84) underperforms the always-deterministic baseline (-9.47), marking this as a duplicate of plan-003-implicit-eval-full. → **[已讨论]**
+17. **plan-010-cross-task-v2** - Cross-task transfer experiment shows routing signals don't generalize across task-type clusters, with Life→physical achieving only 0.4924 balanced accuracy. This finding supports the paper's task-type-level signal hypothesis but isn't explicitly discussed. → **[应讨论]**
+18. **plan-004-v4** - Router training iteration with data pipeline complications. → **[基础设施]**
+19. **cross-model-guided-router-eval** - Testing whether Qwen-derived routing transfers to Llama reveals degenerate behavior with always-deterministic remaining optimal and zero internal-preferred episodes, consistent with the Llama pilot findings mentioned in the paper. → **[已讨论]**
+20. **loto-guided-router-eval** - Leave-one-task-out analysis shows blind routing strategies collapse to always-deterministic while keyword variants leak task identity, achieving 0.50 balanced accuracy. The paper discusses LOTO in sensitivity analysis but doesn't explicitly report this guided router evaluation result. → **[应讨论]**
+
+21. **data-size-ablation-r3** - Scaling synthetic data from 25% to 800% doesn't improve balanced accuracy—all scales show majority-class collapse, which the paper explicitly covers in their paraphrase augmentation findings. → **[已讨论]**
+
+22. **leave-one-tasktype-out** - The leave-one-task-type-out breakdown reveals 7 of 11 task types collapse to single class while only 4 maintain two classes, with grand mean balanced accuracy around 0.60. This explains why the router's cross-validation performance (47.1±2.2%) reflects limited signal—most task types don't provide meaningful classification targets. → **[应讨论]**
+
+I'm checking whether the router accuracy results and the leave-one-task-type-out DAF analysis are distinct experiments, since the paper references both the cross-validation metrics and appendix tables for LOTO analysis separately.
+
+Looking at the specific findings: the router achieves 47.1±2.2% balanced accuracy at the episode level, which falls below the 50% majority-vote baseline of always predicting "det" for task types. The cross-split robustness is weak too, with a 7 percentage point drop between episode-level and step-level performance. Both of these results are already documented in the paper's experiments section and framing discussion.
+
+The 2-way versus 3-way routing ablation was an early exploration that collected internal trajectories but ultimately failed technically and was abandoned before the paper's final direction solidified—this belongs in the infrastructure category as outdated work.
+
+For the generative router approach, the results show it underperforms the implicit router at 46.67% balanced accuracy, which the paper doesn't explicitly compare despite mentioning implicit router training.  This is actually a useful ablation to include since it demonstrates that router architecture matters less than signal strength when the underlying task is difficult.
+
+The remaining experiments—plan-004-v3 and plan-002-formal-v5—are both infrastructure iterations dealing with data pipeline and training bugs rather than substantive methodological contributions.
+
+Now I'm cataloging which experiments made it into the final paper: the baseline approaches, the routing analysis work, the end-to-end experiments across different model scales, the ablation studies with multiple seeds, and the cross-model evaluation results all appear in the published version.
+
+Then there are the experiments that need discussion—the cross-task transfer attempts that didn't work out, the leave-one-task-out evaluation revealing limitations in single-class scenarios, and the generative routing approaches that also failed to deliver.
+
+Finally, I'm noting the infrastructure issues that derailed several runs: class weighting bugs, out-of-memory errors with degenerate solutions, training and data pipeline problems that prevented clean results.
+
+Looking at the outdated experiments now—reflexion-internal-baseline-b was actually part of a parallel data collection effort where Part 2 ran alongside Part 1, and those results got merged into the main analysis. So it's really more of an infrastructure artifact than truly obsolete. Let me recategorize that one.
+
+For the experiments worth discussing, plan-010-cross-task-v2 shows that cross-domain transfer completely fails—life to physical tasks only achieve 0.4924 balanced accuracy, which is basically chance. This directly validates the claim about task-type-level signals, and while the paper mentions this concept, it doesn't actually cite this specific experiment. I should flag this for the Discussion section with a note about how the routing signal doesn't generalize across task clusters.
+
+Now looking at loto-guided-router-eval, the leave-one-task-out evaluation reveals that blind strategies default to always-deterministic, but the keyword variant leaks task identity with 0.6 balanced accuracy... The generative router variant achieves 46.67% balanced accuracy, confirming the routing bottleneck isn't tied to the architecture choice—both implicit and generative approaches fail similarly, suggesting the signal itself is insufficient. Now I'm checking whether the paper discusses the 1.7B model variant with different gradient accumulation settings, since the router training spans multiple scales.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "4f95a9da-3c73-4dde-b0d5-f8a4b325c081",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRDSHGV4a3AEY6gVLmUM1Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 51462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45_
+
+I now have all the data needed. Let me compile the audit report.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "2547a808-7c83-4a95-8e14-e39b1ceaf3ac",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRDSHGV4a3AEY6gVLmUM1Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 51462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01NsNwpYmmaoMaZ6SjxX4e2C`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/appendix/ 2>/dev/null",
+  "description": "Check appendix directory exists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "a9ebc64b-dc41-4480-bd7e-1ac3c78d153c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FRDSHGV4a3AEY6gVLmUM1Q",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2153,
+      "cache_read_input_tokens": 51462,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2153
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-18T21:43:12.374Z_
+
+<details><summary>↩ Tool result · `toolu_01NsNwpYmmaoMaZ6SjxX4e2C`</summary>
+
+```text
+leave_one_task_out_daf_data.json
+leave_one_task_out_daf_table.tex
+per_task_dose_response_data.json
+per_task_dose_response_table.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "7bfd8b13-df28-47c2-9b5b-423693f19333",
+  "tool_use_result": {
+    "stdout": "leave_one_task_out_daf_data.json\nleave_one_task_out_daf_table.tex\nper_task_dose_response_data.json\nper_task_dose_response_table.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01AaQDQNQQJoU4qComvFDsdh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/appendix/negative_results_audit.md",
+  "content": "# Negative Results Audit Report\n\n**Project**: simgate-modular-routing  \n**Date**: 2026-05-18  \n**Total negative experiments**: 28  \n\n## Summary\n\n| Category | Count | Description |\n|----------|-------|-------------|\n| [已讨论] | 17 | Paper already discusses (main text or appendix) |\n| [应讨论] | 4 | Informative negatives, should appear in paper |\n| [基础设施] | 5 | Technical failures (bugs, OOM, pipeline issues) |\n| [已过时] | 2 | Superseded by later experiments |\n\n---\n\n## [已讨论] — 17 experiments\n\n### 1. retry-control-baseline\n- **Hypothesis**: Retry (no self-correction) reduces death rate comparably to Reflexion\n- **Parent**: reflexion-internal-baseline\n- **Key metrics**: DR=40.9% ≈ baseline 42.9%, success_rate=14.1%\n- **Why negative**: Blind retry without self-correction provides no meaningful death reduction\n- **Paper location**: §4.3 Agent Improvement Baselines (Table 2, dose-response analysis)\n\n### 2. reflexion-internal-baseline\n- **Hypothesis**: Reflexion reduces internal DR to <20% (approaching det's 16.3%), invalidating death dominance\n- **Parent**: plan-012-full\n- **Key metrics**: DR=31.4%, rescue_rate=29.3%, trial-1 DR=41.8%\n- **Why negative**: Reflexion reduces death but 15.1pp gap to deterministic remains; death dominance persists\n- **Paper location**: §4.3 Agent Improvement Baselines, Discussion §\"Non-triviality of death dominance\"\n\n### 3. death-risk-routing-analysis\n- **Hypothesis**: Task-type death risk threshold routing outperforms always-det\n- **Parent**: plan-005-routing-patterns\n- **Key metrics**: optimal_score=-11.03 vs always-det=-9.47, Δ=-1.56\n- **Why negative**: Threshold routing is worse; optimal routing ≈ always-det\n- **Paper location**: Discussion §\"Oracle degeneracy and routing value\" (oracle matches always-det on 96.3% decisions)\n\n### 4. plan-008-v4-4b-e2e\n- **Hypothesis**: 4B router (59% episode-level) exceeds always-det in end-to-end deployment\n- **Parent**: plan-008-v4-4b\n- **Key metrics**: score=-12.03, CI=[-17.82, -6.45] vs always-det=-9.47, fallback_rate=68%\n- **Why negative**: Trained router worse than always-det; overlapping CIs but point estimate lower\n- **Paper location**: §4.5 Router Training as Diagnostic Probe, end-to-end deployment paragraph\n\n### 5–7. plan-004-ablation-b-seed{123,456,789}\n- **Hypothesis**: Verify ablation-b router stability across seeds\n- **Parent**: plan-004-ablation-b\n- **Key metrics**: balanced_acc ≈ 57-58% across all seeds (stable but near-random)\n- **Why negative**: Router discrimination near chance; confirms signal deficit, not seed artifact\n- **Paper location**: §4.5 mentions 8-seed cross-validation (47.1±2.2%); aggregated\n\n### 8. backbone-scaling-death-rate-0.5b\n- **Hypothesis**: Smaller backbones have higher death rates due to limited reasoning capacity\n- **Parent**: capacity-scaling-episode-eval\n- **Key metrics**: DR=13.3% (2/15), Δ=-44.6pp vs 7B baseline ~58%, 12/15 score=0\n- **Why negative**: 0.5B has LOWER death rate than 7B (non-monotonic); too weak to reach dangerous states\n- **Paper location**: Discussion §\"Scaling predictions\" (\"very weak models exhibit low death rates\")\n\n### 9. r7n2-supplement-100-200\n- **Hypothesis**: 100%/200% data scales fill gap in data-size ablation\n- **Parent**: r7n2-data-size-ablation-r3\n- **Key metrics**: 100%: bal_acc=0.499, int_recall=0; 200%: bal_acc=0.500, int_recall=0\n- **Why negative**: Same majority-class collapse as all other scales; data scaling does not help\n- **Paper location**: §4.5 end-to-end deployment paragraph (\"augmentation provides no improvement\")\n\n### 10. plan-003-e2e-ablation-b-correct\n- **Hypothesis**: Trained router (correct checkpoint, internal_recall=51.52%) exceeds always-det end-to-end\n- **Parent**: plan-003-implicit-eval-full\n- **Key metrics**: score=-10.70 vs always-det=-9.47, Δ=-1.23, DR=17.6%, fallback_rate=70.6%\n- **Why negative**: Trained router worse than always-det by 1.23 points (CI overlaps but point estimate lower)\n- **Paper location**: §4.5 Baselines table (Table 3: Trained Router -10.70)\n\n### 11. plan-003-implicit-eval-full\n- **Hypothesis**: Step-level implicit routing eval achieves meaningful discrimination\n- **Parent**: plan-004-ablation-b\n- **Key metrics**: score=-12.84, det_recall=0.86, internal_recall=0.444\n- **Why negative**: High fallback to deterministic (86% det recall); internal recall poor\n- **Paper location**: §4.5 (step-level balanced accuracy flat across scales)\n\n### 12. plan-003-eval-implicit\n- **Hypothesis**: Implicit router matches or exceeds always-det end-to-end\n- **Parent**: plan-003-baseline-245eps\n- **Key metrics**: trained router -12.84 vs always-det -9.47, Δ=-3.37\n- **Why negative**: Same finding as plan-003-implicit-eval-full; router underperforms always-det\n- **Paper location**: §4.5 (overlaps with above; earlier run of same evaluation)\n\n### 13. cross-model-guided-router-eval\n- **Hypothesis**: Qwen-derived death risk labels transfer to Llama episodes (balanced_acc > 50%)\n- **Key metrics**: bal_acc=1.0 (degenerate: 0 internal-preferred episodes in Llama)\n- **Why negative**: Not a valid transfer test; Llama has 0 internal-preferred episodes, always-det is trivially optimal\n- **Paper location**: §4.2 Multi-Model Validation (24 det-preferred, 0 internal-preferred, 46 no-pref)\n\n### 14. r7n2-data-size-ablation-r3\n- **Hypothesis**: Router balanced_acc increases with 25%–800% data scaling\n- **Key metrics**: step_bal_acc 0.493–0.511, episode_bal_acc 0.495–0.515, int_recall ≈ 0 at all scales\n- **Why negative**: 32× data scaling (433→13880) produces zero improvement; majority-class collapse at all scales\n- **Paper location**: §4.5 (\"augmentation inflates majority class without generating novel internal-preferred patterns\")\n\n### 15. majority-vote-baseline\n- **Hypothesis**: Task-type majority-vote baseline ≈ router balanced_acc (47.1%)\n- **Key metrics**: majority-vote bal_acc=0.50 (all 11 types majority=det), router=0.471\n- **Why negative**: Router is BELOW trivial majority-vote baseline; signal entirely at task-type level\n- **Paper location**: §4.5, paper_framing C2 (core claim: \"below trivial majority-vote baseline 50.0%\")\n\n### 16. cross-split-robustness-8seed\n- **Hypothesis**: 8-seed balanced_acc on independent splits matches corrected_eval (55.7±5.0%)\n- **Key metrics**: Episode-level 47.1±2.2% vs step-level 54.1±5.4%, Δ=-7.0pp\n- **Why negative**: Cross-split NOT robust; episode-level eval reveals router failure hidden by step-level metric\n- **Paper location**: §4.1 sensitivity analysis (\"8-seed cross-validation...47.1±2.2%...all seeds below chance\")\n\n---\n\n## [应讨论] — 4 experiments\n\n### 17. plan-010-cross-task-v2\n- **Hypothesis**: Routing signal transfers across task-type clusters (life↔physical)\n- **Parent**: plan-010-cross-task-transfer\n- **Key metrics**: life→physical cross_domain_bal_acc=0.4924 (CI [0.424, 0.559]), in-domain=0.577, transfer_gap=0.085\n- **Why negative**: Routing signal does NOT generalize across task-type clusters; cross-domain performance ≈ chance\n- **What it reveals**: Directly validates the paper's core claim that routing signal is task-type-level, not transferable. The in-domain→cross-domain drop (0.577→0.492) quantifies the non-transferability.\n- **Suggested location**: Discussion §\"Why the router fails\" or Appendix ablations\n- **Suggested framing**: \"A cross-task-type transfer experiment confirms that routing signal does not generalize across task clusters: training on life-science tasks and evaluating on physical-science tasks yields chance-level balanced accuracy (0.49), consistent with routing signal being a task-type-level property rather than a transferable step-level feature.\"\n\n### 18. loto-guided-router-eval\n- **Hypothesis**: LOTO protocol tests if task-type death risk generalizes as a routing feature\n- **Key metrics**: blind_loto_bal_acc=0.50 (= always-det), keyword_leaked_bal_acc=0.6292\n- **Why negative**: Blind LOTO routing = always-det (degenerate); keyword variant only works by leaking task identity\n- **What it reveals**: Task-type death risk cannot distinguish routing decisions within unseen task types (blind = always-det). The keyword variant's 0.63 accuracy comes from implicitly recovering task identity, not from genuine step-level features.\n- **Suggested location**: Appendix (near keyword routing structural failure analysis)\n- **Suggested framing**: \"A leave-one-task-type-out guided routing evaluation confirms that task-type-level death risk statistics cannot be applied to unseen task types (balanced accuracy = 0.50, identical to always-deterministic). A keyword-based variant achieves 0.63 by implicitly recovering task identity, further confirming that the only discriminative information operates at the task-type level.\"\n\n### 19. leave-one-tasktype-out\n- **Hypothesis**: Router on held-out task types ≈ 50% (random), confirming no cross-task-type transfer\n- **Key metrics**: grand_mean_bal_acc=0.5976±0.0184, but 7/11 task types are SINGLE CLASS (all deterministic)\n- **Why negative**: 7 of 11 task types have zero internal-preferred labels (single class), making balanced accuracy undefined or trivial. Only 4 types (grow-fruit, find-non-living-thing, lifespan-longest, melt-to-change) have two-class signal.\n- **What it reveals**: The 7/11 single-class finding is a striking statistic that crystallizes why step-level routing fails: for most task types, there is literally only one class to predict. This directly supports the Discussion's \"task-type-level binary property\" claim with specific numbers.\n- **Suggested location**: Discussion §\"Why the router fails\" (as a supporting statistic) or Appendix\n- **Suggested framing**: \"Per-task-type analysis reveals that 7 of 11 task types contain exclusively deterministic-preferred labels, leaving only 4 types with two-class signal. This extreme class imbalance at the task-type level explains the router's majority-class collapse: for most task types, there is no internal-preferred signal to learn.\"\n\n### 20. plan-002-generative-v1\n- **Hypothesis**: Generative router (text-generation-based) matches implicit router performance\n- **Key metrics**: balanced_acc=46.67%, internal_recall=16.67% (5/30), det_recall=76.67%\n- **Why negative**: Generative router performs similarly to implicit router (~47% vs ~47%); both fail\n- **What it reveals**: Routing failure is signal-limited, not architecture-limited. Whether using a classification head (implicit) or text generation (generative), the router reaches the same floor. This rules out the hypothesis that a different router architecture could extract more signal from the same data.\n- **Suggested location**: Appendix ablations (§Router Architecture Ablation)\n- **Suggested framing**: \"A generative router variant (text-generation-based, Qwen3-1.7B) achieves comparable balanced accuracy (46.7%) to the implicit classification-head router (47.1%), confirming that the routing failure is signal-limited rather than architecture-limited.\"\n\n---\n\n## [基础设施] — 5 experiments (no paper discussion needed)\n\n### 21. plan-002-formal-v4\n- **Issue**: class_weights [4.5, 0.5625] caused loss explosion in internal-containing mini-batches\n- **Result**: Degenerate (all predict deterministic), accuracy=91.9% but internal_recall=0%\n- **Nature**: Training bug; root cause identified and fixed in subsequent versions\n\n### 22. plan-002-formal-v6\n- **Issue**: OOM on GPU0, auto-restarted; even after removing class_weights, model degenerate on 89.7%/10.3% imbalanced data\n- **Result**: f1_internal=0.0, recall_internal=0.0 after epoch 1\n- **Nature**: Hardware resource contention + training instability; superseded by plan-004 series\n\n### 23. plan-004-v4\n- **Issue**: Data pipeline issues (results/plan_c_test_labels/implicit_sft.jsonl had label mapping bug)\n- **Result**: Training completed but on corrupted data\n- **Nature**: Data preprocessing bug; corrected in plan-004-v5 and ablation-b\n\n### 24. plan-004-v3\n- **Issue**: Two bugs fixed (class_weights removal + data regeneration) but EXIT_CODE=129\n- **Result**: Intermediate step in iterative training refinement\n- **Nature**: Pipeline evolution; superseded by ablation-b (correct data + correct config)\n\n### 25. plan-002-formal-v5\n- **Issue**: pad_token_id fix attempted for Qwen3-1.7B (ModelScope download missing pad_token_id)\n- **Result**: Degenerate (bal_acc=0.4936, internal_recall=0%), grad_norm 604\n- **Nature**: Training bug investigation; class_weights confirmed as root cause in D021\n\n---\n\n## [已过时] — 2 experiments\n\n### 26. reflexion-internal-baseline-b\n- **Original purpose**: Part 2 data collection (tasks 7-11) for reflexion baseline, parallel with Part 1\n- **Why outdated**: Data merged into reflexion-internal-baseline (main experiment); no independent finding\n- **Superseded by**: reflexion-internal-baseline (combined 220 episodes, 11 tasks)\n\n### 27. plan-006-deep-internal\n- **Original purpose**: Collect deep-internal (CoT/thinking mode) trajectories for 2-way vs 3-way routing ablation\n- **Why outdated**: 3-way routing direction abandoned; paper focuses on 2-way (internal vs deterministic)\n- **Superseded by**: Paper's final framing uses only 2-way comparison; 3-way was never evaluated\n- **Note**: Process died 5× with no sentinel; data quality uncertain\n\n---\n\n## Actionable Recommendations\n\n### Priority 1: Add to Discussion (2 experiments)\n\n**plan-010-cross-task-v2** and **leave-one-tasktype-out** both provide quantitative evidence for the paper's core Discussion claim (\"death avoidance is a task-type-level binary property\"). Currently this claim is stated qualitatively. Adding one sentence each would strengthen it:\n\n> Cross-task-type transfer yields chance-level balanced accuracy (0.49; life→physical), and 7 of 11 task types contain exclusively deterministic-preferred labels, confirming that routing signal is a task-type-level binary property with no transferable step-level structure.\n\n### Priority 2: Add to Appendix Ablations (2 experiments)\n\n**plan-002-generative-v1** (generative router also fails) and **loto-guided-router-eval** (LOTO blind routing = always-det) are clean ablation results that address potential reviewer questions:\n- \"Did you try a different router architecture?\" → generative also fails (signal-limited, not architecture-limited)\n- \"Can task-type death statistics be used as a routing feature?\" → LOTO blind = always-det (no within-type discrimination)\n\n### Coverage Assessment\n\nThe paper covers the vast majority of informative negative results well. The 4 [应讨论] experiments would add marginal but meaningful value, primarily by providing quantitative grounding for qualitative claims already in the paper. None represent a gap that a reviewer would likely flag as missing.\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "858f3c8c-65d4-4ed5-a47a-96d3ebdd9c15",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NmVHL6KD3BcDFCPUiYvfEK",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4236,
+      "cache_read_input_tokens": 53615,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4236
+      },
+      "output_tokens": 66,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-18T21:44:53.991Z_
+
+<details><summary>↩ Tool result · `toolu_01AaQDQNQQJoU4qComvFDsdh`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/appendix/negative_results_audit.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "dc702ab0-a57e-4198-a83d-3feead7f3582",
+  "tool_use_result": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/appendix/negative_results_audit.md",
+    "content": "# Negative Results Audit Report\n\n**Project**: simgate-modular-routing  \n**Date**: 2026-05-18  \n**Total negative experiments**: 28  \n\n## Summary\n\n| Category | Count | Description |\n|----------|-------|-------------|\n| [已讨论] | 17 | Paper already discusses (main text or appendix) |\n| [应讨论] | 4 | Informative negatives, should appear in paper |\n| [基础设施] | 5 | Technical failures (bugs, OOM, pipeline issues) |\n| [已过时] | 2 | Superseded by later experiments |\n\n---\n\n## [已讨论] — 17 experiments\n\n### 1. retry-control-baseline\n- **Hypothesis**: Retry (no self-correction) reduces death rate comparably to Reflexion\n- **Parent**: reflexion-internal-baseline\n- **Key metrics**: DR=40.9% ≈ baseline 42.9%, success_rate=14.1%\n- **Why negative**: Blind retry without self-correction provides no meaningful death reduction\n- **Paper location**: §4.3 Agent Improvement Baselines (Table 2, dose-response analysis)\n\n### 2. reflexion-internal-baseline\n- **Hypothesis**: Reflexion reduces internal DR to <20% (approaching det's 16.3%), invalidating death dominance\n- **Parent**: plan-012-full\n- **Key metrics**: DR=31.4%, rescue_rate=29.3%, trial-1 DR=41.8%\n- **Why negative**: Reflexion reduces death but 15.1pp gap to deterministic remains; death dominance persists\n- **Paper location**: §4.3 Agent Improvement Baselines, Discussion §\"Non-triviality of death dominance\"\n\n### 3. death-risk-routing-analysis\n- **Hypothesis**: Task-type death risk threshold routing outperforms always-det\n- **Parent**: plan-005-routing-patterns\n- **Key metrics**: optimal_score=-11.03 vs always-det=-9.47, Δ=-1.56\n- **Why negative**: Threshold routing is worse; optimal routing ≈ always-det\n- **Paper location**: Discussion §\"Oracle degeneracy and routing value\" (oracle matches always-det on 96.3% decisions)\n\n### 4. plan-008-v4-4b-e2e\n- **Hypothesis**: 4B router (59% episode-level) exceeds always-det in end-to-end deployment\n- **Parent**: plan-008-v4-4b\n- **Key metrics**: score=-12.03, CI=[-17.82, -6.45] vs always-det=-9.47, fallback_rate=68%\n- **Why negative**: Trained router worse than always-det; overlapping CIs but point estimate lower\n- **Paper location**: §4.5 Router Training as Diagnostic Probe, end-to-end deployment paragraph\n\n### 5–7. plan-004-ablation-b-seed{123,456,789}\n- **Hypothesis**: Verify ablation-b router stability across seeds\n- **Parent**: plan-004-ablation-b\n- **Key metrics**: balanced_acc ≈ 57-58% across all seeds (stable but near-random)\n- **Why negative**: Router discrimination near chance; confirms signal deficit, not seed artifact\n- **Paper location**: §4.5 mentions 8-seed cross-validation (47.1±2.2%); aggregated\n\n### 8. backbone-scaling-death-rate-0.5b\n- **Hypothesis**: Smaller backbones have higher death rates due to limited reasoning capacity\n- **Parent**: capacity-scaling-episode-eval\n- **Key metrics**: DR=13.3% (2/15), Δ=-44.6pp vs 7B baseline ~58%, 12/15 score=0\n- **Why negative**: 0.5B has LOWER death rate than 7B (non-monotonic); too weak to reach dangerous states\n- **Paper location**: Discussion §\"Scaling predictions\" (\"very weak models exhibit low death rates\")\n\n### 9. r7n2-supplement-100-200\n- **Hypothesis**: 100%/200% data scales fill gap in data-size ablation\n- **Parent**: r7n2-data-size-ablation-r3\n- **Key metrics**: 100%: bal_acc=0.499, int_recall=0; 200%: bal_acc=0.500, int_recall=0\n- **Why negative**: Same majority-class collapse as all other scales; data scaling does not help\n- **Paper location**: §4.5 end-to-end deployment paragraph (\"augmentation provides no improvement\")\n\n### 10. plan-003-e2e-ablation-b-correct\n- **Hypothesis**: Trained router (correct checkpoint, internal_recall=51.52%) exceeds always-det end-to-end\n- **Parent**: plan-003-implicit-eval-full\n- **Key metrics**: score=-10.70 vs always-det=-9.47, Δ=-1.23, DR=17.6%, fallback_rate=70.6%\n- **Why negative**: Trained router worse than always-det by 1.23 points (CI overlaps but point estimate lower)\n- **Paper location**: §4.5 Baselines table (Table 3: Trained Router -10.70)\n\n### 11. plan-003-implicit-eval-full\n- **Hypothesis**: Step-level implicit routing eval achieves meaningful discrimination\n- **Parent**: plan-004-ablation-b\n- **Key metrics**: score=-12.84, det_recall=0.86, internal_recall=0.444\n- **Why negative**: High fallback to deterministic (86% det recall); internal recall poor\n- **Paper location**: §4.5 (step-level balanced accuracy flat across scales)\n\n### 12. plan-003-eval-implicit\n- **Hypothesis**: Implicit router matches or exceeds always-det end-to-end\n- **Parent**: plan-003-baseline-245eps\n- **Key metrics**: trained router -12.84 vs always-det -9.47, Δ=-3.37\n- **Why negative**: Same finding as plan-003-implicit-eval-full; router underperforms always-det\n- **Paper location**: §4.5 (overlaps with above; earlier run of same evaluation)\n\n### 13. cross-model-guided-router-eval\n- **Hypothesis**: Qwen-derived death risk labels transfer to Llama episodes (balanced_acc > 50%)\n- **Key metrics**: bal_acc=1.0 (degenerate: 0 internal-preferred episodes in Llama)\n- **Why negative**: Not a valid transfer test; Llama has 0 internal-preferred episodes, always-det is trivially optimal\n- **Paper location**: §4.2 Multi-Model Validation (24 det-preferred, 0 internal-preferred, 46 no-pref)\n\n### 14. r7n2-data-size-ablation-r3\n- **Hypothesis**: Router balanced_acc increases with 25%–800% data scaling\n- **Key metrics**: step_bal_acc 0.493–0.511, episode_bal_acc 0.495–0.515, int_recall ≈ 0 at all scales\n- **Why negative**: 32× data scaling (433→13880) produces zero improvement; majority-class collapse at all scales\n- **Paper location**: §4.5 (\"augmentation inflates majority class without generating novel internal-preferred patterns\")\n\n### 15. majority-vote-baseline\n- **Hypothesis**: Task-type majority-vote baseline ≈ router balanced_acc (47.1%)\n- **Key metrics**: majority-vote bal_acc=0.50 (all 11 types majority=det), router=0.471\n- **Why negative**: Router is BELOW trivial majority-vote baseline; signal entirely at task-type level\n- **Paper location**: §4.5, paper_framing C2 (core claim: \"below trivial majority-vote baseline 50.0%\")\n\n### 16. cross-split-robustness-8seed\n- **Hypothesis**: 8-seed balanced_acc on independent splits matches corrected_eval (55.7±5.0%)\n- **Key metrics**: Episode-level 47.1±2.2% vs step-level 54.1±5.4%, Δ=-7.0pp\n- **Why negative**: Cross-split NOT robust; episode-level eval reveals router failure hidden by step-level metric\n- **Paper location**: §4.1 sensitivity analysis (\"8-seed cross-validation...47.1±2.2%...all seeds below chance\")\n\n---\n\n## [应讨论] — 4 experiments\n\n### 17. plan-010-cross-task-v2\n- **Hypothesis**: Routing signal transfers across task-type clusters (life↔physical)\n- **Parent**: plan-010-cross-task-transfer\n- **Key metrics**: life→physical cross_domain_bal_acc=0.4924 (CI [0.424, 0.559]), in-domain=0.577, transfer_gap=0.085\n- **Why negative**: Routing signal does NOT generalize across task-type clusters; cross-domain performance ≈ chance\n- **What it reveals**: Directly validates the paper's core claim that routing signal is task-type-level, not transferable. The in-domain→cross-domain drop (0.577→0.492) quantifies the non-transferability.\n- **Suggested location**: Discussion §\"Why the router fails\" or Appendix ablations\n- **Suggested framing**: \"A cross-task-type transfer experiment confirms that routing signal does not generalize across task clusters: training on life-science tasks and evaluating on physical-science tasks yields chance-level balanced accuracy (0.49), consistent with routing signal being a task-type-level property rather than a transferable step-level feature.\"\n\n### 18. loto-guided-router-eval\n- **Hypothesis**: LOTO protocol tests if task-type death risk generalizes as a routing feature\n- **Key metrics**: blind_loto_bal_acc=0.50 (= always-det), keyword_leaked_bal_acc=0.6292\n- **Why negative**: Blind LOTO routing = always-det (degenerate); keyword variant only works by leaking task identity\n- **What it reveals**: Task-type death risk cannot distinguish routing decisions within unseen task types (blind = always-det). The keyword variant's 0.63 accuracy comes from implicitly recovering task identity, not from genuine step-level features.\n- **Suggested location**: Appendix (near keyword routing structural failure analysis)\n- **Suggested framing**: \"A leave-one-task-type-out guided routing evaluation confirms that task-type-level death risk statistics cannot be applied to unseen task types (balanced accuracy = 0.50, identical to always-deterministic). A keyword-based variant achieves 0.63 by implicitly recovering task identity, further confirming that the only discriminative information operates at the task-type level.\"\n\n### 19. leave-one-tasktype-out\n- **Hypothesis**: Router on held-out task types ≈ 50% (random), confirming no cross-task-type transfer\n- **Key metrics**: grand_mean_bal_acc=0.5976±0.0184, but 7/11 task types are SINGLE CLASS (all deterministic)\n- **Why negative**: 7 of 11 task types have zero internal-preferred labels (single class), making balanced accuracy undefined or trivial. Only 4 types (grow-fruit, find-non-living-thing, lifespan-longest, melt-to-change) have two-class signal.\n- **What it reveals**: The 7/11 single-class finding is a striking statistic that crystallizes why step-level routing fails: for most task types, there is literally only one class to predict. This directly supports the Discussion's \"task-type-level binary property\" claim with specific numbers.\n- **Suggested location**: Discussion §\"Why the router fails\" (as a supporting statistic) or Appendix\n- **Suggested framing**: \"Per-task-type analysis reveals that 7 of 11 task types contain exclusively deterministic-preferred labels, leaving only 4 types with two-class signal. This extreme class imbalance at the task-type level explains the router's majority-class collapse: for most task types, there is no internal-preferred signal to learn.\"\n\n### 20. plan-002-generative-v1\n- **Hypothesis**: Generative router (text-generation-based) matches implicit router performance\n- **Key metrics**: balanced_acc=46.67%, internal_recall=16.67% (5/30), det_recall=76.67%\n- **Why negative**: Generative router performs similarly to implicit router (~47% vs ~47%); both fail\n- **What it reveals**: Routing failure is signal-limited, not architecture-limited. Whether using a classification head (implicit) or text generation (generative), the router reaches the same floor. This rules out the hypothesis that a different router architecture could extract more signal from the same data.\n- **Suggested location**: Appendix ablations (§Router Architecture Ablation)\n- **Suggested framing**: \"A generative router variant (text-generation-based, Qwen3-1.7B) achieves comparable balanced accuracy (46.7%) to the implicit classification-head router (47.1%), confirming that the routing failure is signal-limited rather than architecture-limited.\"\n\n---\n\n## [基础设施] — 5 experiments (no paper discussion needed)\n\n### 21. plan-002-formal-v4\n- **Issue**: class_weights [4.5, 0.5625] caused loss explosion in internal-containing mini-batches\n- **Result**: Degenerate (all predict deterministic), accuracy=91.9% but internal_recall=0%\n- **Nature**: Training bug; root cause identified and fixed in subsequent versions\n\n### 22. plan-002-formal-v6\n- **Issue**: OOM on GPU0, auto-restarted; even after removing class_weights, model degenerate on 89.7%/10.3% imbalanced data\n- **Result**: f1_internal=0.0, recall_internal=0.0 after epoch 1\n- **Nature**: Hardware resource contention + training instability; superseded by plan-004 series\n\n### 23. plan-004-v4\n- **Issue**: Data pipeline issues (results/plan_c_test_labels/implicit_sft.jsonl had label mapping bug)\n- **Result**: Training completed but on corrupted data\n- **Nature**: Data preprocessing bug; corrected in plan-004-v5 and ablation-b\n\n### 24. plan-004-v3\n- **Issue**: Two bugs fixed (class_weights removal + data regeneration) but EXIT_CODE=129\n- **Result**: Intermediate step in iterative training refinement\n- **Nature**: Pipeline evolution; superseded by ablation-b (correct data + correct config)\n\n### 25. plan-002-formal-v5\n- **Issue**: pad_token_id fix attempted for Qwen3-1.7B (ModelScope download missing pad_token_id)\n- **Result**: Degenerate (bal_acc=0.4936, internal_recall=0%), grad_norm 604\n- **Nature**: Training bug investigation; class_weights confirmed as root cause in D021\n\n---\n\n## [已过时] — 2 experiments\n\n### 26. reflexion-internal-baseline-b\n- **Original purpose**: Part 2 data collection (tasks 7-11) for reflexion baseline, parallel with Part 1\n- **Why outdated**: Data merged into reflexion-internal-baseline (main experiment); no independent finding\n- **Superseded by**: reflexion-internal-baseline (combined 220 episodes, 11 tasks)\n\n### 27. plan-006-deep-internal\n- **Original purpose**: Collect deep-internal (CoT/thinking mode) trajectories for 2-way vs 3-way routing ablation\n- **Why outdated**: 3-way routing direction abandoned; paper focuses on 2-way (internal vs deterministic)\n- **Superseded by**: Paper's final framing uses only 2-way comparison; 3-way was never evaluated\n- **Note**: Process died 5× with no sentinel; data quality uncertain\n\n---\n\n## Actionable Recommendations\n\n### Priority 1: Add to Discussion (2 experiments)\n\n**plan-010-cross-task-v2** and **leave-one-tasktype-out** both provide quantitative evidence for the paper's core Discussion claim (\"death avoidance is a task-type-level binary property\"). Currently this claim is stated qualitatively. Adding one sentence each would strengthen it:\n\n> Cross-task-type transfer yields chance-level balanced accuracy (0.49; life→physical), and 7 of 11 task types contain exclusively deterministic-preferred labels, confirming that routing signal is a task-type-level binary property with no transferable step-level structure.\n\n### Priority 2: Add to Appendix Ablations (2 experiments)\n\n**plan-002-generative-v1** (generative router also fails) and **loto-guided-router-eval** (LOTO blind routing = always-det) are clean ablation results that address potential reviewer questions:\n- \"Did you try a different router architecture?\" → generative also fails (signal-limited, not architecture-limited)\n- \"Can task-type death statistics be used as a routing feature?\" → LOTO blind = always-det (no within-type discrimination)\n\n### Coverage Assessment\n\nThe paper covers the vast majority of informative negative results well. The 4 [应讨论] experiments would add marginal but meaningful value, primarily by providing quantitative grounding for qualitative claims already in the paper. None represent a gap that a reviewer would likely flag as missing.\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_016enfem1XhcB1UQy33bx5Ma`</summary>
+
+```json
+{
+  "name": "negative_results_audit",
+  "type": "report",
+  "description": "Audit of all 28 negative experiments: 17 already discussed in paper, 4 should be discussed, 5 infrastructure failures, 2 outdated. Includes actionable recommendations for Discussion and Appendix.",
+  "project": "simgate-modular-routing",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/appendix/negative_results_audit.md",
+  "tags": [
+    "audit",
+    "negative-results",
+    "paper-writing"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "8d9e8fd6-af18-45e1-8eec-ec83c2c250a7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DJgXw9RHyYvLegLCpRvzQD",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4408,
+      "cache_read_input_tokens": 57851,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4408
+      },
+      "output_tokens": 50,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-18T21:44:59.140Z_
+
+<details><summary>↩ Tool result · `toolu_016enfem1XhcB1UQy33bx5Ma`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_2792e2\", \"name\": \"negative_results_audit\", \"type\": \"report\", \"description\": \"Audit of all 28 negative experiments: 17 already discussed in paper, 4 should be discussed, 5 infrastructure failures, 2 outdated. Includes actionable recommendations for Discussion and Appendix.\", \"path\": \"projects/simgate-modular-routing/artifacts/_project/report/negative_results_audit.md\", \"url\": null, \"project\": \"simgate-modular-routing\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T21:44:58.936091+00:00\", \"tags\": [\"audit\", \"negative-results\", \"paper-writing\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "6c5ba0f0-9b31-4ac6-849f-e00ce45cd3c9",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260518_2792e2\\\", \\\"name\\\": \\\"negative_results_audit\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Audit of all 28 negative experiments: 17 already discussed in paper, 4 should be discussed, 5 infrastructure failures, 2 outdated. Includes actionable recommendations for Discussion and Appendix.\\\", \\\"path\\\": \\\"projects/simgate-modular-routing/artifacts/_project/report/negative_results_audit.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"simgate-modular-routing\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-18T21:44:58.936091+00:00\\\", \\\"tags\\\": [\\\"audit\\\", \\\"negative-results\\\", \\\"paper-writing\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260518_2792e2\", \"name\": \"negative_results_audit\", \"type\": \"report\", \"description\": \"Audit of all 28 negative experiments: 17 already discussed in paper, 4 should be discussed, 5 infrastructure failures, 2 outdated. Includes actionable recommendations for Discussion and Appendix.\", \"path\": \"projects/simgate-modular-routing/artifacts/_project/report/negative_results_audit.md\", \"url\": null, \"project\": \"simgate-modular-routing\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-18T21:44:58.936091+00:00\", \"tags\": [\"audit\", \"negative-results\", \"paper-writing\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52_
+
+报告已生成并注册。28 个阴性实验的分类结果：
+
+| 分类 | 数量 | |
+|------|------|---|
+| **[已讨论]** | 17 | 论文正文或附录已覆盖 |
+| **[应讨论]** | 4 | 有价值但论文未提及 |
+| **[基础设施]** | 5 | 训练 bug、OOM、pipeline 问题 |
+| **[已过时]** | 2 | 被后续实验取代 |
+
+**4 个应讨论的实验**：
+
+1. **plan-010-cross-task-v2** — 跨 task-type cluster 迁移失败（life→physical bal_acc=0.49），直接量化论文"signal is task-type-level"的定性声明。建议加入 Discussion。
+
+2. **leave-one-tasktype-out** — 7/11 task types 只有 deterministic 一个类别，仅 4 types 有两类 signal。解释了 router 多数类坍塌的根因。建议加入 Discussion。
+
+3. **plan-002-generative-v1** — 生成式 router 也失败（bal_acc=46.7%），证明 failure is signal-limited, not architecture-limited。建议加入 Appendix ablations。
+
+4. **loto-guided-router-eval** — LOTO blind routing = always-det，keyword 变体靠泄漏 task identity 才达 0.63。建议加入 Appendix。
+
+论文覆盖率整体良好（17/28 已讨论），4 个遗漏实验可用 2-3 句话补入 Discussion 和 Appendix，为已有定性论断提供定量支撑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "uuid": "ce153a48-9deb-4049-874d-74ee19ee17dd",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0111xwgVgEif1KP1xcgsRT66",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 552,
+      "cache_read_input_tokens": 62259,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 552
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 53_
+
+报告已生成并注册。28 个阴性实验的分类结果：
+
+| 分类 | 数量 | |
+|------|------|---|
+| **[已讨论]** | 17 | 论文正文或附录已覆盖 |
+| **[应讨论]** | 4 | 有价值但论文未提及 |
+| **[基础设施]** | 5 | 训练 bug、OOM、pipeline 问题 |
+| **[已过时]** | 2 | 被后续实验取代 |
+
+**4 个应讨论的实验**：
+
+1. **plan-010-cross-task-v2** — 跨 task-type cluster 迁移失败（life→physical bal_acc=0.49），直接量化论文"signal is task-type-level"的定性声明。建议加入 Discussion。
+
+2. **leave-one-tasktype-out** — 7/11 task types 只有 deterministic 一个类别，仅 4 types 有两类 signal。解释了 router 多数类坍塌的根因。建议加入 Discussion。
+
+3. **plan-002-generative-v1** — 生成式 router 也失败（bal_acc=46.7%），证明 failure is signal-limited, not architecture-limited。建议加入 Appendix ablations。
+
+4. **loto-guided-router-eval** — LOTO blind routing = always-det，keyword 变体靠泄漏 task identity 才达 0.63。建议加入 Appendix。
+
+论文覆盖率整体良好（17/28 已讨论），4 个遗漏实验可用 2-3 句话补入 Discussion 和 Appendix，为已有定性论断提供定量支撑。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 271387,
+  "duration_api_ms": 271548,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "4bf4cbed-5a93-41c3-acab-5657c3970c8b",
+  "total_cost_usd": 0.9192265000000002,
+  "usage": {
+    "input_tokens": 19,
+    "cache_creation_input_tokens": 50970,
+    "cache_read_input_tokens": 565792,
+    "output_tokens": 12649,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 50970,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 491,
+        "cache_read_input_tokens": 62259,
+        "cache_creation_input_tokens": 552,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 552
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1373,
+      "outputTokens": 15,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001448,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 19,
+      "outputTokens": 12649,
+      "cacheReadInputTokens": 565792,
+      "cacheCreationInputTokens": 50970,
+      "webSearchRequests": 0,
+      "costUSD": 0.9177785,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "6fbf590c-0884-4306-bffe-f0872c88eb23"
+}
+```
+
+</details>
+
+---

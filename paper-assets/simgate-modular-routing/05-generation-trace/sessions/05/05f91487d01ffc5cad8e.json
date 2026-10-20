@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05f91487d01ffc5cad8e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analyze mvp p1 gpu0 vllm",
+  "task_key": "worker_analyze_mvp-p1-gpu0-vllm_20260513T151639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analyze_mvp-p1-gpu0-vllm_20260513T151639_result.json",
+    "occurrence": 1,
+    "bytes": 804,
+    "sha256": "b83426ae1dc8097c708ad8bfbbad7bffddb03e1ef6c88e7571630d083653f748"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## mvp-p1-gpu0-vllm 分析完成\n\n| Task | internal | det | oracle | det−internal | 90% CI |\n|------|----------|-----|--------|-------------|--------|\n| melt | −54.70 | −14.55 | +2.15 | **+40.15** | [25.0, 60.2] |\n| change-state | −54.70 | −14.50 | +0.45 | **+40.20** | [25.0, 60.2] |\n| pooled | — | — | — | **+40.17** | [27.6, 52.8] |\n\n**结论: SUCCESS** — 2/2 task types 的 det 显著优于 internal，90% CI 下界均 > 0。\n\n核心发现：det 的优势主要来自避免 −100 惩罚（internal 约 55% episode 超时失败，det 仅 15%），而非绝对得分高。Oracle 分数也很低（0.5~2.2），说明这些 task 本身难度大，收益机制是\"少犯错\"而非\"做得好\"。\n\nRegistry 已更新为 DONE，report 已写入 memory.md。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analyze-mvp-p1-gpu0-vllm.md"
+}

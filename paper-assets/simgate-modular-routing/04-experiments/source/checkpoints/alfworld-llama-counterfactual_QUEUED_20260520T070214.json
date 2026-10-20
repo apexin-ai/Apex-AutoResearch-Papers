@@ -1,0 +1,14 @@
+{
+  "exp_id": "alfworld-llama-counterfactual",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:02:14.431Z",
+    "updated_at": "2026-05-20T07:02:14.431Z"
+  },
+  "timestamp": "2026-05-20T07:02:14.715488+00:00",
+  "trigger": "update_registry"
+}

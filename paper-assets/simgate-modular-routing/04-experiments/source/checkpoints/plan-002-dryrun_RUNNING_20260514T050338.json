@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan-002-dryrun",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:03:05.854Z",
+    "updated_at": "2026-05-14T05:03:38.846Z",
+    "hypothesis": "Pipeline validation on partial data (10/11 tasks). NOT for results — verify data loading, model init, training loop, checkpoint save, eval. Will retrain on full data after chemistry-mix completes.",
+    "notes": "is_dryrun=true. 关联 plan-002. batch_size=4 (32 OOM on RTX 5090 32GB). 1 epoch, 1163 steps, ~14min. PID 171059 on GPU0.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 python src/router_sft_train.py --data_dir results/plan_c --epochs 1 --batch_size 4 --lr 2e-5 --output_dir checkpoints/plan-002-dryrun --seed 42",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "171059",
+      "data_path": "results/plan_c/ (10/11 tasks, chemistry-mix incomplete)",
+      "data_count": "~1710 samples (partial)",
+      "model_name": "Qwen/Qwen3-1.7B",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T05:03:38.898429+00:00",
+  "trigger": "update_registry"
+}

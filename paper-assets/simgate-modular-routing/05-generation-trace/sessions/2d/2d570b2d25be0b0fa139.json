@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d570b2d25be0b0fa139",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper checklist items 134",
+  "task_key": "worker_paper_checklist-items-134_20260521T093818",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_checklist-items-134_20260521T093818_result.json",
+    "occurrence": 1,
+    "bytes": 624,
+    "sha256": "67dd258ac5a4ee18bf1c68e7a4a06b25f451ab11f2f727a505b1601ff7d70108"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译成功，无错误，输出 23 页 PDF。\n\n三处修改：\n1. **Appendix I** (Router Training Details)：添加了 agent inference parameters 段落——ScienceWorld T=0.3/256 tokens，MATH T=0.0/2048 tokens，ALFWorld T=0.3/256 tokens，均通过 vLLM v0.21.0 服务\n2. **Appendix C** (Per-Task Decomposition)：开头添加 ScienceWorld v1.2.3 版本声明\n3. **Appendix L** (Cross-Environment Details)：ALFWorld 表格后添加 MATH subset composition——Algebra 585 (73.6%)、Counting & Probability 210 (26.4%)，共 795 题（注：实际数据仅含这 2 个类别，非预期的 7 个）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-checklist-items-134.md"
+}

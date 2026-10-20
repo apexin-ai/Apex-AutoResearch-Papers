@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4f9f364f133ca1c7014f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "audit plan 001b data completeness",
+  "task_key": "worker_audit_plan-001b-data-completeness_20260514T040936",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_plan-001b-data-completeness_20260514T040936_result.json",
+    "occurrence": 1,
+    "bytes": 1877,
+    "sha256": "e9f21fcf3dd8acb15e09b21e33a827e4e2158c6f2d534ec793a123fa2c982e5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是 plan-001b 全部 task 的数据状态：\n\n## plan-001b 数据审计结果\n\n**数据目录**: `/root/autodl-tmp/simgate-modular-routing/results/plan_c/`\n\n| Task | Episodes | 文件大小 | 目标 | 状态 |\n|------|----------|----------|------|------|\n| find-non-living-thing | 40 | 429K | 40 | ✅ |\n| grow-fruit | 20 | 197K | 20 | ✅ |\n| inclined-plane-determine-angle | 20 | 191K | 20 | ✅ |\n| identify-life-stages-2 | 20 | 194K | 20 | ✅ |\n| find-animal | 20 | 198K | 20 | ✅ |\n| identify-life-stages-1 | 20 | 197K | 20 | ✅ |\n| lifespan-longest-lived-then-shortest-lived | 20 | 199K | 20 | ✅ |\n| measure-melting-point-unknown-substance | 20 | 190K | 20 | ✅ |\n| freeze | **17** | 1.1M | 20 | ❌ 缺 3 eps |\n| lifespan-longest-lived | **wc -l 超时** | **150GB** | 20 | ❌ 文件损坏 |\n| chemistry-mix | 目录不存在 | — | 20 | ❌ 未收集 |\n\n## 关键发现\n\n**8/11 tasks 已完成**（包括之前认为\"需确认\"的 find-animal、identify-life-stages-1、lifespan-longest-lived-then-shortest-lived，实际都已有 20 eps 完整数据）。\n\n**3 个未完成 task：**\n\n1. **lifespan-longest-lived** — 150GB 异常文件（正常约 200KB），是正常大小的 ~75 万倍。创建于今天 09:10，最后修改 12:11，当前已停止增长。该文件独占数据盘 150GB/250GB（60%），磁盘用量 73%。**需要删除并重新收集。**\n\n2. **freeze** — 17/20 eps，缺 3 eps。文件大小 1.1M（比其他 task 大，可能 freeze episodes 内容更长），但不完整。\n\n3. **chemistry-mix** — plan_c 目录下完全没有此 task。prescreening 里有 5 eps，但不属于 plan-001b 数据路径。**需要从头收集 20 eps。**\n\n**measure-melting-point-unknown-substance 已完成** — 已有 20 eps（190K），不需要当前 GPU0 v5 再收集。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-plan-001b-data-completeness.md"
+}

@@ -1,0 +1,24 @@
+{
+  "exp_id": "alfworld-llama-counterfactual",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T07:02:14.431Z",
+    "updated_at": "2026-05-20T09:19:13.992Z",
+    "spec": {
+      "command": "python src/alfworld_counterfactual.py --model_path /root/autodl-tmp/models/Meta-Llama-3.1-8B-Instruct --output results/alfworld_llama_counterfactual/episodes.jsonl --n_tasks 0 --gpu_id 0 --seed 42",
+      "server": "westb-13313",
+      "data_path": "ALFWorld json_2.1.1/valid_seen",
+      "data_count": 0,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42
+    },
+    "failure_reason": "startup recovery: RUNNING with no cron and no server/pid info",
+    "conclusion": "failed"
+  },
+  "timestamp": "2026-05-20T09:19:14.312841+00:00",
+  "trigger": "update_registry"
+}

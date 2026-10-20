@@ -1,0 +1,18 @@
+{
+  "exp_id": "plan-010-cross-task-transfer",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T11:32:20.843Z",
+    "updated_at": "2026-05-15T12:33:07.770Z",
+    "hypothesis": "If routing signal is dominated by death avoidance (a general phenomenon), router trained on chemistry tasks should transfer to physics tasks and vice versa. Positive transfer would support generality; failure would suggest task-specific routing patterns.",
+    "conclusion": "killed",
+    "checkpoint_path": "N/A (cancelled per D056)",
+    "log_path": "N/A (cancelled per D056)"
+  },
+  "timestamp": "2026-05-15T12:33:07.896861+00:00",
+  "trigger": "update_registry"
+}

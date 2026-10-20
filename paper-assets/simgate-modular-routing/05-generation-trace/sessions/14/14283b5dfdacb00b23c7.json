@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "14283b5dfdacb00b23c7",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp plan 010 cross task v2",
+  "task_key": "worker_exp_plan-010-cross-task-v2_20260515T173301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan-010-cross-task-v2_20260515T173301.log",
+    "occurrence": 1,
+    "bytes": 1254717,
+    "sha256": "d5bb777fba0fb7a9929d2bce3be88a4edd91f4981da36bc84a6dac6dd3a9a94b"
+  },
+  "statistics": {
+    "messages": 751,
+    "user_turns": 1,
+    "tool_calls": 299,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 6,
+      "assistant": 135,
+      "tool_call": 299,
+      "tool_result": 299,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 603,
+      "chunks": [
+        {
+          "path": "14283b5dfdacb00b23c7-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "14283b5dfdacb00b23c7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "14283b5dfdacb00b23c7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "14283b5dfdacb00b23c7-part-0004.json",
+          "message_count": 63
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 148,
+      "chunks": [
+        {
+          "path": "14283b5dfdacb00b23c7-part-0004.json",
+          "message_count": 117
+        },
+        {
+          "path": "14283b5dfdacb00b23c7-part-0005.json",
+          "message_count": 31
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-plan-010-cross-task-v2.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "328041fdf94ed71d9b19",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix paper sync correct path",
+  "task_key": "worker_fix_paper-sync-correct-path_20260516T133329",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_paper-sync-correct-path_20260516T133329_result.json",
+    "occurrence": 1,
+    "bytes": 197,
+    "sha256": "f62af886c9b7fd2c995971aa803820dfa8cae3a08fea5adb907dfb59bb658bb0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done.\n\n**Results:**\n- 8/8 .tex files synced, all sizes match exactly (59,440 bytes total)\n- 0 undefined citations/references\n- PDF: **14 pages**, **369,936 bytes** (~362 KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-paper-sync-correct-path.md"
+}

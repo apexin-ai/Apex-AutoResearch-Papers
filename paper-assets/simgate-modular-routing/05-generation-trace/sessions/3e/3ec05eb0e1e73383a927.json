@@ -1,0 +1,1811 @@
+{
+  "schema_version": "1.0",
+  "id": "3ec05eb0e1e73383a927",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "analysis excluded 19 tasks",
+  "task_key": "worker_analysis_excluded-19-tasks_20260515T161414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_excluded-19-tasks_20260515T161414.jsonl",
+    "occurrence": 1,
+    "bytes": 108859,
+    "sha256": "e4f8cdff23aec18faa49d325d309bac87b14a1554aa389311be22da43cd8a7da"
+  },
+  "statistics": {
+    "messages": 89,
+    "user_turns": 0,
+    "tool_calls": 44,
+    "roles": {
+      "tool_call": 44,
+      "tool_result": 44,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T16:21:34.740602+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T16:21:34.740951+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T16:21:34.741170+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"task_types\\|TASKS\\|selected_tasks\\|included_tasks\\|INCLUDED\\|EXCLUDED\" /root/autodl-tmp/simgate-modular-routing/src/ /root/autodl-tmp/simgate-modular-routing/scripts/ --include=\"*.py\" | head -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T16:21:34.741312+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T16:21:34.741438+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"task\" /root/autodl-tmp/simgate-modular-routing/config/ --include=\"*.yaml\" --include=\"*.json\" | head -30",
+              "account": "root"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T16:21:34.741564+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T16:21:34.741683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/",
+              "account": "root"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-15T16:21:34.741802+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "find /root/autodl-tmp/simgate-modular-routing/ -name \"*.md\" -path \"*/docs/*\" | head -10",
+              "account": "root"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-15T16:21:34.741942+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"ablation_b_gen_eval.json\\\\nablation_b_seed123_gen.json\\\\nablation_b_seed456_gen.json\\\\nablation_b_seed789_gen.json\\\\nalfworld_counterfactual\\\\nbaseline_245eps\\\\nbootstrap_95ci.json\\\\ndeath_decomposition_preliminary.csv\\\\ndeath_decomposition_preliminary_OLD.csv\\\\ndeath_decomposition_report.json\\\\ndeath_decomposition_test.json\\\\ndecomposition_dryrun\\\\ndiag_seed42_v5_eval.json\\\\ndry_run_mvp_report.json\\\\ndry_run_mvp_table.json\\\\neval-template-fix\\\\neval_ablation_b_e2e\\\\neval_ablation_b_e2e_correct\\\\nllama-expanded\\\\nmath_full_200.log\\\\nmulti_model_pilot\\\\nmvp\\\\npaper_table1_data.json\\\\npaper_table1_test.json\\\\npenalty_sensitivity.json\\\\npenalty_sensitivity_table.tex\\\\nplan-003-eval-implicit\\\\nplan-006-deep-internal\\\\nplan-008\\\\nplan-008-v2\\\\nplan-008-v3\\\\nplan-013\\\\nplan005\\\\nplan_001b_labels\\\\nplan_001b_labels_partial\\\\nplan_002_router_dryrun\\\\nplan_003_eval\\\\nplan_003_eval_dryrun\\\\nplan_003_eval_full_baseline\\\\nplan_003_eval_router_test\\\\nplan_003_eval_router_v6_test\\\\nplan_005_analysis\\\\nplan_012_decomposition\\\\nplan_c\\\\nplan_c_95ci\\\\nplan_c_test_labels\\\\nprescreening\\\\nresearch\\\\nrouting-patterns\\\\nrule_based_accuracy_test.json\\\\nrule_based_accuracy_v1_rerun.json\\\\nrule_based_accuracy_v2_test.json\\\\nrule_based_accuracy_v3.json\\\\nseed-robustness\\\\nsft_data\\\\nsft_data_death_aware\\\\nsft_data_test\\\\nstep_tie_rate_full.json\\\\ntest_3label\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.25}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-15T16:21:34.742131+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-15T16:21:34.742288+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"task_types\\|TASKS\\|selected_tasks\\|included_tasks\\|INCLUDED\\|EXCLUDED\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-15T16:21:34.742414+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-15T16:21:34.742531+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/",
+              "account": "root"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-15T16:21:34.742742+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chemistry-mix\\\\nchemistry-mix-paint-tertiary-color\\\\nfind-animal\\\\nfind-living-thing\\\\nfind-non-living-thing\\\\nfind-plant\\\\nfreeze\\\\ngrow-fruit\\\\nidentify-life-stages-1\\\\nidentify-life-stages-2\\\\ninclined-plane-determine-angle\\\\ninclined-plane-friction-named-surfaces\\\\ninclined-plane-friction-unnamed-surfaces\\\\nlifespan-longest-lived\\\\nlifespan-longest-lived-then-shortest-lived\\\\nlifespan-shortest-lived\\\\nmeasure-melting-point-known-substance\\\\nmeasure-melting-point-unknown-substance\\\\nmendelian-genetics-known-plant\\\\nmendelian-genetics-unknown-plant\\\\npower-component\\\\npower-component-renewable-vs-nonrenewable-energy\\\\nrun.log\\\\nrun_gpu1.log\\\\nsignal_type_summary.json\\\\nsummary.txt\\\\ntest-conductivity\\\\ntest-conductivity-of-unknown-substances\\\\nuse-thermometer\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.76}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-15T16:21:34.743271+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/research/",
+              "account": "root"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-15T16:21:34.743489+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"boil\\\\nglobal_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-15T16:21:34.743694+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"task\" /root/autodl-tmp/simgate-modular-routing/config/ --include=\"*.yaml\" --include=\"*.json\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-15T16:21:34.743883+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "find /root/autodl-tmp/simgate-modular-routing/docs/ -name \"*.md\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-15T16:21:34.744100+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"grep: /root/autodl-tmp/simgate-modular-routing/config/: No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.86}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-15T16:21:34.744298+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-15T16:21:34.744513+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/prescreening/summary.txt",
+              "account": "root"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-15T16:21:34.744691+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/prescreening/signal_type_summary.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-15T16:21:34.744858+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"selected_tasks\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-15T16:21:34.745042+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"TASKS\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-15T16:21:34.745215+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"task_types\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-15T16:21:34.745513+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== Prescreening started at Thu May 14 00:22:49 CST 2026 ===\\\\nSKIP: boil (MVP-tested)\\\\nSKIP: change-the-state-of-matter-of (MVP-tested)\\\\n>>> Running: chemistry-mix at Thu May 14 00:22:49 CST 2026\\\\nTask: chemistry-mix\\\\nEpisodes: 5, Max steps: 30\\\\nGPU: 0, vLLM: True\\\\n[LLMAgent] Model path: /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/\\\\n[LLMAgent] Backend: vLLM, GPU: 0\\\\n\\\\n============================================================\\\\nPRESCREENING: chemistry-mix | Episodes: 5 | Max steps: 30\\\\nMax variations: 32 | Unique: 5\\\\n============================================================\\\\n\\\\n--- Episode 0/5 (variation=0) ---\\\\n  [I] always-internal... INFO 05-14 00:22:59 [utils.py:233] non-default args: {'trust_remote_code': True, 'max_model_len': 4096, 'gpu_memory_utilization': 0.85, 'disable_log_stats': True, 'model': '/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/'}\\\\nINFO 05-14 00:22:59 [model.py:533] Resolved architecture: Qwen2ForCausalLM\\\\nINFO 05-14 00:22:59 [model.py:1582] Using max model len 4096\\\\nINFO 05-14 00:22:59 [scheduler.py:231] Chunked prefill is enabled with max_num_batched_tokens=8192.\\\\nINFO 05-14 00:22:59 [vllm.py:775] Asynchronous scheduling is enabled.\\\\n(EngineCore pid=650130) INFO 05-14 00:23:00 [core.py:103] Initializing a V1 LLM engine (v0.18.1) with config: model='/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/', speculative_config=None, tokenizer='/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, tokenizer_revision=None, trust_remote_code=True, dtype=torch.bfloat16, max_seq_len=4096, download_dir=None, load_format=auto, tensor_parallel_size=1, pipeline_parallel_size=1, data_parallel_size=1, decode_context_parallel_size=1, dcp_comm_backend=ag_rs, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, enable_return_routed_experts=False, kv_cache_dtype=auto, device_config=cuda, st\n…[truncated 6355 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-15T16:21:34.745876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"label\\\\\\\": \\\\\\\"PRESCREENING SIGNAL TYPE ANALYSIS\\\\\\\",\\\\n  \\\\\\\"tasks\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\",\\\\n      \\\\\\\"int_mean\\\\\\\": -55.8,\\\\n      \\\\\\\"det_mean\\\\\\\": 4.2,\\\\n      \\\\\\\"delta\\\\\\\": 60.0,\\\\n      \\\\\\\"int_death_pct\\\\\\\": 60.0,\\\\n      \\\\\\\"det_death_pct\\\\\\\": 0.0,\\\\n      \\\\\\\"int_nd_mean\\\\\\\": 10.5,\\\\n      \\\\\\\"det_nd_mean\\\\\\\": 4.2,\\\\n      \\\\\\\"delta_nd\\\\\\\": -6.3,\\\\n      \\\\\\\"signal_type\\\\\\\": \\\\\\\"death-dominated\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 5\\\\n    },\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"chemistry-mix-paint-tertiary-color\\\\\\\",\\\\n      \\\\\\\"int_mean\\\\\\\": -37.4,\\\\n      \\\\\\\"det_mean\\\\\\\": -17.4,\\\\n      \\\\\\\"delta\\\\\\\": 20.0,\\\\n      \\\\\\\"int_death_pct\\\\\\\": 40.0,\\\\n      \\\\\\\"det_death_pct\\\\\\\": 20.0,\\\\n      \\\\\\\"int_nd_mean\\\\\\\": 4.33,\\\\n      \\\\\\\"det_nd_mean\\\\\\\": 3.25,\\\\n      \\\\\\\"delta_nd\\\\\\\": -1.08,\\\\n      \\\\\\\"signal_type\\\\\\\": \\\\\\\"death-dominated\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 5\\\\n    },\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"find-animal\\\\\\\",\\\\n      \\\\\\\"int_mean\\\\\\\": -58.4,\\\\n      \\\\\\\"det_mean\\\\\\\": 8.2,\\\\n      \\\\\\\"delta\\\\\\\": 66.6,\\\\n      \\\\\\\"int_death_pct\\\\\\\": 60.0,\\\\n      \\\\\\\"det_death_pct\\\\\\\": 0.0,\\\\n      \\\\\\\"int_nd_mean\\\\\\\": 4.0,\\\\n      \\\\\\\"det_nd_mean\\\\\\\": 8.2,\\\\n      \\\\\\\"delta_nd\\\\\\\": 4.2,\\\\n      \\\\\\\"signal_type\\\\\\\": \\\\\\\"mixed\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 5\\\\n    },\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"find-living-thing\\\\\\\",\\\\n      \\\\\\\"int_mean\\\\\\\": -58.4,\\\\n      \\\\\\\"det_mean\\\\\\\": -16.6,\\\\n      \\\\\\\"delta\\\\\\\": 41.8,\\\\n      \\\\\\\"int_death_pct\\\\\\\": 60.0,\\\\n      \\\\\\\"det_death_pct\\\\\\\": 20.0,\\\\n      \\\\\\\"int_nd_mean\\\\\\\": 4.0,\\\\n      \\\\\\\"det_nd_mean\\\\\\\": 4.25,\\\\n      \\\\\\\"delta_nd\\\\\\\": 0.25,\\\\n      \\\\\\\"signal_type\\\\\\\": \\\\\\\"mixed\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 5\\\\n    },\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"find-non-living-thing\\\\\\\",\\\\n      \\\\\\\"int_mean\\\\\\\": 31.6,\\\\n      \\\\\\\"det_mean\\\\\\\": 24.8,\\\\n      \\\\\\\"delta\\\\\\\": -6.8,\\\\n      \\\\\\\"int_death_pct\\\\\\\": 0.0,\\\\n      \n…[truncated 3428 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-15T16:21:34.746156+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-15T16:21:34.746344+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py:18:STRONG_TASKS = [\\\\n/root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py:23:MEDIUM_TASKS = [\\\\n/root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py:26:WEAK_TASKS = [\\\\n/root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py:29:ALL_MVP_TASKS = STRONG_TASKS + MEDIUM_TASKS + WEAK_TASKS\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase0_validate_forking.py:25:    STRONG_TASKS, MEDIUM_TASKS, WEAK_TASKS,\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase0_validate_forking.py:29:PHASE0_TASKS = {\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase0_validate_forking.py:197:    tasks = resolve_task_names(PHASE0_TASKS)\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py:25:    STRONG_TASKS, MEDIUM_TASKS, WEAK_TASKS, ALL_MVP_TASKS,\\\\n/root/autodl-tmp/simgate-modular-routing/src/tie_rate_analysis.py:6:TASKS = [\\\\\\\"boil\\\\\\\", \\\\\\\"melt\\\\\\\", \\\\\\\"change-the-state-of-matter-of\\\\\\\",\\\\n/root/autodl-tmp/simgate-modular-routing/src/tie_rate_analysis.py:54:    for task in TASKS:\\\\n/root/autodl-tmp/simgate-modular-routing/src/tie_rate_analysis.py:133:    for task in TASKS:\\\\n/root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py:28:    STRONG_TASKS, MEDIUM_TASKS, WEAK_TASKS, ALL_MVP_TASKS,\\\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_eval_common.py:35:    ALL_MVP_TASKS,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-15T16:21:34.746548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py:16:# Task type constants — update after running get_task_types() on the server\\\\n/root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py:32:def get_task_types() -> List[str]:\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase0_validate_forking.py:24:    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase0_validate_forking.py:156:        available = get_task_types()\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py:9:  python src/phase1_signal.py --task_types \\\\\\\"boil,melt\\\\\\\" --episodes 20 --gpu_id 0\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py:23:    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py:53:        available = get_task_types()\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py:454:    parser.add_argument(\\\\\\\"--task_types\\\\\\\", type=str, required=True,\\\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py:474:    task_names_raw = [t.strip() for t in args.task_types.split(\\\\\\\",\\\\\\\") if t.strip()]\\\\n/root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py:28:    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n/root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py:57:        available = get_task_types()\\\\n/root/autodl-tmp/simgate-modular-routing/src/action_divergence_analysis.py:70:    task_types = 15\\\\n/root/autodl-tmp/simgate-modular-routing/src/action_divergence_analysis.py:73:    total_steps = task_types * episodes_per_task * steps_per_episode\\\\n/root/autodl-tmp/simgate-modular-routing/src/action_divergence_analysis.py:87:    print(f\\\\\\\"  {task_types} tasks x {episodes_per_task} eps x {steps_per_episode} steps = {total_steps} total steps\\\\\\\")\\\\n/root/autodl-tmp/simgate-modular-routing/src/counterfactual_l\n…[truncated 5585 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 1
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-15T16:21:34.746733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-15T16:21:34.746864+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/src/tie_rate_analysis.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-15T16:21:34.747170+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"ScienceWorld environment utilities: creation, forking via action-replay, episode logging.\\\\n\\\\nDependencies: scienceworld (pip install scienceworld)\\\\nKey constraint: ScienceWorld uses py4j → each env is a separate JVM process.\\\\nFork = new JVM instance + replay all historical actions.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport time\\\\nimport os\\\\nimport traceback\\\\nfrom typing import List, Tuple, Optional, Dict, Any\\\\n\\\\nimport scienceworld\\\\n\\\\n# ---------------------------------------------------------------------------\\\\n# Task type constants — update after running get_task_types() on the server\\\\n# ---------------------------------------------------------------------------\\\\nSTRONG_TASKS = [\\\\n    \\\\\\\"boil\\\\\\\",\\\\n    \\\\\\\"melt\\\\\\\",\\\\n    \\\\\\\"change-the-state-of-matter-of\\\\\\\",\\\\n]\\\\nMEDIUM_TASKS = [\\\\n    \\\\\\\"chemistry-mix-paint-secondary-color\\\\\\\",\\\\n]\\\\nWEAK_TASKS = [\\\\n    \\\\\\\"grow-plant\\\\\\\",\\\\n]\\\\nALL_MVP_TASKS = STRONG_TASKS + MEDIUM_TASKS + WEAK_TASKS\\\\n\\\\n\\\\ndef get_task_types() -> List[str]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return all ScienceWorld task type names.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = scienceworld.ScienceWorldEnv(\\\\\\\"\\\\\\\")\\\\n    try:\\\\n        names = env.get_task_names()\\\\n    finally:\\\\n        env.close()\\\\n    return list(names)\\\\n\\\\n\\\\ndef get_max_variations(task_name: str) -> int:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Return the number of available variations for a task type.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = scienceworld.ScienceWorldEnv(\\\\\\\"\\\\\\\")\\\\n    try:\\\\n        n = env.get_max_variations(task_name)\\\\n        return int(n)\\\\n    except Exception:\\\\n        return 100\\\\n    finally:\\\\n        env.close()\\\\n\\\\n\\\\ndef create_env(task_name: str, variation_idx: int = 0,\\\\n               simplification_str: str = \\\\\\\"\\\\\\\") -> scienceworld.ScienceWorldEnv:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Create and initialize a ScienceWorld environment.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    env = scienceworld.ScienceWorldEnv(task_name, envStepLimit=100)\\\\n    env.load(task_name, variation_id\n…[truncated 6676 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-15T16:21:34.747361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan-013/",
+              "account": "root"
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-15T16:21:34.747604+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Step-level tie-rate analysis for MVP oracle routing data.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys\\\\nfrom collections import defaultdict\\\\n\\\\nDATA_DIR = \\\\\\\"/root/autodl-tmp/simgate-modular-routing/results/mvp\\\\\\\"\\\\nTASKS = [\\\\\\\"boil\\\\\\\", \\\\\\\"melt\\\\\\\", \\\\\\\"change-the-state-of-matter-of\\\\\\\",\\\\n         \\\\\\\"chemistry-mix-paint-secondary-color\\\\\\\", \\\\\\\"grow-plant\\\\\\\"]\\\\n\\\\ndef load_oracle_steps(task):\\\\n    path = os.path.join(DATA_DIR, task, \\\\\\\"episodes.jsonl\\\\\\\")\\\\n    episodes = []\\\\n    with open(path) as f:\\\\n        for line in f:\\\\n            ep = json.loads(line)\\\\n            orc = ep.get(\\\\\\\"oracle_routing\\\\\\\", {})\\\\n            steps = orc.get(\\\\\\\"steps\\\\\\\", [])\\\\n            episodes.append(steps)\\\\n    return episodes\\\\n\\\\ndef analyze_steps(steps):\\\\n    tie = det_pref = int_pref = 0\\\\n    for s in steps:\\\\n        id_ = s[\\\\\\\"internal_delta\\\\\\\"]\\\\n        dd = s[\\\\\\\"det_delta\\\\\\\"]\\\\n        if id_ == dd:\\\\n            tie += 1\\\\n        elif dd > id_:\\\\n            det_pref += 1\\\\n        else:\\\\n            int_pref += 1\\\\n    return tie, det_pref, int_pref\\\\n\\\\ndef pct(num, denom):\\\\n    return 100.0 * num / denom if denom > 0 else 0.0\\\\n\\\\ndef phase_label(step_idx):\\\\n    if step_idx < 10:\\\\n        return \\\\\\\"1-10\\\\\\\"\\\\n    elif step_idx < 20:\\\\n        return \\\\\\\"11-20\\\\\\\"\\\\n    else:\\\\n        return \\\\\\\"21-30\\\\\\\"\\\\n\\\\ndef main():\\\\n    print(\\\\\\\"=\\\\\\\" * 55)\\\\n    print(\\\\\\\"TIE RATE ANALYSIS (step-level: internal_delta vs det_delta)\\\\\\\")\\\\n    print(\\\\\\\"=\\\\\\\" * 55)\\\\n    print(f\\\\\\\"Data granularity: step-level\\\\\\\\n\\\\\\\")\\\\n\\\\n    global_tie = global_det = global_int = global_total = 0\\\\n    # Also track delta magnitude distribution\\\\n    all_nonzero_deltas = []\\\\n\\\\n    for task in TASKS:\\\\n        episodes = load_oracle_steps(task)\\\\n        n_ep = len(episodes)\\\\n        all_steps = []\\\\n        phase_stats = defaultdict(lambda: [0, 0, 0])  # tie, det, int\\\\n\\\\n        for ep_steps in \n…[truncated 4330 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-15T16:21:34.747761+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"strict_only_gen_eval.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.93}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-15T16:21:34.747925+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/",
+              "account": "root"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-15T16:21:34.748110+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_005_analysis/",
+              "account": "root"
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-15T16:21:34.748245+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/': Not a directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.77}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-15T16:21:34.748366+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+              "account": "root"
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-15T16:21:34.748486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"routing_patterns.json\\\\nrouting_patterns_summary.txt\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-15T16:21:34.748608+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chemistry-mix\\\\nfind-animal\\\\nfind-non-living-thing\\\\nfreeze\\\\ngrow-fruit\\\\nidentify-life-stages-1\\\\nidentify-life-stages-2\\\\ninclined-plane-determine-angle\\\\nlifespan-longest-lived\\\\nlifespan-longest-lived-then-shortest-lived\\\\nmeasure-melting-point-unknown-substance\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-15T16:21:34.748725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "grep -rn \"INCLUDED\\|included_task\\|11 task\\|EXPERIMENT_TASKS\\|EVAL_TASKS\\|FINAL_TASKS\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-15T16:21:34.748843+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-15T16:21:34.749031+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/death_decomposition_report.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-15T16:21:34.749176+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/paper_table1_data.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-15T16:21:34.749504+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"per_task\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"boil\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 40,\\\\n      \\\\\\\"int_death_count\\\\\\\": 19,\\\\n      \\\\\\\"det_death_count\\\\\\\": 6,\\\\n      \\\\\\\"int_death_rate\\\\\\\": 0.475,\\\\n      \\\\\\\"det_death_rate\\\\\\\": 0.15,\\\\n      \\\\\\\"int_mean\\\\\\\": -47.23,\\\\n      \\\\\\\"det_mean\\\\\\\": -14.5,\\\\n      \\\\\\\"delta_full\\\\\\\": 32.73,\\\\n      \\\\\\\"int_mean_no_death\\\\\\\": 0.52,\\\\n      \\\\\\\"det_mean_no_death\\\\\\\": 0.57,\\\\n      \\\\\\\"delta_no_death\\\\\\\": 0.05,\\\\n      \\\\\\\"death_avoidance_fraction\\\\\\\": 0.9985,\\\\n      \\\\\\\"int_mean_penalty_removed\\\\\\\": 0.28,\\\\n      \\\\\\\"det_mean_penalty_removed\\\\\\\": 0.5,\\\\n      \\\\\\\"delta_penalty_removed\\\\\\\": 0.22,\\\\n      \\\\\\\"n_no_death_episodes\\\\\\\": 21,\\\\n      \\\\\\\"label_distribution\\\\\\\": {\\\\n        \\\\\\\"det-preferred\\\\\\\": 14,\\\\n        \\\\\\\"internal-preferred\\\\\\\": 0,\\\\n        \\\\\\\"no-preference\\\\\\\": 26\\\\n      },\\\\n      \\\\\\\"signal_source_distribution\\\\\\\": {\\\\n        \\\\\\\"death_asymmetry\\\\\\\": 13,\\\\n        \\\\\\\"tied_alive\\\\\\\": 20,\\\\n        \\\\\\\"score_comparison\\\\\\\": 1,\\\\n        \\\\\\\"both_dead\\\\\\\": 6\\\\n      },\\\\n      \\\\\\\"label_signal_cross\\\\\\\": {\\\\n        \\\\\\\"det-preferred\\\\\\\": {\\\\n          \\\\\\\"death_asymmetry\\\\\\\": 13,\\\\n          \\\\\\\"score_comparison\\\\\\\": 1\\\\n        },\\\\n        \\\\\\\"no-preference\\\\\\\": {\\\\n          \\\\\\\"tied_alive\\\\\\\": 20,\\\\n          \\\\\\\"both_dead\\\\\\\": 6\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"change-the-state-of-matter-of\\\\\\\",\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"int_death_count\\\\\\\": 11,\\\\n      \\\\\\\"det_death_count\\\\\\\": 3,\\\\n      \\\\\\\"int_death_rate\\\\\\\": 0.55,\\\\n      \\\\\\\"det_death_rate\\\\\\\": 0.15,\\\\n      \\\\\\\"int_mean\\\\\\\": -54.7,\\\\n      \\\\\\\"det_mean\\\\\\\": -14.5,\\\\n      \\\\\\\"delta_full\\\\\\\": 40.2,\\\\n      \\\\\\\"int_mean_no_death\\\\\\\": 0.67,\\\\n      \\\\\\\"det_mean_no_death\\\\\\\": 0.78,\\\\n      \\\\\\\"delta_no_death\\\\\\\": 0.11,\\\\n      \\\\\\\"death_avoidance_fraction\\\\\\\": 0.9972,\\\\n      \\\\\\\"int_mean_penalty_removed\\\\\\\": 0.3,\\\\n     \n…[truncated 8365 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-15T16:21:34.749664+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/",
+              "account": "root"
+            }
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-15T16:21:34.749826+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"rows\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"find-animal\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 5,\\\\n      \\\\\\\"int_mean\\\\\\\": -58.4,\\\\n      \\\\\\\"det_mean\\\\\\\": 8.2,\\\\n      \\\\\\\"delta\\\\\\\": 66.6,\\\\n      \\\\\\\"int_death_pct\\\\\\\": 60.0,\\\\n      \\\\\\\"det_death_pct\\\\\\\": 0.0,\\\\n      \\\\\\\"delta_no_death\\\\\\\": 0.0,\\\\n      \\\\\\\"death_avoidance_pct\\\\\\\": 100.0,\\\\n      \\\\\\\"delta_penalty_removed\\\\\\\": 6.6,\\\\n      \\\\\\\"det_preferred\\\\\\\": 3,\\\\n      \\\\\\\"internal_preferred\\\\\\\": 0,\\\\n      \\\\\\\"no_preference\\\\\\\": 2\\\\n    },\\\\n    {\\\\n      \\\\\\\"task\\\\\\\": \\\\\\\"freeze\\\\\\\",\\\\n      \\\\\\\"n\\\\\\\": 5,\\\\n      \\\\\\\"int_mean\\\\\\\": -60.0,\\\\n      \\\\\\\"det_mean\\\\\\\": 2.0,\\\\n      \\\\\\\"delta\\\\\\\": 62.0,\\\\n      \\\\\\\"int_death_pct\\\\\\\": 60.0,\\\\n      \\\\\\\"det_death_pct\\\\\\\": 0.0,\\\\n      \\\\\\\"delta_no_death\\\\\\\": 0.0,\\\\n      \\\\\\\"death_avoidance_pct\\\\\\\": 100.0,\\\\n      \\\\\\\"delta_penalty_removed\\\\\\\": 2.0,\\\\n      \\\\\\\"det_preferred\\\\\\\": 3,\\\\n      \\\\\\\"internal_preferred\\\\\\\": 0,\\\\n      \\\\\\\"no_preference\\\\\\\": 2\\\\n    }\\\\n  ],\\\\n  \\\\\\\"aggregate\\\\\\\": {\\\\n    \\\\\\\"task\\\\\\\": \\\\\\\"Overall\\\\\\\",\\\\n    \\\\\\\"n\\\\\\\": 10,\\\\n    \\\\\\\"int_mean\\\\\\\": -59.2,\\\\n    \\\\\\\"det_mean\\\\\\\": 5.1,\\\\n    \\\\\\\"delta\\\\\\\": 64.3,\\\\n    \\\\\\\"int_death_pct\\\\\\\": 60.0,\\\\n    \\\\\\\"det_death_pct\\\\\\\": 0.0,\\\\n    \\\\\\\"delta_no_death\\\\\\\": 0.0,\\\\n    \\\\\\\"death_avoidance_pct\\\\\\\": 100.0,\\\\n    \\\\\\\"delta_penalty_removed\\\\\\\": 4.3,\\\\n    \\\\\\\"det_preferred\\\\\\\": 6,\\\\n    \\\\\\\"internal_preferred\\\\\\\": 0,\\\\n    \\\\\\\"no_preference\\\\\\\": 4\\\\n  },\\\\n  \\\\\\\"correlation\\\\\\\": {\\\\n    \\\\\\\"pearson_r\\\\\\\": null,\\\\n    \\\\\\\"p_value\\\\\\\": null,\\\\n    \\\\\\\"n\\\\\\\": 2\\\\n  }\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.94}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-15T16:21:34.750028+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"episode_details.jsonl\\\\noverall_results.json\\\\nper_task_results.csv\\\\nper_task_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.91}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-15T16:21:34.750249+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/per_task_results.json",
+              "account": "root"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-15T16:21:34.750614+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"always-internal\\\\\\\": {\\\\n    \\\\\\\"chemistry-mix\\\\\\\": {\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"mean_score\\\\\\\": -43.55,\\\\n      \\\\\\\"score_std\\\\\\\": 51.27033742818551,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"death_rate\\\\\\\": 0.45,\\\\n      \\\\\\\"sim_ratio\\\\\\\": 0.0,\\\\n      \\\\\\\"score_ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -43.55,\\\\n        \\\\\\\"ci_low\\\\\\\": -65.0,\\\\n        \\\\\\\"ci_high\\\\\\\": -21.85,\\\\n        \\\\\\\"n\\\\\\\": 20\\\\n      }\\\\n    },\\\\n    \\\\\\\"find-animal\\\\\\\": {\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"mean_score\\\\\\\": -49.2,\\\\n      \\\\\\\"score_std\\\\\\\": 50.850368730226535,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.1,\\\\n      \\\\\\\"death_rate\\\\\\\": 0.5,\\\\n      \\\\\\\"sim_ratio\\\\\\\": 0.0,\\\\n      \\\\\\\"score_ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -49.2,\\\\n        \\\\\\\"ci_low\\\\\\\": -69.60999999999999,\\\\n        \\\\\\\"ci_high\\\\\\\": -28.0,\\\\n        \\\\\\\"n\\\\\\\": 20\\\\n      }\\\\n    },\\\\n    \\\\\\\"find-non-living-thing\\\\\\\": {\\\\n      \\\\\\\"n_episodes\\\\\\\": 40,\\\\n      \\\\\\\"mean_score\\\\\\\": 18.9,\\\\n      \\\\\\\"score_std\\\\\\\": 24.677722747449774,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.425,\\\\n      \\\\\\\"death_rate\\\\\\\": 0.0,\\\\n      \\\\\\\"sim_ratio\\\\\\\": 0.0,\\\\n      \\\\\\\"score_ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": 18.9,\\\\n        \\\\\\\"ci_low\\\\\\\": 11.796250000000004,\\\\n        \\\\\\\"ci_high\\\\\\\": 26.35125,\\\\n        \\\\\\\"n\\\\\\\": 40\\\\n      }\\\\n    },\\\\n    \\\\\\\"freeze\\\\\\\": {\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"mean_score\\\\\\\": -54.75,\\\\n      \\\\\\\"score_std\\\\\\\": 50.03686141236279,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.05,\\\\n      \\\\\\\"death_rate\\\\\\\": 0.55,\\\\n      \\\\\\\"sim_ratio\\\\\\\": 0.0,\\\\n      \\\\\\\"score_ci\\\\\\\": {\\\\n        \\\\\\\"mean\\\\\\\": -54.75,\\\\n        \\\\\\\"ci_low\\\\\\\": -75.0,\\\\n        \\\\\\\"ci_high\\\\\\\": -30.0,\\\\n        \\\\\\\"n\\\\\\\": 20\\\\n      }\\\\n    },\\\\n    \\\\\\\"grow-fruit\\\\\\\": {\\\\n      \\\\\\\"n_episodes\\\\\\\": 20,\\\\n      \\\\\\\"mean_score\\\\\\\": -43.65,\\\\n      \\\\\\\"score_std\\\\\\\": 51.023793469321745,\\\\n      \\\\\\\"success_rate\\\\\\\": 0.25,\\\\n      \\\\\\\"death_rate\\\\\\\": 0.45,\\\\n      \n…[truncated 8625 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-15T16:21:34.750783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "find /root/autodl-tmp/simgate-modular-routing/ -name \"prescreening_criteria*\" -o -name \"task_selection*\" -o -name \"exclusion*\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-15T16:21:34.750913+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py",
+              "account": "root"
+            }
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-15T16:21:34.751089+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.75}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-15T16:21:34.751355+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Lightweight 2-way prescreening: always-internal vs always-deterministic.\\\\n\\\\nSimplified version of phase1_signal.py for quick signal checks.\\\\nRuns fewer episodes (default 5) on a single task type,\\\\noutputs per-episode JSONL and a terminal summary with Δ(D-I) direction.\\\\n\\\\nKey differences from phase1_signal.py:\\\\n  - No oracle-routing mode (2-way only)\\\\n  - always-internal does NOT use death filter (pure LLM)\\\\n  - always-deterministic uses death filter via fork_and_lookahead\\\\n  - Single task type per invocation (--task_type, not comma-separated)\\\\n\\\\nUsage:\\\\n  python src/signal_prescreening.py --task_type boil --episodes 5 --gpu_id 0\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport os\\\\nimport random\\\\nimport sys\\\\nimport time\\\\nfrom typing import Dict, Any\\\\n\\\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\\\nfrom scienceworld_utils import (\\\\n    create_env, reset_env, get_valid_actions, get_score,\\\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\\\n    get_max_variations,\\\\n)\\\\nfrom llm_agent import LLMAgent, find_model_path\\\\n\\\\n\\\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\\\nSLIM_EPISODES = os.environ.get(\\\\\\\"SLIM_EPISODES\\\\\\\", \\\\\\\"1\\\\\\\") == \\\\\\\"1\\\\\\\"\\\\n\\\\n\\\\ndef _slim_episode_data(ep):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if not SLIM_EPISODES:\\\\n        return ep\\\\n    result = {k: v for k, v in ep.items() if k != \\\\\\\"steps\\\\\\\"}\\\\n    if \\\\\\\"steps\\\\\\\" in ep:\\\\n        result[\\\\\\\"steps\\\\\\\"] = [\\\\n            {k: v for k, v in s.items()\\\\n             if k not in (\\\\\\\"llm_output\\\\\\\", \\\\\\\"action_history\\\\\\\", \\\\\\\"candidates\\\\\\\",\\\\n                          \\\\\\\"available_actions\\\\\\\")}\\\\n            for s in ep[\\\\\\\"steps\\\\\\\"]\\\\n        ]\\\\n    return result\\\\n\\\\n\\\\ndef resolve_task_type\n…[truncated 7360 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-15T16:21:34.751548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json\nwith open('results/death_decomposition_report.json') as f:\n    data = json.load(f)\nall_tasks = [t['task'] for t in data['per_task']]\nprint(f'Total tasks: {len(all_tasks)}')\nfor t in all_tasks:\n    print(t)\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-15T16:21:34.751696+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Total tasks: 30\\\\nboil\\\\nchange-the-state-of-matter-of\\\\nchemistry-mix\\\\nchemistry-mix-paint-secondary-color\\\\nchemistry-mix-paint-tertiary-color\\\\nfind-animal\\\\nfind-living-thing\\\\nfind-non-living-thing\\\\nfind-plant\\\\nfreeze\\\\ngrow-fruit\\\\ngrow-plant\\\\nidentify-life-stages-1\\\\nidentify-life-stages-2\\\\ninclined-plane-determine-angle\\\\ninclined-plane-friction-named-surfaces\\\\ninclined-plane-friction-unnamed-surfaces\\\\nlifespan-longest-lived\\\\nlifespan-longest-lived-then-shortest-lived\\\\nlifespan-shortest-lived\\\\nmeasure-melting-point-known-substance\\\\nmeasure-melting-point-unknown-substance\\\\nmelt\\\\nmendelian-genetics-known-plant\\\\nmendelian-genetics-unknown-plant\\\\npower-component\\\\npower-component-renewable-vs-nonrenewable-energy\\\\ntest-conductivity\\\\ntest-conductivity-of-unknown-substances\\\\nuse-thermometer\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.36}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-15T16:21:34.751918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, os, glob\n\nincluded = [\n    'chemistry-mix', 'find-animal', 'find-non-living-thing', 'freeze',\n    'grow-fruit', 'identify-life-stages-1', 'identify-life-stages-2',\n    'inclined-plane-determine-angle', 'lifespan-longest-lived',\n    'lifespan-longest-lived-then-shortest-lived',\n    'measure-melting-point-unknown-substance'\n]\n\n# Load death decomposition for all 30\nwith open('results/death_decomposition_report.json') as f:\n    decomp = json.load(f)\n\nprint('='*100)\nprint(f'{\\\"Task\\\":<50} {\\\"Status\\\":<10} {\\\"N\\\":>4} {\\\"int_dr\\\":>7} {\\\"det_dr\\\":>7} {\\\"int_mean\\\":>9} {\\\"det_mean\\\":>9} {\\\"delta_nd\\\":>9} {\\\"death_avoid\\\":>11}')\nprint('='*100)\n\nfor t in decomp['per_task']:\n    task = t['task']\n    status = 'INCL' if task in included else 'EXCL'\n    print(f'{task:<50} {status:<10} {t[\\\"n_episodes\\\"]:>4} {t[\\\"int_death_rate\\\"]:>7.2f} {t[\\\"det_death_rate\\\"]:>7.2f} {t[\\\"int_mean\\\"]:>9.2f} {t[\\\"det_mean\\\"]:>9.2f} {t[\\\"delta_no_death\\\"]:>9.2f} {t[\\\"death_avoidance_fraction\\\"]:>11.4f}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-15T16:21:34.752169+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 -c \\\\\\\"\\\\\\\\nimport json, os, glob\\\\\\\\n\\\\\\\\nincluded = [\\\\\\\\n    \\\\\\\\'chemistry-mix\\\\\\\\', \\\\\\\\'find-animal\\\\\\\\', \\\\\\\\'find-non-living-thing\\\\\\\\', \\\\\\\\'freeze\\\\\\\\',\\\\\\\\n    \\\\\\\\'grow-fruit\\\\\\\\', \\\\\\\\'identify-life-stages-1\\\\\\\\', \\\\\\\\'identify-life-stages-2\\\\\\\\',\\\\\\\\n    \\\\\\\\'inclined-plane-determine-angle\\\\\\\\', \\\\\\\\'lifespan-longest-lived\\\\\\\\',\\\\\\\\n    \\\\\\\\'lifespan-longest-lived-then-shortest-lived\\\\\\\\',\\\\\\\\n    \\\\\\\\'measure-melting-point-unknown-substance\\\\\\\\'\\\\\\\\n]\\\\\\\\n\\\\\\\\n# Load death decomposition for all 30\\\\\\\\nwith open(\\\\\\\\'results/death_decomposition_report.json\\\\\\\\') as f:\\\\\\\\n    decomp = json.load(f)\\\\\\\\n\\\\\\\\nprint(\\\\\\\\'=\\\\\\\\'*100)\\\\\\\\nprint(f\\\\\\\\'{\\\\\\\\\\\\\\\\\\\\\\\"Task\\\\\\\\\\\\\\\\\\\\\\\":<50} {\\\\\\\\\\\\\\\\\\\\\\\"Status\\\\\\\\\\\\\\\\\\\\\\\":<10} {\\\\\\\\\\\\\\\\\\\\\\\"N\\\\\\\\\\\\\\\\\\\\\\\":>4} {\\\\\\\\\\\\\\\\\\\\\\\"int_dr\\\\\\\\\\\\\\\\\\\\\\\":>7} {\\\\\\\\\\\\\\\\\\\\\\\"det_dr\\\\\\\\\\\\\\\\\\\\\\\":>7} {\\\\\\\\\\\\\\\\\\\\\\\"int_mean\\\\\\\\\\\\\\\\\\\\\\\":>9} {\\\\\\\\\\\\\\\\\\\\\\\"det_mean\\\\\\\\\\\\\\\\\\\\\\\":>9} {\\\\\\\\\\\\\\\\\\\\\\\"delta_nd\\\\\\\\\\\\\\\\\\\\\\\":>9} {\\\\\\\\\\\\\\\\\\\\\\\"death_avoid\\\\\\\\\\\\\\\\\\\\\\\":>11}\\\\\\\\')\\\\\\\\nprint(\\\\\\\\'=\\\\\\\\'*100)\\\\\\\\n\\\\\\\\nfor t in decomp[\\\\\\\\'per_task\\\\\\\\']:\\\\\\\\n    task = t[\\\\\\\\'task\\\\\\\\']\\\\\\\\n    status = \\\\\\\\'INCL\\\\\\\\' if task in included else \\\\\\\\'EXCL\\\\\\\\'\\\\\\\\n    print(f\\\\\\\\'{task:<50} {status:<10} {t[\\\\\\\\\\\\\\\\\\\\\\\"n_episodes\\\\\\\\\\\\\\\\\\\\\\\"]:>4} {t[\\\\\\\\\\\\\\\\\\\\\\\"int_death_rate\\\\\\\\\\\\\\\\\\\\\\\"]:>7.2f} {t[\\\\\\\\\\\\\\\\\\\\\\\"det_death_rate\\\\\\\\\\\\\\\\\\\\\\\"]:>7.2f} {t[\\\\\\\\\\\\\\\\\\\\\\\"int_mean\\\\\\\\\\\\\\\\\\\\\\\"]:>9.2f} {t[\\\\\\\\\\\\\\\\\\\\\\\"det_mean\\\\\\\\\\\\\\\\\\\\\\\"]:>9.2f} {t[\\\\\\\\\\\\\\\\\\\\\\\"delta_no_death\\\\\\\\\\\\\\\\\\\\\\\"]:>9.2f} {t[\\\\\\\\\\\\\\\\\\\\\\\"death_avoidance_fraction\\\\\\\\\\\\\\\\\\\\\\\"]:>11.4f}\\\\\\\\')\\\\\\\\n\\\\\\\"'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nchange-the-state-of-matter-of                      EXCL         20    0.55    0.15    -54.70    -14.50      0.11      0.9972\\\\nchemistry-mix \n…[truncated 1350 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-15T16:21:34.752332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, os, glob\n\nincluded = [\n    'chemistry-mix', 'find-animal', 'find-non-living-thing', 'freeze',\n    'grow-fruit', 'identify-life-stages-1', 'identify-life-stages-2',\n    'inclined-plane-determine-angle', 'lifespan-longest-lived',\n    'lifespan-longest-lived-then-shortest-lived',\n    'measure-melting-point-unknown-substance'\n]\n\n# Load prescreening summaries for all prescreened tasks\nprescreen_dir = 'results/prescreening'\nfor task_dir in sorted(os.listdir(prescreen_dir)):\n    summary_path = os.path.join(prescreen_dir, task_dir, 'summary.json')\n    if os.path.isfile(summary_path):\n        with open(summary_path) as f:\n            s = json.load(f)\n        task = s['task_name']\n        status = 'INCL' if task in included else 'EXCL'\n        print(f'{task:<50} {status:<6} int={s[\\\"internal_mean\\\"]:>7.1f} det={s[\\\"deterministic_mean\\\"]:>7.1f} delta={s[\\\"delta_det_minus_int\\\"]:>7.1f} dir={s[\\\"direction\\\"]}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-15T16:21:34.752496+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chemistry-mix                                      INCL   int=  -55.8 det=    4.2 delta=   60.0 dir=POSITIVE\\\\nchemistry-mix-paint-tertiary-color                 EXCL   int=  -37.4 det=  -17.4 delta=   20.0 dir=POSITIVE\\\\nfind-animal                                        INCL   int=  -58.4 det=    8.2 delta=   66.6 dir=POSITIVE\\\\nfind-living-thing                                  EXCL   int=  -58.4 det=  -16.6 delta=   41.8 dir=POSITIVE\\\\nfind-non-living-thing                              INCL   int=   31.6 det=   24.8 delta=   -6.8 dir=NEGATIVE\\\\nfind-plant                                         EXCL   int=  -58.4 det=    3.2 delta=   61.6 dir=POSITIVE\\\\nfreeze                                             INCL   int=  -60.0 det=    2.0 delta=   62.0 dir=POSITIVE\\\\ngrow-fruit                                         INCL   int=  -58.6 det=    1.4 delta=   60.0 dir=POSITIVE\\\\nidentify-life-stages-1                             INCL   int=  -60.0 det=    5.0 delta=   65.0 dir=POSITIVE\\\\nidentify-life-stages-2                             INCL   int=  -36.8 det=    3.2 delta=   40.0 dir=POSITIVE\\\\ninclined-plane-determine-angle                     INCL   int=  -60.0 det=    0.0 delta=   60.0 dir=POSITIVE\\\\ninclined-plane-friction-named-surfaces             EXCL   int=  -60.0 det=  -20.0 delta=   40.0 dir=POSITIVE\\\\ninclined-plane-friction-unnamed-surfaces           EXCL   int=  -60.0 det=    0.0 delta=   60.0 dir=POSITIVE\\\\nlifespan-longest-lived                             INCL   int=  -60.0 det=  -10.0 delta=   50.0 dir=POSITIVE\\\\nlifespan-longest-lived-then-shortest-lived         INCL   int=  -60.0 det=   10.0 delta=   70.0 dir=POSITIVE\\\\nlifespan-shortest-lived                            EXCL   int=  -60.0 det=  -40.0 delta=   20.0 dir=POSITIVE\\\\nmeasure-melting-point-known-substance              EXCL   int=  -58.8 det=    1.2 delta=   60.0 dir=POSITIVE\\\\nmeasure-melting-point-unknown-substance            INCL  \n…[truncated 935 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-15T16:21:34.752683+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "find /root/autodl-tmp/simgate-modular-routing/ -name \"*.tex\" -type f",
+              "account": "root"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-15T16:21:34.752810+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/seed-robustness/",
+              "account": "root"
+            }
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-15T16:21:34.752976+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "ls /root/autodl-tmp/simgate-modular-routing/results/sft_data/",
+              "account": "root"
+            }
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-15T16:21:34.753242+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/simgate-modular-routing/results/penalty_sensitivity_table.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/main.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/abstract.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/introduction.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/method.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/experiments.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/related_work.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/conclusion.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/main.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/abstract.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/introduction.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/method.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/experiments.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/related_work.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/conclusion.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/discussion.tex\\\\n/root/autodl-tmp/simgate-modular-routing/paper/discussion.tex\\\\n/root/autodl-tmp/simgate-modular-routing/docs/paper/abstract.tex\\\\n/root/autodl-tmp/simgate-modular-routing/docs/paper/conclusion.tex\\\\n/root/autodl-tmp/simgate-modular-routing/docs/paper/discussion.tex\\\\n/root/autodl-tmp/simgate-modular-routing/docs/paper/introduction.tex\\\\n/root/autodl-tmp/simgate-modular-routing/docs/paper/related_work.tex\\\\n/root/autodl-tmp/simgate-modular-routing/docs/paper/experiments.tex\\\\n/root/autodl-tmp/simgate-modular-routing/docs/paper/method.tex\\\\n/root/autodl-tmp/simgate-modular-routing/docs/paper/main.tex\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.02}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-15T16:21:34.753444+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "simgate-modular-routing",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-15T16:21:34.753713+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"decomposition_bootstrap.json\\\\nrouter_seed43.json\\\\nrouter_seed44.json\\\\nrouter_seed45.json\\\\nrun.log\\\\nsummary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.69}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-15T16:21:34.753887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"collection_summary.json\\\\nsft_triples.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.19}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-15T16:21:34.754200+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\\\", \\\"content\\\": \\\"# Memory — simgate-modular-routing\\\\n\\\\n## 决策记录\\\\n\\\\n### Seed robustness 两种方差 (2026-05-15)\\\\nRouter balanced_acc 方差取决于是否改变 train/val split：\\\\n- **固定 split，不同训练 seed**（plan-013, 4 seeds）：57.6±0.5% — 训练过程稳定\\\\n- **不同 split，不同 seed**（seed-robustness-core, 4 seeds）：55.4±5.2% — split 选择是主要方差来源\\\\n论文引用时需区分两种方差。Decomposition 指标（DAF, r）对 bootstrap 非常稳定：DAF 90.6%±4.2%, r 0.975±0.011。\\\\n\\\\n### 🚨 57.6% 可信度验证 (2026-05-15)\\\\n**论文 57.6% 数字可信。** 根因是 checkpoint mismatch，非 eval template 问题。\\\\n- 论文引用的 57.6% 来自 `plan-004-implicit/final_adapter`（gradient_accumulation=8，correct）\\\\n- Reviewer 测到的 42.78% 来自 `plan-004-v5/final_adapter`（gradient_accumulation=1，05-14 脚本被修改导致）\\\\n- enable_thinking 对 plan-004-v5 结果无影响（thinking_on=0.4148, thinking_off=0.4148）\\\\n- 修复后 eval 在正确 checkpoint 上得到 0.5685 ≈ 0.5761（采样方差）\\\\n- **唯一可信 checkpoint：`plan-004-implicit/final_adapter`**。plan-004-v5 是 buggy 产物。\\\\n\\\\n### ga 验证定论 (2026-05-14, 紧急验证)\\\\n**ablation-b 及全部 seed 变体实际 ga=8，Reviewer 声称 ga=1 不成立。**\\\\n证据链（4 重交叉验证）：\\\\n1. total_steps=165（4 个 run 均一致）→ 1735 samples / batch=4 / ga=8 / 3 epochs = ceil(1735/32)×3 = 165\\\\n2. 旧版脚本 `implicit_router_sft.py.bak` 第 270 行硬编码：`gradient_accumulation_steps=max(1, 32 // args.batch_size)` = 8\\\\n3. seed123/456/789 的 train_config.json 均显式记录 `gradient_accumulation_steps: 8`\\\\n4. ablation-b config 缺失 ga 字段原因：当时 ga 是脚本内计算值（非 argparse），`vars(args)` 不包含。后来重构为 argparse 参数后 seed 变体才有此字段\\\\n\\\\n论文 §4.4 的 ga 因果声明成立。Effective batch size = 4×8 = 32。\\\\n\\\\n### C1 claim 最终措辞 (2026-05-14, D018)\\\\nDirector 决策：C1 改为 \\\\\\\"death avoidance accounts for ~90% of routing signal\\\\\\\"（从 ~99% 下调）。\\\\n- find-non-living-thing 是**正面案例**（不是异常）：零死亡 task 上 Δ_nd=9.58 → routing 价值超越单纯 death avoidance\\\\n- 与 plan-011 keyword heuristic 失效互相呼应：关键词无法捕获的 signal，router 可以\\\\n- 论文分两层展示：overall ~90% death-dominated + per-task breakdown（展示非死亡信号存在）\\\\n- 数据基础：11 tasks, 245\n…[truncated 6627 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-15T16:21:34.754416+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat /root/autodl-tmp/simgate-modular-routing/paper/experiments.tex",
+              "account": "root"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-15T16:21:34.754613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\\section{Experiments}\\\\n\\\\n\\\\\\\\subsection{Setup}\\\\n\\\\\\\\label{sec:exp-setup}\\\\n\\\\nWe evaluate on ScienceWorld \\\\\\\\cite{scienceworld-2022}, a text-based interactive environment for elementary science tasks with sparse terminal rewards and a $-100$ death penalty. Using the methodology in \\\\\\\\S\\\\\\\\ref{sec:collection}, we collect 245 episode pairs across 11 task types (20--40 per type). The LLM backbone is Qwen2.5-7B-Instruct served via vLLM with episodes capped at 30 steps.\\\\n\\\\n\\\\\\\\subsection{Death Avoidance Decomposition}\\\\n\\\\\\\\label{sec:death-decomp}\\\\n\\\\n\\\\\\\\begin{figure}[t]\\\\n\\\\\\\\centering\\\\n\\\\\\\\includegraphics[width=\\\\\\\\columnwidth]{fig1_daf_scatter.pdf}\\\\n\\\\\\\\caption{Per-task death rate differential (internal minus deterministic) vs.\\\\\\\\ $\\\\\\\\Delta_{\\\\\\\\text{full}}$. Each point represents one of 11 task types. Regression: $r = 0.9698$ ($p = 8.12 \\\\\\\\times 10^{-7}$).}\\\\n\\\\\\\\label{fig:decomposition}\\\\n\\\\\\\\end{figure}\\\\n\\\\nThe full performance gap between deterministic and internal strategies across 245 episodes is $\\\\\\\\Delta_{\\\\\\\\text{full}} = +29.60$ points. Excluding all episodes where either strategy results in death, the gap collapses to $\\\\\\\\Delta_{\\\\\\\\text{nd}} = +2.84$. The resulting DAF (\\\\\\\\S\\\\\\\\ref{sec:daf}) is 90.41\\\\\\\\%: approximately 90\\\\\\\\% of the deterministic strategy's advantage is attributable to death avoidance.\\\\n\\\\nThis concentration is consistent across task types. The Pearson correlation between per-task death rate differential and $\\\\\\\\Delta_{\\\\\\\\text{full}}$ is $r = 0.9698$ ($p = 8.12 \\\\\\\\times 10^{-7}$; Figure~\\\\\\\\ref{fig:decomposition}). The internal strategy dies in 42.9\\\\\\\\% of episodes versus 16.3\\\\\\\\% for deterministic---a 2.6$\\\\\\\\times$ ratio driving the bulk of the score difference.\\\\n\\\\nThe label distribution reflects this asymmetry: 86 \\\\\\\\texttt{det\\\\\\\\_preferred}, 9 \\\\\\\\texttt{internal\\\\\\\\_preferred}, 150 \\\\\\\\texttt{no\\\\\\\\_preference}. When internal reasoning does not ca\n…[truncated 3985 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-15T16:21:34.754818+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, os\n\nincluded = [\n    'chemistry-mix', 'find-animal', 'find-non-living-thing', 'freeze',\n    'grow-fruit', 'identify-life-stages-1', 'identify-life-stages-2',\n    'inclined-plane-determine-angle', 'lifespan-longest-lived',\n    'lifespan-longest-lived-then-shortest-lived',\n    'measure-melting-point-unknown-substance'\n]\n\n# Load death decomposition for all 30\nwith open('results/death_decomposition_report.json') as f:\n    decomp = json.load(f)\n\n# Build per-task dict\ndecomp_dict = {t['task']: t for t in decomp['per_task']}\n\n# Load prescreening signal type summary\nwith open('results/prescreening/signal_type_summary.json') as f:\n    signal_data = json.load(f)\nsignal_dict = {t['task']: t for t in signal_data['tasks']}\n\n# Load prescreening per-task summaries\nprescreen_dict = {}\nprescreen_dir = 'results/prescreening'\nfor d in os.listdir(prescreen_dir):\n    summary_path = os.path.join(prescreen_dir, d, 'summary.json')\n    if os.path.isfile(summary_path):\n        with open(summary_path) as f:\n            s = json.load(f)\n        prescreen_dict[s['task_name']] = s\n\nall_30 = [t['task'] for t in decomp['per_task']]\nexcluded = [t for t in all_30 if t not in included]\n\nprint('='*120)\nprint('EXCLUDED TASKS DETAILED ANALYSIS (19 tasks)')\nprint('='*120)\nprint()\n\nfor task in excluded:\n    d = decomp_dict.get(task, {})\n    p = prescreen_dict.get(task, {})\n    sig = signal_dict.get(task, {})\n    \n    print(f'--- {task} ---')\n    \n    # Death decomposition data\n    n = d.get('n_episodes', '?')\n    int_dr = d.get('int_death_rate', '?')\n    det_dr = d.get('det_death_rate', '?')\n    int_mean = d.get('int_mean', '?')\n    det_mean = d.get('det_mean', '?')\n    delta_nd = d.get('delta_no_death', '?')\n    daf = d.get('death_avoidance_fraction', '?')\n    n_nd = d.get('n_no_death_episodes', '?')\n    label_dist = d.get('label_distribution', {})\n    signal_src = d.get('signal_source_distribution', {})\n    \n    print(f'  N={n}, int_death={int_dr}, det_death={det_dr}')\n    print(f'  int_mean={int_mean}, det_mean={det_mean}, delta_nd={delta_nd}, DAF={daf}')\n    print(f'  no_death_episodes={n_nd}')\n    print(f'  labels: {label_dist}')\n    print(f'  signal: {signal_src}')\n    \n    # Prescreening\n    if p:\n        print(f'  prescreening: int={p[\\\"internal_mean\\\"]:.1f}, det={p[\\\"deterministic_mean\\\"]:.1f}, delta={p[\\\"delta_det_minus_int\\\"]:.1f}, dir={p[\\\"direction\\\"]}')\n    else:\n        print(f'  prescreening: MVP-tested (skipped)')\n    \n    if sig:\n        print(f'  signal_type: {sig[\\\"signal_type\\\"]}')\n    \n    print()\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-15T16:21:34.755162+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"========================================================================================================================\\\\nEXCLUDED TASKS DETAILED ANALYSIS (19 tasks)\\\\n========================================================================================================================\\\\n\\\\n--- boil ---\\\\n  N=40, int_death=0.475, det_death=0.15\\\\n  int_mean=-47.23, det_mean=-14.5, delta_nd=0.05, DAF=0.9985\\\\n  no_death_episodes=21\\\\n  labels: {'det-preferred': 14, 'internal-preferred': 0, 'no-preference': 26}\\\\n  signal: {'death_asymmetry': 13, 'tied_alive': 20, 'score_comparison': 1, 'both_dead': 6}\\\\n  prescreening: MVP-tested (skipped)\\\\n\\\\n--- change-the-state-of-matter-of ---\\\\n  N=20, int_death=0.55, det_death=0.15\\\\n  int_mean=-54.7, det_mean=-14.5, delta_nd=0.11, DAF=0.9972\\\\n  no_death_episodes=9\\\\n  labels: {'det-preferred': 9, 'internal-preferred': 0, 'no-preference': 11}\\\\n  signal: {'death_asymmetry': 8, 'tied_alive': 8, 'score_comparison': 1, 'both_dead': 3}\\\\n  prescreening: MVP-tested (skipped)\\\\n\\\\n--- chemistry-mix-paint-secondary-color ---\\\\n  N=20, int_death=0.45, det_death=0.1\\\\n  int_mean=-41.0, det_mean=-5.5, delta_nd=0.91, DAF=0.9744\\\\n  no_death_episodes=11\\\\n  labels: {'det-preferred': 8, 'internal-preferred': 0, 'no-preference': 12}\\\\n  signal: {'death_asymmetry': 7, 'tied_alive': 10, 'both_dead': 2, 'score_comparison': 1}\\\\n  prescreening: MVP-tested (skipped)\\\\n\\\\n--- chemistry-mix-paint-tertiary-color ---\\\\n  N=5, int_death=0.4, det_death=0.2\\\\n  int_mean=-37.4, det_mean=-17.4, delta_nd=0.0, DAF=1.0\\\\n  no_death_episodes=3\\\\n  labels: {'det-preferred': 1, 'internal-preferred': 0, 'no-preference': 4}\\\\n  signal: {'death_asymmetry': 1, 'tied_alive': 3, 'both_dead': 1}\\\\n  prescreening: int=-37.4, det=-17.4, delta=20.0, dir=POSITIVE\\\\n  signal_type: death-dominated\\\\n\\\\n--- find-living-thing ---\\\\n  N=5, int_death=0.6, det_death=0.2\\\\n  int_mean=-58.4, det_mean=-16.6, delta_nd=4.5,\n…[truncated 5485 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-15T16:21:34.755564+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json\n\nincluded = [\n    'chemistry-mix', 'find-animal', 'find-non-living-thing', 'freeze',\n    'grow-fruit', 'identify-life-stages-1', 'identify-life-stages-2',\n    'inclined-plane-determine-angle', 'lifespan-longest-lived',\n    'lifespan-longest-lived-then-shortest-lived',\n    'measure-melting-point-unknown-substance'\n]\n\nwith open('results/death_decomposition_report.json') as f:\n    decomp = json.load(f)\n\ntasks = decomp['per_task']\n\n# Group by task family (first word/prefix)\nfamilies = {}\nfor t in tasks:\n    name = t['task']\n    # Determine family by prefix logic\n    parts = name.split('-')\n    if name.startswith('chemistry-mix'):\n        family = 'chemistry-mix'\n    elif name.startswith('find-'):\n        family = 'find-*'\n    elif name.startswith('grow-'):\n        family = 'grow-*'\n    elif name.startswith('identify-life'):\n        family = 'identify-life-stages'\n    elif name.startswith('inclined-plane'):\n        family = 'inclined-plane'\n    elif name.startswith('lifespan'):\n        family = 'lifespan'\n    elif name.startswith('measure-melting'):\n        family = 'measure-melting-point'\n    elif name.startswith('mendelian'):\n        family = 'mendelian-genetics'\n    elif name.startswith('power-'):\n        family = 'power-component'\n    elif name.startswith('test-conductivity'):\n        family = 'test-conductivity'\n    elif name in ('boil', 'melt', 'freeze', 'change-the-state-of-matter-of'):\n        family = 'state-change'\n    else:\n        family = name\n    \n    status = 'INCL' if name in included else 'EXCL'\n    families.setdefault(family, []).append((name, status, t))\n\nprint('TASK FAMILIES AND SELECTION')\nprint('='*100)\nfor fam, members in sorted(families.items()):\n    n_incl = sum(1 for _, s, _ in members if s == 'INCL')\n    n_excl = sum(1 for _, s, _ in members if s == 'EXCL')\n    print(f'\\\\nFamily: {fam} ({len(members)} total, {n_incl} included, {n_excl} excluded)')\n    for name, status, t in members:\n        det_dr = t['det_death_rate']\n        int_dr = t['int_death_rate']\n        det_mean = t['det_mean']\n        delta_nd = t['delta_no_death']\n        daf = t['death_avoidance_fraction']\n        n_nd = t['n_no_death_episodes']\n        print(f'  {status} {name:<50} det_mean={det_mean:>7.1f} det_dr={det_dr:.0%} int_dr={int_dr:.0%} delta_nd={delta_nd if delta_nd is not None else \\\"None\\\":>6} n_nd={n_nd}')\n\n# Summary stats comparison\nprint('\\\\n\\\\nSUMMARY STATISTICS: INCLUDED vs EXCLUDED')\nprint('='*80)\nimport numpy as np\n\nfor label, filter_fn in [('INCLUDED', lambda t: t['task'] in included), ('EXCLUDED', lambda t: t['task'] not in included)]:\n    subset = [t for t in tasks if filter_fn(t)]\n    det_deaths = [t['det_death_rate'] for t in subset]\n    int_deaths = [t['int_death_rate'] for t in subset]\n    det_means = [t['det_mean'] for t in subset]\n    dnd = [t['delta_no_death'] for t in subset if t['delta_no_death'] is not None]\n    dafs = [t['death_avoidance_fraction'] for t in subset if t['death_avoidance_fraction'] is not None]\n    \n    print(f'\\\\n{label} ({len(subset)} tasks):')\n    print(f'  det_death_rate: mean={np.mean(det_deaths):.3f}, median={np.median(det_deaths):.3f}, range=[{min(det_deaths):.2f}, {max(det_deaths):.2f}]')\n    print(f'  int_death_rate: mean={np.mean(int_deaths):.3f}, median={np.median(int_deaths):.3f}')\n    print(f'  det_mean_score: mean={np.mean(det_means):.2f}, median={np.median(det_means):.2f}')\n    print(f'  delta_no_death: mean={np.mean(dnd):.2f} (n={len(dnd)})')\n    n_zero_dnd = sum(1 for d in dnd if d == 0.0)\n    print(f'  tasks with delta_nd=0: {n_zero_dnd}/{len(dnd)}')\n    n_high_det_death = sum(1 for d in det_deaths if d >= 0.2)\n    print(f'  tasks with det_death>=20%%: {n_high_det_death}/{len(subset)}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-15T16:21:34.755886+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"TASK FAMILIES AND SELECTION\\\\n====================================================================================================\\\\n\\\\nFamily: chemistry-mix (3 total, 1 included, 2 excluded)\\\\n  INCL chemistry-mix                                      det_mean=    4.2 det_dr=0% int_dr=60% delta_nd=   0.0 n_nd=2\\\\n  EXCL chemistry-mix-paint-secondary-color                det_mean=   -5.5 det_dr=10% int_dr=45% delta_nd=  0.91 n_nd=11\\\\n  EXCL chemistry-mix-paint-tertiary-color                 det_mean=  -17.4 det_dr=20% int_dr=40% delta_nd=   0.0 n_nd=3\\\\n\\\\nFamily: find-* (4 total, 2 included, 2 excluded)\\\\n  INCL find-animal                                        det_mean=    8.2 det_dr=0% int_dr=60% delta_nd=   0.0 n_nd=2\\\\n  EXCL find-living-thing                                  det_mean=  -16.6 det_dr=20% int_dr=60% delta_nd=   4.5 n_nd=2\\\\n  INCL find-non-living-thing                              det_mean=   24.8 det_dr=0% int_dr=0% delta_nd=  -6.8 n_nd=5\\\\n  EXCL find-plant                                         det_mean=    3.2 det_dr=0% int_dr=60% delta_nd=   4.0 n_nd=2\\\\n\\\\nFamily: grow-* (2 total, 1 included, 1 excluded)\\\\n  INCL grow-fruit                                         det_mean=    1.4 det_dr=0% int_dr=60% delta_nd=   0.0 n_nd=2\\\\n  EXCL grow-plant                                         det_mean=    0.5 det_dr=0% int_dr=0% delta_nd=   0.0 n_nd=20\\\\n\\\\nFamily: identify-life-stages (2 total, 2 included, 0 excluded)\\\\n  INCL identify-life-stages-1                             det_mean=    5.0 det_dr=0% int_dr=60% delta_nd=   0.0 n_nd=2\\\\n  INCL identify-life-stages-2                             det_mean=    3.2 det_dr=0% int_dr=40% delta_nd=   0.0 n_nd=3\\\\n\\\\nFamily: inclined-plane (3 total, 1 included, 2 excluded)\\\\n  INCL inclined-plane-determine-angle                     det_mean=    0.0 det_dr=0% int_dr=60% delta_nd=   0.0 n_nd=2\\\\n  EXCL inclined-plane-friction-named-surfaces            \n…[truncated 3389 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-15T16:21:34.756188+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json\n\n# Categorize all 30 tasks\nincluded = [\n    'chemistry-mix', 'find-animal', 'find-non-living-thing', 'freeze',\n    'grow-fruit', 'identify-life-stages-1', 'identify-life-stages-2',\n    'inclined-plane-determine-angle', 'lifespan-longest-lived',\n    'lifespan-longest-lived-then-shortest-lived',\n    'measure-melting-point-unknown-substance'\n]\n\nwith open('results/death_decomposition_report.json') as f:\n    decomp = json.load(f)\n\n# MVP tasks (developed the pipeline, excluded to use fresh data)\nmvp = ['boil', 'melt', 'change-the-state-of-matter-of', 'chemistry-mix-paint-secondary-color', 'grow-plant']\n\n# Categorize excluded tasks\nall_tasks = [t['task'] for t in decomp['per_task']]\nexcluded = [t for t in all_tasks if t not in included]\n\nprint('EXCLUSION REASON CLASSIFICATION')\nprint('='*80)\n\nfor t_data in decomp['per_task']:\n    task = t_data['task']\n    if task in included:\n        continue\n    \n    reasons = []\n    \n    # Check if MVP\n    if task in mvp:\n        reasons.append('MVP-piloted (data contamination risk)')\n    \n    # Check if duplicate family member\n    # Map task to its family representative (included)\n    dup_map = {\n        'boil': 'freeze', 'melt': 'freeze', 'change-the-state-of-matter-of': 'freeze',\n        'chemistry-mix-paint-secondary-color': 'chemistry-mix',\n        'chemistry-mix-paint-tertiary-color': 'chemistry-mix',\n        'find-living-thing': 'find-animal',\n        'find-plant': 'find-animal',\n        'inclined-plane-friction-named-surfaces': 'inclined-plane-determine-angle',\n        'inclined-plane-friction-unnamed-surfaces': 'inclined-plane-determine-angle',\n        'lifespan-shortest-lived': 'lifespan-longest-lived',\n        'measure-melting-point-known-substance': 'measure-melting-point-unknown-substance',\n    }\n    if task in dup_map:\n        reasons.append(f'Redundant with included {dup_map[task]}')\n    \n    # Check if det also dies a lot\n    if t_data['det_death_rate'] >= 0.2:\n        reasons.append(f'High det death rate ({t_data[\\\"det_death_rate\\\"]:.0%})')\n    \n    # Check if no useful signal\n    if t_data['delta_no_death'] == 0 and t_data.get('death_avoidance_fraction') == 1.0:\n        reasons.append('Zero non-death signal (DAF=100%)')\n    \n    # Check if zero signal overall\n    if task == 'grow-plant':\n        reasons.append('Zero routing signal (both strategies identical)')\n    \n    # Check if no included family member (entire family excluded)\n    no_family_rep = {\n        'mendelian-genetics-known-plant', 'mendelian-genetics-unknown-plant',\n        'power-component', 'power-component-renewable-vs-nonrenewable-energy',\n        'test-conductivity', 'test-conductivity-of-unknown-substances',\n        'use-thermometer'\n    }\n    if task in no_family_rep:\n        reasons.append('Entire task family excluded (agent cannot make progress)')\n    \n    # Check det_mean\n    if t_data['det_mean'] <= -15:\n        reasons.append(f'Poor det performance (det_mean={t_data[\\\"det_mean\\\"]:.1f})')\n    \n    print(f'{task}:')\n    for r in reasons:\n        print(f'  - {r}')\n    print()\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-15T16:21:34.756478+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXCLUSION REASON CLASSIFICATION\\\\n================================================================================\\\\nboil:\\\\n  - MVP-piloted (data contamination risk)\\\\n  - Redundant with included freeze\\\\n\\\\nchange-the-state-of-matter-of:\\\\n  - MVP-piloted (data contamination risk)\\\\n  - Redundant with included freeze\\\\n\\\\nchemistry-mix-paint-secondary-color:\\\\n  - MVP-piloted (data contamination risk)\\\\n  - Redundant with included chemistry-mix\\\\n\\\\nchemistry-mix-paint-tertiary-color:\\\\n  - Redundant with included chemistry-mix\\\\n  - High det death rate (20%)\\\\n  - Zero non-death signal (DAF=100%)\\\\n  - Poor det performance (det_mean=-17.4)\\\\n\\\\nfind-living-thing:\\\\n  - Redundant with included find-animal\\\\n  - High det death rate (20%)\\\\n  - Poor det performance (det_mean=-16.6)\\\\n\\\\nfind-plant:\\\\n  - Redundant with included find-animal\\\\n\\\\ngrow-plant:\\\\n  - MVP-piloted (data contamination risk)\\\\n  - Zero routing signal (both strategies identical)\\\\n\\\\ninclined-plane-friction-named-surfaces:\\\\n  - Redundant with included inclined-plane-determine-angle\\\\n  - High det death rate (20%)\\\\n  - Zero non-death signal (DAF=100%)\\\\n  - Poor det performance (det_mean=-20.0)\\\\n\\\\ninclined-plane-friction-unnamed-surfaces:\\\\n  - Redundant with included inclined-plane-determine-angle\\\\n  - Zero non-death signal (DAF=100%)\\\\n\\\\nlifespan-shortest-lived:\\\\n  - Redundant with included lifespan-longest-lived\\\\n  - High det death rate (40%)\\\\n  - Zero non-death signal (DAF=100%)\\\\n  - Poor det performance (det_mean=-40.0)\\\\n\\\\nmeasure-melting-point-known-substance:\\\\n  - Redundant with included measure-melting-point-unknown-substance\\\\n  - Zero non-death signal (DAF=100%)\\\\n\\\\nmelt:\\\\n  - MVP-piloted (data contamination risk)\\\\n  - Redundant with included freeze\\\\n  - Zero non-death signal (DAF=100%)\\\\n\\\\nmendelian-genetics-known-plant:\\\\n  - High det death rate (20%)\\\\n  - Zero non-death signal (DAF=100%)\\\\n  - Entire task f\n…[truncated 1397 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-15T16:21:34.756758+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json\nincluded = [\n    'chemistry-mix', 'find-animal', 'find-non-living-thing', 'freeze',\n    'grow-fruit', 'identify-life-stages-1', 'identify-life-stages-2',\n    'inclined-plane-determine-angle', 'lifespan-longest-lived',\n    'lifespan-longest-lived-then-shortest-lived',\n    'measure-melting-point-unknown-substance'\n]\nwith open('results/death_decomposition_report.json') as f:\n    decomp = json.load(f)\n\n# Count families for excluded non-family-rep tasks\n# Tasks where no member of the family is included\nno_rep_families = ['mendelian-genetics', 'power-component', 'test-conductivity', 'use-thermometer']\nno_rep_tasks = [t for t in decomp['per_task'] if t['task'] not in included and\n    any(t['task'].startswith(f) for f in no_rep_families)]\n\nprint('AGENT-INCOMPETENT TASKS (entire families excluded)')\nprint('='*80)\nfor t in no_rep_tasks:\n    # Check det score in no-death episodes\n    int_nd = t.get('int_mean_no_death', 0)\n    det_nd = t.get('det_mean_no_death', 0)\n    print(f'{t[\\\"task\\\"]}: det_mean={t[\\\"det_mean\\\"]:.1f}, det_nd_mean={det_nd:.1f}, int_nd_mean={int_nd:.1f}, det_dr={t[\\\"det_death_rate\\\"]:.0%}')\n    print(f'  When nobody dies: both strategies score ~{det_nd:.1f} (max 100)')\n    print(f'  label_dist: {t[\\\"label_distribution\\\"]}')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-15T16:21:34.757008+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"AGENT-INCOMPETENT TASKS (entire families excluded)\\\\n================================================================================\\\\nmendelian-genetics-known-plant: det_mean=-20.0, det_nd_mean=0.0, int_nd_mean=0.0, det_dr=20%\\\\n  When nobody dies: both strategies score ~0.0 (max 100)\\\\n  label_dist: {'det-preferred': 2, 'internal-preferred': 0, 'no-preference': 3}\\\\nmendelian-genetics-unknown-plant: det_mean=-40.0, det_nd_mean=0.0, int_nd_mean=0.0, det_dr=40%\\\\n  When nobody dies: both strategies score ~0.0 (max 100)\\\\n  label_dist: {'det-preferred': 1, 'internal-preferred': 0, 'no-preference': 4}\\\\npower-component: det_mean=-20.0, det_nd_mean=0.0, int_nd_mean=0.0, det_dr=20%\\\\n  When nobody dies: both strategies score ~0.0 (max 100)\\\\n  label_dist: {'det-preferred': 2, 'internal-preferred': 0, 'no-preference': 3}\\\\npower-component-renewable-vs-nonrenewable-energy: det_mean=0.0, det_nd_mean=0.0, int_nd_mean=0.0, det_dr=0%\\\\n  When nobody dies: both strategies score ~0.0 (max 100)\\\\n  label_dist: {'det-preferred': 3, 'internal-preferred': 0, 'no-preference': 2}\\\\ntest-conductivity: det_mean=-20.0, det_nd_mean=0.0, int_nd_mean=0.0, det_dr=20%\\\\n  When nobody dies: both strategies score ~0.0 (max 100)\\\\n  label_dist: {'det-preferred': 2, 'internal-preferred': 0, 'no-preference': 3}\\\\ntest-conductivity-of-unknown-substances: det_mean=-20.0, det_nd_mean=0.0, int_nd_mean=0.0, det_dr=20%\\\\n  When nobody dies: both strategies score ~0.0 (max 100)\\\\n  label_dist: {'det-preferred': 2, 'internal-preferred': 0, 'no-preference': 3}\\\\nuse-thermometer: det_mean=-19.4, det_nd_mean=1.5, int_nd_mean=1.5, det_dr=20%\\\\n  When nobody dies: both strategies score ~1.5 (max 100)\\\\n  label_dist: {'det-preferred': 2, 'internal-preferred': 0, 'no-preference': 3}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.09}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-15T16:21:34.757258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__append_idea",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-15T16:21:34.757443+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-15T16:21:34.757666+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "cat > /root/autodl-tmp/simgate-modular-routing/artifacts/excluded_tasks_analysis.md << 'ENDOFFILE'\n# Excluded Tasks Analysis: 19/30 ScienceWorld Task Types\n\n## 1. Complete 30-Task List\n\n### Included (11 tasks, 245 episodes)\n| Task | N | det_death% | int_death% | det_mean | Δ_nd |\n|------|---|-----------|-----------|----------|------|\n| chemistry-mix | 20 | 25% | 45% | -21.8 | — |\n| find-animal | 20 | 15% | 50% | -4.1 | — |\n| **find-non-living-thing** | 40 | 0% | 0% | +18.9 | -6.8 |\n| freeze | 20 | 25% | 55% | -9.5 | — |\n| grow-fruit | 20 | 20% | 45% | -3.4 | — |\n| identify-life-stages-1 | 20 | 15% | 55% | -2.5 | — |\n| identify-life-stages-2 | 20 | 15% | 50% | -8.1 | — |\n| inclined-plane-determine-angle | 20 | 20% | 55% | -10.0 | — |\n| lifespan-longest-lived | 25 | 12% | 56% | -6.0 | — |\n| lifespan-longest-lived-then-shortest-lived | 20 | 10% | 45% | +3.5 | — |\n| measure-melting-point-unknown-substance | 20 | 25% | 55% | -24.3 | 16.5 |\n\n### Excluded (19 tasks)\n\n#### Group A: MVP Development Tasks (5 tasks)\n| Task | N | det_death% | int_death% | det_mean | Exclusion reason |\n|------|---|-----------|-----------|----------|-----------------|\n| boil | 40 | 15% | 48% | -14.5 | MVP-piloted; redundant with freeze |\n| melt | 20 | 15% | 55% | -14.6 | MVP-piloted; redundant with freeze |\n| change-the-state-of-matter-of | 20 | 15% | 55% | -14.5 | MVP-piloted; redundant with freeze |\n| chemistry-mix-paint-secondary-color | 20 | 10% | 45% | -5.5 | MVP-piloted; redundant with chemistry-mix |\n| grow-plant | 20 | 0% | 0% | +0.5 | MVP-piloted; zero routing signal |\n\n#### Group B: Redundant Family Variants (7 tasks)\n| Task | Family rep (included) | det_death% | det_mean | Δ_nd |\n|------|-----------------------|-----------|----------|------|\n| chemistry-mix-paint-tertiary-color | chemistry-mix | 20% | -17.4 | 0.0 |\n| find-living-thing | find-animal | 20% | -16.6 | 4.5 |\n| find-plant | find-animal | 0% | +3.2 | 4.0 |\n| inclined-plane-friction-named-surfaces | inclined-plane-determine-angle | 20% | -20.0 | 0.0 |\n| inclined-plane-friction-unnamed-surfaces | inclined-plane-determine-angle | 0% | 0.0 | 0.0 |\n| lifespan-shortest-lived | lifespan-longest-lived | 40% | -40.0 | 0.0 |\n| measure-melting-point-known-substance | measure-melting-point-unknown-substance | 0% | +1.2 | 0.0 |\n\n#### Group C: Agent-Incompetent Task Families (7 tasks)\n| Task | det_death% | det_mean | no-death score | Label dist |\n|------|-----------|----------|----------------|------------|\n| mendelian-genetics-known-plant | 20% | -20.0 | 0.0 | 2D/0I/3N |\n| mendelian-genetics-unknown-plant | 40% | -40.0 | 0.0 | 1D/0I/4N |\n| power-component | 20% | -20.0 | 0.0 | 2D/0I/3N |\n| power-component-renewable-vs-nonrenewable-energy | 0% | 0.0 | 0.0 | 3D/0I/2N |\n| test-conductivity | 20% | -20.0 | 0.0 | 2D/0I/3N |\n| test-conductivity-of-unknown-substances | 20% | -20.0 | 0.0 | 2D/0I/3N |\n| use-thermometer | 20% | -19.4 | 1.5 | 2D/0I/3N |\n\n## 2. Common Characteristics of Excluded Tasks\n\n### Statistical comparison (prescreening 5-episode data)\n| Metric | Included (11) | Excluded (19) |\n|--------|--------------|---------------|\n| det_death_rate mean | 3.8% | 15.5% |\n| det_death_rate median | 0% | 20% |\n| det_mean_score mean | +3.22 | -14.61 |\n| Tasks with det_death≥20% | 2/11 (18%) | 10/19 (53%) |\n| Tasks with Δ_nd=0 | 9/11 | 14/19 |\n\n### Shared traits of excluded tasks:\n1. **Higher deterministic death rate**: Mean 15.5% vs 3.8% for included. The \"safe\" strategy is not reliably safe.\n2. **Negative deterministic scores**: Mean det_mean = -14.61 (negative) vs +3.22 (positive) for included. Even the better strategy fails to make meaningful progress.\n3. **Zero non-death routing signal**: 14/19 excluded tasks have Δ_nd=0.0 with DAF=100%, meaning ALL performance differences come from death frequency—no genuine task-solving signal exists.\n4. **Agent incompetence**: 7 tasks (4 families) where BOTH strategies score 0.0 in non-death episodes. The Qwen2.5-7B agent simply cannot reason about genetics, electrical circuits, conductivity testing, or thermometer procedures.\n5. **Taxonomic redundancy**: 12/19 excluded tasks have a closely related variant already included (same task family, differing only in difficulty level or surface features).\n\n## 3. Exclusion Criteria Assessment\n\nThe three exclusion criteria are **jointly sufficient and independently justified**:\n\n### Criterion 1: MVP development data (5 tasks)\n**Rationale**: These tasks were used iteratively during pipeline development (prompt tuning, death-filter calibration, episode collection debugging). Including them risks circular evaluation—the methodology was optimized on these tasks.\n**Assessment**: Standard ML practice. Analogous to excluding validation-set examples from test evaluation.\n\n### Criterion 2: Taxonomic deduplication (7 tasks)\n**Rationale**: ScienceWorld's 30 tasks cluster into ~13 families. Including all variants would inflate apparent sample size while reducing effective diversity (e.g., boil/melt/freeze/change-state share identical physics).\n**Assessment**: Correct for preventing within-family correlation from biasing aggregate statistics. The selected representatives span the difficulty range within each family.\n\n### Criterion 3: Agent-floor tasks (7 tasks)\n**Rationale**: When both strategies score 0 in non-death episodes, there is no task-solving signal to route—the routing decision is between \"die less often\" and \"die more often\" with no positive learning possible. Including these would dilute the analysis with noise.\n**Assessment**: These tasks reflect a **backbone capability ceiling**, not a routing methodology limitation. A stronger LLM backbone would likely \"unlock\" these tasks. The exclusion is honest about what the 7B model can and cannot do.\n\n### Potential concern: Selection bias toward findings\nThe exclusion does NOT bias toward the death-avoidance finding. The included set contains:\n- find-non-living-thing: zero deaths, Δ_nd=-6.8 (internal preferred)—directly contradicts the death-dominance narrative\n- measure-melting-point-unknown-substance: Δ_nd=16.5 (substantial non-death signal)\n- Tasks spanning the full range of death rates (0% to 55% internal death)\n\nIf anything, including the 7 agent-incompetent tasks would STRENGTHEN the death-avoidance claim (they all have DAF=100%).\n\n## 4. Paper-Ready Text\n\n### For Appendix (Task Selection Criteria)\n\n> **Task Selection.** ScienceWorld provides 30 task types spanning 13 thematic families (e.g., state-change, object-finding, genetics). We select 11 task types for the main evaluation based on three criteria applied during a 5-episode prescreening phase.\n>\n> First, we exclude five task types used during pipeline development (boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant) to prevent circular evaluation. Second, within each thematic family, we retain one representative task type to avoid inflating sample size with correlated variants—for example, selecting freeze from the state-change family rather than including all four members. This removes seven additional task types. Third, we exclude seven task types across four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where the Qwen2.5-7B backbone achieves zero task progress in non-death episodes under both strategies—these reflect backbone capability limitations rather than routing-relevant variation. The 19 excluded tasks share three characteristics: higher deterministic death rates (mean 15.5% vs. 3.8% for included tasks), negative deterministic mean scores ($-14.61$ vs. $+3.22$), and predominantly zero non-death signal (14/19 tasks with $\\Delta_{\\text{nd}} = 0$).\n>\n> Importantly, the selection does not bias toward our findings: the included set contains find-non-living-thing (zero deaths, internal-preferred) and measure-melting-point-unknown-substance ($\\Delta_{\\text{nd}} = 16.5$), both of which provide evidence against death-dominance. Including the excluded agent-floor tasks would, if anything, strengthen the death-avoidance claim, as all seven have DAF = 100\\%.\n\n### For Limitations section (shorter version)\n\n> Our evaluation covers 11 of ScienceWorld's 30 task types. The 19 excluded tasks fall into three categories: five used during development (excluded to prevent circular evaluation), seven taxonomically redundant with included tasks (one representative per family), and seven where the 7B backbone achieves zero task-solving progress regardless of routing strategy. The last category represents a backbone capability ceiling—a stronger LLM would likely unlock these tasks and potentially reveal routing dynamics absent at the 7B scale. We verify that our selection does not bias toward death-dominance: the included set retains tasks with zero deaths and substantial non-death routing signal.\nENDOFFILE\necho \"DONE: $(wc -l < /root/autodl-tmp/simgate-modular-routing/artifacts/excluded_tasks_analysis.md) lines\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-15T16:21:34.757948+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE:  lines\\\\n\\\", \\\"stderr\\\": \\\"bash: line 1: /root/autodl-tmp/simgate-modular-routing/artifacts/excluded_tasks_analysis.md: No such file or directory\\\\nbash: line 110: /root/autodl-tmp/simgate-modular-routing/artifacts/excluded_tasks_analysis.md: No such file or directory\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 2.01}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-15T16:21:34.758154+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "mkdir -p /root/autodl-tmp/simgate-modular-routing/artifacts && ls /root/autodl-tmp/simgate-modular-routing/artifacts/",
+              "account": "root"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-15T16:21:34.758293+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-15T16:21:34.758431+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westb-13313",
+              "command": "python3 -c \"\ncontent = '''# Excluded Tasks Analysis: 19/30 ScienceWorld Task Types\n\n## 1. Complete 30-Task List\n\n### Included (11 tasks, 245 episodes)\n| Task | N | det_death% | int_death% | det_mean | notes |\n|------|---|-----------|-----------|----------|-------|\n| chemistry-mix | 20 | 25% | 45% | -21.8 | |\n| find-animal | 20 | 15% | 50% | -4.1 | |\n| **find-non-living-thing** | 40 | 0% | 0% | +18.9 | zero death, internal-preferred |\n| freeze | 20 | 25% | 55% | -9.5 | |\n| grow-fruit | 20 | 20% | 45% | -3.4 | |\n| identify-life-stages-1 | 20 | 15% | 55% | -2.5 | |\n| identify-life-stages-2 | 20 | 15% | 50% | -8.1 | |\n| inclined-plane-determine-angle | 20 | 20% | 55% | -10.0 | |\n| lifespan-longest-lived | 25 | 12% | 56% | -6.0 | |\n| lifespan-longest-lived-then-shortest-lived | 20 | 10% | 45% | +3.5 | |\n| measure-melting-point-unknown-substance | 20 | 25% | 55% | -24.3 | large non-death signal |\n\n### Excluded (19 tasks)\n\n#### Group A: MVP Development Tasks (5 tasks)\n| Task | N | det_death% | det_mean | Exclusion reason |\n|------|---|-----------|----------|-----------------|\n| boil | 40 | 15% | -14.5 | MVP-piloted; redundant with freeze |\n| melt | 20 | 15% | -14.6 | MVP-piloted; redundant with freeze |\n| change-the-state-of-matter-of | 20 | 15% | -14.5 | MVP-piloted; redundant with freeze |\n| chemistry-mix-paint-secondary-color | 20 | 10% | -5.5 | MVP-piloted; redundant with chemistry-mix |\n| grow-plant | 20 | 0% | +0.5 | MVP-piloted; zero routing signal |\n\n#### Group B: Redundant Family Variants (7 tasks)\n| Task | Family rep (included) | det_death% | det_mean |\n|------|-----------------------|-----------|----------|\n| chemistry-mix-paint-tertiary-color | chemistry-mix | 20% | -17.4 |\n| find-living-thing | find-animal | 20% | -16.6 |\n| find-plant | find-animal | 0% | +3.2 |\n| inclined-plane-friction-named-surfaces | inclined-plane-determine-angle | 20% | -20.0 |\n| inclined-plane-friction-unnamed-surfaces | inclined-plane-determine-angle | 0% | 0.0 |\n| lifespan-shortest-lived | lifespan-longest-lived | 40% | -40.0 |\n| measure-melting-point-known-substance | measure-melting-point-unknown-substance | 0% | +1.2 |\n\n#### Group C: Agent-Incompetent Task Families (7 tasks)\n| Task | det_death% | det_mean | no-death score |\n|------|-----------|----------|----------------|\n| mendelian-genetics-known-plant | 20% | -20.0 | 0.0 |\n| mendelian-genetics-unknown-plant | 40% | -40.0 | 0.0 |\n| power-component | 20% | -20.0 | 0.0 |\n| power-component-renewable-vs-nonrenewable-energy | 0% | 0.0 | 0.0 |\n| test-conductivity | 20% | -20.0 | 0.0 |\n| test-conductivity-of-unknown-substances | 20% | -20.0 | 0.0 |\n| use-thermometer | 20% | -19.4 | 1.5 |\n\n## 2. Common Characteristics of Excluded Tasks\n\n### Statistical comparison (prescreening 5-episode data)\n| Metric | Included (11) | Excluded (19) |\n|--------|--------------|---------------|\n| det_death_rate mean | 3.8% | 15.5% |\n| det_death_rate median | 0% | 20% |\n| det_mean_score mean | +3.22 | -14.61 |\n| Tasks with det_death>=20% | 2/11 (18%) | 10/19 (53%) |\n| Tasks with delta_nd=0 | 9/11 | 14/19 |\n\n### Shared traits:\n1. **Higher deterministic death rate**: Mean 15.5% vs 3.8%. The safe strategy is not reliably safe.\n2. **Negative deterministic scores**: Mean -14.61 vs +3.22. Even the better strategy fails.\n3. **Zero non-death routing signal**: 14/19 have delta_nd=0 with DAF=100%.\n4. **Agent incompetence**: 7 tasks (4 families) where BOTH strategies score 0 in non-death episodes.\n5. **Taxonomic redundancy**: 12/19 have a closely related included variant.\n\n## 3. Exclusion Criteria Assessment\n\nThree criteria, jointly sufficient and independently justified:\n\n**Criterion 1: MVP development data (5 tasks)** - Standard ML practice, prevents circular evaluation.\n\n**Criterion 2: Taxonomic deduplication (7 tasks)** - Prevents within-family correlation from inflating sample size.\n\n**Criterion 3: Agent-floor tasks (7 tasks)** - Zero task-solving progress regardless of routing. Reflects backbone capability ceiling, not methodology limitation.\n\n**Selection bias check**: The exclusion does NOT bias toward death-avoidance. The included set contains find-non-living-thing (zero deaths, internal-preferred) and measure-melting-point-unknown-substance (delta_nd=16.5). Including the agent-floor tasks would strengthen the death-avoidance claim (all 7 have DAF=100%).\n\n## 4. Paper-Ready Text\n\n### Appendix version\n\nTask Selection. ScienceWorld provides 30 task types spanning 13 thematic families (e.g., state-change, object-finding, genetics). We select 11 task types for the main evaluation based on three criteria applied during a 5-episode prescreening phase. First, we exclude five task types used during pipeline development (boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant) to prevent circular evaluation. Second, within each thematic family, we retain one representative task type to avoid inflating sample size with correlated variants---for example, selecting freeze from the state-change family rather than including all four members. This removes seven additional task types. Third, we exclude seven task types across four families (mendelian-genetics, power-component, test-conductivity, use-thermometer) where the Qwen2.5-7B backbone achieves zero task progress in non-death episodes under both strategies---these reflect backbone capability limitations rather than routing-relevant variation. The 19 excluded tasks share three characteristics: higher deterministic death rates (mean 15.5% vs. 3.8% for included tasks), negative deterministic mean scores (-14.61 vs. +3.22), and predominantly zero non-death signal (14/19 tasks with delta_nd = 0). Importantly, the selection does not bias toward our findings: the included set contains find-non-living-thing (zero deaths, internal-preferred) and measure-melting-point-unknown-substance (delta_nd = 16.5), both of which provide evidence against death-dominance. Including the excluded agent-floor tasks would, if anything, strengthen the death-avoidance claim, as all seven have DAF = 100%.\n\n### Limitations version (shorter)\n\nOur evaluation covers 11 of ScienceWorld's 30 task types. The 19 excluded tasks fall into three categories: five used during development (excluded to prevent circular evaluation), seven taxonomically redundant with included tasks (one representative per family), and seven where the 7B backbone achieves zero task-solving progress regardless of routing strategy. The last category represents a backbone capability ceiling---a stronger LLM would likely unlock these tasks and potentially reveal routing dynamics absent at the 7B scale. We verify that our selection does not bias toward death-dominance: the included set retains tasks with zero deaths and substantial non-death routing signal.\n'''\nwith open('/root/autodl-tmp/simgate-modular-routing/artifacts/excluded_tasks_analysis.md', 'w') as f:\n    f.write(content)\nprint('DONE')\n\"",
+              "account": "root"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-15T16:21:34.758628+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"DONE\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.83}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-15T16:21:34.758887+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是结果摘要：\n\n---\n\n## 30 Task 分类总览\n\n**Included (11)**: chemistry-mix, find-animal, find-non-living-thing, freeze, grow-fruit, identify-life-stages-1/2, inclined-plane-determine-angle, lifespan-longest-lived, lifespan-longest-lived-then-shortest-lived, measure-melting-point-unknown-substance\n\n**Excluded (19)** 分三组：\n\n### Group A: MVP 开发数据 (5 tasks)\nboil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant\n→ 管线开发阶段用过，排除防止循环评估\n\n### Group B: 家族冗余变体 (7 tasks)\nchemistry-mix-paint-tertiary-color, find-living-thing, find-plant, inclined-plane-friction-named/unnamed-surfaces, lifespan-shortest-lived, measure-melting-point-known-substance\n→ 同一 task family 保留 1 个代表，避免 correlated variants 膨胀样本量\n\n### Group C: Agent 能力天花板 (7 tasks)\nmendelian-genetics-known/unknown-plant, power-component/renewable, test-conductivity/unknown, use-thermometer\n→ 两种策略在非死亡 episode 中均得分 0.0，7B backbone 无法完成这些任务，routing 无信号可学\n\n## 关键统计对比\n\n| 指标 | Included (11) | Excluded (19) |\n|------|--------------|---------------|\n| det_death_rate mean | **3.8%** | 15.5% |\n| det_mean_score | **+3.22** | -14.61 |\n| det_death ≥ 20% | 2/11 | 10/19 |\n| Δ_nd = 0 | 9/11 | 14/19 |\n\n## 排除标准合理性\n排除 **不会偏向** death-avoidance 结论——included 集合保留了 find-non-living-thing（零死亡、internal 更优）和 measure-melting-point-unknown-substance（Δ_nd=16.5）。纳入 Group C 反而会 **强化** death-dominance claim（7 个全部 DAF=100%）。\n\n## 论文文本\nAppendix 和 Limitations 两个版本已写入 `artifacts/excluded_tasks_analysis.md`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_excluded-19-tasks_20260515T161414"
+          },
+          "id": "event-000089"
+        }
+      ],
+      "message_count": 89
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-excluded-19-tasks.md"
+}

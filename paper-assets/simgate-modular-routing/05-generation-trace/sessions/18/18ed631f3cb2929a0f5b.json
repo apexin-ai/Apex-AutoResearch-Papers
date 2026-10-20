@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18ed631f3cb2929a0f5b",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 002 sft fixes",
+  "task_key": "worker_code_plan-002-sft-fixes_20260513T225116",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-002-sft-fixes_20260513T225116_result.json",
+    "occurrence": 1,
+    "bytes": 816,
+    "sha256": "a9f16bd0008e3ddeba2f547122c80c8a4be94bd93c3fa04dd300d82015475ea2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结修改：\n\n**Fix 1 — Episode-level split（数据泄漏）**：\n- `_parse_record()` 新增 `episode_id`、`variation` 字段传递\n- `stratified_split()` 改为按 `(task_type, episode_id, variation)` 分组 episode，对 episode 而非 step 做 stratified split\n- dry-run 日志显示 \"2 episodes in train, 1 episodes in val\"，确认 episode 级分割生效\n\n**Fix 2 — Best model 指标**：\n- `compute_metrics()` 新增 `f1_macro` 和 `balanced_accuracy`\n- `metric_for_best_model` 从 `\"accuracy\"` 改为 `\"f1_macro\"`\n\n**Fix 3 — 清理过时代码**：\n- 已删除 `src/postprocess_to_sft.py`\n\n当前数据只有 3 个 episode 全是 deterministic（no-preference 被 skip），plan-001b 数据收集完会有更多 internal-preferred samples。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-sft-fixes.md"
+}

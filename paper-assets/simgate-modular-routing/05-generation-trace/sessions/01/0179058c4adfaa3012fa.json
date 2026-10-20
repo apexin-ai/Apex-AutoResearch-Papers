@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0179058c4adfaa3012fa",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code plan 002 router sft",
+  "task_key": "worker_code_plan-002-router-sft_20260514T042538",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-002-router-sft_20260514T042538_result.json",
+    "occurrence": 1,
+    "bytes": 1103,
+    "sha256": "a4073cb6d2068e0c556be351facbcac4519ce874807f3e8743b8a045f5a4c42d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有依赖就绪（transformers=4.57.6, peft=0.19.0, sklearn=1.8.0），均支持 Qwen3。\n\n总结完成的工作：\n\n**产出文件：**\n- `src/training/data_loader.py` — 数据加载、prompt 构建、两种 split 策略（stratified / leave-one-out）、RouterDataset\n- `src/training/router_sft.py` — 主训练脚本，LoRA + SeqCls head，class weighting + minority upsampling，支持 `--split_strategy {stratified, leave_one_out}`，自动解析本地模型路径\n- `scripts/launch_plan002.sh` — 完整 pipeline（labeling → training → eval），支持 `SPLIT_STRATEGY` 环境变量切换\n\n**数据统计：**\n- 1710 条可用样本（11 个 task，过滤 no-preference 后）\n- 类别分布：deterministic 1560 (91.2%) vs internal 150 (8.8%) — 严重不平衡，已通过 `--class_weights auto` + `--upsample_minority` 缓解\n\n**验证：**\n- Dry-run 在服务器上通过（数据加载、模型解析均正常）\n- 依赖库版本兼容\n\n**需 GPU dry-run：** 完整训练需要 GPU。启动命令：\n```bash\nbash scripts/launch_plan002.sh\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-plan-002-router-sft.md"
+}

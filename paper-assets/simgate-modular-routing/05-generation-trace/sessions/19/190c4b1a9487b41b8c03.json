@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "190c4b1a9487b41b8c03",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "data math pilot 50",
+  "task_key": "worker_data_math-pilot-50_20260514T134137",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_data_math-pilot-50_20260514T134137.log",
+    "occurrence": 1,
+    "bytes": 663471,
+    "sha256": "1a83b0a914e7b6dee2e0c60b54e21821e601ac1ae966378a30a39c73a9aed6ee"
+  },
+  "statistics": {
+    "messages": 409,
+    "user_turns": 0,
+    "tool_calls": 165,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 2,
+      "assistant": 74,
+      "tool_call": 165,
+      "tool_result": 165,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 409,
+      "chunks": [
+        {
+          "path": "190c4b1a9487b41b8c03-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "190c4b1a9487b41b8c03-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "190c4b1a9487b41b8c03-part-0003.json",
+          "message_count": 49
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/data-math-pilot-50.md"
+}

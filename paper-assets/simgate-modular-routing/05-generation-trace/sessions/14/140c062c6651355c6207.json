@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "140c062c6651355c6207",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "research data source unification",
+  "task_key": "worker_research_data-source-unification_20260514T080027",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_data-source-unification_20260514T080027.log",
+    "occurrence": 1,
+    "bytes": 725594,
+    "sha256": "3002a9e5b2f7e44baadeb0d4896c14d60537052a2e547ad2263675fd896d3bdd"
+  },
+  "statistics": {
+    "messages": 134,
+    "user_turns": 1,
+    "tool_calls": 43,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 23,
+      "tool_call": 43,
+      "tool_result": 43,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 74,
+      "chunks": [
+        {
+          "path": "140c062c6651355c6207-part-0001.json",
+          "message_count": 74
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 60,
+      "chunks": [
+        {
+          "path": "140c062c6651355c6207-part-0001.json",
+          "message_count": 24
+        },
+        {
+          "path": "140c062c6651355c6207-part-0002.json",
+          "message_count": 36
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-data-source-unification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2896fbb5ea68e6ab4572",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis alfworld llama final",
+  "task_key": "worker_analysis_alfworld-llama-final_20260520T103259",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_alfworld-llama-final_20260520T103259_result.json",
+    "occurrence": 1,
+    "bytes": 95,
+    "sha256": "1a25a4dfb72c57dd6d52146f79569d586f0d21ee265ea3d9487832667cc8cc86"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "实验 133/135，进程仍在运行。已设定 2 分钟后自动回来检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-alfworld-llama-final.md"
+}

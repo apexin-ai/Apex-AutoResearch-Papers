@@ -1,0 +1,16 @@
+{
+  "exp_id": "grounding-filter-ablation",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:43:42.441Z",
+    "updated_at": "2026-05-18T21:45:12.504Z",
+    "hypothesis": "Action-space filtering that blocks 'focus on' during non-answer-submission steps will reduce death rate below baseline 48.0%. This is the strongest possible intervention: if even hard-blocking the lethal action pattern fails to eliminate deaths (agent finds alternative death paths), it proves death vulnerability is structural, not a single-action artifact.",
+    "parent": "plan-012-full"
+  },
+  "timestamp": "2026-05-18T21:45:12.706130+00:00",
+  "trigger": "update_registry"
+}

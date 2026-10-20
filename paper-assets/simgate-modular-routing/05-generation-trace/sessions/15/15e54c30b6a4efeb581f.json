@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15e54c30b6a4efeb581f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis r10 q2 q6 labels",
+  "task_key": "worker_analysis_r10-q2-q6-labels_20260517T032949",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r10-q2-q6-labels_20260517T032949_result.json",
+    "occurrence": 1,
+    "bytes": 1505,
+    "sha256": "640ac890a77887da5df85429901f77e357fe04798cada28f1e969574f4b8e25a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。汇总结果：\n\n---\n\n## Q2: Death-asymmetry label redundancy\n\n| Category | Count | Proportion |\n|----------|-------|-----------|\n| **Redundant** (label holds without death penalty) | 21/75 | 28.0% |\n| **Purely death-driven** (label changes without death) | 54/75 | 72.0% |\n| — becomes tie (surviving side also scored 0) | 54 | |\n| — flips winner | 0 | |\n\n**解读**：54 个 purely death-driven cases 全部变成 tie（不是 flip）。原因：surviving side 得了 0 分，dying side 得了 -100。去掉 death penalty 后双方都是 0。这说明在这些 episodes 中，唯一的区分信号就是\"一方死了\"。\n\nDeath 方向：internal died = 70, det died = 5（internal 死亡率远高于 det）。\n\n---\n\n## Q6: Non-death score differences\n\n20 个 non-death non-tie episodes（全部来自 `find-non-living-thing` 任务，全部 both alive）：\n\n| Metric | det - int (signed) | |det - int| (absolute) |\n|--------|-------------------|----------------------|\n| Median | 13.0 | 45.5 |\n| Mean | 19.1 | 34.9 |\n| Q1 | 8.0 | 8.0 |\n| Q3 | 58.0 | 58.0 |\n| Min | -58.0 | 8.0 |\n| Max | 67.0 | 67.0 |\n\n**分布特征**：\n- 16/20 为 det-preferred，4/20 为 internal-preferred\n- 绝对差值集中在两个 cluster：小差距（8-17 分，10 episodes）和大差距（41-67 分，10 episodes）\n- IQR 很宽 [8, 58]，说明 score gap 异质性高\n- 所有 20 个 non-death labels 来自同一任务类型 `find-non-living-thing`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r10-q2-q6-labels.md"
+}

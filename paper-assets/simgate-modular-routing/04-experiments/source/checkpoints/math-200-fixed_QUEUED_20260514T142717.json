@@ -1,0 +1,24 @@
+{
+  "exp_id": "math-200-fixed",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:27:17.496Z",
+    "updated_at": "2026-05-14T14:27:17.496Z",
+    "spec": {
+      "hypothesis": "MATH 200 题（Level 4-5，offset=50 跳过 pilot）counterfactual 收集，使用修复后的 code_sandbox.py（auto_print_last_expr 修复裸表达式 output 为空 bug）",
+      "command": "source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=0 python src/math_counterfactual.py --n_problems 200 --offset 50 --output data/math-counterfactual/math_200_fixed.jsonl --seed 42",
+      "server": "westb-13313",
+      "gpu": "cuda:0",
+      "data_path": "hendrycks/competition_math (Level 4-5)",
+      "data_count": 200,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-14T14:27:17.638859+00:00",
+  "trigger": "update_registry"
+}

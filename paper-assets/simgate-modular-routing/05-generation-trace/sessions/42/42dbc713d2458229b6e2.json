@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "42dbc713d2458229b6e2",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh minihack day2 pilot",
+  "task_key": "worker_ssh_minihack-day2-pilot_20260519T113749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_minihack-day2-pilot_20260519T113749_result.json",
+    "occurrence": 1,
+    "bytes": 1747,
+    "sha256": "debea6e390bc98a893cd76d86246c90f044b8f06ccf56d3eafd94c2e0140bbe8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Pilot Results\n\n### Deterministic (10 eps, MiniHack-Room-5x5-v0)\n\n| Ep | Seed | Steps | Score | Status |\n|----|------|-------|-------|--------|\n| 0-9 | 42-51 | 4 | +1.0 | GOAL |\n\n- **Win rate: 100% (10/10)**\n- **Death rate: 0%**\n- **Avg steps: 4.0**\n\n### Internal / LLM (10 eps, MiniHack-Room-5x5-v0, Qwen2.5-7B-Instruct)\n\n| Ep | Seed | Steps | Score | Wall Time | Parse Failures |\n|----|------|-------|-------|-----------|----------------|\n| 0-9 | 42-51 | 4 | +1.0 | ~0.26s | 0/4 |\n\n- **Win rate: 100% (10/10)**\n- **Death rate: 0%**\n- **Avg steps: 4.0**\n- **Parse failure rate: 0%**\n\n### Delta (Internal - Deterministic)\n- **DR: 0% - 0% = 0%**\n- **Win rate delta: 0%**\n- **Avg steps delta: 0.0**\n\n### Infrastructure Status\n- **vLLM server**: stable, running in tmux `vllm-minihack`, model ID = `/root/autodl-tmp/models/Qwen2.5-7B-Instruct/`\n- **LLM latency**: ~65ms per call (4 calls/ep, ~0.26s total)\n- **Zero parse failures** across all 40 LLM calls\n\n### Notes\n- Room-5x5-v0 is a trivial navigation task: both agents solve it perfectly in 4 steps. The staircase is always reachable via a direct diagonal path from spawn.\n- Initial prompt had a bug where the LLM confused \"stairs up\" and \"stairs down\", causing oscillation. Fixed by adding explicit distance cues and \"IGNORE stairs up\" instruction.\n- NLELanguageWrapper requires string actions (not int indices) and needs extra obs keys (`tty_chars`, `tty_cursor`, `inv_letters`, `inv_strs`).\n- Files deployed: `minihack_det_agent.py` (476 lines), `minihack_episode_runner.py` (264 lines) at `/root/autodl-tmp/simgate-modular-routing/scripts/minihack/`.\n- Results saved to `results/pilot_det.jsonl` and `results/pilot_internal.jsonl`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-minihack-day2-pilot.md"
+}

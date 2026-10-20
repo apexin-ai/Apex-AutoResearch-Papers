@@ -1,0 +1,5 @@
+Script path: /root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py
+
+Approach: Monkey-patches llm_agent.SYSTEM_PROMPT with CRITICAL SAFETY RULE before LLMAgent instantiation. Runs always-internal episodes using standard ReAct.
+
+Dry-run verified: 1 episode on chemistry-mix, score=0.0, death=false, 30 steps in 45s.

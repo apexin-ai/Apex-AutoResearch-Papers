@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "08bc01f136bc34361f20",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix plan 004 v2 stratified launch",
+  "task_key": "worker_fix_plan-004-v2-stratified-launch_20260514T062526",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan-004-v2-stratified-launch_20260514T062526_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "8d6660576feb34903fb1ec9a4b8aab0c2427ecc82a6e9901da88cd60d4dac9d4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**修改内容** (`src/training/implicit_router_sft.py`)：\n1. **Stratified split** — `load_implicit_sft_data()` 改为按 `route_label` episode-level 分层，使用 sklearn `train_test_split(stratify=...)`\n2. **class_weights auto** — 新增 `--class_weights` 参数，`WeightedTrainer.compute_loss()` 按 route_label 对每个样本的 loss 加权（inverse frequency）\n3. **互斥检查** — 同时传 `--class_weights` 和 `--upsample_minority` 时警告并禁用后者\n4. **gradient_accumulation_steps** — 新增 CLI 参数，替换原硬编码值\n5. **report_to** — 改为 `\"none\"`（离线环境）\n\n**验证结果**：\n- Val split 包含两个类：internal=166, deterministic=90\n- Class weights: internal=0.74, deterministic=1.53\n- 训练正常启动，~1 it/s\n\n**plan-004-v2** 已在 GPU1 启动，PID=235893，预计 ~8 分钟完成（147 steps × 3 epochs，有 grad_accum=8）。Registry 已更新为 RUNNING。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan-004-v2-stratified-launch.md"
+}

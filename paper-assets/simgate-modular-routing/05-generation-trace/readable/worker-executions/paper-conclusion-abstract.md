@@ -1,0 +1,980 @@
+# paper conclusion abstract
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 19
+- **Recorded user turns:** 0
+- **Tool calls:** 5
+- **Original source:** `logs/workers/worker_paper_conclusion-abstract_20260515T103949.log`
+- **Structured JSON:** [`1f66cfd2807b7d2559e6.json`](../../sessions/1f/1f66cfd2807b7d2559e6.json)
+
+## Before a recorded user message
+
+19 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__append_idea",
+    "mcp__agent-ml-research__read_project_file",
+    "mcp__agent-ml-research__save_project_file"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "99710ff4-3a85-4b37-9530-553e32d7a243",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1778844600,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "343b34be-623d-4e05-9ff2-a8ce72621cee",
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+Let me read the current versions of both files first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "94d99769-3940-4852-a456-d37ef6f6231a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SU8pHYmWEenHgsWGyE4KHP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11708,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11708
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011wWR6nHpt1RjdaAJEgNmpG`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "7e2f08cb-0bb8-429b-887a-1f4ee97b9d19",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SU8pHYmWEenHgsWGyE4KHP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11708,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11708
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T10:39:58.787Z_
+
+<details><summary>↩ Tool result · `toolu_011wWR6nHpt1RjdaAJEgNmpG`</summary>
+
+```text
+1	\section{Conclusion}
+2	
+3	We presented episode-level counterfactual analysis for diagnosing routing in modular LLM agents. On 245 ScienceWorld episodes (11 task types), death asymmetry drives 78.9\% of non-tie routing labels independent of penalty magnitude (DAF = 90.41\% at $P{=}100$, range 46--95\%), with strong cross-task correlation ($r = 0.97$), oracle degeneracy (96.3\% always-deterministic), and near-random router accuracy ($58.1 \pm 0.8\%$). Preliminary MATH and ALFWorld studies provide consistent cross-environment evidence, though mechanisms differ (death avoidance vs.\ action space pruning).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "69ace928-9671-41fa-9ee7-83a8036bbc12",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\n\nWe presented episode-level counterfactual analysis for diagnosing routing in modular LLM agents. On 245 ScienceWorld episodes (11 task types), death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF = 90.41\\% at $P{=}100$, range 46--95\\%), with strong cross-task correlation ($r = 0.97$), oracle degeneracy (96.3\\% always-deterministic), and near-random router accuracy ($58.1 \\pm 0.8\\%$). Preliminary MATH and ALFWorld studies provide consistent cross-environment evidence, though mechanisms differ (death avoidance vs.\\ action space pruning).",
+      "numLines": 3,
+      "startLine": 1,
+      "totalLines": 3
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01KGeMTcu8kgBKNv5d2Nwof6`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "2fe7cf6e-490d-42d6-bdf2-64b857cf3985",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SU8pHYmWEenHgsWGyE4KHP",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11708,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 11708
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T10:39:59.057Z_
+
+<details><summary>↩ Tool result · `toolu_01KGeMTcu8kgBKNv5d2Nwof6`</summary>
+
+```text
+1	\begin{abstract}
+2	Modular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97.4\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Across 245 episodes with a Qwen2.5-7B-Instruct backbone, death asymmetry drives 78.9\% of non-tie routing labels independent of penalty magnitude (DAF ranges 46--95\% across $P{\in}[10{,}200]$, reaching 90\% at the default $P{=}100$), with strong positive cross-task correlation ($r = 0.97$, $n = 11$). These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.
+3	\end{abstract}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "958af393-5ae4-4005-a228-8ec47a0f8aa4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97.4\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Across 245 episodes with a Qwen2.5-7B-Instruct backbone, death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF ranges 46--95\\% across $P{\\in}[10{,}200]$, reaching 90\\% at the default $P{=}100$), with strong positive cross-task correlation ($r = 0.97$, $n = 11$). These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\n\\end{abstract}",
+      "numLines": 3,
+      "startLine": 1,
+      "totalLines": 3
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the current versions. Let me write the expanded versions.
+
+For the Conclusion, I need to expand from ~4 lines to ~0.5 page, covering all the points listed.
+
+For the Abstract, I need to update to include cross-env (MATH), cross-model (Llama), and router diagnostic findings. Target 150-250 words.
+
+Let me draft both.
+
+Abstract draft:
+
+Current abstract is ~130 words. Need to add MATH cross-env, Llama cross-model, router diagnostic info, and keep within 150-250 words.
+
+
+Now I'm writing the abstract and conclusion sections...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "7dad36d1-9b81-4319-8984-48b467eb4851",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KNWSKdR9YaSLrzxcZBy1nL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 23549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 673
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+Now I'll write both updated files.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "2b06b532-0467-4d0e-aa74-a80f99ede139",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KNWSKdR9YaSLrzxcZBy1nL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 23549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 673
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BiBZbQGfDuNSRqhww88pJp`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+  "old_string": "\\begin{abstract}\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97.4\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Across 245 episodes with a Qwen2.5-7B-Instruct backbone, death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF ranges 46--95\\% across $P{\\in}[10{,}200]$, reaching 90\\% at the default $P{=}100$), with strong positive cross-task correlation ($r = 0.97$, $n = 11$). These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\n\\end{abstract}",
+  "new_string": "\\begin{abstract}\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability, yet understanding \\emph{what} drives the value of routing decisions remains unclear. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to decompose routing signal into death-avoidance and non-death components. Across 245 ScienceWorld episodes (11 task types, Qwen2.5-7B-Instruct), death avoidance accounts for approximately 90\\% of routing signal (DAF $= 90.41\\%$ at $P{=}100$; Pearson $r = 0.97$, $p < 10^{-6}$), with 78.9\\% of non-tie labels arising from death asymmetry alone. A trained router achieves only 57--59\\% balanced accuracy, confirming thin learnable signal beyond survival. Cross-environment analysis on MATH ($N{=}300$) shows routing signal vanishes without a death penalty: the label distribution inverts from 86:9 (deterministic-preferred) to 30:17 (internal directionally favored), with a non-significant reversal of $+4.3$ percentage points. A Llama-3.1-8B pilot provides preliminary directional evidence that death-driven routing generalizes across model families. These findings indicate that in environments with catastrophic failure modes, routing value is dominated by safety---the router functions primarily as a safety critic rather than an efficiency optimizer.\n\\end{abstract}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "530f6880-9a33-4de3-89bb-8e73543df965",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KNWSKdR9YaSLrzxcZBy1nL",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 673,
+      "cache_read_input_tokens": 23549,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 673
+      },
+      "output_tokens": 10,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T10:40:16.779Z_
+
+<details><summary>↩ Tool result · `toolu_01BiBZbQGfDuNSRqhww88pJp`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "7fd0eb30-5bf9-47b6-8ee3-253f35e98a69",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+    "oldString": "\\begin{abstract}\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97.4\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Across 245 episodes with a Qwen2.5-7B-Instruct backbone, death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF ranges 46--95\\% across $P{\\in}[10{,}200]$, reaching 90\\% at the default $P{=}100$), with strong positive cross-task correlation ($r = 0.97$, $n = 11$). These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\n\\end{abstract}",
+    "newString": "\\begin{abstract}\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability, yet understanding \\emph{what} drives the value of routing decisions remains unclear. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to decompose routing signal into death-avoidance and non-death components. Across 245 ScienceWorld episodes (11 task types, Qwen2.5-7B-Instruct), death avoidance accounts for approximately 90\\% of routing signal (DAF $= 90.41\\%$ at $P{=}100$; Pearson $r = 0.97$, $p < 10^{-6}$), with 78.9\\% of non-tie labels arising from death asymmetry alone. A trained router achieves only 57--59\\% balanced accuracy, confirming thin learnable signal beyond survival. Cross-environment analysis on MATH ($N{=}300$) shows routing signal vanishes without a death penalty: the label distribution inverts from 86:9 (deterministic-preferred) to 30:17 (internal directionally favored), with a non-significant reversal of $+4.3$ percentage points. A Llama-3.1-8B pilot provides preliminary directional evidence that death-driven routing generalizes across model families. These findings indicate that in environments with catastrophic failure modes, routing value is dominated by safety---the router functions primarily as a safety critic rather than an efficiency optimizer.\n\\end{abstract}",
+    "originalFile": "\\begin{abstract}\nModular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97.4\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Across 245 episodes with a Qwen2.5-7B-Instruct backbone, death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF ranges 46--95\\% across $P{\\in}[10{,}200]$, reaching 90\\% at the default $P{=}100$), with strong positive cross-task correlation ($r = 0.97$, $n = 11$). These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.\n\\end{abstract}",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 3,
+        "newStart": 1,
+        "newLines": 3,
+        "lines": [
+          " \\begin{abstract}",
+          "-Modular LLM agents that route between neural reasoning and deterministic computation promise improved reliability in rule-governed environments, yet understanding \\emph{what} drives effective routing remains unclear. Per-step oracle labeling degenerates in sparse-reward settings---in ScienceWorld, 97.4\\% of steps yield tied outcomes, rendering step-level analysis uninformative. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to derive per-episode routing labels. Across 245 episodes with a Qwen2.5-7B-Instruct backbone, death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF ranges 46--95\\% across $P{\\in}[10{,}200]$, reaching 90\\% at the default $P{=}100$), with strong positive cross-task correlation ($r = 0.97$, $n = 11$). These results indicate that deterministic computation's value is concentrated in catastrophic failure prevention rather than positive task guidance.",
+          "+Modular LLM agents that route between neural reasoning and deterministic computation promise improved reliability, yet understanding \\emph{what} drives the value of routing decisions remains unclear. We propose episode-level counterfactual analysis: running complete episodes under pure strategies and comparing final outcomes to decompose routing signal into death-avoidance and non-death components. Across 245 ScienceWorld episodes (11 task types, Qwen2.5-7B-Instruct), death avoidance accounts for approximately 90\\% of routing signal (DAF $= 90.41\\%$ at $P{=}100$; Pearson $r = 0.97$, $p < 10^{-6}$), with 78.9\\% of non-tie labels arising from death asymmetry alone. A trained router achieves only 57--59\\% balanced accuracy, confirming thin learnable signal beyond survival. Cross-environment analysis on MATH ($N{=}300$) shows routing signal vanishes without a death penalty: the label distribution inverts from 86:9 (deterministic-preferred) to 30:17 (internal directionally favored), with a non-significant reversal of $+4.3$ percentage points. A Llama-3.1-8B pilot provides preliminary directional evidence that death-driven routing generalizes across model families. These findings indicate that in environments with catastrophic failure modes, routing value is dominated by safety---the router functions primarily as a safety critic rather than an efficiency optimizer.",
+          " \\end{abstract}",
+          "\\ No newline at end of file"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01B9N2veEsdY1B1WXmdAfSEu`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex",
+  "old_string": "\\section{Conclusion}\n\nWe presented episode-level counterfactual analysis for diagnosing routing in modular LLM agents. On 245 ScienceWorld episodes (11 task types), death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF = 90.41\\% at $P{=}100$, range 46--95\\%), with strong cross-task correlation ($r = 0.97$), oracle degeneracy (96.3\\% always-deterministic), and near-random router accuracy ($58.1 \\pm 0.8\\%$). Preliminary MATH and ALFWorld studies provide consistent cross-environment evidence, though mechanisms differ (death avoidance vs.\\ action space pruning).",
+  "new_string": "\\section{Conclusion}\n\nWe introduced episode-level counterfactual analysis as a methodology for decomposing the routing signal in modular LLM agents into death-avoidance and non-death components. Applied to 245 ScienceWorld episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, this analysis reveals that death avoidance accounts for approximately 90\\% of routing value (DAF $= 90.41\\%$ at $P{=}100$; $\\Delta_\\text{full} = 29.60$ vs.\\ $\\Delta_\\text{nd} = 2.84$), with 78.9\\% of non-tie labels arising from death asymmetry alone and strong cross-task correlation ($r = 0.97$, $p < 10^{-6}$).\n\nTwo lines of evidence support the generality of this finding. First, cross-environment analysis on MATH ($N{=}300$), where no death penalty exists, shows that the routing signal vanishes and directionally reverses: internal reasoning scores $+4.3$ percentage points higher than code execution ($81.0\\%$ vs.\\ $76.7\\%$; CI $[0, 8.7]$, not significant), and the label distribution inverts from 86:9 deterministic-preferred in ScienceWorld to 30:17 internal-preferred. This contrast confirms that death avoidance, not an inherent advantage of deterministic computation, is the primary driver. Second, a Llama-3.1-8B pilot replicates the direction of the death differential (freeze death gap $+20\\%$, consistent with Qwen's $+30\\%$), providing preliminary evidence that the pattern generalizes across model families.\n\nA trained routing classifier achieves only 57--59\\% balanced accuracy across four seeds, confirming that once death avoidance is accounted for, the remaining learnable signal is thin. The logit-generation gap in the classification head further suggests that discriminative routing over LLM representations is fundamentally limited in this regime.\n\nThese results carry a practical implication: in environments with catastrophic failure modes, routing value is dominated by safety rather than efficiency. The router functions primarily as a safety critic---steering away from fatal actions---rather than as an optimizer selecting the more efficient strategy. System designers may therefore benefit from treating routing as a risk-management mechanism in such settings.\n\nSeveral directions remain open. Step-level counterfactual labeling could localize where within an episode routing decisions matter most. Stronger backbone models with lower intrinsic death rates may yield lower DAF values, revealing whether non-death routing signal emerges as the safety floor rises. Finally, environments with graded failure costs (rather than binary death) would test whether the dominance of catastrophic-failure avoidance extends to softer penalty structures."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "5df9990b-4e96-4add-a188-229a9f638c70",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TJV3tA8FotzDvygtsNfX3G",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 24222,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 963
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T10:40:38.427Z_
+
+<details><summary>↩ Tool result · `toolu_01B9N2veEsdY1B1WXmdAfSEu`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "8c3892f7-4e55-47e4-bcd7-cf9e143b7138",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/conclusion.tex",
+    "oldString": "\\section{Conclusion}\n\nWe presented episode-level counterfactual analysis for diagnosing routing in modular LLM agents. On 245 ScienceWorld episodes (11 task types), death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF = 90.41\\% at $P{=}100$, range 46--95\\%), with strong cross-task correlation ($r = 0.97$), oracle degeneracy (96.3\\% always-deterministic), and near-random router accuracy ($58.1 \\pm 0.8\\%$). Preliminary MATH and ALFWorld studies provide consistent cross-environment evidence, though mechanisms differ (death avoidance vs.\\ action space pruning).",
+    "newString": "\\section{Conclusion}\n\nWe introduced episode-level counterfactual analysis as a methodology for decomposing the routing signal in modular LLM agents into death-avoidance and non-death components. Applied to 245 ScienceWorld episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, this analysis reveals that death avoidance accounts for approximately 90\\% of routing value (DAF $= 90.41\\%$ at $P{=}100$; $\\Delta_\\text{full} = 29.60$ vs.\\ $\\Delta_\\text{nd} = 2.84$), with 78.9\\% of non-tie labels arising from death asymmetry alone and strong cross-task correlation ($r = 0.97$, $p < 10^{-6}$).\n\nTwo lines of evidence support the generality of this finding. First, cross-environment analysis on MATH ($N{=}300$), where no death penalty exists, shows that the routing signal vanishes and directionally reverses: internal reasoning scores $+4.3$ percentage points higher than code execution ($81.0\\%$ vs.\\ $76.7\\%$; CI $[0, 8.7]$, not significant), and the label distribution inverts from 86:9 deterministic-preferred in ScienceWorld to 30:17 internal-preferred. This contrast confirms that death avoidance, not an inherent advantage of deterministic computation, is the primary driver. Second, a Llama-3.1-8B pilot replicates the direction of the death differential (freeze death gap $+20\\%$, consistent with Qwen's $+30\\%$), providing preliminary evidence that the pattern generalizes across model families.\n\nA trained routing classifier achieves only 57--59\\% balanced accuracy across four seeds, confirming that once death avoidance is accounted for, the remaining learnable signal is thin. The logit-generation gap in the classification head further suggests that discriminative routing over LLM representations is fundamentally limited in this regime.\n\nThese results carry a practical implication: in environments with catastrophic failure modes, routing value is dominated by safety rather than efficiency. The router functions primarily as a safety critic---steering away from fatal actions---rather than as an optimizer selecting the more efficient strategy. System designers may therefore benefit from treating routing as a risk-management mechanism in such settings.\n\nSeveral directions remain open. Step-level counterfactual labeling could localize where within an episode routing decisions matter most. Stronger backbone models with lower intrinsic death rates may yield lower DAF values, revealing whether non-death routing signal emerges as the safety floor rises. Finally, environments with graded failure costs (rather than binary death) would test whether the dominance of catastrophic-failure avoidance extends to softer penalty structures.",
+    "originalFile": "\\section{Conclusion}\n\nWe presented episode-level counterfactual analysis for diagnosing routing in modular LLM agents. On 245 ScienceWorld episodes (11 task types), death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF = 90.41\\% at $P{=}100$, range 46--95\\%), with strong cross-task correlation ($r = 0.97$), oracle degeneracy (96.3\\% always-deterministic), and near-random router accuracy ($58.1 \\pm 0.8\\%$). Preliminary MATH and ALFWorld studies provide consistent cross-environment evidence, though mechanisms differ (death avoidance vs.\\ action space pruning).",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 3,
+        "newStart": 1,
+        "newLines": 11,
+        "lines": [
+          " \\section{Conclusion}",
+          " ",
+          "-We presented episode-level counterfactual analysis for diagnosing routing in modular LLM agents. On 245 ScienceWorld episodes (11 task types), death asymmetry drives 78.9\\% of non-tie routing labels independent of penalty magnitude (DAF = 90.41\\% at $P{=}100$, range 46--95\\%), with strong cross-task correlation ($r = 0.97$), oracle degeneracy (96.3\\% always-deterministic), and near-random router accuracy ($58.1 \\pm 0.8\\%$). Preliminary MATH and ALFWorld studies provide consistent cross-environment evidence, though mechanisms differ (death avoidance vs.\\ action space pruning).",
+          "\\ No newline at end of file",
+          "+We introduced episode-level counterfactual analysis as a methodology for decomposing the routing signal in modular LLM agents into death-avoidance and non-death components. Applied to 245 ScienceWorld episodes across 11 task types with a Qwen2.5-7B-Instruct backbone, this analysis reveals that death avoidance accounts for approximately 90\\% of routing value (DAF $= 90.41\\%$ at $P{=}100$; $\\Delta_\\text{full} = 29.60$ vs.\\ $\\Delta_\\text{nd} = 2.84$), with 78.9\\% of non-tie labels arising from death asymmetry alone and strong cross-task correlation ($r = 0.97$, $p < 10^{-6}$).",
+          "+",
+          "+Two lines of evidence support the generality of this finding. First, cross-environment analysis on MATH ($N{=}300$), where no death penalty exists, shows that the routing signal vanishes and directionally reverses: internal reasoning scores $+4.3$ percentage points higher than code execution ($81.0\\%$ vs.\\ $76.7\\%$; CI $[0, 8.7]$, not significant), and the label distribution inverts from 86:9 deterministic-preferred in ScienceWorld to 30:17 internal-preferred. This contrast confirms that death avoidance, not an inherent advantage of deterministic computation, is the primary driver. Second, a Llama-3.1-8B pilot replicates the direction of the death differential (freeze death gap $+20\\%$, consistent with Qwen's $+30\\%$), providing preliminary evidence that the pattern generalizes across model families.",
+          "+",
+          "+A trained routing classifier achieves only 57--59\\% balanced accuracy across four seeds, confirming that once death avoidance is accounted for, the remaining learnable signal is thin. The logit-generation gap in the classification head further suggests that discriminative routing over LLM representations is fundamentally limited in this regime.",
+          "+",
+          "+These results carry a practical implication: in environments with catastrophic failure modes, routing value is dominated by safety rather than efficiency. The router functions primarily as a safety critic---steering away from fatal actions---rather than as an optimizer selecting the more efficient strategy. System designers may therefore benefit from treating routing as a risk-management mechanism in such settings.",
+          "+",
+          "+Several directions remain open. Step-level counterfactual labeling could localize where within an episode routing decisions matter most. Stronger backbone models with lower intrinsic death rates may yield lower DAF values, revealing whether non-death routing signal emerges as the safety floor rises. Finally, environments with graded failure costs (rather than binary death) would test whether the dominance of catastrophic-failure avoidance extends to softer penalty structures.",
+          "\\ No newline at end of file"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15_
+
+Let me verify the word counts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "0bbfed16-2827-4784-a07a-179baa800d82",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dqa1EnWFRAdMGxPD6WKUdB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1018,
+      "cache_read_input_tokens": 25185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1018
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01UjXCqX2mmeBbvkS75zcqEC`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && cat abstract.tex | sed 's/\\\\[a-zA-Z]*{//g; s/[{}$\\\\]//g; s/--/-/g' | wc -w && echo \"---\" && cat conclusion.tex | sed 's/\\\\[a-zA-Z]*{//g; s/[{}$\\\\]//g; s/--/-/g' | wc -w",
+  "description": "Count words in abstract and conclusion"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "9519506c-52c6-4b96-952b-1d714f64668d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dqa1EnWFRAdMGxPD6WKUdB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1018,
+      "cache_read_input_tokens": 25185,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1018
+      },
+      "output_tokens": 3,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T10:40:43.637Z_
+
+<details><summary>↩ Tool result · `toolu_01UjXCqX2mmeBbvkS75zcqEC`</summary>
+
+```text
+179
+---
+356
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "316ba027-929b-4ccf-b8b4-4a92c282b5f1",
+  "tool_use_result": {
+    "stdout": "179\n---\n356",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+Abstract: ~179 words (within 150-250 range). Conclusion: ~356 words (~0.5 page).
+
+**Done.** Both files updated:
+
+- **Abstract** — added MATH cross-env evidence (signal vanishes/reverses without death penalty), Llama cross-model pilot, router-as-safety-critic framing. 179 words.
+- **Conclusion** — expanded to 5 paragraphs covering: main DAF finding with key numbers, cross-environment + cross-model generality evidence, router diagnostic (57-59% balanced acc, logit-generation gap), practical implication (router ≈ safety critic), and three future directions (step-level labeling, stronger models, graded failure costs). 356 words.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "uuid": "9867be2d-851f-44ca-b53e-afe12bb4764d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JDf6rmtkzU9zLuU7ytSiX3",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 225,
+      "cache_read_input_tokens": 26203,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 225
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 19_
+
+Abstract: ~179 words (within 150-250 range). Conclusion: ~356 words (~0.5 page).
+
+**Done.** Both files updated:
+
+- **Abstract** — added MATH cross-env evidence (signal vanishes/reverses without death penalty), Llama cross-model pilot, router-as-safety-critic framing. 179 words.
+- **Conclusion** — expanded to 5 paragraphs covering: main DAF finding with key numbers, cross-environment + cross-model generality evidence, router diagnostic (57-59% balanced acc, logit-generation gap), practical implication (router ≈ safety critic), and three future directions (step-level labeling, stronger models, graded failure costs). 356 words.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 53935,
+  "duration_api_ms": 54740,
+  "num_turns": 6,
+  "stop_reason": "end_turn",
+  "session_id": "3f669e54-7688-4b5a-a2ce-3fec9f9114bc",
+  "total_cost_usd": 0.20861075000000004,
+  "usage": {
+    "input_tokens": 7,
+    "cache_creation_input_tokens": 14587,
+    "cache_read_input_tokens": 111000,
+    "output_tokens": 2410,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 14587,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 176,
+        "cache_read_input_tokens": 26203,
+        "cache_creation_input_tokens": 225,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 225
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1572,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001657,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 7,
+      "outputTokens": 2410,
+      "cacheReadInputTokens": 111000,
+      "cacheCreationInputTokens": 14587,
+      "webSearchRequests": 0,
+      "costUSD": 0.20695375000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "536189c9-f335-4087-a79c-b622293a8608"
+}
+```
+
+</details>
+
+---

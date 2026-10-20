@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0",
+  "id": "1e5ba4958a5b968668aa",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp plan 013 labeling quality",
+  "task_key": "worker_exp_plan-013-labeling-quality_20260514T121003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_plan-013-labeling-quality_20260514T121003.log",
+    "occurrence": 1,
+    "bytes": 925728,
+    "sha256": "2e9a3ae31eb15790ab8d8b6d6ab7fd4e09f2123545ede7f093f98d7352a75606"
+  },
+  "statistics": {
+    "messages": 489,
+    "user_turns": 1,
+    "tool_calls": 184,
+    "roles": {
+      "log": 1,
+      "system": 9,
+      "record": 1,
+      "assistant": 108,
+      "tool_call": 184,
+      "tool_result": 184,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 41,
+      "chunks": [
+        {
+          "path": "1e5ba4958a5b968668aa-part-0001.json",
+          "message_count": 41
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 448,
+      "chunks": [
+        {
+          "path": "1e5ba4958a5b968668aa-part-0001.json",
+          "message_count": 139
+        },
+        {
+          "path": "1e5ba4958a5b968668aa-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1e5ba4958a5b968668aa-part-0003.json",
+          "message_count": 129
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-plan-013-labeling-quality.md"
+}

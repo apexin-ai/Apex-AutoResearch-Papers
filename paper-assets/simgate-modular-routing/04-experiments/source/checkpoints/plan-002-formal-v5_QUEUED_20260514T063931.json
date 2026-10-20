@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan-002-formal-v5",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PENDING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:37:37.792Z",
+    "updated_at": "2026-05-14T06:39:31.548Z",
+    "hypothesis": "Router SFT v5：pad_token_id fix。v3/v4 loss 异常根因确认为 model.config.pad_token_id=None（ModelScope 下载的 Qwen3-1.7B 未设置 pad_token_id，导致分类头 loss 计算错误）。Fix：模型加载后立即设 model.config.pad_token_id = tokenizer.pad_token_id (151643)。其余配置与 v4 相同：stratified split + 无 upsample + class_weights auto + 互斥检查。Qwen3-1.7B + LoRA r=16 (0.37% trainable), 3 epochs, batch_size=4 + grad_accum=8, 2040 samples (1830 det / 210 internal)。",
+    "parent": "plan-002-formal-v4"
+  },
+  "timestamp": "2026-05-14T06:39:31.617426+00:00",
+  "trigger": "update_registry"
+}

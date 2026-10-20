@@ -1,0 +1,83 @@
+{
+  "exp_id": "plan-003-baseline",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:29:43.220Z",
+    "updated_at": "2026-05-15T12:33:24.458Z",
+    "hypothesis": "End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文 Table 1 的 baseline 数据。",
+    "conclusion": "success",
+    "metrics": {
+      "always_internal": {
+        "score": -37.16,
+        "ci_90": [
+          -43.39,
+          -31.43
+        ],
+        "success_rate": 0.1237,
+        "death_rate": 0.4072,
+        "sim_ratio": 0
+      },
+      "always_deterministic": {
+        "score": -11.64,
+        "ci_90": [
+          -17.39,
+          -6.55
+        ],
+        "success_rate": 0.2371,
+        "death_rate": 0.1856,
+        "sim_ratio": 1
+      },
+      "oracle": {
+        "score": -9.03,
+        "ci_90": [
+          -14.14,
+          -4.15
+        ],
+        "success_rate": 0.2423,
+        "death_rate": 0.1649,
+        "sim_ratio": 0.9623
+      },
+      "random": {
+        "score": -23.75,
+        "ci_90": [
+          -29.6,
+          -18.11
+        ],
+        "success_rate": 0.1649,
+        "death_rate": 0.2835,
+        "sim_ratio": 0.5027
+      },
+      "trained_router_v6": {
+        "score": -11.64,
+        "ci_90": [
+          -17.39,
+          -6.55
+        ],
+        "success_rate": 0.2371,
+        "death_rate": 0.1856,
+        "sim_ratio": 1,
+        "note": "degenerate - identical to always-deterministic"
+      },
+      "episodes": 194,
+      "tasks": 11
+    },
+    "notes": "Retrospectively registered. Eval ran on server by worker_code_plan-003-eval-script. Output: results/plan_003_eval/. trained-router = plan-002-formal-v6 (degenerate, all-deterministic). 需用 plan-002-generative-v1 的非退化 router 重跑 trained-router 条件。",
+    "checkpoint_path": "results/plan-003-baseline/",
+    "log_path": "results/plan_003_eval/",
+    "spec": {
+      "command": "python eval_end_to_end.py",
+      "server": "westb-13313",
+      "data_path": "results/plan_003_eval/",
+      "data_count": 194,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "completed_at": "2026-05-15T12:33:24.458Z"
+  },
+  "timestamp": "2026-05-15T12:33:24.580573+00:00",
+  "trigger": "update_registry"
+}

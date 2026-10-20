@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "065c18a15ddec977e3bb",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ssh w3 confusion matrix",
+  "task_key": "worker_ssh_w3-confusion-matrix_20260518T070352",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w3-confusion-matrix_20260518T070352.log",
+    "occurrence": 1,
+    "bytes": 777533,
+    "sha256": "5f49f79450d79bd7d1f960fd19f0bc8ced4c405941eaf991c21bb5b9a69a4b0c"
+  },
+  "statistics": {
+    "messages": 248,
+    "user_turns": 0,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 62,
+      "tool_call": 91,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 248,
+      "chunks": [
+        {
+          "path": "065c18a15ddec977e3bb-part-0001.json",
+          "message_count": 179
+        },
+        {
+          "path": "065c18a15ddec977e3bb-part-0002.json",
+          "message_count": 69
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-w3-confusion-matrix.md"
+}

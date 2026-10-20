@@ -1,0 +1,10 @@
+Remote server paths (westb-13313):
+- PDF: /root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter.pdf
+- PNG: /root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter.png
+- Script: /root/autodl-tmp/simgate-modular-routing/figures/gen_fig1.py
+
+Statistics verified:
+- r=0.9698, p=8.09e-07
+- 11 task types, 245 episodes
+- find-non-living-thing: zero death differential, Δ=+9.58 (annotated outlier)
+- Regression slope=88.20, intercept=5.83

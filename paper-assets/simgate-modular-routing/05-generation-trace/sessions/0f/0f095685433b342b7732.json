@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0f095685433b342b7732",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis daf per task bootstrap",
+  "task_key": "worker_analysis_daf-per-task-bootstrap_20260516T060005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_daf-per-task-bootstrap_20260516T060005_result.json",
+    "occurrence": 1,
+    "bytes": 1225,
+    "sha256": "dcea745098f7fe35b9d3ae6c2f2f039f65c37e99b7ceb4b476a617f93bbd2d71"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果：\n\n**Part A: Per-task Bootstrap CI (P=100)**\n- 10/11 tasks 的 delta(det - internal) 95% CI 全为正 → det 显著优于 internal\n- **1个 outlier**: `chemistry-mix`，CI = [-5.0, 48.6] 包含 0（因为该 task 有 2 episodes det 死而 internal 没死，削弱了优势）\n\n**Part B: Pearson r (delta_i vs Δ_full) at all P**\n\n| P | r | p-value | Significant? |\n|---|---|---------|---|\n| 10 | -0.0808 | 0.81 | NO |\n| 25 | 0.5115 | 0.11 | NO |\n| 50 | 0.8648 | 5.9e-4 | YES |\n| 100 | **0.9698** | 8.1e-7 | YES |\n| 200 | 0.9931 | 1.1e-9 | YES |\n| 500 | 0.9990 | 2.1e-13 | YES |\n\n**验证**: P_100 r=0.9698 ✓ 匹配目标值。总 episodes=245, tasks=11 ✓\n\n**关键发现**: \"r 在所有 P 值下都显著\" **不成立** — P=10 和 P=25 时 correlation 不显著。这是因为当 penalty 很小时，non-death score gap (delta_nd) 的方差主导了 Δ_full，而 death-rate differential 的解释力不足。显著性阈值 P≥50。\n\n结论标记为 `outlier_found`（chemistry-mix CI 跨 0 + 低 P 值 Pearson r 不显著）。\n\n结果已保存到 `/root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended/per_task_bootstrap.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-daf-per-task-bootstrap.md"
+}

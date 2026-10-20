@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1b6564f820d2381bc231",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check gemma gpu zero util",
+  "task_key": "worker_check_gemma-gpu-zero-util_20260520T130644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_gemma-gpu-zero-util_20260520T130644_result.json",
+    "occurrence": 1,
+    "bytes": 1436,
+    "sha256": "b9e3ccce766f99b604bdba38bc8d3a6be0f2cd2f547383334f04fa32315fd526"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 进程状态：**全部存活，没崩**\n\n| GPU | 利用率 | 显存 | VLLM PID | tmux session | 状态 |\n|-----|--------|------|----------|-------------|------|\n| 0 | **71%** | 26383/32607 MiB | 247435 | gemma-gpu0 | **正在跑 chemistry-mix** |\n| 1 | **0%** | 26383/32607 MiB | 36105 | gemma-11tasks | **跑完了，空闲等待** |\n\n### 2. 各 task episode 数\n\n| task | episodes | 最后修改 | 状态 |\n|------|----------|---------|------|\n| boil | 20 | 16:09 | done |\n| melt | **2** | 16:16 | **异常少，疑似早期失败/跳过** |\n| identify-life-stages-1 | 20 | 18:06 | done |\n| freeze | 20 | 19:25 | done |\n| lifespan-longest-lived... | 20 | 20:29 | done |\n| grow-fruit | 20 | 20:47 | done |\n| chemistry-mix | 10 | 21:06 | **进行中 (GPU 0)** |\n\n总计 112 episodes，7 个 task。\n\n### 3. GPU 1 为什么 0%\n\ngemma-11tasks session 跑完了 grow-fruit（最后一个分配的任务），打印了汇总后停了。VLLM 服务还驻留在显存里但没有请求进来，所以利用率归零。**不是崩溃，是任务跑完了。**\n\n### 4. 需要关注\n\n- **melt 只有 2 条**，其余 task 都是 20 条。可能是提前出错或被跳过，需要查 melt 的具体日志确认原因。\n- chemistry-mix 正在 GPU 0 上跑（10/20），预计还需一段时间。\n- GPU 1 的 VLLM 进程白占 26GB 显存，如果不再需要可以 kill 释放。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-gemma-gpu-zero-util.md"
+}

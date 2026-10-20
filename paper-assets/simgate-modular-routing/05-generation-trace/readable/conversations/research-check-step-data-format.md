@@ -1,0 +1,1798 @@
+# research check step data format
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 61
+- **Recorded user turns:** 0
+- **Tool calls:** 30
+- **Original source:** `logs/chats/worker_research_check-step-data-format_20260513T183545.jsonl`
+- **Structured JSON:** [`871830682ac49c024eb0.json`](../../sessions/87/871830682ac49c024eb0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+61 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-13T18:39:16.937207+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__detect_image",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__detect_image",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-13T18:39:16.937554+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-13T18:39:16.937904+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-13T18:39:16.938117+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/mvp/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/mvp/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-13T18:39:16.938395+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Phase 1: 3-way signal detection — always-internal vs always-deterministic vs oracle-routing.\\n\\nFor each task type × episode:\\n  A) always-internal: ReAct LLM picks every action\\n  B) always-deterministic: LLM generates candidates, fork evaluates each, pick best score_delta\\n  C) oracle-routing: run both A and B, pick whichever has higher score_delta\\n\\nUsage:\\n  python src/phase1_signal.py --task_types \\\"boil,melt\\\" --episodes 20 --gpu_id 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport time\\nfrom typing import List, Dict, Any, Optional\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n    STRONG_TASKS, MEDIUM_TASKS, WEAK_TASKS, ALL_MVP_TASKS,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\n\\ndef resolve_task_type(name: str) -> str:\\n    \\\"\\\"\\\"Resolve a short task name to the actual ScienceWorld task name.\\\"\\\"\\\"\\n    try:\\n        available = get_task_types()\\n    except Exception:\\n        return name\\n    if name in available:\\n        return name\\n    matches = [t for t in available if name.lower() in t.lower()]\\n    if matches:\\n        return matches[0]\\n    return name\\n\\n\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\n    \\\"\\\"\\\"Check if a fork result indicates a lethal action.\\\"\\\"\\\"\\n    if fr[\\\"done\\\"] and fr[\\\"score\\\"] < 0:\\n        return True\\n    if fr[\\\"score\\\"] <= -100:\\n        return True\\n    return False\\n\\n\\ndef run_episode_always_internal(\\n    agent: LLMAgent,\\n    task_name: str,\\n    variation_idx: int,\\n    max_steps: int,\\n) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Mode A: LLM ReAct picks every action.\\\"\\\"\\\"\\n    env = create_env(task
+…[truncated 7269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-13T18:39:16.938562+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/prescreening/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls -la /root/autodl-tmp/simgate-modular-routing/results/prescreening/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-13T18:39:16.938768+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "file": "memory.md",
+  "max_chars": "12000"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "file": "memory.md",
+    "max_chars": "12000"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-13T18:39:16.938934+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 56\\ndrwxr-xr-x 7 root root  4096 May 13 23:19 .\\ndrwxr-xr-x 5 root root    69 May 14 00:23 ..\\ndrwxr-xr-x 2 root root    60 May 13 17:10 boil\\ndrwxr-xr-x 2 root root    60 May 13 22:40 change-the-state-of-matter-of\\ndrwxr-xr-x 2 root root    60 May 13 18:59 chemistry-mix-paint-secondary-color\\n-rw-r--r-- 1 root root  3029 May 13 23:19 final_analysis.json\\n-rw-r--r-- 1 root root  3657 May 13 23:19 final_analysis_det_vs_internal.json\\n-rw-r--r-- 1 root root  4177 May 13 22:40 global_summary.json\\ndrwxr-xr-x 2 root root    60 May 13 21:48 grow-plant\\ndrwxr-xr-x 2 root root    60 May 13 20:00 melt\\n-rw-r--r-- 1 root root  4641 May 13 13:08 phase0_validation.json\\n-rw-r--r-- 1 root root  6470 May 13 13:32 phase0_validation_v2.json\\n-rw-r--r-- 1 root root 17587 May 13 14:00 phase1_gpu0.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-13T18:39:16.939144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4108\\ndrwxr-xr-x 9 root root    4096 May 14 02:22 .\\ndrwxr-xr-x 5 root root      69 May 14 00:23 ..\\ndrwxr-xr-x 2 root root      60 May 14 00:42 chemistry-mix\\ndrwxr-xr-x 2 root root      60 May 14 01:02 chemistry-mix-paint-tertiary-color\\ndrwxr-xr-x 2 root root      60 May 14 01:23 find-animal\\ndrwxr-xr-x 2 root root      60 May 14 01:42 find-living-thing\\ndrwxr-xr-x 2 root root      60 May 14 02:02 find-non-living-thing\\ndrwxr-xr-x 2 root root      60 May 14 02:22 find-plant\\ndrwxr-xr-x 2 root root      36 May 14 02:26 freeze\\n-rw-r--r-- 1 root root 1304517 May 14 02:36 run.log\\n-rw-r--r-- 1 root root 1305076 May 14 02:36 summary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-13T18:39:16.939314+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\", \"content\": \"## Phase 1 MVP 最终结论 (2026-05-13)\\n\\n### Verdict: PASS (4/5 tasks 显著正向)\\n\\nPhase 1 验证了 fork-based deterministic evaluation 在 ScienceWorld 上显著优于纯 LLM 内部推理。\\n\\n### 关键设计决策与教训\\n\\n1. **Tie-break 策略**: `>` (strict) 而非 `>=`。95%+ 步骤 score_delta=0（稀疏奖励），`>=` 会让 oracle 退化为 always-internal。用 `>` 后 oracle 在 tie 时选 deterministic，实验验证这是合理的。\\n\\n2. **Death filter 只用于有 fork 的模式**: always-internal 是纯 LLM baseline，不能调 fork/is_lethal（方法论问题——Reviewer 会质疑\\\"你在 internal 模式偷偷用了外部计算\\\"）。death filter 只在 always-deterministic 和 oracle 中生效。\\n\\n3. **melt 与 change-state internal 分数巧合相同的解释**: 两个 task 共享 ScienceWorld environment variations（同房间/物品/布局），LLM 表现极差只产生 3 种结果（-100/0/3），分布碰巧一致。不是数据重复。det 分数已验证不同（6/20 episode 有差异）。\\n\\n4. **boil 数据来自旧代码**（>= tie-break, 无 death filter），full phase 需要用新代码重跑以保证一致性。\\n\\n5. **grow-plant 无效果**: 三种模式完全一致（0.5±1.4），可能 task 本身过于简单或 30 步不够。\\n\\n6. **Fork 机制本身没问题**: 诊断确认 fork_and_lookahead 正确工作，score_before 与 main env 一致。收益主要来自避免 -100 致死动作（\\\"focus on 错误对象\\\"），而非精细的 score 区分。\\n\\n7. **vLLM 兼容性**: torch 2.10.0 + vLLM 0.18.1 有 duplicate template name assertion error，需注释 select_algorithm.py 1695/2164 行。\\n\\n8. **Oracle 增量价值**: 在新代码的 3 个 task 上 oracle > det（Δ +10~17），证明 routing 有独立价值，不是简单的 \\\"deterministic always wins\\\"。\\n\\n### 竞品对标\\n- CogRouter (arXiv 2602.12662): 同 Qwen2.5-7B, ScienceWorld Score=84.6, SR=72.0%。路由 thinking depth（4 levels），与我们路由 reasoning vs computation 是不同维度。\\n- ITP-R (arXiv 2601.08955): Learned world model + K-head gating, SR=63.91%。WM 有 compounding error，我们用 deterministic simulator 避免此问题。\\n\\n## Labeling 策略关键发现 (2026-05-13)\\n\\n### 1-step labeling 不可行\\n- **1-step tie rate: 98.2%**（全局），所有 5 个 task 都 >93%\\n- 原因：稀疏奖励——95%+ 步骤无论选哪个 agent，环境分数都不变（both_delta=0）\\n- 非 tie 步几乎全是 catastrophic gap（|gap|≥100，触发 -100 死亡惩罚）\\n\\n### Action divergence rate: 73.1%\\n- 几乎每步 inter
+…[truncated 548 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-13T18:39:16.939508+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/mvp/boil/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/mvp/boil/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-13T18:39:16.939645+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"episodes.jsonl\\nsummary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-13T18:39:16.939772+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-13T18:39:16.939897+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"episodes.jsonl\\nsummary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-13T18:39:16.940040+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -30 /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "tail -30 /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-13T18:39:16.940166+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-13T18:39:16.940360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 107.50it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.42s/it, est. speed input: 581.59 toks/s, output: 98.93 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.42s/it, est. speed input: 581.59 toks/s, output: 98.93 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.42s/it, est. speed input: 581.59 toks/s, output: 98.93 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 122.95it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.07it/s, est. speed input: 898.30 toks/s, output: 97.31 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.07it/s, est. speed input: 898.30 toks/s, output: 97.31 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.07it/s, est. speed input: 898.30 toks/s, output: 97.31 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 103.36it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.08it/s, est. speed input: 901.74 toks/s, output: 97.19 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.08it/s, est. speed input: 901.74 toks/s, output: 97.19 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.08it/s, est. speed input: 901.74 toks/s, output: 97.19 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00
+…[truncated 6412 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-13T18:39:16.940514+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"episodes.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-13T18:39:16.940669+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -5 /root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -5 /root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-13T18:39:16.940794+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-13T18:39:16.941102+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_internal\\\": {\\\"mode\\\": \\\"always-internal\\\", \\\"task_name\\\": \\\"boil\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": -100.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 16, \\\"total_time_s\\\": 30.145736932754517, \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to picture\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on picture\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the first logical step would be to explore the immediate surroundings. Since the agent can see a picture, it makes sense to interact with it first.\\\\nAction: connect agent to picture\\\"}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect agent to inventory\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 1 on inventory\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently connected to terminal 1 on the picture. To proceed, I need to determine the next logical step. Since the agent is already connected to the picture, connecting it again would be redundant. Therefore, I should consider what the picture might contain or lead to.\\\\n\\\\nAction:\\\"}, {\\\"step\\\": 2, \\\"action\\\": \\\"connect air to inventory\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on air is now connected to terminal 2 on inventory\\\", \\\"llm_output\\\": \\\"Thought: The agent currently has the inventory connected, so we need to find a way to use it. Looking at the valid actions, connecting the air to the inventory seems like a
+…[truncated 7885 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-13T18:39:16.941281+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"^\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"^\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-13T18:39:16.941414+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep \"^=== Task\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep \"^=== Task\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/summary.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-13T18:39:16.941680+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_internal\\\": {\\\"mode\\\": \\\"always-internal\\\", \\\"task_name\\\": \\\"chemistry-mix\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": -100.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 17, \\\"total_time_s\\\": 40.495187520980835, \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to air\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on air\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the task is not specified. A good first step is to connect the agent to the air, as this is a basic interaction that can provide information about the air quality or simply confirm the agent's presence in the environment.\\\\nAction: connect agent to a\\\"}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect agent to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 1 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is already connected to the air, so the next logical step would be to explore the environment by connecting to other locations. Since the current observation mentions that the terminal 1 on the agent is now connected to terminal 1 on air, it implies that the agent is in a location\\\"}, {\\\"step\\\": 2, \\\"action\\\": \\\"connect air to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on air is now connected to terminal 2 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The agent is now connected to the art studio, and we need to establish an air connection to the ar
+…[truncated 7437 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-13T18:39:16.941849+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-13T18:39:16.941980+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-13T18:39:16.942162+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -50 /root/autodl-tmp/simgate-modular-routing/results/prescreening/summary.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "tail -50 /root/autodl-tmp/simgate-modular-routing/results/prescreening/summary.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-13T18:39:16.942354+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 111.45it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s, est. speed input: 1281.33 toks/s, output: 95.09 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s, est. speed input: 1281.33 toks/s, output: 95.09 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  1.61it/s, est. speed input: 1281.33 toks/s, output: 95.09 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 97.34it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  4.27it/s, est. speed input: 3446.66 toks/s, output: 81.13 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  4.27it/s, est. speed input: 3446.66 toks/s, output: 81.13 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  4.26it/s, est. speed input: 3446.66 toks/s, output: 81.13 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 271.49it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  4.56it/s, est. speed input: 3654.81 toks/s, output: 95.81 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  4.56it/s, est. speed input: 3654.81 toks/s, output: 95.81 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  4.55it/s, est. speed input: 3654.81 toks/s, output: 95.81 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:
+…[truncated 6415 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-13T18:39:16.942514+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/prescreening/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-13T18:39:16.942643+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"summary.json\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/*/summary.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"summary.json\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/*/summary.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-13T18:39:16.942808+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chemistry-mix\\nchemistry-mix-paint-tertiary-color\\nfind-animal\\nfind-living-thing\\nfind-non-living-thing\\nfind-plant\\nfreeze\\nrun.log\\nsummary.txt\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-13T18:39:16.942944+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/summary.json:0\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/summary.json:0\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/summary.json:0\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-living-thing/summary.json:0\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/summary.json:0\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-plant/summary.json:0\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-13T18:39:16.943113+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"(task_types|--task)\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"(task_types|--task)\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-13T18:39:16.943251+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-13T18:39:16.943375+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -5 /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-13T18:39:16.943501+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \">>> Running: chemistry-mix at Thu May 14 00:22:49 CST 2026\\nTask: chemistry-mix\\nEpisodes: 5, Max steps: 30\\nGPU: 0, vLLM: True\\n[LLMAgent] Model path: /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-13T18:39:16.943622+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-13T18:39:16.943747+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"3 /root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-13T18:39:16.943881+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep \"Running:\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep \"Running:\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-13T18:39:16.944019+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep \"Summary\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep \"Summary\" /root/autodl-tmp/simgate-modular-routing/results/prescreening/run.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-13T18:39:16.944155+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \">>> Running: chemistry-mix at Thu May 14 00:22:49 CST 2026\\n>>> Running: chemistry-mix-paint-tertiary-color at Thu May 14 00:42:19 CST 2026\\n>>> Running: find-animal at Thu May 14 01:02:35 CST 2026\\n>>> Running: find-living-thing at Thu May 14 01:23:22 CST 2026\\n>>> Running: find-non-living-thing at Thu May 14 01:42:11 CST 2026\\n>>> Running: find-plant at Thu May 14 02:02:46 CST 2026\\n>>> Running: freeze at Thu May 14 02:22:59 CST 2026\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-13T18:39:16.944285+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-13T18:39:16.944418+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/scripts/run_prescreening.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/scripts/run_prescreening.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-13T18:39:16.944538+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/scripts/ -name \"*prescreening*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/scripts/ -name \"*prescreening*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-13T18:39:16.944658+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/simgate-modular-routing/scripts/run_prescreening.sh: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-13T18:39:16.944777+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/autodl-tmp/simgate-modular-routing/scripts/': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-13T18:39:16.944892+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/ -name \"*prescreening*\" -not -path \"*/results/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/ -name \"*prescreening*\" -not -path \"*/results/*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-13T18:39:16.945030+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py\\n/root/autodl-tmp/simgate-modular-routing/run_prescreening_gpu0.sh\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-13T18:39:16.945152+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep \"prescreening\" /root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep \"prescreening\" /root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-13T18:39:16.945270+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-13T18:39:16.945388+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/run_prescreening_gpu0.sh",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/run_prescreening_gpu0.sh",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-13T18:39:16.945505+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -80 /root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -80 /root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-13T18:39:16.945646+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"#!/bin/bash\\n# Signal prescreening - all 25 untested tasks on GPU0\\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\\ncd /root/autodl-tmp/simgate-modular-routing/\\n\\nSKIP=\\\"boil|melt|change-the-state-of-matter-of|chemistry-mix-paint-secondary-color|grow-plant\\\"\\nSUMMARY_FILE=\\\"results/prescreening/summary.txt\\\"\\nmkdir -p results/prescreening\\n\\necho \\\"=== Prescreening started at $(date) ===\\\" > $SUMMARY_FILE\\n\\nwhile IFS= read -r line; do\\n    [[ \\\"$line\\\" =~ ^# ]] && continue\\n    [[ -z \\\"$line\\\" ]] && continue\\n    task=$(echo \\\"$line\\\" | sed 's/^[0-9]*: //' | sed 's/  # MVP-tested$//')\\n    if echo \\\"$task\\\" | grep -qE \\\"^($SKIP)$\\\"; then\\n        echo \\\"SKIP: $task (MVP-tested)\\\" >> $SUMMARY_FILE\\n        continue\\n    fi\\n    echo \\\">>> Running: $task at $(date)\\\" | tee -a $SUMMARY_FILE\\n    python src/signal_prescreening.py \\\\\\n        --task_type \\\"$task\\\" \\\\\\n        --episodes 5 \\\\\\n        --gpu_id 0 \\\\\\n        --max_steps 30 \\\\\\n        --output_dir results/prescreening/ \\\\\\n        --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ \\\\\\n        --use_vllm 2>&1 | tee -a $SUMMARY_FILE\\n    echo \\\"<<< Done: $task at $(date)\\\" >> $SUMMARY_FILE\\n    echo \\\"\\\" >> $SUMMARY_FILE\\ndone < notes/scienceworld_task_types.txt\\n\\necho \\\"=== Prescreening finished at $(date) ===\\\" >> $SUMMARY_FILE\\necho \\\"=== FINAL SUMMARY ===\\\" >> $SUMMARY_FILE\\nfor f in results/prescreening/*/summary.json; do\\n    if [ -f \\\"$f\\\" ]; then\\n        task_dir=$(dirname \\\"$f\\\" | xargs basename)\\n        echo \\\"$task_dir: $(cat $f)\\\" >> $SUMMARY_FILE\\n    fi\\ndone\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-13T18:39:16.945858+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Lightweight 2-way prescreening: always-internal vs always-deterministic.\\n\\nSimplified version of phase1_signal.py for quick signal checks.\\nRuns fewer episodes (default 5) on a single task type,\\noutputs per-episode JSONL and a terminal summary with Δ(D-I) direction.\\n\\nKey differences from phase1_signal.py:\\n  - No oracle-routing mode (2-way only)\\n  - always-internal does NOT use death filter (pure LLM)\\n  - always-deterministic uses death filter via fork_and_lookahead\\n  - Single task type per invocation (--task_type, not comma-separated)\\n\\nUsage:\\n  python src/signal_prescreening.py --task_type boil --episodes 5 --gpu_id 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport time\\nfrom typing import Dict, Any\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\n\\ndef resolve_task_type(name: str) -> str:\\n    \\\"\\\"\\\"Resolve short task name to ScienceWorld task name.\\\"\\\"\\\"\\n    try:\\n        available = get_task_types()\\n    except Exception:\\n        return name\\n    if name in available:\\n        return name\\n    matches = [t for t in available if name.lower() in t.lower()]\\n    if matches:\\n        return matches[0]\\n    return name\\n\\n\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\n    \\\"\\\"\\\"Check if a fork result indicates a lethal action.\\\"\\\"\\\"\\n    if fr[\\\"done\\\"] and fr[\\\"score\\\"] < 0:\\n        return True\\n    if fr[\\\"score\\\"] <= -100:\\n        return True\\n    return False\\n\\n\\ndef run_episode_internal(\\n    agent: LLMAgent,\\n    task_name: str,\\n    variation_idx: int,\\n    max_steps: int,\\n) -> Dict[str, Any]:\
+…[truncated 678 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-13T18:39:16.946117+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/notes/scienceworld_task_types.txt",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/notes/scienceworld_task_types.txt",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-13T18:39:16.946259+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-13T18:39:16.946403+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# ScienceWorld Task Types (total: 30)\\n# MVP tested: boil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant\\n# Generated: 2026-05-13\\n\\n0: boil  # MVP-tested\\n1: change-the-state-of-matter-of  # MVP-tested\\n2: chemistry-mix\\n3: chemistry-mix-paint-secondary-color  # MVP-tested\\n4: chemistry-mix-paint-tertiary-color\\n5: find-animal\\n6: find-living-thing\\n7: find-non-living-thing\\n8: find-plant\\n9: freeze\\n10: grow-fruit\\n11: grow-plant  # MVP-tested\\n12: identify-life-stages-1\\n13: identify-life-stages-2\\n14: inclined-plane-determine-angle\\n15: inclined-plane-friction-named-surfaces\\n16: inclined-plane-friction-unnamed-surfaces\\n17: lifespan-longest-lived\\n18: lifespan-longest-lived-then-shortest-lived\\n19: lifespan-shortest-lived\\n20: measure-melting-point-known-substance\\n21: measure-melting-point-unknown-substance\\n22: melt  # MVP-tested\\n23: mendelian-genetics-known-plant\\n24: mendelian-genetics-unknown-plant\\n25: power-component\\n26: power-component-renewable-vs-nonrenewable-energy\\n27: test-conductivity\\n28: test-conductivity-of-unknown-substances\\n29: use-thermometer\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.73}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-13T18:39:16.946665+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Lightweight 2-way prescreening: always-internal vs always-deterministic.\\n\\nSimplified version of phase1_signal.py for quick signal checks.\\nRuns fewer episodes (default 5) on a single task type,\\noutputs per-episode JSONL and a terminal summary with Δ(D-I) direction.\\n\\nKey differences from phase1_signal.py:\\n  - No oracle-routing mode (2-way only)\\n  - always-internal does NOT use death filter (pure LLM)\\n  - always-deterministic uses death filter via fork_and_lookahead\\n  - Single task type per invocation (--task_type, not comma-separated)\\n\\nUsage:\\n  python src/signal_prescreening.py --task_type boil --episodes 5 --gpu_id 0\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport time\\nfrom typing import Dict, Any\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\n\\ndef resolve_task_type(name: str) -> str:\\n    \\\"\\\"\\\"Resolve short task name to ScienceWorld task name.\\\"\\\"\\\"\\n    try:\\n        available = get_task_types()\\n    except Exception:\\n        return name\\n    if name in available:\\n        return name\\n    matches = [t for t in available if name.lower() in t.lower()]\\n    if matches:\\n        return matches[0]\\n    return name\\n\\n\\ndef is_lethal(fr: Dict[str, Any]) -> bool:\\n    \\\"\\\"\\\"Check if a fork result indicates a lethal action.\\\"\\\"\\\"\\n    if fr[\\\"done\\\"] and fr[\\\"score\\\"] < 0:\\n        return True\\n    if fr[\\\"score\\\"] <= -100:\\n        return True\\n    return False\\n\\n\\ndef run_episode_internal(\\n    agent: LLMAgent,\\n    task_name: str,\\n    variation_idx: int,\\n    max_steps: int,\\n) -> Dict[str, Any]:\
+…[truncated 7312 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-13T18:39:16.946910+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "simgate-modular-routing",
+  "file": "memory.md",
+  "content": "## Phase 1 MVP 最终结论 (2026-05-13)\n\n### Verdict: PASS (4/5 tasks 显著正向)\n\nPhase 1 验证了 fork-based deterministic evaluation 在 ScienceWorld 上显著优于纯 LLM 内部推理。\n\n### 关键设计决策与教训\n\n1. **Tie-break 策略**: `>` (strict) 而非 `>=`。95%+ 步骤 score_delta=0（稀疏奖励），`>=` 会让 oracle 退化为 always-internal。用 `>` 后 oracle 在 tie 时选 deterministic，实验验证这是合理的。\n\n2. **Death filter 只用于有 fork 的模式**: always-internal 是纯 LLM baseline，不能调 fork/is_lethal（方法论问题——Reviewer 会质疑\"你在 internal 模式偷偷用了外部计算\"）。death filter 只在 always-deterministic 和 oracle 中生效。\n\n3. **melt 与 change-state internal 分数巧合相同的解释**: 两个 task 共享 ScienceWorld environment variations（同房间/物品/布局），LLM 表现极差只产生 3 种结果（-100/0/3），分布碰巧一致。不是数据重复。det 分数已验证不同（6/20 episode 有差异）。\n\n4. **boil 数据来自旧代码**（>= tie-break, 无 death filter），full phase 需要用新代码重跑以保证一致性。\n\n5. **grow-plant 无效果**: 三种模式完全一致（0.5±1.4），可能 task 本身过于简单或 30 步不够。\n\n6. **Fork 机制本身没问题**: 诊断确认 fork_and_lookahead 正确工作，score_before 与 main env 一致。收益主要来自避免 -100 致死动作（\"focus on 错误对象\"），而非精细的 score 区分。\n\n7. **vLLM 兼容性**: torch 2.10.0 + vLLM 0.18.1 有 duplicate template name assertion error，需注释 select_algorithm.py 1695/2164 行。\n\n8. **Oracle 增量价值**: 在新代码的 3 个 task 上 oracle > det（Δ +10~17），证明 routing 有独立价值，不是简单的 \"deterministic always wins\"。\n\n### 竞品对标\n- CogRouter (arXiv 2602.12662): 同 Qwen2.5-7B, ScienceWorld Score=84.6, SR=72.0%。路由 thinking depth（4 levels），与我们路由 reasoning vs computation 是不同维度。\n- ITP-R (arXiv 2601.08955): Learned world model + K-head gating, SR=63.91%。WM 有 compounding error，我们用 deterministic simulator 避免此问题。\n\n## Labeling 策略关键发现 (2026-05-13)\n\n### 1-step labeling 不可行\n- **1-step tie rate: 98.2%**（全局），所有 5 个 task 都 >93%\n- 原因：稀疏奖励——95%+ 步骤无论选哪个 agent，环境分数都不变（both_delta=0）\n- 非 tie 步几乎全是 catastrophic gap（|gap|≥100，触发 -100 死亡惩罚）\n\n### Action divergence rate: 73.1%\n- 几乎每步 internal 和 deterministic 建议不同动作\n- 与 1-step tie rate 互补：action 频繁不同，但 1-step score 差异几乎为 0\n- 这正是 episode-terminal labeling 的 motivation\n\n### Episode-terminal labeling 成本估算（15 tasks × 20 ep）\n- Fork 成本是基础采集的 15.6×（因 73% divergence rate）\n- 双卡并行约 78h（K=10），成本 ~¥403\n- Director 决定分阶段：pilot 3 tasks × 10 ep 先验证 non-tie rate\n- 判定标准：>30% → K=10 全量；15-30% → 尝试 K=20；<15% → pivot\n\n### phase1_signal.py 不支持 --seed 参数\nboil v3 rerun 发现此问题，已去掉该 flag。后续实验注意。\n\n## Step-level 数据格式验证 (2026-05-14)\n\n### 结论：phase1_signal.py 和 signal_prescreening.py 都已保存 step-level data\n\n两个脚本输出结构一致，每个 episode 的每一步都保存了 (observation, action, modality_label) triple。\n\n### 输出文件结构\n每个 task 目录下有 `episodes.jsonl`（每行一个完整 episode）和 `summary.json`。\n\nJSONL 每行 schema：\n```json\n{\n  \"episode_idx\": int,\n  \"variation_idx\": int,\n  \"always_internal\": { &lt;episode_record> },\n  \"always_deterministic\": { &lt;episode_record> },\n  \"oracle_routing\": { &lt;episode_record> }  // phase1_signal.py only, prescreening 无此字段\n}\n```\n\n### Episode record schema：\n```json\n{\n  \"mode\": \"always-internal\" | \"always-deterministic\" | \"oracle-routing\",\n  \"task_name\": str,\n  \"variation_idx\": int,\n  \"final_score\": float,\n  \"initial_score\": float,\n  \"num_steps\": int,\n  \"total_time_s\": float,\n  \"steps\": [ &lt;step_record>, ... ],\n  \"action_history\": [str, ...]\n}\n```\n\n### Step record 字段（按 mode 有差异）：\n\n| 字段 | always-internal | always-deterministic | oracle-routing |\n|------|:-:|:-:|:-:|\n| step (int) | ✓ | ✓ | ✓ |\n| action (str) | ✓ | ✓ | ✓ |\n| modality (\"internal\"/\"deterministic\") | ✓ | ✓ | ✓ |\n| score_before (float) | ✓ | ✓ | ✓ |\n| score_after (float) | ✓ | ✓ | ✓ |\n| score_delta (float) | ✓ | ✓ | ✓ |\n| observation (str, ≤500 chars) | ✓ | ✓ | ✓ |\n| llm_output (str, ≤300 chars) | ✓ | ✗ | ✗ |\n| candidates (list of fork results) | ✗ | ✓ | ✗ |\n| internal_action, internal_delta | ✗ | ✗ | ✓ |\n| det_action, det_delta | ✗ | ✗ | ✓ |\n\n### plan-001b 适配性评估\n- **observation**: ✓ 已保存，但截断到 500 chars。需评估是否足够——ScienceWorld 观测通常较短，大部分应在 500 chars 内。\n- **action**: ✓ 完整保存。\n- **modality_label**: ✓ 每步有 modality 字段。但 plan-001b 需要的是 episode-level counterfactual label（根据 episode 总分重新标注所有步骤），而非当前的 per-step modality。\n- **关键差异**: 当前数据中 always-internal 和 always-deterministic 是独立 episode（不同 trajectory），而 plan-001b 需要同一 variation 下两种模式的 trajectory 对比。数据已经按 episode_idx 配对（同一 variation_idx），可以直接用 episode 总分做 counterfactual labeling。\n\n### 不需要修改代码即可用于 plan-001b\n现有数据格式足以支持 episode-level labeling。只需写一个后处理脚本：\n1. 读 episodes.jsonl\n2. 对每个 episode，比较 always_internal.final_score vs always_deterministic.final_score\n3. 根据 episode 总分为所有步骤标注 modality_label\n4. 输出 (observation, action, modality_label) triples\n\n### Prescreening 进度 (截至 2026-05-14 02:30 CST)\n- 总任务 30 个，跳过 5 个 MVP-tested，需 prescreen 25 个\n- 已完成 6 个（有 summary.json）: chemistry-mix, chemistry-mix-paint-tertiary-color, find-animal, find-living-thing, find-non-living-thing, find-plant\n- 正在运行: freeze（3/5 episodes done）\n- 每个 task 约 20 分钟（5 ep × 2-way × 30 steps）\n- 剩余 18 个 task，预计还需约 6 小时，约 08:30 CST 完成\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "file": "memory.md",
+    "content": "## Phase 1 MVP 最终结论 (2026-05-13)\n\n### Verdict: PASS (4/5 tasks 显著正向)\n\nPhase 1 验证了 fork-based deterministic evaluation 在 ScienceWorld 上显著优于纯 LLM 内部推理。\n\n### 关键设计决策与教训\n\n1. **Tie-break 策略**: `>` (strict) 而非 `>=`。95%+ 步骤 score_delta=0（稀疏奖励），`>=` 会让 oracle 退化为 always-internal。用 `>` 后 oracle 在 tie 时选 deterministic，实验验证这是合理的。\n\n2. **Death filter 只用于有 fork 的模式**: always-internal 是纯 LLM baseline，不能调 fork/is_lethal（方法论问题——Reviewer 会质疑\"你在 internal 模式偷偷用了外部计算\"）。death filter 只在 always-deterministic 和 oracle 中生效。\n\n3. **melt 与 change-state internal 分数巧合相同的解释**: 两个 task 共享 ScienceWorld environment variations（同房间/物品/布局），LLM 表现极差只产生 3 种结果（-100/0/3），分布碰巧一致。不是数据重复。det 分数已验证不同（6/20 episode 有差异）。\n\n4. **boil 数据来自旧代码**（>= tie-break, 无 death filter），full phase 需要用新代码重跑以保证一致性。\n\n5. **grow-plant 无效果**: 三种模式完全一致（0.5±1.4），可能 task 本身过于简单或 30 步不够。\n\n6. **Fork 机制本身没问题**: 诊断确认 fork_and_lookahead 正确工作，score_before 与 main env 一致。收益主要来自避免 -100 致死动作（\"focus on 错误对象\"），而非精细的 score 区分。\n\n7. **vLLM 兼容性**: torch 2.10.0 + vLLM 0.18.1 有 duplicate template name assertion error，需注释 select_algorithm.py 1695/2164 行。\n\n8. **Oracle 增量价值**: 在新代码的 3 个 task 上 oracle > det（Δ +10~17），证明 routing 有独立价值，不是简单的 \"deterministic always wins\"。\n\n### 竞品对标\n- CogRouter (arXiv 2602.12662): 同 Qwen2.5-7B, ScienceWorld Score=84.6, SR=72.0%。路由 thinking depth（4 levels），与我们路由 reasoning vs computation 是不同维度。\n- ITP-R (arXiv 2601.08955): Learned world model + K-head gating, SR=63.91%。WM 有 compounding error，我们用 deterministic simulator 避免此问题。\n\n## Labeling 策略关键发现 (2026-05-13)\n\n### 1-step labeling 不可行\n- **1-step tie rate: 98.2%**（全局），所有 5 个 task 都 >93%\n- 原因：稀疏奖励——95%+ 步骤无论选哪个 agent，环境分数都不变（both_delta=0）\n- 非 tie 步几乎全是 catastrophic gap（|gap|≥100，触发 -100 死亡惩罚）\n\n### Action divergence rate: 73.1%\n- 几乎每步 internal 和 deterministic 建议不同动作\n- 与 1-step tie rate 互补：action 频繁不同，但 1-step score 差异几乎为 0\n- 这正是 episode-terminal labeling 的 motivation\n\n### Episode-terminal labeling 成本估算（15 tasks × 20 ep）\n- Fork 成本是基础采集的 15.6×（因 73% divergence rate）\n- 双卡并行约 78h（K=10），成本 ~¥403\n- Director 决定分阶段：pilot 3 tasks × 10 ep 先验证 non-tie rate\n- 判定标准：>30% → K=10 全量；15-30% → 尝试 K=20；<15% → pivot\n\n### phase1_signal.py 不支持 --seed 参数\nboil v3 rerun 发现此问题，已去掉该 flag。后续实验注意。\n\n## Step-level 数据格式验证 (2026-05-14)\n\n### 结论：phase1_signal.py 和 signal_prescreening.py 都已保存 step-level data\n\n两个脚本输出结构一致，每个 episode 的每一步都保存了 (observation, action, modality_label) triple。\n\n### 输出文件结构\n每个 task 目录下有 `episodes.jsonl`（每行一个完整 episode）和 `summary.json`。\n\nJSONL 每行 schema：\n```json\n{\n  \"episode_idx\": int,\n  \"variation_idx\": int,\n  \"always_internal\": { &lt;episode_record> },\n  \"always_deterministic\": { &lt;episode_record> },\n  \"oracle_routing\": { &lt;episode_record> }  // phase1_signal.py only, prescreening 无此字段\n}\n```\n\n### Episode record schema：\n```json\n{\n  \"mode\": \"always-internal\" | \"always-deterministic\" | \"oracle-routing\",\n  \"task_name\": str,\n  \"variation_idx\": int,\n  \"final_score\": float,\n  \"initial_score\": float,\n  \"num_steps\": int,\n  \"total_time_s\": float,\n  \"steps\": [ &lt;step_record>, ... ],\n  \"action_history\": [str, ...]\n}\n```\n\n### Step record 字段（按 mode 有差异）：\n\n| 字段 | always-internal | always-deterministic | oracle-routing |\n|------|:-:|:-:|:-:|\n| step (int) | ✓ | ✓ | ✓ |\n| action (str) | ✓ | ✓ | ✓ |\n| modality (\"internal\"/\"deterministic\") | ✓ | ✓ | ✓ |\n| score_before (float) | ✓ | ✓ | ✓ |\n| score_after (float) | ✓ | ✓ | ✓ |\n| score_delta (float) | ✓ | ✓ | ✓ |\n| observation (str, ≤500 chars) | ✓ | ✓ | ✓ |\n| llm_output (str, ≤300 chars) | ✓ | ✗ | ✗ |\n| candidates (list of fork results) | ✗ | ✓ | ✗ |\n| internal_action, internal_delta | ✗ | ✗ | ✓ |\n| det_action, det_delta | ✗ | ✗ | ✓ |\n\n### plan-001b 适配性评估\n- **observation**: ✓ 已保存，但截断到 500 chars。需评估是否足够——ScienceWorld 观测通常较短，大部分应在 500 chars 内。\n- **action**: ✓ 完整保存。\n- **modality_label**: ✓ 每步有 modality 字段。但 plan-001b 需要的是 episode-level counterfactual label（根据 episode 总分重新标注所有步骤），而非当前的 per-step modality。\n- **关键差异**: 当前数据中 always-internal 和 always-deterministic 是独立 episode（不同 trajectory），而 plan-001b 需要同一 variation 下两种模式的 trajectory 对比。数据已经按 episode_idx 配对（同一 variation_idx），可以直接用 episode 总分做 counterfactual labeling。\n\n### 不需要修改代码即可用于 plan-001b\n现有数据格式足以支持 episode-level labeling。只需写一个后处理脚本：\n1. 读 episodes.jsonl\n2. 对每个 episode，比较 always_internal.final_score vs always_deterministic.final_score\n3. 根据 episode 总分为所有步骤标注 modality_label\n4. 输出 (observation, action, modality_label) triples\n\n### Prescreening 进度 (截至 2026-05-14 02:30 CST)\n- 总任务 30 个，跳过 5 个 MVP-tested，需 prescreen 25 个\n- 已完成 6 个（有 summary.json）: chemistry-mix, chemistry-mix-paint-tertiary-color, find-animal, find-living-thing, find-non-living-thing, find-plant\n- 正在运行: freeze（3/5 episodes done）\n- 每个 task 约 20 分钟（5 ep × 2-way × 30 steps）\n- 剩余 18 个 task，预计还需约 6 小时，约 08:30 CST 完成\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-13T18:39:16.947144+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_research_check-step-data-format_20260513T183545",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-13T18:39:16.947319+00:00_
+
+验证结果：
+
+**phase1_signal.py 和 signal_prescreening.py 都已保存 step-level data。** 每步记录包含：
+- `observation`（≤500 chars）
+- `action`（完整）
+- `modality`（"internal" / "deterministic"）
+- `score_before`, `score_after`, `score_delta`
+- always-internal 额外有 `llm_output`（≤300 chars）
+- always-deterministic 额外有 `candidates`（fork 评估结果列表）
+
+**plan-001b 适配性：可直接用，不需改代码。** 现有 episodes.jsonl 已按 episode_idx 配对同 variation 的 internal 和 deterministic trajectories。写一个后处理脚本比较 `always_internal.final_score` vs `always_deterministic.final_score`，即可为所有步骤生成 episode-level counterfactual label，输出 (observation, action, modality_label) triples。
+
+**Prescreening 进度：7/25**（6 完成 + freeze 进行中），每 task ~20min，预计还需 ~6h，约 08:30 CST 完成。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_research_check-step-data-format_20260513T183545"
+}
+```
+
+</details>
+
+---

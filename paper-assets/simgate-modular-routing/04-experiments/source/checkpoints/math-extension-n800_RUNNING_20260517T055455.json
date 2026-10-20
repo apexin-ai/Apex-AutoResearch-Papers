@@ -1,0 +1,60 @@
+{
+  "exp_id": "math-extension-n800",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T04:04:07.884Z",
+    "updated_at": "2026-05-17T05:54:55.099Z",
+    "hypothesis": "MATH Level 4-5 在 N=800 下 internal > code-interpreter 效应达到统计显著（p<0.05），确认无 catastrophic failure 环境中 deterministic modality 无优势",
+    "parent": "math-negative-contrast",
+    "spec": {
+      "command": "bash /root/autodl-tmp/simgate-modular-routing/scripts/run_math_extension.sh",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "565371",
+      "log_path": "~/runs/simgate-modular-routing/math-extension-n800.log",
+      "submitted_at": "2026-05-17T04:13:25.173Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "MATH Level 4-5 (offset 300-799)",
+      "data_count": 500,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (inference-only)",
+      "eval_data": "MATH Level 4-5, N=500 new + 300 existing = 800 total"
+    },
+    "metrics": {
+      "n": 795,
+      "internal_accuracy": 0.7346,
+      "code_accuracy": 0.7296,
+      "diff_pp": 0.5,
+      "mcnemar_chi2": 0.1026,
+      "p_value": 0.8103,
+      "ci_95_low_pp": -2.58,
+      "ci_95_high_pp": 3.58,
+      "power": 0.0618,
+      "both_correct": 504,
+      "both_wrong": 135,
+      "internal_only": 80,
+      "code_only": 76,
+      "labels": {
+        "no_preference": 671,
+        "internal_preferred": 66,
+        "det_preferred": 58
+      },
+      "per_type": {
+        "algebra_N585": "+2.22pp internal",
+        "counting_probability_N210": "+4.29pp code"
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-17T05:54:55.302658+00:00",
+  "trigger": "update_registry"
+}

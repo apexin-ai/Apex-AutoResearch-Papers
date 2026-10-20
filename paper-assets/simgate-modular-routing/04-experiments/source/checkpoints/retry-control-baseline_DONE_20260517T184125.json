@@ -1,0 +1,42 @@
+{
+  "exp_id": "retry-control-baseline",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:10:35.303Z",
+    "updated_at": "2026-05-17T18:41:25.573Z",
+    "hypothesis": "Retry（无 reflexion 自我纠错）能否同样降低 death rate；如果 retry 效果与 reflexion 相当，则 reflexion 的收益来自重试机会而非自我纠错机制",
+    "parent": "reflexion-internal-baseline",
+    "spec": {
+      "command": "python reflexion_baseline.py --mode retry --tasks <task_names> --episodes-per-task 20 --max-trials 3 --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --api-base http://localhost:8002/v1 --output-dir /root/autodl-tmp/simgate-modular-routing/outputs/retry-control --max-steps 30 --seed 42",
+      "server": "westb-14838",
+      "data_path": "ScienceWorld environment interactive episodes",
+      "data_count": "220 episodes (11 tasks x 20 episodes)",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (episode collection)",
+      "eval_data": "ScienceWorld environment interactive episodes"
+    },
+    "metrics": {
+      "death_rate": 0.409,
+      "success_rate": 0.141,
+      "episodes_collected": 220,
+      "episodes_target": 220,
+      "deaths": 90,
+      "successes": 31,
+      "supplement_identify_life_stages_1": "9 eps, 6 deaths, 1 success",
+      "supplement_identify_life_stages_2": "20 eps, 5 deaths, 1 success"
+    },
+    "conclusion": "failed",
+    "reproduce": {
+      "finished_at": "2026-05-17T18:41:23.628Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "completed_at": "2026-05-17T18:41:24.090Z"
+  },
+  "timestamp": "2026-05-17T18:41:25.882729+00:00",
+  "trigger": "update_registry"
+}

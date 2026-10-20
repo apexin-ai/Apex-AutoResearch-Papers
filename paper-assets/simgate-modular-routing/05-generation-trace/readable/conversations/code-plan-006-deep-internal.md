@@ -1,0 +1,3148 @@
+# code plan 006 deep internal
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 107
+- **Recorded user turns:** 0
+- **Tool calls:** 53
+- **Original source:** `logs/chats/worker_code_plan-006-deep-internal_20260515T143105.jsonl`
+- **Structured JSON:** [`7a06a0b4e2f0ac35eb2a.json`](../../sessions/7a/7a06a0b4e2f0ac35eb2a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+107 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-15T14:43:18.161321+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+  "max_results": "6"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image,mcp__agent-ml-research__register_artifact,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry",
+    "max_results": "6"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-15T14:43:18.161654+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-15T14:43:18.161819+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, os, glob\nfrom collections import defaultdict\ntask_stats = defaultdict(lambda: {'det':0, 'int':0, 'no':0, 'total':0})\nfor f in glob.glob('results/plan_c/*/episodes.jsonl'):\n    task = f.split('/')[-2]\n    with open(f) as fh:\n        for line in fh:\n            d = json.loads(line)\n            label = d.get('label', 'no-preference')\n            if 'det' in label: task_stats[task]['det'] += 1\n            elif 'int' in label: task_stats[task]['int'] += 1\n            else: task_stats[task]['no'] += 1\n            task_stats[task]['total'] += 1\nfor t, s in sorted(task_stats.items(), key=lambda x: -x[1]['det']/max(x[1]['total'],1)):\n    print(f'{t}: det={s[\\\"det\\\"]}, int={s[\\\"int\\\"]}, no={s[\\\"no\\\"]}, total={s[\\\"total\\\"]}, det_pct={s[\\\"det\\\"]/s[\\\"total\\\"]*100:.0f}%')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, os, glob\nfrom collections import defaultdict\ntask_stats = defaultdict(lambda: {'det':0, 'int':0, 'no':0, 'total':0})\nfor f in glob.glob('results/plan_c/*/episodes.jsonl'):\n    task = f.split('/')[-2]\n    with open(f) as fh:\n        for line in fh:\n            d = json.loads(line)\n            label = d.get('label', 'no-preference')\n            if 'det' in label: task_stats[task]['det'] += 1\n            elif 'int' in label: task_stats[task]['int'] += 1\n            else: task_stats[task]['no'] += 1\n            task_stats[task]['total'] += 1\nfor t, s in sorted(task_stats.items(), key=lambda x: -x[1]['det']/max(x[1]['total'],1)):\n    print(f'{t}: det={s[\\\"det\\\"]}, int={s[\\\"int\\\"]}, no={s[\\\"no\\\"]}, total={s[\\\"total\\\"]}, det_pct={s[\\\"det\\\"]/s[\\\"total\\\"]*100:.0f}%')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T14:43:18.161958+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -80 /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -80 /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 5 · 2026-05-15T14:43:18.162170+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '&&' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6 · 2026-05-15T14:43:18.162301+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -rn \"thinking\\|deep.internal\\|enable_thinking\\|CoT\\|think\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\" -l",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -rn \"thinking\\|deep.internal\\|enable_thinking\\|CoT\\|think\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\" -l",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T14:43:18.162476+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Plan C episode-level labeling data collection for router SFT training.\\n#\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\n# compares final episode scores to label each step's modality preference.\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\n#\\n# Outputs:\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\n#\\n# Usage:\\n#   python src/episode_level_collection.py --task_types \\\"boil,melt\\\" --episodes 20 --gpu_id 0\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport signal\\nimport subprocess\\nimport time\\nfrom typing import List, Dict, Any\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\nDEATH_THRESHOLD = -100\\n\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\nSLIM_EPISODES = os.environ.get(\\\"SLIM_EPISODES\\\", \\\"1\\\") == \\\"1\\\"\\n\\n\\ndef _slim_episode_data(ep):\\n    \\\"\\\"\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\"\\\"\\\"\\n    if not SLIM_EPISODES:\\n        return ep\\n    result = {k: v for k, v in ep.items() if k != \\\"steps\\\"}\\n    if \\\"steps\\\" in ep:\\n        result[\\\"steps\\\"] = [\\n            {k: v for k, v in s.items()\\n             if k not in (\\\"llm_output\\\", \\\"action_history\\\", \\\"candidates\\\")}\\n           
+…[truncated 1297 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-15T14:43:18.162635+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T14:43:18.162763+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, os, glob\nfrom collections import defaultdict\ntask_stats = defaultdict(lambda: {'det':0, 'int':0, 'no':0, 'total':0})\nfor f in glob.glob('results/plan_c/*/episodes.jsonl'):\n    task = f.split('/')[-2]\n    with open(f) as fh:\n        for line in fh:\n            d = json.loads(line)\n            label = d.get('label', 'no-preference')\n            if 'det' in label: task_stats[task]['det'] += 1\n            elif 'int' in label: task_stats[task]['int'] += 1\n            else: task_stats[task]['no'] += 1\n            task_stats[task]['total'] += 1\nfor t, s in sorted(task_stats.items(), key=lambda x: -x[1]['det']/max(x[1]['total'],1)):\n    print(f'{t}: det={s[\\\"det\\\"]}, int={s[\\\"int\\\"]}, no={s[\\\"no\\\"]}, total={s[\\\"total\\\"]}, det_pct={s[\\\"det\\\"]/s[\\\"total\\\"]*100:.0f}%')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, os, glob\nfrom collections import defaultdict\ntask_stats = defaultdict(lambda: {'det':0, 'int':0, 'no':0, 'total':0})\nfor f in glob.glob('results/plan_c/*/episodes.jsonl'):\n    task = f.split('/')[-2]\n    with open(f) as fh:\n        for line in fh:\n            d = json.loads(line)\n            label = d.get('label', 'no-preference')\n            if 'det' in label: task_stats[task]['det'] += 1\n            elif 'int' in label: task_stats[task]['int'] += 1\n            else: task_stats[task]['no'] += 1\n            task_stats[task]['total'] += 1\nfor t, s in sorted(task_stats.items(), key=lambda x: -x[1]['det']/max(x[1]['total'],1)):\n    print(f'{t}: det={s[\\\"det\\\"]}, int={s[\\\"int\\\"]}, no={s[\\\"no\\\"]}, total={s[\\\"total\\\"]}, det_pct={s[\\\"det\\\"]/s[\\\"total\\\"]*100:.0f}%')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T14:43:18.162900+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"find-non-living-thing: det=0, int=0, no=40, total=40, det_pct=0%\\nfind-animal: det=0, int=0, no=20, total=20, det_pct=0%\\ngrow-fruit: det=0, int=0, no=20, total=20, det_pct=0%\\nidentify-life-stages-1: det=0, int=0, no=20, total=20, det_pct=0%\\ninclined-plane-determine-angle: det=0, int=0, no=20, total=20, det_pct=0%\\nlifespan-longest-lived-then-shortest-lived: det=0, int=0, no=20, total=20, det_pct=0%\\nidentify-life-stages-2: det=0, int=0, no=20, total=20, det_pct=0%\\nmeasure-melting-point-unknown-substance: det=0, int=0, no=20, total=20, det_pct=0%\\nfreeze: det=0, int=0, no=20, total=20, det_pct=0%\\nchemistry-mix: det=0, int=0, no=20, total=20, det_pct=0%\\nlifespan-longest-lived: det=0, int=0, no=25, total=25, det_pct=0%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-15T14:43:18.163052+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -rn \"thinking\\|deep_internal\\|enable_thinking\\|CoT\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -rn \"thinking\\|deep_internal\\|enable_thinking\\|CoT\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-15T14:43:18.163181+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-15T14:43:18.163331+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, glob\nfrom collections import Counter\nlabels = Counter()\nfor f in glob.glob('results/plan_c/*/episodes.jsonl'):\n    with open(f) as fh:\n        for line in fh:\n            d = json.loads(line)\n            labels[d.get('label', 'MISSING')] += 1\nfor l, c in labels.most_common():\n    print(f'{l}: {c}')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, glob\nfrom collections import Counter\nlabels = Counter()\nfor f in glob.glob('results/plan_c/*/episodes.jsonl'):\n    with open(f) as fh:\n        for line in fh:\n            d = json.loads(line)\n            labels[d.get('label', 'MISSING')] += 1\nfor l, c in labels.most_common():\n    print(f'{l}: {c}')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-15T14:43:18.163456+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"MISSING: 245\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.88}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-15T14:43:18.163570+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -rn \"thinking\\|deep_internal\\|enable_thinking\\|CoT\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -rn \"thinking\\|deep_internal\\|enable_thinking\\|CoT\" /root/autodl-tmp/simgate-modular-routing/src/ --include=\"*.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-15T14:43:18.163705+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/training/implicit_router_sft.py:440:            enable_thinking=False,\\n/root/autodl-tmp/simgate-modular-routing/src/training/generative_router_sft.py:519:            enable_thinking=False,\\n/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:3:Supports both thinking-on (strip &lt;think> tags) and thinking-off modes.\\n/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:65:    output_path=None, enable_thinking=False,\\n/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:81:    mode_str = \\\"thinking_on\\\" if enable_thinking else \\\"thinking_off\\\"\\n/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:93:                    enable_thinking=enable_thinking,\\n/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:114:            clean_text = strip_think_tags(generated_text) if enable_thinking else generated_text\\n/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:156:        \\\"enable_thinking\\\": enable_thinking,\\n/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:202:    parser.add_argument(\\\"--enable_thinking\\\", action=\\\"store_true\\\")\\n/root/autodl-tmp/simgate-modular-routing/src/evaluation/routing_eval_sft.py:209:        enable_thinking=args.enable_thinking,\\n/root/autodl-tmp/simgate-modular-routing/src/eval_end_to_end.py:334:            enable_thinking=False,\\n/root/autodl-tmp/simgate-modular-routing/src/eval_routing_metrics.py:53:def strip_thinking(text: str) -> str:\\n/root/autodl-tmp/simgate-modular-routing/src/eval_routing_metrics.py:65:    text = strip_thinking(text)\\n/root/autodl-tmp/simgate-modular-routing/src/eval_routing_metrics.py:109:            enable_thinking=False,\\n/root/autodl-tmp/simgate-modular-routing/src/eval_routing_metrics.py:122:        cleaned = strip_think
+…[truncated 232 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-15T14:43:18.163846+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && head -1 results/plan_c/freeze/episodes.jsonl | python3 -c \"import json,sys; d=json.loads(sys.stdin.readline()); print(json.dumps({k:v for k,v in d.items() if k != 'steps'}, indent=2))\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && head -1 results/plan_c/freeze/episodes.jsonl | python3 -c \"import json,sys; d=json.loads(sys.stdin.readline()); print(json.dumps({k:v for k,v in d.items() if k != 'steps'}, indent=2))\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-15T14:43:18.164151+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"episode_idx\\\": 0,\\n  \\\"variation_idx\\\": 0,\\n  \\\"always_internal\\\": {\\n    \\\"mode\\\": \\\"always-internal\\\",\\n    \\\"task_name\\\": \\\"freeze\\\",\\n    \\\"variation_idx\\\": 0,\\n    \\\"final_score\\\": -100.0,\\n    \\\"initial_score\\\": 0.0,\\n    \\\"num_steps\\\": 17,\\n    \\\"total_time_s\\\": 46.14033007621765,\\n    \\\"steps\\\": [\\n      {\\n        \\\"step\\\": 0,\\n        \\\"action\\\": \\\"connect agent to air\\\",\\n        \\\"modality\\\": \\\"internal\\\",\\n        \\\"score_before\\\": 0.0,\\n        \\\"score_after\\\": 0.0,\\n        \\\"score_delta\\\": 0.0,\\n        \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on air\\\",\\n        \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the task is not specified. A good first step is to connect the agent to the air, as this is a basic interaction that can provide information about the air quality or simply confirm the agent's presence in the environment.\\\\nAction: connect agent to a\\\",\\n        \\\"action_history\\\": [],\\n        \\\"is_dead\\\": false\\n      },\\n      {\\n        \\\"step\\\": 1,\\n        \\\"action\\\": \\\"connect agent to art studio\\\",\\n        \\\"modality\\\": \\\"internal\\\",\\n        \\\"score_before\\\": 0.0,\\n        \\\"score_after\\\": 0.0,\\n        \\\"score_delta\\\": 0.0,\\n        \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 1 on art studio\\\",\\n        \\\"llm_output\\\": \\\"Thought: The agent is already connected to the air, so the next logical step would be to explore the environment by connecting to other locations. Since the current observation mentions that the terminal 1 on the agent is now connected to terminal 1 on air, it implies that the agent is in a location\\\",\\n        \\\"action_history\\\": [\\n          \\\"connect agent to air\\\"\\n        ],\\n   
+…[truncated 7816 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-15T14:43:18.164361+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, glob\nfrom collections import defaultdict\ntask_stats = defaultdict(lambda: {'det':0, 'int':0, 'no':0, 'total':0})\nfor f in sorted(glob.glob('results/plan_c/*/episodes.jsonl')):\n    task = f.split('/')[-2]\n    with open(f) as fh:\n        for line in fh:\n            d = json.loads(line)\n            int_score = d.get('always_internal', {}).get('final_score', 0)\n            det_score = d.get('always_deterministic', {}).get('final_score', 0)\n            if det_score > int_score:\n                task_stats[task]['det'] += 1\n            elif int_score > det_score:\n                task_stats[task]['int'] += 1\n            else:\n                task_stats[task]['no'] += 1\n            task_stats[task]['total'] += 1\nfor t, s in sorted(task_stats.items(), key=lambda x: -x[1]['det']/max(x[1]['total'],1)):\n    pct = s['det']/s['total']*100\n    print(f'{t}: det={s[\\\"det\\\"]}, int={s[\\\"int\\\"]}, no={s[\\\"no\\\"]}, total={s[\\\"total\\\"]}, det_pct={pct:.0f}%')\n\"\n",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"\nimport json, glob\nfrom collections import defaultdict\ntask_stats = defaultdict(lambda: {'det':0, 'int':0, 'no':0, 'total':0})\nfor f in sorted(glob.glob('results/plan_c/*/episodes.jsonl')):\n    task = f.split('/')[-2]\n    with open(f) as fh:\n        for line in fh:\n            d = json.loads(line)\n            int_score = d.get('always_internal', {}).get('final_score', 0)\n            det_score = d.get('always_deterministic', {}).get('final_score', 0)\n            if det_score > int_score:\n                task_stats[task]['det'] += 1\n            elif int_score > det_score:\n                task_stats[task]['int'] += 1\n            else:\n                task_stats[task]['no'] += 1\n            task_stats[task]['total'] += 1\nfor t, s in sorted(task_stats.items(), key=lambda x: -x[1]['det']/max(x[1]['total'],1)):\n    pct = s['det']/s['total']*100\n    print(f'{t}: det={s[\\\"det\\\"]}, int={s[\\\"int\\\"]}, no={s[\\\"no\\\"]}, total={s[\\\"total\\\"]}, det_pct={pct:.0f}%')\n\"\n",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-15T14:43:18.164511+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"identify-life-stages-1: det=9, int=0, no=11, total=20, det_pct=45%\\nlifespan-longest-lived: det=11, int=1, no=13, total=25, det_pct=44%\\nfind-non-living-thing: det=16, int=4, no=20, total=40, det_pct=40%\\nlifespan-longest-lived-then-shortest-lived: det=8, int=1, no=11, total=20, det_pct=40%\\ninclined-plane-determine-angle: det=7, int=0, no=13, total=20, det_pct=35%\\nchemistry-mix: det=6, int=2, no=12, total=20, det_pct=30%\\nfreeze: det=6, int=0, no=14, total=20, det_pct=30%\\ngrow-fruit: det=6, int=1, no=13, total=20, det_pct=30%\\nidentify-life-stages-2: det=6, int=0, no=14, total=20, det_pct=30%\\nmeasure-melting-point-unknown-substance: det=6, int=0, no=14, total=20, det_pct=30%\\nfind-animal: det=5, int=0, no=15, total=20, det_pct=25%\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 21 · 2026-05-15T14:43:18.164671+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-15T14:43:18.164930+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LLM Agent: Qwen2.5-7B-Instruct ReAct agent for ScienceWorld.\\n\\nSupports vLLM serving (default) or HuggingFace transformers local inference.\\nProvides:\\n  - select_action_react(): standard ReAct single-action selection\\n  - generate_candidate_actions(): top-n candidate generation for deterministic routing\\n\\nUsage:\\n  agent = LLMAgent(model_path=\\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\", gpu_id=0)\\n  action = agent.select_action_react(obs, valid_actions, history)\\n\\\"\\\"\\\"\\n\\nimport os\\nimport re\\nimport glob\\nimport json\\nimport time\\nfrom typing import List, Optional, Tuple\\n\\n# Detect model path: ModelScope or HuggingFace naming conventions\\nMODEL_SEARCH_PATHS = [\\n    \\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/qwen/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-7B-Instruct\\\",\\n]\\n\\n\\ndef find_model_path(hint: Optional[str] = None) -> str:\\n    \\\"\\\"\\\"Find Qwen2.5-7B-Instruct model path on disk.\\\"\\\"\\\"\\n    if hint and os.path.isdir(hint):\\n        return hint\\n    for p in MODEL_SEARCH_PATHS:\\n        if os.path.isdir(p):\\n            return p\\n    # Glob fallback\\n    for pattern in [\\\"/root/autodl-tmp/models/**/Qwen2*7B*Instruct\\\",\\n                    \\\"/root/autodl-tmp/.hf_cache/**/Qwen2*7B*\\\"]:\\n        matches = glob.glob(pattern, recursive=True)\\n        if matches:\\n            return matches[0]\\n    raise FileNotFoundError(\\n        \\\"Cannot find Qwen2.5-7B-Instruct. Searched: \\\" + str(MODEL_SEARCH_PATHS)\\n    )\\n\\n\\n# ---------------------------------------------------------------------------\\n# Prompt templates\\n# ---------------------------------------------------------------------------\\n\\nSY
+…[truncated 7146 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-15T14:43:18.165139+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-15T14:43:18.165435+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Plan C episode-level labeling data collection for router SFT training.\\n#\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\n# compares final episode scores to label each step's modality preference.\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\n#\\n# Outputs:\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\n#\\n# Usage:\\n#   python src/episode_level_collection.py --task_types \\\"boil,melt\\\" --episodes 20 --gpu_id 0\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport signal\\nimport subprocess\\nimport time\\nfrom typing import List, Dict, Any\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\nDEATH_THRESHOLD = -100\\n\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\nSLIM_EPISODES = os.environ.get(\\\"SLIM_EPISODES\\\", \\\"1\\\") == \\\"1\\\"\\n\\n\\ndef _slim_episode_data(ep):\\n    \\\"\\\"\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\"\\\"\\\"\\n    if not SLIM_EPISODES:\\n        return ep\\n    result = {k: v for k, v in ep.items() if k != \\\"steps\\\"}\\n    if \\\"steps\\\" in ep:\\n        result[\\\"steps\\\"] = [\\n            {k: v for k, v in s.items()\\n             if k not in (\\\"llm_output\\\", \\\"action_history\\\", \\\"candidates\\\")}\\n           
+…[truncated 7333 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-15T14:43:18.165643+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -n \"def run_episode\\|def run_task\\|def main\\|argparse\\|add_argument\\|deep\\|thinking\\|cot\" /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -n \"def run_episode\\|def run_task\\|def main\\|argparse\\|add_argument\\|deep\\|thinking\\|cot\" /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-15T14:43:18.165797+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"15:import argparse\\n156:def run_episode_internal(\\n218:def run_episode_deterministic(\\n326:def run_task_collection(\\n480:def main():\\n481:    parser = argparse.ArgumentParser(\\n484:    parser.add_argument(\\\"--task_types\\\", type=str, default=None,\\n486:    parser.add_argument(\\\"--task_list\\\", type=str, default=None,\\n488:    parser.add_argument(\\\"--episodes\\\", type=int, default=20,\\n490:    parser.add_argument(\\\"--start_episode\\\", type=int, default=0,\\n492:    parser.add_argument(\\\"--gpu_id\\\", type=int, default=0)\\n493:    parser.add_argument(\\\"--max_steps\\\", type=int, default=30)\\n494:    parser.add_argument(\\\"--output_dir\\\", type=str, default=\\\"results/plan_c/\\\")\\n495:    parser.add_argument(\\\"--model_path\\\", type=str, default=None)\\n496:    parser.add_argument(\\\"--use_vllm\\\", action=\\\"store_true\\\", default=True)\\n497:    parser.add_argument(\\\"--no_vllm\\\", action=\\\"store_true\\\", default=False,\\n499:    parser.add_argument(\\\"--n_candidates\\\", type=int, default=3,\\n501:    parser.add_argument(\\\"--seed\\\", type=int, default=42)\\n502:    parser.add_argument(\\\"--reuse_dirs\\\", type=str, default=None,\\n504:    parser.add_argument(\\\"--dry_run\\\", action=\\\"store_true\\\", default=False,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-15T14:43:18.165929+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "sed -n '100,250p' /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "sed -n '100,250p' /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-15T14:43:18.166150+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    return False\\n\\n\\ndef scan_reuse_episodes(reuse_dirs: List[str], task_name: str) -> Dict[str, Any]:\\n    \\\"\\\"\\\"Scan reuse directories for existing episodes of a given task.\\n\\n    Returns dict with 'total' count and 'sources' list of {dir, count, path}.\\n    \\\"\\\"\\\"\\n    task_name_normalized = task_name.replace(\\\" \\\", \\\"_\\\")\\n    candidates = [task_name, task_name_normalized]\\n    if \\\"-\\\" in task_name:\\n        candidates.append(task_name.replace(\\\"-\\\", \\\"_\\\"))\\n    if \\\"_\\\" in task_name:\\n        candidates.append(task_name.replace(\\\"_\\\", \\\"-\\\"))\\n\\n    sources = []\\n    total = 0\\n\\n    for reuse_dir in reuse_dirs:\\n        reuse_dir = reuse_dir.rstrip(\\\"/\\\")\\n        if not os.path.isdir(reuse_dir):\\n            continue\\n\\n        found_path = None\\n        for cand_name in candidates:\\n            ep_path = os.path.join(reuse_dir, cand_name, \\\"episodes.jsonl\\\")\\n            if os.path.isfile(ep_path):\\n                found_path = ep_path\\n                break\\n\\n        if not found_path:\\n            subdirs = os.listdir(reuse_dir)\\n            for sd in subdirs:\\n                if sd.lower() == task_name_normalized.lower():\\n                    ep_path = os.path.join(reuse_dir, sd, \\\"episodes.jsonl\\\")\\n                    if os.path.isfile(ep_path):\\n                        found_path = ep_path\\n                        break\\n\\n        if found_path:\\n            count = 0\\n            with open(found_path) as f:\\n                for line in f:\\n                    line = line.strip()\\n                    if line:\\n                        count += 1\\n            sources.append({\\n                \\\"dir\\\": reuse_dir,\\n                \\\"path\\\": found_path,\\n                \\\"count\\\": count,\\n            })\\n            total += count\\n\\n    return {\\\"total\\\": total, \\\"sources
+…[truncated 3311 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T14:43:18.166350+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "sed -n '326,480p' /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "sed -n '326,480p' /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T14:43:18.166572+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def run_task_collection(\\n    agent: LLMAgent,\\n    task_name: str,\\n    n_episodes: int,\\n    start_episode: int,\\n    max_steps: int,\\n    output_dir: str,\\n    n_candidates: int = 3,\\n) -> Dict[str, Any]:\\n    task_dir = os.path.join(output_dir, task_name.replace(\\\" \\\", \\\"_\\\"))\\n    os.makedirs(task_dir, exist_ok=True)\\n\\n    steps_file = os.path.join(task_dir, \\\"labeled_steps.jsonl\\\")\\n    summary_file = os.path.join(task_dir, \\\"episode_summary.jsonl\\\")\\n    episodes_file = os.path.join(task_dir, \\\"episodes.jsonl\\\")\\n\\n    max_var = get_max_variations(task_name)\\n    end_episode = start_episode + n_episodes\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"EPISODE-LEVEL COLLECTION: {task_name}\\\")\\n    print(f\\\"Episodes: {start_episode}..{end_episode-1} ({n_episodes} total) | Max steps: {max_steps}\\\")\\n    print(f\\\"Max variations: {max_var}\\\")\\n    print(f\\\"{'='*60}\\\")\\n\\n    label_counts = {\\\"det-preferred\\\": 0, \\\"internal-preferred\\\": 0, \\\"no-preference\\\": 0}\\n    total_labeled_steps = 0\\n    death_counts = {\\\"internal\\\": 0, \\\"det\\\": 0, \\\"both\\\": 0}\\n    score_gaps = []\\n\\n    for ep_idx in range(start_episode, end_episode):\\n        variation_idx = ep_idx % max_var\\n        print(f\\\"\\\\n--- Episode {ep_idx} (variation={variation_idx}) ---\\\")\\n\\n        print(f\\\"  [I] always-internal...\\\", end=\\\" \\\", flush=True)\\n        t = time.time()\\n        r_int = run_episode_internal(agent, task_name, variation_idx, max_steps)\\n        print(f\\\"score={r_int['final_score']:.1f} ({time.time()-t:.0f}s)\\\")\\n\\n        print(f\\\"  [D] always-deterministic...\\\", end=\\\" \\\", flush=True)\\n        t = time.time()\\n        r_det = run_episode_deterministic(\\n            agent, task_name, variation_idx, max_steps, n_candidates\\n        )\\n        print(f\\\"score={r_det['final_score']:.1f} ({time.time(
+…[truncated 4982 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T14:43:18.166754+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -n \"max_new_tokens\\|classify_episode\" /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -n \"max_new_tokens\\|classify_episode\" /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T14:43:18.166883+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -n \"max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -n \"max_new_tokens\" /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T14:43:18.167028+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"308:def classify_episode_labels(internal_final: float, det_final: float):\\n309:    \\\"\\\"\\\"3-label classification matching death_aware_labeling.classify_episode().\\\"\\\"\\\"\\n374:        label, reason, signal_source = classify_episode_labels(internal_final, det_final)\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T14:43:18.167157+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"176:        max_new_tokens: int = 256,\\n182:        self.max_new_tokens = max_new_tokens\\n243:            max_tokens=self.max_new_tokens,\\n259:                max_new_tokens=self.max_new_tokens,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.89}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T14:43:18.167273+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "sed -n '308,325p' /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "sed -n '308,325p' /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T14:43:18.167408+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"def classify_episode_labels(internal_final: float, det_final: float):\\n    \\\"\\\"\\\"3-label classification matching death_aware_labeling.classify_episode().\\\"\\\"\\\"\\n    int_died = internal_final <= DEATH_THRESHOLD\\n    det_died = det_final <= DEATH_THRESHOLD\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_final > internal_final:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if internal_final > det_final:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T14:43:18.167618+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat > /tmp/patch_llm_agent.py << 'PYEOF'\nimport re\n\npath = \"/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py\"\nwith open(path) as f:\n    code = f.read()\n\n# 1. Add DEEP_REACT_SYSTEM_PROMPT after CANDIDATE_USER_TEMPLATE\ndeep_prompt = '''\n\nDEEP_REACT_SYSTEM_PROMPT = \"\"\"You are an agent interacting with a ScienceWorld text environment. Your goal is to complete the given task by choosing actions from the available action list.\n\nBefore choosing an action, analyze the situation thoroughly:\n\n1. GOAL: What is the task? What physical/scientific process is needed to complete it?\n2. PROGRESS: What have previous actions accomplished? What key sub-goals remain?\n3. STATE: What does the current observation reveal about object states, locations, and conditions?\n4. CANDIDATES: Which 2-3 actions from the valid list are most promising? For each, what would be its likely physical effect?\n5. DECISION: Which action best advances toward the goal, and why?\n\nUse this format:\nThought: &lt;your detailed multi-step analysis>\nAction: &lt;exact action string from the valid actions list>\n\nRules:\n- You MUST choose an action from the valid actions list. Do not invent actions.\n- Think carefully about physical and scientific processes (heating, cooling, mixing, growing, etc.).\n- Pay close attention to the observation for clues about object states and progress.\"\"\"\n\n'''\n\n# Insert after CANDIDATE_USER_TEMPLATE definition\nanchor = '3. &lt;action>\"\"\"'\nif anchor in code:\n    code = code.replace(anchor, anchor + deep_prompt, 1)\n    print(\"Inserted DEEP_REACT_SYSTEM_PROMPT\")\nelse:\n    print(\"ERROR: anchor not found for DEEP_REACT_SYSTEM_PROMPT\")\n\n# 2. Add select_action_deep_react method before generate_candidate_actions\ndeep_method = '''\n    def select_action_deep_react(\n        self,\n        observation: str,\n        valid_actions: List[str],\n        history: List[dict],\n    ) -> Tuple[str, str]:\n        \"\"\"Deep-internal ReAct: extended CoT reasoning before action selection.\"\"\"\n        messages = [\n            {\"role\": \"system\", \"content\": DEEP_REACT_SYSTEM_PROMPT},\n            {\"role\": \"user\", \"content\": REACT_USER_TEMPLATE.format(\n                observation=observation,\n                valid_actions_str=_format_valid_actions(valid_actions),\n                history_str=_format_history(history),\n            )},\n        ]\n        old_max = self.max_new_tokens\n        self.max_new_tokens = max(old_max, 768)\n        try:\n            raw = self._generate(messages)\n        finally:\n            self.max_new_tokens = old_max\n        action = parse_action(raw, valid_actions)\n        if action is None:\n            action = valid_actions[0]\n        return action, raw\n\n'''\n\nanchor2 = \"    def generate_candidate_actions(\"\nif anchor2 in code:\n    code = code.replace(anchor2, deep_method + anchor2, 1)\n    print(\"Inserted select_action_deep_react method\")\nelse:\n    print(\"ERROR: anchor not found for select_action_deep_react\")\n\nwith open(path, 'w') as f:\n    f.write(code)\n\nprint(\"Done patching llm_agent.py\")\nPYEOF\ncd /root/autodl-tmp/simgate-modular-routing && python3 /tmp/patch_llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat > /tmp/patch_llm_agent.py << 'PYEOF'\nimport re\n\npath = \"/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py\"\nwith open(path) as f:\n    code = f.read()\n\n# 1. Add DEEP_REACT_SYSTEM_PROMPT after CANDIDATE_USER_TEMPLATE\ndeep_prompt = '''\n\nDEEP_REACT_SYSTEM_PROMPT = \"\"\"You are an agent interacting with a ScienceWorld text environment. Your goal is to complete the given task by choosing actions from the available action list.\n\nBefore choosing an action, analyze the situation thoroughly:\n\n1. GOAL: What is the task? What physical/scientific process is needed to complete it?\n2. PROGRESS: What have previous actions accomplished? What key sub-goals remain?\n3. STATE: What does the current observation reveal about object states, locations, and conditions?\n4. CANDIDATES: Which 2-3 actions from the valid list are most promising? For each, what would be its likely physical effect?\n5. DECISION: Which action best advances toward the goal, and why?\n\nUse this format:\nThought: &lt;your detailed multi-step analysis>\nAction: &lt;exact action string from the valid actions list>\n\nRules:\n- You MUST choose an action from the valid actions list. Do not invent actions.\n- Think carefully about physical and scientific processes (heating, cooling, mixing, growing, etc.).\n- Pay close attention to the observation for clues about object states and progress.\"\"\"\n\n'''\n\n# Insert after CANDIDATE_USER_TEMPLATE definition\nanchor = '3. &lt;action>\"\"\"'\nif anchor in code:\n    code = code.replace(anchor, anchor + deep_prompt, 1)\n    print(\"Inserted DEEP_REACT_SYSTEM_PROMPT\")\nelse:\n    print(\"ERROR: anchor not found for DEEP_REACT_SYSTEM_PROMPT\")\n\n# 2. Add select_action_deep_react method before generate_candidate_actions\ndeep_method = '''\n    def select_action_deep_react(\n        self,\n        observation: str,\n        valid_actions: List[str],\n        history: List[dict],\n    ) -> Tuple[str, str]:\n        \"\"\"Deep-internal ReAct: extended CoT reasoning before action selection.\"\"\"\n        messages = [\n            {\"role\": \"system\", \"content\": DEEP_REACT_SYSTEM_PROMPT},\n            {\"role\": \"user\", \"content\": REACT_USER_TEMPLATE.format(\n                observation=observation,\n                valid_actions_str=_format_valid_actions(valid_actions),\n                history_str=_format_history(history),\n            )},\n        ]\n        old_max = self.max_new_tokens\n        self.max_new_tokens = max(old_max, 768)\n        try:\n            raw = self._generate(messages)\n        finally:\n            self.max_new_tokens = old_max\n        action = parse_action(raw, valid_actions)\n        if action is None:\n            action = valid_actions[0]\n        return action, raw\n\n'''\n\nanchor2 = \"    def generate_candidate_actions(\"\nif anchor2 in code:\n    code = code.replace(anchor2, deep_method + anchor2, 1)\n    print(\"Inserted select_action_deep_react method\")\nelse:\n    print(\"ERROR: anchor not found for select_action_deep_react\")\n\nwith open(path, 'w') as f:\n    f.write(code)\n\nprint(\"Done patching llm_agent.py\")\nPYEOF\ncd /root/autodl-tmp/simgate-modular-routing && python3 /tmp/patch_llm_agent.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T14:43:18.167779+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Inserted DEEP_REACT_SYSTEM_PROMPT\\nInserted select_action_deep_react method\\nDone patching llm_agent.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T14:43:18.167965+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat > /tmp/patch_collection.py << 'PYEOF'\npath = \"/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py\"\nwith open(path) as f:\n    code = f.read()\n\n# 1. Add run_episode_deep_internal after run_episode_internal\ndeep_ep_func = '''\n\ndef run_episode_deep_internal(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n) -> Dict[str, Any]:\n    \"\"\"Always-deep-internal: LLM with extended CoT reasoning, no death filter.\"\"\"\n    env = create_env(task_name, variation_idx)\n    obs, _ = reset_env(env)\n    initial_score = get_score(env)\n\n    steps = []\n    action_history = []\n    history_dicts = []\n    t0 = time.time()\n\n    for step_idx in range(max_steps):\n        valid_actions = get_valid_actions(env)\n        if not valid_actions:\n            break\n\n        action, raw_output = agent.select_action_deep_react(obs, valid_actions, history_dicts)\n\n        score_before = get_score(env)\n        obs_new, reward, done, info = step_env(env, action)\n        score_after = get_score(env)\n\n        steps.append({\n            \"step\": step_idx,\n            \"action\": action,\n            \"modality\": \"deep-internal\",\n            \"score_before\": score_before,\n            \"score_after\": score_after,\n            \"score_delta\": score_after - score_before,\n            \"observation\": obs_new[:500],\n            \"llm_output\": raw_output[:500],\n            \"action_history\": list(action_history),\n            \"is_dead\": score_after <= DEATH_THRESHOLD,\n        })\n        action_history.append(action)\n        history_dicts.append({\"action\": action, \"observation\": obs_new[:200], \"score\": score_after})\n        obs = obs_new\n\n        if done:\n            break\n\n    final_score = get_score(env)\n    close_env(env)\n\n    return {\n        \"mode\": \"always-deep-internal\",\n        \"task_name\": task_name,\n        \"variation_idx\": variation_idx,\n        \"final_score\": final_score,\n        \"initial_score\": initial_score,\n        \"num_steps\": len(steps),\n        \"total_time_s\": time.time() - t0,\n        \"steps\": steps,\n        \"action_history\": action_history,\n    }\n\n'''\n\nanchor1 = \"\\ndef run_episode_deterministic(\"\nif anchor1 in code:\n    code = code.replace(anchor1, deep_ep_func + anchor1, 1)\n    print(\"Inserted run_episode_deep_internal\")\nelse:\n    print(\"ERROR: anchor not found for run_episode_deep_internal\")\n\n# 2. Add --deep_internal argument after --dry_run\narg_line = '''    parser.add_argument(\"--deep_internal\", action=\"store_true\", default=False,\n                        help=\"Deep-internal mode: extended CoT reasoning, collect only deep-internal episodes\")\n'''\nanchor2 = '    parser.add_argument(\"--dry_run\"'\nif anchor2 in code:\n    code = code.replace(anchor2, arg_line + anchor2, 1)\n    print(\"Inserted --deep_internal argument\")\nelse:\n    print(\"ERROR: anchor not found for --deep_internal\")\n\n# 3. Add deep_internal collection logic before the final \"if __name__\" block\n# We need to add a separate code path in main() when deep_internal is True\n# Find the line \"    cleanup_gpu_processes(args.gpu_id)\" and add deep_internal branch before it\n\ndeep_main_block = '''\n    # === Deep-internal only collection mode ===\n    if args.deep_internal:\n        cleanup_gpu_processes(args.gpu_id)\n        agent = LLMAgent(\n            model_path=args.model_path,\n            use_vllm=args.use_vllm,\n            gpu_id=args.gpu_id,\n        )\n        os.makedirs(args.output_dir, exist_ok=True)\n\n        for task_name in task_names:\n            plan = task_plans[task_name]\n            task_dir = os.path.join(args.output_dir, task_name.replace(\" \", \"_\"))\n            os.makedirs(task_dir, exist_ok=True)\n\n            needed = plan[\"needed\"]\n            if needed == 0:\n                print(f\"SKIP deep-internal: {task_name} — already have enough episodes\")\n                continue\n\n            max_var = get_max_variations(task_name)\n            effective_start = plan[\"existing\"] if reuse_dirs else args.start_episode\n            episodes_file = os.path.join(task_dir, \"episodes.jsonl\")\n            summary_file = os.path.join(task_dir, \"episode_summary.jsonl\")\n\n            print(f\"\\\\n{'='*60}\")\n            print(f\"DEEP-INTERNAL COLLECTION: {task_name}\")\n            print(f\"Episodes: {effective_start}..{effective_start + needed - 1} ({needed} total)\")\n            print(f\"{'='*60}\")\n\n            for ep_idx in range(effective_start, effective_start + needed):\n                variation_idx = ep_idx % max_var\n                print(f\"\\\\n--- Episode {ep_idx} (variation={variation_idx}) ---\")\n\n                print(f\"  [DI] always-deep-internal...\", end=\" \", flush=True)\n                t = time.time()\n                r_deep = run_episode_deep_internal(agent, task_name, variation_idx, args.max_steps)\n                elapsed = time.time() - t\n                print(f\"score={r_deep['final_score']:.1f} ({elapsed:.0f}s)\")\n\n                ep_entry = {\n                    \"episode_idx\": ep_idx,\n                    \"variation_idx\": variation_idx,\n                    \"always_deep_internal\": _slim_episode_data(r_deep),\n                }\n                with open(episodes_file, \"a\") as f:\n                    f.write(json.dumps(ep_entry) + \"\\\\n\")\n\n                ep_summary = {\n                    \"episode\": ep_idx,\n                    \"variation\": variation_idx,\n                    \"deep_internal_final\": r_deep[\"final_score\"],\n                    \"deep_internal_steps\": r_deep[\"num_steps\"],\n                    \"deep_internal_time_s\": r_deep[\"total_time_s\"],\n                }\n                with open(summary_file, \"a\") as f:\n                    f.write(json.dumps(ep_summary) + \"\\\\n\")\n\n            meta = {\n                \"task_name\": task_name,\n                \"mode\": \"deep-internal-only\",\n                \"target_episodes\": args.episodes,\n                \"collected_episodes\": needed,\n                \"seed\": args.seed,\n            }\n            with open(os.path.join(task_dir, \"collection_meta.json\"), \"w\") as f:\n                json.dump(meta, f, indent=2)\n\n        print(\"\\\\nDeep-internal collection complete.\")\n        return\n\n'''\n\nanchor3 = \"    cleanup_gpu_processes(args.gpu_id)\\n\\n    agent = LLMAgent(\"\nif anchor3 in code:\n    code = code.replace(anchor3, deep_main_block + \"    cleanup_gpu_processes(args.gpu_id)\\n\\n    agent = LLMAgent(\", 1)\n    print(\"Inserted deep_internal main block\")\nelse:\n    print(\"ERROR: anchor not found for deep_internal main block\")\n\nwith open(path, 'w') as f:\n    f.write(code)\n\nprint(\"Done patching episode_level_collection.py\")\nPYEOF\ncd /root/autodl-tmp/simgate-modular-routing && python3 /tmp/patch_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat > /tmp/patch_collection.py << 'PYEOF'\npath = \"/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py\"\nwith open(path) as f:\n    code = f.read()\n\n# 1. Add run_episode_deep_internal after run_episode_internal\ndeep_ep_func = '''\n\ndef run_episode_deep_internal(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n) -> Dict[str, Any]:\n    \"\"\"Always-deep-internal: LLM with extended CoT reasoning, no death filter.\"\"\"\n    env = create_env(task_name, variation_idx)\n    obs, _ = reset_env(env)\n    initial_score = get_score(env)\n\n    steps = []\n    action_history = []\n    history_dicts = []\n    t0 = time.time()\n\n    for step_idx in range(max_steps):\n        valid_actions = get_valid_actions(env)\n        if not valid_actions:\n            break\n\n        action, raw_output = agent.select_action_deep_react(obs, valid_actions, history_dicts)\n\n        score_before = get_score(env)\n        obs_new, reward, done, info = step_env(env, action)\n        score_after = get_score(env)\n\n        steps.append({\n            \"step\": step_idx,\n            \"action\": action,\n            \"modality\": \"deep-internal\",\n            \"score_before\": score_before,\n            \"score_after\": score_after,\n            \"score_delta\": score_after - score_before,\n            \"observation\": obs_new[:500],\n            \"llm_output\": raw_output[:500],\n            \"action_history\": list(action_history),\n            \"is_dead\": score_after <= DEATH_THRESHOLD,\n        })\n        action_history.append(action)\n        history_dicts.append({\"action\": action, \"observation\": obs_new[:200], \"score\": score_after})\n        obs = obs_new\n\n        if done:\n            break\n\n    final_score = get_score(env)\n    close_env(env)\n\n    return {\n        \"mode\": \"always-deep-internal\",\n        \"task_name\": task_name,\n        \"variation_idx\": variation_idx,\n        \"final_score\": final_score,\n        \"initial_score\": initial_score,\n        \"num_steps\": len(steps),\n        \"total_time_s\": time.time() - t0,\n        \"steps\": steps,\n        \"action_history\": action_history,\n    }\n\n'''\n\nanchor1 = \"\\ndef run_episode_deterministic(\"\nif anchor1 in code:\n    code = code.replace(anchor1, deep_ep_func + anchor1, 1)\n    print(\"Inserted run_episode_deep_internal\")\nelse:\n    print(\"ERROR: anchor not found for run_episode_deep_internal\")\n\n# 2. Add --deep_internal argument after --dry_run\narg_line = '''    parser.add_argument(\"--deep_internal\", action=\"store_true\", default=False,\n                        help=\"Deep-internal mode: extended CoT reasoning, collect only deep-internal episodes\")\n'''\nanchor2 = '    parser.add_argument(\"--dry_run\"'\nif anchor2 in code:\n    code = code.replace(anchor2, arg_line + anchor2, 1)\n    print(\"Inserted --deep_internal argument\")\nelse:\n    print(\"ERROR: anchor not found for --deep_internal\")\n\n# 3. Add deep_internal collection logic before the final \"if __name__\" block\n# We need to add a separate code path in main() when deep_internal is True\n# Find the line \"    cleanup_gpu_processes(args.gpu_id)\" and add deep_internal branch before it\n\ndeep_main_block = '''\n    # === Deep-internal only collection mode ===\n    if args.deep_internal:\n        cleanup_gpu_processes(args.gpu_id)\n        agent = LLMAgent(\n            model_path=args.model_path,\n            use_vllm=args.use_vllm,\n            gpu_id=args.gpu_id,\n        )\n        os.makedirs(args.output_dir, exist_ok=True)\n\n        for task_name in task_names:\n            plan = task_plans[task_name]\n            task_dir = os.path.join(args.output_dir, task_name.replace(\" \", \"_\"))\n            os.makedirs(task_dir, exist_ok=True)\n\n            needed = plan[\"needed\"]\n            if needed == 0:\n                print(f\"SKIP deep-internal: {task_name} — already have enough episodes\")\n                continue\n\n            max_var = get_max_variations(task_name)\n            effective_start = plan[\"existing\"] if reuse_dirs else args.start_episode\n            episodes_file = os.path.join(task_dir, \"episodes.jsonl\")\n            summary_file = os.path.join(task_dir, \"episode_summary.jsonl\")\n\n            print(f\"\\\\n{'='*60}\")\n            print(f\"DEEP-INTERNAL COLLECTION: {task_name}\")\n            print(f\"Episodes: {effective_start}..{effective_start + needed - 1} ({needed} total)\")\n            print(f\"{'='*60}\")\n\n            for ep_idx in range(effective_start, effective_start + needed):\n                variation_idx = ep_idx % max_var\n                print(f\"\\\\n--- Episode {ep_idx} (variation={variation_idx}) ---\")\n\n                print(f\"  [DI] always-deep-internal...\", end=\" \", flush=True)\n                t = time.time()\n                r_deep = run_episode_deep_internal(agent, task_name, variation_idx, args.max_steps)\n                elapsed = time.time() - t\n                print(f\"score={r_deep['final_score']:.1f} ({elapsed:.0f}s)\")\n\n                ep_entry = {\n                    \"episode_idx\": ep_idx,\n                    \"variation_idx\": variation_idx,\n                    \"always_deep_internal\": _slim_episode_data(r_deep),\n                }\n                with open(episodes_file, \"a\") as f:\n                    f.write(json.dumps(ep_entry) + \"\\\\n\")\n\n                ep_summary = {\n                    \"episode\": ep_idx,\n                    \"variation\": variation_idx,\n                    \"deep_internal_final\": r_deep[\"final_score\"],\n                    \"deep_internal_steps\": r_deep[\"num_steps\"],\n                    \"deep_internal_time_s\": r_deep[\"total_time_s\"],\n                }\n                with open(summary_file, \"a\") as f:\n                    f.write(json.dumps(ep_summary) + \"\\\\n\")\n\n            meta = {\n                \"task_name\": task_name,\n                \"mode\": \"deep-internal-only\",\n                \"target_episodes\": args.episodes,\n                \"collected_episodes\": needed,\n                \"seed\": args.seed,\n            }\n            with open(os.path.join(task_dir, \"collection_meta.json\"), \"w\") as f:\n                json.dump(meta, f, indent=2)\n\n        print(\"\\\\nDeep-internal collection complete.\")\n        return\n\n'''\n\nanchor3 = \"    cleanup_gpu_processes(args.gpu_id)\\n\\n    agent = LLMAgent(\"\nif anchor3 in code:\n    code = code.replace(anchor3, deep_main_block + \"    cleanup_gpu_processes(args.gpu_id)\\n\\n    agent = LLMAgent(\", 1)\n    print(\"Inserted deep_internal main block\")\nelse:\n    print(\"ERROR: anchor not found for deep_internal main block\")\n\nwith open(path, 'w') as f:\n    f.write(code)\n\nprint(\"Done patching episode_level_collection.py\")\nPYEOF\ncd /root/autodl-tmp/simgate-modular-routing && python3 /tmp/patch_collection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T14:43:18.168199+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Inserted run_episode_deep_internal\\nInserted --deep_internal argument\\nInserted deep_internal main block\\nDone patching episode_level_collection.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T14:43:18.168346+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"import py_compile; py_compile.compile('src/llm_agent.py', doraise=True); py_compile.compile('src/episode_level_collection.py', doraise=True); print('Syntax OK')\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && python3 -c \"import py_compile; py_compile.compile('src/llm_agent.py', doraise=True); py_compile.compile('src/episode_level_collection.py', doraise=True); print('Syntax OK')\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T14:43:18.168480+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Syntax OK\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.82}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T14:43:18.168617+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \"identify-life-stages-1\" --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42 2>&1",
+  "account": "root",
+  "warn": "True"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \"identify-life-stages-1\" --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42 2>&1",
+    "account": "root",
+    "warn": "True"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T14:43:18.168760+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \\\"identify-life-stages-1\\\" --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42 2>&1'\\n\\nStdout:\\n\\nCapturing CUDA graphs (decode, FULL): 100%|██████████| 35/35 [00:00<00:00, 38.48it/s]\\n(EngineCore pid=483487) INFO 05-15 22:36:49 [gpu_model_runner.py:5746] Graph capturing finished in 3 secs, took 0.35 GiB\\n(EngineCore pid=483487) INFO 05-15 22:36:49 [gpu_worker.py:617] CUDA graph pool memory: 0.35 GiB (actual), 0.38 GiB (estimated), difference: 0.03 GiB (8.9%).\\n(EngineCore pid=483487) INFO 05-15 22:36:49 [core.py:281] init engine (profile, create kv cache, warmup model) took 8.52 seconds\\nINFO 05-15 22:36:50 [llm.py:391] Supported tasks: ['generate']\\n\\nRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\nRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 56.41it/s]\\n\\nProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.76}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T14:43:18.168921+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && rm -rf results/plan-006-deep-internal-dryrun && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \"identify-life-stages-1\" --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42' > /tmp/deep_internal_dryrun.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && rm -rf results/plan-006-deep-internal-dryrun && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \"identify-life-stages-1\" --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42' > /tmp/deep_internal_dryrun.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T14:43:18.169070+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"PID=483743\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 15.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T14:43:18.169191+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -30 /tmp/deep_internal_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "tail -30 /tmp/deep_internal_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T14:43:18.169340+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"    self._load_vllm()\\n  File \\\"/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py\\\", line 217, in _load_vllm\\n    self._llm = LLM(\\n                ^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/entrypoints/llm.py\\\", line 382, in __init__\\n    self.llm_engine = LLMEngine.from_engine_args(\\n                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py\\\", line 177, in from_engine_args\\n    return cls(\\n           ^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/llm_engine.py\\\", line 111, in __init__\\n    self.engine_core = EngineCoreClient.make_client(\\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/core_client.py\\\", line 99, in make_client\\n    return SyncMPClient(vllm_config, executor_class, log_stats)\\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/tracing/otel.py\\\", line 178, in sync_wrapper\\n    return func(*args, **kwargs)\\n           ^^^^^^^^^^^^^^^^^^^^^\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/core_client.py\\\", line 747, in __init__\\n    super().__init__(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/core_client.py\\\", line 583, in __init__\\n    with launch_core_engines(\\n  File \\\"/root/miniconda3/lib/python3.12/contextlib.py\\\", line 144, in __exit__\\n    next(self.gen)\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/utils.py\\\", line 972, in launch_core_engines\\n    wait_for_engine_startup(\\n  File \\\"/root/miniconda3/lib/python3.12/site-packages/vllm/v1/engine/utils.py\\\", line 1031, in wait_for_engine_startup\\n    raise RuntimeError(\\nRuntimeError: Engine core initialization faile
+…[truncated 155 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T14:43:18.169509+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "nvidia-smi --id=1 --query-compute-apps=pid,used_memory --format=csv,noheader 2>/dev/null; ps aux | grep episode_level_collection | grep -v grep",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "nvidia-smi --id=1 --query-compute-apps=pid,used_memory --format=csv,noheader 2>/dev/null; ps aux | grep episode_level_collection | grep -v grep",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T14:43:18.169640+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"483487, 28004 MiB\\nroot     483057  0.0  0.0   4364  3312 ?        Ss   22:36   0:00 bash -c cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \\\"identify-life-stages-1\\\" --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42 2>&1\\nroot     483062 47.2  0.1 31671852 1152988 ?    Sl   22:36   0:30 python src/episode_level_collection.py --task_types identify-life-stages-1 --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T14:43:18.169770+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "kill -9 483487 483062 483057 2>/dev/null; sleep 3; nvidia-smi --id=1 --query-compute-apps=pid,used_memory --format=csv,noheader 2>/dev/null || echo \"GPU1 clear\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "kill -9 483487 483062 483057 2>/dev/null; sleep 3; nvidia-smi --id=1 --query-compute-apps=pid,used_memory --format=csv,noheader 2>/dev/null || echo \"GPU1 clear\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T14:43:18.169892+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T14:43:18.170067+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && rm -rf results/plan-006-deep-internal-dryrun && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \"identify-life-stages-1\" --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42' > /tmp/deep_internal_dryrun.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && rm -rf results/plan-006-deep-internal-dryrun && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \"identify-life-stages-1\" --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42' > /tmp/deep_internal_dryrun.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T14:43:18.170208+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing && rm -rf results/plan-006-deep-internal-dryrun && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c \\\\'CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \\\"identify-life-stages-1\\\" --episodes 2 --gpu_id 0 --output_dir results/plan-006-deep-internal-dryrun --deep_internal --seed 42\\\\' > /tmp/deep_internal_dryrun.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=484254\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 30.71}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T14:43:18.170358+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -20 /tmp/deep_internal_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "tail -20 /tmp/deep_internal_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T14:43:18.170530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"(EngineCore pid=484673) \\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   0%|          | 0/51 [00:00<?, ?it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):   6%|▌         | 3/51 [00:00<00:02, 21.09it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  12%|█▏        | 6/51 [00:00<00:02, 21.01it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  18%|█▊        | 9/51 [00:00<00:02, 20.97it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  24%|██▎       | 12/51 [00:00<00:01, 21.76it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  29%|██▉       | 15/51 [00:00<00:01, 22.41it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  35%|███▌      | 18/51 [00:00<00:01, 23.91it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  43%|████▎     | 22/51 [00:00<00:01, 26.14it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  51%|█████     | 26/51 [00:01<00:00, 27.57it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  57%|█████▋    | 29/51 [00:01<00:00, 28.16it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  63%|██████▎   | 32/51 [00:01<00:00, 26.82it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  71%|███████   | 36/51 [00:01<00:00, 28.28it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  78%|███████▊  | 40/51 [00:01<00:00, 29.04it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  84%|████████▍ | 43/51 [00:01<00:00, 29.13it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE):  92%|█████████▏| 47/51 [00:01<00:00, 31.02it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 30.74it/s]\\rCapturing CUDA graphs (mixed prefill-decode, PIECEWISE): 100%|██████████| 51/51 [00:01<00:00, 27.02it/s]\\n(EngineCore pid=484673) \\rCapturing CUDA graphs (decode, FULL):   0%|          | 0/35 [00:00<?, ?it/s]\\rCapt
+…[truncated 5269 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T14:43:18.170697+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"Episode\\|score=\" /tmp/deep_internal_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"Episode\\|score=\" /tmp/deep_internal_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T14:43:18.170824+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T14:43:18.170944+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"Episode|score=|DEEP-INTERNAL|SKIP|complete\" /tmp/deep_internal_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"Episode|score=|DEEP-INTERNAL|SKIP|complete\" /tmp/deep_internal_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T14:43:18.171087+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episodes: 2 (start=0), Max steps: 30\\nDEEP-INTERNAL COLLECTION: identify-life-stages-1\\nEpisodes: 0..1 (2 total)\\n--- Episode 0 (variation=0) ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-15T14:43:18.171235+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"Episode|score=|DEEP-INTERNAL|complete|Error|Traceback\" /tmp/deep_internal_dryrun.log; echo \"---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"Episode|score=|DEEP-INTERNAL|complete|Error|Traceback\" /tmp/deep_internal_dryrun.log; echo \"---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-15T14:43:18.171360+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episodes: 2 (start=0), Max steps: 30\\nDEEP-INTERNAL COLLECTION: identify-life-stages-1\\nEpisodes: 0..1 (2 total)\\n--- Episode 0 (variation=0) ---\\n---\\n484254\\nSTILL_RUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-15T14:43:18.171483+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"Episode|score=|DEEP-INTERNAL|complete|Error|Traceback\" /tmp/deep_internal_dryrun.log; echo \"---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"Episode|score=|DEEP-INTERNAL|complete|Error|Traceback\" /tmp/deep_internal_dryrun.log; echo \"---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-15T14:43:18.171605+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episodes: 2 (start=0), Max steps: 30\\nDEEP-INTERNAL COLLECTION: identify-life-stages-1\\nEpisodes: 0..1 (2 total)\\n--- Episode 0 (variation=0) ---\\n---\\n484254\\nSTILL_RUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-15T14:43:18.171734+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-15T14:43:18.171852+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"20\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-15T14:43:18.171981+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"score=|Episode [01]|complete|Error\" /tmp/deep_internal_dryrun.log; echo \"---steps---\"; grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; echo \"---pid---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"score=|Episode [01]|complete|Error\" /tmp/deep_internal_dryrun.log; echo \"---steps---\"; grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; echo \"---pid---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-15T14:43:18.172126+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"--- Episode 0 (variation=0) ---\\nscore=-100.0 (66s)\\n--- Episode 1 (variation=1) ---\\n---steps---\\n22\\n---pid---\\n484254\\nSTILL_RUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.38}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-15T14:43:18.172256+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"score=|Episode|complete|Error\" /tmp/deep_internal_dryrun.log; echo \"---steps---\"; grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; echo \"---pid---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"score=|Episode|complete|Error\" /tmp/deep_internal_dryrun.log; echo \"---steps---\"; grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; echo \"---pid---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-15T14:43:18.172377+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episodes: 2 (start=0), Max steps: 30\\nEpisodes: 0..1 (2 total)\\n--- Episode 0 (variation=0) ---\\nscore=-100.0 (66s)\\n--- Episode 1 (variation=1) ---\\n---steps---\\n27\\n---pid---\\n484254\\nSTILL_RUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-15T14:43:18.172499+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"score=|Episode|complete\" /tmp/deep_internal_dryrun.log; echo \"---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"score=|Episode|complete\" /tmp/deep_internal_dryrun.log; echo \"---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-15T14:43:18.172629+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episodes: 2 (start=0), Max steps: 30\\nEpisodes: 0..1 (2 total)\\n--- Episode 0 (variation=0) ---\\nscore=-100.0 (66s)\\n--- Episode 1 (variation=1) ---\\n---\\n484254\\nSTILL_RUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-15T14:43:18.172744+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"score=|Episode|complete\" /tmp/deep_internal_dryrun.log; echo \"---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"score=|Episode|complete\" /tmp/deep_internal_dryrun.log; echo \"---\"; ps -p 484254 -o pid= 2>/dev/null && echo \"STILL_RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-15T14:43:18.172862+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episodes: 2 (start=0), Max steps: 30\\nEpisodes: 0..1 (2 total)\\n--- Episode 0 (variation=0) ---\\nscore=-100.0 (66s)\\n--- Episode 1 (variation=1) ---\\n---\\n484254\\nSTILL_RUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.11}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-15T14:43:18.172974+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-15T14:43:18.173114+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"33\\n484254\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.77}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-15T14:43:18.173227+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"score=|complete|Error\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"score=|complete|Error\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-15T14:43:18.173342+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"score=-100.0 (66s)\\n484254\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 79 · 2026-05-15T14:43:18.173458+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 80 · 2026-05-15T14:43:18.173578+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"37\\nscore=-100.0 (66s)\\n484254\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-15T14:43:18.173689+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-15T14:43:18.173806+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"39\\nscore=-100.0 (66s)\\n484254\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-15T14:43:18.173917+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-15T14:43:18.174065+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"41\\nscore=-100.0 (66s)\\n484254\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.13}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-15T14:43:18.174180+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-15T14:43:18.174296+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"43\\nscore=-100.0 (66s)\\n484254\\nRUNNING\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-15T14:43:18.174407+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"Processed prompts: 100%\" /tmp/deep_internal_dryrun.log; grep \"score=\" /tmp/deep_internal_dryrun.log; ps -p 484254 -o pid= 2>/dev/null && echo \"RUNNING\" || echo \"DONE\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-15T14:43:18.174530+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"48\\nscore=-100.0 (66s)\\nscore=0.0 (67s)\\nDONE\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.49}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-15T14:43:18.174665+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && wc -l results/plan-006-deep-internal-dryrun/identify-life-stages-1/episodes.jsonl && python3 -c \"\nimport json\nwith open('results/plan-006-deep-internal-dryrun/identify-life-stages-1/episodes.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        di = d['always_deep_internal']\n        print(f'ep={d[\\\"episode_idx\\\"]} var={d[\\\"variation_idx\\\"]} mode={di[\\\"mode\\\"]} score={di[\\\"final_score\\\"]} steps={di[\\\"num_steps\\\"]} time={di[\\\"total_time_s\\\"]:.1f}s')\n        # Show first step's llm_output to verify deep reasoning\n        if di['steps']:\n            s = di['steps'][0]\n            print(f'  step0 modality={s[\\\"modality\\\"]} action={s[\\\"action\\\"]}')\n            print(f'  llm_output[:200]={s.get(\\\"llm_output\\\",\\\"N/A\\\")[:200]}')\n        print()\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && wc -l results/plan-006-deep-internal-dryrun/identify-life-stages-1/episodes.jsonl && python3 -c \"\nimport json\nwith open('results/plan-006-deep-internal-dryrun/identify-life-stages-1/episodes.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        di = d['always_deep_internal']\n        print(f'ep={d[\\\"episode_idx\\\"]} var={d[\\\"variation_idx\\\"]} mode={di[\\\"mode\\\"]} score={di[\\\"final_score\\\"]} steps={di[\\\"num_steps\\\"]} time={di[\\\"total_time_s\\\"]:.1f}s')\n        # Show first step's llm_output to verify deep reasoning\n        if di['steps']:\n            s = di['steps'][0]\n            print(f'  step0 modality={s[\\\"modality\\\"]} action={s[\\\"action\\\"]}')\n            print(f'  llm_output[:200]={s.get(\\\"llm_output\\\",\\\"N/A\\\")[:200]}')\n        print()\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-15T14:43:18.174796+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"2 results/plan-006-deep-internal-dryrun/identify-life-stages-1/episodes.jsonl\\nep=0 var=0 mode=always-deep-internal score=-100.0 steps=18 time=64.9s\\n  step0 modality=deep-internal action=task\\n  llm_output[:200]=N/A\\n\\nep=1 var=1 mode=always-deep-internal score=0.0 steps=30 time=65.9s\\n  step0 modality=deep-internal action=connect agent to cup containing yellow paint in art studio\\n  llm_output[:200]=N/A\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.78}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-15T14:43:18.174963+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 SLIM_EPISODES=0 python3 -c \"\nimport os, sys, json\nsys.path.insert(0, 'src')\nfrom llm_agent import LLMAgent\nagent = LLMAgent(use_vllm=True, gpu_id=0)\n\n# Test deep_react vs standard react with same input\nobs = 'You are in the hallway. You can see a kitchen to the north.'\nvalid_actions = ['go to kitchen', 'look around', 'open door', 'pick up key']\nhistory = []\n\nprint('=== FAST-INTERNAL ===')\naction_fast, raw_fast = agent.select_action_react(obs, valid_actions, history)\nprint(f'Action: {action_fast}')\nprint(f'Raw output ({len(raw_fast)} chars):')\nprint(raw_fast[:500])\n\nprint()\nprint('=== DEEP-INTERNAL ===')\naction_deep, raw_deep = agent.select_action_deep_react(obs, valid_actions, history)\nprint(f'Action: {action_deep}')\nprint(f'Raw output ({len(raw_deep)} chars):')\nprint(raw_deep[:500])\n\" 2>&1 | tail -20",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 SLIM_EPISODES=0 python3 -c \"\nimport os, sys, json\nsys.path.insert(0, 'src')\nfrom llm_agent import LLMAgent\nagent = LLMAgent(use_vllm=True, gpu_id=0)\n\n# Test deep_react vs standard react with same input\nobs = 'You are in the hallway. You can see a kitchen to the north.'\nvalid_actions = ['go to kitchen', 'look around', 'open door', 'pick up key']\nhistory = []\n\nprint('=== FAST-INTERNAL ===')\naction_fast, raw_fast = agent.select_action_react(obs, valid_actions, history)\nprint(f'Action: {action_fast}')\nprint(f'Raw output ({len(raw_fast)} chars):')\nprint(raw_fast[:500])\n\nprint()\nprint('=== DEEP-INTERNAL ===')\naction_deep, raw_deep = agent.select_action_deep_react(obs, valid_actions, history)\nprint(f'Action: {action_deep}')\nprint(f'Raw output ({len(raw_deep)} chars):')\nprint(raw_deep[:500])\n\" 2>&1 | tail -20",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-15T14:43:18.175149+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 62.30it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.30it/s, est. speed input: 420.20 toks/s, output: 87.25 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.30it/s, est. speed input: 420.20 toks/s, output: 87.25 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:00<00:00,  2.29it/s, est. speed input: 420.20 toks/s, output: 87.25 toks/s]\\nAction: go to kitchen\\nRaw output (166 chars):\\nThought: Since I am in the hallway and can see a kitchen to the north, the most logical action would be to go to the kitchen to explore further.\\nAction: go to kitchen\\n\\n=== DEEP-INTERNAL ===\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 254.08it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.70s/it, est. speed input: 177.33 toks/s, output: 100.99 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.70s/it, est. speed input: 177.33 toks/s, output: 100.99 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:01<00:00,  1.70s/it, est. speed input: 177.33 toks/s, output: 100.99 toks/s]\\n(EngineCore pid=485542) INFO 05-15 22:41:24 [core.py:1201] Shutdown initiated (timeout=0)\\n(EngineCore pid=485542) INFO 05-15 22:41:24 [core.py:1224] Shutdown complete\\nAction: go to kitchen\\nRaw output (763 chars):\\nThought: \\n1. GOAL: The task is not explicitly stated, but we can infer that the goal might be to find a key or to explore the kitchen to gather information.\\n2. PROGRESS: No progress has been made yet since no actions have been taken.\\n3. STATE: The
+…[truncated 476 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-15T14:43:18.175312+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && rm -rf results/plan-006-deep-internal-dryrun && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \"identify-life-stages-1,lifespan-longest-lived,find-non-living-thing,lifespan-longest-lived-then-shortest-lived,inclined-plane-determine-angle,chemistry-mix\" --episodes 20 --gpu_id 0 --output_dir results/plan-006-deep-internal --deep_internal --seed 42' > /tmp/plan006_deep_internal.log 2>&1 &\necho \"PID=$!\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && rm -rf results/plan-006-deep-internal-dryrun && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c 'CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \"identify-life-stages-1,lifespan-longest-lived,find-non-living-thing,lifespan-longest-lived-then-shortest-lived,inclined-plane-determine-angle,chemistry-mix\" --episodes 20 --gpu_id 0 --output_dir results/plan-006-deep-internal --deep_internal --seed 42' > /tmp/plan006_deep_internal.log 2>&1 &\necho \"PID=$!\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-15T14:43:18.175448+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Command did not complete within 30 seconds!\\n\\nCommand: 'cd /root/autodl-tmp/simgate-modular-routing && rm -rf results/plan-006-deep-internal-dryrun && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && nohup bash -c \\\\'CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types \\\"identify-life-stages-1,lifespan-longest-lived,find-non-living-thing,lifespan-longest-lived-then-shortest-lived,inclined-plane-determine-angle,chemistry-mix\\\" --episodes 20 --gpu_id 0 --output_dir results/plan-006-deep-internal --deep_internal --seed 42\\\\' > /tmp/plan006_deep_internal.log 2>&1 &\\\\necho \\\"PID=$!\\\"'\\n\\nStdout:\\n\\nPID=485801\\n\\nStderr:\\n\\n\\n\\n\", \"metadata\": {\"elapsed_seconds\": 31.86}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-15T14:43:18.175599+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-006-deep-internal",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "simgate-modular-routing",
+  "spec": "{'command': \"CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types 'identify-life-stages-1,lifespan-longest-lived,find-non-living-thing,lifespan-longest-lived-then-shortest-lived,inclined-plane-determine-angle,chemistry-mix' --episodes 20 --gpu_id 0 --output_dir results/plan-006-deep-internal --deep_internal --seed 42\", 'server': 'westb-13313', 'data_path': 'results/plan-006-deep-internal/', 'data_count': '6 tasks x 20 episodes = 120 episodes', 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42, 'plan_id': 'plan-006', 'description': 'Deep-internal (extended CoT) episode collection for 3-way routing evaluation. Tasks selected by highest det-preferred% from plan-001b data.'}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-006-deep-internal",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "simgate-modular-routing",
+    "spec": "{'command': \"CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types 'identify-life-stages-1,lifespan-longest-lived,find-non-living-thing,lifespan-longest-lived-then-shortest-lived,inclined-plane-determine-angle,chemistry-mix' --episodes 20 --gpu_id 0 --output_dir results/plan-006-deep-internal --deep_internal --seed 42\", 'server': 'westb-13313', 'data_path': 'results/plan-006-deep-internal/', 'data_count': '6 tasks x 20 episodes = 120 episodes', 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42, 'plan_id': 'plan-006', 'description': 'Deep-internal (extended CoT) episode collection for 3-way routing evaluation. Tasks selected by highest det-preferred% from plan-001b data.'}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-15T14:43:18.175742+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.2123}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-15T14:43:18.175862+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "tail -5 /tmp/plan006_deep_internal.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "tail -5 /tmp/plan006_deep_internal.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-15T14:43:18.176011+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:02<00:00,  2.40s/it, est. speed input: 398.69 toks/s, output: 99.57 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:02<00:00,  2.40s/it, est. speed input: 398.69 toks/s, output: 99.57 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:02<00:00,  2.40s/it, est. speed input: 398.69 toks/s, output: 99.57 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 156.87it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:02<00:00,  2.43s/it, est. speed input: 393.02 toks/s, output: 100.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:02<00:00,  2.43s/it, est. speed input: 393.02 toks/s, output: 100.00 toks/s]\\rProcessed prompts: 100%|██████████| 1/1 [00:02<00:00,  2.43s/it, est. speed input: 393.02 toks/s, output: 100.00 toks/s]\\n\\rRendering prompts:   0%|          | 0/1 [00:00<?, ?it/s]\\rRendering prompts: 100%|██████████| 1/1 [00:00<00:00, 160.34it/s]\\n\\rProcessed prompts:   0%|          | 0/1 [00:00<?, ?it/s, est. speed input: 0.00 toks/s, output: 0.00 toks/s]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.26}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-15T14:43:18.176160+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "filters": "{'exp_id': 'plan-006-deep-internal'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "filters": "{'exp_id': 'plan-006-deep-internal'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-15T14:43:18.176289+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.2023}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-15T14:43:18.176406+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-006-deep-internal",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-006-deep-internal",
+    "field": "status",
+    "value": "QUEUED",
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-15T14:43:18.176536+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan-006-deep-internal\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:30:17.277Z\", \"updated_at\": \"2026-05-15T14:42:49.226Z\", \"hypothesis\": \"2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic 配对，为 3-way router 训练提供数据。如果 deep-internal 分数显著高于 fast-internal → 3-way routing 有价值；如果差异小 → 2-way suffices。\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.7397}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-15T14:43:18.176663+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "plan-006-deep-internal",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "simgate-modular-routing",
+  "spec": "{'command': \"CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types 'identify-life-stages-1,lifespan-longest-lived,find-non-living-thing,lifespan-longest-lived-then-shortest-lived,inclined-plane-determine-angle,chemistry-mix' --episodes 20 --gpu_id 0 --output_dir results/plan-006-deep-internal --deep_internal --seed 42\", 'server': 'westb-13313', 'data_path': 'results/plan-006-deep-internal/', 'data_count': '6 tasks x 20 episodes = 120 episodes', 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "plan-006-deep-internal",
+    "field": "status",
+    "value": "RUNNING",
+    "project": "simgate-modular-routing",
+    "spec": "{'command': \"CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types 'identify-life-stages-1,lifespan-longest-lived,find-non-living-thing,lifespan-longest-lived-then-shortest-lived,inclined-plane-determine-angle,chemistry-mix' --episodes 20 --gpu_id 0 --output_dir results/plan-006-deep-internal --deep_internal --seed 42\", 'server': 'westb-13313', 'data_path': 'results/plan-006-deep-internal/', 'data_count': '6 tasks x 20 episodes = 120 episodes', 'model_name': 'Qwen2.5-7B-Instruct', 'seed': 42}"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-15T14:43:18.176812+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"plan-006-deep-internal\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:30:17.277Z\", \"updated_at\": \"2026-05-15T14:42:57.900Z\", \"hypothesis\": \"2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic 配对，为 3-way router 训练提供数据。如果 deep-internal 分数显著高于 fast-internal → 3-way routing 有价值；如果差异小 → 2-way suffices。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python src/episode_level_collection.py --task_types 'identify-life-stages-1,lifespan-longest-lived,find-non-living-thing,lifespan-longest-lived-then-shortest-lived,inclined-plane-determine-angle,chemistry-mix' --episodes 20 --gpu_id 0 --output_dir results/plan-006-deep-internal --deep_internal --seed 42\", \"server\": \"westb-13313\", \"data_path\": \"results/plan-006-deep-internal/\", \"data_count\": \"6 tasks x 20 episodes = 120 episodes\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.6666}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 105 · 2026-05-15T14:43:18.176967+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -E \"Episode|score=|DEEP-INTERNAL|COLLECTION\" /tmp/plan006_deep_internal.log",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -E \"Episode|score=|DEEP-INTERNAL|COLLECTION\" /tmp/plan006_deep_internal.log",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-15T14:43:18.177117+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Episodes: 20 (start=0), Max steps: 30\\nDEEP-INTERNAL COLLECTION: identify-life-stages-1\\nEpisodes: 0..19 (20 total)\\n--- Episode 0 (variation=0) ---\\nscore=-100.0 (65s)\\n--- Episode 1 (variation=1) ---\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.47}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 107 · 2026-05-15T14:43:18.177277+00:00_
+
+正常运行中。Episode 0 完成（65s），Episode 1 进行中。
+
+**收集已启动，状态总结：**
+
+- **实验**: `plan-006-deep-internal` (RUNNING)
+- **服务器**: westb-13313, GPU1
+- **任务**: 6 个 det-preferred 最高的 tasks × 20 episodes = 120 episodes
+  - identify-life-stages-1 (45%), lifespan-longest-lived (44%), find-non-living-thing (40%), lifespan-longest-lived-then-shortest-lived (40%), inclined-plane-determine-angle (35%), chemistry-mix (30%)
+- **模式**: Deep-internal（增强 CoT 系统 prompt + max_new_tokens=768）
+- **速度**: ~65s/ep → 预计 120 × 65s ≈ 2.2 小时完成
+- **输出**: `results/plan-006-deep-internal/{task}/episodes.jsonl`
+- **日志**: `/tmp/plan006_deep_internal.log`
+- **代码修改**:
+  - `src/llm_agent.py`: 添加 `DEEP_REACT_SYSTEM_PROMPT` 和 `select_action_deep_react()` 方法（5 步结构化推理 prompt，max_tokens 临时提升至 768）
+  - `src/episode_level_collection.py`: 添加 `run_episode_deep_internal()` 和 `--deep_internal` flag
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_plan-006-deep-internal_20260515T143105"
+}
+```
+
+</details>
+
+---

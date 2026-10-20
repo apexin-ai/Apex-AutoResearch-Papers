@@ -1,0 +1,83 @@
+{
+  "exp_id": "research-prescreening-gpu1",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T19:53:28.002Z",
+    "updated_at": "2026-05-13T22:08:01.696Z",
+    "hypothesis": "GPU1 加入 plan-001a 预筛，跑剩余 8 个 task types（measure-melting-point-unknown-substance, mendelian-genetics-known/unknown-plant, power-component x2, test-conductivity x2, use-thermometer），加速完成全部 25 tasks",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 bash /root/autodl-tmp/simgate-modular-routing/run_prescreening_gpu1.sh",
+      "server": "westb-13313",
+      "data_path": "ScienceWorld API (8 task types: measure-melting-point-unknown-substance, mendelian-genetics-known-plant, mendelian-genetics-unknown-plant, power-component, power-component-renewable-vs-nonrenewable-energy, test-conductivity, test-conductivity-of-unknown-substances, use-thermometer)",
+      "data_count": 40,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "pid": 265929,
+      "log_path": "results/prescreening/gpu1_run.log"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "tasks_completed": "8/8",
+      "all_direction": "POSITIVE",
+      "results": {
+        "measure-melting-point-unknown-substance": {
+          "int_mean": -58.6,
+          "det_mean": -32,
+          "delta": 26.6,
+          "signal": "death-dominated"
+        },
+        "mendelian-genetics-known-plant": {
+          "int_mean": -60,
+          "det_mean": -20,
+          "delta": 40,
+          "signal": "death-dominated"
+        },
+        "mendelian-genetics-unknown-plant": {
+          "int_mean": -60,
+          "det_mean": -40,
+          "delta": 20,
+          "signal": "death-dominated"
+        },
+        "power-component": {
+          "int_mean": -60,
+          "det_mean": -20,
+          "delta": 40,
+          "signal": "death-dominated"
+        },
+        "power-component-renewable-vs-nonrenewable-energy": {
+          "int_mean": -60,
+          "det_mean": 0,
+          "delta": 60,
+          "signal": "death-dominated"
+        },
+        "test-conductivity": {
+          "int_mean": -60,
+          "det_mean": -20,
+          "delta": 40,
+          "signal": "death-dominated"
+        },
+        "test-conductivity-of-unknown-substances": {
+          "int_mean": -60,
+          "det_mean": -20,
+          "delta": 40,
+          "signal": "death-dominated"
+        },
+        "use-thermometer": {
+          "int_mean": -59.4,
+          "det_mean": -19.4,
+          "delta": 40,
+          "signal": "death-dominated"
+        }
+      },
+      "summary": "All 8 tasks death-dominated: internal mode hits -100 (lethal) in 3/5 episodes; deterministic mode avoids most deaths but scores remain ~0 (no genuine task progress). Delta driven by death avoidance, not task solving."
+    },
+    "checkpoint_path": "results/prescreening/ (8 task dirs with episodes.jsonl + summary.json)",
+    "completed_at": "2026-05-13T22:08:01.696Z"
+  },
+  "timestamp": "2026-05-13T22:08:01.719927+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "504e67d42064d5321913",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code rule based accuracy analysis",
+  "task_key": "worker_code_rule-based-accuracy-analysis_20260513T204923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_rule-based-accuracy-analysis_20260513T204923_result.json",
+    "occurrence": 1,
+    "bytes": 992,
+    "sha256": "5ae2becfee27b12214b39662d79b9822f46e5a2c2f8ca480493954af02d26d0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功。结果：\n\n- **Overall accuracy: 97.4%** (75/77 scorable episodes)，但这是因为 `connect`/`disconnect` 关键词匹配了几乎所有 action（3662 次命中），导致 keyword router 几乎总是预测 `det-preferred`\n- **Avg keyword match rate: 85.8%** — 严重偏高\n- **Precision for det-preferred 仅 40.8%** — 184/189 episodes 被预测为 det-preferred，其中 108 个实际是 no-preference\n- 数据集中只有 1 个 `internal-preferred` episode（find-non-living-thing），keyword router 也把它分错了\n- Top keyword: `connect`(3662), `activate`(238), `freeze`(36), `mix`(2)\n\n核心发现：`connect`/`disconnect` 是 ScienceWorld 中几乎每步都用的通用动作，把它们作为 \"route to simulator\" 关键词导致 keyword router 退化为 \"always det-preferred\" baseline，基本无区分能力。\n\n脚本已写入 `src/rule_based_accuracy.py`，报告已生成到 `results/rule_based_accuracy_test.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-rule-based-accuracy-analysis.md"
+}

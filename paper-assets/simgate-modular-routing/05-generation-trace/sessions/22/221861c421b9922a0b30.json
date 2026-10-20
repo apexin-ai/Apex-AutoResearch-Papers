@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "221861c421b9922a0b30",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh llama full completion final",
+  "task_key": "worker_ssh_llama-full-completion-final_20260519T103716",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_llama-full-completion-final_20260519T103716_result.json",
+    "occurrence": 1,
+    "bytes": 2240,
+    "sha256": "2d81dc1d80dfe85bfcb4596f66ac916b4e9df7865c85bdded06e7a6345b35d1b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## D118 完成确认：11/11 tasks, 220 episodes ✓\n\n### Per-task 结果\n\n| Task | Eps | IntDR | DetDR | Both | Det>Int | Int>Det | Tie | AvgI | AvgD |\n|---|---|---|---|---|---|---|---|---|---|\n| chemistry-mix | 20 | 45% | 20% | 4 | 5 | 0 | 15 | -43.2 | -17.1 |\n| find-animal | 20 | 40% | 25% | 3 | 6 | 2 | 12 | -39.2 | -23.0 |\n| find-non-living-thing | 20 | 0% | 0% | 0 | 10 | 0 | 10 | 22.0 | 41.2 |\n| freeze | 20 | 45% | 0% | 0 | 9 | 0 | 11 | -44.8 | 0.8 |\n| grow-fruit | 20 | 45% | 5% | 1 | 8 | 0 | 12 | -43.7 | -3.7 |\n| identify-life-stages-1 | 20 | 55% | 10% | 2 | 9 | 0 | 11 | -55.0 | -7.5 |\n| identify-life-stages-2 | 20 | 45% | 5% | 1 | 8 | 0 | 12 | -43.4 | -3.4 |\n| inclined-plane-determine-angle | 20 | 45% | 20% | 4 | 6 | 0 | 14 | -44.0 | -14.5 |\n| lifespan-longest-lived | 20 | 35% | 5% | 0 | 7 | 1 | 12 | -30.0 | 2.5 |\n| lifespan-longest-lived-then-... | 20 | 50% | 20% | 4 | 6 | 0 | 14 | -48.4 | -15.1 |\n| measure-melting-point-unknown | 20 | 50% | 15% | 3 | 9 | 0 | 11 | -49.3 | -14.2 |\n\n### Aggregate Metrics\n\n| Metric | Llama | Qwen |\n|---|---|---|\n| Internal DR | **41.4%** (91/220) | 42.9% |\n| Deterministic DR | **11.4%** (25/220) | 16.3% |\n| Delta DR | **30.0pp** | 26.6pp |\n| DAF | **88.2%** | 78.9% |\n| Delta_full | 33.17 | - |\n| Delta_nd | 3.90 | - |\n| Labels | det=83, int=3, tie=134 | - |\n| Both dead | 22 | - |\n\n### vs Qwen 对比\n\nDirection: **CONSISTENT**. Llama 结果与 Qwen 方向完全一致，且效应更强：\n- DetDR 更低（11.4% vs 16.3%），说明 deterministic routing 在 Llama 上存活性更好\n- DAF 更高（88.2% vs 78.9%），说明 death avoidance 对总分差异的贡献更大\n- Det 压倒性胜出（83 vs 3），几乎没有 internal routing 优于 deterministic 的 case\n\n跨模型验证强有力地支持核心 claim。\n\n### Registry JSON\n\n```json\n{\n  \"total_episodes\": 220,\n  \"tasks\": 11,\n  \"internal_death_rate\": 0.4136,\n  \"det_death_rate\": 0.1136,\n  \"delta_dr_pp\": 30.0,\n  \"both_dead\": 22,\n  \"det_preferred\": 83,\n  \"int_preferred\": 3,\n  \"no_preference\": 134,\n  \"delta_full\": 33.17,\n  \"delta_nd\": 3.9,\n  \"daf\": 88.2,\n  \"per_task\": { ... }  // 完整 per-task 数据见上表\n}\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-llama-full-completion-final.md"
+}

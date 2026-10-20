@@ -1,0 +1,830 @@
+{
+  "schema_version": "1.0",
+  "session_id": "0f800404e7fbc16ff2a1",
+  "rounds": [
+    {
+      "number": 1,
+      "messages": [
+        {
+          "source_line": 153,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RipFGmWApbHJuPTb5uuMCF",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cat << 'ENDOFFILE' > /root/autodl-tmp/simgate-modular-routing/src/evaluation/ablation_comparison.py\n# Plan-004: Three-condition ablation comparison -- Explicit vs Implicit Routing.\n#\n# Loads evaluation results from all three conditions and produces a unified\n# comparison report: accuracy, task scores, death rates, routing distributions.\n#\n# Conditions:\n#   (a) 1.7B Explicit Router -- plan-002 checkpoint (classification head)\n#   (b) 1.7B Implicit Router -- plan-004 checkpoint (causal LM, [SIMULATE] prefix)\n#   (c) 7B Implicit Router  -- prompt-only (tool-use, no training)\n#\n# Input:  eval_results.json from each condition's output directory,\n#         or runs all three evaluations live if checkpoints are provided.\n# Output: results/plan-004-ablation/comparison_report.json\n#\n# Dependencies: ablation_eval_common.py, router_sft_eval.py\n\nimport argparse\nimport json\nimport os\nimport sys\nfrom typing import Dict, Any, Optional, List\n\nSRC_DIR = os.path.join(os.path.dirname(__file__), \"..\")\nsys.path.insert(0, SRC_DIR)\n\n\n# ---------------------------------------------------------------------------\n# Result loading (from pre-computed eval_results.json)\n# ---------------------------------------------------------------------------\n\ndef load_condition_results(results_dir: str, condition_name: str) -> Optional[Dict]:\n    \"\"\"Load eval_results.json for a given condition.\"\"\"\n    path = os.path.join(results_dir, condition_name, \"eval_results.json\")\n    if not os.path.exists(path):\n        print(f\"Warning: {path} not found, skipping condition '{condition_name}'\")\n        return None\n    with open(path) as f:\n        return json.load(f)\n\n\n# ---------------------------------------------------------------------------\n# Live evaluation (runs router on ScienceWorld)\n# ---------------------------------------------------------------------------\n\ndef run_explicit_eval(adapter_path: str, model_name: str, config) -> Dict:\n    \"\"\"Condition (a): explicit router from plan-002.\"\"\"\n    from router_sft_eval import ExplicitRouter\n    from ablation_eval_common import run_ablation_eval\n\n    router = ExplicitRouter(adapter_path=adapter_path, base_model=model_name)\n    return run_ablation_eval(config, router_fn=router)\n\n\ndef run_implicit_1_7b_eval(adapter_path: str, model_name: str, config) -> Dict:\n    \"\"\"Condition (b): implicit 1.7B router.\"\"\"\n    from training.implicit_router_sft import Implicit1_7BRouter\n    from ablation_eval_common import run_ablation_eval\n\n    router = Implicit1_7BRouter(adapter_path=adapter_path, base_model=model_name)\n    return run_ablation_eval(config, router_fn=router)\n\n\ndef run_prompt_7b_eval(model_path: Optional[str], gpu_id: int, config) -> Dict:\n    \"\"\"Condition (c): prompt-only 7B router.\"\"\"\n    from evaluation.prompt_routing_eval import Implicit7BRouter\n    from ablation_eval_common import run_ablation_eval\n\n    router = Implicit7BRouter(model_path=model_path, gpu_id=gpu_id)\n    return run_ablation_eval(config, router_fn=router)\n\n\n# ---------------------------------------------------------------------------\n# Comparison report\n# ---------------------------------------------------------------------------\n\nCONDITION_NAMES = {\n    \"a\": \"explicit_1_7b\",\n    \"b\": \"implicit_1_7b\",\n    \"c\": \"implicit_7b\",\n}\n\nCONDITION_LABELS = {\n    \"explicit_1_7b\": \"(a) 1.7B Explicit Router\",\n    \"implicit_1_7b\": \"(b) 1.7B Implicit Router\",\n    \"implicit_7b\":   \"(c) 7B Implicit Router (prompt-only)\",\n}\n\n\ndef build_comparison(results: Dict[str, Dict]) -> Dict[str, Any]:\n    \"\"\"Build a unified comparison report from per-condition results.\"\"\"\n    summary_rows = []\n    per_task_all = {}\n\n    for cond_key in [\"explicit_1_7b\", \"implicit_1_7b\", \"implicit_7b\"]:\n        r = results.get(cond_key)\n        if r is None:\n            continue\n\n        ep = r.get(\"episode_metrics\", {})\n        ra = r.get(\"routing_accuracy\", {})\n\n        row = {\n            \"condition\": CONDITION_LABELS.get(cond_key, cond_key),\n            \"condition_key\": cond_key,\n            \"mean_score\": ep.get(\"mean_score\"),\n            \"death_rate\": ep.get(\"death_rate\"),\n            \"routing_accuracy\": ra.get(\"accuracy\"),\n            \"route_ratio_det\": ep.get(\"route_ratio_det\"),\n            \"route_ratio_int\": ep.get(\"route_ratio_int\"),\n            \"n_episodes\": ep.get(\"n_episodes\"),\n            \"mean_steps\": ep.get(\"mean_steps\"),\n        }\n        summary_rows.append(row)\n\n        per_task = ep.get(\"per_task_mean_score\", {})\n        for task, score in per_task.items():\n            per_task_all.setdefault(task, {})[cond_key] = score\n\n    # Pairwise deltas: (b) vs (a), (c) vs (a), (c) vs (b)\n    deltas = {}\n    if \"explicit_1_7b\" in results and \"implicit_1_7b\" in results:\n        a_score = results[\"explicit_1_7b\"][\"episode_metrics\"][\"mean_score\"]\n        b_score = results[\"implicit_1_7b\"][\"episode_metrics\"][\"mean_score\"]\n        deltas[\"b_vs_a\"] = {\n            \"score_delta\": b_score - a_score,\n            \"description\": \"Implicit 1.7B minus Explicit 1.7B (controls for formulation)\",\n        }\n    if \"explicit_1_7b\" in results and \"implicit_7b\" in results:\n        a_score = results[\"explicit_1_7b\"][\"episode_metrics\"][\"mean_score\"]\n        c_score = results[\"implicit_7b\"][\"episode_metrics\"][\"mean_score\"]\n        deltas[\"c_vs_a\"] = {\n            \"score_delta\": c_score - a_score,\n            \"description\": \"Prompt 7B minus Explicit 1.7B (confounds capacity + formulation)\",\n        }\n    if \"implicit_1_7b\" in results and \"implicit_7b\" in results:\n        b_score = results[\"implicit_1_7b\"][\"episode_metrics\"][\"mean_score\"]\n        c_score = results[\"implicit_7b\"][\"episode_metrics\"][\"mean_score\"]\n        deltas[\"c_vs_b\"] = {\n            \"score_delta\": c_score - b_score,\n            \"description\": \"Prompt 7B minus Implicit 1.7B (controls for capacity)\",\n        }\n\n    return {\n        \"summary\": summary_rows,\n        \"per_task_scores\": per_task_all,\n        \"pairwise_deltas\": deltas,\n    }\n\n\ndef print_comparison(report: Dict):\n    \"\"\"Pretty-print the comparison table.\"\"\"\n    rows = report[\"summary\"]\n    if not rows:\n        print(\"No results to compare.\")\n        return\n\n    print(\"\\n\" + \"=\" * 80)\n    print(\"Plan-004 Ablation: Explicit vs Implicit Routing\")\n    print(\"=\" * 80)\n\n    header = f\"{'Condition':<40} {'Score':>8} {'Death%':>8} {'RoutAcc':>8} {'Det%':>6}\"\n    print(header)\n    print(\"-\" * 80)\n    for r in rows:\n        score = f\"{r['mean_score']:.2f}\" if r[\"mean_score\"] is not None else \"N/A\"\n        death = f\"{r['death_rate']:.1%}\" if r[\"death_rate\"] is not None else \"N/A\"\n        acc = f\"{r['routing_accuracy']:.3f}\" if r[\"routing_accuracy\"] is not None else \"N/A\"\n        det = f\"{r['route_ratio_det']:.1%}\" if r[\"route_ratio_det\"] is not None else \"N/A\"\n        print(f\"{r['condition']:<40} {score:>8} {death:>8} {acc:>8} {det:>6}\")\n\n    deltas = report.get(\"pairwise_deltas\", {})\n    if deltas:\n        print(f\"\\nPairwise Deltas:\")\n        for key, d in deltas.items():\n            print(f\"  {key}: {d['score_delta']:+.2f}  ({d['description']})\")\n\n    per_task = report.get(\"per_task_scores\", {})\n    if per_task:\n        print(f\"\\nPer-task Scores:\")\n        tasks = sorted(per_task.keys())\n        conds = [\"explicit_1_7b\", \"implicit_1_7b\", \"implicit_7b\"]\n        header = f\"  {'Task':<35}\" + \"\".join(f\" {c[:12]:>12}\" for c in conds)\n        print(header)\n        for task in tasks:\n            scores = per_task[task]\n            vals = []\n            for c in conds:\n                s = scores.get(c)\n                vals.append(f\"{s:.2f}\" if s is not None else \"N/A\")\n            print(f\"  {task:<35}\" + \"\".join(f\" {v:>12}\" for v in vals))\n\n    print(\"=\" * 80)\n\n\n# ---------------------------------------------------------------------------\n# CLI\n# ---------------------------------------------------------------------------\n\ndef main():\n    parser = argparse.ArgumentParser(\n        description=\"Plan-004: Three-condition ablation comparison\"\n    )\n\n    mode_group = parser.add_mutually_exclusive_group()\n    mode_group.add_argument(\"--from_results\", action=\"store_true\", default=True,\n                            help=\"Load pre-computed eval_results.json (default)\")\n    mode_group.add_argument(\"--run_live\", action=\"store_true\",\n                            help=\"Run evaluations live (requires checkpoints)\")\n\n    parser.add_argument(\"--explicit_ckpt\", type=str, default=None,\n                        help=\"Path to plan-002 explicit router adapter (condition a)\")\n    parser.add_argument(\"--implicit_ckpt\", type=str, default=None,\n                        help=\"Path to plan-004 implicit router adapter (condition b)\")\n    parser.add_argument(\"--prompt_model\", type=str, default=None,\n                        help=\"Path/name of Qwen2.5-7B-Instruct for condition c\")\n    parser.add_argument(\"--data_dir\", type=str, default=\"results/plan_c\",\n                        help=\"Data directory (used for oracle labels in live mode)\")\n    parser.add_argument(\"--output_dir\", type=str, default=\"results/plan-004-ablation\",\n                        help=\"Output directory for comparison report\")\n    parser.add_argument(\"--results_dir\", type=str, default=None,\n                        help=\"Directory containing per-condition eval_results.json \"\n                             \"(default: same as --output_dir)\")\n\n    from ablation_eval_common import add_eval_args\n    add_eval_args(parser)\n\n    args = parser.parse_args()\n    results_dir = args.results_dir or args.output_dir\n    os.makedirs(args.output_dir, exist_ok=True)\n\n    if args.run_live:\n        from ablation_eval_common import EvalConfig\n\n        base_config = EvalConfig(\n            task_types=[t.strip() for t in args.task_types.split(\",\")],\n            max_variations=args.max_variations,\n            max_steps=args.max_steps,\n            gpu_id=args.gpu_id,\n            output_dir=args.output_dir,\n            oracle_data_path=args.oracle_data,\n        )\n\n        all_results = {}\n\n        if args.explicit_ckpt:\n            print(\"\\n>>> Running Condition (a): Explicit 1.7B <<<\")\n            cfg = EvalConfig(**{**base_config.__dict__, \"condition_name\": \"explicit_1_7b\"})\n            all_results[\"explicit_1_7b\"] = run_explicit_eval(\n                args.explicit_ckpt, \"Qwen/Qwen3-1.7B\", cfg\n            )\n\n        if args.implicit_ckpt:\n            print(\"\\n>>> Running Condition (b): Implicit 1.7B <<<\")\n            cfg = EvalConfig(**{**base_config.__dict__, \"condition_name\": \"implicit_1_7b\"})\n            all_results[\"implicit_1_7b\"] = run_implicit_1_7b_eval(\n                args.implicit_ckpt, \"Qwen/Qwen3-1.7B\", cfg\n            )\n\n        if args.prompt_model:\n            print(\"\\n>>> Running Condition (c): Prompt 7B <<<\")\n            cfg = EvalConfig(**{**base_config.__dict__, \"condition_name\": \"implicit_7b\"})\n            all_results[\"implicit_7b\"] = run_prompt_7b_eval(\n                args.prompt_model, args.gpu_id, cfg\n            )\n\n    else:\n        all_results = {}\n        for cond_key in [\"explicit_1_7b\", \"implicit_1_7b\", \"implicit_7b\"]:\n            r = load_condition_results(results_dir, cond_key)\n            if r is not None:\n                all_results[cond_key] = r\n\n    if not all_results:\n        print(\"No results found. Provide checkpoints with --run_live, \"\n              \"or ensure eval_results.json files exist in --results_dir.\")\n        return\n\n    report = build_comparison(all_results)\n    print_comparison(report)\n\n    report_path = os.path.join(args.output_dir, \"comparison_report.json\")\n    with open(report_path, \"w\") as f:\n        json.dump(report, f, indent=2, ensure_ascii=False)\n    print(f\"\\nReport saved to {report_path}\")\n\n\nif __name__ == \"__main__\":\n    main()\nENDOFFILE",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "9d2de550-b112-4795-a5f9-650c4264b985",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016eUGXDqUZsu5Hd63wiRHw6",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2296,
+                "cache_read_input_tokens": 89673,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2296
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-14T04:36:56.348Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RipFGmWApbHJuPTb5uuMCF",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "0e50177e-1d48-4179-8b25-ec671d2c37cf",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.04}}"
+              }
+            }
+          },
+          "id": "event-000154"
+        },
+        {
+          "source_line": 155,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now write the launch script and do a dry-run of format_implicit_data.py."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "ef939656-ea2f-4369-86f9-d2d9bf72ce21",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013eRabKzYXuXLjLESJJh1ug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3746,
+                "cache_read_input_tokens": 91969,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3746
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V1YNPGUfuXgUQ8ezHrGHm4",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/scripts/launch_plan004.sh"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "3f7a6cab-e772-4454-8667-27e653f82705",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013eRabKzYXuXLjLESJJh1ug",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3746,
+                "cache_read_input_tokens": 91969,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3746
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-14T04:37:01.506Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V1YNPGUfuXgUQ8ezHrGHm4",
+              "type": "tool_result",
+              "content": "1\t#!/bin/bash\n2\t# Plan-004: Explicit vs Implicit Routing Ablation\n3\t#\n4\t# Conditions:\n5\t#   (a) 1.7B Explicit Router — reuses plan-002 checkpoint, no training needed\n6\t#   (b) 1.7B Implicit Router — trains Qwen3-1.7B causal LM with [SIMULATE] prefix\n7\t#   (c) 7B Implicit Router  — prompt-only evaluation, no training\n8\t#\n9\t# Prerequisites: Plan-002 explicit router must be trained first (launch_plan002.sh).\n10\t#   If plan-002 adapter is not available, condition (a) is skipped in comparison.\n11\t#\n12\t# Usage: bash scripts/launch_plan004.sh\n13\t\n14\tset -euo pipefail\n15\t\n16\tsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n17\tcd /root/autodl-tmp/simgate-modular-routing\n18\t\n19\t# AutoDL network acceleration\n20\tsource /etc/network_turbo 2>/dev/null || true\n21\texport HF_HOME=/root/autodl-tmp/.hf_cache\n22\texport HF_HUB_DISABLE_XET=1\n23\texport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\n24\texport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n25\t\n26\t# Local model paths (already downloaded)\n27\tQWEN3_1_7B=\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\"\n28\tQWEN2_5_7B=\"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\"\n29\tPLAN002_ADAPTER=\"results/plan_002_router/final_adapter\"\n30\t\n31\techo \"==========================================\"\n32\techo \" Plan-004: Explicit vs Implicit Routing\"\n33\techo \"==========================================\"\n34\t\n35\t# ──────────────────────────────────────────────\n36\t# Step 1: Format data for implicit routing (condition b)\n37\t# ──────────────────────────────────────────────\n38\techo \"\"\n39\techo \"[Step 1] Formatting implicit SFT data...\"\n40\tpython src/training/format_implicit_data.py \\\n41\t    --data_dir results/plan_c \\\n42\t    --output_dir data/plan-004-implicit\n43\t\n44\t# ──────────────────────────────────────────────\n45\t# Step 2: Train implicit router (condition b)\n46\t# Uses GPU 1 to avoid conflict with other jobs\n47\t# ──────────────────────────────────────────────\n48\techo \"\"\n49\techo \"[Step 2] Training 1.7B Implicit Router...\"\n50\tCUDA_VISIBLE_DEVICES=1 python src/training/implicit_router_sft.py train \\\n51\t    --data_dir data/plan-004-implicit \\\n52\t    --model_name \"${QWEN3_1_7B}\" \\\n53\t    --output_dir checkpoints/plan-004-implicit \\\n54\t    --lr 2e-5 \\\n55\t    --batch_size 32 \\\n56\t    --epochs 3 \\\n57\t    --max_seq_len 2048 \\\n58\t    --seed 42\n59\t\n60\t# ──────────────────────────────────────────────\n61\t# Step 3: Evaluate all three conditions\n62\t# ──────────────────────────────────────────────\n63\techo \"\"\n64\techo \"[Step 3] Running three-condition comparison...\"\n65\t\n66\tCOMPARISON_ARGS=(\n67\t    --run_live\n68\t    --implicit_ckpt checkpoints/plan-004-implicit/final_adapter\n69\t    --prompt_model \"${QWEN2_5_7B}\"\n70\t    --data_dir results/plan_c\n71\t    --output_dir results/plan-004-ablation\n72\t    --oracle_data results/sft_data_death_aware/sft_triples.jsonl\n73\t)\n74\t\n75\t# Include explicit router if plan-002 adapter exists\n76\tif [ -d \"${PLAN002_ADAPTER}\" ]; then\n77\t    COMPARISON_ARGS+=(--explicit_ckpt \"${PLAN002_ADAPTER}\")\n78\t    echo \"  Plan-002 adapter found, including condition (a).\"\n79\telse\n80\t    echo \"  Plan-002 adapter not found at ${PLAN002_ADAPTER}, skipping condition (a).\"\n81\tfi\n82\t\n83\tpython src/evaluation/ablation_comparison.py \"${COMPARISON_ARGS[@]}\"\n84\t\n85\techo \"\"\n86\techo \"==========================================\"\n87\techo \" Plan-004 complete!\"\n88\techo \" Results: results/plan-004-ablation/\"\n89\techo \"==========================================\"\n90\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "6a9e5fad-5bcd-413f-aa7f-5b30d79f4529",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/scripts/launch_plan004.sh",
+                "content": "#!/bin/bash\n# Plan-004: Explicit vs Implicit Routing Ablation\n#\n# Conditions:\n#   (a) 1.7B Explicit Router — reuses plan-002 checkpoint, no training needed\n#   (b) 1.7B Implicit Router — trains Qwen3-1.7B causal LM with [SIMULATE] prefix\n#   (c) 7B Implicit Router  — prompt-only evaluation, no training\n#\n# Prerequisites: Plan-002 explicit router must be trained first (launch_plan002.sh).\n#   If plan-002 adapter is not available, condition (a) is skipped in comparison.\n#\n# Usage: bash scripts/launch_plan004.sh\n\nset -euo pipefail\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/simgate-modular-routing\n\n# AutoDL network acceleration\nsource /etc/network_turbo 2>/dev/null || true\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\n# Local model paths (already downloaded)\nQWEN3_1_7B=\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\"\nQWEN2_5_7B=\"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\"\nPLAN002_ADAPTER=\"results/plan_002_router/final_adapter\"\n\necho \"==========================================\"\necho \" Plan-004: Explicit vs Implicit Routing\"\necho \"==========================================\"\n\n# ──────────────────────────────────────────────\n# Step 1: Format data for implicit routing (condition b)\n# ──────────────────────────────────────────────\necho \"\"\necho \"[Step 1] Formatting implicit SFT data...\"\npython src/training/format_implicit_data.py \\\n    --data_dir results/plan_c \\\n    --output_dir data/plan-004-implicit\n\n# ──────────────────────────────────────────────\n# Step 2: Train implicit router (condition b)\n# Uses GPU 1 to avoid conflict with other jobs\n# ──────────────────────────────────────────────\necho \"\"\necho \"[Step 2] Training 1.7B Implicit Router...\"\nCUDA_VISIBLE_DEVICES=1 python src/training/implicit_router_sft.py train \\\n    --data_dir data/plan-004-implicit \\\n    --model_name \"${QWEN3_1_7B}\" \\\n    --output_dir checkpoints/plan-004-implicit \\\n    --lr 2e-5 \\\n    --batch_size 32 \\\n    --epochs 3 \\\n    --max_seq_len 2048 \\\n    --seed 42\n\n# ──────────────────────────────────────────────\n# Step 3: Evaluate all three conditions\n# ──────────────────────────────────────────────\necho \"\"\necho \"[Step 3] Running three-condition comparison...\"\n\nCOMPARISON_ARGS=(\n    --run_live\n    --implicit_ckpt checkpoints/plan-004-implicit/final_adapter\n    --prompt_model \"${QWEN2_5_7B}\"\n    --data_dir results/plan_c\n    --output_dir results/plan-004-ablation\n    --oracle_data results/sft_data_death_aware/sft_triples.jsonl\n)\n\n# Include explicit router if plan-002 adapter exists\nif [ -d \"${PLAN002_ADAPTER}\" ]; then\n    COMPARISON_ARGS+=(--explicit_ckpt \"${PLAN002_ADAPTER}\")\n    echo \"  Plan-002 adapter found, including condition (a).\"\nelse\n    echo \"  Plan-002 adapter not found at ${PLAN002_ADAPTER}, skipping condition (a).\"\nfi\n\npython src/evaluation/ablation_comparison.py \"${COMPARISON_ARGS[@]}\"\n\necho \"\"\necho \"==========================================\"\necho \" Plan-004 complete!\"\necho \" Results: results/plan-004-ablation/\"\necho \"==========================================\"\n",
+                "numLines": 90,
+                "startLine": 1,
+                "totalLines": 90
+              }
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SMTK8GJa1X14bajez97KBt",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cat << 'ENDOFFILE' > /root/autodl-tmp/simgate-modular-routing/scripts/launch_plan004.sh\n#!/bin/bash\n# Plan-004: Explicit vs Implicit Routing Ablation\n#\n# Conditions:\n#   (a) 1.7B Explicit Router -- reuses plan-002 checkpoint, no training needed\n#   (b) 1.7B Implicit Router -- trains Qwen3-1.7B causal LM with [SIMULATE] prefix\n#   (c) 7B Implicit Router  -- prompt-only evaluation, no training\n#\n# Prerequisites: Plan-002 explicit router must be trained first (launch_plan002.sh).\n#   If plan-002 adapter is not available, condition (a) is skipped in comparison.\n#\n# Usage: bash scripts/launch_plan004.sh\n\nset -euo pipefail\n\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\ncd /root/autodl-tmp/simgate-modular-routing\n\n# AutoDL network acceleration\nsource /etc/network_turbo 2>/dev/null || true\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\n# Local model paths (already downloaded)\nQWEN3_1_7B=\"/root/autodl-tmp/models/Qwen/Qwen3-1.7B\"\nQWEN2_5_7B=\"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\"\nPLAN002_ADAPTER=\"results/plan_002_router/final_adapter\"\n\necho \"==========================================\"\necho \" Plan-004: Explicit vs Implicit Routing\"\necho \"==========================================\"\n\n# Step 1: Format data for implicit routing (condition b)\necho \"\"\necho \"[Step 1] Formatting implicit SFT data...\"\npython src/training/format_implicit_data.py \\\n    --data_dir results/plan_c \\\n    --output_dir data/plan-004-implicit\n\n# Step 2: Train implicit router (condition b)\n# Uses GPU 1 to avoid conflict with other jobs\necho \"\"\necho \"[Step 2] Training 1.7B Implicit Router...\"\nCUDA_VISIBLE_DEVICES=1 python src/training/implicit_router_sft.py train \\\n    --data_dir data/plan-004-implicit \\\n    --model_name \"${QWEN3_1_7B}\" \\\n    --output_dir checkpoints/plan-004-implicit \\\n    --lr 2e-5 \\\n    --batch_size 32 \\\n    --epochs 3 \\\n    --max_seq_len 2048 \\\n    --seed 42\n\n# Step 3: Evaluate all three conditions\necho \"\"\necho \"[Step 3] Running three-condition comparison...\"\n\nCOMPARISON_ARGS=(\n    --run_live\n    --implicit_ckpt checkpoints/plan-004-implicit/final_adapter\n    --prompt_model \"${QWEN2_5_7B}\"\n    --data_dir results/plan_c\n    --output_dir results/plan-004-ablation\n    --oracle_data results/sft_data_death_aware/sft_triples.jsonl\n)\n\n# Include explicit router if plan-002 adapter exists\nif [ -d \"${PLAN002_ADAPTER}\" ]; then\n    COMPARISON_ARGS+=(--explicit_ckpt \"${PLAN002_ADAPTER}\")\n    echo \"  Plan-002 adapter found, including condition (a).\"\nelse\n    echo \"  Plan-002 adapter not found at ${PLAN002_ADAPTER}, skipping condition (a).\"\nfi\n\npython src/evaluation/ablation_comparison.py \"${COMPARISON_ARGS[@]}\"\n\necho \"\"\necho \"==========================================\"\necho \" Plan-004 complete!\"\necho \" Results: results/plan-004-ablation/\"\necho \"==========================================\"\nENDOFFILE\nchmod +x /root/autodl-tmp/simgate-modular-routing/scripts/launch_plan004.sh",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "992f259a-92f2-4d2f-ab88-8fec2bc46c71",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V8c35Jj1VywrVgTRfgsY5W",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1385,
+                "cache_read_input_tokens": 95715,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1385
+                },
+                "output_tokens": 43,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-14T04:37:18.317Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SMTK8GJa1X14bajez97KBt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "9684a6ef-bc80-4b01-802b-45fb27fa3fcd",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.42}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.42}}"
+              }
+            }
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已写入服务器。运行 `format_implicit_data.py` dry-run 验证。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "bcc5d872-82e5-4092-8879-b33b57c724f5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gb8gD4Y7GrqhzyqtCyuaEV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1219,
+                "cache_read_input_tokens": 97100,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1219
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V5pFNGC5aQ25RDUgEzwnRg",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python src/training/format_implicit_data.py --data_dir results/plan_c --output_dir data/plan-004-implicit",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "ceb0c1d7-3404-46bf-b821-0744d252b9ec",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Gb8gD4Y7GrqhzyqtCyuaEV",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1219,
+                "cache_read_input_tokens": 97100,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1219
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-14T04:37:26.031Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V5pFNGC5aQ25RDUgEzwnRg",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 1770 records from results/plan_c\\\\nConverted 1770 records (0 skipped)\\\\n  deterministic: 1620 (91.5%)\\\\n  internal:      150\\\\n  output: data/plan-004-implicit/implicit_sft.jsonl\\\\nSummary saved to data/plan-004-implicit/conversion_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "6cc6d369-44ca-4be3-b791-2e8dfd5e778b",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loaded 1770 records from results/plan_c\\\\nConverted 1770 records (0 skipped)\\\\n  deterministic: 1620 (91.5%)\\\\n  internal:      150\\\\n  output: data/plan-004-implicit/implicit_sft.jsonl\\\\nSummary saved to data/plan-004-implicit/conversion_summary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.35}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Loaded 1770 records from results/plan_c\\nConverted 1770 records (0 skipped)\\n  deterministic: 1620 (91.5%)\\n  internal:      150\\n  output: data/plan-004-implicit/implicit_sft.jsonl\\nSummary saved to data/plan-004-implicit/conversion_summary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.35}}"
+              }
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据转换成功：1770 条记录，det 91.5% / int 8.5%。验证输出数据格式正确。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "5ca89bf7-685c-4291-962b-8e32f1a90281",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JAu7FNpCP7mccETSJGu3Lj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 367,
+                "cache_read_input_tokens": 98319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 367
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SGLF358ztkhTTh9SMFpYDe",
+              "name": "mcp__agent-ml-research__ssh_read_only",
+              "input": {
+                "server": "westb-13313",
+                "command": "head -1 /root/autodl-tmp/simgate-modular-routing/data/plan-004-implicit/implicit_sft.jsonl",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "e4bf4897-f159-4a66-9d86-14c89e50db72",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01JAu7FNpCP7mccETSJGu3Lj",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 367,
+                "cache_read_input_tokens": 98319,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 367
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": "2026-05-14T04:37:31.963Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SGLF358ztkhTTh9SMFpYDe",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"messages\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"You are an agent in a ScienceWorld text environment. Given the current observation and action history, choose the next action. If you believe a deterministic simulation would produce a better outcome, prefix your action with [SIMULATE]. Otherwise, output the action directly.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"Observation: terminal 1 on agent is now connected to terminal 1 on door\\\\\\\\nAction history: (none)\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"[SIMULATE] connect agent to door to kitchen\\\\\\\"}], \\\\\\\"task_type\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"variation\\\\\\\": 0, \\\\\\\"step_idx\\\\\\\": 0, \\\\\\\"route_label\\\\\\\": \\\\\\\"deterministic\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "120bc446-ff6b-4c9d-a0cb-83ed063cac22",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"messages\\\\\\\": [{\\\\\\\"role\\\\\\\": \\\\\\\"system\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"You are an agent in a ScienceWorld text environment. Given the current observation and action history, choose the next action. If you believe a deterministic simulation would produce a better outcome, prefix your action with [SIMULATE]. Otherwise, output the action directly.\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"user\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"Observation: terminal 1 on agent is now connected to terminal 1 on door\\\\\\\\nAction history: (none)\\\\\\\"}, {\\\\\\\"role\\\\\\\": \\\\\\\"assistant\\\\\\\", \\\\\\\"content\\\\\\\": \\\\\\\"[SIMULATE] connect agent to door to kitchen\\\\\\\"}], \\\\\\\"task_type\\\\\\\": \\\\\\\"chemistry-mix\\\\\\\", \\\\\\\"variation\\\\\\\": 0, \\\\\\\"step_idx\\\\\\\": 0, \\\\\\\"route_label\\\\\\\": \\\\\\\"deterministic\\\\\\\"}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\\"messages\\\": [{\\\"role\\\": \\\"system\\\", \\\"content\\\": \\\"You are an agent in a ScienceWorld text environment. Given the current observation and action history, choose the next action. If you believe a deterministic simulation would produce a better outcome, prefix your action with [SIMULATE]. Otherwise, output the action directly.\\\"}, {\\\"role\\\": \\\"user\\\", \\\"content\\\": \\\"Observation: terminal 1 on agent is now connected to terminal 1 on door\\\\nAction history: (none)\\\"}, {\\\"role\\\": \\\"assistant\\\", \\\"content\\\": \\\"[SIMULATE] connect agent to door to kitchen\\\"}], \\\"task_type\\\": \\\"chemistry-mix\\\", \\\"variation\\\": 0, \\\"step_idx\\\": 0, \\\"route_label\\\": \\\"deterministic\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+              }
+            }
+          },
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "数据格式正确。再验证 `implicit_router_sft.py` 的 import 链。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "2cfdef38-ae33-4b11-ba48-6a774e1b028f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcxHgb7BLGFv5VxwkSjD5v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 489,
+                "cache_read_input_tokens": 98686,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 489
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E1BwjDPRGLkNpe5QWdd6oV",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport sys; sys.path.insert(0, 'src')\nfrom training.implicit_router_sft import ImplicitSFTDataset, PaddingCollator, load_implicit_sft_data, parse_implicit_output\nprint('Imports OK')\n\n# Test parse\na, r = parse_implicit_output('[SIMULATE] open door')\nassert a == 'open door' and r == 'deterministic', f'Failed: {a}, {r}'\na2, r2 = parse_implicit_output('look around')\nassert a2 == 'look around' and r2 == 'internal', f'Failed: {a2}, {r2}'\nprint('parse_implicit_output: OK')\n\n# Test data loading\ntrain, val = load_implicit_sft_data('data/plan-004-implicit/implicit_sft.jsonl', eval_split=0.15, seed=42)\nprint(f'Data split: train={len(train)}, val={len(val)}')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "af0feec7-49ad-4aed-8e4c-10fd6fc92e06",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CcxHgb7BLGFv5VxwkSjD5v",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 489,
+                "cache_read_input_tokens": 98686,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 489
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-14T04:37:47.583Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E1BwjDPRGLkNpe5QWdd6oV",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Imports OK\\\\nparse_implicit_output: OK\\\\nData split: train=1505, val=265\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.1}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "b0aae6c3-b9bd-4fb0-adbb-4ef014de4a43",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Imports OK\\\\nparse_implicit_output: OK\\\\nData split: train=1505, val=265\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 6.1}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"Imports OK\\nparse_implicit_output: OK\\nData split: train=1505, val=265\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 6.1}}"
+              }
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016ERRyJat2dVgme344msNwJ",
+              "name": "mcp__agent-ml-research__ssh_execute",
+              "input": {
+                "server": "westb-13313",
+                "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python -c \"\nimport sys; sys.path.insert(0, 'src')\nfrom evaluation.prompt_routing_eval import parse_tool_use_output\nprint('prompt_routing_eval imports: OK')\n\n# Test parsing\nva = ['open door', 'look around', 'pick up key']\na, r = parse_tool_use_output('<tool_call>simulate(action=\\\"open door\\\")</tool_call>', va)\nassert a == 'open door' and r == 'deterministic', f'Failed: {a}, {r}'\na2, r2 = parse_tool_use_output('Action: look around', va)\nassert a2 == 'look around' and r2 == 'internal', f'Failed: {a2}, {r2}'\nprint('parse_tool_use_output: OK')\n\nfrom evaluation.ablation_comparison import build_comparison, CONDITION_LABELS\nprint('ablation_comparison imports: OK')\nprint('All evaluation imports validated.')\n\"",
+                "account": "root"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "60e53195-96a0-4083-9011-d2f9098d4535",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_016VxB4Eh25MLt2WNa3JU2Ga",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 617,
+                "cache_read_input_tokens": 99175,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 617
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-14T04:37:56.032Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016ERRyJat2dVgme344msNwJ",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"prompt_routing_eval imports: OK\\\\nparse_tool_use_output: OK\\\\nablation_comparison imports: OK\\\\nAll evaluation imports validated.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "838636c8-62cb-4bf3-bd36-8146bbe759d5",
+            "tool_use_result": {
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"prompt_routing_eval imports: OK\\\\nparse_tool_use_output: OK\\\\nablation_comparison imports: OK\\\\nAll evaluation imports validated.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.31}}\"}",
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"stdout\": \"prompt_routing_eval imports: OK\\nparse_tool_use_output: OK\\nablation_comparison imports: OK\\nAll evaluation imports validated.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.31}}"
+              }
+            }
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过验证。最终文件清单和状态：\n\n| 文件 | 状态 |\n|---|---|\n| `src/training/format_implicit_data.py` | dry-run 成功，1770 条 → 1770 条转换 |\n| `src/training/implicit_router_sft.py` | import + parse 测试通过，数据加载 train=1505/val=265 |\n| `src/evaluation/prompt_routing_eval.py` | import + parse 测试通过 |\n| `src/evaluation/ablation_comparison.py` | import 测试通过 |\n| `scripts/launch_plan004.sh` | 已写入服务器，可执行 |\n\n关键数据点：\n- **训练数据**：1770 条 labeled steps（11 个 task），det:int = 91.5%:8.5%（严重不平衡）\n- **模型权重**：Qwen3-1.7B 和 Qwen2.5-7B-Instruct 都在 `/root/autodl-tmp/models/Qwen/`\n- **Plan-002 adapter**：尚未训练，launch 脚本会自动跳过 condition (a)\n\n需要 GPU dry-run 验证训练脚本的话请说明。类别不平衡问题（det 91.5%）可能需要关注 —— implicit router 可能倾向全部输出 `[SIMULATE]` 前缀。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "uuid": "c77d9680-382e-41df-bb4f-2cebcca6c8ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NHEMWANrChVcT47FvtitMZ",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 485,
+                "cache_read_input_tokens": 99792,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 485
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000171"
+        },
+        {
+          "source_line": 172,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过验证。最终文件清单和状态：\n\n| 文件 | 状态 |\n|---|---|\n| `src/training/format_implicit_data.py` | dry-run 成功，1770 条 → 1770 条转换 |\n| `src/training/implicit_router_sft.py` | import + parse 测试通过，数据加载 train=1505/val=265 |\n| `src/evaluation/prompt_routing_eval.py` | import + parse 测试通过 |\n| `src/evaluation/ablation_comparison.py` | import 测试通过 |\n| `scripts/launch_plan004.sh` | 已写入服务器，可执行 |\n\n关键数据点：\n- **训练数据**：1770 条 labeled steps（11 个 task），det:int = 91.5%:8.5%（严重不平衡）\n- **模型权重**：Qwen3-1.7B 和 Qwen2.5-7B-Instruct 都在 `/root/autodl-tmp/models/Qwen/`\n- **Plan-002 adapter**：尚未训练，launch 脚本会自动跳过 condition (a)\n\n需要 GPU dry-run 验证训练脚本的话请说明。类别不平衡问题（det 91.5%）可能需要关注 —— implicit router 可能倾向全部输出 `[SIMULATE]` 前缀。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 721884,
+            "duration_api_ms": 691915,
+            "num_turns": 52,
+            "stop_reason": "end_turn",
+            "session_id": "88eea129-53e1-4cae-9008-1da5a680a4bd",
+            "total_cost_usd": 2.8181985499999995,
+            "usage": {
+              "input_tokens": 39,
+              "cache_creation_input_tokens": 88436,
+              "cache_read_input_tokens": 2353412,
+              "output_tokens": 38313,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 88436,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 398,
+                  "cache_read_input_tokens": 99792,
+                  "cache_creation_input_tokens": 485,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 485
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2190,
+                "outputTokens": 5067,
+                "cacheReadInputTokens": 318838,
+                "cacheCreationInputTokens": 57071,
+                "webSearchRequests": 0,
+                "costUSD": 0.13074755,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 39,
+                "outputTokens": 38313,
+                "cacheReadInputTokens": 2353412,
+                "cacheCreationInputTokens": 88436,
+                "webSearchRequests": 0,
+                "costUSD": 2.6874509999999994,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "5842d771-dd7e-4ae5-b401-ef2763af2396"
+          },
+          "id": "event-000172"
+        }
+      ]
+    }
+  ]
+}

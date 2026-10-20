@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1dd26000cfbe3584c6ce",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis r18 step mislabel distribution",
+  "task_key": "worker_analysis_r18-step-mislabel-distribution_20260519T151213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r18-step-mislabel-distribution_20260519T151213_result.json",
+    "occurrence": 1,
+    "bytes": 954,
+    "sha256": "266421a1297a51e6256758bc63e59a65497f77967cee53ece1d6bb8b0ab2f85d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "产出已写入 `artifacts/r18_mislabel_distribution.md`。\n\n核心发现：\n\n- **2040 training steps** 来自 68 episodes（61 det + 7 internal），11 task types\n- **Death_asymmetry 主导**：10/11 task types 通过 death asymmetry 标记，贡献 1410/2040 steps（75%）；仅 `find-non-living-thing` 使用 score_comparison（510 steps）\n- **Pre-fatal mislabeling**：death_asymmetry episodes 中 66.5% 的 steps 是 pre-fatal（内部策略尚未死亡但已被标为 det-preferred）；最高的 `lifespan-longest-lived` 达 75.3%，最低的 `find-animal` 为 55.0%\n- **Fatal action 位置偏后**：平均在第 ~19.5/30 步（65%处），导致大量前序步骤被错误标记\n- **严格方向冲突极少**：仅 7/2040 steps（0.3%）的 step-level oracle 与 episode label 方向相反\n- **\"27.7%\" 最可能含义**：68 training episodes / 245 total episodes = 27.8%，即获得 routing label 的 episode 占比"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r18-step-mislabel-distribution.md"
+}

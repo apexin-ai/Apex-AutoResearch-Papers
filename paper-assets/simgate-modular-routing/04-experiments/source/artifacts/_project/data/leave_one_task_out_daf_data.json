@@ -1,0 +1,119 @@
+{
+  "description": "Leave-one-task-out DAF sensitivity analysis",
+  "daf_definition": "DAF = death_asymmetry_episodes / (death_asymmetry + score_comparison)",
+  "data_source": "baseline_245eps/episode_details.jsonl",
+  "full": {
+    "n_episodes": 245,
+    "death_asymmetry": 75,
+    "score_comparison": 20,
+    "daf_pct": 78.9
+  },
+  "leave_one_out": [
+    {
+      "removed_task": "find-non-living-thing",
+      "n_removed": 40,
+      "n_remaining": 205,
+      "death_asymmetry": 75,
+      "score_comparison": 0,
+      "daf_pct": 100.0,
+      "delta_pp": 21.1
+    },
+    {
+      "removed_task": "lifespan-longest-lived",
+      "n_removed": 25,
+      "n_remaining": 220,
+      "death_asymmetry": 63,
+      "score_comparison": 20,
+      "daf_pct": 75.9,
+      "delta_pp": -3.0
+    },
+    {
+      "removed_task": "identify-life-stages-1",
+      "n_removed": 20,
+      "n_remaining": 225,
+      "death_asymmetry": 66,
+      "score_comparison": 20,
+      "daf_pct": 76.7,
+      "delta_pp": -2.2
+    },
+    {
+      "removed_task": "lifespan-longest-lived-then-shortest-lived",
+      "n_removed": 20,
+      "n_remaining": 225,
+      "death_asymmetry": 66,
+      "score_comparison": 20,
+      "daf_pct": 76.7,
+      "delta_pp": -2.2
+    },
+    {
+      "removed_task": "chemistry-mix",
+      "n_removed": 20,
+      "n_remaining": 225,
+      "death_asymmetry": 67,
+      "score_comparison": 20,
+      "daf_pct": 77.0,
+      "delta_pp": -1.9
+    },
+    {
+      "removed_task": "grow-fruit",
+      "n_removed": 20,
+      "n_remaining": 225,
+      "death_asymmetry": 68,
+      "score_comparison": 20,
+      "daf_pct": 77.3,
+      "delta_pp": -1.7
+    },
+    {
+      "removed_task": "inclined-plane-determine-angle",
+      "n_removed": 20,
+      "n_remaining": 225,
+      "death_asymmetry": 68,
+      "score_comparison": 20,
+      "daf_pct": 77.3,
+      "delta_pp": -1.7
+    },
+    {
+      "removed_task": "freeze",
+      "n_removed": 20,
+      "n_remaining": 225,
+      "death_asymmetry": 69,
+      "score_comparison": 20,
+      "daf_pct": 77.5,
+      "delta_pp": -1.4
+    },
+    {
+      "removed_task": "identify-life-stages-2",
+      "n_removed": 20,
+      "n_remaining": 225,
+      "death_asymmetry": 69,
+      "score_comparison": 20,
+      "daf_pct": 77.5,
+      "delta_pp": -1.4
+    },
+    {
+      "removed_task": "measure-melting-point-unknown-substance",
+      "n_removed": 20,
+      "n_remaining": 225,
+      "death_asymmetry": 69,
+      "score_comparison": 20,
+      "daf_pct": 77.5,
+      "delta_pp": -1.4
+    },
+    {
+      "removed_task": "find-animal",
+      "n_removed": 20,
+      "n_remaining": 225,
+      "death_asymmetry": 70,
+      "score_comparison": 20,
+      "daf_pct": 77.8,
+      "delta_pp": -1.2
+    }
+  ],
+  "summary": {
+    "daf_min_pct": 75.9,
+    "daf_max_pct": 100.0,
+    "max_abs_delta_pp": 21.1,
+    "max_abs_delta_pp_excl_death_free": 3.0,
+    "range_statement": "DAF ranges from 75.9% to 100.0% across all leave-one-out conditions"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c3c1f1d1e6fcba0eb3e",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "urgent 57 6 ground truth",
+  "task_key": "worker_urgent_57_6-ground-truth_20260515T154109",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_urgent_57_6-ground-truth_20260515T154109_result.json",
+    "occurrence": 1,
+    "bytes": 2873,
+    "sha256": "59920bdb97eadd4139cdb0b6e31dbd5f366cd98ee5f06cb7df26d4a818abd2f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部数据已收集完毕。以下是分析结论。\n\n---\n\n## 1. 57.6% 的精确来源\n\n**Registry: `plan-013-labeling-quality`**，metrics 字段：\n- `ablation_b_mean_balanced_acc = 0.5761`\n- `ablation_b_std_balanced_acc = 0.0047`\n\n这是 4 个 ablation-b checkpoints 在**固定 val split** 上的评估均值：\n| Checkpoint | 原始 eval（各自 split, n=306） | plan-013 固定 split |\n|---|---|---|\n| `plan-004-implicit` (seed42) | 0.5927 | ~0.576* |\n| `ablation-b-seed123` | 0.5736 | ~0.574* |\n| `ablation-b-seed456` | 0.5748 | ~0.575* |\n| `ablation-b-seed789` | 0.5831 | ~0.580* |\n| **Mean ± Std** | 0.5811 ± 0.008 | **0.5761 ± 0.0047** |\n\n（*个别 seed 值未单独存储，但均值/std 在 registry 中确认。）\n\n57.6±0.5% = plan-013 的固定 split 4-seed 均值，**不是**单个 seed 的结果。\n\n---\n\n## 2. 0.5944 vs 0.5685 差异分析\n\n| | eval-template-fix (0.5944) | checkpoint 诊断 (0.5685) |\n|---|---|---|\n| **Checkpoint** | `plan-004-implicit/final_adapter` | `plan-004-implicit/final_adapter` |\n| **同一 checkpoint** | **是，同一个** | **是，同一个** |\n| **Val set** | 300 samples (30 int / 270 det) | 未保存文件，inline 诊断 |\n| **enable_thinking** | **true**（输出含 `<think>\\n\\n</think>` 空标签） | 未知，可能 off |\n| **Val split** | 非标准（与 plan-013 的 306 样本不同） | 非标准 |\n| **来源** | `results/eval-template-fix/plan-004-implicit_fixed.json` | registry `plan-008-router-size-v3` 诊断文本 |\n\n**差异原因：不同的 val split（不同的 episode-level 分层采样）。** 两者都是单 seed、非标准 val set 的 eval。internal 类只有 30 个样本，1-2 个样本的分类变化就能导致 ~0.03 的 balanced_acc 波动。\n\nenable_thinking 不是关键因素——模型输出空 `<think>` 标签，解析后与 thinking off 结果功能等价。plan-008-v3 诊断也确认 \"enable_thinking irrelevant\"。\n\n---\n\n## 3. 论文应引用哪个数字\n\n**继续引用 57.6±0.5%（plan-013-labeling-quality）。** 理由：\n\n1. 这是最严格的评估协议：4 seed 均值 + 固定 val split + 一致的 eval 配置\n2. 0.5944 和 0.5685 都是单 seed 诊断性评估，val set 不标准（300 vs plan-013 的 306），不能取代 plan-013\n3. enable_thinking 对结果无实质影响（空 think 标签），不需要因此重跑\n4. **不需要用修复后的 eval 重跑 4 个 seed** —— \"修复\"指的是 checkpoint 识别（plan-004-v5 vs plan-004-implicit），而 plan-013 自始至终使用的就是正确的 ablation-b checkpoints\n\n**补充建议**：seed-robustness-core 的 55.4±5.2%（不同 split，范围 0.4852-0.6074）可以作为 robustness 分析报告，说明 val split 选择带来的方差远大于 seed 方差（5.2% vs 0.5%），但不影响主表数字。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/urgent-57-6-ground-truth.md"
+}

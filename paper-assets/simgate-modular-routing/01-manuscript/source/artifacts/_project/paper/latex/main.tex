@@ -1,0 +1,77 @@
+\documentclass[11pt]{article}
+\usepackage[review]{acl}
+\usepackage{times}
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\title{Death Avoidance Accounts for 90\% of the Routing Signal in LLM Agent Tool Use}
+
+\author{Anonymous ACL submission}
+
+\begin{document}
+\maketitle
+\input{abstract}
+\input{introduction}
+\input{method}
+\input{experiments}
+\input{related_work}
+\input{conclusion}
+
+\section*{Limitations}
+
+Our analysis uses a single benchmark (ScienceWorld) with a single LLM backbone (Qwen2.5-7B-Instruct), and generalization to other interactive environments and model scales remains to be established. The $-100$ death penalty may amplify DAF; environments with less catastrophic penalties could exhibit lower DAF, though the qualitative finding may still hold.
+
+\paragraph{Cross-environment evidence.}
+A preliminary 50-problem MATH Level~4--5 pilot, using code interpreter as the deterministic modality, provides initial evidence beyond ScienceWorld. Internal reasoning achieved 80\% accuracy versus 72\% for code interpreter, with 88\% of problems showing no modality preference (1 deterministic-preferred, 5 internal-preferred, 44 no-preference). In the absence of death risk, the routing signal vanishes or reverses---consistent with death avoidance as the primary driver. An exploratory ALFWorld study (135 games, 6 task types) shows a similar asymmetry: 25.9\% of episodes are deterministic-preferred versus 1.5\% internal-preferred, with deterministic success rate (27.4\%) far exceeding internal (3.0\%). While ALFWorld lacks ScienceWorld's explicit death penalty, task failure under internal reasoning is near-total, suggesting that catastrophic failure avoidance generalizes beyond environments with formal death mechanics.
+
+\paragraph{Scope.}
+Extending the counterfactual methodology to environments with graded failure costs, embodied agents, or multi-turn dialogue systems would clarify how broadly death avoidance accounts for apparent routing signal. Step-level labeling with denser rewards and the logit--generation gap in the implicit router are natural next steps. We audit labeling quality in Appendix~\ref{app:labeling}.
+
+\section*{Ethics Statement}
+
+This work uses ScienceWorld \cite{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All language models are accessed via standard APIs or publicly released weights. We report computational costs: approximately 40 GPU-hours on two RTX 5090 GPUs for data collection, router training, and evaluation.
+
+\bibliography{references}
+
+\appendix
+
+\section{Labeling Quality Audit}
+\label{app:labeling}
+
+A potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine modality differences. We audit all 245 labels. Of the 150 \texttt{no\_preference} labels (61.2\%), 115 (46.9\%) are both-alive ties and 35 (14.3\%) are both-dead---all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields balanced accuracy of 57.3\%, within 1$\sigma$ of the full-label retrain (57.6 $\pm$ 0.5\%), confirming that score-comparison labels contribute negligible additional signal. The 97.4\% step-level tie rate (\S\ref{sec:collection}) further motivates episode-level over step-level labeling.
+
+\section{Per-Task Decomposition}
+\label{app:per-task}
+
+\begin{table}[h]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{@{}lrrccc@{}}
+\toprule
+Task & $n$ & $\Delta_\text{full}$ & D\%\textsubscript{int} & D\%\textsubscript{det} & D / I / N \\
+\midrule
+id-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\
+lifespan-long          & 25  & $+44.00$ & 56   & 16   & 11 / 1 / 13 \\
+lifespan-l-then-s      & 20  & $+40.80$ & 45   & 10   & 8 / 1 / 11  \\
+inclined-plane         & 20  & $+36.00$ & 55   & 20   & 7 / 0 / 13  \\
+freeze                 & 20  & $+30.50$ & 55   & 25   & 6 / 0 / 14  \\
+meas-melt-point        & 20  & $+30.05$ & 55   & 25   & 6 / 0 / 14  \\
+id-life-stages-2       & 20  & $+30.00$ & 50   & 20   & 6 / 0 / 14  \\
+find-animal            & 20  & $+26.65$ & 50   & 25   & 5 / 0 / 15  \\
+grow-fruit             & 20  & $+25.10$ & 45   & 20   & 6 / 1 / 13  \\
+chem-mix               & 20  & $+21.80$ & 45   & 25   & 6 / 2 / 12  \\
+\midrule
+find-non-living$^\dagger$ & 40 & $+9.58$ & 0  & 0    & 16 / 4 / 20 \\
+\midrule
+\textbf{All (11 tasks)} & \textbf{245} & $\mathbf{+29.60}$ & \textbf{42.9} & \textbf{16.3} & \textbf{86 / 9 / 150} \\
+\bottomrule
+\end{tabular}
+\caption{Per-task decomposition of the death avoidance effect. D\%: death rate for internal (int) and deterministic (det) strategies. D/I/N: episode labels (det-preferred / internal-preferred / no-preference). Sorted by $\Delta_{\text{full}}$ descending. $\dagger$\,Only task with zero deaths under both strategies.}
+\label{tab:per-task}
+\end{table}
+
+\end{document}

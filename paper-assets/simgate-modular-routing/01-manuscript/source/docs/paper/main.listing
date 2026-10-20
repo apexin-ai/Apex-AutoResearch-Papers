@@ -1,0 +1,6 @@
+CRITICAL SAFETY RULE: The 'focus on [object]' action is
+ONLY for submitting your final answer. Do NOT use
+'focus on' to examine, inspect, or interact with objects
+during exploration. Using 'focus on' on the wrong object
+will cause irreversible failure. Use 'look at',
+'examine', or 'pick up' instead for exploration.

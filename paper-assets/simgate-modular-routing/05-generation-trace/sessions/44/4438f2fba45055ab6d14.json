@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4438f2fba45055ab6d14",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper latex compile audit",
+  "task_key": "worker_paper_latex-compile-audit_20260514T144546",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_latex-compile-audit_20260514T144546_result.json",
+    "occurrence": 1,
+    "bytes": 712,
+    "sha256": "1b55ccef87d6f03d6d8b5058f3662f96df3f147618b31744d43e434dcce55201"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。结果摘要：\n\n**编译**：pdflatex 3 遍 + bibtex，0 errors，0 warnings（仅 underfull hbox），5 页，无 undefined references。\n\n**数值一致性**：全部 15 个关键数值在所有文件中一致。98.2%（旧 tie rate）、-12.84（旧 trained-router）、`\\Delta_{\\text{no\\_death}}`（旧下标）均已完全清除。\n\n**结构**：Discussion §6 已加入，Labeling Quality 段落已加入 Limitations，§5.5 已移除。\n\n**问题数：0**。discussion.tex 中有 2 个 TODO 注释（pilot-50 替换和 ALFWorld 结果），属于有意预留的占位符。\n\n报告已写入 `/root/autodl-tmp/simgate-modular-routing/compile_audit_report.txt`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-latex-compile-audit.md"
+}

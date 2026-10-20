@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06a7baa135a2472ad661",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper verify gemma bootstrap",
+  "task_key": "worker_paper_verify-gemma-bootstrap_20260521T102838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_verify-gemma-bootstrap_20260521T102838_result.json",
+    "occurrence": 1,
+    "bytes": 1716,
+    "sha256": "8a53e250d2eb9554076294f3175750cf5db30617d1807ab78885e369ba906167"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 文件路径\n\n**`/root/autodl-tmp/simgate-modular-routing/results/unified_episode_bootstrap.json`**\n\n该文件包含 qwen、llama、gemma 三个模型的 bootstrap 结果，每个模型有 11_tasks 和 10_tasks 两个配置。\n\n---\n\n### Gemma (Gemma-2-9B-it) DAF 关键数据\n\n#### 11 tasks (N=220, 11 tasks)\n\n| 字段 | 值 |\n|---|---|\n| **DAF 点估计** | **0.8965** (89.65%) |\n| **DAF CI 下界** | **0.7951** (79.51%) |\n| **DAF CI 上界** | **0.9837** (98.37%) |\n| **B (bootstrap 次数)** | 10,000 (`n_valid`) |\n| int_dr 点估计 | 0.3636 [0.30, 0.4273] |\n| det_dr 点估计 | 0.1409 [0.0955, 0.1909] |\n| delta_dr 点估计 | 0.2227 [0.1636, 0.2819] |\n\n#### 10 tasks (N=200, 10 tasks)\n\n| 字段 | 值 |\n|---|---|\n| **DAF 点估计** | **0.9990** (99.90%) |\n| **DAF CI 下界** | **0.9966** (99.66%) |\n| **DAF CI 上界** | **1.0000** (100.0%) |\n| **B (bootstrap 次数)** | 10,000 (`n_valid`) |\n| int_dr 点估计 | 0.40 [0.335, 0.47] |\n| det_dr 点估计 | 0.155 [0.11, 0.21] |\n| delta_dr 点估计 | 0.245 [0.18, 0.31] |\n\n---\n\n### 关于 79.5 / 98.4\n\n- **79.5** → 匹配的是 Gemma 11_tasks DAF CI 下界 `0.7950999995787795` ≈ 79.51%\n- **98.4** → 未在 `unified_episode_bootstrap.json` 中找到精确匹配。Gemma 11_tasks DAF CI 上界是 `0.9836633674101707` ≈ 98.37%，接近但不是 98.4。匹配 98.4 的文件都是 trainer_state / decomposition 报告等，不是 DAF 相关的\n\n### Bootstrap 方法\n\n文件中未显式记录 bootstrap 方法字段。从字段名 `unified_episode_bootstrap` 和脚本路径 `scripts/unified_episode_bootstrap.py` 判断，使用的是 **episode-level bootstrap**。B=10,000。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-verify-gemma-bootstrap.md"
+}

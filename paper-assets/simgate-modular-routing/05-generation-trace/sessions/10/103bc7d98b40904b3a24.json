@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "103bc7d98b40904b3a24",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "verify train val split count",
+  "task_key": "worker_verify_train-val-split-count_20260515T230029",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_train-val-split-count_20260515T230029_result.json",
+    "occurrence": 1,
+    "bytes": 475,
+    "sha256": "a6437b0f14d752d337ec8b6b817f589e88d1f3933e7c4bab9b1987ed97b94622"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果确认：\n\n```\nTotal records: 2040\nseed=42: n_train=1735, n_val=305, total=2040\nseed=43: n_train=1735, n_val=305, total=2040\nseed=44: n_train=1735, n_val=305, total=2040\nseed=45: n_train=1735, n_val=305, total=2040\n```\n\nSplit 结果与 seed 无关（因为 `int(len(items) * 0.15)` 是确定性的，shuffle 只影响顺序不影响数量）。\n\n**结论：Reviewer 是对的，论文应写 \"1735/305 steps\"，而非 \"1734/306 steps\"。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-train-val-split-count.md"
+}

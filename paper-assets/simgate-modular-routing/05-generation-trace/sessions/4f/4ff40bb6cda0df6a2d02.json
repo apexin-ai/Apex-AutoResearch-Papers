@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ff40bb6cda0df6a2d02",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis plan 001b revised proposal",
+  "task_key": "worker_analysis_plan-001b-revised-proposal_20260513T214131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-001b-revised-proposal_20260513T214131_result.json",
+    "occurrence": 1,
+    "bytes": 717,
+    "sha256": "04cd973ff6f0677478492b5bedef72c88071075ec49d9a959e04036b42830a46"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "提案已写入 `artifacts/plan_001b_revised_proposal.md`。\n\n**数据概览**:\n- 预筛完成 22/24 tasks：**16 death-dom, 5 genuine-det, 1 internal-pref**\n- 2 tasks 仍在跑（~30min 完成）\n- MVP 4 tasks 已有 20 eps，可直接复用\n\n**方案 A（最小方案，立即可启动）**:\n- 15 tasks = 5 genuine-det + 1 int-pref + 5 death-dom + 4 MVP 复用\n- 新增 185 episodes，双卡 ~6-7h\n- find-non-living-thing 扩到 40 eps 以增加 internal labels\n\n**关键发现**：genuine-det 从之前的 0 个增加到 5 个（find-animal, identify-life-stages-1, lifespan 系列, measure-melting-point），这对论文 framing 很关键——证明 router 不只是 death detector。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-001b-revised-proposal.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "495539fa33ec03a0b0f4",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ops disk cleanup step4",
+  "task_key": "worker_ops_disk-cleanup-step4_20260514T034858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-step4_20260514T034858.log",
+    "occurrence": 1,
+    "bytes": 610281,
+    "sha256": "afbfc6d7e618b869bc4e46729e3c3570df4ca3531b479f4b8c6558d866ac995d"
+  },
+  "statistics": {
+    "messages": 171,
+    "user_turns": 0,
+    "tool_calls": 65,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 65,
+      "tool_result": 65,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 171,
+      "chunks": [
+        {
+          "path": "495539fa33ec03a0b0f4-part-0001.json",
+          "message_count": 164
+        },
+        {
+          "path": "495539fa33ec03a0b0f4-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-disk-cleanup-step4.md"
+}

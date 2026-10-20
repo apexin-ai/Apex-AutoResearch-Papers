@@ -1,0 +1,14 @@
+{
+  "exp_id": "reflexion-internal-baseline",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:12.035Z",
+    "updated_at": "2026-05-17T08:43:12.036Z"
+  },
+  "timestamp": "2026-05-17T08:43:12.237642+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,122 @@
+{
+  "exp_id": "plan-004-ablation-b",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:36:59.120Z",
+    "updated_at": "2026-05-14T09:21:18.414Z",
+    "hypothesis": "Plan-004 条件 (b) implicit router SFT：Qwen3-1.7B + LoRA, [SIMULATE] token 隐式路由。与 plan-002 (explicit router) 对比，验证路由 signal 是否需要显式分类器还是可通过 token 嵌入隐式学习。同样使用 upsample_minority 处理类别不平衡。",
+    "parent": "plan-002-formal-v2",
+    "spec": {
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-004-implicit --seed 42",
+      "data_path": "data/plan-004-implicit/",
+      "data_count": "2040 samples (train 1735 / val 305)",
+      "model_name": "/root/autodl-tmp/models/Qwen/Qwen3-1.7B + LoRA r=16 (0.37% trainable)",
+      "seed": 42,
+      "pid": "225362",
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "N/A (ablation training)",
+      "note": "v2: CUDA_VISIBLE_DEVICES=1 隔离修复 + 本地模型路径 + HF_HUB_OFFLINE=1"
+    },
+    "server": "westb-13313",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "finished_at": "2026-05-14T05:53:26.481Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "negative",
+    "completed_at": "2026-05-14T05:53:27.018Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T05:53:28.176854+00:00"
+        }
+      ]
+    },
+    "notes": "**Generation-level eval 结果：ablation-b 是唯一无 logit-generation gap 的模型。**\n\nGeneration-level (enable_thinking=False, greedy, 306 val samples):\n- accuracy=65.36%, balanced_acc=59.27%, internal_recall=51.52%\n- Confusion: [[17,16],[90,183]] — 与 logit-level 完全一致，gap=0.0\n\n对比其他模型的 generation gap:\n| 模型 | logit internal_recall | gen internal_recall | gap |\n|------|----------------------|--------------------|----|\n| **ablation-b** | **51.52%** | **51.52%** | **0.0** |\n| v5 | 84.85% | 26.7% | 58.15 |\n| generative-v1 | 51.85% | 16.67% | 35.18 |\n\nablation-b internal_recall=51.52% > 30% 阈值 → **项目唯一有效的 generation-level router**。\n\nablation-b 与 v5/gen-v1 的关键训练差异：upsample_minority=true + gradient_accumulation_steps=1（有效batch=4）。这两个因素可能是避免 logit-generation gap 的关键。\n\nEval 脚本: eval_ablation_b_gen.py, 结果: results/ablation_b_gen_eval.json",
+    "checkpoint_path": "checkpoints/plan-004-implicit/final_adapter",
+    "log_path": "/root/autodl-tmp/simgate-modular-routing/checkpoints/plan-004-implicit/training.log",
+    "metrics": {
+      "logit_level": {
+        "eval_accuracy": 0.6536,
+        "eval_f1_macro": 0.5091,
+        "eval_balanced_accuracy": 0.5927,
+        "internal_recall": 0.5152,
+        "per_class": {
+          "deterministic": {
+            "precision": 0.9196,
+            "recall": 0.6703,
+            "f1": 0.7754,
+            "support": 273
+          },
+          "internal": {
+            "precision": 0.1589,
+            "recall": 0.5152,
+            "f1": 0.2429,
+            "support": 33
+          }
+        },
+        "confusion": {
+          "true_int_pred_int": 17,
+          "true_int_pred_det": 16,
+          "true_det_pred_det": 183,
+          "true_det_pred_int": 90
+        },
+        "training_loss_curve": {
+          "epoch1": 0.7151,
+          "epoch2": 0.3928,
+          "epoch3": 0.3609
+        }
+      },
+      "generation_level": {
+        "accuracy": 0.6536,
+        "balanced_accuracy": 0.5927,
+        "internal_recall": 0.5152,
+        "internal_precision": 0.1589,
+        "internal_f1": 0.2429,
+        "det_recall": 0.6703,
+        "det_precision": 0.9196,
+        "det_f1": 0.7754,
+        "confusion_matrix": [
+          [
+            17,
+            16
+          ],
+          [
+            90,
+            183
+          ]
+        ],
+        "confusion_labels": [
+          "internal",
+          "deterministic"
+        ],
+        "n_val": 306,
+        "val_label_dist": {
+          "internal": 33,
+          "deterministic": 273
+        },
+        "pred_dist": {
+          "deterministic": 199,
+          "internal": 107
+        },
+        "enable_thinking": false,
+        "logit_generation_gap": 0,
+        "note": "Generation-level eval IDENTICAL to logit-level. Zero gap. Only model in project without logit-generation gap."
+      },
+      "is_degenerate": false
+    }
+  },
+  "timestamp": "2026-05-14T09:21:18.603930+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,29 @@
+{
+  "exp_id": "plan-001b-gpu0-v3",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T01:50:46.913Z",
+    "updated_at": "2026-05-14T02:02:40.577Z",
+    "hypothesis": "GPU0 vLLM崩溃后重启收集：lifespan-longest-lived补5eps(ep15-19) + measure-melting-point-unknown-substance 20eps + freeze 20eps + chemistry-mix 20eps。与v2相同配置，数据可合并。",
+    "spec": {
+      "command": "bash run_gpu0_v3.sh",
+      "server": "westb-13313",
+      "data_path": "ScienceWorld API (4 tasks: lifespan-longest-lived 5eps补充 + measure-melting-point 20eps + freeze 20eps + chemistry-mix 20eps)",
+      "data_count": 65,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "note": "v3: restart after v2 vLLM crash. Sequential execution of remaining 4 tasks on GPU0."
+    },
+    "notes": "脚本 run_gpu0_v3.sh 已创建但从未启动。GPU0 被 v2 崩溃残留的僵尸 vLLM 进程（PID 544942, 28GB VRAM）占用。4 个 task 全部未开始。需清理僵尸后重新拆分到双卡。",
+    "conclusion": "failed",
+    "checkpoint_path": "N/A (never started)",
+    "log_path": "N/A (never started)",
+    "completed_at": "2026-05-14T02:02:40.577Z"
+  },
+  "timestamp": "2026-05-14T02:02:40.627376+00:00",
+  "trigger": "update_registry"
+}

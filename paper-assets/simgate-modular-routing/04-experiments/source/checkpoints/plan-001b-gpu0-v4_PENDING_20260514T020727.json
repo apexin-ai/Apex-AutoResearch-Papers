@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan-001b-gpu0-v4",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T02:06:59.924Z",
+    "updated_at": "2026-05-14T02:07:27.763Z",
+    "spec": {
+      "command": "python src/episode_level_collection.py --task_types lifespan-longest-lived,measure-melting-point-unknown-substance --episodes 20 --gpu_id 0",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "582850",
+      "data_path": "results/plan_c/ (lifespan-longest-lived + measure-melting-point-unknown-substance)",
+      "data_count": 24,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "note": "Split from gpu0-v3. lifespan-longest-lived has 16 eps (reuse), needs 4 more. measure-melting-point fresh 20 eps."
+    },
+    "hypothesis": "GPU0 拆分任务：lifespan-longest-lived 补 4 eps (已有 16, 目标 20) + measure-melting-point-unknown-substance 全量 20 eps。与 GPU1 freeze+chemistry-mix 并行，加速 plan-001b 完成。"
+  },
+  "timestamp": "2026-05-14T02:07:27.827820+00:00",
+  "trigger": "update_registry"
+}

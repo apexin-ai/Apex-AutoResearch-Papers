@@ -1,0 +1,1919 @@
+# code reflexion prep
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/chats/worker_code_reflexion-prep_20260517T110425.jsonl`
+- **Structured JSON:** [`5811fdcdf3ab730d924a.json`](../../sessions/58/5811fdcdf3ab730d924a.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+63 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-17T11:10:36.666318+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__detect_image",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__save_project_file,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__detect_image",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-17T11:10:36.666678+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-17T11:10:36.666850+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:WebSearch",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-17T11:10:36.666981+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-17T11:10:36.667194+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/src -type f -name \"*.py\" | head -50",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/src -type f -name \"*.py\" | head -50",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-17T11:10:36.667326+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-17T11:10:36.667451+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -ril \"reflexion\\|reflex\\|self_reflect\\|self-reflect\\|retry\\|verbal_reinforcement\" /root/autodl-tmp/simgate-modular-routing/ --include=\"*.py\" --include=\"*.yaml\" --include=\"*.json\" --include=\"*.md\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -ril \"reflexion\\|reflex\\|self_reflect\\|self-reflect\\|retry\\|verbal_reinforcement\" /root/autodl-tmp/simgate-modular-routing/ --include=\"*.py\" --include=\"*.yaml\" --include=\"*.json\" --include=\"*.md\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-17T11:10:36.667574+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-17T11:10:36.667691+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls -la /root/autodl-tmp/simgate-modular-routing/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls -la /root/autodl-tmp/simgate-modular-routing/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-17T11:10:36.667807+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Reflexion language agents verbal reinforcement learning Shinn 2023 mechanism self-reflection retry loop"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Reflexion language agents verbal reinforcement learning Shinn 2023 mechanism self-reflection retry loop"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-17T11:10:36.667952+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 512\\ndrwxr-xr-x 17 root root   4096 May 17 07:58 .\\ndrwxr-xr-x  7 root root   4096 May 14 21:28 ..\\ndrwxr-xr-x  8 root root   4096 May 16 04:12 .git\\n-rw-r--r--  1 root root    126 May 16 03:43 .gitignore\\ndrwxr-xr-x  4 root root   4096 May 16 14:20 artifacts\\n-rw-r--r--  1 root root 270839 May 17 05:29 backbone_0.5b_eval.log\\n-rw-r--r--  1 root root  91518 May 17 08:17 capacity_1.7b_4seed.log\\ndrwxr-xr-x 47 root root   4096 May 17 08:07 checkpoints\\n-rw-r--r--  1 root root   2579 May 14 22:50 compile_audit_report.txt\\ndrwxr-xr-x  2 root root     10 May 13 12:53 configs\\n-rw-r--r--  1 root root   8389 May 16 06:37 corrected_eval.py\\ndrwxr-xr-x  9 root root   4096 May 16 14:38 data\\ndrwxr-xr-x  3 root root     27 May 15 01:48 docs\\n-rw-r--r--  1 root root   5004 May 14 16:38 eval_ablation_b_gen.py\\n-rw-r--r--  1 root root   5862 May 14 14:02 eval_classification.py\\n-rw-r--r--  1 root root   4018 May 14 16:52 eval_multiseed_gen.py\\n-rw-r--r--  1 root root   3584 May 16 04:31 eval_v4_router.py\\ndrwxr-xr-x  2 root root    192 May 14 21:05 figures\\ndrwxr-xr-x  4 root root   4096 May 17 04:07 guided_router\\ndrwxr-xr-x  2 root root   4096 May 17 12:06 logs\\ndrwxr-xr-x  2 root root    138 May 13 23:43 notes\\ndrwxr-xr-x  5 root root   4096 May 17 07:07 paper\\ndrwxr-xr-x 55 root root   4096 May 17 17:52 results\\n-rw-r--r--  1 root root   5552 May 16 04:55 run_1_7b_reeval.py\\n-rwxr-xr-x  1 root root   2071 May 16 06:38 run_corrected_eval_gpu0.sh\\n-rwxr-xr-x  1 root root   2043 May 16 06:38 run_corrected_eval_gpu1.sh\\n-rw-r--r--  1 root root   5072 May 17 04:52 run_death_rate_0_5b.py\\n-rwxr-xr-x  1 root root   1434 May 14 09:52 run_gpu0_v3.sh\\n-rwxr-xr-x  1 root root   1620 May 14 21:49 run_pilot50.sh\\n-rwxr-xr-x  1 root root    919 May 14 06:11 run_plan001b_gpu0.sh\\n-rwxr-xr-x  1 root root    822 May 14 06:11 run_plan001b_gpu1.sh\\n-rwxr-xr-x  1 root root   1517 May 14 00:22 run_prescr
+…[truncated 534 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-17T11:10:36.668208+00:00_
+
+Web search results for query: "Reflexion language agents verbal reinforcement learning Shinn 2023 mechanism self-reflection retry loop"
+
+Links: [{"title":"[2303.11366] Reflexion: Language Agents with Verbal Reinforcement Learning","url":"https://arxiv.org/abs/2303.11366"},{"title":"GitHub - noahshinn/reflexion: [NeurIPS 2023] Reflexion: Language Agents with Verbal Reinforcement Learning · GitHub","url":"https://github.com/noahshinn/reflexion"},{"title":"Reflexion: Language Agents with Verbal Reinforcement Learning - Princeton University","url":"https://collaborate.princeton.edu/en/publications/reflexion-language-agents-with-verbal-reinforcement-learning-2/"},{"title":"NeurIPS Poster Reflexion: language agents with verbal reinforcement learning","url":"https://neurips.cc/virtual/2023/poster/70114"},{"title":"Reflexion: language agents with verbal reinforcement learning | OpenReview","url":"https://openreview.net/forum?id=vAElhFcKW6"},{"title":"Reflexion: Language Agents with Verbal Reinforcement Learning Noah Shinn","url":"https://openreview.net/pdf?id=vAElhFcKW6"},{"title":"[PDF] Reflexion: language agents with verbal reinforcement learning | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Reflexion:-language-agents-with-verbal-learning-Shinn-Cassano/0671fd553dd670a4e820553a974bc48040ba0819"},{"title":"(PDF) Reflexion: Language Agents with Verbal Reinforcement Learning (2023) | Noah Shinn | 443 Citations","url":"https://scispace.com/papers/reflexion-language-agents-with-verbal-reinforcement-learning-242t789l"},{"title":"Reflexion: language agents with verbal reinforcement learning | Request PDF","url":"https://www.researchgate.net/publication/401463998_Reflexion_language_agents_with_verbal_reinforcement_learning"},{"title":"Reflexion: language agents with verbal reinforcement learning [Quick Review]","url":"https://liner.com/review/reflexion-language-agents-with-verbal-reinforcement-learning"}]
+
+I found comprehensive information about the Reflexion pa
+…[truncated 1619 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-17T11:10:36.668397+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/src -type f -name \"*.py\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/src -type f -name \"*.py\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-17T11:10:36.668562+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py\\n/root/autodl-tmp/simgate-modular-routing/src/phase0_validate_forking.py\\n/root/autodl-tmp/simgate-modular-routing/src/llm_agent.py\\n/root/autodl-tmp/simgate-modular-routing/src/phase1_signal.py\\n/root/autodl-tmp/simgate-modular-routing/src/analysis.py\\n/root/autodl-tmp/simgate-modular-routing/src/signal_prescreening.py\\n/root/autodl-tmp/simgate-modular-routing/src/tie_rate_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/src/action_divergence_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/src/counterfactual_labeling.py\\n/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py\\n/root/autodl-tmp/simgate-modular-routing/src/router_sft_train.py\\n/root/autodl-tmp/simgate-modular-routing/src/rule_based_routing.py\\n/root/autodl-tmp/simgate-modular-routing/src/collect_trajectories.py\\n/root/autodl-tmp/simgate-modular-routing/src/death_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/src/death_aware_labeling.py\\n/root/autodl-tmp/simgate-modular-routing/src/rule_based_accuracy.py\\n/root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py\\n/root/autodl-tmp/simgate-modular-routing/src/plot_death_decomposition.py\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_eval_common.py\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_data_converter.py\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_implicit_1_7b.py\\n/root/autodl-tmp/simgate-modular-routing/src/ablation_implicit_7b.py\\n/root/autodl-tmp/simgate-modular-routing/src/routing_pattern_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/src/rule_based_inference.py\\n/root/autodl-tmp/simgate-modular-routing/src/router_sft_eval.py\\n/root/autodl-tmp/simgate-modular-routing/src/plan005_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/src/analysis/death_decomposition.py\\n/root/autodl-tmp/simgate-modular-routing/src/anal
+…[truncated 1963 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-17T11:10:36.668702+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/ -maxdepth 3 -type f -name \"*reflex*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/ -maxdepth 3 -type f -name \"*reflex*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-17T11:10:36.668826+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.74}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-17T11:10:36.668942+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/ -maxdepth 3 -type f -name \"*retry*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/ -maxdepth 3 -type f -name \"*retry*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-17T11:10:36.669084+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.75}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-17T11:10:36.669208+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/scripts -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/scripts -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-17T11:10:36.669325+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/configs -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/configs -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-17T11:10:36.669464+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/scripts/launch_plan002.sh\\n/root/autodl-tmp/simgate-modular-routing/scripts/launch_plan004b.sh\\n/root/autodl-tmp/simgate-modular-routing/scripts/post_collection_analysis.sh\\n/root/autodl-tmp/simgate-modular-routing/scripts/slim_episodes.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/run_gpu0_v6_lifespan.sh\\n/root/autodl-tmp/simgate-modular-routing/scripts/launch_plan004.sh\\n/root/autodl-tmp/simgate-modular-routing/scripts/eval_generative_routing.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/plan013_label_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/plan013_eval.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/penalty_sensitivity.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/run_llama_expanded.sh\\n/root/autodl-tmp/simgate-modular-routing/scripts/analyze_routing_patterns.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/plan008_router_size_ablation.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/seed_robustness.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/plan008_v2_router_size.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/plan008_v3_run.sh\\n/root/autodl-tmp/simgate-modular-routing/scripts/eval_plan008_v3.sh\\n/root/autodl-tmp/simgate-modular-routing/scripts/fix_ci_bootstrap.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/penalty_sensitivity_curve.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/__pycache__/seed_robustness.cpython-312.pyc\\n/root/autodl-tmp/simgate-modular-routing/scripts/__pycache__/cross_split_eval.cpython-312.pyc\\n/root/autodl-tmp/simgate-modular-routing/scripts/penalty_robustness_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/cross_split_eval.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/majority_vote_baseline.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/leave_one_tasktype_out.py\\n/root/autodl-tmp/simgate-modular-routing/scripts
+…[truncated 734 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-17T11:10:36.669599+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.59}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-17T11:10:36.669745+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-17T11:10:36.669866+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/llm_agent.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-17T11:10:36.670153+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Plan C episode-level labeling data collection for router SFT training.\\n#\\n# For each task variation, runs 2 complete episodes (always-internal + always-deterministic),\\n# compares final episode scores to label each step's modality preference.\\n# Reuses run_episode_internal / run_episode_deterministic from signal_prescreening.py.\\n#\\n# Outputs:\\n#   {output_dir}/{task_type}/episodes.jsonl        — full episode data (downstream pipeline input)\\n#   {output_dir}/{task_type}/labeled_steps.jsonl   — one labeled step per line (training data)\\n#   {output_dir}/{task_type}/episode_summary.jsonl  — one episode summary per line\\n#\\n# Usage:\\n#   python src/episode_level_collection.py --task_types \\\"boil,melt\\\" --episodes 20 --gpu_id 0\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport signal\\nimport subprocess\\nimport time\\nfrom typing import List, Dict, Any\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\nDEATH_THRESHOLD = -100\\n\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\nSLIM_EPISODES = os.environ.get(\\\"SLIM_EPISODES\\\", \\\"1\\\") == \\\"1\\\"\\n\\n\\ndef _slim_episode_data(ep):\\n    \\\"\\\"\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\"\\\"\\\"\\n    if not SLIM_EPISODES:\\n        return ep\\n    result = {k: v for k, v in ep.items() if k != \\\"steps\\\"}\\n    if \\\"steps\\\" in ep:\\n        result[\\\"steps\\\"] = [\\n            {k: v for k, v in s.items()\\n             if k not in (\\\"llm_output\\\", \\\"action_history\\\", \\\"candidates\\\")}\\n           
+…[truncated 7337 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-17T11:10:36.670329+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/death_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/death_analysis.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-17T11:10:36.670453+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/collect_trajectories.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/collect_trajectories.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-17T11:10:36.670700+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"LLM Agent: Qwen2.5-7B-Instruct ReAct agent for ScienceWorld.\\n\\nSupports vLLM serving (default) or HuggingFace transformers local inference.\\nProvides:\\n  - select_action_react(): standard ReAct single-action selection\\n  - generate_candidate_actions(): top-n candidate generation for deterministic routing\\n\\nUsage:\\n  agent = LLMAgent(model_path=\\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\", gpu_id=0)\\n  action = agent.select_action_react(obs, valid_actions, history)\\n\\\"\\\"\\\"\\n\\nimport os\\nimport re\\nimport glob\\nimport json\\nimport time\\nfrom typing import List, Optional, Tuple\\n\\n# Detect model path: ModelScope or HuggingFace naming conventions\\nMODEL_SEARCH_PATHS = [\\n    \\\"/root/autodl-tmp/models/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/models/qwen/Qwen2.5-7B-Instruct\\\",\\n    \\\"/root/autodl-tmp/.hf_cache/models--Qwen--Qwen2.5-7B-Instruct\\\",\\n]\\n\\n\\ndef find_model_path(hint: Optional[str] = None) -> str:\\n    \\\"\\\"\\\"Find Qwen2.5-7B-Instruct model path on disk.\\\"\\\"\\\"\\n    if hint and os.path.isdir(hint):\\n        return hint\\n    for p in MODEL_SEARCH_PATHS:\\n        if os.path.isdir(p):\\n            return p\\n    # Glob fallback\\n    for pattern in [\\\"/root/autodl-tmp/models/**/Qwen2*7B*Instruct\\\",\\n                    \\\"/root/autodl-tmp/.hf_cache/**/Qwen2*7B*\\\"]:\\n        matches = glob.glob(pattern, recursive=True)\\n        if matches:\\n            return matches[0]\\n    raise FileNotFoundError(\\n        \\\"Cannot find Qwen2.5-7B-Instruct. Searched: \\\" + str(MODEL_SEARCH_PATHS)\\n    )\\n\\n\\n# ---------------------------------------------------------------------------\\n# Prompt templates\\n# ---------------------------------------------------------------------------\\n\\nSY
+…[truncated 7045 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-17T11:10:36.670977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json, os, statistics, math\\nfrom collections import Counter\\n\\n\\ndef classify_signal(delta, delta_no_death, i_death_pct, d_death_pct):\\n    if i_death_pct <= 5 and d_death_pct <= 5 and abs(delta) < 2:\\n        return \\\"no-effect\\\"\\n    death_diff = i_death_pct - d_death_pct\\n    if math.isnan(delta_no_death):\\n        if death_diff > 10:\\n            return \\\"death-dominated\\\"\\n        return \\\"internal-preferred\\\" if delta < 0 else \\\"mixed\\\"\\n    if death_diff > 10 and delta_no_death < 0:\\n        return \\\"death-dominated\\\"\\n    if death_diff > 10 and delta_no_death > 0:\\n        return \\\"mixed\\\"\\n    if abs(death_diff) <= 10 and delta > 5:\\n        return \\\"genuine-det\\\"\\n    if abs(death_diff) <= 10 and delta < -5:\\n        return \\\"internal-preferred\\\"\\n    return \\\"mixed\\\"\\n\\n\\ndef analyze_dir(base_dir, label):\\n    tasks = sorted([d for d in os.listdir(base_dir)\\n                    if os.path.isdir(os.path.join(base_dir, d))])\\n\\n    print(f\\\"\\\\n{'='*60}\\\")\\n    print(f\\\"  {label}\\\")\\n    print(f\\\"{'='*60}\\\")\\n    header = (f\\\"| {'Task':<40} | {'Int':>6} | {'Det':>6} | {'Δ':>6} \\\"\\n              f\\\"| {'I_death%':>8} | {'D_death%':>8} \\\"\\n              f\\\"| {'Int_nd':>7} | {'Det_nd':>7} | {'Δ_nd':>6} \\\"\\n              f\\\"| {'Signal_type':<18} |\\\")\\n    sep = (f\\\"|{'-'*42}|{'-'*8}|{'-'*8}|{'-'*8}\\\"\\n           f\\\"|{'-'*10}|{'-'*10}\\\"\\n           f\\\"|{'-'*9}|{'-'*9}|{'-'*8}\\\"\\n           f\\\"|{'-'*20}|\\\")\\n    print(header)\\n    print(sep)\\n\\n    all_i, all_d = [], []\\n    all_i_nd, all_d_nd = [], []\\n    signal_counts = Counter()\\n    task_results = []\\n\\n    for task in tasks:\\n        ep_file = os.path.join(base_dir, task, \\\"episodes.jsonl\\\")\\n        if not os.path.exists(ep_file):\\n            continue\\n\\n        with open(ep_file) as f:\\n            data = [js
+…[truncated 6447 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-17T11:10:36.671289+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Episode-level counterfactual trajectory collection for router SFT training.\\n\\nPlan C (D010): For each task type, run N independent episodes under always-internal\\nand N under always-deterministic. Compare episode total scores to assign modality\\nlabels. Death episodes (score <= -100) automatically lose.\\n\\nInput:\\n  - ScienceWorld task types (via --task_types)\\n  - Qwen2.5-7B-Instruct model (via --model_path or auto-detected)\\n  - vLLM or HF transformers backend\\n\\nOutput:\\n  - {output_dir}/{task}/raw_episodes.jsonl   — full episode data (both modalities)\\n  - {output_dir}/{task}/sft_triples.jsonl    — (observation, action, modality_label) for SFT\\n  - {output_dir}/collection_summary.json     — global statistics\\n\\nDependencies: scienceworld, vllm (or transformers), scienceworld_utils, llm_agent\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport json\\nimport os\\nimport random\\nimport sys\\nimport time\\nfrom typing import List, Dict, Any\\n\\nsys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\\nfrom scienceworld_utils import (\\n    create_env, reset_env, get_valid_actions, get_score,\\n    step_env, close_env, fork_and_lookahead, get_task_types,\\n    get_max_variations,\\n)\\nfrom llm_agent import LLMAgent, find_model_path\\n\\nDEATH_THRESHOLD = -100\\n\\n# Disk space optimization: strip verbose per-step fields (llm_output, per-step\\n# action_history, candidates). Set SLIM_EPISODES=0 for full debug output.\\nSLIM_EPISODES = os.environ.get(\\\"SLIM_EPISODES\\\", \\\"1\\\") == \\\"1\\\"\\n\\n\\ndef _slim_episode_data(ep):\\n    \\\"\\\"\\\"Strip per-step debug fields when SLIM_EPISODES is enabled.\\\"\\\"\\\"\\n    if not SLIM_EPISODES:\\n        return ep\\n    result = {k: v for k, v in ep.items() if k != \\\"steps\\\"}\\n    if \\\"steps\\\" in ep:\\n        result[\\\"steps\\\"] = [\\n            {k: v for k, v in s.items()\\n             if k not in (\\\"llm_output\\\
+…[truncated 7219 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-17T11:10:36.671488+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/scienceworld_utils.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-17T11:10:36.671619+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/death_decomposition.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-17T11:10:36.671853+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"ScienceWorld environment utilities: creation, forking via action-replay, episode logging.\\n\\nDependencies: scienceworld (pip install scienceworld)\\nKey constraint: ScienceWorld uses py4j → each env is a separate JVM process.\\nFork = new JVM instance + replay all historical actions.\\n\\\"\\\"\\\"\\n\\nimport time\\nimport os\\nimport traceback\\nfrom typing import List, Tuple, Optional, Dict, Any\\n\\nimport scienceworld\\n\\n# ---------------------------------------------------------------------------\\n# Task type constants — update after running get_task_types() on the server\\n# ---------------------------------------------------------------------------\\nSTRONG_TASKS = [\\n    \\\"boil\\\",\\n    \\\"melt\\\",\\n    \\\"change-the-state-of-matter-of\\\",\\n]\\nMEDIUM_TASKS = [\\n    \\\"chemistry-mix-paint-secondary-color\\\",\\n]\\nWEAK_TASKS = [\\n    \\\"grow-plant\\\",\\n]\\nALL_MVP_TASKS = STRONG_TASKS + MEDIUM_TASKS + WEAK_TASKS\\n\\n\\ndef get_task_types() -> List[str]:\\n    \\\"\\\"\\\"Return all ScienceWorld task type names.\\\"\\\"\\\"\\n    env = scienceworld.ScienceWorldEnv(\\\"\\\")\\n    try:\\n        names = env.get_task_names()\\n    finally:\\n        env.close()\\n    return list(names)\\n\\n\\ndef get_max_variations(task_name: str) -> int:\\n    \\\"\\\"\\\"Return the number of available variations for a task type.\\\"\\\"\\\"\\n    env = scienceworld.ScienceWorldEnv(\\\"\\\")\\n    try:\\n        n = env.get_max_variations(task_name)\\n        return int(n)\\n    except Exception:\\n        return 100\\n    finally:\\n        env.close()\\n\\n\\ndef create_env(task_name: str, variation_idx: int = 0,\\n               simplification_str: str = \\\"\\\") -> scienceworld.ScienceWorldEnv:\\n    \\\"\\\"\\\"Create and initialize a ScienceWorld environment.\\\"\\\"\\\"\\n    env = scienceworld.ScienceWorldEnv(task_name, envStepLimit=100)\\n    env.load(task_name, variation_id
+…[truncated 6676 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-17T11:10:36.672032+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -100 /root/autodl-tmp/simgate-modular-routing/src/death_aware_labeling.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -100 /root/autodl-tmp/simgate-modular-routing/src/death_aware_labeling.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-17T11:10:36.672314+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Plan-012 Death Decomposition Analysis.\\n\\nQuantifies how much of the Det-Internal gap comes from death avoidance\\nvs genuine score improvement. Core evidence for the paper.\\n\\nInput:  results/{prescreening,research,plan_c}/{task_name}/episodes.jsonl\\nOutput: JSON report, paper table JSON, CSV summary (all in --output dir)\\n\\nDependencies: Python 3.8+ stdlib only (scipy optional for exact p-values)\\n\\\"\\\"\\\"\\n\\nimport argparse\\nimport csv\\nimport json\\nimport math\\nimport os\\nimport random\\nimport statistics\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Optional, Tuple\\n\\nDEATH_THRESHOLD = -100\\nBOOTSTRAP_N = 10000\\nBOOTSTRAP_CI = 0.95\\nBOOTSTRAP_SEED = 42\\n\\n\\ndef is_dead(score: float) -> bool:\\n    return score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source).\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef safe_mean(values: List[float]) -> float:\\n    return statistics.mean(values) if values else float(\\\"nan\\\")\\n\\n\\ndef _betacf(a: float, b: float, x: float) -> float:\\n    \\\"\\\"\\\"Cont
+…[truncated 7341 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-17T11:10:36.672475+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-17T11:10:36.672672+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Death-aware 3-label labeling for router SFT training.\\n# Reads episode JSONL files, classifies each episode as det-preferred / internal-preferred / no-preference\\n# based on death asymmetry (primary signal) and score comparison (secondary signal).\\n# Outputs step-level SFT triples: (observation, action_history) → label.\\n\\nimport argparse\\nimport json\\nimport os\\nimport sys\\nfrom collections import defaultdict\\nfrom typing import Dict, List, Any, Tuple\\n\\nDEATH_THRESHOLD = -100\\n\\n\\ndef is_dead(final_score: float) -> bool:\\n    return final_score <= DEATH_THRESHOLD\\n\\n\\ndef classify_episode(int_score: float, det_score: float) -> Tuple[str, str, str]:\\n    \\\"\\\"\\\"Returns (label, reason, signal_source). Never discards.\\\"\\\"\\\"\\n    int_died = is_dead(int_score)\\n    det_died = is_dead(det_score)\\n\\n    if int_died and not det_died:\\n        return \\\"det-preferred\\\", \\\"int_died_det_alive\\\", \\\"death_asymmetry\\\"\\n    if det_died and not int_died:\\n        return \\\"internal-preferred\\\", \\\"det_died_int_alive\\\", \\\"death_asymmetry\\\"\\n    if int_died and det_died:\\n        return \\\"no-preference\\\", \\\"both_died\\\", \\\"both_dead\\\"\\n    if det_score > int_score:\\n        return \\\"det-preferred\\\", \\\"both_alive_det_wins\\\", \\\"score_comparison\\\"\\n    if int_score > det_score:\\n        return \\\"internal-preferred\\\", \\\"both_alive_int_wins\\\", \\\"score_comparison\\\"\\n    return \\\"no-preference\\\", \\\"tie\\\", \\\"tied_alive\\\"\\n\\n\\ndef extract_steps(episode_data: Dict, label: str, reason: str,\\n                  signal_source: str,\\n                  task_type: str, episode_idx: int, variation_idx: int,\\n                  int_score: float, det_score: float,\\n                  int_died: bool, det_died: bool) -> List[Dict]:\\n    if label == \\\"internal-preferred\\\":\\n        source_key = \\\"always_internal\\\"\\n    e
+…[truncated 2318 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-17T11:10:36.672845+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"ablation_b_gen_eval.json\\nablation_b_seed123_gen.json\\nablation_b_seed456_gen.json\\nablation_b_seed789_gen.json\\nablation_data_size\\nablation_r3\\nalfworld_counterfactual\\nbackbone_72b\\nbackbone_72b_run.log\\nbaseline_245eps\\nbootstrap_95ci.json\\ncapacity_episode_eval\\ncross_split_eval\\ndeath_decomposition_preliminary.csv\\ndeath_decomposition_preliminary_OLD.csv\\ndeath_decomposition_report.json\\ndeath_decomposition_test.json\\ndeath_timing_analysis.json\\ndecomposition_dryrun\\ndiag_seed42_v5_eval.json\\ndry_run_mvp_report.json\\ndry_run_mvp_table.json\\neval-template-fix\\neval_4b_e2e\\neval_4b_e2e_dryrun\\neval_ablation_b_e2e\\neval_ablation_b_e2e_correct\\nguided_router\\nleave_one_tasktype_out\\nllama-expanded\\nmajority_vote_baseline\\nmath_full_200.log\\nmulti_model_pilot\\nmvp\\npaper_table1_data.json\\npaper_table1_test.json\\npenalty_robustness\\npenalty_sensitivity.json\\npenalty_sensitivity_curve\\npenalty_sensitivity_table.tex\\nplan-003-eval-implicit\\nplan-006-deep-internal\\nplan-008\\nplan-008-v2\\nplan-008-v3\\nplan-008-v4\\nplan-010-cross-task-life-to-physical-seed42\\nplan-010-cross-task-physical-to-life-seed42\\nplan-013\\nplan004v5_corrected.json\\nplan005\\nplan_001b_labels\\nplan_001b_labels_partial\\nplan_002_router_dryrun\\nplan_003_eval\\nplan_003_eval_dryrun\\nplan_003_eval_full_baseline\\nplan_003_eval_router_test\\nplan_003_eval_router_v6_test\\nplan_005_analysis\\nplan_012_decomposition\\nplan_c\\nplan_c_95ci\\nplan_c_test_labels\\nprescreening\\nresearch\\nrouting-patterns\\nrule_based_accuracy_test.json\\nrule_based_accuracy_v1_rerun.json\\nrule_based_accuracy_v2_test.json\\nrule_based_accuracy_v3.json\\nseed-robustness\\nseed-robustness-corrected\\nsft_data\\nsft_data_death_aware\\nsft_data_test\\nstep_tie_rate_full.json\\ntable7\\ntest_3label\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-17T11:10:36.673049+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-17T11:10:36.673189+00:00_
+
+called WebSearch
+
+<details open><summary>🔧 Tool call — WebSearch</summary>
+
+```json
+{
+  "query": "Reflexion ScienceWorld implementation self-reflection loop retry mechanism code github noahshinn"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "WebSearch",
+  "tool_args": {
+    "query": "Reflexion ScienceWorld implementation self-reflection loop retry mechanism code github noahshinn"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-17T11:10:36.673316+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/report.json: Not a directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.08}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-17T11:10:36.673436+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -30 /root/autodl-tmp/simgate-modular-routing/results/plan_c/boil/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -30 /root/autodl-tmp/simgate-modular-routing/results/plan_c/boil/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-17T11:10:36.673586+00:00_
+
+Web search results for query: "Reflexion ScienceWorld implementation self-reflection loop retry mechanism code github noahshinn"
+
+Links: [{"title":"GitHub - noahshinn/reflexion-draft: Reflexion: an autonomous agent with dynamic memory and self-reflection · GitHub","url":"https://github.com/noahshinn/reflexion-draft"},{"title":"GitHub - noahshinn/reflexion: [NeurIPS 2023] Reflexion: Language Agents with Verbal Reinforcement Learning · GitHub","url":"https://github.com/noahshinn/reflexion"},{"title":"https://github.com/noahshinn/reflexion | Ecosyste.ms: Awesome","url":"https://awesome.ecosyste.ms/projects/github.com/noahshinn/reflexion"},{"title":"GitHub - turintech/reflexion-human-eval: An implementation of a Reflexion agent for SOTA Human-Eval Python results.","url":"https://github.com/turintech/reflexion-human-eval"},{"title":"Reflecting on Reflexion - by Noah Shinn and Ashwin Gopinath","url":"https://nanothoughts.substack.com/p/reflecting-on-reflexion"},{"title":"reflexion/README.md at main · noahshinn/reflexion","url":"https://github.com/noahshinn/reflexion/blob/main/README.md"},{"title":"Reflect, Retry, Reward: Self-Improving LLMs via Reinforcement Learning","url":"https://arxiv.org/html/2505.24726v1"},{"title":"GitHub - microsoft-fevieira/reflexion: Reflexion: an autonomous agent with dynamic memory and self-reflection","url":"https://github.com/microsoft-fevieira/reflexion"},{"title":"Reflexion: language agents with verbal reinforcement learning | OpenReview","url":"https://openreview.net/forum?id=vAElhFcKW6"},{"title":"Reflexion: Language Agents with Verbal Reinforcement Learning. Continue this conversation at https://readfm.vercel.app?gist=d54ea52a1875f82cf2221ec6ca253c07 · GitHub","url":"https://gist.github.com/m0o0scar/d54ea52a1875f82cf2221ec6ca253c07"}]
+
+Based on the search results, here's what I found about Reflexion, its implementation, and the retry mechanism:
+
+## Overview
+
+Reflexion is a framework described in the NeurIPS 2023 paper "Reflexion: Langua
+…[truncated 1387 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "WebSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-17T11:10:36.673739+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"head: cannot open '/root/autodl-tmp/simgate-modular-routing/results/plan_c/boil/episodes.jsonl' for reading: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 2.48}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-17T11:10:36.673875+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"episodes.jsonl\" -maxdepth 3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"episodes.jsonl\" -maxdepth 3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-17T11:10:36.674043+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"report.json\" -maxdepth 3",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"report.json\" -maxdepth 3",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-17T11:10:36.674272+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/chemistry-mix-paint-secondary-color/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/melt/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/grow-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/change-the-state-of-matter-of/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-living-thing/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/grow-fruit/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-1/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-2/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/measure-melting-point-unknown-substance/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-determine-angle/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/mendelian-genetics-known-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/inclined-plane-friction-named-surfaces/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/mendelian-genetics-unk
+…[truncated 3339 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-17T11:10:36.674428+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-17T11:10:36.674563+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -5 /root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -5 /root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-17T11:10:36.674682+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/results/death_decomposition_report.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/results/death_decomposition_report.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-17T11:10:36.674798+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"decomposition*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"decomposition*\" -type d",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-17T11:10:36.675097+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_internal\\\": {\\\"mode\\\": \\\"always-internal\\\", \\\"task_name\\\": \\\"boil\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": -100.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 16, \\\"total_time_s\\\": 30.145736932754517, \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to picture\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on picture\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the first logical step would be to explore the immediate surroundings. Since the agent can see a picture, it makes sense to interact with it first.\\\\nAction: connect agent to picture\\\"}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect agent to inventory\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 1 on inventory\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently connected to terminal 1 on the picture. To proceed, I need to determine the next logical step. Since the agent is already connected to the picture, connecting it again would be redundant. Therefore, I should consider what the picture might contain or lead to.\\\\n\\\\nAction:\\\"}, {\\\"step\\\": 2, \\\"action\\\": \\\"connect air to inventory\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on air is now connected to terminal 2 on inventory\\\", \\\"llm_output\\\": \\\"Thought: The agent currently has the inventory connected, so we need to find a way to use it. Looking at the valid actions, connecting the air to the inventory seems like a
+…[truncated 7885 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-17T11:10:36.675474+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"per_task\\\": [\\n    {\\n      \\\"task\\\": \\\"boil\\\",\\n      \\\"n_episodes\\\": 40,\\n      \\\"int_death_count\\\": 19,\\n      \\\"det_death_count\\\": 6,\\n      \\\"int_death_rate\\\": 0.475,\\n      \\\"det_death_rate\\\": 0.15,\\n      \\\"int_mean\\\": -47.23,\\n      \\\"det_mean\\\": -14.5,\\n      \\\"delta_full\\\": 32.73,\\n      \\\"int_mean_no_death\\\": 0.52,\\n      \\\"det_mean_no_death\\\": 0.57,\\n      \\\"delta_no_death\\\": 0.05,\\n      \\\"death_avoidance_fraction\\\": 0.9985,\\n      \\\"int_mean_penalty_removed\\\": 0.28,\\n      \\\"det_mean_penalty_removed\\\": 0.5,\\n      \\\"delta_penalty_removed\\\": 0.22,\\n      \\\"n_no_death_episodes\\\": 21,\\n      \\\"label_distribution\\\": {\\n        \\\"det-preferred\\\": 14,\\n        \\\"internal-preferred\\\": 0,\\n        \\\"no-preference\\\": 26\\n      },\\n      \\\"signal_source_distribution\\\": {\\n        \\\"death_asymmetry\\\": 13,\\n        \\\"tied_alive\\\": 20,\\n        \\\"score_comparison\\\": 1,\\n        \\\"both_dead\\\": 6\\n      },\\n      \\\"label_signal_cross\\\": {\\n        \\\"det-preferred\\\": {\\n          \\\"death_asymmetry\\\": 13,\\n          \\\"score_comparison\\\": 1\\n        },\\n        \\\"no-preference\\\": {\\n          \\\"tied_alive\\\": 20,\\n          \\\"both_dead\\\": 6\\n        }\\n      }\\n    },\\n    {\\n      \\\"task\\\": \\\"change-the-state-of-matter-of\\\",\\n      \\\"n_episodes\\\": 20,\\n      \\\"int_death_count\\\": 11,\\n      \\\"det_death_count\\\": 3,\\n      \\\"int_death_rate\\\": 0.55,\\n      \\\"det_death_rate\\\": 0.15,\\n      \\\"int_mean\\\": -54.7,\\n      \\\"det_mean\\\": -14.5,\\n      \\\"delta_full\\\": 40.2,\\n      \\\"int_mean_no_death\\\": 0.67,\\n      \\\"det_mean_no_death\\\": 0.78,\\n      \\\"delta_no_death\\\": 0.11,\\n      \\\"death_avoidance_fraction\\\": 0.9972,\\n      \\\"int_mean_penalty_removed\\\": 0.3,\\n     
+…[truncated 8365 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-17T11:10:36.675637+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/decomposition_dryrun\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.24}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-17T11:10:36.675810+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/src/eval_end_to_end.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/src/eval_end_to_end.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-17T11:10:36.676071+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# Plan-003: End-to-end simulated evaluation of SimGate routing strategies.\\n#\\n# Uses existing plan-001b counterfactual data (both always-internal and\\n# always-deterministic trajectories per episode) to evaluate routing conditions.\\n# For trained-router, loads the Qwen3-1.7B LoRA adapter and predicts per-episode\\n# routing decisions via majority vote. Supports both classification head (--router_type\\n# classification) and generative SFT (--router_type generative) models.\\n#\\n# Inputs:\\n#   --data_dir:  plan_c results directory with per-task {episodes.jsonl, episode_summary.jsonl, labeled_steps.jsonl}\\n#   --router_checkpoint: path to trained LoRA adapter (for trained-router condition)\\n#\\n# Outputs (--output_dir):\\n#   overall_results.json   — per-condition aggregated metrics with bootstrap 95% CI\\n#   per_task_results.csv   — per-task × per-condition breakdown\\n#   episode_details.jsonl  — per-episode routing decisions and scores\\n#\\n# 5 conditions:\\n#   always-internal, always-deterministic, oracle, random, trained-router\\n#\\n# Dependencies: torch, transformers, peft, numpy, sklearn (for trained-router only)\\n\\nimport argparse\\nimport csv\\nimport json\\nimport os\\nimport sys\\nfrom collections import Counter, defaultdict\\nfrom typing import Any, Dict, List, Optional, Tuple\\n\\nimport logging\\nimport re\\nimport numpy as np\\n\\n# ---------------------------------------------------------------------------\\n# Constants\\n# ---------------------------------------------------------------------------\\n\\nlogger = logging.getLogger(__name__)\\n\\nLABEL2ID = {\\\"internal\\\": 0, \\\"deterministic\\\": 1}\\nID2LABEL = {0: \\\"internal\\\", 1: \\\"deterministic\\\"}\\n\\nRAW_LABEL_MAP = {\\n    \\\"internal-preferred\\\": \\\"internal\\\",\\n    \\\"det-preferred\\\": \\\"deterministic\\\",\\n    \\\"no-preference\\\": None,\\n}\\n\\nSYSTEM_PROMPT = (\\n    \\\"You are a routing classif
+…[truncated 7121 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-17T11:10:36.676320+00:00_
+
+called mcp__agent-ml-research__save_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file</summary>
+
+````json
+{
+  "project": "simgate-modular-routing",
+  "file": "artifacts/reflexion_prep_report.md",
+  "content": "# Reflexion Baseline 实验代码准备报告\n\n## 1. 现有代码架构（与 Reflexion 相关部分）\n\n### 1.1 Episode 执行流程\n\n```\nepisode_level_collection.py / collect_trajectories.py\n  → LLMAgent (llm_agent.py)\n    → select_action_react()      # internal modality: LLM ReAct 选 action\n    → generate_candidate_actions() # deterministic modality: LLM 生成 candidates\n  → scienceworld_utils.py\n    → create_env() → reset_env() → step_env() → close_env()\n    → fork_and_lookahead()       # deterministic: 创建 JVM fork 评估 candidate\n```\n\n### 1.2 核心函数\n\n| 函数 | 文件 | 用途 |\n|------|------|------|\n| `run_episode_internal()` | `episode_level_collection.py` | 跑一个 always-internal episode，LLM ReAct 每步选 action |\n| `run_episode_deterministic()` | `episode_level_collection.py` | 跑一个 always-deterministic episode，fork+lookahead 选最优 |\n| `select_action_react()` | `llm_agent.py` | 标准 ReAct：observation+history → action |\n| `select_action_deep_react()` | `llm_agent.py` | Deep internal：更长 CoT reasoning |\n| `is_lethal()` / `is_dead()` | 多个文件 | death 判定：`score <= -100` |\n\n### 1.3 当前 Death Rate 数据（Aggregate, 30 tasks, 249 episodes）\n\n| 指标 | Internal | Deterministic |\n|------|----------|---------------|\n| Death rate | **49.0%** | 11.65% |\n| Mean score | -47.49 | -9.16 |\n| Mean score (no-death only) | 2.95 | 3.43 |\n| DAF (death avoidance fraction) | — | **98.75%** |\n\n核心发现：det-preferred 信号的 98.75% 来自 death asymmetry，排除 death 后 delta 仅 0.48。\n\n### 1.4 Reflexion 相关代码现状\n\n**不存在任何 Reflexion 相关代码。** 没有 `*reflex*`、`*retry*`、`*self_reflect*` 文件或配置。需要从零实现。\n\n---\n\n## 2. Reflexion 实现方案\n\n### 2.1 核心机制（来自 Shinn et al., NeurIPS 2023）\n\nReflexion 的 loop：\n1. **Trial 1**: 正常跑 episode → 得到 trajectory + outcome\n2. **Self-Reflection**: LLM 看 trajectory 和 outcome，生成文本反思（\"what went wrong, what to do differently\"）\n3. **Trial 2**: 把 reflection 注入 agent prompt，重跑**同一 task+variation** → 新 trajectory + outcome\n4. **重复**: 最多 K 次（通常 K=3）\n\n### 2.2 新增文件\n\n#### (1) `src/reflexion_baseline.py` — 主实验脚本\n\n```python\n\"\"\"Reflexion baseline: self-reflection + retry for internal modality death rate reduction.\n\nHypothesis: If Reflexion reduces internal death rate to <20%, \ndeath dominance is no longer the primary routing signal.\n\nFor each task/variation:\n  1. Run episode (internal mode)\n  2. If failed (death or score <= 0), generate self-reflection\n  3. Retry same task/variation with reflection in context\n  4. Repeat up to max_trials times\n\nOutput:\n  {output_dir}/{task}/reflexion_episodes.jsonl  — all trials per variation\n  {output_dir}/{task}/reflexion_summary.jsonl   — per-variation summary\n  {output_dir}/aggregate_report.json            — death rate per trial\n\nUsage:\n  python src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of\" \\\n    --episodes 20 --max_trials 3 --gpu_id 0\n\"\"\"\n```\n\n**关键函数设计：**\n\n```python\ndef run_reflexion_episode(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n    max_trials: int = 3,\n) -> Dict[str, Any]:\n    \"\"\"Run up to max_trials of the same task/variation with self-reflection.\"\"\"\n    \n    reflections = []  # accumulated reflection texts\n    all_trials = []\n    \n    for trial_idx in range(max_trials):\n        # Run episode with reflections in context\n        result = run_episode_with_reflections(\n            agent, task_name, variation_idx, max_steps, reflections\n        )\n        all_trials.append({\n            \"trial_idx\": trial_idx,\n            \"final_score\": result[\"final_score\"],\n            \"is_death\": result[\"final_score\"] <= DEATH_THRESHOLD,\n            \"num_steps\": result[\"num_steps\"],\n            \"trajectory_summary\": summarize_trajectory(result),\n            **result,\n        })\n        \n        # Success: stop retrying\n        if result[\"final_score\"] > 0:\n            break\n        \n        # Generate self-reflection for next trial\n        if trial_idx < max_trials - 1:\n            reflection = generate_self_reflection(\n                agent, task_name, result, reflections\n            )\n            reflections.append(reflection)\n    \n    return {\n        \"task_name\": task_name,\n        \"variation_idx\": variation_idx,\n        \"n_trials\": len(all_trials),\n        \"trials\": all_trials,\n        \"final_trial_score\": all_trials[-1][\"final_score\"],\n        \"final_trial_death\": all_trials[-1][\"is_death\"],\n        \"death_trajectory\": [t[\"is_death\"] for t in all_trials],\n        \"reflections\": reflections,\n    }\n\n\ndef run_episode_with_reflections(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n    reflections: List[str],\n) -> Dict[str, Any]:\n    \"\"\"Same as run_episode_internal but injects reflections into agent prompt.\"\"\"\n    \n    env = create_env(task_name, variation_idx)\n    obs, _ = reset_env(env)\n    steps, history_dicts = [], []\n    \n    for step_idx in range(max_steps):\n        valid_actions = get_valid_actions(env)\n        if not valid_actions:\n            break\n        \n        # Key difference: pass reflections to agent\n        action, raw = agent.select_action_react_with_reflections(\n            obs, valid_actions, history_dicts, reflections\n        )\n        \n        obs_new, reward, done, info = step_env(env, action)\n        score_after = get_score(env)\n        \n        steps.append({...})\n        history_dicts.append({...})\n        obs = obs_new\n        if done:\n            break\n    \n    final_score = get_score(env)\n    close_env(env)\n    return {\"final_score\": final_score, \"steps\": steps, \"num_steps\": len(steps), ...}\n\n\ndef generate_self_reflection(\n    agent: LLMAgent,\n    task_name: str,\n    episode_result: Dict,\n    previous_reflections: List[str],\n) -> str:\n    \"\"\"Generate verbal self-reflection on a failed episode.\"\"\"\n    \n    trajectory_summary = summarize_trajectory(episode_result)\n    \n    prompt = REFLECTION_PROMPT_TEMPLATE.format(\n        task_name=task_name,\n        final_score=episode_result[\"final_score\"],\n        is_death=\"YES - the agent died (score <= -100)\" if episode_result[\"final_score\"] <= -100 else \"No\",\n        trajectory_summary=trajectory_summary,\n        previous_reflections=format_previous_reflections(previous_reflections),\n    )\n    \n    # Use LLM to generate reflection (reuse the same model)\n    messages = [\n        {\"role\": \"system\", \"content\": REFLECTION_SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": prompt},\n    ]\n    return agent._generate(messages, temperature=0.3)\n```\n\n#### (2) `src/llm_agent.py` — 新增方法\n\n```python\n# 新增 prompt templates\nREFLEXION_SYSTEM_PROMPT = \"\"\"You are an agent interacting with a ScienceWorld text environment. \nYour goal is to complete the given task by choosing actions from the available action list.\n\nYou have attempted this task before and reflected on your mistakes. \nUse your reflections to avoid repeating past errors.\n\nUse the following format for each step:\nThought: &lt;your reasoning, considering past reflections>\nAction: &lt;exact action string from the valid actions list>\n\nRules:\n- You MUST choose an action from the valid actions list. Do not invent actions.\n- Actively use your reflections to guide decision-making.\n- Avoid actions that led to failure in previous attempts.\"\"\"\n\nREFLEXION_USER_TEMPLATE = \"\"\"Current observation:\n{observation}\n\nValid actions:\n{valid_actions_str}\n\nPrevious actions taken: {history_str}\n\n{reflections_block}\n\nChoose your next action, keeping your reflections in mind.\"\"\"\n\nREFLECTION_GENERATION_SYSTEM = \"\"\"You are an expert at analyzing failed episodes in a ScienceWorld text game environment. \nYour task is to reflect on what went wrong and provide actionable advice for the next attempt.\"\"\"\n\nREFLECTION_GENERATION_USER = \"\"\"Task: {task_name}\nFinal score: {final_score}\nDeath occurred: {is_death}\n\nTrajectory summary:\n{trajectory_summary}\n\n{previous_reflections}\n\nAnalyze what went wrong in this attempt. Focus on:\n1. What specific actions led to failure or death?\n2. What should the agent have done instead?\n3. What general strategy should be followed in the next attempt?\n\nProvide a concise reflection (3-5 sentences) with concrete, actionable advice.\"\"\"\n\n# 新增 LLMAgent 方法\ndef select_action_react_with_reflections(\n    self,\n    observation: str,\n    valid_actions: List[str],\n    history: List[dict],\n    reflections: List[str],\n) -> Tuple[str, str]:\n    \"\"\"ReAct with accumulated self-reflections from previous trials.\"\"\"\n    \n    if not reflections:\n        return self.select_action_react(observation, valid_actions, history)\n    \n    reflections_block = \"Your reflections from previous attempts:\\n\"\n    for i, r in enumerate(reflections, 1):\n        reflections_block += f\"Attempt {i} reflection: {r}\\n\"\n    \n    messages = [\n        {\"role\": \"system\", \"content\": REFLEXION_SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": REFLEXION_USER_TEMPLATE.format(\n            observation=observation,\n            valid_actions_str=_format_valid_actions(valid_actions),\n            history_str=_format_history(history),\n            reflections_block=reflections_block,\n        )},\n    ]\n    raw = self._generate(messages)\n    action = parse_action(raw, valid_actions)\n    if action is None:\n        action = valid_actions[0]\n    return action, raw\n```\n\n#### (3) `scripts/run_reflexion_baseline.sh` — 启动脚本\n\n```bash\n#!/bin/bash\n# Reflexion baseline experiment\n# Hypothesis: self-reflection + retry reduces internal death rate to <20%\n\nGPU_ID=${1:-0}\nMAX_TRIALS=3\nEPISODES=20\nOUTPUT_DIR=\"results/reflexion_baseline\"\nSEED=42\n\n# 高 death rate 任务优先（从 death_decomposition_report.json）\nHIGH_DEATH_TASKS=\"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix\"\nMEDIUM_DEATH_TASKS=\"freeze,grow-plant,find-animal,find-non-living-thing\"\n\necho \"=== Reflexion Baseline ===\"\necho \"GPU: $GPU_ID | Trials: $MAX_TRIALS | Episodes: $EPISODES\"\n\npython src/reflexion_baseline.py \\\n    --task_types \"$HIGH_DEATH_TASKS,$MEDIUM_DEATH_TASKS\" \\\n    --episodes $EPISODES \\\n    --max_trials $MAX_TRIALS \\\n    --gpu_id $GPU_ID \\\n    --output_dir $OUTPUT_DIR \\\n    --seed $SEED \\\n    --use_vllm\n```\n\n### 2.3 对照组设计\n\n为隔离 Reflexion reflection 的效果 vs 纯重试的随机性：\n\n| 条件 | 描述 | 目的 |\n|------|------|------|\n| **reflexion** | 带 self-reflection 的重试 | 测试 Reflexion 机制 |\n| **retry-only** | 不带 reflection 的纯重试 | 控制组：隔离 stochastic retry 效果 |\n| **baseline (trial-1)** | 每个条件的 trial-1 结果 | 等同于现有 always-internal |\n\n实现方式：在 `reflexion_baseline.py` 加 `--no_reflection` flag，跳过 reflection generation，reflections list 始终为空。\n\n### 2.4 输出格式\n\n```jsonl\n// reflexion_episodes.jsonl — 每行一个 variation 的所有 trials\n{\n  \"task_name\": \"boil\",\n  \"variation_idx\": 3,\n  \"n_trials\": 3,\n  \"trials\": [\n    {\"trial_idx\": 0, \"final_score\": -100.0, \"is_death\": true, \"num_steps\": 16, ...},\n    {\"trial_idx\": 1, \"final_score\": -100.0, \"is_death\": true, \"num_steps\": 22, ...},\n    {\"trial_idx\": 2, \"final_score\": 10.0, \"is_death\": false, \"num_steps\": 28, ...}\n  ],\n  \"reflections\": [\n    \"The agent died by using 'focus on' actions... should navigate to kitchen first...\",\n    \"Still died because... next time use 'open door' before entering rooms...\"\n  ],\n  \"death_trajectory\": [true, true, false],\n  \"final_trial_score\": 10.0,\n  \"final_trial_death\": false\n}\n```\n\n```json\n// aggregate_report.json\n{\n  \"per_trial_death_rate\": {\n    \"trial_1\": 0.49,   // should match existing internal baseline\n    \"trial_2\": 0.35,   // expected reduction\n    \"trial_3\": 0.25    // target: <0.20\n  },\n  \"per_trial_mean_score\": {\n    \"trial_1\": -47.5,\n    \"trial_2\": -30.0,\n    \"trial_3\": -15.0\n  },\n  \"reflexion_vs_retry_only\": {\n    \"reflexion_trial3_death\": 0.25,\n    \"retry_only_trial3_death\": 0.40\n  }\n}\n```\n\n---\n\n## 3. 启动命令草案\n\n### 3.1 正式实验（GPU 空闲后）\n\n```bash\n# Step 1: 确认代码已部署\nls src/reflexion_baseline.py\n\n# Step 2: Reflexion 条件\npython src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix,freeze,grow-plant,find-animal,find-non-living-thing,find-plant,find-living-thing\" \\\n    --episodes 20 \\\n    --max_trials 3 \\\n    --gpu_id 0 \\\n    --output_dir results/reflexion_baseline \\\n    --seed 42 \\\n    --use_vllm 2>&1 | tee logs/reflexion_baseline.log\n\n# Step 3: Retry-only 对照组\npython src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix,freeze,grow-plant,find-animal,find-non-living-thing,find-plant,find-living-thing\" \\\n    --episodes 20 \\\n    --max_trials 3 \\\n    --no_reflection \\\n    --gpu_id 0 \\\n    --output_dir results/retry_only_baseline \\\n    --seed 42 \\\n    --use_vllm 2>&1 | tee logs/retry_only_baseline.log\n```\n\n### 3.2 快速验证（dry run）\n\n```bash\npython src/reflexion_baseline.py \\\n    --task_types \"boil\" \\\n    --episodes 2 \\\n    --max_trials 3 \\\n    --gpu_id 0 \\\n    --output_dir results/reflexion_dryrun \\\n    --seed 42 \\\n    --use_vllm\n```\n\n### 3.3 时间估算\n\n- 现有 internal episode：~30s/episode（boil task, 16-30 steps）\n- Reflexion 每个 trial 同量级，但加上 reflection generation (~2-5s)\n- 每个 variation: ~30s × 3 trials + ~10s reflection = ~100s\n- 20 episodes × 11 tasks × 100s ≈ **6.1 hours**（Reflexion 条件）\n- 加上 retry-only 对照：**~12 hours total**\n- 可用 2 GPU 并行：~6 hours\n\n---\n\n## 4. 预计额外准备工作\n\n### 4.1 必须做\n\n1. **编写 `src/reflexion_baseline.py`**（~200 行）\n   - 基于 `episode_level_collection.py` 的 `run_episode_internal()` 改造\n   - 加 trial loop + reflection generation + output format\n   \n2. **修改 `src/llm_agent.py`**（~50 行新增）\n   - 添加 `select_action_react_with_reflections()` 方法\n   - 添加 reflection prompt templates\n\n3. **编写 `scripts/run_reflexion_baseline.sh`**（~20 行）\n\n### 4.2 可选优化\n\n4. **Trajectory summarization**：trajectory 可能太长放不进 context，需要 summarizer\n   - 方案 A：只保留 death step 前 5 步 + death step\n   - 方案 B：保留 score 变化的 step（score_delta != 0 的步骤）\n   - 推荐方案 A，简单且信息最关键\n\n5. **Reflection quality 检查**：加 sanity check 确保 reflection 非空、有实质内容\n\n6. **分析脚本**：`scripts/analyze_reflexion_results.py`，从 output 生成 death rate 趋势图和对比表\n\n### 4.3 无需做\n\n- 不需要修改 `scienceworld_utils.py`（env 接口不变）\n- 不需要修改 `death_decomposition.py`（可复用做后续分析）\n- 不需要新模型/新依赖（复用 Qwen2.5-7B-Instruct + vLLM）\n\n---\n\n## 5. 风险与注意事项\n\n1. **Context length**：3 trials 的 reflections + 当前 step 的 history 可能接近模型 context limit。Qwen2.5-7B-Instruct 支持 32K tokens，应该足够，但需要控制 trajectory summary 长度。\n\n2. **Reflection 质量**：7B 模型的 self-reflection 可能不够深刻（相比 GPT-4 级别）。如果 7B 的 reflection 效果不佳，这本身也是一个有价值的 negative result——说明 Reflexion 需要更强的 backbone，而 routing 是更 cost-effective 的替代方案。\n\n3. **公平对比**：Reflexion 的每个 variation 用了 3× 计算量（3 trials）。论文中需要明确讨论这个 compute overhead。\n\n4. **ScienceWorld 环境确定性**：同一 task+variation 的 `create_env` + `reset_env` 应该产生相同的初始状态，确保 retry 的公平性。但 LLM 的 stochasticity（temperature>0）会导致不同 trajectory。\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "file": "artifacts/reflexion_prep_report.md",
+    "content": "# Reflexion Baseline 实验代码准备报告\n\n## 1. 现有代码架构（与 Reflexion 相关部分）\n\n### 1.1 Episode 执行流程\n\n```\nepisode_level_collection.py / collect_trajectories.py\n  → LLMAgent (llm_agent.py)\n    → select_action_react()      # internal modality: LLM ReAct 选 action\n    → generate_candidate_actions() # deterministic modality: LLM 生成 candidates\n  → scienceworld_utils.py\n    → create_env() → reset_env() → step_env() → close_env()\n    → fork_and_lookahead()       # deterministic: 创建 JVM fork 评估 candidate\n```\n\n### 1.2 核心函数\n\n| 函数 | 文件 | 用途 |\n|------|------|------|\n| `run_episode_internal()` | `episode_level_collection.py` | 跑一个 always-internal episode，LLM ReAct 每步选 action |\n| `run_episode_deterministic()` | `episode_level_collection.py` | 跑一个 always-deterministic episode，fork+lookahead 选最优 |\n| `select_action_react()` | `llm_agent.py` | 标准 ReAct：observation+history → action |\n| `select_action_deep_react()` | `llm_agent.py` | Deep internal：更长 CoT reasoning |\n| `is_lethal()` / `is_dead()` | 多个文件 | death 判定：`score <= -100` |\n\n### 1.3 当前 Death Rate 数据（Aggregate, 30 tasks, 249 episodes）\n\n| 指标 | Internal | Deterministic |\n|------|----------|---------------|\n| Death rate | **49.0%** | 11.65% |\n| Mean score | -47.49 | -9.16 |\n| Mean score (no-death only) | 2.95 | 3.43 |\n| DAF (death avoidance fraction) | — | **98.75%** |\n\n核心发现：det-preferred 信号的 98.75% 来自 death asymmetry，排除 death 后 delta 仅 0.48。\n\n### 1.4 Reflexion 相关代码现状\n\n**不存在任何 Reflexion 相关代码。** 没有 `*reflex*`、`*retry*`、`*self_reflect*` 文件或配置。需要从零实现。\n\n---\n\n## 2. Reflexion 实现方案\n\n### 2.1 核心机制（来自 Shinn et al., NeurIPS 2023）\n\nReflexion 的 loop：\n1. **Trial 1**: 正常跑 episode → 得到 trajectory + outcome\n2. **Self-Reflection**: LLM 看 trajectory 和 outcome，生成文本反思（\"what went wrong, what to do differently\"）\n3. **Trial 2**: 把 reflection 注入 agent prompt，重跑**同一 task+variation** → 新 trajectory + outcome\n4. **重复**: 最多 K 次（通常 K=3）\n\n### 2.2 新增文件\n\n#### (1) `src/reflexion_baseline.py` — 主实验脚本\n\n```python\n\"\"\"Reflexion baseline: self-reflection + retry for internal modality death rate reduction.\n\nHypothesis: If Reflexion reduces internal death rate to <20%, \ndeath dominance is no longer the primary routing signal.\n\nFor each task/variation:\n  1. Run episode (internal mode)\n  2. If failed (death or score <= 0), generate self-reflection\n  3. Retry same task/variation with reflection in context\n  4. Repeat up to max_trials times\n\nOutput:\n  {output_dir}/{task}/reflexion_episodes.jsonl  — all trials per variation\n  {output_dir}/{task}/reflexion_summary.jsonl   — per-variation summary\n  {output_dir}/aggregate_report.json            — death rate per trial\n\nUsage:\n  python src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of\" \\\n    --episodes 20 --max_trials 3 --gpu_id 0\n\"\"\"\n```\n\n**关键函数设计：**\n\n```python\ndef run_reflexion_episode(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n    max_trials: int = 3,\n) -> Dict[str, Any]:\n    \"\"\"Run up to max_trials of the same task/variation with self-reflection.\"\"\"\n    \n    reflections = []  # accumulated reflection texts\n    all_trials = []\n    \n    for trial_idx in range(max_trials):\n        # Run episode with reflections in context\n        result = run_episode_with_reflections(\n            agent, task_name, variation_idx, max_steps, reflections\n        )\n        all_trials.append({\n            \"trial_idx\": trial_idx,\n            \"final_score\": result[\"final_score\"],\n            \"is_death\": result[\"final_score\"] <= DEATH_THRESHOLD,\n            \"num_steps\": result[\"num_steps\"],\n            \"trajectory_summary\": summarize_trajectory(result),\n            **result,\n        })\n        \n        # Success: stop retrying\n        if result[\"final_score\"] > 0:\n            break\n        \n        # Generate self-reflection for next trial\n        if trial_idx < max_trials - 1:\n            reflection = generate_self_reflection(\n                agent, task_name, result, reflections\n            )\n            reflections.append(reflection)\n    \n    return {\n        \"task_name\": task_name,\n        \"variation_idx\": variation_idx,\n        \"n_trials\": len(all_trials),\n        \"trials\": all_trials,\n        \"final_trial_score\": all_trials[-1][\"final_score\"],\n        \"final_trial_death\": all_trials[-1][\"is_death\"],\n        \"death_trajectory\": [t[\"is_death\"] for t in all_trials],\n        \"reflections\": reflections,\n    }\n\n\ndef run_episode_with_reflections(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n    reflections: List[str],\n) -> Dict[str, Any]:\n    \"\"\"Same as run_episode_internal but injects reflections into agent prompt.\"\"\"\n    \n    env = create_env(task_name, variation_idx)\n    obs, _ = reset_env(env)\n    steps, history_dicts = [], []\n    \n    for step_idx in range(max_steps):\n        valid_actions = get_valid_actions(env)\n        if not valid_actions:\n            break\n        \n        # Key difference: pass reflections to agent\n        action, raw = agent.select_action_react_with_reflections(\n            obs, valid_actions, history_dicts, reflections\n        )\n        \n        obs_new, reward, done, info = step_env(env, action)\n        score_after = get_score(env)\n        \n        steps.append({...})\n        history_dicts.append({...})\n        obs = obs_new\n        if done:\n            break\n    \n    final_score = get_score(env)\n    close_env(env)\n    return {\"final_score\": final_score, \"steps\": steps, \"num_steps\": len(steps), ...}\n\n\ndef generate_self_reflection(\n    agent: LLMAgent,\n    task_name: str,\n    episode_result: Dict,\n    previous_reflections: List[str],\n) -> str:\n    \"\"\"Generate verbal self-reflection on a failed episode.\"\"\"\n    \n    trajectory_summary = summarize_trajectory(episode_result)\n    \n    prompt = REFLECTION_PROMPT_TEMPLATE.format(\n        task_name=task_name,\n        final_score=episode_result[\"final_score\"],\n        is_death=\"YES - the agent died (score <= -100)\" if episode_result[\"final_score\"] <= -100 else \"No\",\n        trajectory_summary=trajectory_summary,\n        previous_reflections=format_previous_reflections(previous_reflections),\n    )\n    \n    # Use LLM to generate reflection (reuse the same model)\n    messages = [\n        {\"role\": \"system\", \"content\": REFLECTION_SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": prompt},\n    ]\n    return agent._generate(messages, temperature=0.3)\n```\n\n#### (2) `src/llm_agent.py` — 新增方法\n\n```python\n# 新增 prompt templates\nREFLEXION_SYSTEM_PROMPT = \"\"\"You are an agent interacting with a ScienceWorld text environment. \nYour goal is to complete the given task by choosing actions from the available action list.\n\nYou have attempted this task before and reflected on your mistakes. \nUse your reflections to avoid repeating past errors.\n\nUse the following format for each step:\nThought: &lt;your reasoning, considering past reflections>\nAction: &lt;exact action string from the valid actions list>\n\nRules:\n- You MUST choose an action from the valid actions list. Do not invent actions.\n- Actively use your reflections to guide decision-making.\n- Avoid actions that led to failure in previous attempts.\"\"\"\n\nREFLEXION_USER_TEMPLATE = \"\"\"Current observation:\n{observation}\n\nValid actions:\n{valid_actions_str}\n\nPrevious actions taken: {history_str}\n\n{reflections_block}\n\nChoose your next action, keeping your reflections in mind.\"\"\"\n\nREFLECTION_GENERATION_SYSTEM = \"\"\"You are an expert at analyzing failed episodes in a ScienceWorld text game environment. \nYour task is to reflect on what went wrong and provide actionable advice for the next attempt.\"\"\"\n\nREFLECTION_GENERATION_USER = \"\"\"Task: {task_name}\nFinal score: {final_score}\nDeath occurred: {is_death}\n\nTrajectory summary:\n{trajectory_summary}\n\n{previous_reflections}\n\nAnalyze what went wrong in this attempt. Focus on:\n1. What specific actions led to failure or death?\n2. What should the agent have done instead?\n3. What general strategy should be followed in the next attempt?\n\nProvide a concise reflection (3-5 sentences) with concrete, actionable advice.\"\"\"\n\n# 新增 LLMAgent 方法\ndef select_action_react_with_reflections(\n    self,\n    observation: str,\n    valid_actions: List[str],\n    history: List[dict],\n    reflections: List[str],\n) -> Tuple[str, str]:\n    \"\"\"ReAct with accumulated self-reflections from previous trials.\"\"\"\n    \n    if not reflections:\n        return self.select_action_react(observation, valid_actions, history)\n    \n    reflections_block = \"Your reflections from previous attempts:\\n\"\n    for i, r in enumerate(reflections, 1):\n        reflections_block += f\"Attempt {i} reflection: {r}\\n\"\n    \n    messages = [\n        {\"role\": \"system\", \"content\": REFLEXION_SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": REFLEXION_USER_TEMPLATE.format(\n            observation=observation,\n            valid_actions_str=_format_valid_actions(valid_actions),\n            history_str=_format_history(history),\n            reflections_block=reflections_block,\n        )},\n    ]\n    raw = self._generate(messages)\n    action = parse_action(raw, valid_actions)\n    if action is None:\n        action = valid_actions[0]\n    return action, raw\n```\n\n#### (3) `scripts/run_reflexion_baseline.sh` — 启动脚本\n\n```bash\n#!/bin/bash\n# Reflexion baseline experiment\n# Hypothesis: self-reflection + retry reduces internal death rate to <20%\n\nGPU_ID=${1:-0}\nMAX_TRIALS=3\nEPISODES=20\nOUTPUT_DIR=\"results/reflexion_baseline\"\nSEED=42\n\n# 高 death rate 任务优先（从 death_decomposition_report.json）\nHIGH_DEATH_TASKS=\"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix\"\nMEDIUM_DEATH_TASKS=\"freeze,grow-plant,find-animal,find-non-living-thing\"\n\necho \"=== Reflexion Baseline ===\"\necho \"GPU: $GPU_ID | Trials: $MAX_TRIALS | Episodes: $EPISODES\"\n\npython src/reflexion_baseline.py \\\n    --task_types \"$HIGH_DEATH_TASKS,$MEDIUM_DEATH_TASKS\" \\\n    --episodes $EPISODES \\\n    --max_trials $MAX_TRIALS \\\n    --gpu_id $GPU_ID \\\n    --output_dir $OUTPUT_DIR \\\n    --seed $SEED \\\n    --use_vllm\n```\n\n### 2.3 对照组设计\n\n为隔离 Reflexion reflection 的效果 vs 纯重试的随机性：\n\n| 条件 | 描述 | 目的 |\n|------|------|------|\n| **reflexion** | 带 self-reflection 的重试 | 测试 Reflexion 机制 |\n| **retry-only** | 不带 reflection 的纯重试 | 控制组：隔离 stochastic retry 效果 |\n| **baseline (trial-1)** | 每个条件的 trial-1 结果 | 等同于现有 always-internal |\n\n实现方式：在 `reflexion_baseline.py` 加 `--no_reflection` flag，跳过 reflection generation，reflections list 始终为空。\n\n### 2.4 输出格式\n\n```jsonl\n// reflexion_episodes.jsonl — 每行一个 variation 的所有 trials\n{\n  \"task_name\": \"boil\",\n  \"variation_idx\": 3,\n  \"n_trials\": 3,\n  \"trials\": [\n    {\"trial_idx\": 0, \"final_score\": -100.0, \"is_death\": true, \"num_steps\": 16, ...},\n    {\"trial_idx\": 1, \"final_score\": -100.0, \"is_death\": true, \"num_steps\": 22, ...},\n    {\"trial_idx\": 2, \"final_score\": 10.0, \"is_death\": false, \"num_steps\": 28, ...}\n  ],\n  \"reflections\": [\n    \"The agent died by using 'focus on' actions... should navigate to kitchen first...\",\n    \"Still died because... next time use 'open door' before entering rooms...\"\n  ],\n  \"death_trajectory\": [true, true, false],\n  \"final_trial_score\": 10.0,\n  \"final_trial_death\": false\n}\n```\n\n```json\n// aggregate_report.json\n{\n  \"per_trial_death_rate\": {\n    \"trial_1\": 0.49,   // should match existing internal baseline\n    \"trial_2\": 0.35,   // expected reduction\n    \"trial_3\": 0.25    // target: <0.20\n  },\n  \"per_trial_mean_score\": {\n    \"trial_1\": -47.5,\n    \"trial_2\": -30.0,\n    \"trial_3\": -15.0\n  },\n  \"reflexion_vs_retry_only\": {\n    \"reflexion_trial3_death\": 0.25,\n    \"retry_only_trial3_death\": 0.40\n  }\n}\n```\n\n---\n\n## 3. 启动命令草案\n\n### 3.1 正式实验（GPU 空闲后）\n\n```bash\n# Step 1: 确认代码已部署\nls src/reflexion_baseline.py\n\n# Step 2: Reflexion 条件\npython src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix,freeze,grow-plant,find-animal,find-non-living-thing,find-plant,find-living-thing\" \\\n    --episodes 20 \\\n    --max_trials 3 \\\n    --gpu_id 0 \\\n    --output_dir results/reflexion_baseline \\\n    --seed 42 \\\n    --use_vllm 2>&1 | tee logs/reflexion_baseline.log\n\n# Step 3: Retry-only 对照组\npython src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix,freeze,grow-plant,find-animal,find-non-living-thing,find-plant,find-living-thing\" \\\n    --episodes 20 \\\n    --max_trials 3 \\\n    --no_reflection \\\n    --gpu_id 0 \\\n    --output_dir results/retry_only_baseline \\\n    --seed 42 \\\n    --use_vllm 2>&1 | tee logs/retry_only_baseline.log\n```\n\n### 3.2 快速验证（dry run）\n\n```bash\npython src/reflexion_baseline.py \\\n    --task_types \"boil\" \\\n    --episodes 2 \\\n    --max_trials 3 \\\n    --gpu_id 0 \\\n    --output_dir results/reflexion_dryrun \\\n    --seed 42 \\\n    --use_vllm\n```\n\n### 3.3 时间估算\n\n- 现有 internal episode：~30s/episode（boil task, 16-30 steps）\n- Reflexion 每个 trial 同量级，但加上 reflection generation (~2-5s)\n- 每个 variation: ~30s × 3 trials + ~10s reflection = ~100s\n- 20 episodes × 11 tasks × 100s ≈ **6.1 hours**（Reflexion 条件）\n- 加上 retry-only 对照：**~12 hours total**\n- 可用 2 GPU 并行：~6 hours\n\n---\n\n## 4. 预计额外准备工作\n\n### 4.1 必须做\n\n1. **编写 `src/reflexion_baseline.py`**（~200 行）\n   - 基于 `episode_level_collection.py` 的 `run_episode_internal()` 改造\n   - 加 trial loop + reflection generation + output format\n   \n2. **修改 `src/llm_agent.py`**（~50 行新增）\n   - 添加 `select_action_react_with_reflections()` 方法\n   - 添加 reflection prompt templates\n\n3. **编写 `scripts/run_reflexion_baseline.sh`**（~20 行）\n\n### 4.2 可选优化\n\n4. **Trajectory summarization**：trajectory 可能太长放不进 context，需要 summarizer\n   - 方案 A：只保留 death step 前 5 步 + death step\n   - 方案 B：保留 score 变化的 step（score_delta != 0 的步骤）\n   - 推荐方案 A，简单且信息最关键\n\n5. **Reflection quality 检查**：加 sanity check 确保 reflection 非空、有实质内容\n\n6. **分析脚本**：`scripts/analyze_reflexion_results.py`，从 output 生成 death rate 趋势图和对比表\n\n### 4.3 无需做\n\n- 不需要修改 `scienceworld_utils.py`（env 接口不变）\n- 不需要修改 `death_decomposition.py`（可复用做后续分析）\n- 不需要新模型/新依赖（复用 Qwen2.5-7B-Instruct + vLLM）\n\n---\n\n## 5. 风险与注意事项\n\n1. **Context length**：3 trials 的 reflections + 当前 step 的 history 可能接近模型 context limit。Qwen2.5-7B-Instruct 支持 32K tokens，应该足够，但需要控制 trajectory summary 长度。\n\n2. **Reflection 质量**：7B 模型的 self-reflection 可能不够深刻（相比 GPT-4 级别）。如果 7B 的 reflection 效果不佳，这本身也是一个有价值的 negative result——说明 Reflexion 需要更强的 backbone，而 routing 是更 cost-effective 的替代方案。\n\n3. **公平对比**：Reflexion 的每个 variation 用了 3× 计算量（3 trials）。论文中需要明确讨论这个 compute overhead。\n\n4. **ScienceWorld 环境确定性**：同一 task+variation 的 `create_env` + `reset_env` 应该产生相同的初始状态，确保 retry 的公平性。但 LLM 的 stochasticity（temperature>0）会导致不同 trajectory。\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-17T11:10:36.676621+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"file 'artifacts/reflexion_prep_report.md' is not writable via save_project_file. Writable: ['memory.md', 'paper_framing.md', 'writing_plan.yaml'].\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "mcp__agent-ml-research__save_project_file",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-17T11:10:36.676784+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/",
+  "description": "List artifacts directory"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/",
+    "description": "List artifacts directory"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-17T11:10:36.676926+00:00_
+
+70b_progress_check.md
+_project
+alfworld_cf_diagnosis.md
+appendix_promotion_plan.md
+backbone-scaling-70b-analysis.md
+bootstrap_95ci.json
+cross-model-guided-router-eval
+cross-split-robustness-8seed
+death_aware_labeling.py
+deep_vs_fast_analysis.md
+diagnosis_mvp-p1-gpu1-v2.md
+dream_reports
+excluded_tasks_analysis.md
+experiment_tables.md
+fig1_daf_scatter_verify.jpg
+leave-one-tasktype-out
+literature_survey_death_avoidance.md
+long_paper_figures_tables.md
+long_paper_results_summary.md
+loto-guided-router-eval
+main_v122_r8fixed.pdf
+manifest.yaml
+math-counterfactual-dryrun
+math-negative-contrast
+multi-model-pilot
+paper_audit_report.md
+paper_completeness_audit.md
+paper_data_tables.md
+paper_number_audit.md
+penalty_sensitivity.json
+penalty_sensitivity_table.tex
+phase1_progress_report.md
+plan-002-generative-v1-analysis.md
+plan-003-bootstrap-95ci
+plan-003-e2e-ablation-b
+plan-003-eval-implicit
+plan-004-ablation-b
+plan-004-v5
+plan-005-routing-patterns
+plan-006-deep-internal
+plan-008-router-size-v3
+plan-010-cross-task-v2
+plan-012-decomposition
+plan-012-full
+plan-012-penalty-curve
+plan-012-penalty-sensitivity
+plan-012-step-tie-rate
+plan-013
+plan-013-labeling-quality
+plan005_routing_analysis.md
+plan005_routing_patterns_v2.md
+plan_001b_revised_proposal.md
+plan_001b_task_selection.md
+prescreening_final_summary.json
+related_work_draft.md
+review_issues.yaml
+review_reports
+router_sft_train.py
+running_experiments_check.md
+scienceworld-data-consolidation
+seed-robustness-core
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "Bash",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-17T11:10:36.677137+00:00_
+
+called Write
+
+<details open><summary>🔧 Tool call — Write</summary>
+
+````json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/reflexion_prep_report.md",
+  "content": "# Reflexion Baseline 实验代码准备报告\n\n## 1. 现有代码架构（与 Reflexion 相关部分）\n\n### 1.1 Episode 执行流程\n\n```\nepisode_level_collection.py / collect_trajectories.py\n  → LLMAgent (llm_agent.py)\n    → select_action_react()      # internal modality: LLM ReAct 选 action\n    → generate_candidate_actions() # deterministic modality: LLM 生成 candidates\n  → scienceworld_utils.py\n    → create_env() → reset_env() → step_env() → close_env()\n    → fork_and_lookahead()       # deterministic: 创建 JVM fork 评估 candidate\n```\n\n### 1.2 核心函数\n\n| 函数 | 文件 | 用途 |\n|------|------|------|\n| `run_episode_internal()` | `episode_level_collection.py` | 跑一个 always-internal episode，LLM ReAct 每步选 action |\n| `run_episode_deterministic()` | `episode_level_collection.py` | 跑一个 always-deterministic episode，fork+lookahead 选最优 |\n| `select_action_react()` | `llm_agent.py` | 标准 ReAct：observation+history → action |\n| `select_action_deep_react()` | `llm_agent.py` | Deep internal：更长 CoT reasoning |\n| `is_lethal()` / `is_dead()` | 多个文件 | death 判定：`score <= -100` |\n\n### 1.3 当前 Death Rate 数据（Aggregate, 30 tasks, 249 episodes）\n\n| 指标 | Internal | Deterministic |\n|------|----------|---------------|\n| Death rate | **49.0%** | 11.65% |\n| Mean score | -47.49 | -9.16 |\n| Mean score (no-death only) | 2.95 | 3.43 |\n| DAF (death avoidance fraction) | — | **98.75%** |\n\n核心发现：det-preferred 信号的 98.75% 来自 death asymmetry，排除 death 后 delta 仅 0.48。\n\n### 1.4 Reflexion 相关代码现状\n\n**不存在任何 Reflexion 相关代码。** 没有 `*reflex*`、`*retry*`、`*self_reflect*` 文件或配置。需要从零实现。\n\n---\n\n## 2. Reflexion 实现方案\n\n### 2.1 核心机制（来自 Shinn et al., NeurIPS 2023）\n\nReflexion 的 loop：\n1. **Trial 1**: 正常跑 episode → 得到 trajectory + outcome\n2. **Self-Reflection**: LLM 看 trajectory 和 outcome，生成文本反思（\"what went wrong, what to do differently\"）\n3. **Trial 2**: 把 reflection 注入 agent prompt，重跑**同一 task+variation** → 新 trajectory + outcome\n4. **重复**: 最多 K 次（通常 K=3）\n\n### 2.2 新增文件\n\n#### (1) `src/reflexion_baseline.py` — 主实验脚本（~200 行）\n\n```python\n\"\"\"Reflexion baseline: self-reflection + retry for internal modality death rate reduction.\n\nHypothesis: If Reflexion reduces internal death rate to <20%, \ndeath dominance is no longer the primary routing signal.\n\nFor each task/variation:\n  1. Run episode (internal mode)\n  2. If failed (death or score <= 0), generate self-reflection\n  3. Retry same task/variation with reflection in context\n  4. Repeat up to max_trials times\n\nOutput:\n  {output_dir}/{task}/reflexion_episodes.jsonl  — all trials per variation\n  {output_dir}/{task}/reflexion_summary.jsonl   — per-variation summary\n  {output_dir}/aggregate_report.json            — death rate per trial\n\nUsage:\n  python src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of\" \\\n    --episodes 20 --max_trials 3 --gpu_id 0\n\"\"\"\n```\n\n**关键函数设计：**\n\n```python\ndef run_reflexion_episode(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n    max_trials: int = 3,\n) -> Dict[str, Any]:\n    \"\"\"Run up to max_trials of the same task/variation with self-reflection.\"\"\"\n    \n    reflections = []  # accumulated reflection texts\n    all_trials = []\n    \n    for trial_idx in range(max_trials):\n        # Run episode with reflections in context\n        result = run_episode_with_reflections(\n            agent, task_name, variation_idx, max_steps, reflections\n        )\n        all_trials.append({\n            \"trial_idx\": trial_idx,\n            \"final_score\": result[\"final_score\"],\n            \"is_death\": result[\"final_score\"] <= DEATH_THRESHOLD,\n            \"num_steps\": result[\"num_steps\"],\n            \"trajectory_summary\": summarize_trajectory(result),\n            **result,\n        })\n        \n        # Success: stop retrying\n        if result[\"final_score\"] > 0:\n            break\n        \n        # Generate self-reflection for next trial\n        if trial_idx < max_trials - 1:\n            reflection = generate_self_reflection(\n                agent, task_name, result, reflections\n            )\n            reflections.append(reflection)\n    \n    return {\n        \"task_name\": task_name,\n        \"variation_idx\": variation_idx,\n        \"n_trials\": len(all_trials),\n        \"trials\": all_trials,\n        \"final_trial_score\": all_trials[-1][\"final_score\"],\n        \"final_trial_death\": all_trials[-1][\"is_death\"],\n        \"death_trajectory\": [t[\"is_death\"] for t in all_trials],\n        \"reflections\": reflections,\n    }\n\n\ndef run_episode_with_reflections(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n    reflections: List[str],\n) -> Dict[str, Any]:\n    \"\"\"Same as run_episode_internal but injects reflections into agent prompt.\"\"\"\n    \n    env = create_env(task_name, variation_idx)\n    obs, _ = reset_env(env)\n    steps, history_dicts = [], []\n    \n    for step_idx in range(max_steps):\n        valid_actions = get_valid_actions(env)\n        if not valid_actions:\n            break\n        \n        # Key difference: pass reflections to agent\n        action, raw = agent.select_action_react_with_reflections(\n            obs, valid_actions, history_dicts, reflections\n        )\n        \n        obs_new, reward, done, info = step_env(env, action)\n        score_after = get_score(env)\n        \n        steps.append({\n            \"step_idx\": step_idx,\n            \"observation_text\": obs[:500],\n            \"action_text\": action,\n            \"score_before\": get_score(env),  # before step\n            \"score_after\": score_after,\n            \"score_delta\": score_after - get_score(env),\n            \"is_death\": score_after <= DEATH_THRESHOLD,\n            \"done\": done,\n        })\n        history_dicts.append({\n            \"action\": action,\n            \"observation\": obs_new[:200],\n            \"score\": score_after,\n        })\n        obs = obs_new\n        if done:\n            break\n    \n    final_score = get_score(env)\n    close_env(env)\n    return {\n        \"final_score\": final_score,\n        \"steps\": steps,\n        \"num_steps\": len(steps),\n        \"total_time_s\": ...,\n    }\n\n\ndef generate_self_reflection(\n    agent: LLMAgent,\n    task_name: str,\n    episode_result: Dict,\n    previous_reflections: List[str],\n) -> str:\n    \"\"\"Generate verbal self-reflection on a failed episode.\"\"\"\n    \n    trajectory_summary = summarize_trajectory(episode_result)\n    \n    prompt = REFLECTION_PROMPT_TEMPLATE.format(\n        task_name=task_name,\n        final_score=episode_result[\"final_score\"],\n        is_death=\"YES - the agent died\" if episode_result[\"final_score\"] <= -100 else \"No\",\n        trajectory_summary=trajectory_summary,\n        previous_reflections=format_previous_reflections(previous_reflections),\n    )\n    \n    messages = [\n        {\"role\": \"system\", \"content\": REFLECTION_SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": prompt},\n    ]\n    return agent._generate(messages, temperature=0.3)\n\n\ndef summarize_trajectory(result: Dict) -> str:\n    \"\"\"Compact trajectory summary: last 5 steps before death + death step.\"\"\"\n    steps = result[\"steps\"]\n    if not steps:\n        return \"No steps taken.\"\n    \n    death_idx = None\n    for i, s in enumerate(steps):\n        if s.get(\"is_death\"):\n            death_idx = i\n            break\n    \n    if death_idx is not None:\n        start = max(0, death_idx - 4)\n        relevant = steps[start:death_idx + 1]\n    else:\n        relevant = steps[-5:]\n    \n    lines = []\n    for s in relevant:\n        lines.append(\n            f\"Step {s['step_idx']}: action='{s['action_text']}' \"\n            f\"score_delta={s['score_delta']:+.0f} obs='{s['observation_text'][:100]}'\"\n        )\n    return \"\\n\".join(lines)\n```\n\n#### (2) `src/llm_agent.py` 修改 — 新增 ~50 行\n\n```python\n# === 新增 prompt templates ===\n\nREFLEXION_SYSTEM_PROMPT = \"\"\"You are an agent interacting with a ScienceWorld text environment. \nYour goal is to complete the given task by choosing actions from the available action list.\n\nYou have attempted this task before and reflected on your mistakes. \nUse your reflections to avoid repeating past errors.\n\nUse the following format for each step:\nThought: &lt;your reasoning, considering past reflections>\nAction: &lt;exact action string from the valid actions list>\n\nRules:\n- You MUST choose an action from the valid actions list. Do not invent actions.\n- Actively use your reflections to guide decision-making.\n- Avoid actions that led to failure in previous attempts.\"\"\"\n\nREFLEXION_USER_TEMPLATE = \"\"\"Current observation:\n{observation}\n\nValid actions:\n{valid_actions_str}\n\nPrevious actions taken: {history_str}\n\n{reflections_block}\n\nChoose your next action, keeping your reflections in mind.\"\"\"\n\nREFLECTION_SYSTEM_PROMPT = \"\"\"You are an expert at analyzing failed episodes in a ScienceWorld text game. \nReflect on what went wrong and provide actionable advice for the next attempt.\"\"\"\n\nREFLECTION_USER_TEMPLATE = \"\"\"Task: {task_name}\nFinal score: {final_score}\nDeath occurred: {is_death}\n\nTrajectory summary:\n{trajectory_summary}\n\n{previous_reflections}\n\nAnalyze what went wrong. Focus on:\n1. What specific actions led to failure or death?\n2. What should the agent have done instead?\n3. What general strategy should be followed next?\n\nProvide a concise reflection (3-5 sentences) with concrete, actionable advice.\"\"\"\n\n\n# === 新增 LLMAgent 方法 ===\n\ndef select_action_react_with_reflections(\n    self,\n    observation: str,\n    valid_actions: List[str],\n    history: List[dict],\n    reflections: List[str],\n) -> Tuple[str, str]:\n    \"\"\"ReAct with accumulated self-reflections from previous trials.\"\"\"\n    \n    if not reflections:\n        return self.select_action_react(observation, valid_actions, history)\n    \n    reflections_block = \"Your reflections from previous attempts:\\n\"\n    for i, r in enumerate(reflections, 1):\n        reflections_block += f\"Attempt {i} reflection: {r}\\n\"\n    \n    messages = [\n        {\"role\": \"system\", \"content\": REFLEXION_SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": REFLEXION_USER_TEMPLATE.format(\n            observation=observation,\n            valid_actions_str=_format_valid_actions(valid_actions),\n            history_str=_format_history(history),\n            reflections_block=reflections_block,\n        )},\n    ]\n    raw = self._generate(messages)\n    action = parse_action(raw, valid_actions)\n    if action is None:\n        action = valid_actions[0]\n    return action, raw\n```\n\n#### (3) `scripts/run_reflexion_baseline.sh` — 启动脚本\n\n```bash\n#!/bin/bash\n# Reflexion baseline experiment\n# Hypothesis: self-reflection + retry reduces internal death rate to <20%\n\nGPU_ID=${1:-0}\nMAX_TRIALS=3\nEPISODES=20\nOUTPUT_DIR=\"results/reflexion_baseline\"\nSEED=42\n\n# High death rate tasks (from death_decomposition_report.json)\nHIGH_DEATH_TASKS=\"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix\"\nMEDIUM_DEATH_TASKS=\"freeze,grow-plant,find-animal,find-non-living-thing\"\n\necho \"=== Reflexion Baseline ===\"\necho \"GPU: $GPU_ID | Trials: $MAX_TRIALS | Episodes: $EPISODES\"\n\npython src/reflexion_baseline.py \\\n    --task_types \"$HIGH_DEATH_TASKS,$MEDIUM_DEATH_TASKS\" \\\n    --episodes $EPISODES \\\n    --max_trials $MAX_TRIALS \\\n    --gpu_id $GPU_ID \\\n    --output_dir $OUTPUT_DIR \\\n    --seed $SEED \\\n    --use_vllm\n```\n\n### 2.3 对照组设计\n\n| 条件 | 描述 | 目的 |\n|------|------|------|\n| **reflexion** | 带 self-reflection 的重试 | 测试 Reflexion 机制 |\n| **retry-only** | 不带 reflection 的纯重试（`--no_reflection`） | 控制组：隔离 stochastic retry 效果 |\n| **baseline (trial-1)** | 每个条件的 trial-1 结果 | 等同于现有 always-internal |\n\n### 2.4 输出格式\n\n```jsonl\n// reflexion_episodes.jsonl\n{\n  \"task_name\": \"boil\",\n  \"variation_idx\": 3,\n  \"n_trials\": 3,\n  \"trials\": [\n    {\"trial_idx\": 0, \"final_score\": -100.0, \"is_death\": true, \"num_steps\": 16},\n    {\"trial_idx\": 1, \"final_score\": -100.0, \"is_death\": true, \"num_steps\": 22},\n    {\"trial_idx\": 2, \"final_score\": 10.0, \"is_death\": false, \"num_steps\": 28}\n  ],\n  \"reflections\": [\"...\", \"...\"],\n  \"death_trajectory\": [true, true, false],\n  \"final_trial_score\": 10.0,\n  \"final_trial_death\": false\n}\n```\n\n```json\n// aggregate_report.json\n{\n  \"per_trial_death_rate\": {\"trial_1\": 0.49, \"trial_2\": 0.35, \"trial_3\": 0.25},\n  \"per_trial_mean_score\": {\"trial_1\": -47.5, \"trial_2\": -30.0, \"trial_3\": -15.0},\n  \"reflexion_vs_retry_only\": {\n    \"reflexion_trial3_death\": 0.25,\n    \"retry_only_trial3_death\": 0.40\n  }\n}\n```\n\n---\n\n## 3. 启动命令草案\n\n### 3.1 Dry Run（GPU 空闲后第一步）\n\n```bash\npython src/reflexion_baseline.py \\\n    --task_types \"boil\" \\\n    --episodes 2 \\\n    --max_trials 3 \\\n    --gpu_id 0 \\\n    --output_dir results/reflexion_dryrun \\\n    --seed 42 \\\n    --use_vllm\n```\n\n### 3.2 正式实验\n\n```bash\n# Reflexion 条件\npython src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix,freeze,grow-plant,find-animal,find-non-living-thing,find-plant,find-living-thing\" \\\n    --episodes 20 \\\n    --max_trials 3 \\\n    --gpu_id 0 \\\n    --output_dir results/reflexion_baseline \\\n    --seed 42 \\\n    --use_vllm 2>&1 | tee logs/reflexion_baseline.log\n\n# Retry-only 对照组\npython src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix,freeze,grow-plant,find-animal,find-non-living-thing,find-plant,find-living-thing\" \\\n    --episodes 20 \\\n    --max_trials 3 \\\n    --no_reflection \\\n    --gpu_id 0 \\\n    --output_dir results/retry_only_baseline \\\n    --seed 42 \\\n    --use_vllm 2>&1 | tee logs/retry_only_baseline.log\n```\n\n### 3.3 时间估算\n\n- 单 episode trial: ~30s (boil task baseline)\n- 每 variation: ~30s x 3 trials + ~10s reflection = ~100s\n- 20 episodes x 11 tasks x 100s = **~6.1 hours** (Reflexion)\n- 加 retry-only 对照: **~12 hours total**\n- 可用 2 GPU 并行: ~6 hours\n\n---\n\n## 4. 预计额外准备工作\n\n### 4.1 必须做\n\n1. **编写 `src/reflexion_baseline.py`** (~200 行) — 基于 `run_episode_internal()` 改造\n2. **修改 `src/llm_agent.py`** (~50 行新增) — 添加 `select_action_react_with_reflections()` 和 prompt templates\n3. **编写 `scripts/run_reflexion_baseline.sh`** (~20 行)\n\n### 4.2 可选优化\n\n4. **Trajectory summarization**: trajectory 太长放不进 context，采用方案 A（death step 前 5 步 + death step）\n5. **分析脚本**: `scripts/analyze_reflexion_results.py`，生成 death rate 趋势图\n\n### 4.3 无需做\n\n- 不需要修改 `scienceworld_utils.py`（env 接口不变）\n- 不需要新模型/新依赖（复用 Qwen2.5-7B-Instruct + vLLM）\n\n---\n\n## 5. 风险与注意事项\n\n1. **Context length**: 3 trials reflections + step history 可能较长，但 Qwen2.5-7B-Instruct 支持 32K tokens，足够。需控制 trajectory summary 长度。\n\n2. **Reflection 质量**: 7B 模型的 self-reflection 可能不够深刻。如果效果不佳，本身也是有价值的 negative result（说明 Reflexion 需要更强 backbone，routing 是更 cost-effective 的替代方案）。\n\n3. **公平对比**: Reflexion 每个 variation 用 3x 计算量。论文中需明确讨论 compute overhead。\n\n4. **环境确定性**: 同一 task+variation 的 `create_env` + `reset_env` 产生相同初始状态。LLM 的 stochasticity (temperature>0) 导致不同 trajectory，这是预期行为。\n"
+}
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+````json
+{
+  "recorded_role": "tool",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "Write",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/reflexion_prep_report.md",
+    "content": "# Reflexion Baseline 实验代码准备报告\n\n## 1. 现有代码架构（与 Reflexion 相关部分）\n\n### 1.1 Episode 执行流程\n\n```\nepisode_level_collection.py / collect_trajectories.py\n  → LLMAgent (llm_agent.py)\n    → select_action_react()      # internal modality: LLM ReAct 选 action\n    → generate_candidate_actions() # deterministic modality: LLM 生成 candidates\n  → scienceworld_utils.py\n    → create_env() → reset_env() → step_env() → close_env()\n    → fork_and_lookahead()       # deterministic: 创建 JVM fork 评估 candidate\n```\n\n### 1.2 核心函数\n\n| 函数 | 文件 | 用途 |\n|------|------|------|\n| `run_episode_internal()` | `episode_level_collection.py` | 跑一个 always-internal episode，LLM ReAct 每步选 action |\n| `run_episode_deterministic()` | `episode_level_collection.py` | 跑一个 always-deterministic episode，fork+lookahead 选最优 |\n| `select_action_react()` | `llm_agent.py` | 标准 ReAct：observation+history → action |\n| `select_action_deep_react()` | `llm_agent.py` | Deep internal：更长 CoT reasoning |\n| `is_lethal()` / `is_dead()` | 多个文件 | death 判定：`score <= -100` |\n\n### 1.3 当前 Death Rate 数据（Aggregate, 30 tasks, 249 episodes）\n\n| 指标 | Internal | Deterministic |\n|------|----------|---------------|\n| Death rate | **49.0%** | 11.65% |\n| Mean score | -47.49 | -9.16 |\n| Mean score (no-death only) | 2.95 | 3.43 |\n| DAF (death avoidance fraction) | — | **98.75%** |\n\n核心发现：det-preferred 信号的 98.75% 来自 death asymmetry，排除 death 后 delta 仅 0.48。\n\n### 1.4 Reflexion 相关代码现状\n\n**不存在任何 Reflexion 相关代码。** 没有 `*reflex*`、`*retry*`、`*self_reflect*` 文件或配置。需要从零实现。\n\n---\n\n## 2. Reflexion 实现方案\n\n### 2.1 核心机制（来自 Shinn et al., NeurIPS 2023）\n\nReflexion 的 loop：\n1. **Trial 1**: 正常跑 episode → 得到 trajectory + outcome\n2. **Self-Reflection**: LLM 看 trajectory 和 outcome，生成文本反思（\"what went wrong, what to do differently\"）\n3. **Trial 2**: 把 reflection 注入 agent prompt，重跑**同一 task+variation** → 新 trajectory + outcome\n4. **重复**: 最多 K 次（通常 K=3）\n\n### 2.2 新增文件\n\n#### (1) `src/reflexion_baseline.py` — 主实验脚本（~200 行）\n\n```python\n\"\"\"Reflexion baseline: self-reflection + retry for internal modality death rate reduction.\n\nHypothesis: If Reflexion reduces internal death rate to <20%, \ndeath dominance is no longer the primary routing signal.\n\nFor each task/variation:\n  1. Run episode (internal mode)\n  2. If failed (death or score <= 0), generate self-reflection\n  3. Retry same task/variation with reflection in context\n  4. Repeat up to max_trials times\n\nOutput:\n  {output_dir}/{task}/reflexion_episodes.jsonl  — all trials per variation\n  {output_dir}/{task}/reflexion_summary.jsonl   — per-variation summary\n  {output_dir}/aggregate_report.json            — death rate per trial\n\nUsage:\n  python src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of\" \\\n    --episodes 20 --max_trials 3 --gpu_id 0\n\"\"\"\n```\n\n**关键函数设计：**\n\n```python\ndef run_reflexion_episode(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n    max_trials: int = 3,\n) -> Dict[str, Any]:\n    \"\"\"Run up to max_trials of the same task/variation with self-reflection.\"\"\"\n    \n    reflections = []  # accumulated reflection texts\n    all_trials = []\n    \n    for trial_idx in range(max_trials):\n        # Run episode with reflections in context\n        result = run_episode_with_reflections(\n            agent, task_name, variation_idx, max_steps, reflections\n        )\n        all_trials.append({\n            \"trial_idx\": trial_idx,\n            \"final_score\": result[\"final_score\"],\n            \"is_death\": result[\"final_score\"] <= DEATH_THRESHOLD,\n            \"num_steps\": result[\"num_steps\"],\n            \"trajectory_summary\": summarize_trajectory(result),\n            **result,\n        })\n        \n        # Success: stop retrying\n        if result[\"final_score\"] > 0:\n            break\n        \n        # Generate self-reflection for next trial\n        if trial_idx < max_trials - 1:\n            reflection = generate_self_reflection(\n                agent, task_name, result, reflections\n            )\n            reflections.append(reflection)\n    \n    return {\n        \"task_name\": task_name,\n        \"variation_idx\": variation_idx,\n        \"n_trials\": len(all_trials),\n        \"trials\": all_trials,\n        \"final_trial_score\": all_trials[-1][\"final_score\"],\n        \"final_trial_death\": all_trials[-1][\"is_death\"],\n        \"death_trajectory\": [t[\"is_death\"] for t in all_trials],\n        \"reflections\": reflections,\n    }\n\n\ndef run_episode_with_reflections(\n    agent: LLMAgent,\n    task_name: str,\n    variation_idx: int,\n    max_steps: int,\n    reflections: List[str],\n) -> Dict[str, Any]:\n    \"\"\"Same as run_episode_internal but injects reflections into agent prompt.\"\"\"\n    \n    env = create_env(task_name, variation_idx)\n    obs, _ = reset_env(env)\n    steps, history_dicts = [], []\n    \n    for step_idx in range(max_steps):\n        valid_actions = get_valid_actions(env)\n        if not valid_actions:\n            break\n        \n        # Key difference: pass reflections to agent\n        action, raw = agent.select_action_react_with_reflections(\n            obs, valid_actions, history_dicts, reflections\n        )\n        \n        obs_new, reward, done, info = step_env(env, action)\n        score_after = get_score(env)\n        \n        steps.append({\n            \"step_idx\": step_idx,\n            \"observation_text\": obs[:500],\n            \"action_text\": action,\n            \"score_before\": get_score(env),  # before step\n            \"score_after\": score_after,\n            \"score_delta\": score_after - get_score(env),\n            \"is_death\": score_after <= DEATH_THRESHOLD,\n            \"done\": done,\n        })\n        history_dicts.append({\n            \"action\": action,\n            \"observation\": obs_new[:200],\n            \"score\": score_after,\n        })\n        obs = obs_new\n        if done:\n            break\n    \n    final_score = get_score(env)\n    close_env(env)\n    return {\n        \"final_score\": final_score,\n        \"steps\": steps,\n        \"num_steps\": len(steps),\n        \"total_time_s\": ...,\n    }\n\n\ndef generate_self_reflection(\n    agent: LLMAgent,\n    task_name: str,\n    episode_result: Dict,\n    previous_reflections: List[str],\n) -> str:\n    \"\"\"Generate verbal self-reflection on a failed episode.\"\"\"\n    \n    trajectory_summary = summarize_trajectory(episode_result)\n    \n    prompt = REFLECTION_PROMPT_TEMPLATE.format(\n        task_name=task_name,\n        final_score=episode_result[\"final_score\"],\n        is_death=\"YES - the agent died\" if episode_result[\"final_score\"] <= -100 else \"No\",\n        trajectory_summary=trajectory_summary,\n        previous_reflections=format_previous_reflections(previous_reflections),\n    )\n    \n    messages = [\n        {\"role\": \"system\", \"content\": REFLECTION_SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": prompt},\n    ]\n    return agent._generate(messages, temperature=0.3)\n\n\ndef summarize_trajectory(result: Dict) -> str:\n    \"\"\"Compact trajectory summary: last 5 steps before death + death step.\"\"\"\n    steps = result[\"steps\"]\n    if not steps:\n        return \"No steps taken.\"\n    \n    death_idx = None\n    for i, s in enumerate(steps):\n        if s.get(\"is_death\"):\n            death_idx = i\n            break\n    \n    if death_idx is not None:\n        start = max(0, death_idx - 4)\n        relevant = steps[start:death_idx + 1]\n    else:\n        relevant = steps[-5:]\n    \n    lines = []\n    for s in relevant:\n        lines.append(\n            f\"Step {s['step_idx']}: action='{s['action_text']}' \"\n            f\"score_delta={s['score_delta']:+.0f} obs='{s['observation_text'][:100]}'\"\n        )\n    return \"\\n\".join(lines)\n```\n\n#### (2) `src/llm_agent.py` 修改 — 新增 ~50 行\n\n```python\n# === 新增 prompt templates ===\n\nREFLEXION_SYSTEM_PROMPT = \"\"\"You are an agent interacting with a ScienceWorld text environment. \nYour goal is to complete the given task by choosing actions from the available action list.\n\nYou have attempted this task before and reflected on your mistakes. \nUse your reflections to avoid repeating past errors.\n\nUse the following format for each step:\nThought: &lt;your reasoning, considering past reflections>\nAction: &lt;exact action string from the valid actions list>\n\nRules:\n- You MUST choose an action from the valid actions list. Do not invent actions.\n- Actively use your reflections to guide decision-making.\n- Avoid actions that led to failure in previous attempts.\"\"\"\n\nREFLEXION_USER_TEMPLATE = \"\"\"Current observation:\n{observation}\n\nValid actions:\n{valid_actions_str}\n\nPrevious actions taken: {history_str}\n\n{reflections_block}\n\nChoose your next action, keeping your reflections in mind.\"\"\"\n\nREFLECTION_SYSTEM_PROMPT = \"\"\"You are an expert at analyzing failed episodes in a ScienceWorld text game. \nReflect on what went wrong and provide actionable advice for the next attempt.\"\"\"\n\nREFLECTION_USER_TEMPLATE = \"\"\"Task: {task_name}\nFinal score: {final_score}\nDeath occurred: {is_death}\n\nTrajectory summary:\n{trajectory_summary}\n\n{previous_reflections}\n\nAnalyze what went wrong. Focus on:\n1. What specific actions led to failure or death?\n2. What should the agent have done instead?\n3. What general strategy should be followed next?\n\nProvide a concise reflection (3-5 sentences) with concrete, actionable advice.\"\"\"\n\n\n# === 新增 LLMAgent 方法 ===\n\ndef select_action_react_with_reflections(\n    self,\n    observation: str,\n    valid_actions: List[str],\n    history: List[dict],\n    reflections: List[str],\n) -> Tuple[str, str]:\n    \"\"\"ReAct with accumulated self-reflections from previous trials.\"\"\"\n    \n    if not reflections:\n        return self.select_action_react(observation, valid_actions, history)\n    \n    reflections_block = \"Your reflections from previous attempts:\\n\"\n    for i, r in enumerate(reflections, 1):\n        reflections_block += f\"Attempt {i} reflection: {r}\\n\"\n    \n    messages = [\n        {\"role\": \"system\", \"content\": REFLEXION_SYSTEM_PROMPT},\n        {\"role\": \"user\", \"content\": REFLEXION_USER_TEMPLATE.format(\n            observation=observation,\n            valid_actions_str=_format_valid_actions(valid_actions),\n            history_str=_format_history(history),\n            reflections_block=reflections_block,\n        )},\n    ]\n    raw = self._generate(messages)\n    action = parse_action(raw, valid_actions)\n    if action is None:\n        action = valid_actions[0]\n    return action, raw\n```\n\n#### (3) `scripts/run_reflexion_baseline.sh` — 启动脚本\n\n```bash\n#!/bin/bash\n# Reflexion baseline experiment\n# Hypothesis: self-reflection + retry reduces internal death rate to <20%\n\nGPU_ID=${1:-0}\nMAX_TRIALS=3\nEPISODES=20\nOUTPUT_DIR=\"results/reflexion_baseline\"\nSEED=42\n\n# High death rate tasks (from death_decomposition_report.json)\nHIGH_DEATH_TASKS=\"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix\"\nMEDIUM_DEATH_TASKS=\"freeze,grow-plant,find-animal,find-non-living-thing\"\n\necho \"=== Reflexion Baseline ===\"\necho \"GPU: $GPU_ID | Trials: $MAX_TRIALS | Episodes: $EPISODES\"\n\npython src/reflexion_baseline.py \\\n    --task_types \"$HIGH_DEATH_TASKS,$MEDIUM_DEATH_TASKS\" \\\n    --episodes $EPISODES \\\n    --max_trials $MAX_TRIALS \\\n    --gpu_id $GPU_ID \\\n    --output_dir $OUTPUT_DIR \\\n    --seed $SEED \\\n    --use_vllm\n```\n\n### 2.3 对照组设计\n\n| 条件 | 描述 | 目的 |\n|------|------|------|\n| **reflexion** | 带 self-reflection 的重试 | 测试 Reflexion 机制 |\n| **retry-only** | 不带 reflection 的纯重试（`--no_reflection`） | 控制组：隔离 stochastic retry 效果 |\n| **baseline (trial-1)** | 每个条件的 trial-1 结果 | 等同于现有 always-internal |\n\n### 2.4 输出格式\n\n```jsonl\n// reflexion_episodes.jsonl\n{\n  \"task_name\": \"boil\",\n  \"variation_idx\": 3,\n  \"n_trials\": 3,\n  \"trials\": [\n    {\"trial_idx\": 0, \"final_score\": -100.0, \"is_death\": true, \"num_steps\": 16},\n    {\"trial_idx\": 1, \"final_score\": -100.0, \"is_death\": true, \"num_steps\": 22},\n    {\"trial_idx\": 2, \"final_score\": 10.0, \"is_death\": false, \"num_steps\": 28}\n  ],\n  \"reflections\": [\"...\", \"...\"],\n  \"death_trajectory\": [true, true, false],\n  \"final_trial_score\": 10.0,\n  \"final_trial_death\": false\n}\n```\n\n```json\n// aggregate_report.json\n{\n  \"per_trial_death_rate\": {\"trial_1\": 0.49, \"trial_2\": 0.35, \"trial_3\": 0.25},\n  \"per_trial_mean_score\": {\"trial_1\": -47.5, \"trial_2\": -30.0, \"trial_3\": -15.0},\n  \"reflexion_vs_retry_only\": {\n    \"reflexion_trial3_death\": 0.25,\n    \"retry_only_trial3_death\": 0.40\n  }\n}\n```\n\n---\n\n## 3. 启动命令草案\n\n### 3.1 Dry Run（GPU 空闲后第一步）\n\n```bash\npython src/reflexion_baseline.py \\\n    --task_types \"boil\" \\\n    --episodes 2 \\\n    --max_trials 3 \\\n    --gpu_id 0 \\\n    --output_dir results/reflexion_dryrun \\\n    --seed 42 \\\n    --use_vllm\n```\n\n### 3.2 正式实验\n\n```bash\n# Reflexion 条件\npython src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix,freeze,grow-plant,find-animal,find-non-living-thing,find-plant,find-living-thing\" \\\n    --episodes 20 \\\n    --max_trials 3 \\\n    --gpu_id 0 \\\n    --output_dir results/reflexion_baseline \\\n    --seed 42 \\\n    --use_vllm 2>&1 | tee logs/reflexion_baseline.log\n\n# Retry-only 对照组\npython src/reflexion_baseline.py \\\n    --task_types \"boil,melt,change-the-state-of-matter-of,chemistry-mix-paint-secondary-color,chemistry-mix,freeze,grow-plant,find-animal,find-non-living-thing,find-plant,find-living-thing\" \\\n    --episodes 20 \\\n    --max_trials 3 \\\n    --no_reflection \\\n    --gpu_id 0 \\\n    --output_dir results/retry_only_baseline \\\n    --seed 42 \\\n    --use_vllm 2>&1 | tee logs/retry_only_baseline.log\n```\n\n### 3.3 时间估算\n\n- 单 episode trial: ~30s (boil task baseline)\n- 每 variation: ~30s x 3 trials + ~10s reflection = ~100s\n- 20 episodes x 11 tasks x 100s = **~6.1 hours** (Reflexion)\n- 加 retry-only 对照: **~12 hours total**\n- 可用 2 GPU 并行: ~6 hours\n\n---\n\n## 4. 预计额外准备工作\n\n### 4.1 必须做\n\n1. **编写 `src/reflexion_baseline.py`** (~200 行) — 基于 `run_episode_internal()` 改造\n2. **修改 `src/llm_agent.py`** (~50 行新增) — 添加 `select_action_react_with_reflections()` 和 prompt templates\n3. **编写 `scripts/run_reflexion_baseline.sh`** (~20 行)\n\n### 4.2 可选优化\n\n4. **Trajectory summarization**: trajectory 太长放不进 context，采用方案 A（death step 前 5 步 + death step）\n5. **分析脚本**: `scripts/analyze_reflexion_results.py`，生成 death rate 趋势图\n\n### 4.3 无需做\n\n- 不需要修改 `scienceworld_utils.py`（env 接口不变）\n- 不需要新模型/新依赖（复用 Qwen2.5-7B-Instruct + vLLM）\n\n---\n\n## 5. 风险与注意事项\n\n1. **Context length**: 3 trials reflections + step history 可能较长，但 Qwen2.5-7B-Instruct 支持 32K tokens，足够。需控制 trajectory summary 长度。\n\n2. **Reflection 质量**: 7B 模型的 self-reflection 可能不够深刻。如果效果不佳，本身也是有价值的 negative result（说明 Reflexion 需要更强 backbone，routing 是更 cost-effective 的替代方案）。\n\n3. **公平对比**: Reflexion 每个 variation 用 3x 计算量。论文中需明确讨论 compute overhead。\n\n4. **环境确定性**: 同一 task+variation 的 `create_env` + `reset_env` 产生相同初始状态。LLM 的 stochasticity (temperature>0) 导致不同 trajectory，这是预期行为。\n"
+  }
+}
+````
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-17T11:10:36.677479+00:00_
+
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/artifacts/reflexion_prep_report.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_code_reflexion-prep_20260517T110425",
+  "tool": "Write",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-17T11:10:36.677649+00:00_
+
+报告已写入 `artifacts/reflexion_prep_report.md`。
+
+**总结：**
+
+- 服务器上**没有任何 Reflexion 相关代码**，需要从零实现
+- 需要新增 1 个文件（`src/reflexion_baseline.py`，~200 行）、修改 1 个文件（`src/llm_agent.py`，~50 行新增）、1 个启动脚本
+- 核心改造点：在 `run_episode_internal()` 外面套 trial loop，每次失败后用 LLM 生成 self-reflection，下一次 trial 注入 prompt
+- 对照组设计：reflexion vs retry-only（纯重试无 reflection），隔离 reflection 的真实效果
+- 当前 internal death rate 49%，目标降到 <20%。如果降不到，是有力的 negative result（支持 routing > self-correction 的论点）
+- 预计实验时间 ~6-12 小时（单/双 GPU），等 72B scaling 实验完成后立即可启动
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_code_reflexion-prep_20260517T110425"
+}
+```
+
+</details>
+
+---

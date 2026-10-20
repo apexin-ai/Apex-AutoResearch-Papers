@@ -1,0 +1,35 @@
+{
+  "exp_id": "plan-004-v4",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:16:04.007Z",
+    "updated_at": "2026-05-14T07:28:11.778Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --lr 2e-5 --output_dir checkpoints/plan-004-v4 --seed 42 --gpu_id 0\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "243301",
+      "log_path": "~/runs/simgate-modular-routing/plan-004-v4.log",
+      "submitted_at": "2026-05-14T07:16:33.465Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 698.3,
+      "gpu_hours": 0.19
+    },
+    "parent": "plan-004-v3",
+    "conclusion": "negative",
+    "notes": "## 状态报告 (2026-05-14)\n\n### 训练完成\n- 状态: DONE (EXIT_CODE=0)\n- 运行时长: 150.3s (~2.5min)\n- 进度: 147/147 steps, 3 epochs\n- Adapter 保存: checkpoints/plan-004-v4/final_adapter\n\n### 数据\n- 文件: results/plan_c_test_labels/implicit_sft.jsonl (1814行)\n- 与 v2/v3 使用同一数据文件\n- Split: 53 train / 10 val episodes → 1558 train / 256 val steps\n- Route labels (train): internal=1048, deterministic=510\n\n### Loss 曲线\n| Epoch | Train Loss | Grad Norm |\n|-------|-----------|-----------|\n| 0.21  | 48.1538   | 122.03    |\n| 0.41  | 42.0474   | 131.02    |\n| 0.62  | 26.1077   | 94.05     |\n| 0.82  | 13.7082   | 51.81     |\n| 1.02  | 8.463     | 36.91     |\n| 1.23  | 6.8562    | 27.10     |\n| 1.43  | 6.0505    | 15.74     |\n| 1.64  | 5.9014    | 15.58     |\n| 1.84  | 5.0414    | 10.27     |\n| 2.04  | 4.5778    | 10.58     |\n| 2.25  | 4.4344    | 16.18     |\n| 2.45  | 4.153     | 14.26     |\n| 2.66  | 4.4794    | 11.85     |\n| 2.86  | 4.3672    | 14.33     |\n\n平均 train_loss: 12.74\n\n### Eval Loss\n- Epoch 1: 0.9549\n- Epoch 2: 0.5524\n- Epoch 3: 0.4922\n\n### Checkpoints\ncheckpoint-49, checkpoint-98, final_adapter\n\n### 与 v2/v3 对比（关键发现）\n- **v4 step 10 loss = 48.1538，与 v2/v3 的 48.15 完全一致**\n- 三个版本使用同一数据文件 (results/plan_c_test_labels/implicit_sft.jsonl)\n- ablation-b 用不同数据 (data/plan-004-implicit/)，loss 正常 (0.36-0.71)\n- **结论：数据文件是初始 loss 异常高的根因，非 class_weights**\n\n### 异常：train loss vs eval loss 巨大差距\n- Train loss 终态 ~4.4 vs eval loss 0.49\n- 可能原因: 训练 loss 含 class_weights 加权，eval loss 是原始 CE；或数据格式/标签问题导致训练目标与评估目标不一致",
+    "checkpoint_path": "checkpoints/plan-004-v4/final_adapter",
+    "log_path": "checkpoints/plan-004-v4/train.log",
+    "completed_at": "2026-05-14T07:28:11.778Z"
+  },
+  "timestamp": "2026-05-14T07:28:11.862667+00:00",
+  "trigger": "update_registry"
+}

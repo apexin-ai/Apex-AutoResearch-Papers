@@ -1,0 +1,71 @@
+# reviewer / loop_15.md
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Context and loop notes
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 1
+- **Recorded user turns:** 0
+- **Tool calls:** 0
+- **Original source:** `task_context/history/reviewer/loop_15.md`
+- **Structured JSON:** [`37c499c5c1a7806f363e.json`](../../sessions/37/37c499c5c1a7806f363e.json)
+
+## Before a recorded user message
+
+1 recorded events
+
+### Context note
+
+_source line 1_
+
+---
+loop: 15
+reason: max_wall_time
+updated: '2026-05-17T16:17:04+00:00'
+---
+
+### 1. 🔴 硬约束 / 红线
+- westb-14838 GPU 分配：cuda:0 reflexion Part1 vLLM, cuda:1 72B AWQ TP=1, cuda:2 reflexion Part2 vLLM, cuda:3 retry control vLLM。不可交叉占用。
+- westb-13313 GPU 分配：cuda:0+1 72B AWQ TP=2（backbone-scaling-70b 原始实验）。
+- **论文真源在本地 workspace**：`/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/*.tex`。远程服务器 `/root/autodl-tmp/simgate-modular-routing/paper/` 是陈旧副本，**绝对不能用远程 .tex 文件做审查**。R15 因此产生过 critical 误判（C1/C2 假阳性），已在 R16 纠正。
+- `ssh_read_only` 不支持管道 `|`、不支持 `python -c open()`。用 `grep -c` / `wc -l` / 分步命令替代。
+- `read_project_file` 不支持 .tex 文件，用本地 `Read` 工具。
+
+### 2. 🖥️ 基础设施快照
+- **westb-14838**：工作目录 `/root/autodl-tmp/simgate-modular-routing`，Python `/root/miniconda3/bin/python`
+  - 模型：7B `/root/autodl-tmp/models/Qwen2.5-7B-Instruct`，72B `/root/autodl-tmp/models/Qwen2.5-72B-Instruct-AWQ`
+  - vLLM 端口：8000(Part1), 8001(Part2), 8002(retry), 72B 用 GPU1 offline inference
+  - 活跃 tmux: reflexion-part1, reflexion-part2; retry 两个 bash 进程; 72B collect bash 进程
+- **westb-13313**：同工作目录，72B TP=2 在 cuda:0+1，PID 617494（episode_level_collection.py 跑全 11 tasks）
+  - 72B 日志：`/root/autodl-tmp/simgate-modular-routing/results/backbone_72b_run.log`（183 score lines，已完成 4 tasks: chemistry-mix/find-animal/find-non-living-thing/freeze，正在 grow-fruit）
+- 无 W&B 配置（本项目不检查 W&B）
+
+### 3. 📊 当前状态
+刚完成 R16 审查（已 post），确认 R15 的 C1/C2 为误判，所有 R14 修复在本地已到位。Overall 评分 6/10。
+
+**RUNNING 实验（4 个）：**
+- `reflexion-internal-baseline`：Part1 完成 5/6 tasks（在跑 identify-life-stages-1）。DR 数据：chemistry-mix 30%, find-animal 35%, find-non-living-thing 0%, freeze 50%, grow-fruit 30%
+- `reflexion-internal-baseline-b`：Part2 完成 4/5 tasks（在跑 measure-melting-point ~ep15/20）。DR：identify-life-stages-2 25%, inclined-plane 30%, lifespan-longest-lived 30%, lifespan-l-then-s 35%
+- `retry-control-baseline`：Part1 完成 3/7 tasks（在跑 freeze ~ep8/20），Part2 完成 3/4 tasks。DR Part1: chemistry-mix 55%, find-animal 55%, find-non-living-thing 0%。DR Part2: inclined-plane 50%, lifespan-longest-lived 40%, lifespan-l-then-s 50%
+- `backbone-scaling-70b-parallel`：14838 GPU1，刚跑 ~55min，grow-fruit 进行中。13313 跑了 6h+，完成 4/11 tasks
+
+### 4. 📋 待办（条件触发式）
+- reflexion Part1+2 全完成 → 编译 11-task reflexion DR 表，计算 aggregate reflexion DR，与 7B baseline（42.9%）和 det baseline（16.3%）对比
+- retry 全完成 → 编译 11-task retry DR 表，**关键对比：reflexion vs retry**。已有数据强烈暗示 retry 不降 DR（chemistry-mix 55%=baseline, find-animal 55%>baseline），而 reflexion 显著降 DR。这是 cross-condition triangle 最强证据
+- reflexion + retry 都完成 → 向 Director 发 cross-condition 分析报告：reflexion 降 DR（自我纠错机制），retry 不降 DR（单纯重试无效），支撑论文 "state hallucination compounding" narrative
+- 72B 两台服务器都完成 → 汇总 11-task 72B DR，与 7B baseline 对比。已有 freeze 数据（13313: 45% DR vs baseline 60%）暗示 72B 降幅有限
+- Paper Agent 触发 R17+ → 按 Mode B 审查，注意用本地 .tex 文件
+
+### 5. 🎯 战略上下文
+- **核心结论**：78.9% routing labels 由 death asymmetry 驱动（penalty-independent），DAF=90.4%@P=100。论文 framing 是 diagnostic framework，不是 method paper。
+- **cross-condition triangle 是关键增量**：Reflexion 降 DR → 自我纠错有效；Retry 不降 DR → 非重试机会本身；72B 降幅有限 → 非单纯 capability scaling。三者合一证明 death dominance 的 non-triviality。
+- **最易判断错的事**：
+  1. **本地 vs 远程文件**：论文 .tex 在本地，实验代码/日志在远程。审查论文必须读本地，审查实验必须读远程。R15 教训。
+  2. **Retry DR 解读**：retry 和 reflexion 都用 max-trials=3，但 7B baseline（plan_c）是单次 episode。retry DR 55% 意味着"3 次尝试后仍死"，与 baseline 单次 55% 相当 → retrying alone 无效。不要误以为 retry 和 baseline 不可比。
+  3. **writing_plan.yaml 陈旧**：仍标 "short paper, 4 pages"，实际是 8 页 long paper。如 Paper Agent 引用此文件可能产生混乱。
+  4. **ALFWorld 可比性限制**：论文将 ScienceWorld/MATH/ALFWorld 并列，但 ALFWorld 的 modality 定义不同（information asymmetry vs computation mode switch）。审稿人可能攻击这一点。
+
+
+---

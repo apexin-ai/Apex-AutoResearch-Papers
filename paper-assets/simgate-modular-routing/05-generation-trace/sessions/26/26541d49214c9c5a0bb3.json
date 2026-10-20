@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "26541d49214c9c5a0bb3",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ssh 72b matched daf analysis",
+  "task_key": "worker_ssh_72b-matched-daf-analysis_20260518T064417",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_72b-matched-daf-analysis_20260518T064417.log",
+    "occurrence": 1,
+    "bytes": 779693,
+    "sha256": "69936420b7f18d3bbe7616c48683524a7a5a1a683b989643b9ddc0db026e5629"
+  },
+  "statistics": {
+    "messages": 255,
+    "user_turns": 1,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 95,
+      "tool_result": 95,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 235,
+      "chunks": [
+        {
+          "path": "26541d49214c9c5a0bb3-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "26541d49214c9c5a0bb3-part-0002.json",
+          "message_count": 55
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 20,
+      "chunks": [
+        {
+          "path": "26541d49214c9c5a0bb3-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ssh-72b-matched-daf-analysis.md"
+}

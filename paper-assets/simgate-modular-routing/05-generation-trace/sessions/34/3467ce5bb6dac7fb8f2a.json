@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3467ce5bb6dac7fb8f2a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix framework draft and briefing",
+  "task_key": "worker_fix_framework-draft-and-briefing_20260516T185429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_framework-draft-and-briefing_20260516T185429_result.json",
+    "occurrence": 1,
+    "bytes": 705,
+    "sha256": "3da96e3c1c36470031d6849eacb99f935b60302c4cb8fc8ca3e97947bdd67434"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "这是故意的对比说明，无需修改。\n\n完成：\n\n- **Part A**: `framework_draft.md` 中 DAF 定义已从 det-preferred subset 修正为 all-episodes 版本。$\\Delta_{\\text{full}}$ 现在在全部 N 个 episodes 上计算，$\\Delta_{\\text{nd}}$ 在所有非 death episodes 上计算，公式简化为 $\\text{DAF} = 1 - \\Delta_{\\text{nd}} / \\Delta_{\\text{full}}$。数值引用为 0.904, CI [0.816, 0.988]。Notation table 同步更新。\n\n- **Part B**: `paper_agent_briefing.md` 已创建，包含修正后的 DAF formalization、全部定量数据（DAF/SCI/per-task/cross-model）、对论文 claim 的支撑逻辑、可直接引用的 key numbers summary table。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-framework-draft-and-briefing.md"
+}

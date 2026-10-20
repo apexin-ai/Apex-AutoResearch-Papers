@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05bad3de6c7906a023c8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose gpu0 v5 exit",
+  "task_key": "worker_diagnose_gpu0-v5-exit_20260514T041809",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_gpu0-v5-exit_20260514T041809_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "1eb0dd75df330ebc1913a880390ec923e5359cd233f78d06b82cfd17a9c9c74d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n**退出原因：killed（被主动终止）**\n\n日志最后关键行：\n```\nTerminated\n(EngineCore pid=935125) INFO 05-14 12:16:49 Shutdown initiated (timeout=0)\n(EngineCore pid=935125) INFO 05-14 12:16:49 Aborting 1 requests\n[Thu May 14 12:16:49 CST 2026] All tasks complete.\n(EngineCore pid=935125) INFO 05-14 12:16:49 Shutdown complete\n```\n\n- `Terminated` = 进程收到 SIGTERM，是 shell 的标准提示，与 ops worker kill PID 一致\n- vLLM EngineCore 在收到信号后做了 graceful shutdown，中断了 1 个正在处理的请求\n- 时间戳 05-14 12:16:49\n\n**GPU0 当前状态：已有新进程在跑**\n- PID 789051，占用 28004 MiB 显存，大概率是 ops worker 启动的 v6"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-gpu0-v5-exit.md"
+}

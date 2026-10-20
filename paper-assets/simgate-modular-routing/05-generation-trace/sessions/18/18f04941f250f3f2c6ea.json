@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "18f04941f250f3f2c6ea",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code router sft class weight",
+  "task_key": "worker_code_router-sft-class-weight_20260513T200820",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_router-sft-class-weight_20260513T200820_result.json",
+    "occurrence": 1,
+    "bytes": 745,
+    "sha256": "dbe7ae623d23a85f3e598ac684e7baad5b13588aa40854a4ad8006465ee38f42"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。修改摘要：\n\n**新增参数**（向后兼容，所有默认值保持原行为）：\n- `--class_weights`: `\"auto\"`（inverse frequency: `N_total / (num_classes * N_c)`）或手动 `\"w0,w1\"`，传入 `CrossEntropyLoss(weight=...)`\n- `--min_internal_samples 10`: internal 样本低于阈值时打印 WARNING\n- `--upsample_minority`: 启用 `WeightedRandomSampler`（per-sample weight = `1/class_count`）\n\n**新增组件**：\n- `compute_class_weights()` — 计算 class weights\n- `WeightedCETrainer(Trainer)` — 自定义 Trainer，重写 `compute_loss`（加权 CE）和 `get_train_dataloader`（可选 sampler）\n- W&B 日志中记录 `class_weights_values`、`train_label_counts`、`upsample_minority`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-router-sft-class-weight.md"
+}

@@ -1,0 +1,1858 @@
+# analysis daf threshold sensitivity
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 0
+- **Tool calls:** 31
+- **Original source:** `logs/chats/worker_analysis_daf-threshold-sensitivity_20260516T060023.jsonl`
+- **Structured JSON:** [`127e519cdc5f4fbb25d7.json`](../../sessions/12/127e519cdc5f4fbb25d7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+63 recorded events
+
+### Tool call
+
+_source line 1 · 2026-05-16T06:09:39.755561+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+  "max_results": "3"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+    "max_results": "3"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 2 · 2026-05-16T06:09:39.756016+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 3 · 2026-05-16T06:09:39.756314+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root -name \"*episode*\" -o -name \"*counterfactual*\" -o -name \"*plan_012*\" -o -name \"*plan-012*\" 2>/dev/null",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root -name \"*episode*\" -o -name \"*counterfactual*\" -o -name \"*plan_012*\" -o -name \"*plan-012*\" 2>/dev/null",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 4 · 2026-05-16T06:09:39.757175+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-16T06:09:39.757420+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root -name \"*episode*\" -o -name \"*counterfactual*\" -o -name \"*plan-012*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root -name \"*episode*\" -o -name \"*counterfactual*\" -o -name \"*plan-012*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-16T06:09:39.757697+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/src/counterfactual_labeling.py\\n/root/autodl-tmp/simgate-modular-routing/src/episode_level_collection.py\\n/root/autodl-tmp/simgate-modular-routing/src/math_counterfactual.py\\n/root/autodl-tmp/simgate-modular-routing/src/alfworld_counterfactual.py\\n/root/autodl-tmp/simgate-modular-routing/src/__pycache__/math_counterfactual.cpython-312.pyc\\n/root/autodl-tmp/simgate-modular-routing/src/__pycache__/episode_level_collection.cpython-310.pyc\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/chemistry-mix-paint-secondary-color/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/melt/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/grow-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/change-the-state-of-matter-of/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-living-thing/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-non-living-thing/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/freeze/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/grow-fruit/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-1/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/identify-life-stages-2/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/pres
+…[truncated 6367 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-16T06:09:39.757915+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root -name \"*assembled*\" -o -name \"*plan.012*\" -o -name \"*plan_012*\" -o -name \"*daf*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root -name \"*assembled*\" -o -name \"*plan.012*\" -o -name \"*plan_012*\" -o -name \"*daf*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 8 · 2026-05-16T06:09:39.758197+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition\\n/root/autodl-tmp/simgate-modular-routing/results/penalty_sensitivity_curve/penalty_vs_daf.pdf\\n/root/autodl-tmp/simgate-modular-routing/results/penalty_sensitivity_curve/penalty_vs_daf.png\\n/root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter.pdf\\n/root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter.png\\n/root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter_broken.pdf\\n/root/autodl-tmp/simgate-modular-routing/paper/fig1_daf_scatter.pdf\\n/root/autodl-tmp/simgate-modular-routing/paper/figures/fig1_daf_scatter.pdf\\n/root/autodl-tmp/simgate-modular-routing/paper/latex_build/fig1_daf_scatter.pdf\\n/root/autodl-tmp/simgate-modular-routing/artifacts/daf_scatter.pdf\\n/root/autodl-tmp/simgate-modular-routing/artifacts/daf_scatter.png\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/bf/a58cdaf1f0b779ab56549524a0a0b28dff665c\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/00/191b8c3d252b774f8a3af9610b39104daff469\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/00/a241355339e189479736e138b7b6fbfa67dafc\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/6f/7d38e6e7d5ac13dafd4a8709e9c838c133c606\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/51/55e68d97cdafa00d65e83b4616d35db1b976e3\\n/root/autodl-tmp/simgate-modular-routing/.git/objects/d4/aae8abdaf5a5eff4d4754b293b0911b6e2ef89\\n/root/miniconda3/conda-meta/libmambapy-1.5.8-py312h2dafd23_2.json\\n/root/miniconda3/lib/python3.12/site-packages/modelscope/models/cv/virual_tryon/sdafnet.py\\n/root/miniconda3/lib/python3.12/site-packages/modelscope/models/cv/virual_tryon/__pycache__/sdafnet.cpython-312.pyc\\n/root/miniconda3/lib/python3.12/site-packages/torch/optim/__pycache__/_adafactor.cpython-312.pyc\\n/root/miniconda3/lib/python3.12/site-packages/torch/optim/_adafactor.py\\n/root/miniconda3/lib/python3.12/site-packages/d
+…[truncated 409 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-16T06:09:39.758359+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-16T06:09:39.758498+00:00_
+
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition/': Not a directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 1.18}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-16T06:09:39.758627+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T06:09:39.758766+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"task_name,n_episodes,death_rate_int,death_rate_det,delta_full,delta_nd,delta_penalty_replaced,det_pref,int_pref,no_pref\\nchemistry-mix,20,0.45,0.25,21.8,0.0,1.8,6,2,12\\nfind-animal,20,0.5,0.25,26.65,0.0,1.65,5,0,15\\nfind-non-living-thing,40,0.0,0.0,9.58,9.58,9.58,16,4,20\\nfreeze,20,0.55,0.25,30.5,0.0,0.5,6,0,14\\ngrow-fruit,20,0.45,0.2,25.1,0.0,0.1,6,1,13\\nidentify-life-stages-1,20,0.55,0.1,47.5,0.0,2.5,9,0,11\\nidentify-life-stages-2,20,0.5,0.2,30.0,0.0,0.0,6,0,14\\ninclined-plane-determine-angle,20,0.55,0.2,36.0,0.0,1.0,7,0,13\\nlifespan-longest-lived,25,0.56,0.16,44.0,0.0,4.0,11,1,13\\nlifespan-longest-lived-then-shortest-lived,20,0.45,0.1,40.8,0.0,5.8,8,1,11\\nmeasure-melting-point-unknown-substance,20,0.55,0.25,30.05,0.0,0.05,6,0,14\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.81}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T06:09:39.758943+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"*.json\" -o -name \"*.jsonl\" -o -name \"*.csv\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"*.json\" -o -name \"*.jsonl\" -o -name \"*.csv\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-16T06:09:39.759912+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/mvp/phase0_validation.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/phase0_validation_v2.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/boil/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/boil/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/chemistry-mix-paint-secondary-color/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/chemistry-mix-paint-secondary-color/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/melt/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/melt/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/grow-plant/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/grow-plant/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/change-the-state-of-matter-of/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/change-the-state-of-matter-of/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/global_summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/final_analysis.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/final_analysis_det_vs_internal.json\\n/root/autodl-tmp/simgate-modular-routing/results/mvp/signal_type_summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/chemistry-mix-paint-tertiary-color/summary.json\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/episodes.jsonl\\n/root/autodl-tmp/simgate-modular-routing/results/prescreening/find-animal/summary.json\\n/root/auto
+…[truncated 6364 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-16T06:09:39.760134+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"*plan*012*\" -o -name \"*plan-012*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/results -name \"*plan*012*\" -o -name \"*plan-012*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-16T06:09:39.760292+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.19}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-16T06:09:39.760423+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -3 /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -3 /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T06:09:39.760552+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -3 /root/autodl-tmp/simgate-modular-routing/data/scienceworld-counterfactual/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -3 /root/autodl-tmp/simgate-modular-routing/data/scienceworld-counterfactual/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T06:09:39.760696+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition\\\": \\\"always-deterministic\\\", \\\"task_type\\\": \\\"chemistry-mix\\\", \\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"decision\\\": \\\"deterministic\\\", \\\"score\\\": 0.0, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"oracle_label\\\": \\\"det-preferred\\\"}\\n{\\\"condition\\\": \\\"always-deterministic\\\", \\\"task_type\\\": \\\"chemistry-mix\\\", \\\"episode_idx\\\": 1, \\\"variation_idx\\\": 1, \\\"decision\\\": \\\"deterministic\\\", \\\"score\\\": 0.0, \\\"internal_final\\\": 0.0, \\\"det_final\\\": 0.0, \\\"oracle_label\\\": \\\"no-preference\\\"}\\n{\\\"condition\\\": \\\"always-deterministic\\\", \\\"task_type\\\": \\\"chemistry-mix\\\", \\\"episode_idx\\\": 2, \\\"variation_idx\\\": 2, \\\"decision\\\": \\\"deterministic\\\", \\\"score\\\": 21.0, \\\"internal_final\\\": 21.0, \\\"det_final\\\": 21.0, \\\"oracle_label\\\": \\\"no-preference\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.55}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T06:09:39.760828+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing -name \"*plan_012*\" -o -name \"*full_245*\" -o -name \"*counterfactual_full*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing -name \"*plan_012*\" -o -name \"*full_245*\" -o -name \"*counterfactual_full*\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-16T06:09:39.761172+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_id\\\": \\\"scienceworld_chemistry-mix_ep000\\\", \\\"environment\\\": \\\"scienceworld\\\", \\\"task_type\\\": \\\"chemistry-mix\\\", \\\"task_id\\\": \\\"chemistry-mix/variation_0\\\", \\\"task_desc\\\": \\\"ScienceWorld task: chemistry mix (variation 0)\\\", \\\"internal\\\": {\\\"trajectory\\\": [{\\\"step\\\": 0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on air\\\", \\\"action\\\": \\\"connect agent to air\\\", \\\"score\\\": 0.0}, {\\\"step\\\": 1, \\\"observation\\\": \\\"terminal 2 on air is now connected to terminal 1 on art studio\\\", \\\"action\\\": \\\"connect air to art studio\\\", \\\"score\\\": 0.0}, {\\\"step\\\": 2, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 2 on art studio\\\", \\\"action\\\": \\\"connect agent to art studio\\\", \\\"score\\\": 0.0}, {\\\"step\\\": 3, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on bedroom\\\", \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"score\\\": 0.0}, {\\\"step\\\": 4, \\\"observation\\\": \\\"terminal 2 on door is now connected to terminal 2 on bedroom\\\", \\\"action\\\": \\\"connect art studio door to bedroom\\\", \\\"score\\\": 0.0}, {\\\"step\\\": 5, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on door\\\", \\\"action\\\": \\\"connect bedroom door to door to living room\\\", \\\"score\\\": 0.0}, {\\\"step\\\": 6, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 2 on door\\\", \\\"action\\\": \\\"connect door to greenhouse to bedroom door\\\", \\\"score\\\": 0.0}, {\\\"step\\\": 7, \\\"observation\\\": \\\"terminal 2 on door is now connected to terminal 2 on door\\\", \\\"action\\\": \\\"connect door to greenhouse to door to living room\\\", \\\"score\\\": 0.0}, {\\\"step\\\": 8, \\\"observation\\\": \\\"terminal 1 on door is now connected to terminal 1 on kitchen\\\", \\\"
+…[truncated 8214 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-16T06:09:39.761366+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/results/plan_012_decomposition\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.94}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-16T06:09:39.761539+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "wc -l /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-16T06:09:39.761887+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -1 /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -1 /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-16T06:09:39.762208+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"980 /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.56}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T06:09:39.762359+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"condition\\\": \\\"always-deterministic\\\", \\\"task_type\\\": \\\"chemistry-mix\\\", \\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"decision\\\": \\\"deterministic\\\", \\\"score\\\": 0.0, \\\"internal_final\\\": -100.0, \\\"det_final\\\": 0.0, \\\"oracle_label\\\": \\\"det-preferred\\\"}\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.04}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 27 · 2026-05-16T06:09:39.762500+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"always-deterministic\" /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"always-deterministic\" /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T06:09:39.762627+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -c \"always-internal\" /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -c \"always-internal\" /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T06:09:39.762752+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"245\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-16T06:09:39.762891+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"245\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.28}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-16T06:09:39.763340+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "python3 -c \"\nimport json\nconditions = set()\ntasks = set()\nwith open('/root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        conditions.add(d['condition'])\n        tasks.add(d['task_type'])\nprint('conditions:', sorted(conditions))\nprint('n_tasks:', len(tasks))\nprint('tasks:', sorted(tasks))\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "python3 -c \"\nimport json\nconditions = set()\ntasks = set()\nwith open('/root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl') as f:\n    for line in f:\n        d = json.loads(line)\n        conditions.add(d['condition'])\n        tasks.add(d['task_type'])\nprint('conditions:', sorted(conditions))\nprint('n_tasks:', len(tasks))\nprint('tasks:', sorted(tasks))\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-16T06:09:39.763570+00:00_
+
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: python expression contains disallowed call 'open('. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-16T06:09:39.763713+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "grep -o '\"condition\": \"[^\"]*\"' /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "grep -o '\"condition\": \"[^\"]*\"' /root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-16T06:09:39.764162+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\\\"\\n\\\"condition\\\": \\\"always-deterministic\
+…[truncated 10303 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-16T06:09:39.764380+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "find /root/autodl-tmp/simgate-modular-routing/scripts -name \"*.py\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "find /root/autodl-tmp/simgate-modular-routing/scripts -name \"*.py\" -type f",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-16T06:09:39.764557+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/simgate-modular-routing/scripts/slim_episodes.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/eval_generative_routing.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/plan013_label_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/plan013_eval.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/penalty_sensitivity.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/analyze_routing_patterns.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/plan008_router_size_ablation.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/seed_robustness.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/plan008_v2_router_size.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/fix_ci_bootstrap.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/penalty_sensitivity_curve.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/penalty_robustness_analysis.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/cross_split_eval.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/majority_vote_baseline.py\\n/root/autodl-tmp/simgate-modular-routing/scripts/leave_one_tasktype_out.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.54}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T06:09:39.764705+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/scripts/penalty_sensitivity.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/scripts/penalty_sensitivity.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-16T06:09:39.765017+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"import json, os, glob\\n\\nDATA_DIR = \\\"/root/autodl-tmp/simgate-modular-routing/results/plan_c\\\"\\nOUT_DIR = \\\"/root/autodl-tmp/simgate-modular-routing/results\\\"\\nDEATH_SCORE = -100.0\\nPENALTIES = [10, 25, 50, 100, 200]\\n\\ntask_dirs = sorted([d for d in os.listdir(DATA_DIR) if os.path.isdir(os.path.join(DATA_DIR, d))])\\n\\n# Collect per-task stats\\ntask_stats = {}\\nglobal_counts = {\\\"n_only_int_dies\\\": 0, \\\"n_only_det_dies\\\": 0, \\\"n_both_die\\\": 0, \\\"n_neither_die\\\": 0,\\n                 \\\"total_episodes\\\": 0, \\\"int_score_sum_nd\\\": 0.0, \\\"det_score_sum_nd\\\": 0.0}\\n\\nfor task in task_dirs:\\n    fp = os.path.join(DATA_DIR, task, \\\"episodes.jsonl\\\")\\n    if not os.path.exists(fp):\\n        continue\\n    \\n    ts = {\\\"n_only_int_dies\\\": 0, \\\"n_only_det_dies\\\": 0, \\\"n_both_die\\\": 0, \\\"n_neither_die\\\": 0,\\n          \\\"n_episodes\\\": 0, \\\"int_score_sum_nd\\\": 0.0, \\\"det_score_sum_nd\\\": 0.0,\\n          \\\"int_scores\\\": [], \\\"det_scores\\\": []}\\n    \\n    with open(fp) as f:\\n        for line in f:\\n            line = line.strip()\\n            if not line:\\n                continue\\n            ep = json.loads(line)\\n            int_score = ep[\\\"always_internal\\\"][\\\"final_score\\\"]\\n            det_score = ep[\\\"always_deterministic\\\"][\\\"final_score\\\"]\\n            int_dead = (int_score == DEATH_SCORE)\\n            det_dead = (det_score == DEATH_SCORE)\\n            \\n            ts[\\\"n_episodes\\\"] += 1\\n            ts[\\\"int_scores\\\"].append(int_score)\\n            ts[\\\"det_scores\\\"].append(det_score)\\n            \\n            if int_dead and det_dead:\\n                ts[\\\"n_both_die\\\"] += 1\\n            elif int_dead and not det_dead:\\n                ts[\\\"n_only_int_dies\\\"] += 1\\n            elif not int_dead and det_dead:\\n                ts[\\\"n_only_det_dies\\\"] += 1\\n
+…[truncated 7651 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-16T06:09:39.765205+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "ls /root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T06:09:39.765354+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"chemistry-mix\\nfind-animal\\nfind-non-living-thing\\nfreeze\\ngrow-fruit\\nidentify-life-stages-1\\nidentify-life-stages-2\\ninclined-plane-determine-angle\\nlifespan-longest-lived\\nlifespan-longest-lived-then-shortest-lived\\nmeasure-melting-point-unknown-substance\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.83}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T06:09:39.765482+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episodes.jsonl",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "head -2 /root/autodl-tmp/simgate-modular-routing/results/plan_c/chemistry-mix/episodes.jsonl",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-16T06:09:39.765736+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\\"episode_idx\\\": 0, \\\"variation_idx\\\": 0, \\\"always_internal\\\": {\\\"mode\\\": \\\"always-internal\\\", \\\"task_name\\\": \\\"chemistry-mix\\\", \\\"variation_idx\\\": 0, \\\"final_score\\\": -100.0, \\\"initial_score\\\": 0.0, \\\"num_steps\\\": 16, \\\"total_time_s\\\": 14.604560852050781, \\\"steps\\\": [{\\\"step\\\": 0, \\\"action\\\": \\\"connect agent to air\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 1 on agent is now connected to terminal 1 on air\\\", \\\"llm_output\\\": \\\"Thought: The agent is currently in the hallway, and the goal should be to explore the environment. The first logical step is to connect the agent to the air, as this is a basic interaction that doesn't require any specific object or door.\\\\nAction: connect agent to air\\\", \\\"action_history\\\": [], \\\"is_dead\\\": false}, {\\\"step\\\": 1, \\\"action\\\": \\\"connect air to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on air is now connected to terminal 1 on art studio\\\", \\\"llm_output\\\": \\\"Thought: The previous action connected the agent to the air, and the current observation shows that terminal 1 on the agent is now connected to terminal 1 on air. The next logical step would be to explore the environment further by connecting to another terminal. The available actions suggest connec\\\", \\\"action_history\\\": [\\\"connect agent to air\\\"], \\\"is_dead\\\": false}, {\\\"step\\\": 2, \\\"action\\\": \\\"connect agent to art studio\\\", \\\"modality\\\": \\\"internal\\\", \\\"score_before\\\": 0.0, \\\"score_after\\\": 0.0, \\\"score_delta\\\": 0.0, \\\"observation\\\": \\\"terminal 2 on agent is now connected to terminal 2 on art studio\\\", \\\"llm_output\\\": \\\"Thought:
+…[truncated 7171 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-16T06:09:39.766186+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:TodoWrite",
+  "max_results": "1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:TodoWrite",
+    "max_results": "1"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T06:09:39.766371+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-16T06:09:39.766526+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write DAF threshold sensitivity analysis script', 'status': 'in_progress', 'activeForm': 'Writing DAF threshold sensitivity analysis script'}, {'content': 'Deploy and run script on westb-13313', 'status': 'pending', 'activeForm': 'Deploying and running script on westb-13313'}, {'content': 'Verify T=-100 matches expected DAF=90.4%, r=0.9698', 'status': 'pending', 'activeForm': 'Verifying T=-100 matches expected values'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write DAF threshold sensitivity analysis script', 'status': 'in_progress', 'activeForm': 'Writing DAF threshold sensitivity analysis script'}, {'content': 'Deploy and run script on westb-13313', 'status': 'pending', 'activeForm': 'Deploying and running script on westb-13313'}, {'content': 'Verify T=-100 matches expected DAF=90.4%, r=0.9698', 'status': 'pending', 'activeForm': 'Verifying T=-100 matches expected values'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-16T06:09:39.766668+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-16T06:09:39.766823+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat << 'SCRIPT' > /root/autodl-tmp/simgate-modular-routing/scripts/daf_threshold_sensitivity.py\n\"\"\"DAF Threshold Sensitivity Analysis.\n\nTests robustness of DAF metric to different \"failure\" definitions:\n  Method 1: Absolute score threshold (score <= T)\n  Method 2: Relative score drop from max (100)\n  Method 3: Rank-based (bottom quartile)\n\"\"\"\n\nimport json\nimport os\nimport numpy as np\nfrom scipy import stats\n\nDATA_FILE = \"/root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl\"\nOUT_DIR = \"/root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended\"\nOUT_FILE = os.path.join(OUT_DIR, \"threshold_sensitivity.json\")\n\n# Load episode-level data (always-deterministic condition = unique episodes with both scores)\nepisodes = []\nwith open(DATA_FILE) as f:\n    for line in f:\n        d = json.loads(line.strip())\n        if d[\"condition\"] == \"always-deterministic\":\n            episodes.append(d)\n\nN = len(episodes)\ntask_types = [ep[\"task_type\"] for ep in episodes]\nint_scores = np.array([ep[\"internal_final\"] for ep in episodes])\ndet_scores = np.array([ep[\"det_final\"] for ep in episodes])\noracle_labels = [ep[\"oracle_label\"] for ep in episodes]\n\nscore_gaps = det_scores - int_scores\ndelta_full = float(np.mean(score_gaps))\nunique_tasks = sorted(set(task_types))\n\nprint(f\"Loaded {N} episodes, {len(unique_tasks)} task types\")\nprint(f\"Delta_full = {delta_full:.4f}\")\nprint(f\"Score ranges: int [{int_scores.min()}, {int_scores.max()}], det [{det_scores.min()}, {det_scores.max()}]\")\nprint()\n\n\ndef per_task_correlation(task_types, int_scores, det_scores, int_fail_mask):\n    \"\"\"Pearson r between per-task internal failure rate and per-task delta.\"\"\"\n    tasks = sorted(set(task_types))\n    fail_rates = []\n    deltas = []\n    for t in tasks:\n        mask = np.array([tt == t for tt in task_types])\n        n_t = mask.sum()\n        fail_rate = int_fail_mask[mask].sum() / n_t\n        delta_t = float(np.mean(det_scores[mask] - int_scores[mask]))\n        fail_rates.append(fail_rate)\n        deltas.append(delta_t)\n\n    if len(set(fail_rates)) > 1:\n        r, p = stats.pearsonr(fail_rates, deltas)\n        return float(r), float(p)\n    return None, None\n\n\n# ==============================\n# Method 1: Absolute threshold\n# \"failure\" = score <= T\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 1: Absolute Score Threshold (failure = score <= T)\")\nprint(\"=\" * 60)\n\nthresholds_abs = [-100, -50, -20, 0, 10, 20]\nmethod1 = {}\n\nfor T in thresholds_abs:\n    int_fail = int_scores <= T\n    det_fail = det_scores <= T\n\n    n_int_fail = int(int_fail.sum())\n    n_det_fail = int(det_fail.sum())\n\n    # Non-fail = episodes where NEITHER score fails\n    non_fail = ~int_fail & ~det_fail\n    n_non_fail = int(non_fail.sum())\n\n    if n_non_fail > 0 and n_non_fail < N:\n        delta_non_fail = float(np.mean(score_gaps[non_fail]))\n    elif n_non_fail == N:\n        delta_non_fail = delta_full\n    else:\n        delta_non_fail = 0.0\n\n    if delta_full != 0:\n        avoidance_frac = (delta_full - delta_non_fail) / delta_full\n    else:\n        avoidance_frac = 0.0\n\n    r, p = per_task_correlation(task_types, int_scores, det_scores, int_fail)\n\n    result = {\n        \"n_int_fail\": n_int_fail,\n        \"n_det_fail\": n_det_fail,\n        \"n_non_fail\": n_non_fail,\n        \"delta_full\": round(delta_full, 4),\n        \"delta_non_fail\": round(delta_non_fail, 4),\n        \"avoidance_frac\": round(avoidance_frac, 4),\n        \"r\": round(r, 4) if r is not None else None,\n        \"p\": round(p, 6) if p is not None else None,\n    }\n    method1[f\"T_{T}\"] = result\n\n    print(f\"  T={T:>4}: n_int_fail={n_int_fail:>3}, n_det_fail={n_det_fail:>3}, \"\n          f\"n_non_fail={n_non_fail:>3}, avoidance={avoidance_frac*100:.1f}%, \"\n          f\"r={r:.4f}\" if r else f\"  T={T:>4}: n_int_fail={n_int_fail:>3}, \"\n          f\"n_det_fail={n_det_fail:>3}, avoidance={avoidance_frac*100:.1f}%, r=N/A\")\n\nprint()\n\n# ==============================\n# Method 2: Relative score drop\n# \"failure\" = score dropped by > X% from max (100)\n# threshold_score = 100 - X (failure = score < threshold_score)\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 2: Relative Drop from Max Score (100)\")\nprint(\"=\" * 60)\n\nMAX_SCORE = 100\ndrops_pct = [50, 75, 90, 100]\nmethod2 = {}\n\nfor X in drops_pct:\n    # failure = score drop > X% from max means score < 100*(1 - X/100) = 100 - X\n    threshold_score = MAX_SCORE - X  # 50, 25, 10, 0\n\n    int_fail = int_scores < threshold_score\n    det_fail = det_scores < threshold_score\n\n    n_int_fail = int(int_fail.sum())\n    n_det_fail = int(det_fail.sum())\n\n    non_fail = ~int_fail & ~det_fail\n    n_non_fail = int(non_fail.sum())\n\n    if n_non_fail > 0 and n_non_fail < N:\n        delta_non_fail = float(np.mean(score_gaps[non_fail]))\n    elif n_non_fail == N:\n        delta_non_fail = delta_full\n    else:\n        delta_non_fail = 0.0\n\n    if delta_full != 0:\n        avoidance_frac = (delta_full - delta_non_fail) / delta_full\n    else:\n        avoidance_frac = 0.0\n\n    r, p = per_task_correlation(task_types, int_scores, det_scores, int_fail)\n\n    result = {\n        \"threshold_score\": threshold_score,\n        \"n_int_fail\": n_int_fail,\n        \"n_det_fail\": n_det_fail,\n        \"n_non_fail\": n_non_fail,\n        \"avoidance_frac\": round(avoidance_frac, 4),\n        \"r\": round(r, 4) if r is not None else None,\n        \"p\": round(p, 6) if p is not None else None,\n    }\n    method2[f\"drop_{X}pct\"] = result\n\n    print(f\"  X={X:>3}% (score<{threshold_score:>3}): n_int_fail={n_int_fail:>3}, \"\n          f\"n_det_fail={n_det_fail:>3}, avoidance={avoidance_frac*100:.1f}%, \"\n          f\"r={r:.4f}\" if r else f\"  X={X:>3}%: avoidance={avoidance_frac*100:.1f}%, r=N/A\")\n\nprint()\n\n# ==============================\n# Method 3: Rank-based (non-parametric)\n# \"bad episode\" = internal score in bottom quartile\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 3: Rank-Based (Bottom Quartile)\")\nprint(\"=\" * 60)\n\nq1_threshold = float(np.percentile(int_scores, 25))\nq1_mask = int_scores <= q1_threshold\n\ndet_preferred = np.array([l == \"det-preferred\" for l in oracle_labels])\n\nq1_n = int(q1_mask.sum())\nq1_det_pref_count = int((q1_mask & det_preferred).sum())\nq1_det_pref_rate = float(det_preferred[q1_mask].mean()) if q1_n > 0 else 0.0\noverall_det_pref_rate = float(det_preferred.mean())\n\n# Also check: mean gap in Q1 vs overall\nq1_mean_gap = float(np.mean(score_gaps[q1_mask])) if q1_n > 0 else 0.0\nnon_q1_mean_gap = float(np.mean(score_gaps[~q1_mask])) if (~q1_mask).sum() > 0 else 0.0\n\nenrichment = q1_det_pref_rate / overall_det_pref_rate if overall_det_pref_rate > 0 else None\n\nmethod3 = {\n    \"Q1_threshold\": q1_threshold,\n    \"Q1_internal_episodes\": q1_n,\n    \"Q1_det_preferred_count\": q1_det_pref_count,\n    \"Q1_det_preferred_rate\": round(q1_det_pref_rate, 4),\n    \"overall_det_preferred_rate\": round(overall_det_pref_rate, 4),\n    \"enrichment_ratio\": round(enrichment, 2) if enrichment else None,\n    \"Q1_mean_gap\": round(q1_mean_gap, 2),\n    \"non_Q1_mean_gap\": round(non_q1_mean_gap, 2),\n}\n\nprint(f\"  Q1 threshold (25th pctile of int_scores): {q1_threshold}\")\nprint(f\"  Q1 episodes: {q1_n} / {N}\")\nprint(f\"  Q1 det-preferred rate: {q1_det_pref_rate*100:.1f}%\")\nprint(f\"  Overall det-preferred rate: {overall_det_pref_rate*100:.1f}%\")\nprint(f\"  Enrichment ratio: {enrichment:.2f}x\" if enrichment else \"  Enrichment: N/A\")\nprint(f\"  Q1 mean gap: {q1_mean_gap:.2f} vs non-Q1: {non_q1_mean_gap:.2f}\")\nprint()\n\n# ==============================\n# Robustness conclusion\n# ==============================\nall_fracs_m1 = [method1[k][\"avoidance_frac\"] for k in method1 if method1[k][\"n_int_fail\"] > 0]\nall_fracs_m2 = [method2[k][\"avoidance_frac\"] for k in method2 if method2[k][\"n_int_fail\"] > 0]\n\nmin_frac_m1 = min(all_fracs_m1) if all_fracs_m1 else 0\nmax_frac_m1 = max(all_fracs_m1) if all_fracs_m1 else 0\nmin_frac_m2 = min(all_fracs_m2) if all_fracs_m2 else 0\nmax_frac_m2 = max(all_fracs_m2) if all_fracs_m2 else 0\n\nrobust = (min_frac_m1 > 0.70) and (min_frac_m2 > 0.70)\n\nconclusion = (\n    f\"DAF {'is' if robust else 'is NOT'} robust to threshold choice. \"\n    f\"Method 1 (absolute): avoidance fraction ranges from \"\n    f\"{min_frac_m1*100:.1f}% to {max_frac_m1*100:.1f}% across thresholds with failures. \"\n    f\"Method 2 (relative drop): ranges from \"\n    f\"{min_frac_m2*100:.1f}% to {max_frac_m2*100:.1f}%. \"\n    f\"Method 3 (rank): bottom-quartile internal episodes show \"\n    f\"{q1_det_pref_rate*100:.1f}% det-preferred rate vs \"\n    f\"{overall_det_pref_rate*100:.1f}% overall \"\n    f\"({enrichment:.2f}x enrichment), confirming that low internal scores \"\n    f\"strongly predict det-preference regardless of threshold definition.\"\n)\n\nprint(\"=\" * 60)\nprint(\"CONCLUSION\")\nprint(\"=\" * 60)\nprint(conclusion)\n\n# ==============================\n# Save results\n# ==============================\nresults = {\n    \"method1_absolute_threshold\": method1,\n    \"method2_relative_drop\": method2,\n    \"method3_rankbased\": method3,\n    \"robustness_conclusion\": conclusion,\n    \"metadata\": {\n        \"data_file\": DATA_FILE,\n        \"n_episodes\": N,\n        \"n_tasks\": len(unique_tasks),\n        \"delta_full\": round(delta_full, 4),\n        \"note\": \"failure defined as score <= T (Method 1) or score < threshold (Method 2)\"\n    }\n}\n\nos.makedirs(OUT_DIR, exist_ok=True)\nwith open(OUT_FILE, \"w\") as f:\n    json.dump(results, f, indent=2)\n\nprint(f\"\\nResults saved to: {OUT_FILE}\")\nSCRIPT",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat << 'SCRIPT' > /root/autodl-tmp/simgate-modular-routing/scripts/daf_threshold_sensitivity.py\n\"\"\"DAF Threshold Sensitivity Analysis.\n\nTests robustness of DAF metric to different \"failure\" definitions:\n  Method 1: Absolute score threshold (score <= T)\n  Method 2: Relative score drop from max (100)\n  Method 3: Rank-based (bottom quartile)\n\"\"\"\n\nimport json\nimport os\nimport numpy as np\nfrom scipy import stats\n\nDATA_FILE = \"/root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl\"\nOUT_DIR = \"/root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended\"\nOUT_FILE = os.path.join(OUT_DIR, \"threshold_sensitivity.json\")\n\n# Load episode-level data (always-deterministic condition = unique episodes with both scores)\nepisodes = []\nwith open(DATA_FILE) as f:\n    for line in f:\n        d = json.loads(line.strip())\n        if d[\"condition\"] == \"always-deterministic\":\n            episodes.append(d)\n\nN = len(episodes)\ntask_types = [ep[\"task_type\"] for ep in episodes]\nint_scores = np.array([ep[\"internal_final\"] for ep in episodes])\ndet_scores = np.array([ep[\"det_final\"] for ep in episodes])\noracle_labels = [ep[\"oracle_label\"] for ep in episodes]\n\nscore_gaps = det_scores - int_scores\ndelta_full = float(np.mean(score_gaps))\nunique_tasks = sorted(set(task_types))\n\nprint(f\"Loaded {N} episodes, {len(unique_tasks)} task types\")\nprint(f\"Delta_full = {delta_full:.4f}\")\nprint(f\"Score ranges: int [{int_scores.min()}, {int_scores.max()}], det [{det_scores.min()}, {det_scores.max()}]\")\nprint()\n\n\ndef per_task_correlation(task_types, int_scores, det_scores, int_fail_mask):\n    \"\"\"Pearson r between per-task internal failure rate and per-task delta.\"\"\"\n    tasks = sorted(set(task_types))\n    fail_rates = []\n    deltas = []\n    for t in tasks:\n        mask = np.array([tt == t for tt in task_types])\n        n_t = mask.sum()\n        fail_rate = int_fail_mask[mask].sum() / n_t\n        delta_t = float(np.mean(det_scores[mask] - int_scores[mask]))\n        fail_rates.append(fail_rate)\n        deltas.append(delta_t)\n\n    if len(set(fail_rates)) > 1:\n        r, p = stats.pearsonr(fail_rates, deltas)\n        return float(r), float(p)\n    return None, None\n\n\n# ==============================\n# Method 1: Absolute threshold\n# \"failure\" = score <= T\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 1: Absolute Score Threshold (failure = score <= T)\")\nprint(\"=\" * 60)\n\nthresholds_abs = [-100, -50, -20, 0, 10, 20]\nmethod1 = {}\n\nfor T in thresholds_abs:\n    int_fail = int_scores <= T\n    det_fail = det_scores <= T\n\n    n_int_fail = int(int_fail.sum())\n    n_det_fail = int(det_fail.sum())\n\n    # Non-fail = episodes where NEITHER score fails\n    non_fail = ~int_fail & ~det_fail\n    n_non_fail = int(non_fail.sum())\n\n    if n_non_fail > 0 and n_non_fail < N:\n        delta_non_fail = float(np.mean(score_gaps[non_fail]))\n    elif n_non_fail == N:\n        delta_non_fail = delta_full\n    else:\n        delta_non_fail = 0.0\n\n    if delta_full != 0:\n        avoidance_frac = (delta_full - delta_non_fail) / delta_full\n    else:\n        avoidance_frac = 0.0\n\n    r, p = per_task_correlation(task_types, int_scores, det_scores, int_fail)\n\n    result = {\n        \"n_int_fail\": n_int_fail,\n        \"n_det_fail\": n_det_fail,\n        \"n_non_fail\": n_non_fail,\n        \"delta_full\": round(delta_full, 4),\n        \"delta_non_fail\": round(delta_non_fail, 4),\n        \"avoidance_frac\": round(avoidance_frac, 4),\n        \"r\": round(r, 4) if r is not None else None,\n        \"p\": round(p, 6) if p is not None else None,\n    }\n    method1[f\"T_{T}\"] = result\n\n    print(f\"  T={T:>4}: n_int_fail={n_int_fail:>3}, n_det_fail={n_det_fail:>3}, \"\n          f\"n_non_fail={n_non_fail:>3}, avoidance={avoidance_frac*100:.1f}%, \"\n          f\"r={r:.4f}\" if r else f\"  T={T:>4}: n_int_fail={n_int_fail:>3}, \"\n          f\"n_det_fail={n_det_fail:>3}, avoidance={avoidance_frac*100:.1f}%, r=N/A\")\n\nprint()\n\n# ==============================\n# Method 2: Relative score drop\n# \"failure\" = score dropped by > X% from max (100)\n# threshold_score = 100 - X (failure = score < threshold_score)\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 2: Relative Drop from Max Score (100)\")\nprint(\"=\" * 60)\n\nMAX_SCORE = 100\ndrops_pct = [50, 75, 90, 100]\nmethod2 = {}\n\nfor X in drops_pct:\n    # failure = score drop > X% from max means score < 100*(1 - X/100) = 100 - X\n    threshold_score = MAX_SCORE - X  # 50, 25, 10, 0\n\n    int_fail = int_scores < threshold_score\n    det_fail = det_scores < threshold_score\n\n    n_int_fail = int(int_fail.sum())\n    n_det_fail = int(det_fail.sum())\n\n    non_fail = ~int_fail & ~det_fail\n    n_non_fail = int(non_fail.sum())\n\n    if n_non_fail > 0 and n_non_fail < N:\n        delta_non_fail = float(np.mean(score_gaps[non_fail]))\n    elif n_non_fail == N:\n        delta_non_fail = delta_full\n    else:\n        delta_non_fail = 0.0\n\n    if delta_full != 0:\n        avoidance_frac = (delta_full - delta_non_fail) / delta_full\n    else:\n        avoidance_frac = 0.0\n\n    r, p = per_task_correlation(task_types, int_scores, det_scores, int_fail)\n\n    result = {\n        \"threshold_score\": threshold_score,\n        \"n_int_fail\": n_int_fail,\n        \"n_det_fail\": n_det_fail,\n        \"n_non_fail\": n_non_fail,\n        \"avoidance_frac\": round(avoidance_frac, 4),\n        \"r\": round(r, 4) if r is not None else None,\n        \"p\": round(p, 6) if p is not None else None,\n    }\n    method2[f\"drop_{X}pct\"] = result\n\n    print(f\"  X={X:>3}% (score<{threshold_score:>3}): n_int_fail={n_int_fail:>3}, \"\n          f\"n_det_fail={n_det_fail:>3}, avoidance={avoidance_frac*100:.1f}%, \"\n          f\"r={r:.4f}\" if r else f\"  X={X:>3}%: avoidance={avoidance_frac*100:.1f}%, r=N/A\")\n\nprint()\n\n# ==============================\n# Method 3: Rank-based (non-parametric)\n# \"bad episode\" = internal score in bottom quartile\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 3: Rank-Based (Bottom Quartile)\")\nprint(\"=\" * 60)\n\nq1_threshold = float(np.percentile(int_scores, 25))\nq1_mask = int_scores <= q1_threshold\n\ndet_preferred = np.array([l == \"det-preferred\" for l in oracle_labels])\n\nq1_n = int(q1_mask.sum())\nq1_det_pref_count = int((q1_mask & det_preferred).sum())\nq1_det_pref_rate = float(det_preferred[q1_mask].mean()) if q1_n > 0 else 0.0\noverall_det_pref_rate = float(det_preferred.mean())\n\n# Also check: mean gap in Q1 vs overall\nq1_mean_gap = float(np.mean(score_gaps[q1_mask])) if q1_n > 0 else 0.0\nnon_q1_mean_gap = float(np.mean(score_gaps[~q1_mask])) if (~q1_mask).sum() > 0 else 0.0\n\nenrichment = q1_det_pref_rate / overall_det_pref_rate if overall_det_pref_rate > 0 else None\n\nmethod3 = {\n    \"Q1_threshold\": q1_threshold,\n    \"Q1_internal_episodes\": q1_n,\n    \"Q1_det_preferred_count\": q1_det_pref_count,\n    \"Q1_det_preferred_rate\": round(q1_det_pref_rate, 4),\n    \"overall_det_preferred_rate\": round(overall_det_pref_rate, 4),\n    \"enrichment_ratio\": round(enrichment, 2) if enrichment else None,\n    \"Q1_mean_gap\": round(q1_mean_gap, 2),\n    \"non_Q1_mean_gap\": round(non_q1_mean_gap, 2),\n}\n\nprint(f\"  Q1 threshold (25th pctile of int_scores): {q1_threshold}\")\nprint(f\"  Q1 episodes: {q1_n} / {N}\")\nprint(f\"  Q1 det-preferred rate: {q1_det_pref_rate*100:.1f}%\")\nprint(f\"  Overall det-preferred rate: {overall_det_pref_rate*100:.1f}%\")\nprint(f\"  Enrichment ratio: {enrichment:.2f}x\" if enrichment else \"  Enrichment: N/A\")\nprint(f\"  Q1 mean gap: {q1_mean_gap:.2f} vs non-Q1: {non_q1_mean_gap:.2f}\")\nprint()\n\n# ==============================\n# Robustness conclusion\n# ==============================\nall_fracs_m1 = [method1[k][\"avoidance_frac\"] for k in method1 if method1[k][\"n_int_fail\"] > 0]\nall_fracs_m2 = [method2[k][\"avoidance_frac\"] for k in method2 if method2[k][\"n_int_fail\"] > 0]\n\nmin_frac_m1 = min(all_fracs_m1) if all_fracs_m1 else 0\nmax_frac_m1 = max(all_fracs_m1) if all_fracs_m1 else 0\nmin_frac_m2 = min(all_fracs_m2) if all_fracs_m2 else 0\nmax_frac_m2 = max(all_fracs_m2) if all_fracs_m2 else 0\n\nrobust = (min_frac_m1 > 0.70) and (min_frac_m2 > 0.70)\n\nconclusion = (\n    f\"DAF {'is' if robust else 'is NOT'} robust to threshold choice. \"\n    f\"Method 1 (absolute): avoidance fraction ranges from \"\n    f\"{min_frac_m1*100:.1f}% to {max_frac_m1*100:.1f}% across thresholds with failures. \"\n    f\"Method 2 (relative drop): ranges from \"\n    f\"{min_frac_m2*100:.1f}% to {max_frac_m2*100:.1f}%. \"\n    f\"Method 3 (rank): bottom-quartile internal episodes show \"\n    f\"{q1_det_pref_rate*100:.1f}% det-preferred rate vs \"\n    f\"{overall_det_pref_rate*100:.1f}% overall \"\n    f\"({enrichment:.2f}x enrichment), confirming that low internal scores \"\n    f\"strongly predict det-preference regardless of threshold definition.\"\n)\n\nprint(\"=\" * 60)\nprint(\"CONCLUSION\")\nprint(\"=\" * 60)\nprint(conclusion)\n\n# ==============================\n# Save results\n# ==============================\nresults = {\n    \"method1_absolute_threshold\": method1,\n    \"method2_relative_drop\": method2,\n    \"method3_rankbased\": method3,\n    \"robustness_conclusion\": conclusion,\n    \"metadata\": {\n        \"data_file\": DATA_FILE,\n        \"n_episodes\": N,\n        \"n_tasks\": len(unique_tasks),\n        \"delta_full\": round(delta_full, 4),\n        \"note\": \"failure defined as score <= T (Method 1) or score < threshold (Method 2)\"\n    }\n}\n\nos.makedirs(OUT_DIR, exist_ok=True)\nwith open(OUT_FILE, \"w\") as f:\n    json.dump(results, f, indent=2)\n\nprint(f\"\\nResults saved to: {OUT_FILE}\")\nSCRIPT",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-16T06:09:39.767059+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 2.12}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-16T06:09:39.767197+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write DAF threshold sensitivity analysis script', 'status': 'completed', 'activeForm': 'Writing DAF threshold sensitivity analysis script'}, {'content': 'Deploy and run script on westb-13313', 'status': 'in_progress', 'activeForm': 'Deploying and running script on westb-13313'}, {'content': 'Verify T=-100 matches expected DAF=90.4%, r=0.9698', 'status': 'pending', 'activeForm': 'Verifying T=-100 matches expected values'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write DAF threshold sensitivity analysis script', 'status': 'completed', 'activeForm': 'Writing DAF threshold sensitivity analysis script'}, {'content': 'Deploy and run script on westb-13313', 'status': 'in_progress', 'activeForm': 'Deploying and running script on westb-13313'}, {'content': 'Verify T=-100 matches expected DAF=90.4%, r=0.9698', 'status': 'pending', 'activeForm': 'Verifying T=-100 matches expected values'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-16T06:09:39.767340+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-16T06:09:39.767461+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/daf_threshold_sensitivity.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/daf_threshold_sensitivity.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-16T06:09:39.767607+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 245 episodes, 11 task types\\nDelta_full = 29.5959\\nScore ranges: int [-100.0, 58.0], det [-100.0, 67.0]\\n\\n============================================================\\nMETHOD 1: Absolute Score Threshold (failure = score <= T)\\n============================================================\\n  T=-100: n_int_fail=105, n_det_fail= 40, n_non_fail=135, avoidance=90.4%, r=0.7401\\n  T= -50: n_int_fail=105, n_det_fail= 40, n_non_fail=135, avoidance=90.4%, r=0.7401\\n  T= -20: n_int_fail=105, n_det_fail= 40, n_non_fail=135, avoidance=90.4%, r=0.7401\\n  T=   0: n_int_fail=213, n_det_fail=186, n_non_fail= 29, avoidance=100.0%, r=0.8509\\n  T=  10: n_int_fail=227, n_det_fail=208, n_non_fail= 15, avoidance=100.0%, r=0.6708\\n  T=  20: n_int_fail=229, n_det_fail=214, n_non_fail= 12, avoidance=88.5%, r=0.6645\\n\\n============================================================\\nMETHOD 2: Relative Drop from Max Score (100)\\n============================================================\\n  X= 50% (score< 50): n_int_fail=230, n_det_fail=224, avoidance=87.4%, r=0.6196\\n  X= 75% (score< 25): n_int_fail=230, n_det_fail=216, avoidance=87.4%, r=0.6196\\n  X= 90% (score< 10): n_int_fail=227, n_det_fail=205, avoidance=100.0%, r=0.6708\\n  X=100% (score<  0): n_int_fail=105, n_det_fail= 40, avoidance=90.4%, r=0.7401\\n\\n============================================================\\nMETHOD 3: Rank-Based (Bottom Quartile)\\n============================================================\\n  Q1 threshold (25th pctile of int_scores): -100.0\\n  Q1 episodes: 105 / 245\\n  Q1 det-preferred rate: 66.7%\\n  Overall det-preferred rate: 35.1%\\n  Enrichment ratio: 1.90x\\n  Q1 mean gap: 70.65 vs non-Q1: -1.19\\n\\n============================================================\\nCONCLUSION\\n============================================================\\nDAF is robust to threshold choice. Method 1 (absolute): avoidance fraction ranges from
+…[truncated 559 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-16T06:09:39.767805+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\nfrom scipy import stats\n\nDATA_FILE = '/root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl'\nepisodes = []\nwith open(DATA_FILE) as f:\n    for line in f:\n        d = json.loads(line.strip())\n        if d['condition'] == 'always-deterministic':\n            episodes.append(d)\n\ntask_types = [ep['task_type'] for ep in episodes]\nint_scores = np.array([ep['internal_final'] for ep in episodes])\ndet_scores = np.array([ep['det_final'] for ep in episodes])\nunique_tasks = sorted(set(task_types))\n\n# At T=-100 (death), compute per-task stats\nT = -100\nfail_rates_int = []\nfail_rates_det = []\nfail_rate_diff = []\ndeltas = []\nfor t in unique_tasks:\n    mask = np.array([tt == t for tt in task_types])\n    n_t = mask.sum()\n    fr_int = (int_scores[mask] <= T).sum() / n_t\n    fr_det = (det_scores[mask] <= T).sum() / n_t\n    delta_t = float(np.mean(det_scores[mask] - int_scores[mask]))\n    fail_rates_int.append(fr_int)\n    fail_rates_det.append(fr_det)\n    fail_rate_diff.append(fr_int - fr_det)\n    deltas.append(delta_t)\n\nr1, p1 = stats.pearsonr(fail_rates_int, deltas)\nr2, p2 = stats.pearsonr(fail_rate_diff, deltas)\nprint(f'r(failure_rate_int, delta): {r1:.4f} (p={p1:.6f})')\nprint(f'r(failure_rate_differential, delta): {r2:.4f} (p={p2:.6f})')\nprint()\nfor t, fri, frd, frdiff, d in zip(unique_tasks, fail_rates_int, fail_rates_det, fail_rate_diff, deltas):\n    print(f'  {t:45s} fr_int={fri:.3f} fr_det={frd:.3f} diff={frdiff:.3f} delta={d:.2f}')\n\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport json\nimport numpy as np\nfrom scipy import stats\n\nDATA_FILE = '/root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl'\nepisodes = []\nwith open(DATA_FILE) as f:\n    for line in f:\n        d = json.loads(line.strip())\n        if d['condition'] == 'always-deterministic':\n            episodes.append(d)\n\ntask_types = [ep['task_type'] for ep in episodes]\nint_scores = np.array([ep['internal_final'] for ep in episodes])\ndet_scores = np.array([ep['det_final'] for ep in episodes])\nunique_tasks = sorted(set(task_types))\n\n# At T=-100 (death), compute per-task stats\nT = -100\nfail_rates_int = []\nfail_rates_det = []\nfail_rate_diff = []\ndeltas = []\nfor t in unique_tasks:\n    mask = np.array([tt == t for tt in task_types])\n    n_t = mask.sum()\n    fr_int = (int_scores[mask] <= T).sum() / n_t\n    fr_det = (det_scores[mask] <= T).sum() / n_t\n    delta_t = float(np.mean(det_scores[mask] - int_scores[mask]))\n    fail_rates_int.append(fr_int)\n    fail_rates_det.append(fr_det)\n    fail_rate_diff.append(fr_int - fr_det)\n    deltas.append(delta_t)\n\nr1, p1 = stats.pearsonr(fail_rates_int, deltas)\nr2, p2 = stats.pearsonr(fail_rate_diff, deltas)\nprint(f'r(failure_rate_int, delta): {r1:.4f} (p={p1:.6f})')\nprint(f'r(failure_rate_differential, delta): {r2:.4f} (p={p2:.6f})')\nprint()\nfor t, fri, frd, frdiff, d in zip(unique_tasks, fail_rates_int, fail_rates_det, fail_rate_diff, deltas):\n    print(f'  {t:45s} fr_int={fri:.3f} fr_det={frd:.3f} diff={frdiff:.3f} delta={d:.2f}')\n\"",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-16T06:09:39.767966+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"r(failure_rate_int, delta): 0.7401 (p=0.009212)\\nr(failure_rate_differential, delta): 0.9698 (p=0.000001)\\n\\n  chemistry-mix                                 fr_int=0.450 fr_det=0.250 diff=0.200 delta=21.80\\n  find-animal                                   fr_int=0.500 fr_det=0.250 diff=0.250 delta=26.65\\n  find-non-living-thing                         fr_int=0.000 fr_det=0.000 diff=0.000 delta=9.57\\n  freeze                                        fr_int=0.550 fr_det=0.250 diff=0.300 delta=30.50\\n  grow-fruit                                    fr_int=0.450 fr_det=0.200 diff=0.250 delta=25.10\\n  identify-life-stages-1                        fr_int=0.550 fr_det=0.100 diff=0.450 delta=47.50\\n  identify-life-stages-2                        fr_int=0.500 fr_det=0.200 diff=0.300 delta=30.00\\n  inclined-plane-determine-angle                fr_int=0.550 fr_det=0.200 diff=0.350 delta=36.00\\n  lifespan-longest-lived                        fr_int=0.560 fr_det=0.160 diff=0.400 delta=44.00\\n  lifespan-longest-lived-then-shortest-lived    fr_int=0.450 fr_det=0.100 diff=0.350 delta=40.80\\n  measure-melting-point-unknown-substance       fr_int=0.550 fr_det=0.250 diff=0.300 delta=30.05\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.7}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-16T06:09:39.768189+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat << 'SCRIPT' > /root/autodl-tmp/simgate-modular-routing/scripts/daf_threshold_sensitivity.py\n\"\"\"DAF Threshold Sensitivity Analysis.\n\nTests robustness of DAF metric to different \"failure\" definitions:\n  Method 1: Absolute score threshold (score <= T)\n  Method 2: Relative score drop from max (100)\n  Method 3: Rank-based (bottom quartile)\n\"\"\"\n\nimport json\nimport os\nimport numpy as np\nfrom scipy import stats\n\nDATA_FILE = \"/root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl\"\nOUT_DIR = \"/root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended\"\nOUT_FILE = os.path.join(OUT_DIR, \"threshold_sensitivity.json\")\n\nepisodes = []\nwith open(DATA_FILE) as f:\n    for line in f:\n        d = json.loads(line.strip())\n        if d[\"condition\"] == \"always-deterministic\":\n            episodes.append(d)\n\nN = len(episodes)\ntask_types = [ep[\"task_type\"] for ep in episodes]\nint_scores = np.array([ep[\"internal_final\"] for ep in episodes])\ndet_scores = np.array([ep[\"det_final\"] for ep in episodes])\noracle_labels = [ep[\"oracle_label\"] for ep in episodes]\n\nscore_gaps = det_scores - int_scores\ndelta_full = float(np.mean(score_gaps))\nunique_tasks = sorted(set(task_types))\n\nprint(f\"Loaded {N} episodes, {len(unique_tasks)} task types\")\nprint(f\"Delta_full = {delta_full:.4f}\")\nprint(f\"Score ranges: int [{int_scores.min()}, {int_scores.max()}], det [{det_scores.min()}, {det_scores.max()}]\")\nprint()\n\n\ndef per_task_correlations(task_types, int_scores, det_scores, int_fail_mask, det_fail_mask):\n    \"\"\"Pearson r between per-task failure metrics and per-task delta.\"\"\"\n    tasks = sorted(set(task_types))\n    fail_rates_int = []\n    fail_rate_diffs = []\n    deltas = []\n    for t in tasks:\n        mask = np.array([tt == t for tt in task_types])\n        n_t = mask.sum()\n        fr_int = int_fail_mask[mask].sum() / n_t\n        fr_det = det_fail_mask[mask].sum() / n_t\n        delta_t = float(np.mean(det_scores[mask] - int_scores[mask]))\n        fail_rates_int.append(fr_int)\n        fail_rate_diffs.append(fr_int - fr_det)\n        deltas.append(delta_t)\n\n    r_int, p_int = (None, None)\n    r_diff, p_diff = (None, None)\n\n    if len(set(fail_rates_int)) > 1:\n        r_int, p_int = stats.pearsonr(fail_rates_int, deltas)\n        r_int, p_int = float(r_int), float(p_int)\n    if len(set(fail_rate_diffs)) > 1:\n        r_diff, p_diff = stats.pearsonr(fail_rate_diffs, deltas)\n        r_diff, p_diff = float(r_diff), float(p_diff)\n\n    return r_int, p_int, r_diff, p_diff\n\n\n# ==============================\n# Method 1: Absolute threshold (score <= T)\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 1: Absolute Score Threshold (failure = score <= T)\")\nprint(\"=\" * 60)\n\nthresholds_abs = [-100, -50, -20, 0, 10, 20]\nmethod1 = {}\n\nfor T in thresholds_abs:\n    int_fail = int_scores <= T\n    det_fail = det_scores <= T\n\n    n_int_fail = int(int_fail.sum())\n    n_det_fail = int(det_fail.sum())\n\n    non_fail = ~int_fail & ~det_fail\n    n_non_fail = int(non_fail.sum())\n\n    if n_non_fail > 0 and n_non_fail < N:\n        delta_non_fail = float(np.mean(score_gaps[non_fail]))\n    elif n_non_fail == N:\n        delta_non_fail = delta_full\n    else:\n        delta_non_fail = 0.0\n\n    avoidance_frac = (delta_full - delta_non_fail) / delta_full if delta_full != 0 else 0.0\n\n    r_int, p_int, r_diff, p_diff = per_task_correlations(\n        task_types, int_scores, det_scores, int_fail, det_fail\n    )\n\n    result = {\n        \"n_int_fail\": n_int_fail,\n        \"n_det_fail\": n_det_fail,\n        \"n_non_fail\": n_non_fail,\n        \"avoidance_frac\": round(avoidance_frac, 4),\n        \"r\": round(r_diff, 4) if r_diff is not None else None,\n        \"p\": round(p_diff, 6) if p_diff is not None else None,\n        \"r_int_only\": round(r_int, 4) if r_int is not None else None,\n    }\n    method1[f\"T_{T}\"] = result\n\n    r_str = f\"r={r_diff:.4f}\" if r_diff is not None else \"r=N/A\"\n    print(f\"  T={T:>4}: n_int_fail={n_int_fail:>3}, n_det_fail={n_det_fail:>3}, \"\n          f\"n_non_fail={n_non_fail:>3}, avoidance={avoidance_frac*100:.1f}%, {r_str}\")\n\nprint()\n\n# ==============================\n# Method 2: Relative score drop (score < 100 - X)\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 2: Relative Drop from Max Score (100)\")\nprint(\"=\" * 60)\n\nMAX_SCORE = 100\ndrops_pct = [50, 75, 90, 100]\nmethod2 = {}\n\nfor X in drops_pct:\n    threshold_score = MAX_SCORE - X\n\n    int_fail = int_scores < threshold_score\n    det_fail = det_scores < threshold_score\n\n    n_int_fail = int(int_fail.sum())\n    n_det_fail = int(det_fail.sum())\n\n    non_fail = ~int_fail & ~det_fail\n    n_non_fail = int(non_fail.sum())\n\n    if n_non_fail > 0 and n_non_fail < N:\n        delta_non_fail = float(np.mean(score_gaps[non_fail]))\n    elif n_non_fail == N:\n        delta_non_fail = delta_full\n    else:\n        delta_non_fail = 0.0\n\n    avoidance_frac = (delta_full - delta_non_fail) / delta_full if delta_full != 0 else 0.0\n\n    r_int, p_int, r_diff, p_diff = per_task_correlations(\n        task_types, int_scores, det_scores, int_fail, det_fail\n    )\n\n    result = {\n        \"threshold_score\": threshold_score,\n        \"n_int_fail\": n_int_fail,\n        \"n_det_fail\": n_det_fail,\n        \"n_non_fail\": n_non_fail,\n        \"avoidance_frac\": round(avoidance_frac, 4),\n        \"r\": round(r_diff, 4) if r_diff is not None else None,\n        \"p\": round(p_diff, 6) if p_diff is not None else None,\n    }\n    method2[f\"drop_{X}pct\"] = result\n\n    r_str = f\"r={r_diff:.4f}\" if r_diff is not None else \"r=N/A\"\n    print(f\"  X={X:>3}% (score<{threshold_score:>3}): n_int_fail={n_int_fail:>3}, \"\n          f\"n_det_fail={n_det_fail:>3}, avoidance={avoidance_frac*100:.1f}%, {r_str}\")\n\nprint()\n\n# ==============================\n# Method 3: Rank-based (bottom quartile)\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 3: Rank-Based (Bottom Quartile)\")\nprint(\"=\" * 60)\n\nq1_threshold = float(np.percentile(int_scores, 25))\nq1_mask = int_scores <= q1_threshold\n\ndet_preferred = np.array([l == \"det-preferred\" for l in oracle_labels])\n\nq1_n = int(q1_mask.sum())\nq1_det_pref_count = int((q1_mask & det_preferred).sum())\nq1_det_pref_rate = float(det_preferred[q1_mask].mean()) if q1_n > 0 else 0.0\noverall_det_pref_rate = float(det_preferred.mean())\n\nq1_mean_gap = float(np.mean(score_gaps[q1_mask])) if q1_n > 0 else 0.0\nnon_q1_mean_gap = float(np.mean(score_gaps[~q1_mask])) if (~q1_mask).sum() > 0 else 0.0\n\nenrichment = q1_det_pref_rate / overall_det_pref_rate if overall_det_pref_rate > 0 else None\n\nmethod3 = {\n    \"Q1_threshold\": q1_threshold,\n    \"Q1_internal_episodes\": q1_n,\n    \"Q1_det_preferred_count\": q1_det_pref_count,\n    \"Q1_det_preferred_rate\": round(q1_det_pref_rate, 4),\n    \"overall_det_preferred_rate\": round(overall_det_pref_rate, 4),\n    \"enrichment_ratio\": round(enrichment, 2) if enrichment else None,\n    \"Q1_mean_gap\": round(q1_mean_gap, 2),\n    \"non_Q1_mean_gap\": round(non_q1_mean_gap, 2),\n}\n\nprint(f\"  Q1 threshold (25th pctile of int_scores): {q1_threshold}\")\nprint(f\"  Q1 episodes: {q1_n} / {N}\")\nprint(f\"  Q1 det-preferred rate: {q1_det_pref_rate*100:.1f}%\")\nprint(f\"  Overall det-preferred rate: {overall_det_pref_rate*100:.1f}%\")\nprint(f\"  Enrichment ratio: {enrichment:.2f}x\" if enrichment else \"  Enrichment: N/A\")\nprint(f\"  Q1 mean gap: {q1_mean_gap:.2f} vs non-Q1: {non_q1_mean_gap:.2f}\")\nprint()\n\n# ==============================\n# Robustness conclusion\n# ==============================\nall_fracs_m1 = [method1[k][\"avoidance_frac\"] for k in method1 if method1[k][\"n_int_fail\"] > 0]\nall_fracs_m2 = [method2[k][\"avoidance_frac\"] for k in method2 if method2[k][\"n_int_fail\"] > 0]\n\nmin_frac_m1 = min(all_fracs_m1) if all_fracs_m1 else 0\nmax_frac_m1 = max(all_fracs_m1) if all_fracs_m1 else 0\nmin_frac_m2 = min(all_fracs_m2) if all_fracs_m2 else 0\nmax_frac_m2 = max(all_fracs_m2) if all_fracs_m2 else 0\n\nrobust = (min_frac_m1 > 0.70) and (min_frac_m2 > 0.70)\n\nconclusion = (\n    f\"DAF {'is' if robust else 'is NOT'} robust to threshold choice. \"\n    f\"Method 1 (absolute): avoidance fraction ranges from \"\n    f\"{min_frac_m1*100:.1f}% to {max_frac_m1*100:.1f}% across thresholds with failures. \"\n    f\"Method 2 (relative drop): ranges from \"\n    f\"{min_frac_m2*100:.1f}% to {max_frac_m2*100:.1f}%. \"\n    f\"Method 3 (rank): bottom-quartile internal episodes show \"\n    f\"{q1_det_pref_rate*100:.1f}% det-preferred rate vs \"\n    f\"{overall_det_pref_rate*100:.1f}% overall \"\n    f\"({enrichment:.2f}x enrichment), confirming that low internal scores \"\n    f\"strongly predict det-preference regardless of threshold definition.\"\n)\n\nprint(\"=\" * 60)\nprint(\"CONCLUSION\")\nprint(\"=\" * 60)\nprint(conclusion)\n\n# ==============================\n# Save results\n# ==============================\nresults = {\n    \"method1_absolute_threshold\": method1,\n    \"method2_relative_drop\": method2,\n    \"method3_rankbased\": method3,\n    \"robustness_conclusion\": conclusion,\n    \"metadata\": {\n        \"data_file\": DATA_FILE,\n        \"n_episodes\": N,\n        \"n_tasks\": len(unique_tasks),\n        \"delta_full\": round(delta_full, 4),\n        \"note\": \"r = Pearson correlation between per-task failure_rate_differential (int-det) and per-task delta\"\n    }\n}\n\nos.makedirs(OUT_DIR, exist_ok=True)\nwith open(OUT_FILE, \"w\") as f:\n    json.dump(results, f, indent=2)\n\nprint(f\"\\nResults saved to: {OUT_FILE}\")\nSCRIPT",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat << 'SCRIPT' > /root/autodl-tmp/simgate-modular-routing/scripts/daf_threshold_sensitivity.py\n\"\"\"DAF Threshold Sensitivity Analysis.\n\nTests robustness of DAF metric to different \"failure\" definitions:\n  Method 1: Absolute score threshold (score <= T)\n  Method 2: Relative score drop from max (100)\n  Method 3: Rank-based (bottom quartile)\n\"\"\"\n\nimport json\nimport os\nimport numpy as np\nfrom scipy import stats\n\nDATA_FILE = \"/root/autodl-tmp/simgate-modular-routing/results/plan_c_95ci/episode_details.jsonl\"\nOUT_DIR = \"/root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended\"\nOUT_FILE = os.path.join(OUT_DIR, \"threshold_sensitivity.json\")\n\nepisodes = []\nwith open(DATA_FILE) as f:\n    for line in f:\n        d = json.loads(line.strip())\n        if d[\"condition\"] == \"always-deterministic\":\n            episodes.append(d)\n\nN = len(episodes)\ntask_types = [ep[\"task_type\"] for ep in episodes]\nint_scores = np.array([ep[\"internal_final\"] for ep in episodes])\ndet_scores = np.array([ep[\"det_final\"] for ep in episodes])\noracle_labels = [ep[\"oracle_label\"] for ep in episodes]\n\nscore_gaps = det_scores - int_scores\ndelta_full = float(np.mean(score_gaps))\nunique_tasks = sorted(set(task_types))\n\nprint(f\"Loaded {N} episodes, {len(unique_tasks)} task types\")\nprint(f\"Delta_full = {delta_full:.4f}\")\nprint(f\"Score ranges: int [{int_scores.min()}, {int_scores.max()}], det [{det_scores.min()}, {det_scores.max()}]\")\nprint()\n\n\ndef per_task_correlations(task_types, int_scores, det_scores, int_fail_mask, det_fail_mask):\n    \"\"\"Pearson r between per-task failure metrics and per-task delta.\"\"\"\n    tasks = sorted(set(task_types))\n    fail_rates_int = []\n    fail_rate_diffs = []\n    deltas = []\n    for t in tasks:\n        mask = np.array([tt == t for tt in task_types])\n        n_t = mask.sum()\n        fr_int = int_fail_mask[mask].sum() / n_t\n        fr_det = det_fail_mask[mask].sum() / n_t\n        delta_t = float(np.mean(det_scores[mask] - int_scores[mask]))\n        fail_rates_int.append(fr_int)\n        fail_rate_diffs.append(fr_int - fr_det)\n        deltas.append(delta_t)\n\n    r_int, p_int = (None, None)\n    r_diff, p_diff = (None, None)\n\n    if len(set(fail_rates_int)) > 1:\n        r_int, p_int = stats.pearsonr(fail_rates_int, deltas)\n        r_int, p_int = float(r_int), float(p_int)\n    if len(set(fail_rate_diffs)) > 1:\n        r_diff, p_diff = stats.pearsonr(fail_rate_diffs, deltas)\n        r_diff, p_diff = float(r_diff), float(p_diff)\n\n    return r_int, p_int, r_diff, p_diff\n\n\n# ==============================\n# Method 1: Absolute threshold (score <= T)\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 1: Absolute Score Threshold (failure = score <= T)\")\nprint(\"=\" * 60)\n\nthresholds_abs = [-100, -50, -20, 0, 10, 20]\nmethod1 = {}\n\nfor T in thresholds_abs:\n    int_fail = int_scores <= T\n    det_fail = det_scores <= T\n\n    n_int_fail = int(int_fail.sum())\n    n_det_fail = int(det_fail.sum())\n\n    non_fail = ~int_fail & ~det_fail\n    n_non_fail = int(non_fail.sum())\n\n    if n_non_fail > 0 and n_non_fail < N:\n        delta_non_fail = float(np.mean(score_gaps[non_fail]))\n    elif n_non_fail == N:\n        delta_non_fail = delta_full\n    else:\n        delta_non_fail = 0.0\n\n    avoidance_frac = (delta_full - delta_non_fail) / delta_full if delta_full != 0 else 0.0\n\n    r_int, p_int, r_diff, p_diff = per_task_correlations(\n        task_types, int_scores, det_scores, int_fail, det_fail\n    )\n\n    result = {\n        \"n_int_fail\": n_int_fail,\n        \"n_det_fail\": n_det_fail,\n        \"n_non_fail\": n_non_fail,\n        \"avoidance_frac\": round(avoidance_frac, 4),\n        \"r\": round(r_diff, 4) if r_diff is not None else None,\n        \"p\": round(p_diff, 6) if p_diff is not None else None,\n        \"r_int_only\": round(r_int, 4) if r_int is not None else None,\n    }\n    method1[f\"T_{T}\"] = result\n\n    r_str = f\"r={r_diff:.4f}\" if r_diff is not None else \"r=N/A\"\n    print(f\"  T={T:>4}: n_int_fail={n_int_fail:>3}, n_det_fail={n_det_fail:>3}, \"\n          f\"n_non_fail={n_non_fail:>3}, avoidance={avoidance_frac*100:.1f}%, {r_str}\")\n\nprint()\n\n# ==============================\n# Method 2: Relative score drop (score < 100 - X)\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 2: Relative Drop from Max Score (100)\")\nprint(\"=\" * 60)\n\nMAX_SCORE = 100\ndrops_pct = [50, 75, 90, 100]\nmethod2 = {}\n\nfor X in drops_pct:\n    threshold_score = MAX_SCORE - X\n\n    int_fail = int_scores < threshold_score\n    det_fail = det_scores < threshold_score\n\n    n_int_fail = int(int_fail.sum())\n    n_det_fail = int(det_fail.sum())\n\n    non_fail = ~int_fail & ~det_fail\n    n_non_fail = int(non_fail.sum())\n\n    if n_non_fail > 0 and n_non_fail < N:\n        delta_non_fail = float(np.mean(score_gaps[non_fail]))\n    elif n_non_fail == N:\n        delta_non_fail = delta_full\n    else:\n        delta_non_fail = 0.0\n\n    avoidance_frac = (delta_full - delta_non_fail) / delta_full if delta_full != 0 else 0.0\n\n    r_int, p_int, r_diff, p_diff = per_task_correlations(\n        task_types, int_scores, det_scores, int_fail, det_fail\n    )\n\n    result = {\n        \"threshold_score\": threshold_score,\n        \"n_int_fail\": n_int_fail,\n        \"n_det_fail\": n_det_fail,\n        \"n_non_fail\": n_non_fail,\n        \"avoidance_frac\": round(avoidance_frac, 4),\n        \"r\": round(r_diff, 4) if r_diff is not None else None,\n        \"p\": round(p_diff, 6) if p_diff is not None else None,\n    }\n    method2[f\"drop_{X}pct\"] = result\n\n    r_str = f\"r={r_diff:.4f}\" if r_diff is not None else \"r=N/A\"\n    print(f\"  X={X:>3}% (score<{threshold_score:>3}): n_int_fail={n_int_fail:>3}, \"\n          f\"n_det_fail={n_det_fail:>3}, avoidance={avoidance_frac*100:.1f}%, {r_str}\")\n\nprint()\n\n# ==============================\n# Method 3: Rank-based (bottom quartile)\n# ==============================\nprint(\"=\" * 60)\nprint(\"METHOD 3: Rank-Based (Bottom Quartile)\")\nprint(\"=\" * 60)\n\nq1_threshold = float(np.percentile(int_scores, 25))\nq1_mask = int_scores <= q1_threshold\n\ndet_preferred = np.array([l == \"det-preferred\" for l in oracle_labels])\n\nq1_n = int(q1_mask.sum())\nq1_det_pref_count = int((q1_mask & det_preferred).sum())\nq1_det_pref_rate = float(det_preferred[q1_mask].mean()) if q1_n > 0 else 0.0\noverall_det_pref_rate = float(det_preferred.mean())\n\nq1_mean_gap = float(np.mean(score_gaps[q1_mask])) if q1_n > 0 else 0.0\nnon_q1_mean_gap = float(np.mean(score_gaps[~q1_mask])) if (~q1_mask).sum() > 0 else 0.0\n\nenrichment = q1_det_pref_rate / overall_det_pref_rate if overall_det_pref_rate > 0 else None\n\nmethod3 = {\n    \"Q1_threshold\": q1_threshold,\n    \"Q1_internal_episodes\": q1_n,\n    \"Q1_det_preferred_count\": q1_det_pref_count,\n    \"Q1_det_preferred_rate\": round(q1_det_pref_rate, 4),\n    \"overall_det_preferred_rate\": round(overall_det_pref_rate, 4),\n    \"enrichment_ratio\": round(enrichment, 2) if enrichment else None,\n    \"Q1_mean_gap\": round(q1_mean_gap, 2),\n    \"non_Q1_mean_gap\": round(non_q1_mean_gap, 2),\n}\n\nprint(f\"  Q1 threshold (25th pctile of int_scores): {q1_threshold}\")\nprint(f\"  Q1 episodes: {q1_n} / {N}\")\nprint(f\"  Q1 det-preferred rate: {q1_det_pref_rate*100:.1f}%\")\nprint(f\"  Overall det-preferred rate: {overall_det_pref_rate*100:.1f}%\")\nprint(f\"  Enrichment ratio: {enrichment:.2f}x\" if enrichment else \"  Enrichment: N/A\")\nprint(f\"  Q1 mean gap: {q1_mean_gap:.2f} vs non-Q1: {non_q1_mean_gap:.2f}\")\nprint()\n\n# ==============================\n# Robustness conclusion\n# ==============================\nall_fracs_m1 = [method1[k][\"avoidance_frac\"] for k in method1 if method1[k][\"n_int_fail\"] > 0]\nall_fracs_m2 = [method2[k][\"avoidance_frac\"] for k in method2 if method2[k][\"n_int_fail\"] > 0]\n\nmin_frac_m1 = min(all_fracs_m1) if all_fracs_m1 else 0\nmax_frac_m1 = max(all_fracs_m1) if all_fracs_m1 else 0\nmin_frac_m2 = min(all_fracs_m2) if all_fracs_m2 else 0\nmax_frac_m2 = max(all_fracs_m2) if all_fracs_m2 else 0\n\nrobust = (min_frac_m1 > 0.70) and (min_frac_m2 > 0.70)\n\nconclusion = (\n    f\"DAF {'is' if robust else 'is NOT'} robust to threshold choice. \"\n    f\"Method 1 (absolute): avoidance fraction ranges from \"\n    f\"{min_frac_m1*100:.1f}% to {max_frac_m1*100:.1f}% across thresholds with failures. \"\n    f\"Method 2 (relative drop): ranges from \"\n    f\"{min_frac_m2*100:.1f}% to {max_frac_m2*100:.1f}%. \"\n    f\"Method 3 (rank): bottom-quartile internal episodes show \"\n    f\"{q1_det_pref_rate*100:.1f}% det-preferred rate vs \"\n    f\"{overall_det_pref_rate*100:.1f}% overall \"\n    f\"({enrichment:.2f}x enrichment), confirming that low internal scores \"\n    f\"strongly predict det-preference regardless of threshold definition.\"\n)\n\nprint(\"=\" * 60)\nprint(\"CONCLUSION\")\nprint(\"=\" * 60)\nprint(conclusion)\n\n# ==============================\n# Save results\n# ==============================\nresults = {\n    \"method1_absolute_threshold\": method1,\n    \"method2_relative_drop\": method2,\n    \"method3_rankbased\": method3,\n    \"robustness_conclusion\": conclusion,\n    \"metadata\": {\n        \"data_file\": DATA_FILE,\n        \"n_episodes\": N,\n        \"n_tasks\": len(unique_tasks),\n        \"delta_full\": round(delta_full, 4),\n        \"note\": \"r = Pearson correlation between per-task failure_rate_differential (int-det) and per-task delta\"\n    }\n}\n\nos.makedirs(OUT_DIR, exist_ok=True)\nwith open(OUT_FILE, \"w\") as f:\n    json.dump(results, f, indent=2)\n\nprint(f\"\\nResults saved to: {OUT_FILE}\")\nSCRIPT",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-16T06:09:39.768418+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.43}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-16T06:09:39.768551+00:00_
+
+called mcp__agent-ml-research__ssh_execute
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/daf_threshold_sensitivity.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python scripts/daf_threshold_sensitivity.py",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T06:09:39.768700+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loaded 245 episodes, 11 task types\\nDelta_full = 29.5959\\nScore ranges: int [-100.0, 58.0], det [-100.0, 67.0]\\n\\n============================================================\\nMETHOD 1: Absolute Score Threshold (failure = score <= T)\\n============================================================\\n  T=-100: n_int_fail=105, n_det_fail= 40, n_non_fail=135, avoidance=90.4%, r=0.9698\\n  T= -50: n_int_fail=105, n_det_fail= 40, n_non_fail=135, avoidance=90.4%, r=0.9698\\n  T= -20: n_int_fail=105, n_det_fail= 40, n_non_fail=135, avoidance=90.4%, r=0.9698\\n  T=   0: n_int_fail=213, n_det_fail=186, n_non_fail= 29, avoidance=100.0%, r=-0.1310\\n  T=  10: n_int_fail=227, n_det_fail=208, n_non_fail= 15, avoidance=100.0%, r=0.0169\\n  T=  20: n_int_fail=229, n_det_fail=214, n_non_fail= 12, avoidance=88.5%, r=0.1985\\n\\n============================================================\\nMETHOD 2: Relative Drop from Max Score (100)\\n============================================================\\n  X= 50% (score< 50): n_int_fail=230, n_det_fail=224, avoidance=87.4%, r=-0.5249\\n  X= 75% (score< 25): n_int_fail=230, n_det_fail=216, avoidance=87.4%, r=0.2612\\n  X= 90% (score< 10): n_int_fail=227, n_det_fail=205, avoidance=100.0%, r=0.0771\\n  X=100% (score<  0): n_int_fail=105, n_det_fail= 40, avoidance=90.4%, r=0.9698\\n\\n============================================================\\nMETHOD 3: Rank-Based (Bottom Quartile)\\n============================================================\\n  Q1 threshold (25th pctile of int_scores): -100.0\\n  Q1 episodes: 105 / 245\\n  Q1 det-preferred rate: 66.7%\\n  Overall det-preferred rate: 35.1%\\n  Enrichment ratio: 1.90x\\n  Q1 mean gap: 70.65 vs non-Q1: -1.19\\n\\n============================================================\\nCONCLUSION\\n============================================================\\nDAF is robust to threshold choice. Method 1 (absolute): avoidance fraction ranges fr
+…[truncated 561 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_execute",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T06:09:39.769807+00:00_
+
+called mcp__agent-ml-research__ssh_read_only
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "command": "cat /root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended/threshold_sensitivity.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "tool_args": {
+    "server": "westb-13313",
+    "command": "cat /root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended/threshold_sensitivity.json",
+    "account": "root"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-16T06:09:39.770238+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"method1_absolute_threshold\\\": {\\n    \\\"T_-100\\\": {\\n      \\\"n_int_fail\\\": 105,\\n      \\\"n_det_fail\\\": 40,\\n      \\\"n_non_fail\\\": 135,\\n      \\\"avoidance_frac\\\": 0.9041,\\n      \\\"r\\\": 0.9698,\\n      \\\"p\\\": 1e-06,\\n      \\\"r_int_only\\\": 0.7401\\n    },\\n    \\\"T_-50\\\": {\\n      \\\"n_int_fail\\\": 105,\\n      \\\"n_det_fail\\\": 40,\\n      \\\"n_non_fail\\\": 135,\\n      \\\"avoidance_frac\\\": 0.9041,\\n      \\\"r\\\": 0.9698,\\n      \\\"p\\\": 1e-06,\\n      \\\"r_int_only\\\": 0.7401\\n    },\\n    \\\"T_-20\\\": {\\n      \\\"n_int_fail\\\": 105,\\n      \\\"n_det_fail\\\": 40,\\n      \\\"n_non_fail\\\": 135,\\n      \\\"avoidance_frac\\\": 0.9041,\\n      \\\"r\\\": 0.9698,\\n      \\\"p\\\": 1e-06,\\n      \\\"r_int_only\\\": 0.7401\\n    },\\n    \\\"T_0\\\": {\\n      \\\"n_int_fail\\\": 213,\\n      \\\"n_det_fail\\\": 186,\\n      \\\"n_non_fail\\\": 29,\\n      \\\"avoidance_frac\\\": 1.0,\\n      \\\"r\\\": -0.131,\\n      \\\"p\\\": 0.701127,\\n      \\\"r_int_only\\\": 0.8509\\n    },\\n    \\\"T_10\\\": {\\n      \\\"n_int_fail\\\": 227,\\n      \\\"n_det_fail\\\": 208,\\n      \\\"n_non_fail\\\": 15,\\n      \\\"avoidance_frac\\\": 1.0,\\n      \\\"r\\\": 0.0169,\\n      \\\"p\\\": 0.960684,\\n      \\\"r_int_only\\\": 0.6708\\n    },\\n    \\\"T_20\\\": {\\n      \\\"n_int_fail\\\": 229,\\n      \\\"n_det_fail\\\": 214,\\n      \\\"n_non_fail\\\": 12,\\n      \\\"avoidance_frac\\\": 0.8846,\\n      \\\"r\\\": 0.1985,\\n      \\\"p\\\": 0.558563,\\n      \\\"r_int_only\\\": 0.6645\\n    }\\n  },\\n  \\\"method2_relative_drop\\\": {\\n    \\\"drop_50pct\\\": {\\n      \\\"threshold_score\\\": 50,\\n      \\\"n_int_fail\\\": 230,\\n      \\\"n_det_fail\\\": 224,\\n      \\\"n_non_fail\\\": 11,\\n      \\\"avoidance_frac\\\": 0.8741,\\n      \\\"r\\\": -0.5249,\\n      \\\"p\\\": 0.097361\\n    },\\n    \\\"drop_75pct\\\": {\\n      \\\"t
+…[truncated 2049 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "mcp__agent-ml-research__ssh_read_only",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-16T06:09:39.770441+00:00_
+
+called TodoWrite
+
+<details open><summary>🔧 Tool call — TodoWrite</summary>
+
+```json
+{
+  "todos": "[{'content': 'Write DAF threshold sensitivity analysis script', 'status': 'completed', 'activeForm': 'Writing DAF threshold sensitivity analysis script'}, {'content': 'Deploy and run script on westb-13313', 'status': 'completed', 'activeForm': 'Deploying and running script on westb-13313'}, {'content': 'Verify T=-100 matches expected DAF=90.4%, r=0.9698', 'status': 'completed', 'activeForm': 'Verifying T=-100 matches expected values'}]"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "TodoWrite",
+  "tool_args": {
+    "todos": "[{'content': 'Write DAF threshold sensitivity analysis script', 'status': 'completed', 'activeForm': 'Writing DAF threshold sensitivity analysis script'}, {'content': 'Deploy and run script on westb-13313', 'status': 'completed', 'activeForm': 'Deploying and running script on westb-13313'}, {'content': 'Verify T=-100 matches expected DAF=90.4%, r=0.9698', 'status': 'completed', 'activeForm': 'Verifying T=-100 matches expected values'}]"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-16T06:09:39.770603+00:00_
+
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023",
+  "tool": "TodoWrite",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-16T06:09:39.770798+00:00_
+
+完成。结果摘要：
+
+**验证通过**: T=-100 → DAF=90.4%, r=0.9698 ✓
+
+**Method 1 (绝对阈值)**:
+| T | avoidance | r |
+|---|---|---|
+| -100 | 90.4% | 0.9698 |
+| -50, -20 | 90.4% | 0.9698 (无中间分数) |
+| 0 | 100.0% | -0.13 |
+| 10 | 100.0% | 0.02 |
+| 20 | 88.5% | 0.20 |
+
+**Method 2 (相对 drop)**:
+| X% | avoidance | r |
+|---|---|---|
+| 50% | 87.4% | -0.52 |
+| 75% | 87.4% | 0.26 |
+| 90% | 100.0% | 0.08 |
+| 100% (=death) | 90.4% | 0.9698 |
+
+**Method 3 (Rank-based)**: Q1 阈值恰好是 -100 (42.9% episodes 死亡)，det-preferred 率 66.7% vs overall 35.1%（1.9x enrichment）。
+
+**结论**: DAF robust — 所有阈值下 avoidance fraction 均 > 87%（远超 70% 标准）。failure avoidance 不依赖于 -100 这个特定 threshold 选择。关键 insight: 因为 ScienceWorld 分数是 bimodal 的（-100 或 ≥0），T ∈ {-100, -50, -20} 和 X=100% 给出完全相同的结果。
+
+脚本: `/root/autodl-tmp/simgate-modular-routing/scripts/daf_threshold_sensitivity.py`
+结果: `/root/autodl-tmp/simgate-modular-routing/artifacts/daf-sensitivity-extended/threshold_sensitivity.json`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "worker_analysis_daf-threshold-sensitivity_20260516T060023"
+}
+```
+
+</details>
+
+---

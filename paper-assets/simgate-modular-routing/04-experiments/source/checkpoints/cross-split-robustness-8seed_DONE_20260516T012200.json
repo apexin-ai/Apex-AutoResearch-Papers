@@ -1,0 +1,34 @@
+{
+  "exp_id": "cross-split-robustness-8seed",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T00:56:31.692Z",
+    "updated_at": "2026-05-16T01:21:59.963Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && CUDA_VISIBLE_DEVICES=1 python scripts/cross_split_eval.py --gpu_id 0\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "919592",
+      "log_path": "~/runs/simgate-modular-routing/cross-split-robustness-8seed.log",
+      "submitted_at": "2026-05-16T01:05:31.570Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "checkpoint_path": "N/A (eval only)",
+      "wall_clock_seconds": 861.2,
+      "gpu_hours": 0.24
+    },
+    "hypothesis": "验证 8-seed router checkpoints 在独立 split（非训练 split）上的 balanced_acc 是否与 corrected_eval（55.7±5.0%）一致（Δ<2pp），确认 ga=8 训练 split-robust、论文数字可靠。",
+    "notes": "Cross-split NOT robust (Δ=-7.0pp > 2pp threshold). Episode-level split (sklearn seed=42, 10 val episodes, 300 samples, 80%/20% det/int) gives mean=47.1±2.2% vs corrected_eval step-level split 54.1±5.4%. Cross-split std much lower (2.2pp vs 5.4pp) suggesting episode composition dominates variance. Per-seed deltas range from -0.6pp (seed43) to -16.3pp (seed49).",
+    "conclusion": "negative",
+    "completed_at": "2026-05-16T01:19:52.721Z"
+  },
+  "timestamp": "2026-05-16T01:22:00.149964+00:00",
+  "trigger": "update_registry"
+}

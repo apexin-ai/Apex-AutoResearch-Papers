@@ -1,0 +1,99 @@
+paper_key: "tsr-2026"
+title: "TSR: Trajectory-Search Rollouts for Multi-Turn RL of LLM Agents"
+venue: "ICLR 2026"
+full_text_available: true
+
+research:
+  baselines: [Instance-Filtering, Base-Model]
+  metrics:
+    - {name: "success_rate", direction: "higher_better"}
+    - {name: "avg_response_length", direction: "lower_better"}
+    - {name: "avg_interaction_turns", direction: "lower_better"}
+  datasets:
+    - {name: "Sokoban", size: "256 validation prompts"}
+    - {name: "FrozenLake", size: "256 validation prompts"}
+    - {name: "WebShop", size: "256 validation prompts"}
+  ablation_dimensions: [search_strategy, beam_width, branching_factor, compute_budget, distribution_shift_KL]
+  training_recipe:
+    optimizer: "PPO (Sokoban), GRPO (FrozenLake, WebShop)"
+    lr: "not specified"
+    batch_size: "P=16 groups × L=16 rollouts = 256 trajectories/iter"
+    hardware: "not specified"
+    base_models: "Qwen2.5-0.5B, Qwen2.5-3B"
+    max_turn_horizon: 5
+    filtering_ratio: 0.25
+    beam_search: {M: 4, B: 2}
+    lookahead_depth: 2
+  method_family: "search-guided rollout generation for multi-turn RL"
+
+positioning:
+  core_claim: "Restructuring how rollouts are generated via tree-style search at training time improves multi-turn RL performance more effectively than naive compute scaling"
+  key_results: "WebShop: 85.3% vs 70.3% baseline (+15%); FrozenLake 3B: 60.7% vs 48.7% (+12%); with fewer tokens and interaction turns"
+  limitations:
+    - "Performance saturates with excessive search budget"
+    - "Different environments require different scoring functions"
+    - "Large search budgets cause distribution shift degrading performance"
+    - "Modest one-time increase in training compute"
+  relation_to_us: "foundation"
+
+narrative:
+  story_type: "跨界迁移型"
+  hook: "Multi-turn RL suffers from sparse rewards and stochastic environments where naive trajectory sampling hinders exploitation and induces mode collapse (Echo Trap)"
+  tension: "Turn-level credit assignment and rejection sampling help but balancing exploration/exploitation in multi-turn settings remains challenging"
+  key_insight: "Test-time scaling ideas (tree search) can be repurposed at training time to improve rollout quality—a compute-for-quality tradeoff applied to RL training rather than inference"
+  argument_chain: "naive rollout problem → test-time scaling analogy → tree search at training time → per-turn scoring → beam/lookahead/best-of-N strategies → compute-matched comparison proves structural advantage"
+  contribution_framing: "Three contributions: (1) search-guided rollout framework, (2) modular optimizer-agnostic design, (3) empirical validation across deterministic/stochastic/long-horizon tasks"
+  intro_structure: "6 paragraphs: multi-turn RL challenge → naive rollout problems → prior mitigation attempts → research question → test-time scaling analogy → TSR proposal"
+  notable_technique: "Compute-matched baseline comparison (Table 3/4) is a gold-standard way to show that gains come from structural search, not just more compute"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "motivation"
+    description: "Corner Trap in Sokoban: naive rollout pushes box into deadlock, Best-of-4 avoids dead-end"
+    narrative_role: "Concrete visual example of why naive rollouts fail in multi-turn settings"
+    design_elements: ["game board visualization", "two-panel comparison", "step-by-step action trace"]
+    visual_style: "Grid-based game state showing naive vs search-guided trajectories with color-coded moves"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Training curves across 5 env-model combinations"
+      how_gain_highlighted: "TSR variants consistently above baseline with shaded std regions"
+      design_note: "5-panel subplot grid with shaded std across 3 runs—clean and information-dense"
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Exploitation (reward), Exploration (entropy), Stability (grad norm)"
+      how_gain_highlighted: "Three complementary metrics showing TSR improves all dimensions simultaneously"
+      design_note: "Three diagnostic metrics in one figure—goes beyond success rate to explain WHY search works"
+  ablation_figures: []
+  figure_narrative_role: "Figure 1 (motivation via game example) → Figure 2 (method overview) → Figure 3 (training curves) → Figure 4 (diagnostic metrics)"
+
+tables:
+  table_count: 5
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "envs × (success_rate + response_length + interaction_turns)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "success rate on 256 held-out prompts"
+    num_baselines: 2
+    design_note: "Includes efficiency metrics (response length, interaction turns) alongside success rate—multi-dimensional evaluation"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: [beam_width_M, beam_width_B]
+      variation_style: "full_numbers"
+      design_note: "Scaling analysis shows diminishing returns past B=2"
+    - table_id: "Table 5"
+      what_varied: [beam_width_vs_KL_divergence]
+      variation_style: "full_numbers"
+      design_note: "Distribution shift analysis linking beam width to KL and performance—reveals sweet spot"
+    - table_id: "Table 3"
+      what_varied: [compute_budget]
+      variation_style: "full_numbers"
+      design_note: "Compute-matched comparison showing naive scaling plateaus while TSR achieves superior results at 2x compute"
+  supplementary_tables:
+    in_appendix: true
+    content: "Hyperparameter details, additional environment results"
+    reason: "Keep main paper focused on key results and ablations"

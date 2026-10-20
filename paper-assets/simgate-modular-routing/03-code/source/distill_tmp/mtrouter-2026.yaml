@@ -1,0 +1,92 @@
+paper_key: "mtrouter-2026"
+title: "MTRouter: Cost-Aware Multi-Turn LLM Routing with History-Model Joint Embeddings"
+venue: "ACL 2026"
+full_text_available: true
+
+research:
+  baselines: [GPT-5, DeepSeek-V3.2, MiniMax-M2, Kimi-K2, Gemini-2.5-Flash-Lite, GPT-OSS-120B, RouterDC, EmbedLLM, AvengersPro, Random-Router, LLM-Router, Router-R1, OpenRouter]
+  metrics:
+    - {name: "average_score", direction: "higher_better"}
+    - {name: "total_cost", direction: "lower_better"}
+    - {name: "cost_reduction_pct", direction: "higher_better"}
+  datasets:
+    - {name: "ScienceWorld", size: "1291 training instances, 515K turns"}
+    - {name: "Humanity's Last Exam (HLE)", size: "long-context benchmark"}
+  ablation_dimensions: [MLP_vs_ridge, random_router_data, error_penalties, routing_history, model_encoder_type, budget_sensitivity, pool_size]
+  training_recipe:
+    optimizer: "AdamW"
+    lr: "0.001"
+    batch_size: 64
+    epochs: 100
+    early_stopping_patience: 3
+    hardware: "not specified"
+    encoder: "Qwen3-Embedding-0.6B (1024-dim)"
+    data_collection_cost: "$1620"
+  method_family: "learned multi-turn routing"
+
+positioning:
+  core_claim: "Turn-level outcome estimation via joint history-model embeddings enables cost-aware model selection that surpasses single-model frontiers while cutting cost 40-60%"
+  key_results: "ScienceWorld: 53.8 vs GPT-5 48.4 (58.7% cost reduction); HLE: 26.0% vs GPT-5 25.1% (43.4% cost savings)"
+  limitations:
+    - "High cost of collecting diverse long-horizon trajectories"
+    - "Offline learning cannot adapt in real-time"
+    - "Model switching may lose KV cache benefits"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "Multi-turn tasks accumulate massive cost from sequential frontier model invocations—two orders of magnitude more expensive than lightweight alternatives"
+  tension: "Single-turn routing selects one model at episode start, missing heterogeneous per-turn demands; existing multi-turn routers switch too aggressively"
+  key_insight: "Joint history-model embeddings with annealed error cost supervision enable turn-level utility prediction from offline trajectories"
+  argument_chain: "cost problem → single-turn routing insufficient → joint embedding for turn-level prediction → offline trajectory training → emergent specialization + fewer switches"
+  contribution_framing: "Three contributions: (1) history-model joint embeddings for routing, (2) evaluation on ScienceWorld+HLE with cost analysis, (3) behavioral analysis (fewer switches, error tolerance, specialization)"
+  intro_structure: "5 paragraphs: cost motivation → single-turn limitation → multi-turn challenge → MTRouter solution → contribution summary"
+  notable_technique: "Behavioral analysis connecting performance gains to concrete mechanisms (fewer switches, error tolerance, emergent specialization) rather than just ablations"
+
+figures:
+  figure_count: 7
+  figure1:
+    type: "problem_illustration"
+    description: "Compares single-turn (fixed model) vs multi-turn (adaptive switching) routing paradigms"
+    narrative_role: "Establishes the gap between static and dynamic routing approaches"
+    design_elements: ["side-by-side comparison", "cost trajectory visualization", "model switching timeline"]
+    visual_style: "Clean schematic with two-panel layout showing routing decisions over time"
+  result_figures:
+    - figure_id: "Figure 3"
+      viz_type: "line_plot"
+      what_compared: "Cumulative cost vs model switches on successful episodes"
+      how_gain_highlighted: "MTRouter reaches success with fewer switches and lower cost than Router-R1"
+      design_note: "Dual-axis plot combining cost and behavioral metric"
+    - figure_id: "Figure 5"
+      viz_type: "heatmap"
+      what_compared: "Model usage by turn position across benchmarks"
+      how_gain_highlighted: "Shows structured, benchmark-specific patterns rather than uniform switching"
+      design_note: "Turn-by-turn model selection heatmap reveals emergent specialization"
+  ablation_figures:
+    - figure_id: "Figure 7"
+      viz_type: "scatter"
+      dimensions_varied: ["model embeddings"]
+      design_note: "t-SNE visualization of learned model embeddings organized by cost tier"
+  figure_narrative_role: "Figure 1 (problem) → Figure 3 (cost-efficiency) → Figure 4 (error recovery) → Figure 5 (specialization) → Figure 6 (action specialization) → Figure 7 (embedding structure)"
+
+tables:
+  table_count: 4
+  main_result_table:
+    table_id: "Table 3"
+    row_axis: "methods"
+    col_axis: "benchmarks × (score + cost)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "single run scores with cost metrics"
+    num_baselines: 13
+    design_note: "Separates single-model, single-turn routers, and multi-turn routers into clear sections; includes both test and OOD splits"
+  ablation_tables:
+    - table_id: "Table 4"
+      what_varied: [MLP_type, data_sources, error_penalties, routing_history, model_encoder]
+      variation_style: "delta_from_base"
+      design_note: "Systematic ablation showing contribution of each component to final ScienceWorld score"
+  supplementary_tables:
+    in_appendix: false
+    content: "Model pool details (Table 2) with cost ranges"
+    reason: "Contextual information needed to interpret routing decisions"

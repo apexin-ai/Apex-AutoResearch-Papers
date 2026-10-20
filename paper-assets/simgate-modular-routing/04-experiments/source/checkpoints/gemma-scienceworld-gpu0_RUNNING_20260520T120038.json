@@ -1,0 +1,25 @@
+{
+  "exp_id": "gemma-scienceworld-gpu0",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-20T11:59:53.574Z",
+    "updated_at": "2026-05-20T12:00:38.199Z",
+    "hypothesis": "Gemma-2-9B-it on ScienceWorld will replicate the death-avoidance dominance pattern (DAF>80%) observed with Qwen2.5-7B (DAF=90.4%) and Llama-3.1-8B (DAF=88.2%), confirming the diagnostic finding is model-agnostic across 3 model families.",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=0 bash scripts/run_gemma_gpu0_parallel.sh",
+      "server": "westb-13313",
+      "data_path": "ScienceWorld 5 tasks (lifespan-l-then-s, chemistry-mix, inclined-plane, find-animal, find-non-living-thing)",
+      "data_count": 100,
+      "model_name": "gemma-2-9b-it",
+      "seed": 42,
+      "vllm_config": "gpu_memory_utilization=0.80, enforce_eager=True, enable_prefix_caching=False, max_model_len=4096",
+      "note": "Parallel split from gemma-scienceworld-v4. cuda:0 runs 5 tasks while cuda:1 runs 6 tasks. tmux: gemma-gpu0"
+    }
+  },
+  "timestamp": "2026-05-20T12:00:38.536393+00:00",
+  "trigger": "update_registry"
+}

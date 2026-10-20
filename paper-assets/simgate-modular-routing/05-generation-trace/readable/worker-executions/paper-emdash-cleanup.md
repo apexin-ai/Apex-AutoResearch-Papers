@@ -1,0 +1,4999 @@
+# paper emdash cleanup
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 97
+- **Recorded user turns:** 2
+- **Tool calls:** 35
+- **Original source:** `logs/workers/worker_paper_emdash-cleanup_20260521T135011.log`
+- **Structured JSON:** [`0ae1eee393f5a90de59e.json`](../../sessions/0a/0ae1eee393f5a90de59e.json)
+
+## Before a recorded user message
+
+92 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing",
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "710f19c8-24fa-4dde-96ff-f2f18f4f4c4c",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779379200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d6a2cad8-881f-4de2-99b2-47950b507d12",
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by finding all em-dashes (---) in the .tex files.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "49dd3640-b76f-44be-80a8-8556a3e04895",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgWfGtMS4jwbaTJ1gyGqPH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12578,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12578
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 5_
+
+先搜索所有 `---` 出现位置。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "d4832029-4593-43e1-bacb-1c6c3c7e9bc8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgWfGtMS4jwbaTJ1gyGqPH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12578,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12578
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 6_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01HDKraxoRm93Z658ECCiCpv`</summary>
+
+```json
+{
+  "pattern": "---",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "e5d69315-fce4-4958-aa13-ed733f35ec28",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgWfGtMS4jwbaTJ1gyGqPH",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 12578,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12578
+      },
+      "output_tokens": 36,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-21T13:50:25.416Z_
+
+<details><summary>↩ Tool result · `toolu_01HDKraxoRm93Z658ECCiCpv`</summary>
+
+```text
+docs/paper/related_work.tex:15:\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards---the closest setting to ours; they optimize \emph{which} model to invoke, whereas we diagnose \emph{what} drives the routing decision.
+docs/paper/experiments.tex:18:[Omitted long matching line]
+docs/paper/experiments.tex:78:We examine MATH and ALFWorld as boundary probes---not cross-domain validation---testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \S\ref{sec:problem-setup}).
+docs/paper/experiments.tex:82:[Omitted long matching line]
+docs/paper/experiments.tex:107:Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\% of decisions matching always-deterministic---an \emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\% of non-tie oracle decisions (balanced accuracy 50.0\%: perfect deterministic recall, zero internal recall).
+docs/paper/experiments.tex:112:[Omitted long matching line]
+docs/paper/main.tex:43:[Omitted long matching line]
+docs/paper/main.tex:52:Our framework is diagnostic rather than prescriptive: it identifies what drives routing decisions but does not optimize the routing policy itself. Extending the counterfactual decomposition to prescribe optimal mixed-strategy routing---for example, by combining DAF analysis with online policy learning---is a natural next step.
+docs/paper/main.tex:247:Exact permutation ($2{,}048$ perms) & $0.002$ & --- \\
+docs/paper/main.tex:248:Sign test & $< 0.001$ & --- \\
+docs/paper/main.tex:278:(none, full) & 245 & 78.9 & --- \\
+docs/paper/main.tex:426:Always-det & --- & --- & 50.0 \\
+docs/paper/main.tex:598:Qwen2.5-72B & ScienceWorld & 255 & 30.6\% & 2.75\% & +27.8 & 92.4\% & --- & death \\
+docs/paper/main.tex:600:Qwen2.5-7B & ALFWorld & 135 & 0\% & 0\% & 0 & 0\% & --- & info-asym \\
+docs/paper/main.tex:601:Llama-3.1-8B & ALFWorld & 135 & 0\% & 0\% & 0 & 0\% & --- & info-asym \\
+docs/paper/main.tex:777:Notably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\ref{tab:per-task}), indicating that excluded tasks are \emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.
+docs/paper/method.tex:67:DAF (90.4\%) exceeds the label fraction (78.9\%) because death episodes carry disproportionately large score gaps ($P{=}100 \gg$ typical non-death $\Delta{\approx}29$), amplifying their weight in score-weighted aggregation. The label fraction---invariant to penalty magnitude---serves as the primary finding; DAF reflects the score-space reality under ScienceWorld's reward structure.
+docs/paper/method.tex:75:At step level, 97.4\% of oracle comparisons yield ties (\S\ref{sec:collection}); of 2{,}040 training steps, only 0.3\% exhibit strict directional conflict with episode labels, with 60.3\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\S\ref{sec:router-diagnostic}).
+docs/paper/abstract.tex:2:[Omitted long matching line]
+docs/paper/introduction.tex:4:In ScienceWorld \citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while deterministic external computation eliminates such errors via exact state transitions. The practical question: \emph{when should an agent route computation externally versus internally?}
+docs/paper/introduction.tex:6:[Omitted long matching line]
+docs/paper/introduction.tex:15:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "1d71ae7c-abb1-4923-935a-e834adf24f53",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/related_work.tex:15:\\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards---the closest setting to ours; they optimize \\emph{which} model to invoke, whereas we diagnose \\emph{what} drives the routing decision.\ndocs/paper/experiments.tex:18:[Omitted long matching line]\ndocs/paper/experiments.tex:78:We examine MATH and ALFWorld as boundary probes---not cross-domain validation---testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).\ndocs/paper/experiments.tex:82:[Omitted long matching line]\ndocs/paper/experiments.tex:107:Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\ndocs/paper/experiments.tex:112:[Omitted long matching line]\ndocs/paper/main.tex:43:[Omitted long matching line]\ndocs/paper/main.tex:52:Our framework is diagnostic rather than prescriptive: it identifies what drives routing decisions but does not optimize the routing policy itself. Extending the counterfactual decomposition to prescribe optimal mixed-strategy routing---for example, by combining DAF analysis with online policy learning---is a natural next step.\ndocs/paper/main.tex:247:Exact permutation ($2{,}048$ perms) & $0.002$ & --- \\\\\ndocs/paper/main.tex:248:Sign test & $< 0.001$ & --- \\\\\ndocs/paper/main.tex:278:(none, full) & 245 & 78.9 & --- \\\\\ndocs/paper/main.tex:426:Always-det & --- & --- & 50.0 \\\\\ndocs/paper/main.tex:598:Qwen2.5-72B & ScienceWorld & 255 & 30.6\\% & 2.75\\% & +27.8 & 92.4\\% & --- & death \\\\\ndocs/paper/main.tex:600:Qwen2.5-7B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\ndocs/paper/main.tex:601:Llama-3.1-8B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\ndocs/paper/main.tex:777:Notably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\ndocs/paper/method.tex:67:DAF (90.4\\%) exceeds the label fraction (78.9\\%) because death episodes carry disproportionately large score gaps ($P{=}100 \\gg$ typical non-death $\\Delta{\\approx}29$), amplifying their weight in score-weighted aggregation. The label fraction---invariant to penalty magnitude---serves as the primary finding; DAF reflects the score-space reality under ScienceWorld's reward structure.\ndocs/paper/method.tex:75:At step level, 97.4\\% of oracle comparisons yield ties (\\S\\ref{sec:collection}); of 2{,}040 training steps, only 0.3\\% exhibit strict directional conflict with episode labels, with 60.3\\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\\S\\ref{sec:router-diagnostic}).\ndocs/paper/abstract.tex:2:[Omitted long matching line]\ndocs/paper/introduction.tex:4:In ScienceWorld \\citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while deterministic external computation eliminates such errors via exact state transitions. The practical question: \\emph{when should an agent route computation externally versus internally?}\ndocs/paper/introduction.tex:6:[Omitted long matching line]\ndocs/paper/introduction.tex:15:[Omitted long matching line]",
+    "numLines": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01NDe2LW7aZLaBP9NyLV2BJK`</summary>
+
+```json
+{
+  "pattern": "---",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": true,
+  "head_limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "b61c14cd-587f-4b6c-8d46-c3ed39946265",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UFF7WFbNygS8CAwRm1GgqC",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1395,
+      "cache_read_input_tokens": 24419,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1395
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-21T13:50:28.948Z_
+
+<details><summary>↩ Tool result · `toolu_01NDe2LW7aZLaBP9NyLV2BJK`</summary>
+
+```text
+docs/paper/related_work.tex:15:\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards---the closest setting to ours; they optimize \emph{which} model to invoke, whereas we diagnose \emph{what} drives the routing decision.
+docs/paper/experiments.tex:18:[Omitted long matching line]
+docs/paper/experiments.tex:78:We examine MATH and ALFWorld as boundary probes---not cross-domain validation---testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \S\ref{sec:problem-setup}).
+docs/paper/experiments.tex:82:[Omitted long matching line]
+docs/paper/experiments.tex:107:Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\% of decisions matching always-deterministic---an \emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\% of non-tie oracle decisions (balanced accuracy 50.0\%: perfect deterministic recall, zero internal recall).
+docs/paper/experiments.tex:112:[Omitted long matching line]
+docs/paper/main.tex:43:[Omitted long matching line]
+docs/paper/main.tex:52:Our framework is diagnostic rather than prescriptive: it identifies what drives routing decisions but does not optimize the routing policy itself. Extending the counterfactual decomposition to prescribe optimal mixed-strategy routing---for example, by combining DAF analysis with online policy learning---is a natural next step.
+docs/paper/main.tex:247:Exact permutation ($2{,}048$ perms) & $0.002$ & --- \\
+docs/paper/main.tex:248:Sign test & $< 0.001$ & --- \\
+docs/paper/main.tex:278:(none, full) & 245 & 78.9 & --- \\
+docs/paper/main.tex:426:Always-det & --- & --- & 50.0 \\
+docs/paper/main.tex:598:Qwen2.5-72B & ScienceWorld & 255 & 30.6\% & 2.75\% & +27.8 & 92.4\% & --- & death \\
+docs/paper/main.tex:600:Qwen2.5-7B & ALFWorld & 135 & 0\% & 0\% & 0 & 0\% & --- & info-asym \\
+docs/paper/main.tex:601:Llama-3.1-8B & ALFWorld & 135 & 0\% & 0\% & 0 & 0\% & --- & info-asym \\
+docs/paper/main.tex:777:Notably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\ref{tab:per-task}), indicating that excluded tasks are \emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.
+docs/paper/method.tex:67:DAF (90.4\%) exceeds the label fraction (78.9\%) because death episodes carry disproportionately large score gaps ($P{=}100 \gg$ typical non-death $\Delta{\approx}29$), amplifying their weight in score-weighted aggregation. The label fraction---invariant to penalty magnitude---serves as the primary finding; DAF reflects the score-space reality under ScienceWorld's reward structure.
+docs/paper/method.tex:75:At step level, 97.4\% of oracle comparisons yield ties (\S\ref{sec:collection}); of 2{,}040 training steps, only 0.3\% exhibit strict directional conflict with episode labels, with 60.3\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\S\ref{sec:router-diagnostic}).
+docs/paper/abstract.tex:2:[Omitted long matching line]
+docs/paper/introduction.tex:4:In ScienceWorld \citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while deterministic external computation eliminates such errors via exact state transitions. The practical question: \emph{when should an agent route computation externally versus internally?}
+docs/paper/introduction.tex:6:[Omitted long matching line]
+docs/paper/introduction.tex:15:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "e5939b7f-8d7b-46c5-b890-5568ce802ebe",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/related_work.tex:15:\\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards---the closest setting to ours; they optimize \\emph{which} model to invoke, whereas we diagnose \\emph{what} drives the routing decision.\ndocs/paper/experiments.tex:18:[Omitted long matching line]\ndocs/paper/experiments.tex:78:We examine MATH and ALFWorld as boundary probes---not cross-domain validation---testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).\ndocs/paper/experiments.tex:82:[Omitted long matching line]\ndocs/paper/experiments.tex:107:Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\ndocs/paper/experiments.tex:112:[Omitted long matching line]\ndocs/paper/main.tex:43:[Omitted long matching line]\ndocs/paper/main.tex:52:Our framework is diagnostic rather than prescriptive: it identifies what drives routing decisions but does not optimize the routing policy itself. Extending the counterfactual decomposition to prescribe optimal mixed-strategy routing---for example, by combining DAF analysis with online policy learning---is a natural next step.\ndocs/paper/main.tex:247:Exact permutation ($2{,}048$ perms) & $0.002$ & --- \\\\\ndocs/paper/main.tex:248:Sign test & $< 0.001$ & --- \\\\\ndocs/paper/main.tex:278:(none, full) & 245 & 78.9 & --- \\\\\ndocs/paper/main.tex:426:Always-det & --- & --- & 50.0 \\\\\ndocs/paper/main.tex:598:Qwen2.5-72B & ScienceWorld & 255 & 30.6\\% & 2.75\\% & +27.8 & 92.4\\% & --- & death \\\\\ndocs/paper/main.tex:600:Qwen2.5-7B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\ndocs/paper/main.tex:601:Llama-3.1-8B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\ndocs/paper/main.tex:777:Notably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\ndocs/paper/method.tex:67:DAF (90.4\\%) exceeds the label fraction (78.9\\%) because death episodes carry disproportionately large score gaps ($P{=}100 \\gg$ typical non-death $\\Delta{\\approx}29$), amplifying their weight in score-weighted aggregation. The label fraction---invariant to penalty magnitude---serves as the primary finding; DAF reflects the score-space reality under ScienceWorld's reward structure.\ndocs/paper/method.tex:75:At step level, 97.4\\% of oracle comparisons yield ties (\\S\\ref{sec:collection}); of 2{,}040 training steps, only 0.3\\% exhibit strict directional conflict with episode labels, with 60.3\\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\\S\\ref{sec:router-diagnostic}).\ndocs/paper/abstract.tex:2:[Omitted long matching line]\ndocs/paper/introduction.tex:4:In ScienceWorld \\citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while deterministic external computation eliminates such errors via exact state transitions. The practical question: \\emph{when should an agent route computation externally versus internally?}\ndocs/paper/introduction.tex:6:[Omitted long matching line]\ndocs/paper/introduction.tex:15:[Omitted long matching line]",
+    "numLines": 22
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+There are some omitted long matching lines. Let me read the specific lines from each file to see the full context. Let me read the relevant lines from each file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "e34bdecd-259d-4d08-8dcd-6c893c2d3df0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUUcvXFvWkTzAY9sv6EK4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1361
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11_
+
+需要看到被截断的行。让我读取各文件中包含 `---` 的完整上下文。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "33d52fcf-b54a-4bcd-ad29-495804033314",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUUcvXFvWkTzAY9sv6EK4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1361
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018G4DWU1eHk2PALR1PHU3Cp`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": 15,
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "41e2f582-9ba0-4bd2-aaae-4f3cc54fdb97",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUUcvXFvWkTzAY9sv6EK4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1361
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-21T13:50:34.579Z_
+
+<details><summary>↩ Tool result · `toolu_018G4DWU1eHk2PALR1PHU3Cp`</summary>
+
+```text
+15	
+16	Of the 95 non-tie routing labels, 75 (78.9\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these 75, 54 are sole-signal labels (both strategies score zero without death, so death avoidance was the \emph{sole} discriminating signal). At $P{=}0$, the 54 sole-signal labels reduce to ties, leaving 41 non-tie labels of which 21 (51.2\%) still involve death asymmetry; the labeling function itself is penalty-independent (Algorithm~\ref{alg:labeling}), but the practical routing value of death avoidance requires $P > 0$.
+17	
+18	Of 245 episodes, 150 (61.2\%) are ties---neither strategy outperforms the other---indicating that routing is relevant in only 38.8\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\%$ at $P{=}100$ ($\Delta_{\text{full}} = +29.60$, $\Delta_{\text{nd}} = +2.84$; 95\% CI: $[81.1\%, 99.0\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\%$ at $P{=}10$; $82.6\%$ at $P{=}50$; Appendix~\ref{app:penalty}), confirming that the 78.9\% label fraction provides the more robust characterization. When $\Delta_{\text{nd}} \to 0$, DAF $\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\Delta_{\text{nd}} < 0$ (as in Reflexion $N{\geq}3$; \S\ref{sec:agent-improvement}), DAF exceeds 100\%, reflecting that death asymmetry more than accounts for the full gap.
+19	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "932ba0c1-b5de-4e76-806d-79b5fc051cbd",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+      "content": "\nOf the 95 non-tie routing labels, 75 (78.9\\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these 75, 54 are sole-signal labels (both strategies score zero without death, so death avoidance was the \\emph{sole} discriminating signal). At $P{=}0$, the 54 sole-signal labels reduce to ties, leaving 41 non-tie labels of which 21 (51.2\\%) still involve death asymmetry; the labeling function itself is penalty-independent (Algorithm~\\ref{alg:labeling}), but the practical routing value of death avoidance requires $P > 0$.\n\nOf 245 episodes, 150 (61.2\\%) are ties---neither strategy outperforms the other---indicating that routing is relevant in only 38.8\\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\\%$ at $P{=}10$; $82.6\\%$ at $P{=}50$; Appendix~\\ref{app:penalty}), confirming that the 78.9\\% label fraction provides the more robust characterization. When $\\Delta_{\\text{nd}} \\to 0$, DAF $\\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\\Delta_{\\text{nd}} < 0$ (as in Reflexion $N{\\geq}3$; \\S\\ref{sec:agent-improvement}), DAF exceeds 100\\%, reflecting that death asymmetry more than accounts for the full gap.\n",
+      "numLines": 5,
+      "startLine": 15,
+      "totalLines": 117
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017PdbY8WyrmurTB5KjbvaqP`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": 79,
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "de69d163-e613-4a9c-9a13-0678ff9444b4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUUcvXFvWkTzAY9sv6EK4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1361
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-21T13:50:35.306Z_
+
+<details><summary>↩ Tool result · `toolu_017PdbY8WyrmurTB5KjbvaqP`</summary>
+
+```text
+79	
+80	\paragraph{MATH.} On MATH Level~4--5~\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\%$ vs.\ $73.0\%$, McNemar $p = 0.81$), with 84.4\% no-preference. Without catastrophic failure, no routing signal emerges.
+81	
+82	\paragraph{ALFWorld.} ALFWorld~\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\delta = 0$, DAF $= 0\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\%) favor the information-advantaged strategy (Appendix~\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\%). Llama shows fewer non-tie episodes (11.9\% vs.\ 25.9\%) but perfect directional consistency, confirming that information asymmetry---not death avoidance---drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\%$ vs.\ $90.4\%$) without modification.
+83	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "ab30c381-d1d5-4ead-8cbe-97a87f5989ed",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+      "content": "\n\\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.\n\n\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry---not death avoidance---drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.\n",
+      "numLines": 5,
+      "startLine": 79,
+      "totalLines": 117
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01T8gsCgZ9awnqEDULGFobRR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": 109,
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "258a59f0-0328-47ab-a3b9-d6da2bbaabb2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUUcvXFvWkTzAY9sv6EK4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1361
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-21T13:50:35.989Z_
+
+<details><summary>↩ Tool result · `toolu_01T8gsCgZ9awnqEDULGFobRR`</summary>
+
+```text
+109	\subsection{Router Training: A Negative Result}
+110	\label{sec:router-diagnostic}
+111	
+112	We probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\sim}$88\% uninformative signal (60.3\% pre-event neutral, 27.4\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\%--800\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime---though alternative architectures or genuine episode-level scaling remain untested.
+113	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "412ae18f-de22-44e8-a0b3-f95b6f0d6c92",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+      "content": "\\subsection{Router Training: A Negative Result}\n\\label{sec:router-diagnostic}\n\nWe probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime---though alternative architectures or genuine episode-level scaling remain untested.\n",
+      "numLines": 5,
+      "startLine": 109,
+      "totalLines": 117
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JVJKtuxLJVJVjPYNZ5wr74`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "offset": 40,
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "21ce38e7-97d7-4e4e-89c4-857a92476ec4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUUcvXFvWkTzAY9sv6EK4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1361
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-21T13:50:36.737Z_
+
+<details><summary>↩ Tool result · `toolu_01JVJKtuxLJVJVjPYNZ5wr74`</summary>
+
+```text
+40	Our primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\ref{app:penalty}). The 19 excluded task types (63\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\S\ref{sec:cross-env}, \S\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \S\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\times}$ scale) reduces death rate but does not eliminate death dominance (\S\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).
+41	
+42	\paragraph{Methodological constraints.}
+43	Our internal-reasoning baseline uses single-pass ReAct~\citep{react-2023}. Reflexion~\citep{reflexion-2023} reduces death rate from 42.9\% to 31.4\% (\S\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\% pre-event neutral). The issue is granularity mismatch---applying correct-direction labels to uninformative steps---not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.
+44	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "a31875e0-e35d-41ef-84a8-fc4498c464e4",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+      "content": "Our primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\ref{app:penalty}). The 19 excluded task types (63\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\\S\\ref{sec:cross-env}, \\S\\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \\S\\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\\times}$ scale) reduces death rate but does not eliminate death dominance (\\S\\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).\n\n\\paragraph{Methodological constraints.}\nOur internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\\% pre-event neutral). The issue is granularity mismatch---applying correct-direction labels to uninformative steps---not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.\n",
+      "numLines": 5,
+      "startLine": 40,
+      "totalLines": 887
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0112ojvgsVgvRmvfBSaYHyqW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "7c8f0be8-49af-4e96-b8fc-f1e468a383f2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUUcvXFvWkTzAY9sv6EK4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1361
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-21T13:50:37.259Z_
+
+<details><summary>↩ Tool result · `toolu_0112ojvgsVgvRmvfBSaYHyqW`</summary>
+
+```text
+1	\begin{abstract}
+2	LLM agent routing---deciding when to rely on internal reasoning versus external tool use---is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie routing labels arise from death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.
+3	\end{abstract}
+4	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "487680e7-13fb-400b-b43c-2dcba8b56c3f",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nLLM agent routing---deciding when to rely on internal reasoning versus external tool use---is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.\n\\end{abstract}\n",
+      "numLines": 4,
+      "startLine": 1,
+      "totalLines": 4
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TssdBiaLZLwKKXqZL3ecWK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+  "offset": 3,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "7912a624-7ec3-4028-8be0-f892975dc67a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VUUcvXFvWkTzAY9sv6EK4a",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1361,
+      "cache_read_input_tokens": 25814,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1361
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-21T13:50:38.071Z_
+
+<details><summary>↩ Tool result · `toolu_01TssdBiaLZLwKKXqZL3ecWK`</summary>
+
+```text
+3	Large language models deployed as interactive agents must repeatedly decide \emph{how} to compute: reason internally, or delegate to an external tool.
+4	In ScienceWorld \citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while deterministic external computation eliminates such errors via exact state transitions. The practical question: \emph{when should an agent route computation externally versus internally?}
+5	
+6	Existing routing approaches frame this as a capability or efficiency decision: Toolformer \citep{toolformer-2023} inserts API calls by perplexity reduction; ART \citep{art-2023} decomposes tasks into tool-augmented programs; Chameleon \citep{chameleon-2023} selects heterogeneous modules per subtask; adaptive-computation methods route to different reasoning depths \citep{cogrouter-2026,ares-2026}, model tiers \citep{mtrouter-2026}, or episode-level model selection under sparse rewards \citep{budget-aware-routing-2026}; concurrent analyses further presuppose diverse routing signals~\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026}. The shared assumption---that routing signal stems from diverse sources and a learned router can exploit it---remains untested: no prior work has decomposed what drives routing decisions in interactive environments.
+7	
+8	We propose a \emph{diagnostic framework} comprising (i)~episode-level counterfactual labeling under pure strategies (\S\ref{sec:collection}--\ref{sec:labeling}), and (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\S\ref{sec:daf}). Applied to ScienceWorld, \textbf{78.9\% of non-tie routing labels arise from death asymmetry} (75 of 95), a penalty-independent finding. Under ScienceWorld's penalty ($P{=}100$), DAF reaches $90.4\%$ (95\% CI: $[81.1\%, 99.0\%]$). The internal strategy's hallucination-induced failures trigger catastrophic death ($-100$ penalty); once death episodes are removed, the gap collapses to $\Delta_{\text{nd}} = +2.84$ (\S\ref{sec:death-decomp}).
+9	
+10	This addresses a methodological gap: per-step oracle comparison degenerates under sparse rewards (97.4\% tie rate; \S\ref{sec:collection}), and keyword-based heuristics fail structurally (\S\ref{sec:baselines}). Our approach runs complete episodes under pure-internal (ReAct \citep{react-2023}) and pure-deterministic strategies, comparing episode outcomes.
+11	
+12	Cross-context checks probe specificity: MATH Level~4--5 ($N{=}795$, code interpreter) shows no routing signal without catastrophic failure ($73.5\%$ vs.\ $73.0\%$, $p = 0.81$); Llama-3.1-8B replication ($N{=}220$) confirms death dominance across model families (direction consistency 10/10; \S\ref{sec:cross-model}). Four intervention axes (retry, Reflexion~\citep{reflexion-2023}, $10{\times}$ scaling, action-space restriction) reduce death rates but none closes the gap to deterministic safety, with ${\geq}$12~pp residual gaps (\S\ref{sec:agent-improvement}).
+13	An exploratory router (Qwen3 LoRA, 0.6B--4B) yields flat step-level balanced accuracy ($56$--$59\%$); at episode level, only 4B exceeds the always-deterministic baseline (\S\ref{sec:router-diagnostic}).
+14	
+15	Our contributions: (1)~an \textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\ref{app:decision-framework}); (2)~applying this framework to ScienceWorld, we find that \textbf{78.9\% of non-tie routing labels} stem from death asymmetry---a single mechanism that persists across four intervention axes and three model scales, contradicting the routing literature's implicit assumption of diverse signal sources (\S\ref{sec:death-decomp}--\ref{sec:agent-improvement}); (3)~\textbf{cross-model validation} (Llama-3.1-8B, DAF${=}88.2\%$; Gemma-2-9B-it, DAF${=}89.7\%$), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\S\ref{sec:math-contrast}--\ref{sec:cross-model}).
+16	
+17	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "7eb1c7ae-c677-484b-8a67-579236cb607e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+      "content": "Large language models deployed as interactive agents must repeatedly decide \\emph{how} to compute: reason internally, or delegate to an external tool.\nIn ScienceWorld \\citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while deterministic external computation eliminates such errors via exact state transitions. The practical question: \\emph{when should an agent route computation externally versus internally?}\n\nExisting routing approaches frame this as a capability or efficiency decision: Toolformer \\citep{toolformer-2023} inserts API calls by perplexity reduction; ART \\citep{art-2023} decomposes tasks into tool-augmented programs; Chameleon \\citep{chameleon-2023} selects heterogeneous modules per subtask; adaptive-computation methods route to different reasoning depths \\citep{cogrouter-2026,ares-2026}, model tiers \\citep{mtrouter-2026}, or episode-level model selection under sparse rewards \\citep{budget-aware-routing-2026}; concurrent analyses further presuppose diverse routing signals~\\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026}. The shared assumption---that routing signal stems from diverse sources and a learned router can exploit it---remains untested: no prior work has decomposed what drives routing decisions in interactive environments.\n\nWe propose a \\emph{diagnostic framework} comprising (i)~episode-level counterfactual labeling under pure strategies (\\S\\ref{sec:collection}--\\ref{sec:labeling}), and (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\\S\\ref{sec:daf}). Applied to ScienceWorld, \\textbf{78.9\\% of non-tie routing labels arise from death asymmetry} (75 of 95), a penalty-independent finding. Under ScienceWorld's penalty ($P{=}100$), DAF reaches $90.4\\%$ (95\\% CI: $[81.1\\%, 99.0\\%]$). The internal strategy's hallucination-induced failures trigger catastrophic death ($-100$ penalty); once death episodes are removed, the gap collapses to $\\Delta_{\\text{nd}} = +2.84$ (\\S\\ref{sec:death-decomp}).\n\nThis addresses a methodological gap: per-step oracle comparison degenerates under sparse rewards (97.4\\% tie rate; \\S\\ref{sec:collection}), and keyword-based heuristics fail structurally (\\S\\ref{sec:baselines}). Our approach runs complete episodes under pure-internal (ReAct \\citep{react-2023}) and pure-deterministic strategies, comparing episode outcomes.\n\nCross-context checks probe specificity: MATH Level~4--5 ($N{=}795$, code interpreter) shows no routing signal without catastrophic failure ($73.5\\%$ vs.\\ $73.0\\%$, $p = 0.81$); Llama-3.1-8B replication ($N{=}220$) confirms death dominance across model families (direction consistency 10/10; \\S\\ref{sec:cross-model}). Four intervention axes (retry, Reflexion~\\citep{reflexion-2023}, $10{\\times}$ scaling, action-space restriction) reduce death rates but none closes the gap to deterministic safety, with ${\\geq}$12~pp residual gaps (\\S\\ref{sec:agent-improvement}).\nAn exploratory router (Qwen3 LoRA, 0.6B--4B) yields flat step-level balanced accuracy ($56$--$59\\%$); at episode level, only 4B exceeds the always-deterministic baseline (\\S\\ref{sec:router-diagnostic}).\n\nOur contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\\ref{app:decision-framework}); (2)~applying this framework to ScienceWorld, we find that \\textbf{78.9\\% of non-tie routing labels} stem from death asymmetry---a single mechanism that persists across four intervention axes and three model scales, contradicting the routing literature's implicit assumption of diverse signal sources (\\S\\ref{sec:death-decomp}--\\ref{sec:agent-improvement}); (3)~\\textbf{cross-model validation} (Llama-3.1-8B, DAF${=}88.2\\%$; Gemma-2-9B-it, DAF${=}89.7\\%$), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).\n\n",
+      "numLines": 15,
+      "startLine": 3,
+      "totalLines": 18
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me also read the remaining files with omitted lines to get the full picture.
+
+Let me catalog all `---` occurrences:
+
+**Table cells (not em-dashes, just placeholder dashes):**
+- main.tex:247 `--- \\` (table cell)
+- main.tex:248 `--- \\` (table cell)
+- main.tex:278 `--- \\` (table cell)
+- main.tex:426 `--- & --- &` (table cell)
+
+
+- main.tex:598 `--- &` (table cell)
+- main.tex:600 `--- &` (table cell)
+- main.tex:601 `--- &` (table cell)
+
+These are table placeholders meaning "not applicable" — they should NOT be changed.
+
+**Actual em-dashes in prose:**
+
+1. **abstract.tex:2** — `LLM agent routing---deciding when to rely on internal reasoning versus external tool use---is typically addressed` (paired em-dash, explanatory insertion)
+2. **abstract.tex:2** — `death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives` (definition/explanation)
+3. **abstract.tex:2** — `qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating`
+
+Continuing through the document, I'm finding more paired em-dashes used for explanatory insertions and clarifications. In the introduction, there's the assumption about routing signals that remains untested, and the concept of death asymmetry appears again as a defining mechanism. The experiments section shows em-dashes marking boundary probes and distinguishing between information asymmetry and death avoidance as the actual driver of routing behavior.
+
+Further down, I'm noting oracle degeneracy as a definition, then a contrast about learnable signals under current architectures. The main document clarifies that the core issue is granularity mismatch rather than directional error, and suggests extending the counterfactual decomposition with mixed-strategy routing as a natural next step. The final entries indicate that excluded tasks show stronger death-dominance patterns.
+
+So across all seventeen instances, I'm seeing em-dashes used for clarifications, definitions, examples, and contrasts. The goal is to pare this down to just three to five, which means I need to identify which em-dashes are truly essential and which ones can be restructured or removed entirely.
+
+Looking at the paired em-dashes specifically, I can replace most of them with parentheses or commas depending on the emphasis level I want. The single em-dashes used for definitions or examples are trickier—some could become colons or semicolons, while others might work better as separate sentences.
+
+Let me prioritize which ones to keep: the em-dashes that create the most important conceptual breaks or that would lose clarity if converted. The rest I'll systematically convert to alternatives. Looking at the remaining em-dashes, I need to evaluate which ones genuinely enhance readability versus which could work just as well with simpler punctuation. Most of these are functioning as appositive phrases or clarifications that could easily become commas or parentheses. I'm thinking I should keep only the strongest cases—maybe 3 or 4 total—where the em-dash really adds emphasis or creates a natural pause that other punctuation wouldn't capture as effectively. The paired em-dashes are particularly worth reconsidering since they often just create unnecessary complexity in already dense academic prose. I'm narrowing down to three em-dash pairs that feel most essential. The opening definition in abstract.tex is a keeper, and the crucial counterpoint about the untested assumption in introduction.tex:6 really drives home the paper's central argument. The boundary probes correction in experiments.tex:78 also works well with em-dashes since it's a natural parenthetical that clarifies what's actually being tested. I need to spread these em-dashes across different files rather than clustering them in the introduction. Let me finalize my selection: one from the introduction for the key rhetorical setup, one from experiments introducing the technical term, one from methods for an important clarification, and one from the main text for dramatic contrast. That gives me good distribution across the document.
+
+Now I'm planning the actual replacements—converting em-dashes to parentheses or colons depending on the context and how the sentence flows. For instance, in the abstract I'm switching the routing definition from em-dashes to parentheses, and the death asymmetry phrase from em-dashes to a colon. I'm working through each file systematically to ensure the replacements maintain readability while removing the em-dash repetition. I'm working through which em-dashes to keep versus replace with other punctuation. I've decided to preserve the ones that serve a strong rhetorical purpose—like the paired dashes in introduction.tex:6 for emphasis, the one introducing a coined term in experiments.tex:107, and the contrasting pair in main.tex:777. For the rest, I'm systematically converting them to commas, parentheses, or colons depending on what reads most naturally. Starting with abstract.tex:2, I'm testing different options to see which punctuation choice flows best without losing clarity. I'm working through em-dash replacements in the LaTeX document, converting paired em-dashes to commas or parentheses depending on context. For cases with nested parentheses already present, commas provide the cleanest solution without disrupting readability. I'll continue systematically through the remaining instances, checking each one to ensure the punctuation change preserves the original meaning and sentence flow. Finishing the replacement for method.tex:67, then I'm verifying my count of em-dash occurrences across all the files. I've identified 4 instances to keep as paired em-dashes and 13 replacements to make, converting em-dashes to commas throughout the document set. Now I'm tallying up the raw occurrences by file to make sure my accounting is correct. Continuing through experiments.tex, I'm finding 8 occurrences with just one to keep. Then moving into main.tex where there are 5 instances across different lines, keeping only the one on line 777. Finally, method.tex has 4 occurrences, and I'm marking two of those as keepers.
+
+In related_work.tex there's just a single instance that doesn't make the cut. So across all these files I'm tracking 28 total em-dashes in prose, but the constraint is to preserve only 3-5 usages. Looking at what I'm keeping, I need to think about this as paired em-dashes counting as one usage each—so the introduction, experiments, method, and main files give me 4 distinct usages with 6 total tokens, which fits within the limit.
+
+Now I'm noticing the tables also contain em-dashes as "not applicable" placeholders, which are separate from the prose ones and shouldn't be modified. That brings the total count to 36 across all files, but the 28 in prose is what I'm actually working with for the replacement task.
+
+Time to start making the edits systematically, going file by file. I'll need to pull the complete text for abstract.tex line 2 since it was truncated in my earlier review.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "bd8767fa-efb8-41e5-ab9f-290c0ccc173b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JKQujaJbqrq6jpSNCumG7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 27175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4565
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+Let me read the full abstract to see the omitted line.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "6d2b978c-ed83-4813-b9e5-244b56d261b9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JKQujaJbqrq6jpSNCumG7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 27175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4565
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0191rozR31dQ9oWH2z3uQKVD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "fcc90ec2-d7b9-4db9-a3e1-84a4863871d8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JKQujaJbqrq6jpSNCumG7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 27175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4565
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-21T13:51:58.933Z_
+
+<details><summary>↩ Tool result · `toolu_0191rozR31dQ9oWH2z3uQKVD`</summary>
+
+```text
+1	\begin{abstract}
+2	LLM agent routing---deciding when to rely on internal reasoning versus external tool use---is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\% of non-tie routing labels arise from death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.
+3	\end{abstract}
+4	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "d460c4cb-d8a3-4861-92d2-abaff2284e1b",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nLLM agent routing---deciding when to rely on internal reasoning versus external tool use---is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.\n\\end{abstract}\n",
+      "numLines": 4,
+      "startLine": 1,
+      "totalLines": 4
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28_
+
+<details open><summary>🔧 Tool call — Read · `toolu_011tWWWTRwrhfHJWpNcZP8Rh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex",
+  "offset": 64,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "16f8ef12-f553-49a7-993b-4533955ea530",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JKQujaJbqrq6jpSNCumG7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 27175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4565
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-21T13:51:59.420Z_
+
+<details><summary>↩ Tool result · `toolu_011tWWWTRwrhfHJWpNcZP8Rh`</summary>
+
+```text
+64	Since DAF $= \delta P / (\delta P + \Delta_{\text{nd}})$, it increases monotonically with $P$, a mathematical consequence rather than an empirical finding. We therefore report both DAF at the environment default ($P{=}100$) and the penalty-independent death-asymmetry label fraction as complementary metrics. In ScienceWorld, $P$ affects only post-hoc score calculation; the agent's policy (ReAct prompting) does not include $P$ in its observation, so death rates and $\Delta_{\text{nd}}$ are $P$-invariant by design~\citep{ng1999policy} (Appendix~\ref{app:penalty}).
+65	
+66	\paragraph{Relationship between DAF and label fraction.}
+67	DAF (90.4\%) exceeds the label fraction (78.9\%) because death episodes carry disproportionately large score gaps ($P{=}100 \gg$ typical non-death $\Delta{\approx}29$), amplifying their weight in score-weighted aggregation. The label fraction---invariant to penalty magnitude---serves as the primary finding; DAF reflects the score-space reality under ScienceWorld's reward structure.
+68	
+69	\paragraph{Statistical inference.}
+70	We quantify uncertainty via episode-level bootstrap resampling ($B = 10{,}000$). Each resample draws $N = 245$ episodes with replacement, recomputes all metrics, and derives percentile-based 95\% CIs. We resample at the episode level (not the step level) because the episode is the unit of counterfactual comparison. Penalty sensitivity analysis across hypothetical $P$ values is in Appendix~\ref{app:penalty}.
+71	
+72	We also measure whether death-avoidance signal is concentrated in a few task types via a Signal Concentration Index (SCI $\in [0, 1]$; Appendix~\ref{app:sci}), reported in \S\ref{sec:death-decomp}.
+73	
+74	\paragraph{Scope of episode-level analysis.}
+75	At step level, 97.4\% of oracle comparisons yield ties (\S\ref{sec:collection}); of 2{,}040 training steps, only 0.3\% exhibit strict directional conflict with episode labels, with 60.3\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\S\ref{sec:router-diagnostic}).
+76	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "352221e1-e247-4faf-bbee-a6581721f7da",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex",
+      "content": "Since DAF $= \\delta P / (\\delta P + \\Delta_{\\text{nd}})$, it increases monotonically with $P$, a mathematical consequence rather than an empirical finding. We therefore report both DAF at the environment default ($P{=}100$) and the penalty-independent death-asymmetry label fraction as complementary metrics. In ScienceWorld, $P$ affects only post-hoc score calculation; the agent's policy (ReAct prompting) does not include $P$ in its observation, so death rates and $\\Delta_{\\text{nd}}$ are $P$-invariant by design~\\citep{ng1999policy} (Appendix~\\ref{app:penalty}).\n\n\\paragraph{Relationship between DAF and label fraction.}\nDAF (90.4\\%) exceeds the label fraction (78.9\\%) because death episodes carry disproportionately large score gaps ($P{=}100 \\gg$ typical non-death $\\Delta{\\approx}29$), amplifying their weight in score-weighted aggregation. The label fraction---invariant to penalty magnitude---serves as the primary finding; DAF reflects the score-space reality under ScienceWorld's reward structure.\n\n\\paragraph{Statistical inference.}\nWe quantify uncertainty via episode-level bootstrap resampling ($B = 10{,}000$). Each resample draws $N = 245$ episodes with replacement, recomputes all metrics, and derives percentile-based 95\\% CIs. We resample at the episode level (not the step level) because the episode is the unit of counterfactual comparison. Penalty sensitivity analysis across hypothetical $P$ values is in Appendix~\\ref{app:penalty}.\n\nWe also measure whether death-avoidance signal is concentrated in a few task types via a Signal Concentration Index (SCI $\\in [0, 1]$; Appendix~\\ref{app:sci}), reported in \\S\\ref{sec:death-decomp}.\n\n\\paragraph{Scope of episode-level analysis.}\nAt step level, 97.4\\% of oracle comparisons yield ties (\\S\\ref{sec:collection}); of 2{,}040 training steps, only 0.3\\% exhibit strict directional conflict with episode labels, with 60.3\\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\\S\\ref{sec:router-diagnostic}).\n",
+      "numLines": 13,
+      "startLine": 64,
+      "totalLines": 76
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NA8uaFzEUZPGtE3Vh3jC8b`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "offset": 774,
+  "limit": 6
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "1a63a82a-58cd-40c5-b3ca-f2fb82eda161",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JKQujaJbqrq6jpSNCumG7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 27175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4565
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-21T13:52:00.340Z_
+
+<details><summary>↩ Tool result · `toolu_01NA8uaFzEUZPGtE3Vh3jC8b`</summary>
+
+```text
+774	\label{tab:extended-val}
+775	\end{table}
+776	
+777	Notably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\ref{tab:per-task}), indicating that excluded tasks are \emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.
+778	
+779	\section{Agent Prompt Templates}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "41295d72-1e3a-49ba-921f-481204840380",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+      "content": "\\label{tab:extended-val}\n\\end{table}\n\nNotably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\n\n\\section{Agent Prompt Templates}",
+      "numLines": 6,
+      "startLine": 774,
+      "totalLines": 887
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01LRFQ4gZP61B979Gi483vsD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+  "offset": 13,
+  "limit": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "f5b3764b-5f4a-4c7b-9e1f-5d4dec2ce8a8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013JKQujaJbqrq6jpSNCumG7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4565,
+      "cache_read_input_tokens": 27175,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 4565
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-21T13:52:01.186Z_
+
+<details><summary>↩ Tool result · `toolu_01LRFQ4gZP61B979Gi483vsD`</summary>
+
+```text
+13	Adaptive routing traces back to learned halting policies \citep{graves2016act}. In the LLM era, CogRouter \citep{cogrouter-2026} adapts reasoning depth per step, ARES \citep{ares-2026} selects among reasoning effort levels, Mixture-of-Recursions \citep{mixture-of-recursions-2025} learns token-level recursion depths, and MTRouter \citep{mtrouter-2026} addresses multi-turn routing.
+14	RouteLLM \citep{routellm-2024} learns routers from preference data to select between strong and weak models.
+15	\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards---the closest setting to ours; they optimize \emph{which} model to invoke, whereas we diagnose \emph{what} drives the routing decision.
+16	
+17	\paragraph{Counterfactual Evaluation in RL.}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "8663fc83-dc4e-4959-bba8-4aa1b1ebdeab",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+      "content": "Adaptive routing traces back to learned halting policies \\citep{graves2016act}. In the LLM era, CogRouter \\citep{cogrouter-2026} adapts reasoning depth per step, ARES \\citep{ares-2026} selects among reasoning effort levels, Mixture-of-Recursions \\citep{mixture-of-recursions-2025} learns token-level recursion depths, and MTRouter \\citep{mtrouter-2026} addresses multi-turn routing.\nRouteLLM \\citep{routellm-2024} learns routers from preference data to select between strong and weak models.\n\\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards---the closest setting to ours; they optimize \\emph{which} model to invoke, whereas we diagnose \\emph{what} drives the routing decision.\n\n\\paragraph{Counterfactual Evaluation in RL.}",
+      "numLines": 5,
+      "startLine": 13,
+      "totalLines": 25
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the context I need. Let me plan my edits carefully.
+
+I'll catalog all 28 prose em-dashes across 17 locations (some paired). I'll keep 4 usages (6 tokens) and replace the rest.
+
+**KEEP:**
+1. introduction.tex:6 — `assumption---that routing signal stems from diverse sources and a learned router can exploit it---remains` (paired)
+2. experiments.tex:107 — `always-deterministic---an \emph{oracle degeneracy}` (single)
+
+
+3. method.tex:75 — `steps---a granularity mismatch, not label error---explaining` (paired)
+4. main.tex:777 — `tasks---the opposite of a cherry-picking bias` (single)
+
+**REPLACE (13 locations):**
+
+1. abstract.tex:2 — `routing---deciding when to rely on internal reasoning versus external tool use---is` → `routing (deciding when to rely on internal reasoning versus external tool use) is`
+
+2. abstract.tex:2 — `death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives` → `death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives`
+
+3. abstract.tex:2 — `mechanisms---no extractable signal and information asymmetry, respectively---demonstrating` → `mechanisms (no extractable signal and information asymmetry, respectively), demonstrating`
+
+4. introduction.tex:4 — `error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while` → `error-prone, as the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated), while`
+
+5. introduction.tex:15 — `death asymmetry---a single mechanism` → `death asymmetry, a single mechanism`
+
+6. experiments.tex:18 — `ties---neither strategy outperforms the other---indicating` → `ties (neither strategy outperforms the other), indicating`
+
+7. experiments.tex:78 — `probes---not cross-domain validation---testing` → `probes (not cross-domain validation), testing`
+
+8. experiments.tex:82 — continuing with more punctuation replacements...
+
+9. experiments.tex:112 — `regime---though` → `regime, though`
+
+10. main.tex:43 — `mismatch---applying correct-direction labels to uninformative steps---not` → `mismatch (applying correct-direction labels to uninformative steps), not`
+
+11. main.tex:52 — reconsidering the parenthetical example approach for the routing edit...
+
+12. method.tex:67 — `fraction---invariant to penalty magnitude---serves` → `fraction, invariant to penalty magnitude, serves`
+
+13. related_work.tex:15 — `rewards---the closest setting to ours;` → `rewards, the closest setting to ours;`
+
+Now applying all the edits systematically through the document.
+
+For abstract.tex, I need to handle the three replacements on line 2 sequentially since they're all on the same line. Each substring is unique enough in context that I can target them individually without ambiguity. Starting with the routing edit, then the death asymmetry one, then the mechanisms edit.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "0f1da95e-e361-4e3e-a830-fbfe61be2c61",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScqoczBYCxo6Mt6Km1SRtB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6898,
+      "cache_read_input_tokens": 31740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 35_
+
+I've cataloged all em-dashes. 28 prose `---` tokens across 17 locations, plus 8 table placeholders (leave those). Plan: keep 4 usages (6 tokens), replace 13 locations (22 tokens).
+
+Starting edits now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "8ba8cbfa-4b75-4db4-9d76-7c9343e86bc5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScqoczBYCxo6Mt6Km1SRtB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6898,
+      "cache_read_input_tokens": 31740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01T85T1K5E8rxCobTyzzurqD`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+  "old_string": "routing---deciding when to rely on internal reasoning versus external tool use---is",
+  "new_string": "routing (deciding when to rely on internal reasoning versus external tool use) is"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "01390266-d3e8-4134-975a-5275419ba394",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ScqoczBYCxo6Mt6Km1SRtB",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6898,
+      "cache_read_input_tokens": 31740,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 6898
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-21T13:52:24.216Z_
+
+<details><summary>↩ Tool result · `toolu_01T85T1K5E8rxCobTyzzurqD`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "7a46945d-de9a-49f1-83a1-86e66e617764",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+    "oldString": "routing---deciding when to rely on internal reasoning versus external tool use---is",
+    "newString": "routing (deciding when to rely on internal reasoning versus external tool use) is",
+    "originalFile": "\\begin{abstract}\nLLM agent routing---deciding when to rely on internal reasoning versus external tool use---is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.\n\\end{abstract}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 3,
+        "newStart": 1,
+        "newLines": 3,
+        "lines": [
+          " \\begin{abstract}",
+          "-LLM agent routing---deciding when to rely on internal reasoning versus external tool use---is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.",
+          "+LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.",
+          " \\end{abstract}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01NSpRSJoSiqKKqukribKVqY`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+  "old_string": "death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives",
+  "new_string": "death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "445dcc14-0659-4832-b4ab-b99ff23b8cde",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BKRTZ2QXVtaUZ5N2zzd787",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1376,
+      "cache_read_input_tokens": 38638,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1376
+      },
+      "output_tokens": 67,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-21T13:52:27.410Z_
+
+<details><summary>↩ Tool result · `toolu_01NSpRSJoSiqKKqukribKVqY`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "bdf85fb2-c77b-4389-b501-ad335be61fd9",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+    "oldString": "death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives",
+    "newString": "death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives",
+    "originalFile": "\\begin{abstract}\nLLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.\n\\end{abstract}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 3,
+        "newStart": 1,
+        "newLines": 3,
+        "lines": [
+          " \\begin{abstract}",
+          "-LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.",
+          "+LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.",
+          " \\end{abstract}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01XsH9V7jD5BPZXyT7MuN7Sj`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+  "old_string": "mechanisms---no extractable signal and information asymmetry, respectively---demonstrating",
+  "new_string": "mechanisms (no extractable signal and information asymmetry, respectively), demonstrating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "7e234088-56fd-483f-8ea8-2cc375e0469c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LjbiNQetETq7GKSPUnyjyd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 237,
+      "cache_read_input_tokens": 40014,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 237
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-21T13:52:30.772Z_
+
+<details><summary>↩ Tool result · `toolu_01XsH9V7jD5BPZXyT7MuN7Sj`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "e6d45faf-3abd-4283-8e71-0b28a2fefdda",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/abstract.tex",
+    "oldString": "mechanisms---no extractable signal and information asymmetry, respectively---demonstrating",
+    "newString": "mechanisms (no extractable signal and information asymmetry, respectively), demonstrating",
+    "originalFile": "\\begin{abstract}\nLLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.\n\\end{abstract}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 3,
+        "newStart": 1,
+        "newLines": 3,
+        "lines": [
+          " \\begin{abstract}",
+          "-LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms---no extractable signal and information asymmetry, respectively---demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.",
+          "+LLM agent routing (deciding when to rely on internal reasoning versus external tool use) is typically addressed by training routers directly, without first understanding what mechanistic signal drives the routing preference. This absence of diagnostic methods risks building routers atop confounded or trivial signal. We propose an episode-level counterfactual framework that compares pure-strategy outcomes (internal-only vs.\\ deterministic-only) to decompose routing signal into its mechanistic components before any router is constructed. Applying this framework to ScienceWorld (11 task types, 245 episodes), we find that 78.9\\% of non-tie routing labels arise from death asymmetry: the internal strategy triggers catastrophic failure while the deterministic strategy survives. This finding is penalty-independent: a derived score-weighted measure, the Death Avoidance Factor, reaches 88--90\\% across three model families (Qwen2.5-7B, Llama-3.1-8B, Gemma-2-9B), confirming convergence on a single dominant mechanism. Cross-environment probes on MATH and ALFWorld diagnose qualitatively different routing mechanisms (no extractable signal and information asymmetry, respectively), demonstrating the framework's generality. A ${\\sim}$50-episode diagnostic pilot suffices to identify the dominant routing mechanism in a new environment, enabling informed build-vs-buy decisions before expensive router training.",
+          " \\end{abstract}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Gg8UPDG9SLTUtXjFqksVfw`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+  "old_string": "error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while",
+  "new_string": "error-prone, as the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated), while"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "82a5c417-84c5-48f9-b3bd-df28603e7f29",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WUcD7CC6a4saBfjSVj13jf",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 231,
+      "cache_read_input_tokens": 40251,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 231
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-21T13:52:34.412Z_
+
+<details><summary>↩ Tool result · `toolu_01Gg8UPDG9SLTUtXjFqksVfw`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "48b32889-1fc9-4494-9c3b-558a3becc210",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+    "oldString": "error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while",
+    "newString": "error-prone, as the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated), while",
+    "originalFile": "\\section{Introduction}\n\nLarge language models deployed as interactive agents must repeatedly decide \\emph{how} to compute: reason internally, or delegate to an external tool.\nIn ScienceWorld \\citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while deterministic external computation eliminates such errors via exact state transitions. The practical question: \\emph{when should an agent route computation externally versus internally?}\n\nExisting routing approaches frame this as a capability or efficiency decision: Toolformer \\citep{toolformer-2023} inserts API calls by perplexity reduction; ART \\citep{art-2023} decomposes tasks into tool-augmented programs; Chameleon \\citep{chameleon-2023} selects heterogeneous modules per subtask; adaptive-computation methods route to different reasoning depths \\citep{cogrouter-2026,ares-2026}, model tiers \\citep{mtrouter-2026}, or episode-level model selection under sparse rewards \\citep{budget-aware-routing-2026}; concurrent analyses further presuppose diverse routing signals~\\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026}. The shared assumption---that routing signal stems from diverse sources and a learned router can exploit it---remains untested: no prior work has decomposed what drives routing decisions in interactive environments.\n\nWe propose a \\emph{diagnostic framework} comprising (i)~episode-level counterfactual labeling under pure strategies (\\S\\ref{sec:collection}--\\ref{sec:labeling}), and (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\\S\\ref{sec:daf}). Applied to ScienceWorld, \\textbf{78.9\\% of non-tie routing labels arise from death asymmetry} (75 of 95), a penalty-independent finding. Under ScienceWorld's penalty ($P{=}100$), DAF reaches $90.4\\%$ (95\\% CI: $[81.1\\%, 99.0\\%]$). The internal strategy's hallucination-induced failures trigger catastrophic death ($-100$ penalty); once death episodes are removed, the gap collapses to $\\Delta_{\\text{nd}} = +2.84$ (\\S\\ref{sec:death-decomp}).\n\nThis addresses a methodological gap: per-step oracle comparison degenerates under sparse rewards (97.4\\% tie rate; \\S\\ref{sec:collection}), and keyword-based heuristics fail structurally (\\S\\ref{sec:baselines}). Our approach runs complete episodes under pure-internal (ReAct \\citep{react-2023}) and pure-deterministic strategies, comparing episode outcomes.\n\nCross-context checks probe specificity: MATH Level~4--5 ($N{=}795$, code interpreter) shows no routing signal without catastrophic failure ($73.5\\%$ vs.\\ $73.0\\%$, $p = 0.81$); Llama-3.1-8B replication ($N{=}220$) confirms death dominance across model families (direction consistency 10/10; \\S\\ref{sec:cross-model}). Four intervention axes (retry, Reflexion~\\citep{reflexion-2023}, $10{\\times}$ scaling, action-space restriction) reduce death rates but none closes the gap to deterministic safety, with ${\\geq}$12~pp residual gaps (\\S\\ref{sec:agent-improvement}).\nAn exploratory router (Qwen3 LoRA, 0.6B--4B) yields flat step-level balanced accuracy ($56$--$59\\%$); at episode level, only 4B exceeds the always-deterministic baseline (\\S\\ref{sec:router-diagnostic}).\n\nOur contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\\ref{app:decision-framework}); (2)~applying this framework to ScienceWorld, we find that \\textbf{78.9\\% of non-tie routing labels} stem from death asymmetry---a single mechanism that persists across four intervention axes and three model scales, contradicting the routing literature's implicit assumption of diverse signal sources (\\S\\ref{sec:death-decomp}--\\ref{sec:agent-improvement}); (3)~\\textbf{cross-model validation} (Llama-3.1-8B, DAF${=}88.2\\%$; Gemma-2-9B-it, DAF${=}89.7\\%$), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).\n\n\n",
+    "structuredPatch": [
+      {
+        "oldStart": 1,
+        "oldLines": 7,
+        "newStart": 1,
+        "newLines": 7,
+        "lines": [
+          " \\section{Introduction}",
+          " ",
+          " Large language models deployed as interactive agents must repeatedly decide \\emph{how} to compute: reason internally, or delegate to an external tool.",
+          "-In ScienceWorld \\citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone---the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated)---while deterministic external computation eliminates such errors via exact state transitions. The practical question: \\emph{when should an agent route computation externally versus internally?}",
+          "+In ScienceWorld \\citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone, as the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated), while deterministic external computation eliminates such errors via exact state transitions. The practical question: \\emph{when should an agent route computation externally versus internally?}",
+          " ",
+          " Existing routing approaches frame this as a capability or efficiency decision: Toolformer \\citep{toolformer-2023} inserts API calls by perplexity reduction; ART \\citep{art-2023} decomposes tasks into tool-augmented programs; Chameleon \\citep{chameleon-2023} selects heterogeneous modules per subtask; adaptive-computation methods route to different reasoning depths \\citep{cogrouter-2026,ares-2026}, model tiers \\citep{mtrouter-2026}, or episode-level model selection under sparse rewards \\citep{budget-aware-routing-2026}; concurrent analyses further presuppose diverse routing signals~\\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026}. The shared assumption---that routing signal stems from diverse sources and a learned router can exploit it---remains untested: no prior work has decomposed what drives routing decisions in interactive environments.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01BLfnrkXS4JWKXU3Zbkgx6a`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+  "old_string": "death asymmetry---a single mechanism that persists",
+  "new_string": "death asymmetry, a single mechanism that persists"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "2517d2fd-463a-46fc-91d8-fdeb81fa34fb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013pCJUSAuAnu4VmNA2YAAF4",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 367,
+      "cache_read_input_tokens": 40482,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 367
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-21T13:52:37.677Z_
+
+<details><summary>↩ Tool result · `toolu_01BLfnrkXS4JWKXU3Zbkgx6a`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "339ab900-b589-48dc-92e6-1820504f078d",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/introduction.tex",
+    "oldString": "death asymmetry---a single mechanism that persists",
+    "newString": "death asymmetry, a single mechanism that persists",
+    "originalFile": "\\section{Introduction}\n\nLarge language models deployed as interactive agents must repeatedly decide \\emph{how} to compute: reason internally, or delegate to an external tool.\nIn ScienceWorld \\citep{scienceworld-2022}, a text-based science simulation, internal reasoning is error-prone, as the model may hallucinate state changes (e.g., that water has boiled when the stove was never activated), while deterministic external computation eliminates such errors via exact state transitions. The practical question: \\emph{when should an agent route computation externally versus internally?}\n\nExisting routing approaches frame this as a capability or efficiency decision: Toolformer \\citep{toolformer-2023} inserts API calls by perplexity reduction; ART \\citep{art-2023} decomposes tasks into tool-augmented programs; Chameleon \\citep{chameleon-2023} selects heterogeneous modules per subtask; adaptive-computation methods route to different reasoning depths \\citep{cogrouter-2026,ares-2026}, model tiers \\citep{mtrouter-2026}, or episode-level model selection under sparse rewards \\citep{budget-aware-routing-2026}; concurrent analyses further presuppose diverse routing signals~\\citep{when2tool-2026,tool-use-tax-2026,to-call-or-not-2026}. The shared assumption---that routing signal stems from diverse sources and a learned router can exploit it---remains untested: no prior work has decomposed what drives routing decisions in interactive environments.\n\nWe propose a \\emph{diagnostic framework} comprising (i)~episode-level counterfactual labeling under pure strategies (\\S\\ref{sec:collection}--\\ref{sec:labeling}), and (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\\S\\ref{sec:daf}). Applied to ScienceWorld, \\textbf{78.9\\% of non-tie routing labels arise from death asymmetry} (75 of 95), a penalty-independent finding. Under ScienceWorld's penalty ($P{=}100$), DAF reaches $90.4\\%$ (95\\% CI: $[81.1\\%, 99.0\\%]$). The internal strategy's hallucination-induced failures trigger catastrophic death ($-100$ penalty); once death episodes are removed, the gap collapses to $\\Delta_{\\text{nd}} = +2.84$ (\\S\\ref{sec:death-decomp}).\n\nThis addresses a methodological gap: per-step oracle comparison degenerates under sparse rewards (97.4\\% tie rate; \\S\\ref{sec:collection}), and keyword-based heuristics fail structurally (\\S\\ref{sec:baselines}). Our approach runs complete episodes under pure-internal (ReAct \\citep{react-2023}) and pure-deterministic strategies, comparing episode outcomes.\n\nCross-context checks probe specificity: MATH Level~4--5 ($N{=}795$, code interpreter) shows no routing signal without catastrophic failure ($73.5\\%$ vs.\\ $73.0\\%$, $p = 0.81$); Llama-3.1-8B replication ($N{=}220$) confirms death dominance across model families (direction consistency 10/10; \\S\\ref{sec:cross-model}). Four intervention axes (retry, Reflexion~\\citep{reflexion-2023}, $10{\\times}$ scaling, action-space restriction) reduce death rates but none closes the gap to deterministic safety, with ${\\geq}$12~pp residual gaps (\\S\\ref{sec:agent-improvement}).\nAn exploratory router (Qwen3 LoRA, 0.6B--4B) yields flat step-level balanced accuracy ($56$--$59\\%$); at episode level, only 4B exceeds the always-deterministic baseline (\\S\\ref{sec:router-diagnostic}).\n\nOur contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\\ref{app:decision-framework}); (2)~applying this framework to ScienceWorld, we find that \\textbf{78.9\\% of non-tie routing labels} stem from death asymmetry---a single mechanism that persists across four intervention axes and three model scales, contradicting the routing literature's implicit assumption of diverse signal sources (\\S\\ref{sec:death-decomp}--\\ref{sec:agent-improvement}); (3)~\\textbf{cross-model validation} (Llama-3.1-8B, DAF${=}88.2\\%$; Gemma-2-9B-it, DAF${=}89.7\\%$), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).\n\n\n",
+    "structuredPatch": [
+      {
+        "oldStart": 12,
+        "oldLines": 6,
+        "newStart": 12,
+        "newLines": 6,
+        "lines": [
+          " Cross-context checks probe specificity: MATH Level~4--5 ($N{=}795$, code interpreter) shows no routing signal without catastrophic failure ($73.5\\%$ vs.\\ $73.0\\%$, $p = 0.81$); Llama-3.1-8B replication ($N{=}220$) confirms death dominance across model families (direction consistency 10/10; \\S\\ref{sec:cross-model}). Four intervention axes (retry, Reflexion~\\citep{reflexion-2023}, $10{\\times}$ scaling, action-space restriction) reduce death rates but none closes the gap to deterministic safety, with ${\\geq}$12~pp residual gaps (\\S\\ref{sec:agent-improvement}).",
+          " An exploratory router (Qwen3 LoRA, 0.6B--4B) yields flat step-level balanced accuracy ($56$--$59\\%$); at episode level, only 4B exceeds the always-deterministic baseline (\\S\\ref{sec:router-diagnostic}).",
+          " ",
+          "-Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\\ref{app:decision-framework}); (2)~applying this framework to ScienceWorld, we find that \\textbf{78.9\\% of non-tie routing labels} stem from death asymmetry---a single mechanism that persists across four intervention axes and three model scales, contradicting the routing literature's implicit assumption of diverse signal sources (\\S\\ref{sec:death-decomp}--\\ref{sec:agent-improvement}); (3)~\\textbf{cross-model validation} (Llama-3.1-8B, DAF${=}88.2\\%$; Gemma-2-9B-it, DAF${=}89.7\\%$), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).",
+          "+Our contributions: (1)~an \\textbf{episode-level counterfactual diagnostic framework} that overcomes per-step oracle degeneracy (97.4\\% tie rate), decomposes routing signal via penalty-independent (label fraction) and penalty-dependent (DAF) metrics, and predicts routing value from a ${\\sim}$50-episode pilot (validated 4/4 conditions; Appendix~\\ref{app:decision-framework}); (2)~applying this framework to ScienceWorld, we find that \\textbf{78.9\\% of non-tie routing labels} stem from death asymmetry, a single mechanism that persists across four intervention axes and three model scales, contradicting the routing literature's implicit assumption of diverse signal sources (\\S\\ref{sec:death-decomp}--\\ref{sec:agent-improvement}); (3)~\\textbf{cross-model validation} (Llama-3.1-8B, DAF${=}88.2\\%$; Gemma-2-9B-it, DAF${=}89.7\\%$), four intervention axes, and cross-environment boundary probes (MATH, ALFWorld) confirm the framework's diagnostic utility and the robustness of the finding (\\S\\ref{sec:math-contrast}--\\ref{sec:cross-model}).",
+          " ",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01ESMFtfXY7kNqHV7UvzNAQD`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "ties---neither strategy outperforms the other---indicating",
+  "new_string": "ties (neither strategy outperforms the other), indicating"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "f7541057-89d3-4f6d-aa4d-61f63b69aab7",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcxGbzTaNHvz6D8z2edf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 40849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 221
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-21T13:52:41.070Z_
+
+<details><summary>↩ Tool result · `toolu_01ESMFtfXY7kNqHV7UvzNAQD`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "0b08a9bd-2c07-4133-9d33-869351e48c33",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "oldString": "ties---neither strategy outperforms the other---indicating",
+    "newString": "ties (neither strategy outperforms the other), indicating",
+    "originalFile": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types (63\\%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). This scope limits generalizability: conclusions apply to the included subset, not to all ScienceWorld tasks. An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\\Delta\\text{DR} = +38.2$\\,pp exceeding the included tasks' $+28.7$\\,pp (Appendix~\\ref{app:per-task}). Extended validation at $n{=}20$ on five representative excluded tasks confirms this direction ($\\overline{\\Delta\\text{DR}} = +32.0$\\,pp; Appendix~\\ref{app:extended-validation}). A reasoning-depth ablation ($n{=}120$) found no significant difference between internal strategy variants ($p > 0.26$; Appendix~\\ref{app:ablations}).\n\n\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$ (Spearman's $\\rho = 0.986$; Appendix~\\ref{app:per-task}), $p < 10^{-6}$, $n = 11$ task types. Since $\\Delta_{\\text{full}} \\approx \\delta P + \\Delta_{\\text{nd}}$ with $P$ constant, $r \\to 1$ as DAF $\\to 1$; the near-perfect correlation is a structural consequence of death dominance, not an independent finding (\\S\\ref{sec:death-decomp}).}\n\\label{fig:decomposition}\n\\end{figure}\n\nOf the 95 non-tie routing labels, 75 (78.9\\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these 75, 54 are sole-signal labels (both strategies score zero without death, so death avoidance was the \\emph{sole} discriminating signal). At $P{=}0$, the 54 sole-signal labels reduce to ties, leaving 41 non-tie labels of which 21 (51.2\\%) still involve death asymmetry; the labeling function itself is penalty-independent (Algorithm~\\ref{alg:labeling}), but the practical routing value of death avoidance requires $P > 0$.\n\nOf 245 episodes, 150 (61.2\\%) are ties---neither strategy outperforms the other---indicating that routing is relevant in only 38.8\\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\\%$ at $P{=}10$; $82.6\\%$ at $P{=}50$; Appendix~\\ref{app:penalty}), confirming that the 78.9\\% label fraction provides the more robust characterization. When $\\Delta_{\\text{nd}} \\to 0$, DAF $\\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\\Delta_{\\text{nd}} < 0$ (as in Reflexion $N{\\geq}3$; \\S\\ref{sec:agent-improvement}), DAF exceeds 100\\%, reflecting that death asymmetry more than accounts for the full gap.\n\n\\paragraph{Per-task correlation structure.}\nThe internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic (2.6$\\times$), consistent with the internal strategy's reliance on self-generated observations that compound prediction errors across steps. Per-task, death rate differential correlates with $\\Delta_{\\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\\ref{fig:decomposition}; Appendix~\\ref{app:correlation}). Since $P$ is constant across all task types, $\\Delta_{\\text{full}} = P \\cdot \\delta + \\Delta_{\\text{nd}}$ makes $\\Delta_{\\text{full}}$ a linear function of $\\delta$ with residual $\\Delta_{\\text{nd}}$; when DAF $\\rightarrow 1$, this residual vanishes and $r \\rightarrow 1$ by construction. The near-perfect correlation is therefore a mathematical consequence of death dominance, not an independent empirical finding. We retain it as an internal consistency check. The correlation drops below significance at $P \\leq 25$ (Appendix~\\ref{app:penalty}). Of 245 episodes, 86 are \\texttt{det\\_preferred}, 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}.\n\n\\paragraph{Signal concentration and binary structure.}\nThe Signal Concentration Index (SCI $= 0.2147$; Appendix~\\ref{app:sci}) confirms low concentration: the top-3 task types account for only $39.8\\%$ of total death-rate differential. The aggregate 78.9\\% reflects a per-task binary structure: all 10 death-prone task types produce 100\\% death-asymmetry labels, while \\texttt{find-non-living-thing} (zero deaths, $\\Delta = +9.58$ from non-death scores) produces 0\\%. The framework thus diagnoses a binary property (``is this environment death-dominated?'') rather than a continuous routing signal. Removing \\texttt{find-non-living-thing} raises the label fraction to 100\\% and yields DAF $\\geq$100\\% ($\\Delta_\\text{nd} \\leq 0$; death avoidance fully accounts for the routing gap among remaining task types; Appendix~\\ref{app:loto-daf}).\n\n\\paragraph{Sensitivity and seed robustness.}\nNon-clustered episode-level bootstrap ($B = 10{,}000$) yields 95\\% CI $[81.1\\%, 99.0\\%]$ for DAF, independent of cluster assumptions, with Cohen's $d = 3.02$ (interpret cautiously given $K{=}11$ task types). Leave-one-task-out analysis confirms stability (label fraction range: 75.9\\%--78.9\\%; Appendix~\\ref{app:loto-daf}); an independent seed replication ($N{=}220$) yields DAF $= 89.7\\%$, within 0.7~pp (Appendix~\\ref{app:seed-robustness}). As a conservative check, wild cluster bootstrap treating each task type as a cluster yields $p = 0.002$; however, with $K{=}11$ clusters this test falls below the $K{\\geq}20$--$40$ threshold recommended for reliable inference~\\citep{cameron-2008,webb-2023}, so we rely on the non-clustered bootstrap as primary. All 28 death-prone tasks share the same direction (Appendices~\\ref{app:wild-cluster}--\\ref{app:per-task-ci}).\n\n\\subsection{Multi-Model Validation}\n\\label{sec:cross-model}\n\nA Llama-3.1-8B-Instruct~\\citep{llama3-2024} cross-model replication across all 11 task types ($N{=}220$) confirms that death dominance replicates across model families: internal death rate $41.4\\%$ vs.\\ deterministic $11.4\\%$ (death-rate differential $+30.0$~pp), DAF $= 88.2\\%$ (95\\% CI: $[80.2\\%, 95.1\\%]$; $\\Delta_{\\text{full}} = +33.17$, $\\Delta_{\\text{nd}} = +3.9$), with direction consistency 10/10 on death-prone tasks, 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated; the differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution (Appendix~\\ref{app:per-task}). Cross-model routing transfer is vacuously correct: Llama produces zero internal-preferred episodes, so Qwen-derived routing rules (always-deterministic) trivially match, confirming that routing signal is environment-determined rather than model-specific.\nA third model family, Gemma-2-9B-it~\\citep{gemma2-2024} (sliding window attention, vs.\\ full attention in Qwen/Llama), independently confirms the pattern: DAF${=}89.7\\%$ (95\\% CI $[79.5\\%, 98.4\\%]$; $N{=}220$), with all 10 death-prone task types showing positive $\\Delta$DR (Appendix~\\ref{app:cross-model}). Three architecturally distinct models thus converge on DAF $88$--$90\\%$ (spread 2.2~pp); $10{\\times}$ scaling to 72B (\\S\\ref{sec:agent-improvement}) confirms persistence across capability levels.\n\n\\subsection{Agent Improvement Baselines}\n\\label{sec:agent-improvement}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lrr@{}}\n\\toprule\nCondition & Death\\% & $N$ \\\\\n\\midrule\nSingle-trial baseline & 42.9 & 245 \\\\\nReflexion ($3{\\times}$) & 31.4 & 220 \\\\\nQwen2.5-72B ($10{\\times}$) & 30.6 & 255 \\\\\nDeterministic baseline & 16.3 & 245 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{\\textit{10 death-prone tasks only:}} \\\\\nDeath-prone baseline & 48.0 & 200 \\\\\nRetry ($5{\\times}$) & 43.5 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Internal-strategy death rates under agent improvement methods. Top: all 11 tasks (72B: independently collected at both internal and deterministic). Bottom: 10 death-prone tasks (\\texttt{find-non-living-thing} excluded, 0\\% death at all scales). All interventions reduce death rate but none approaches deterministic-level safety.}\n\\label{tab:agent-improvement}\n\\end{table}\n\nWe test whether agent-level improvement reduces death dominance (Table~\\ref{tab:agent-improvement}). Retry ($N{=}5$ attempts without self-correction) yields marginal reduction on death-prone tasks ($43.5\\%$ vs.\\ $48.0\\%$ baseline, $\\Delta = -4.5$~pp). Reflexion~\\citep{reflexion-2023} (verbal self-reflection between trials) reduces death to 31.4\\% across all 11 tasks by rescuing 29.3\\% of first-trial deaths, but the gap to deterministic remains 15.1~pp; on the 10 death-prone tasks, Reflexion achieves ${\\sim}$35\\%. Under Reflexion ($N{=}3$, matched-episode analysis), $\\Delta_{\\text{nd}} = -0.47$, yielding DAF $> 100\\%$: the deterministic advantage is entirely attributable to death avoidance, and in non-death episodes the self-correcting agent slightly outperforms the deterministic baseline. Scaling to Qwen2.5-72B ($10{\\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types) reduces death rate to $30.6\\%$. The 72B deterministic strategy achieves $2.75\\%$ death rate ($\\Delta\\text{DR} = +27.8$~pp), and $\\Delta_{\\text{nd}} = +2.28$, yielding DAF $= 92.4\\%$ (7B: $90.4\\%$); scaling lowers death rate but leaves death dominance intact.\n\n\\paragraph{Dose-response analysis.}\nWe extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$, $\\Delta = -4.5$~pp over five trials). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $z = 2.75$, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$). With $n{=}200$ paired episodes, the minimum detectable effect is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power): the key $N{=}1{\\to}3$ decline is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected. We characterize this as suggestive evidence of a Reflexion ceiling rather than a conclusive demonstration. Retry's per-trial conditional death rate stays constant at ${\\sim}48\\%$; Reflexion's declines to ${\\sim}31\\%$ by Trial~3 (per-task breakdown in Appendix~\\ref{app:dose-response}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/dose_response.pdf}\n\\caption{Death rate as a function of trial count ($N$) for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Retry (blue) is nearly flat; Reflexion (red) drops steeply through $N{=}3$ then shows no statistically detectable improvement beyond $N{=}3$ (Wilson CIs for $N{=}3,4,5$ overlap substantially). Horizontal lines: 72B scaling baseline ($30.6\\%$, all 11 tasks) and deterministic baseline ($16.3\\%$). Error bands: Wilson 95\\% CIs.}\n\\label{fig:dose-response}\n\\end{figure}\n\n\\subsection{Cross-Environment Boundary Probes}\n\\label{sec:math-contrast}\n\\label{sec:cross-env}\n\nWe examine MATH and ALFWorld as boundary probes---not cross-domain validation---testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).\n\n\\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.\n\n\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry---not death avoidance---drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\\\\nRandom & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\\\\nOracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\\\\n\\midrule\nTrained Router$^\\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 20--40 episodes per type, 245 total). $\\dagger$\\,Single random seed (42) per episode pair; see Appendix~\\ref{app:seed-robustness} for 8-seed robustness analysis. Per-task results are exploratory ($n{=}20$ episodes per task, power $\\approx 50\\%$ for 20\\,pp effects); aggregate conclusions do not depend on individual task significance.}\n\\label{tab:baselines}\n\\end{table}\n\nAlways-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\n\n\\subsection{Router Training: A Negative Result}\n\\label{sec:router-diagnostic}\n\nWe probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime---though alternative architectures or genuine episode-level scaling remain untested.\n\nAn implicit router (Qwen3, LoRA; Appendix~\\ref{app:router-details}) trained at three scales (0.6B, 1.7B, 4B) shows flat step-level balanced accuracy ($56$--$59\\%$). At episode level, only 4B exceeds always-deterministic ($59.0 \\pm 1.9\\%$, $p < 0.001$, Bonferroni-corrected across 8 comparisons); 0.6B and 1.7B remain at chance. The 4B model's marginally above-chance episode-level accuracy is consistent with task-type identification rather than step-level routing signal, as confirmed by leave-one-task-type-out analysis degrading to chance (49.2\\%; Appendix~\\ref{app:ablations}). Episode-level independent evaluation yields $47.1 \\pm 2.2\\%$, below the majority-vote baseline of 50.0\\%; this independent set includes held-out task types, so the below-chance result reflects cross-task transfer failure rather than overall router incompetence. Training uses episode-level splits (Appendix~\\ref{app:router-details}), ensuring no within-episode leakage. The high uninformative rate connects to noisy-label learning~\\citep{natarajan2013learning,northcutt2021confident,li2020dividemix}: standard ERM on labels with ${\\sim}$88\\% noise yields near-chance classifiers, consistent with theoretical bounds on learning from corrupted labels and empirical results in structured noise settings.\n\n\\paragraph{End-to-end deployment.} The 4B router deployed end-to-end ($N{=}245$) scores $-12.03$ (95\\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$). Paraphrase-based augmentation ($25\\%$--$800\\%$) provides no improvement; the $3.7\\%$ internal-preferred base rate makes real-data collection expensive (Appendices~\\ref{app:seed-robustness}--\\ref{app:ablations}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 15,
+        "oldLines": 7,
+        "newStart": 15,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " Of the 95 non-tie routing labels, 75 (78.9\\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these 75, 54 are sole-signal labels (both strategies score zero without death, so death avoidance was the \\emph{sole} discriminating signal). At $P{=}0$, the 54 sole-signal labels reduce to ties, leaving 41 non-tie labels of which 21 (51.2\\%) still involve death asymmetry; the labeling function itself is penalty-independent (Algorithm~\\ref{alg:labeling}), but the practical routing value of death avoidance requires $P > 0$.",
+          " ",
+          "-Of 245 episodes, 150 (61.2\\%) are ties---neither strategy outperforms the other---indicating that routing is relevant in only 38.8\\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\\%$ at $P{=}10$; $82.6\\%$ at $P{=}50$; Appendix~\\ref{app:penalty}), confirming that the 78.9\\% label fraction provides the more robust characterization. When $\\Delta_{\\text{nd}} \\to 0$, DAF $\\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\\Delta_{\\text{nd}} < 0$ (as in Reflexion $N{\\geq}3$; \\S\\ref{sec:agent-improvement}), DAF exceeds 100\\%, reflecting that death asymmetry more than accounts for the full gap.",
+          "+Of 245 episodes, 150 (61.2\\%) are ties (neither strategy outperforms the other), indicating that routing is relevant in only 38.8\\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\\%$ at $P{=}10$; $82.6\\%$ at $P{=}50$; Appendix~\\ref{app:penalty}), confirming that the 78.9\\% label fraction provides the more robust characterization. When $\\Delta_{\\text{nd}} \\to 0$, DAF $\\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\\Delta_{\\text{nd}} < 0$ (as in Reflexion $N{\\geq}3$; \\S\\ref{sec:agent-improvement}), DAF exceeds 100\\%, reflecting that death asymmetry more than accounts for the full gap.",
+          " ",
+          " \\paragraph{Per-task correlation structure.}",
+          " The internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic (2.6$\\times$), consistent with the internal strategy's reliance on self-generated observations that compound prediction errors across steps. Per-task, death rate differential correlates with $\\Delta_{\\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\\ref{fig:decomposition}; Appendix~\\ref{app:correlation}). Since $P$ is constant across all task types, $\\Delta_{\\text{full}} = P \\cdot \\delta + \\Delta_{\\text{nd}}$ makes $\\Delta_{\\text{full}}$ a linear function of $\\delta$ with residual $\\Delta_{\\text{nd}}$; when DAF $\\rightarrow 1$, this residual vanishes and $r \\rightarrow 1$ by construction. The near-perfect correlation is therefore a mathematical consequence of death dominance, not an independent empirical finding. We retain it as an internal consistency check. The correlation drops below significance at $P \\leq 25$ (Appendix~\\ref{app:penalty}). Of 245 episodes, 86 are \\texttt{det\\_preferred}, 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01FWevqqHoAvyfLJcubLjTRX`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "probes---not cross-domain validation---testing",
+  "new_string": "probes (not cross-domain validation), testing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "b3d700b4-f479-4ba8-99c0-10887e6e6574",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcxGbzTaNHvz6D8z2edf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 40849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 221
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-21T13:52:42.021Z_
+
+<details><summary>↩ Tool result · `toolu_01FWevqqHoAvyfLJcubLjTRX`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "7318e12b-bf9b-4594-ba07-ca557e59050e",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "oldString": "probes---not cross-domain validation---testing",
+    "newString": "probes (not cross-domain validation), testing",
+    "originalFile": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types (63\\%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). This scope limits generalizability: conclusions apply to the included subset, not to all ScienceWorld tasks. An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\\Delta\\text{DR} = +38.2$\\,pp exceeding the included tasks' $+28.7$\\,pp (Appendix~\\ref{app:per-task}). Extended validation at $n{=}20$ on five representative excluded tasks confirms this direction ($\\overline{\\Delta\\text{DR}} = +32.0$\\,pp; Appendix~\\ref{app:extended-validation}). A reasoning-depth ablation ($n{=}120$) found no significant difference between internal strategy variants ($p > 0.26$; Appendix~\\ref{app:ablations}).\n\n\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$ (Spearman's $\\rho = 0.986$; Appendix~\\ref{app:per-task}), $p < 10^{-6}$, $n = 11$ task types. Since $\\Delta_{\\text{full}} \\approx \\delta P + \\Delta_{\\text{nd}}$ with $P$ constant, $r \\to 1$ as DAF $\\to 1$; the near-perfect correlation is a structural consequence of death dominance, not an independent finding (\\S\\ref{sec:death-decomp}).}\n\\label{fig:decomposition}\n\\end{figure}\n\nOf the 95 non-tie routing labels, 75 (78.9\\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these 75, 54 are sole-signal labels (both strategies score zero without death, so death avoidance was the \\emph{sole} discriminating signal). At $P{=}0$, the 54 sole-signal labels reduce to ties, leaving 41 non-tie labels of which 21 (51.2\\%) still involve death asymmetry; the labeling function itself is penalty-independent (Algorithm~\\ref{alg:labeling}), but the practical routing value of death avoidance requires $P > 0$.\n\nOf 245 episodes, 150 (61.2\\%) are ties (neither strategy outperforms the other), indicating that routing is relevant in only 38.8\\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\\%$ at $P{=}10$; $82.6\\%$ at $P{=}50$; Appendix~\\ref{app:penalty}), confirming that the 78.9\\% label fraction provides the more robust characterization. When $\\Delta_{\\text{nd}} \\to 0$, DAF $\\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\\Delta_{\\text{nd}} < 0$ (as in Reflexion $N{\\geq}3$; \\S\\ref{sec:agent-improvement}), DAF exceeds 100\\%, reflecting that death asymmetry more than accounts for the full gap.\n\n\\paragraph{Per-task correlation structure.}\nThe internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic (2.6$\\times$), consistent with the internal strategy's reliance on self-generated observations that compound prediction errors across steps. Per-task, death rate differential correlates with $\\Delta_{\\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\\ref{fig:decomposition}; Appendix~\\ref{app:correlation}). Since $P$ is constant across all task types, $\\Delta_{\\text{full}} = P \\cdot \\delta + \\Delta_{\\text{nd}}$ makes $\\Delta_{\\text{full}}$ a linear function of $\\delta$ with residual $\\Delta_{\\text{nd}}$; when DAF $\\rightarrow 1$, this residual vanishes and $r \\rightarrow 1$ by construction. The near-perfect correlation is therefore a mathematical consequence of death dominance, not an independent empirical finding. We retain it as an internal consistency check. The correlation drops below significance at $P \\leq 25$ (Appendix~\\ref{app:penalty}). Of 245 episodes, 86 are \\texttt{det\\_preferred}, 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}.\n\n\\paragraph{Signal concentration and binary structure.}\nThe Signal Concentration Index (SCI $= 0.2147$; Appendix~\\ref{app:sci}) confirms low concentration: the top-3 task types account for only $39.8\\%$ of total death-rate differential. The aggregate 78.9\\% reflects a per-task binary structure: all 10 death-prone task types produce 100\\% death-asymmetry labels, while \\texttt{find-non-living-thing} (zero deaths, $\\Delta = +9.58$ from non-death scores) produces 0\\%. The framework thus diagnoses a binary property (``is this environment death-dominated?'') rather than a continuous routing signal. Removing \\texttt{find-non-living-thing} raises the label fraction to 100\\% and yields DAF $\\geq$100\\% ($\\Delta_\\text{nd} \\leq 0$; death avoidance fully accounts for the routing gap among remaining task types; Appendix~\\ref{app:loto-daf}).\n\n\\paragraph{Sensitivity and seed robustness.}\nNon-clustered episode-level bootstrap ($B = 10{,}000$) yields 95\\% CI $[81.1\\%, 99.0\\%]$ for DAF, independent of cluster assumptions, with Cohen's $d = 3.02$ (interpret cautiously given $K{=}11$ task types). Leave-one-task-out analysis confirms stability (label fraction range: 75.9\\%--78.9\\%; Appendix~\\ref{app:loto-daf}); an independent seed replication ($N{=}220$) yields DAF $= 89.7\\%$, within 0.7~pp (Appendix~\\ref{app:seed-robustness}). As a conservative check, wild cluster bootstrap treating each task type as a cluster yields $p = 0.002$; however, with $K{=}11$ clusters this test falls below the $K{\\geq}20$--$40$ threshold recommended for reliable inference~\\citep{cameron-2008,webb-2023}, so we rely on the non-clustered bootstrap as primary. All 28 death-prone tasks share the same direction (Appendices~\\ref{app:wild-cluster}--\\ref{app:per-task-ci}).\n\n\\subsection{Multi-Model Validation}\n\\label{sec:cross-model}\n\nA Llama-3.1-8B-Instruct~\\citep{llama3-2024} cross-model replication across all 11 task types ($N{=}220$) confirms that death dominance replicates across model families: internal death rate $41.4\\%$ vs.\\ deterministic $11.4\\%$ (death-rate differential $+30.0$~pp), DAF $= 88.2\\%$ (95\\% CI: $[80.2\\%, 95.1\\%]$; $\\Delta_{\\text{full}} = +33.17$, $\\Delta_{\\text{nd}} = +3.9$), with direction consistency 10/10 on death-prone tasks, 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated; the differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution (Appendix~\\ref{app:per-task}). Cross-model routing transfer is vacuously correct: Llama produces zero internal-preferred episodes, so Qwen-derived routing rules (always-deterministic) trivially match, confirming that routing signal is environment-determined rather than model-specific.\nA third model family, Gemma-2-9B-it~\\citep{gemma2-2024} (sliding window attention, vs.\\ full attention in Qwen/Llama), independently confirms the pattern: DAF${=}89.7\\%$ (95\\% CI $[79.5\\%, 98.4\\%]$; $N{=}220$), with all 10 death-prone task types showing positive $\\Delta$DR (Appendix~\\ref{app:cross-model}). Three architecturally distinct models thus converge on DAF $88$--$90\\%$ (spread 2.2~pp); $10{\\times}$ scaling to 72B (\\S\\ref{sec:agent-improvement}) confirms persistence across capability levels.\n\n\\subsection{Agent Improvement Baselines}\n\\label{sec:agent-improvement}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lrr@{}}\n\\toprule\nCondition & Death\\% & $N$ \\\\\n\\midrule\nSingle-trial baseline & 42.9 & 245 \\\\\nReflexion ($3{\\times}$) & 31.4 & 220 \\\\\nQwen2.5-72B ($10{\\times}$) & 30.6 & 255 \\\\\nDeterministic baseline & 16.3 & 245 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{\\textit{10 death-prone tasks only:}} \\\\\nDeath-prone baseline & 48.0 & 200 \\\\\nRetry ($5{\\times}$) & 43.5 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Internal-strategy death rates under agent improvement methods. Top: all 11 tasks (72B: independently collected at both internal and deterministic). Bottom: 10 death-prone tasks (\\texttt{find-non-living-thing} excluded, 0\\% death at all scales). All interventions reduce death rate but none approaches deterministic-level safety.}\n\\label{tab:agent-improvement}\n\\end{table}\n\nWe test whether agent-level improvement reduces death dominance (Table~\\ref{tab:agent-improvement}). Retry ($N{=}5$ attempts without self-correction) yields marginal reduction on death-prone tasks ($43.5\\%$ vs.\\ $48.0\\%$ baseline, $\\Delta = -4.5$~pp). Reflexion~\\citep{reflexion-2023} (verbal self-reflection between trials) reduces death to 31.4\\% across all 11 tasks by rescuing 29.3\\% of first-trial deaths, but the gap to deterministic remains 15.1~pp; on the 10 death-prone tasks, Reflexion achieves ${\\sim}$35\\%. Under Reflexion ($N{=}3$, matched-episode analysis), $\\Delta_{\\text{nd}} = -0.47$, yielding DAF $> 100\\%$: the deterministic advantage is entirely attributable to death avoidance, and in non-death episodes the self-correcting agent slightly outperforms the deterministic baseline. Scaling to Qwen2.5-72B ($10{\\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types) reduces death rate to $30.6\\%$. The 72B deterministic strategy achieves $2.75\\%$ death rate ($\\Delta\\text{DR} = +27.8$~pp), and $\\Delta_{\\text{nd}} = +2.28$, yielding DAF $= 92.4\\%$ (7B: $90.4\\%$); scaling lowers death rate but leaves death dominance intact.\n\n\\paragraph{Dose-response analysis.}\nWe extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$, $\\Delta = -4.5$~pp over five trials). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $z = 2.75$, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$). With $n{=}200$ paired episodes, the minimum detectable effect is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power): the key $N{=}1{\\to}3$ decline is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected. We characterize this as suggestive evidence of a Reflexion ceiling rather than a conclusive demonstration. Retry's per-trial conditional death rate stays constant at ${\\sim}48\\%$; Reflexion's declines to ${\\sim}31\\%$ by Trial~3 (per-task breakdown in Appendix~\\ref{app:dose-response}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/dose_response.pdf}\n\\caption{Death rate as a function of trial count ($N$) for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Retry (blue) is nearly flat; Reflexion (red) drops steeply through $N{=}3$ then shows no statistically detectable improvement beyond $N{=}3$ (Wilson CIs for $N{=}3,4,5$ overlap substantially). Horizontal lines: 72B scaling baseline ($30.6\\%$, all 11 tasks) and deterministic baseline ($16.3\\%$). Error bands: Wilson 95\\% CIs.}\n\\label{fig:dose-response}\n\\end{figure}\n\n\\subsection{Cross-Environment Boundary Probes}\n\\label{sec:math-contrast}\n\\label{sec:cross-env}\n\nWe examine MATH and ALFWorld as boundary probes---not cross-domain validation---testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).\n\n\\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.\n\n\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry---not death avoidance---drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\\\\nRandom & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\\\\nOracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\\\\n\\midrule\nTrained Router$^\\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 20--40 episodes per type, 245 total). $\\dagger$\\,Single random seed (42) per episode pair; see Appendix~\\ref{app:seed-robustness} for 8-seed robustness analysis. Per-task results are exploratory ($n{=}20$ episodes per task, power $\\approx 50\\%$ for 20\\,pp effects); aggregate conclusions do not depend on individual task significance.}\n\\label{tab:baselines}\n\\end{table}\n\nAlways-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\n\n\\subsection{Router Training: A Negative Result}\n\\label{sec:router-diagnostic}\n\nWe probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime---though alternative architectures or genuine episode-level scaling remain untested.\n\nAn implicit router (Qwen3, LoRA; Appendix~\\ref{app:router-details}) trained at three scales (0.6B, 1.7B, 4B) shows flat step-level balanced accuracy ($56$--$59\\%$). At episode level, only 4B exceeds always-deterministic ($59.0 \\pm 1.9\\%$, $p < 0.001$, Bonferroni-corrected across 8 comparisons); 0.6B and 1.7B remain at chance. The 4B model's marginally above-chance episode-level accuracy is consistent with task-type identification rather than step-level routing signal, as confirmed by leave-one-task-type-out analysis degrading to chance (49.2\\%; Appendix~\\ref{app:ablations}). Episode-level independent evaluation yields $47.1 \\pm 2.2\\%$, below the majority-vote baseline of 50.0\\%; this independent set includes held-out task types, so the below-chance result reflects cross-task transfer failure rather than overall router incompetence. Training uses episode-level splits (Appendix~\\ref{app:router-details}), ensuring no within-episode leakage. The high uninformative rate connects to noisy-label learning~\\citep{natarajan2013learning,northcutt2021confident,li2020dividemix}: standard ERM on labels with ${\\sim}$88\\% noise yields near-chance classifiers, consistent with theoretical bounds on learning from corrupted labels and empirical results in structured noise settings.\n\n\\paragraph{End-to-end deployment.} The 4B router deployed end-to-end ($N{=}245$) scores $-12.03$ (95\\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$). Paraphrase-based augmentation ($25\\%$--$800\\%$) provides no improvement; the $3.7\\%$ internal-preferred base rate makes real-data collection expensive (Appendices~\\ref{app:seed-robustness}--\\ref{app:ablations}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 75,
+        "oldLines": 7,
+        "newStart": 75,
+        "newLines": 7,
+        "lines": [
+          " \\label{sec:math-contrast}",
+          " \\label{sec:cross-env}",
+          " ",
+          "-We examine MATH and ALFWorld as boundary probes---not cross-domain validation---testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).",
+          "+We examine MATH and ALFWorld as boundary probes (not cross-domain validation), testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).",
+          " ",
+          " \\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01STezQzgsWTy4D1xZyx3qxp`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "asymmetry---not death avoidance---drives",
+  "new_string": "asymmetry, not death avoidance, drives"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "c1e48434-7329-4225-b12b-3276c3bc9d18",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcxGbzTaNHvz6D8z2edf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 40849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 221
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-21T13:52:43.424Z_
+
+<details><summary>↩ Tool result · `toolu_01STezQzgsWTy4D1xZyx3qxp`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "695c5357-d4e9-4770-a034-837bc281f511",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "oldString": "asymmetry---not death avoidance---drives",
+    "newString": "asymmetry, not death avoidance, drives",
+    "originalFile": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types (63\\%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). This scope limits generalizability: conclusions apply to the included subset, not to all ScienceWorld tasks. An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\\Delta\\text{DR} = +38.2$\\,pp exceeding the included tasks' $+28.7$\\,pp (Appendix~\\ref{app:per-task}). Extended validation at $n{=}20$ on five representative excluded tasks confirms this direction ($\\overline{\\Delta\\text{DR}} = +32.0$\\,pp; Appendix~\\ref{app:extended-validation}). A reasoning-depth ablation ($n{=}120$) found no significant difference between internal strategy variants ($p > 0.26$; Appendix~\\ref{app:ablations}).\n\n\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$ (Spearman's $\\rho = 0.986$; Appendix~\\ref{app:per-task}), $p < 10^{-6}$, $n = 11$ task types. Since $\\Delta_{\\text{full}} \\approx \\delta P + \\Delta_{\\text{nd}}$ with $P$ constant, $r \\to 1$ as DAF $\\to 1$; the near-perfect correlation is a structural consequence of death dominance, not an independent finding (\\S\\ref{sec:death-decomp}).}\n\\label{fig:decomposition}\n\\end{figure}\n\nOf the 95 non-tie routing labels, 75 (78.9\\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these 75, 54 are sole-signal labels (both strategies score zero without death, so death avoidance was the \\emph{sole} discriminating signal). At $P{=}0$, the 54 sole-signal labels reduce to ties, leaving 41 non-tie labels of which 21 (51.2\\%) still involve death asymmetry; the labeling function itself is penalty-independent (Algorithm~\\ref{alg:labeling}), but the practical routing value of death avoidance requires $P > 0$.\n\nOf 245 episodes, 150 (61.2\\%) are ties (neither strategy outperforms the other), indicating that routing is relevant in only 38.8\\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\\%$ at $P{=}10$; $82.6\\%$ at $P{=}50$; Appendix~\\ref{app:penalty}), confirming that the 78.9\\% label fraction provides the more robust characterization. When $\\Delta_{\\text{nd}} \\to 0$, DAF $\\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\\Delta_{\\text{nd}} < 0$ (as in Reflexion $N{\\geq}3$; \\S\\ref{sec:agent-improvement}), DAF exceeds 100\\%, reflecting that death asymmetry more than accounts for the full gap.\n\n\\paragraph{Per-task correlation structure.}\nThe internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic (2.6$\\times$), consistent with the internal strategy's reliance on self-generated observations that compound prediction errors across steps. Per-task, death rate differential correlates with $\\Delta_{\\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\\ref{fig:decomposition}; Appendix~\\ref{app:correlation}). Since $P$ is constant across all task types, $\\Delta_{\\text{full}} = P \\cdot \\delta + \\Delta_{\\text{nd}}$ makes $\\Delta_{\\text{full}}$ a linear function of $\\delta$ with residual $\\Delta_{\\text{nd}}$; when DAF $\\rightarrow 1$, this residual vanishes and $r \\rightarrow 1$ by construction. The near-perfect correlation is therefore a mathematical consequence of death dominance, not an independent empirical finding. We retain it as an internal consistency check. The correlation drops below significance at $P \\leq 25$ (Appendix~\\ref{app:penalty}). Of 245 episodes, 86 are \\texttt{det\\_preferred}, 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}.\n\n\\paragraph{Signal concentration and binary structure.}\nThe Signal Concentration Index (SCI $= 0.2147$; Appendix~\\ref{app:sci}) confirms low concentration: the top-3 task types account for only $39.8\\%$ of total death-rate differential. The aggregate 78.9\\% reflects a per-task binary structure: all 10 death-prone task types produce 100\\% death-asymmetry labels, while \\texttt{find-non-living-thing} (zero deaths, $\\Delta = +9.58$ from non-death scores) produces 0\\%. The framework thus diagnoses a binary property (``is this environment death-dominated?'') rather than a continuous routing signal. Removing \\texttt{find-non-living-thing} raises the label fraction to 100\\% and yields DAF $\\geq$100\\% ($\\Delta_\\text{nd} \\leq 0$; death avoidance fully accounts for the routing gap among remaining task types; Appendix~\\ref{app:loto-daf}).\n\n\\paragraph{Sensitivity and seed robustness.}\nNon-clustered episode-level bootstrap ($B = 10{,}000$) yields 95\\% CI $[81.1\\%, 99.0\\%]$ for DAF, independent of cluster assumptions, with Cohen's $d = 3.02$ (interpret cautiously given $K{=}11$ task types). Leave-one-task-out analysis confirms stability (label fraction range: 75.9\\%--78.9\\%; Appendix~\\ref{app:loto-daf}); an independent seed replication ($N{=}220$) yields DAF $= 89.7\\%$, within 0.7~pp (Appendix~\\ref{app:seed-robustness}). As a conservative check, wild cluster bootstrap treating each task type as a cluster yields $p = 0.002$; however, with $K{=}11$ clusters this test falls below the $K{\\geq}20$--$40$ threshold recommended for reliable inference~\\citep{cameron-2008,webb-2023}, so we rely on the non-clustered bootstrap as primary. All 28 death-prone tasks share the same direction (Appendices~\\ref{app:wild-cluster}--\\ref{app:per-task-ci}).\n\n\\subsection{Multi-Model Validation}\n\\label{sec:cross-model}\n\nA Llama-3.1-8B-Instruct~\\citep{llama3-2024} cross-model replication across all 11 task types ($N{=}220$) confirms that death dominance replicates across model families: internal death rate $41.4\\%$ vs.\\ deterministic $11.4\\%$ (death-rate differential $+30.0$~pp), DAF $= 88.2\\%$ (95\\% CI: $[80.2\\%, 95.1\\%]$; $\\Delta_{\\text{full}} = +33.17$, $\\Delta_{\\text{nd}} = +3.9$), with direction consistency 10/10 on death-prone tasks, 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated; the differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution (Appendix~\\ref{app:per-task}). Cross-model routing transfer is vacuously correct: Llama produces zero internal-preferred episodes, so Qwen-derived routing rules (always-deterministic) trivially match, confirming that routing signal is environment-determined rather than model-specific.\nA third model family, Gemma-2-9B-it~\\citep{gemma2-2024} (sliding window attention, vs.\\ full attention in Qwen/Llama), independently confirms the pattern: DAF${=}89.7\\%$ (95\\% CI $[79.5\\%, 98.4\\%]$; $N{=}220$), with all 10 death-prone task types showing positive $\\Delta$DR (Appendix~\\ref{app:cross-model}). Three architecturally distinct models thus converge on DAF $88$--$90\\%$ (spread 2.2~pp); $10{\\times}$ scaling to 72B (\\S\\ref{sec:agent-improvement}) confirms persistence across capability levels.\n\n\\subsection{Agent Improvement Baselines}\n\\label{sec:agent-improvement}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lrr@{}}\n\\toprule\nCondition & Death\\% & $N$ \\\\\n\\midrule\nSingle-trial baseline & 42.9 & 245 \\\\\nReflexion ($3{\\times}$) & 31.4 & 220 \\\\\nQwen2.5-72B ($10{\\times}$) & 30.6 & 255 \\\\\nDeterministic baseline & 16.3 & 245 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{\\textit{10 death-prone tasks only:}} \\\\\nDeath-prone baseline & 48.0 & 200 \\\\\nRetry ($5{\\times}$) & 43.5 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Internal-strategy death rates under agent improvement methods. Top: all 11 tasks (72B: independently collected at both internal and deterministic). Bottom: 10 death-prone tasks (\\texttt{find-non-living-thing} excluded, 0\\% death at all scales). All interventions reduce death rate but none approaches deterministic-level safety.}\n\\label{tab:agent-improvement}\n\\end{table}\n\nWe test whether agent-level improvement reduces death dominance (Table~\\ref{tab:agent-improvement}). Retry ($N{=}5$ attempts without self-correction) yields marginal reduction on death-prone tasks ($43.5\\%$ vs.\\ $48.0\\%$ baseline, $\\Delta = -4.5$~pp). Reflexion~\\citep{reflexion-2023} (verbal self-reflection between trials) reduces death to 31.4\\% across all 11 tasks by rescuing 29.3\\% of first-trial deaths, but the gap to deterministic remains 15.1~pp; on the 10 death-prone tasks, Reflexion achieves ${\\sim}$35\\%. Under Reflexion ($N{=}3$, matched-episode analysis), $\\Delta_{\\text{nd}} = -0.47$, yielding DAF $> 100\\%$: the deterministic advantage is entirely attributable to death avoidance, and in non-death episodes the self-correcting agent slightly outperforms the deterministic baseline. Scaling to Qwen2.5-72B ($10{\\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types) reduces death rate to $30.6\\%$. The 72B deterministic strategy achieves $2.75\\%$ death rate ($\\Delta\\text{DR} = +27.8$~pp), and $\\Delta_{\\text{nd}} = +2.28$, yielding DAF $= 92.4\\%$ (7B: $90.4\\%$); scaling lowers death rate but leaves death dominance intact.\n\n\\paragraph{Dose-response analysis.}\nWe extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$, $\\Delta = -4.5$~pp over five trials). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $z = 2.75$, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$). With $n{=}200$ paired episodes, the minimum detectable effect is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power): the key $N{=}1{\\to}3$ decline is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected. We characterize this as suggestive evidence of a Reflexion ceiling rather than a conclusive demonstration. Retry's per-trial conditional death rate stays constant at ${\\sim}48\\%$; Reflexion's declines to ${\\sim}31\\%$ by Trial~3 (per-task breakdown in Appendix~\\ref{app:dose-response}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/dose_response.pdf}\n\\caption{Death rate as a function of trial count ($N$) for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Retry (blue) is nearly flat; Reflexion (red) drops steeply through $N{=}3$ then shows no statistically detectable improvement beyond $N{=}3$ (Wilson CIs for $N{=}3,4,5$ overlap substantially). Horizontal lines: 72B scaling baseline ($30.6\\%$, all 11 tasks) and deterministic baseline ($16.3\\%$). Error bands: Wilson 95\\% CIs.}\n\\label{fig:dose-response}\n\\end{figure}\n\n\\subsection{Cross-Environment Boundary Probes}\n\\label{sec:math-contrast}\n\\label{sec:cross-env}\n\nWe examine MATH and ALFWorld as boundary probes (not cross-domain validation), testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).\n\n\\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.\n\n\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry---not death avoidance---drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\\\\nRandom & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\\\\nOracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\\\\n\\midrule\nTrained Router$^\\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 20--40 episodes per type, 245 total). $\\dagger$\\,Single random seed (42) per episode pair; see Appendix~\\ref{app:seed-robustness} for 8-seed robustness analysis. Per-task results are exploratory ($n{=}20$ episodes per task, power $\\approx 50\\%$ for 20\\,pp effects); aggregate conclusions do not depend on individual task significance.}\n\\label{tab:baselines}\n\\end{table}\n\nAlways-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\n\n\\subsection{Router Training: A Negative Result}\n\\label{sec:router-diagnostic}\n\nWe probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime---though alternative architectures or genuine episode-level scaling remain untested.\n\nAn implicit router (Qwen3, LoRA; Appendix~\\ref{app:router-details}) trained at three scales (0.6B, 1.7B, 4B) shows flat step-level balanced accuracy ($56$--$59\\%$). At episode level, only 4B exceeds always-deterministic ($59.0 \\pm 1.9\\%$, $p < 0.001$, Bonferroni-corrected across 8 comparisons); 0.6B and 1.7B remain at chance. The 4B model's marginally above-chance episode-level accuracy is consistent with task-type identification rather than step-level routing signal, as confirmed by leave-one-task-type-out analysis degrading to chance (49.2\\%; Appendix~\\ref{app:ablations}). Episode-level independent evaluation yields $47.1 \\pm 2.2\\%$, below the majority-vote baseline of 50.0\\%; this independent set includes held-out task types, so the below-chance result reflects cross-task transfer failure rather than overall router incompetence. Training uses episode-level splits (Appendix~\\ref{app:router-details}), ensuring no within-episode leakage. The high uninformative rate connects to noisy-label learning~\\citep{natarajan2013learning,northcutt2021confident,li2020dividemix}: standard ERM on labels with ${\\sim}$88\\% noise yields near-chance classifiers, consistent with theoretical bounds on learning from corrupted labels and empirical results in structured noise settings.\n\n\\paragraph{End-to-end deployment.} The 4B router deployed end-to-end ($N{=}245$) scores $-12.03$ (95\\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$). Paraphrase-based augmentation ($25\\%$--$800\\%$) provides no improvement; the $3.7\\%$ internal-preferred base rate makes real-data collection expensive (Appendices~\\ref{app:seed-robustness}--\\ref{app:ablations}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 79,
+        "oldLines": 7,
+        "newStart": 79,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.",
+          " ",
+          "-\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry---not death avoidance---drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.",
+          "+\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry, not death avoidance, drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.",
+          " ",
+          " \\subsection{Baselines}",
+          " \\label{sec:baselines}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01WKpUoTsBBwEsUiUBwP33TY`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "regime---though",
+  "new_string": "regime, though"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "4eac4c33-38ed-4bc6-b1a5-14023fc263ab",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcxGbzTaNHvz6D8z2edf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 40849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 221
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-21T13:52:44.363Z_
+
+<details><summary>↩ Tool result · `toolu_01WKpUoTsBBwEsUiUBwP33TY`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "d344b635-4e64-416e-91e1-a7869509e188",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "oldString": "regime---though",
+    "newString": "regime, though",
+    "originalFile": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types (63\\%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). This scope limits generalizability: conclusions apply to the included subset, not to all ScienceWorld tasks. An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\\Delta\\text{DR} = +38.2$\\,pp exceeding the included tasks' $+28.7$\\,pp (Appendix~\\ref{app:per-task}). Extended validation at $n{=}20$ on five representative excluded tasks confirms this direction ($\\overline{\\Delta\\text{DR}} = +32.0$\\,pp; Appendix~\\ref{app:extended-validation}). A reasoning-depth ablation ($n{=}120$) found no significant difference between internal strategy variants ($p > 0.26$; Appendix~\\ref{app:ablations}).\n\n\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$ (Spearman's $\\rho = 0.986$; Appendix~\\ref{app:per-task}), $p < 10^{-6}$, $n = 11$ task types. Since $\\Delta_{\\text{full}} \\approx \\delta P + \\Delta_{\\text{nd}}$ with $P$ constant, $r \\to 1$ as DAF $\\to 1$; the near-perfect correlation is a structural consequence of death dominance, not an independent finding (\\S\\ref{sec:death-decomp}).}\n\\label{fig:decomposition}\n\\end{figure}\n\nOf the 95 non-tie routing labels, 75 (78.9\\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these 75, 54 are sole-signal labels (both strategies score zero without death, so death avoidance was the \\emph{sole} discriminating signal). At $P{=}0$, the 54 sole-signal labels reduce to ties, leaving 41 non-tie labels of which 21 (51.2\\%) still involve death asymmetry; the labeling function itself is penalty-independent (Algorithm~\\ref{alg:labeling}), but the practical routing value of death avoidance requires $P > 0$.\n\nOf 245 episodes, 150 (61.2\\%) are ties (neither strategy outperforms the other), indicating that routing is relevant in only 38.8\\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\\%$ at $P{=}10$; $82.6\\%$ at $P{=}50$; Appendix~\\ref{app:penalty}), confirming that the 78.9\\% label fraction provides the more robust characterization. When $\\Delta_{\\text{nd}} \\to 0$, DAF $\\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\\Delta_{\\text{nd}} < 0$ (as in Reflexion $N{\\geq}3$; \\S\\ref{sec:agent-improvement}), DAF exceeds 100\\%, reflecting that death asymmetry more than accounts for the full gap.\n\n\\paragraph{Per-task correlation structure.}\nThe internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic (2.6$\\times$), consistent with the internal strategy's reliance on self-generated observations that compound prediction errors across steps. Per-task, death rate differential correlates with $\\Delta_{\\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\\ref{fig:decomposition}; Appendix~\\ref{app:correlation}). Since $P$ is constant across all task types, $\\Delta_{\\text{full}} = P \\cdot \\delta + \\Delta_{\\text{nd}}$ makes $\\Delta_{\\text{full}}$ a linear function of $\\delta$ with residual $\\Delta_{\\text{nd}}$; when DAF $\\rightarrow 1$, this residual vanishes and $r \\rightarrow 1$ by construction. The near-perfect correlation is therefore a mathematical consequence of death dominance, not an independent empirical finding. We retain it as an internal consistency check. The correlation drops below significance at $P \\leq 25$ (Appendix~\\ref{app:penalty}). Of 245 episodes, 86 are \\texttt{det\\_preferred}, 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}.\n\n\\paragraph{Signal concentration and binary structure.}\nThe Signal Concentration Index (SCI $= 0.2147$; Appendix~\\ref{app:sci}) confirms low concentration: the top-3 task types account for only $39.8\\%$ of total death-rate differential. The aggregate 78.9\\% reflects a per-task binary structure: all 10 death-prone task types produce 100\\% death-asymmetry labels, while \\texttt{find-non-living-thing} (zero deaths, $\\Delta = +9.58$ from non-death scores) produces 0\\%. The framework thus diagnoses a binary property (``is this environment death-dominated?'') rather than a continuous routing signal. Removing \\texttt{find-non-living-thing} raises the label fraction to 100\\% and yields DAF $\\geq$100\\% ($\\Delta_\\text{nd} \\leq 0$; death avoidance fully accounts for the routing gap among remaining task types; Appendix~\\ref{app:loto-daf}).\n\n\\paragraph{Sensitivity and seed robustness.}\nNon-clustered episode-level bootstrap ($B = 10{,}000$) yields 95\\% CI $[81.1\\%, 99.0\\%]$ for DAF, independent of cluster assumptions, with Cohen's $d = 3.02$ (interpret cautiously given $K{=}11$ task types). Leave-one-task-out analysis confirms stability (label fraction range: 75.9\\%--78.9\\%; Appendix~\\ref{app:loto-daf}); an independent seed replication ($N{=}220$) yields DAF $= 89.7\\%$, within 0.7~pp (Appendix~\\ref{app:seed-robustness}). As a conservative check, wild cluster bootstrap treating each task type as a cluster yields $p = 0.002$; however, with $K{=}11$ clusters this test falls below the $K{\\geq}20$--$40$ threshold recommended for reliable inference~\\citep{cameron-2008,webb-2023}, so we rely on the non-clustered bootstrap as primary. All 28 death-prone tasks share the same direction (Appendices~\\ref{app:wild-cluster}--\\ref{app:per-task-ci}).\n\n\\subsection{Multi-Model Validation}\n\\label{sec:cross-model}\n\nA Llama-3.1-8B-Instruct~\\citep{llama3-2024} cross-model replication across all 11 task types ($N{=}220$) confirms that death dominance replicates across model families: internal death rate $41.4\\%$ vs.\\ deterministic $11.4\\%$ (death-rate differential $+30.0$~pp), DAF $= 88.2\\%$ (95\\% CI: $[80.2\\%, 95.1\\%]$; $\\Delta_{\\text{full}} = +33.17$, $\\Delta_{\\text{nd}} = +3.9$), with direction consistency 10/10 on death-prone tasks, 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated; the differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution (Appendix~\\ref{app:per-task}). Cross-model routing transfer is vacuously correct: Llama produces zero internal-preferred episodes, so Qwen-derived routing rules (always-deterministic) trivially match, confirming that routing signal is environment-determined rather than model-specific.\nA third model family, Gemma-2-9B-it~\\citep{gemma2-2024} (sliding window attention, vs.\\ full attention in Qwen/Llama), independently confirms the pattern: DAF${=}89.7\\%$ (95\\% CI $[79.5\\%, 98.4\\%]$; $N{=}220$), with all 10 death-prone task types showing positive $\\Delta$DR (Appendix~\\ref{app:cross-model}). Three architecturally distinct models thus converge on DAF $88$--$90\\%$ (spread 2.2~pp); $10{\\times}$ scaling to 72B (\\S\\ref{sec:agent-improvement}) confirms persistence across capability levels.\n\n\\subsection{Agent Improvement Baselines}\n\\label{sec:agent-improvement}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lrr@{}}\n\\toprule\nCondition & Death\\% & $N$ \\\\\n\\midrule\nSingle-trial baseline & 42.9 & 245 \\\\\nReflexion ($3{\\times}$) & 31.4 & 220 \\\\\nQwen2.5-72B ($10{\\times}$) & 30.6 & 255 \\\\\nDeterministic baseline & 16.3 & 245 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{\\textit{10 death-prone tasks only:}} \\\\\nDeath-prone baseline & 48.0 & 200 \\\\\nRetry ($5{\\times}$) & 43.5 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Internal-strategy death rates under agent improvement methods. Top: all 11 tasks (72B: independently collected at both internal and deterministic). Bottom: 10 death-prone tasks (\\texttt{find-non-living-thing} excluded, 0\\% death at all scales). All interventions reduce death rate but none approaches deterministic-level safety.}\n\\label{tab:agent-improvement}\n\\end{table}\n\nWe test whether agent-level improvement reduces death dominance (Table~\\ref{tab:agent-improvement}). Retry ($N{=}5$ attempts without self-correction) yields marginal reduction on death-prone tasks ($43.5\\%$ vs.\\ $48.0\\%$ baseline, $\\Delta = -4.5$~pp). Reflexion~\\citep{reflexion-2023} (verbal self-reflection between trials) reduces death to 31.4\\% across all 11 tasks by rescuing 29.3\\% of first-trial deaths, but the gap to deterministic remains 15.1~pp; on the 10 death-prone tasks, Reflexion achieves ${\\sim}$35\\%. Under Reflexion ($N{=}3$, matched-episode analysis), $\\Delta_{\\text{nd}} = -0.47$, yielding DAF $> 100\\%$: the deterministic advantage is entirely attributable to death avoidance, and in non-death episodes the self-correcting agent slightly outperforms the deterministic baseline. Scaling to Qwen2.5-72B ($10{\\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types) reduces death rate to $30.6\\%$. The 72B deterministic strategy achieves $2.75\\%$ death rate ($\\Delta\\text{DR} = +27.8$~pp), and $\\Delta_{\\text{nd}} = +2.28$, yielding DAF $= 92.4\\%$ (7B: $90.4\\%$); scaling lowers death rate but leaves death dominance intact.\n\n\\paragraph{Dose-response analysis.}\nWe extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$, $\\Delta = -4.5$~pp over five trials). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $z = 2.75$, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$). With $n{=}200$ paired episodes, the minimum detectable effect is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power): the key $N{=}1{\\to}3$ decline is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected. We characterize this as suggestive evidence of a Reflexion ceiling rather than a conclusive demonstration. Retry's per-trial conditional death rate stays constant at ${\\sim}48\\%$; Reflexion's declines to ${\\sim}31\\%$ by Trial~3 (per-task breakdown in Appendix~\\ref{app:dose-response}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/dose_response.pdf}\n\\caption{Death rate as a function of trial count ($N$) for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Retry (blue) is nearly flat; Reflexion (red) drops steeply through $N{=}3$ then shows no statistically detectable improvement beyond $N{=}3$ (Wilson CIs for $N{=}3,4,5$ overlap substantially). Horizontal lines: 72B scaling baseline ($30.6\\%$, all 11 tasks) and deterministic baseline ($16.3\\%$). Error bands: Wilson 95\\% CIs.}\n\\label{fig:dose-response}\n\\end{figure}\n\n\\subsection{Cross-Environment Boundary Probes}\n\\label{sec:math-contrast}\n\\label{sec:cross-env}\n\nWe examine MATH and ALFWorld as boundary probes (not cross-domain validation), testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).\n\n\\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.\n\n\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry, not death avoidance, drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\\\\nRandom & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\\\\nOracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\\\\n\\midrule\nTrained Router$^\\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 20--40 episodes per type, 245 total). $\\dagger$\\,Single random seed (42) per episode pair; see Appendix~\\ref{app:seed-robustness} for 8-seed robustness analysis. Per-task results are exploratory ($n{=}20$ episodes per task, power $\\approx 50\\%$ for 20\\,pp effects); aggregate conclusions do not depend on individual task significance.}\n\\label{tab:baselines}\n\\end{table}\n\nAlways-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\n\n\\subsection{Router Training: A Negative Result}\n\\label{sec:router-diagnostic}\n\nWe probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime---though alternative architectures or genuine episode-level scaling remain untested.\n\nAn implicit router (Qwen3, LoRA; Appendix~\\ref{app:router-details}) trained at three scales (0.6B, 1.7B, 4B) shows flat step-level balanced accuracy ($56$--$59\\%$). At episode level, only 4B exceeds always-deterministic ($59.0 \\pm 1.9\\%$, $p < 0.001$, Bonferroni-corrected across 8 comparisons); 0.6B and 1.7B remain at chance. The 4B model's marginally above-chance episode-level accuracy is consistent with task-type identification rather than step-level routing signal, as confirmed by leave-one-task-type-out analysis degrading to chance (49.2\\%; Appendix~\\ref{app:ablations}). Episode-level independent evaluation yields $47.1 \\pm 2.2\\%$, below the majority-vote baseline of 50.0\\%; this independent set includes held-out task types, so the below-chance result reflects cross-task transfer failure rather than overall router incompetence. Training uses episode-level splits (Appendix~\\ref{app:router-details}), ensuring no within-episode leakage. The high uninformative rate connects to noisy-label learning~\\citep{natarajan2013learning,northcutt2021confident,li2020dividemix}: standard ERM on labels with ${\\sim}$88\\% noise yields near-chance classifiers, consistent with theoretical bounds on learning from corrupted labels and empirical results in structured noise settings.\n\n\\paragraph{End-to-end deployment.} The 4B router deployed end-to-end ($N{=}245$) scores $-12.03$ (95\\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$). Paraphrase-based augmentation ($25\\%$--$800\\%$) provides no improvement; the $3.7\\%$ internal-preferred base rate makes real-data collection expensive (Appendices~\\ref{app:seed-robustness}--\\ref{app:ablations}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 109,
+        "oldLines": 7,
+        "newStart": 109,
+        "newLines": 7,
+        "lines": [
+          " \\subsection{Router Training: A Negative Result}",
+          " \\label{sec:router-diagnostic}",
+          " ",
+          "-We probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime---though alternative architectures or genuine episode-level scaling remain untested.",
+          "+We probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime, though alternative architectures or genuine episode-level scaling remain untested.",
+          " ",
+          " An implicit router (Qwen3, LoRA; Appendix~\\ref{app:router-details}) trained at three scales (0.6B, 1.7B, 4B) shows flat step-level balanced accuracy ($56$--$59\\%$). At episode level, only 4B exceeds always-deterministic ($59.0 \\pm 1.9\\%$, $p < 0.001$, Bonferroni-corrected across 8 comparisons); 0.6B and 1.7B remain at chance. The 4B model's marginally above-chance episode-level accuracy is consistent with task-type identification rather than step-level routing signal, as confirmed by leave-one-task-type-out analysis degrading to chance (49.2\\%; Appendix~\\ref{app:ablations}). Episode-level independent evaluation yields $47.1 \\pm 2.2\\%$, below the majority-vote baseline of 50.0\\%; this independent set includes held-out task types, so the below-chance result reflects cross-task transfer failure rather than overall router incompetence. Training uses episode-level splits (Appendix~\\ref{app:router-details}), ensuring no within-episode leakage. The high uninformative rate connects to noisy-label learning~\\citep{natarajan2013learning,northcutt2021confident,li2020dividemix}: standard ERM on labels with ${\\sim}$88\\% noise yields near-chance classifiers, consistent with theoretical bounds on learning from corrupted labels and empirical results in structured noise settings.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01NkkoBeaxJmvBQWmFXrUpFe`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "old_string": "mismatch---applying correct-direction labels to uninformative steps---not directional error",
+  "new_string": "mismatch (applying correct-direction labels to uninformative steps), not directional error"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "e828eabd-e414-41b0-b1a8-39ed02d60463",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcxGbzTaNHvz6D8z2edf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 40849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 221
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-21T13:52:45.338Z_
+
+<details><summary>↩ Tool result · `toolu_01NkkoBeaxJmvBQWmFXrUpFe`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "952f0bd2-7752-4aa9-843f-cf911abc21d5",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+    "oldString": "mismatch---applying correct-direction labels to uninformative steps---not directional error",
+    "newString": "mismatch (applying correct-direction labels to uninformative steps), not directional error",
+    "originalFile": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\graphicspath{{figures/}}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{tcolorbox}\n\\tcbuselibrary{listings,breakable}\n\n\\hypersetup{pdfauthor={},pdftitle={}}\n\n\\title{Death Avoidance as the Dominant Routing Signal:\\\\A Counterfactual Analysis on ScienceWorld}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\\input{introduction}\n\\input{method}\n\\input{experiments}\n\\input{related_work}\n\\input{discussion}\n\\input{conclusion}\n\n\\section*{Limitations}\n\n\\paragraph{Environmental scope.}\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\ref{app:penalty}). The 19 excluded task types (63\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\\S\\ref{sec:cross-env}, \\S\\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \\S\\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\\times}$ scale) reduces death rate but does not eliminate death dominance (\\S\\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).\n\n\\paragraph{Methodological constraints.}\nOur internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\\% pre-event neutral). The issue is granularity mismatch---applying correct-direction labels to uninformative steps---not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.\n\n\\paragraph{Statistical limitations.}\nEpisodes within the same task type are not fully independent because they share environment dynamics, though they use different random seeds. Cluster bootstrap with $K{=}11$ task-type clusters yields wider CIs ($[73.3\\%, 100.0\\%]$); with $K < 40$ clusters, these should be interpreted cautiously~\\citep{cameron-2008,webb-2023}. A wild cluster bootstrap ($K{=}11$, $p < 0.001$; Appendix~\\ref{app:wild-cluster}) and 100\\% directional consistency across all 28 death-prone tasks (Appendix~\\ref{app:per-task-ci}) mitigate this concern.\n\n\\paragraph{Pure-strategy upper bound.}\nOur counterfactual analysis compares pure strategies (always-internal vs.\\ always-deterministic). In mixed routing, the router can selectively invoke deterministic mode on high-risk steps, potentially reducing death asymmetry. Thus, DAF${=}90.4\\%$ represents an upper bound on death avoidance's contribution to optimized routing; the actual contribution under mixed strategies may be lower.\n\n\\paragraph{Diagnostic scope.}\nOur framework is diagnostic rather than prescriptive: it identifies what drives routing decisions but does not optimize the routing policy itself. Extending the counterfactual decomposition to prescribe optimal mixed-strategy routing---for example, by combining DAF analysis with online policy learning---is a natural next step.\n\n\\section*{Ethics Statement}\n\nThis work uses ScienceWorld \\citep{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All evaluation environments (ScienceWorld, ALFWorld, MATH) are released under permissive open-source licenses (Apache 2.0 / MIT). All models used (Qwen2.5 family, Llama-3.1-8B, Gemma-2-9B-it) are publicly available for research use. All language models are accessed via standard APIs or publicly released weights. Experiments were conducted on 2$\\times$ NVIDIA RTX 5090 (32GB) and 4$\\times$ NVIDIA RTX 6000 PRO (96GB), totaling approximately 200 GPU-hours, comprising ${\\sim}$140 hours for episode collection (counterfactual inference across three 7--9B model families plus Qwen2.5-72B backbone scaling, Reflexion and retry baselines, and cross-environment validation on ALFWorld and MATH), ${\\sim}$35 hours for router training (LoRA fine-tuning of Qwen3-0.6B/1.7B/4B across 4--8 seeds per scale, including augmentation and ablation variants), and ${\\sim}$25 hours for evaluation and analysis. Code and data will be released upon acceptance.\n\n\\bibliography{references}\n\n\\appendix\n\n\\noindent\\textbf{Appendix Overview.}\n\\hyperref[app:sci]{A.~Signal Concentration Index} $\\cdot$\n\\hyperref[app:labeling]{B.~Labeling Quality Audit} $\\cdot$\n\\hyperref[app:per-task]{C.~Per-Task Decomposition} $\\cdot$\n\\hyperref[app:correlation]{D.~Correlation Robustness} $\\cdot$\n\\hyperref[app:wild-cluster]{E.~Cluster Bootstrap Sensitivity} $\\cdot$\n\\hyperref[app:per-task-ci]{F.~Per-Task CIs} $\\cdot$\n\\hyperref[app:loto-daf]{G.~Leave-One-Task-Out DAF} $\\cdot$\n\\hyperref[app:dose-response]{H.~Dose-Response Breakdown} $\\cdot$\n\\hyperref[app:router-details]{I.~Router Training Details} $\\cdot$\n\\hyperref[app:seed-robustness]{J.~Seed Robustness} $\\cdot$\n\\hyperref[app:penalty]{K.~Penalty Sensitivity} $\\cdot$\n\\hyperref[app:cross-env-details]{L.~Cross-Environment Details} $\\cdot$\n\\hyperref[app:cross-model]{M.~Cross-Model Verification} $\\cdot$\n\\hyperref[app:failure-modes]{N.~Failure Mode Analysis} $\\cdot$\n\\hyperref[app:grounding-ablation]{O.~Grounding Ablation} $\\cdot$\n\\hyperref[app:ablations]{P.~Ablation Studies} $\\cdot$\n\\hyperref[sec:threshold-routing]{Q.~Threshold Routing} $\\cdot$\n\\hyperref[app:decision-framework]{R.~Decision Framework} $\\cdot$\n\\hyperref[app:extended-validation]{S.~Extended Validation} $\\cdot$\n\\hyperref[app:prompt-templates]{T.~Agent Prompt Templates}\n\n\\section{Signal Concentration Index}\n\\label{app:sci}\n\nLet $K$ denote the number of task types and $c_k$ the contribution of task type $k$ to the aggregate routing signal, defined as the fraction of total death-rate differential attributable to task $k$:\n\\begin{equation}\n    c_k = \\frac{n_k \\cdot \\delta_k}{\\sum_{j=1}^{K} n_j \\cdot \\delta_j}\n\\end{equation}\nwhere $n_k$ is the number of episodes and $\\delta_k = d_k^{\\tt int} - d_k^{\\tt det}$ is the per-task death-rate differential. The SCI is the Gini coefficient over $\\{c_1, \\ldots, c_K\\}$:\n\\begin{equation}\n    \\text{SCI} = \\frac{\\sum_{i=1}^K \\sum_{j=1}^K |c_i - c_j|}{2K \\sum_{k=1}^K c_k}\n\\end{equation}\n\n\\section{Labeling Quality Audit}\n\\label{app:labeling}\n\n\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR\n\\IF{$d_{\\tt int} = 1$ \\AND $d_{\\tt det} = 0$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = 0$ \\AND $d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{both dead}\n\\ELSIF{$s_{\\tt det} > s_{\\tt int}$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSIF{$s_{\\tt int} > s_{\\tt det}$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSE\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{tied alive}\n\\ENDIF\n\\RETURN $\\ell$\n\\end{algorithmic}\n\\end{algorithm}\n\nNote that episode-level labels are used to evaluate step-level predictions, introducing a granularity mismatch rather than independent validation. A potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine computation mode differences. We audit all 245 labels. Of the 150 \\texttt{no\\_preference} labels (61.2\\%), 115 (46.9\\%) are both-alive ties and 35 (14.3\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\%, within 1$\\sigma$ of the full-label retrain (57.6 $\\pm$ 0.5\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\S\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\% step-level tie rate (\\S\\ref{sec:collection}) further motivates episode-level over step-level labeling.\n\n\\section{Per-Task Decomposition}\n\\label{app:per-task}\nWe use ScienceWorld v1.2.3~\\citep{scienceworld-2022}.\nWe select 11 of ScienceWorld's 30 task types for analysis. Types are excluded when they were used for pipeline development (5 tasks, standard hold-out practice), are taxonomically redundant with a retained family representative (7 tasks), or exhibit near-zero task progress under both strategies (7 tasks, agent capability floor).\\footnote{Excluded tasks exhibit even stronger death dominance than included tasks ($\\Delta\\text{DR} = +38.2$\\,pp vs.\\ $+28.7$\\,pp; Table~\\ref{tab:excluded-death}).}\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrrccc@{}}\n\\toprule\nTask & $n$ & $\\Delta_\\text{full}$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & D / I / N \\\\\n\\midrule\nid-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\\\\nlifespan-long          & 25  & $+44.00$ & 56   & 16   & 11 / 1 / 13 \\\\\nlifespan-l-then-s      & 20  & $+40.80$ & 45   & 10   & 8 / 1 / 11  \\\\\ninclined-plane         & 20  & $+36.00$ & 55   & 20   & 7 / 0 / 13  \\\\\nfreeze                 & 20  & $+30.50$ & 55   & 25   & 6 / 0 / 14  \\\\\nmeas-melt-point        & 20  & $+30.05$ & 55   & 25   & 6 / 0 / 14  \\\\\nid-life-stages-2       & 20  & $+30.00$ & 50   & 20   & 6 / 0 / 14  \\\\\nfind-animal            & 20  & $+26.65$ & 50   & 25   & 5 / 0 / 15  \\\\\ngrow-fruit             & 20  & $+25.10$ & 45   & 20   & 6 / 1 / 13  \\\\\nchem-mix               & 20  & $+21.80$ & 45   & 25   & 6 / 2 / 12  \\\\\n\\midrule\nfind-non-living-thing$^\\dagger$ & 40 & $+9.58$ & 0  & 0    & 16 / 4 / 20 \\\\\n\\midrule\n\\textbf{All (11 tasks)} & \\textbf{245} & $\\mathbf{+29.60}$ & \\textbf{42.9} & \\textbf{16.3} & \\textbf{86 / 9 / 150} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task decomposition of the death avoidance effect. D\\%: death rate for internal (int) and deterministic (det) strategies. D/I/N: episode labels (det-preferred / internal-preferred / no-preference). Sorted by $\\Delta_{\\text{full}}$ descending. The \\textit{All} row is an episode-weighted aggregate across 245 episodes. $\\dagger$\\,Only task with zero deaths under both strategies; $n{=}40$ because data was collected in two batches, with the second batch adding 20 episodes to increase statistical power for this zero-death outlier.}\n\\label{tab:per-task}\n\\end{table}\n\n\\paragraph{Task selection and anti-cherry-picking.}\nEighteen of the 19 excluded task types (95\\%) exhibit death-asymmetric patterns (Table~\\ref{tab:excluded-death}): internal-reasoning death rates range from 40\\% to 60\\% (mean 53.9\\%), while deterministic death rates range from 0\\% to 40\\% (mean 15.8\\%), yielding a mean death-rate differential of $+38.2$\\,pp, exceeding the $+28.7$\\,pp for included tasks. The included subset is thus \\emph{less} death-asymmetric than the excluded subset, the opposite of what a cherry-picking hypothesis would predict. The sole exception is \\texttt{grow-plant}, an intrinsically safe task with zero deaths under both strategies, paralleling \\texttt{find-non-living-thing} in the included set. The 19 excluded tasks fall into three independently motivated categories: five used during pipeline development (standard hold-out practice), seven taxonomically redundant with included family representatives (deduplication), and seven where the 7B backbone achieves near-zero task progress regardless of strategy (agent capability floor). In no case was a task excluded because death dominance was absent. Exclusion is driven by absence of non-death routing signal ($\\Delta_{\\text{nd}} = 0$ for 53\\% of excluded tasks) and standard deduplication practices. \\texttt{find-non-living-thing} serves as an internal counterexample: zero deaths under both strategies yet included because it exhibits non-death routing signal ($\\Delta_{\\text{full}} = +9.58$ entirely from score differences), and deterministic is not always preferred (4 of 20 non-tie labels favor internal).\n\n\\begin{table}[t]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2pt}\n\\begin{tabular}{@{}llrcccl@{}}\n\\toprule\nTask & Grp & $n$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & $\\Delta$DR & Excl.\\ reason \\\\\n\\midrule\nboil                          & A & 20 & 50 & 20 & $+30$ & dev set \\\\\nchange-state-of-matter        & A & 20 & 55 & 15 & $+40$ & dev set \\\\\nchem-mix-paint-secondary      & A & 20 & 45 & 10 & $+35$ & dev set \\\\\ngrow-plant                    & A & 20 &  0 &  0 & $\\phantom{+}0$  & dev set \\\\\nmelt                          & A & 20 & 55 & 15 & $+40$ & dev set \\\\\n\\midrule\nchem-mix-paint-tertiary       & B &  5 & 40 & 20 & $+20$ & family redundancy \\\\\nfind-living-thing             & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\nfind-plant                    & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\ninclined-friction-named       & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\ninclined-friction-unnamed     & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\nlifespan-shortest             & B &  5 & 60 & 40 & $+20$ & family redundancy \\\\\nmeasure-melt-known            & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\n\\midrule\nmendelian-known               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nmendelian-unknown             & C &  5 & 60 & 40 & $+20$ & agent floor \\\\\npower-component               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\npower-renewable               & C &  5 & 60 &  0 & $+60$ & agent floor \\\\\ntest-conductivity             & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\ntest-conductivity-unknown     & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nuse-thermometer               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\n\\midrule\n\\textbf{Mean (19 excluded)}   &   &    & \\textbf{53.9} & \\textbf{15.8} & $\\mathbf{+38.2}$ & \\\\\n\\textit{cf.\\ included (11)}   &   &    & \\textit{46.5} & \\textit{17.8} & $\\textit{+28.7}$ & \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Death-rate analysis of all 19 excluded task types. D\\%: death rate (score $\\leq -100$). $\\Delta$DR = D\\%\\textsubscript{int} $-$ D\\%\\textsubscript{det}. 18 of 19 excluded tasks (95\\%) exhibit positive death asymmetry ($\\Delta$DR $\\geq +20$\\,pp). Exclusion groups: A = development set (excluded to prevent circular evaluation), B = taxonomically redundant with an included family representative, C = agent-floor tasks (backbone achieves near-zero progress regardless of strategy). The mean $\\Delta$DR among excluded tasks ($+38.2$\\,pp) exceeds that of included tasks ($+28.7$\\,pp), confirming that task selection does not bias toward death-prone tasks. Group B--C estimates are based on $n{=}5$ prescreening episodes per task and should be interpreted as directional evidence rather than precise rate estimates.}\n\\label{tab:excluded-death}\n\\end{table}\n\n\\section{Correlation Robustness}\n\\label{app:correlation}\n\nThe Pearson $r = 0.9698$ reported in \\S\\ref{sec:death-decomp} is robust across multiple diagnostics. Spearman rank correlation is $\\rho = 0.986$ ($p = 2.4 \\times 10^{-8}$); the relationship is not driven by outliers or non-linearity. A nonparametric bootstrap (10{,}000 resamples) yields 95\\% CI $[0.952, 0.995]$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lr@{}}\n\\toprule\nTask removed & $r_{\\text{LOO}}$ \\\\\n\\midrule\nid-life-stages-1       & 0.963 \\\\\nlifespan-long          & 0.969 \\\\\nlifespan-l-then-s      & 0.976 \\\\\ninclined-plane         & 0.969 \\\\\nfreeze                 & 0.971 \\\\\nmeas-melt-point        & 0.972 \\\\\nid-life-stages-2       & 0.972 \\\\\nfind-animal            & 0.970 \\\\\ngrow-fruit             & 0.973 \\\\\nchem-mix               & 0.969 \\\\\nfind-non-living-thing  & 0.980 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-out Pearson $r$ for the death rate differential vs.\\ $\\Delta_{\\text{full}}$ correlation. Full $r = 0.970$; LOO range $[0.963, 0.980]$. No single task type is a leverage point.}\n\\label{tab:loo}\n\\end{table}\n\n\\section{Cluster Bootstrap Sensitivity Analysis}\n\\label{app:wild-cluster}\n\nWith $K{=}11$ task-type clusters, cluster bootstrap falls well below the $K{\\geq}20$--30 recommended for reliable inference \\citep{cameron-2008,webb-2023}. The narrower CIs obtained reflect known small-sample bias toward underestimation of variance, not tighter inference.\n\nEpisodes within the same task type share environment dynamics, raising the concern that the effective sample size is closer to $K$ (task types) than $N$ (episodes). We address this with cluster-robust inference treating each task type as a cluster ($K{=}11$, all 11 included task types, 245 episodes).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nMethod & $p$-value & 95\\% CI \\\\\n\\midrule\nCluster-robust $t$-test ($t{=}10.0$, df$=$10) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nWild cluster bootstrap ($B{=}9{,}999$) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nExact permutation ($2{,}048$ perms) & $0.002$ & --- \\\\\nSign test & $< 0.001$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cluster-level tests of death-rate asymmetry ($K{=}11$ task clusters, 245 episodes). 10 of 11 clusters show internal DR $>$ deterministic DR; the sole exception (\\texttt{find-non-living-thing}) has zero deaths under both strategies. Cohen's $d = 3.02$. The exact permutation $p = 0.002$ ($4/2{,}048$) reflects the near-unanimous directional consistency.}\n\\label{tab:wild-cluster}\n\\end{table}\n\n\\noindent All methods confirm significance with $p < 0.01$, and the 95\\% CI $[0.73, 1.00]$ excludes zero by a wide margin. With $K{=}11$ task types, ICC estimation itself carries substantial uncertainty; the high within-task consistency of death patterns (all-or-nothing per task type) suggests high ICC, which explains the CI narrowing under cluster resampling.\n\nWe retain this analysis for transparency; readers should rely on the non-clustered episode-level bootstrap (\\S\\ref{sec:death-decomp}) as the primary inference.\n\n\\section{Per-Task Death Rate Confidence Intervals}\n\\label{app:per-task-ci}\n\nWe compute bootstrap 95\\% CIs for the death-rate differential ($\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$) for all 30 ScienceWorld task types. Of 30 tasks, 28 are death-prone (at least one death under either strategy); the remaining 2 (\\texttt{grow-plant}, \\texttt{find-non-living-thing}) have zero deaths under both strategies.\n\nAcross all 28 death-prone tasks, internal DR exceeds deterministic DR without exception (100\\% directional consistency). The pooled death-rate differential is $+37.3\\%$ (95\\% CI: $[29.7\\%, 44.4\\%]$). Fifteen of 28 tasks are individually significant (CI excludes zero); the 13 non-significant tasks all have $n{=}5$ prescreening episodes, where statistical power is insufficient to detect even large effects (e.g., a task with $\\Delta\\text{DR} = +40$\\,pp at $n{=}5$ has a CI of $\\pm 43$\\,pp). The universal directional consistency, combined with the pooled significance, confirms that death asymmetry is not driven by a subset of outlier tasks.\n\n\\section{Leave-One-Task-Out DAF Sensitivity}\n\\label{app:loto-daf}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Leave-one-task-out DAF sensitivity (penalty-independent label fraction). Among the 10 death-prone tasks, removing any single task changes DAF by at most 3.0\\,pp (range: 75.9\\%--78.9\\%). Removing \\emph{Find Non-Living Thing}, the sole death-free task that contributes all 20 score-comparison episodes, raises DAF to 100\\% by construction.}\n\\label{tab:loto-daf}\n\\begin{tabular}{lrrr}\n\\toprule\nRemoved Task & $N_\\text{rem}$ & DAF (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n(none, full) & 245 & 78.9 & --- \\\\\n\\midrule\nFind Non-Living$^\\dagger$ & 205 & 100.0 & +21.1 \\\\\nLifespan Longest & 220 & 75.9 & $-$3.0 \\\\\nLife Stages 1 & 225 & 76.7 & $-$2.2 \\\\\nLifespan Long+Short & 225 & 76.7 & $-$2.2 \\\\\nChemistry Mix & 225 & 77.0 & $-$1.9 \\\\\nGrow Fruit & 225 & 77.3 & $-$1.7 \\\\\nInclined Plane Angle & 225 & 77.3 & $-$1.7 \\\\\nFreeze & 225 & 77.5 & $-$1.4 \\\\\nLife Stages 2 & 225 & 77.5 & $-$1.4 \\\\\nMelt Pt Unknown & 225 & 77.5 & $-$1.4 \\\\\nFind Animal & 225 & 77.8 & $-$1.2 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize $^\\dagger$Only death-free task; contributes all score-comparison labels. Sorted by $|\\Delta|$ descending.}\n\\end{table}\n\n\\section{Per-Task Dose-Response Breakdown}\n\\label{app:dose-response}\n\nTable~\\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\\,pp range for \\texttt{measure-melting-point}), but the aggregate smooths to a 2.5\\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \\texttt{freeze} is consistently the hardest task (50--60\\% DR across all $N$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-task death rates (\\%) for Reflexion at $N{=}3$, 4, 5 on 10 death-prone tasks ($n{=}20$ per task). Aggregate death rates confirm stabilization at $N \\geq 3$ (range: $34.0$--$36.5\\%$).}\n\\label{tab:dose-response-detail}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nTask & $N{=}3$ & $N{=}4$ & $N{=}5$ \\\\\n\\midrule\nchemistry-mix & 25.0 & 35.0 & 20.0 \\\\\nfind-animal & 45.0 & 30.0 & 45.0 \\\\\nfreeze & 50.0 & 50.0 & 60.0 \\\\\ngrow-fruit & 30.0 & 25.0 & 25.0 \\\\\nidentify-life-stages-1 & 35.0 & 35.0 & 35.0 \\\\\nidentify-life-stages-2 & 25.0 & 25.0 & 30.0 \\\\\ninclined-plane-angle & 20.0 & 30.0 & 35.0 \\\\\nlifespan-longest & 45.0 & 40.0 & 40.0 \\\\\nlifespan-long+short & 30.0 & 45.0 & 35.0 \\\\\nmeasure-melting-pt & 35.0 & 50.0 & 25.0 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{34.0} & \\textbf{36.5} & \\textbf{35.0} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Router Training Details}\n\\label{app:router-details}\n\nWe use Qwen3-1.7B for the router to avoid circular dependency with the Qwen2.5-7B data-generating model.\n\nWith gradient accumulation of 1 (effective batch size 4), routing performance is highly sensitive to the evaluation split; this suggests overfitting to specific train/validation partition boundaries. With gradient accumulation of 8 (effective batch size 32), step-level performance stabilizes across splits (${\\sim}54\\%$ balanced accuracy). All reported results use gradient accumulation 8.\n\nUnder step-level evaluation with a fixed data split, cross-seed balanced accuracy ranges from 52.7\\% to 58.1\\%, but internal recall varies from 51.5\\% to 81.8\\%, which reflects threshold sensitivity. However, episode-level evaluation reveals that this apparent discrimination does not generalize: balanced accuracy drops to $47.1 \\pm 2.2\\%$ across 8 cross-split seeds (Appendix~\\ref{app:seed-robustness}). Deployed end-to-end, the trained router allocates 97.0\\% of episodes to deterministic computation with 17.6\\% death rate, and misrouting cost (death from internally-routed episodes) exceeds the benefit of correctly routing rare internal-preferred cases.\n\n\\paragraph{Evaluation methods.} All results use \\emph{generation-based evaluation}: the model generates a routing label as text (\\texttt{enable\\_thinking=False}), parsed for classification. We evaluate at two granularities: \\emph{step-level} (steps from the same episode may appear in both train and validation sets) and \\emph{episode-level} (entire episodes held out). Step-level accuracy ($54.1 \\pm 5.4\\%$) exceeds chance (the router captures some signal), but episode-level accuracy ($47.1 \\pm 2.2\\%$, below chance) shows this does not generalize to unseen episodes. Paraphrase-based text augmentation (Appendix~\\ref{app:seed-robustness}) provides no improvement; real-data scaling remains open. Always-deterministic is trivially near-optimal given DAF $= 90.4\\%$. The main text (\\S\\ref{sec:router-diagnostic}) reports controlled 4-seed results at three scales; the model-size ablation (Appendix~\\ref{app:ablations}) provides further detail.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nHyperparameter & Classification Head & Implicit Router \\\\\n\\midrule\nBase model & Qwen3-1.7B & Qwen3-1.7B \\\\\nArchitecture & Linear + LoRA & SFT + LoRA \\\\\nLoRA $r$ / $\\alpha$ & 16 / 32 & 16 / 32 \\\\\nLearning rate & 2e-5 & 2e-4 \\\\\nOptimizer & AdamW & AdamW \\\\\nEpochs & 3 & 3 \\\\\nBatch size (per device) & 4 & 4 \\\\\nGradient accumulation & 8 & 8 \\\\\nWarmup ratio & 0.1 & 0.1 \\\\\nWeight decay & 0.01 & 0.01 \\\\\nMax sequence length & 512 & 512 \\\\\nSeeds & \\{42\\} & \\{42, 123, 456, 789\\} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\\pm$std.}\n\\label{tab:hyperparams}\n\\end{table}\n\n\\paragraph{Agent inference parameters.}\nFor ScienceWorld, each agent step uses temperature $T{=}0.3$ and maximum generation length of 256 tokens, served via vLLM v0.21.0. Top-$p$ is left at the vLLM default of $1.0$ (no nucleus sampling). For MATH, the agent uses greedy decoding ($T{=}0.0$) with a maximum of 2{,}048 tokens per generation. For ALFWorld, we use $T{=}0.3$ with 256 maximum tokens. All three environments use Qwen2.5-7B-Instruct~\\citep{qwen25-2024} as the backbone.\n\n\\section{Seed Robustness}\n\\label{app:seed-robustness}\n\nWe assess router generalization at two evaluation granularities: \\emph{step-level}, where steps from the same episode may appear in both train and validation sets, and \\emph{episode-level}, where entire episodes are held out. Both use cross-split evaluation (seeds $\\{42, \\ldots, 49\\}$, 8 seeds total), where the data partition and training seed both vary. Table~\\ref{tab:seed-robustness} reports per-seed results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nEval.\\ Granularity & Seed & Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nStep-level & 42 & 57.06 \\\\\n(same-episode & 43 & 63.99 \\\\\nleakage) & 44 & 55.43 \\\\\n & 45 & 56.14 \\\\\n & 46 & 55.45 \\\\\n & 47 & 50.08 \\\\\n & 48 & 48.03 \\\\\n & 49 & 59.30 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $54.1 \\pm 5.4$ \\\\\n\\midrule\nEpisode-level & 42 & 48.1 \\\\\n(held-out & 43 & 47.9 \\\\\nepisodes) & 44 & 49.6 \\\\\n & 45 & 49.4 \\\\\n & 46 & 48.5 \\\\\n & 47 & 43.1 \\\\\n & 48 & 45.4 \\\\\n & 49 & 44.8 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $47.1 \\pm 2.2$ \\\\\n\\midrule\n\\multicolumn{2}{@{}l}{Always-det (= majority-vote)} & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-seed router performance under cross-split evaluation (8 seeds, generation-based, \\texttt{enable\\_thinking=False}). Step-level evaluation allows steps from the same episode in both train and validation sets (same-episode leakage). Episode-level evaluation holds out entire episodes; the resulting $47.1 \\pm 2.2\\%$ is below the 50\\% chance baseline. A text augmentation ablation (Table~\\ref{tab:text-augmentation}) confirms this failure persists under the current data distribution and augmentation regime.}\n\\label{tab:seed-robustness}\n\\end{table}\n\nThe contrast between step-level ($54.1 \\pm 5.4\\%$) and episode-level ($47.1 \\pm 2.2\\%$) evaluation reveals a generalization gap: the step-level signal likely reflects memorization of episode-specific context (enabled by same-episode leakage) rather than extraction of generalizable routing features. At episode level, the router performs below chance across all 8 seeds (range: 43.1\\%--49.6\\%). Paraphrase-based text augmentation (Table~\\ref{tab:text-augmentation}) from 25\\% to 800\\% ($32{\\times}$ range) provides no improvement, converging to the always-deterministic baseline ($50\\%$). Paraphrase augmentation inflates the majority class without generating novel routing patterns; genuine episode-level scaling (collecting more counterfactual pairs) remains an open question. With DAF $= 90.4\\%$ and all task types deterministic-majority (86:9 label ratio), always-deterministic trivially solves the episode-level routing problem, leaving the step-level router with no exploitable signal under current architectures.\n\n\\paragraph{Text augmentation ablation.} To test whether the episode-level generalization failure stems from data scarcity, we vary training set size from 25\\% to 800\\% of the original via paraphrase-based text augmentation (synonym substitution + template variation on step observations), holding the episode-level validation set fixed. This tests augmentation-based scaling, not genuine episode-level scaling (which would require new counterfactual collections). Table~\\ref{tab:text-augmentation} reports the results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccc@{}}\n\\toprule\nScale & Samples & Det\\% & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\n25\\% & 433 & ${\\sim}90$ & $49.5 \\pm 0.3$ \\\\\n50\\% & 867 & ${\\sim}90$ & $51.5$ \\\\\n100\\% & 1{,}735 & 89.6 & $49.9 \\pm 0.1$ \\\\\n200\\% & 3{,}470 & 94.2 & $50.0 \\pm 0.0$ \\\\\n800\\% & 13{,}880 & ${\\sim}97.7$ & $51.0 \\pm 1.1$ \\\\\n\\midrule\nAlways-det & --- & --- & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Text augmentation ablation: episode-level balanced accuracy across training set sizes (25\\%--800\\% of original via paraphrase, $32{\\times}$ range). Internal recall $= 0.0$ at all scales (complete majority-class collapse). Det\\%: fraction of deterministic-preferred labels in training data. The 50\\% scale is a single seed; all others report mean$\\pm$std across seeds.}\n\\label{tab:text-augmentation}\n\\end{table}\n\nAll scales hover at ${\\sim}50\\%$ episode-level balanced accuracy (equivalent to the always-deterministic baseline), with no monotonic improvement as data increases. Augmentation-based scaling provides no improvement at any scale; however, episode-level minority-class diversity remains a potential confound that cannot be resolved without collecting more internal-preferred episodes. The ground-truth internal-preferred rate (9/245 $= 3.7\\%$) means collecting 50 internal-preferred episodes would require approximately 1{,}350 paired episodes at current environment dynamics, a $5.5{\\times}$ expansion with diminishing return on a $9.6\\%$ signal. The failure points to a limitation of the current data distribution: when DAF $= 90.4\\%$ and all task types are deterministic-majority (86:9 label ratio), the episode-level routing problem is trivially solved by always choosing deterministic, and the step-level router finds no exploitable signal under the current architecture and data regime.\n\nAugmentation disproportionately increases the majority (deterministic) class: Det\\% rises from 89.6\\% at 100\\% to 94.2\\% at 200\\% and ${\\sim}97.7\\%$ at 800\\%. However, the complete collapse to majority-class prediction (internal recall $= 0.0$) occurs even at the smallest unaugmented scale (25\\%, ${\\sim}90\\%$ det); this is not an augmentation artifact. Balanced accuracy corrects for class imbalance by averaging per-class recall, so the metric itself is not biased by the skew.\n\nDecomposition metrics are stable under bootstrap resampling ($B{=}10{,}000$ resamples of the 245-episode dataset): DAF $= 90.4\\% \\pm 4.2\\%$ (95\\% CI $[81.1\\%, 99.0\\%]$); Pearson $r = 0.975 \\pm 0.011$ (95\\% CI $[0.952, 0.995]$). The death avoidance dominance finding is robust to both resampling and split perturbation.\n\n\\paragraph{Per-task-type evaluation breakdown.} To test whether the router learns transferable routing strategies or merely task-type classification, we evaluate existing checkpoints (8 seeds) separately on each of the 11 task types. Of the 11 task types, 7 have \\emph{all-deterministic} labels (no internal-preferred episodes exist), making balanced accuracy undefined; the router has nothing to learn beyond the trivial always-deterministic default. For the remaining 4 task types where both classes are present, balanced accuracy ranges from 50.0\\% to 73.0\\%, but this apparent signal does not indicate cross-task-type routing transfer: the router is effectively classifying task types (which correlate with death risk) rather than extracting a generalizable routing strategy. This complements the text augmentation ablation: routing signal does not transfer across task types because the signal \\emph{is} the task type, i.e., whether a given task carries death risk. The 4B capacity scaling result (Appendix~\\ref{app:ablations}) suggests capacity is one factor, but even 4B's $59.0\\%$ episode-level accuracy does not demonstrate cross-task-type transfer.\n\n\\section{Penalty Sensitivity Analysis}\n\\label{app:penalty}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rrr@{}}\n\\toprule\n$P$ & DAF($P$) & 95\\% CI \\\\\n\\midrule\n0 & 7.4\\% & [$-39.4$, $82.5$] \\\\\n1 & 14.8\\% & [$-28.6$, $89.6$] \\\\\n5 & 35.4\\% & [$-1.8$, $92.7$] \\\\\n10 & 50.4\\% & [$18.5$, $93.3$] \\\\\n25 & 70.7\\% & [$48.0$, $96.3$] \\\\\n50 & 82.6\\% & [$67.2$, $98.2$] \\\\\n100\\textsuperscript{*} & 90.4\\% & [$81.1$, $99.0$] \\\\\n200 & 94.9\\% & [$89.9$, $99.5$] \\\\\n500 & 97.9\\% & [$95.7$, $99.8$] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Sensitivity of DAF to death penalty magnitude $P$. DAF$(P) = 1 - \\Delta_{\\text{nd}} / \\Delta_{\\text{full}}(P)$, where $\\Delta_{\\text{full}}(P) \\approx \\delta \\cdot P + \\Delta_{\\text{nd}}$, $\\delta = 0.2653$ is the death-rate differential, and $\\Delta_{\\text{nd}} = 2.84$ (strict neither-died filtering). Recomputed from 245 episode-level data; bootstrap 95\\% CIs ($B{=}10{,}000$). \\textsuperscript{*}Default setting.}\n\\label{tab:penalty-sensitivity}\n\\end{table}\n\nThe non-death score gap $\\Delta_{\\text{nd}} = 2.84$ is invariant across penalty levels; it depends only on surviving-episode performance, not on $P$. As $P$ increases, $\\Delta_{\\text{full}}$ grows ($16.33$ at $P{=}50$, $29.60$ at $P{=}100$, $56.13$ at $P{=}200$) while $\\Delta_{\\text{nd}}$ remains fixed, mechanically increasing DAF.\n\n\\paragraph{Mechanism boundary: death specificity.}\nThe $r = 0.97$ correlation between per-task death-rate differential and $\\Delta_{\\text{full}}$ is specific to catastrophic death (score $= -100$). Broader failure definitions dissolve the correlation entirely: defining ``failure'' as any non-positive score ($T{=}0$) yields $r = -0.13$ ($p = 0.70$), because non-death episodes show near-zero performance differential between strategies ($\\Delta_{\\text{nd}} = 2.84$). Table~\\ref{tab:penalty-correlation} quantifies this specificity across penalty magnitudes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccl@{}}\n\\toprule\n$P$ & $r$ & $p$ & Sig.\\ ($\\alpha{=}0.05$) \\\\\n\\midrule\n1 & $-0.44$ & $0.178$ & No \\\\\n5 & $-0.29$ & $0.382$ & No \\\\\n10 & $-0.08$ & $0.813$ & No \\\\\n25 & $0.51$ & $0.108$ & No \\\\\n50 & $0.86$ & $0.0006$ & Yes \\\\\n100\\textsuperscript{*} & $0.97$ & $8 \\times 10^{-7}$ & Yes \\\\\n200 & $0.99$ & $1 \\times 10^{-9}$ & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Pearson $r$ between per-task death-rate differential and $\\Delta_{\\text{full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \\geq 50$, which reflects the transition from non-death-dominated to death-dominated score gaps. \\textsuperscript{*}Default ScienceWorld setting.}\n\\label{tab:penalty-correlation}\n\\end{table}\n\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\Delta_{\\text{full}}$ reduces to $\\Delta_{\\text{nd}} \\approx 2.84$, which is near-uniform across task types ($\\text{mean non-death gap} = -1.19$ excluding the \\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\Delta_{\\text{full}}$, and the correlation sharpens because death rates \\emph{are} the performance gap. The DAF values in Table~\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\text{DAF} = \\delta P / (\\delta P + \\Delta_{\\text{nd}})$), not evidence of mechanism robustness.\n\n\\section{Cross-Environment Details}\n\\label{app:cross-env-details}\n\nFigure~\\ref{fig:signal-reversal} and Table~\\ref{tab:cross-env} summarize the label distributions across all three environments.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/signal_reversal.pdf}\n\\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both show deterministic preference, but through different mechanisms: death avoidance (ScienceWorld) vs.\\ information asymmetry from admissible-action access (ALFWorld). MATH shows balanced labels, confirming no routing signal without catastrophic failure.}\n\\label{fig:signal-reversal}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nEnvironment & $N$ & Det\\% & Int\\% & NoPref\\% & Death? \\\\\n\\midrule\nScienceWorld & 245 & 35.1 & 3.7 & 61.2 & Yes ($-100$) \\\\\nMATH & 795 & 7.3 & 8.3 & 84.4 & No \\\\\nALFWorld & 135 & 25.9 & 1.5 & 72.6 & No\\textsuperscript{$\\dagger$} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different computation modes: ScienceWorld = oracle simulator with ground-truth state; MATH = Python code interpreter; ALFWorld = admissible-action enumeration. $\\dagger$\\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}\n\\label{tab:cross-env}\n\\end{table}\n\nTable~\\ref{tab:alfworld-pertask} provides the per-task-type breakdown for ALFWorld. Unlike ScienceWorld, ALFWorld has no death mechanism ($\\delta = 0$, DAF $= 0\\%$); the entire performance gap $\\Delta_{\\text{full}}$ reflects information asymmetry from admissible-action access. \\texttt{pick\\_and\\_place} shows the strongest effect ($\\Delta = 0.563$, 18 of 32 episodes det-preferred), while \\texttt{pick\\_two\\_obj\\_and\\_place} shows the weakest ($\\Delta = 0.087$), consistent with multi-object tasks requiring more sequential reasoning that admissible actions alone cannot resolve. Only \\texttt{pick\\_heat\\_then\\_place} has a 95\\% CI crossing zero ($n{=}16$).\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\nTask Type & $n$ & Succ\\%\\textsubscript{int} & Succ\\%\\textsubscript{det} & D / I / N & $\\Delta_{\\text{full}}$ \\\\\n\\midrule\npick\\_and\\_place       & 32 & 0.0  & 56.3 & 18 / 0 / 14 & $+0.563$ \\\\\nlook\\_at\\_obj\\_in\\_light & 13 & 15.4 & 38.5 & 3 / 0 / 10  & $+0.231$ \\\\\npick\\_cool\\_then\\_place & 24 & 0.0  & 16.7 & 4 / 0 / 20  & $+0.167$ \\\\\npick\\_clean\\_then\\_place & 27 & 3.7  & 18.5 & 5 / 1 / 21  & $+0.148$ \\\\\npick\\_heat\\_then\\_place & 16 & 6.3  & 18.8 & 3 / 1 / 12  & $+0.125$ \\\\\npick\\_two\\_obj\\_and\\_place & 23 & 0.0 & 8.7  & 2 / 0 / 21  & $+0.087$ \\\\\n\\midrule\n\\textbf{All (6 types)} & \\textbf{135} & \\textbf{3.0} & \\textbf{27.4} & \\textbf{35 / 2 / 98} & $\\mathbf{+0.244}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\\Delta_{\\text{full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\\Delta_{\\text{full}}$ descending.}\n\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\paragraph{MATH subset composition.}\nThe $N{=}795$ MATH problems span two categories from the MATH test set~\\citep{math-2021} (Levels 4--5): Algebra (585, 73.6\\%) and Counting \\& Probability (210, 26.4\\%). The category imbalance reflects the relative sizes in the original test set.\n\n\\section{Cross-Model Verification}\n\\label{app:cross-model}\n\nWe replicate the counterfactual analysis with Llama-3.1-8B-Instruct across all 11 task types ($N{=}220$ episode pairs, 20 per type; Table~\\ref{tab:cross-model-detail}).\nThe internal strategy dies in $41.4\\%$ of episodes versus $11.4\\%$ for deterministic (death-rate differential $+30.0$~pp), with 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated by the task environment rather than model-specific factors. The differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$), but directional consistency is 100\\% (10/10 death-prone tasks in both models).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrrl@{}}\n\\toprule\nTask & Int\\% & Det\\% & $\\Delta$\\,pp & D / I / N \\\\\n\\midrule\nidentify-life-stages-1 & 55 & 10 & +45 & 9 / 0 / 11 \\\\\nfreeze & 45 & 0 & +45 & 9 / 0 / 11 \\\\\ngrow-fruit & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nidentify-life-stages-2 & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nmeasure-melting-point & 50 & 15 & +35 & 9 / 0 / 11 \\\\\nlifespan-longest & 35 & 5 & +30 & 7 / 1 / 12 \\\\\nlifespan-l-then-s & 50 & 20 & +30 & 6 / 0 / 14 \\\\\nchemistry-mix & 45 & 20 & +25 & 5 / 0 / 15 \\\\\ninclined-plane & 45 & 20 & +25 & 6 / 0 / 14 \\\\\nfind-animal & 40 & 25 & +15 & 6 / 2 / 12 \\\\\nfind-non-living-thing & 0 & 0 & 0 & 10 / 0 / 10 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{41.4} & \\textbf{11.4} & \\textbf{+30.0} & \\textbf{83 / 3 / 134} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task Llama-3.1-8B cross-model replication ($N{=}20$ per task). D/I/N: deterministic-preferred / internal-preferred / no-preference. Sorted by $\\Delta$ DR descending.}\n\\label{tab:cross-model-detail}\n\\end{table}\n\n\\paragraph{Cross-model and cross-environment summary.}\nTable~\\ref{tab:cross-model-env} consolidates replication results across model families and environments.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcrrrccc}\n\\toprule\nModel & Environment & $n$ & Int DR & Det DR & $\\Delta$DR & DAF & DAF 95\\% CI & Signal \\\\\n\\midrule\nQwen2.5-7B & ScienceWorld & 245 & 42.9\\% & 16.3\\% & +26.5 & 90.4\\% & [81.1, 99.0] & death \\\\\nLlama-3.1-8B & ScienceWorld & 220 & 41.4\\% & 11.4\\% & +30.0 & 88.2\\% & [80.2, 95.1] & death \\\\\nGemma-2-9B-it & ScienceWorld & 220 & 36.4\\% & 14.1\\% & +22.3 & 89.7\\% & [79.5, 98.4] & death \\\\\nQwen2.5-72B & ScienceWorld & 255 & 30.6\\% & 2.75\\% & +27.8 & 92.4\\% & --- & death \\\\\n\\midrule\nQwen2.5-7B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\nLlama-3.1-8B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\n\\midrule\nQwen2.5-7B & MATH & 795 & N/A & N/A & N/A & N/A & N/A & none \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model and cross-environment replication summary. \\textbf{ScienceWorld}: death dominance replicates across three model families in the 7--9B range and persists under $10{\\times}$ scaling (72B); DAF 95\\% CIs from non-clustered episode-level bootstrap ($B{=}10{,}000$). \\textbf{ALFWorld}: DAF $= 0\\%$ (no death mechanism); routing signal arises from information asymmetry. \\textbf{MATH}: no routing signal without catastrophic failure. Signal column: diagnosed routing mechanism. DR = death rate. Gemma-2's wider CI reflects one zero-death task type (\\texttt{find-non-living-thing}); excluding it yields DAF $= 99.9\\%$ $[99.7, 100.0]$.}\n\\label{tab:cross-model-env}\n\\end{table}\n\n\\section{Failure Mode Analysis}\n\\label{app:failure-modes}\n\nAll 105 internal-strategy deaths (100\\%) are triggered by the same action pattern: \\texttt{focus on [object]}. In ScienceWorld, \\texttt{focus on} is the answer-submission action (equivalent to ``this is my final answer''); the LLM agent systematically misuses it as a general interaction or exploration command, and applies it to irrelevant targets (rooms, doors, inventory items). Each such execution submits an incorrect answer and triggers the $-100$ death penalty. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40 for deterministic) reflects how often each strategy enters catastrophic states, not different action selection within those states.\n\nManual inspection identifies four failure categories: (A) no task awareness, where the agent executes \\texttt{focus on} without reading the task; (B) task-aware but lacking action grounding, where the agent correctly identifies the objective but cannot map it to valid action primitives; (D) genuine attempts with execution failure; and (E) initial progress wasted by early errors. Category B dominates: agents demonstrate task comprehension but systematically fail to translate it into correct ScienceWorld actions. This taxonomy was produced by a single annotator; no inter-annotator agreement was computed. The categories are intended as qualitative illustrations, not as formal labels with reliability guarantees.\n\\label{tab:death-taxonomy}\n\n\\paragraph{Representative examples.}\n\\emph{Category A} (no task awareness): In a \\texttt{chemistry-mix} episode, the agent immediately executes \\texttt{focus on kitchen}, \\texttt{focus on door}, \\texttt{focus on inventory} without reading the task, dying on the first \\texttt{focus on} call. \\emph{Category B} (comprehension without grounding): In a \\texttt{lifespan-longest-lived} episode, the agent correctly identifies that it must compare animal lifespans and reasons about which animal lives longest, but then executes \\texttt{focus on oak tree} (a non-animal object in the room) instead of navigating to find the target animal, triggering death.\n\n\\paragraph{Action distribution analysis.}\nFigure~\\ref{fig:death-action-dist} shows the action distribution in death versus non-death episodes for the internal strategy; both are dominated by \\texttt{connect} actions, with \\texttt{focus on} moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$). Crucially, Figure~\\ref{fig:death-comparison} reveals that within death episodes, internal and deterministic strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$). The survival gap (105 vs.\\ 40 deaths) therefore reflects how often each strategy enters catastrophic states, not how it behaves within those states. Among fatal \\texttt{focus on} targets, \\texttt{workshop} remains the most frequent (20.0\\%), followed by \\texttt{inventory} (17.1\\%) and \\texttt{kitchen} (10.5\\%), indicating a systematic object bias rather than random exploration. Figure~\\ref{fig:death-timeline} visualizes the temporal pattern: agents execute long sequences of \\texttt{connect} actions before a terminal \\texttt{focus on} triggers death, typically in the final 1--3 steps.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_distribution.pdf}\n\\caption{Action distribution for the internal (LLM) strategy in death ($n{=}105$) vs.\\ non-death ($n{=}140$) episodes. Left: full distribution (both dominated by \\texttt{connect}). Right: non-\\texttt{connect} actions zoomed. \\texttt{focus on} is moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$), while non-death episodes show higher rates of observation and object interaction.}\n\\label{fig:death-action-dist}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_timeline.pdf}\n\\caption{Step-by-step action sequences for 6 representative death episodes. The fatal \\texttt{focus on} action (marked with arrow) consistently appears in the final steps after long \\texttt{connect} sequences, and illustrates the ``connect loop $\\to$ fatal focus'' pattern. Examples are drawn from the full 30-task dataset for task-type diversity; the pattern is identical in the 11-task analysis subset.}\n\\label{fig:death-timeline}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_comparison.pdf}\n\\caption{Non-\\texttt{connect} action distribution comparison between internal (left) and deterministic (right) strategies. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40) reflects more frequent entry into catastrophic states, not different action selection within those states.}\n\\label{fig:death-comparison}\n\\end{figure}\n\n\\section{Grounding Ablation}\n\\label{app:grounding-ablation}\n\nWe test whether directly intervening on the dominant death action (\\texttt{focus on}) eliminates death vulnerability on the 10 death-prone tasks (baseline 48.0\\%, $n{=}200$).\n\n\\paragraph{Prompt warning.} Adding an explicit system prompt (``use \\texttt{focus on} only for final answers'') reduces aggregate death rate to 37.0\\% ($\\Delta = -11$~pp). Both identification tasks exhibit ironic effects (\\texttt{identify-life-stages-1}: 35\\%$\\to$50\\%; \\texttt{identify-life-stages-2}: 25\\%$\\to$70\\%), where explicit mention of the dangerous action may have increased its salience.\n\n\\paragraph{Action-space filtering.} Blocking \\texttt{focus on} during the exploration phase yields 379 blocks across 200 episodes with zero leaks and zero passthroughs (the agent never persisted in retrying blocked actions), reducing death rate to 29.0\\% ($\\Delta = -19$~pp). The zero-passthrough rate suggests \\texttt{focus on} use is a shallow behavioral pattern rather than a deliberate strategy.\n\n\\paragraph{Per-task variation.} Under filtering, \\texttt{identify-life-stages} and \\texttt{inclined-plane} approach deterministic-level safety (${\\sim}$15--20\\% DR), while \\texttt{chemistry-mix} and \\texttt{find-animal} remain at 35--40\\%. Residual deaths occur during the answer-submission window, where the filter is inactive and agents submit \\texttt{focus on} to incorrect objects.\n\n\\section{Ablation Studies}\n\\label{app:ablations}\n\n\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\ref{tab:capacity}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nModel & Step Bal.\\ Acc.\\ (\\%) & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nQwen3-0.6B & $56.4 \\pm 3.5$ & $50.7 \\pm 2.6$ \\\\\nQwen3-1.7B & $58.2 \\pm 4.0$ & $43.1 \\pm 1.0$ \\\\\nQwen3-4B & $59.2 \\pm 3.5$ & $\\mathbf{59.0 \\pm 1.9}$ \\\\\n\\midrule\nAlways-det & 50.0 & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\\%$, $p < 0.005$).}\n\\label{tab:capacity}\n\\end{table}\n\nStep-level balanced accuracy is flat across scales ($56$--$59\\%$, within seed variance); step-level discrimination is not capacity-sensitive. At episode level, only 4B breaks the random baseline ($59.0 \\pm 1.9\\%$, $p < 0.005$); 0.6B and 1.7B remain at or below chance. The 1.7B model's below-chance episode-level accuracy ($43.1\\%$) may reflect overfitting to spurious step-level correlations that anti-correlate with episode outcomes; without per-class confusion matrices at this scale, this remains a hypothesis. The dominant explanation across scales is that death avoidance constitutes a task-type-level binary signal that a step-level router cannot exploit efficiently.\n\n\\paragraph{Generative router.} A generative routing model trained with explicit routing labels achieves balanced accuracy of 46.7\\%, confirming that the routing bottleneck is signal-limited, not architecture-limited.\n\n\\paragraph{Leave-one-task-type-out routing.} Under leave-one-task-type-out evaluation, blind routing collapses to always-deterministic (balanced accuracy 50.0\\%); a keyword-based variant achieves 62.9\\% only through task-identity leakage, not genuine routing signal. A guided router evaluated under the same protocol confirms this: without task-type identifiers it achieves chance accuracy (50.0\\%), and leaking task names raises this to 62.9\\%, confirming that the only learnable routing feature is task-type identity.\n\n\\paragraph{Death-proximal labeling.} Training a router only on the $k$ steps preceding death events (rather than all steps) also collapses to majority-class prediction (step balanced accuracy 50.0\\%, episode balanced accuracy 50.0\\%, internal recall 0\\%), confirming that the absence of step-level signal is not an artifact of label dilution across long episodes.\n\n\\paragraph{Reasoning depth.} An ablation comparing chain-of-thought reasoning against direct-answer generation on 6 task types ($n{=}120$ episodes per condition, 6 tasks $\\times$ 20 episodes per task) found no significant difference (Mann--Whitney $p > 0.26$, $|d| \\leq 0.31$) and near-identical death rates (41.8\\% vs.\\ 42.5\\%); reasoning depth does not meaningfully alter internal-mode outcomes.\n\n\\section{Threshold Routing Analysis}\n\\label{sec:threshold-routing}\n\nGiven per-task death risk knowledge, we test whether a simple threshold routing strategy can outperform always-deterministic. For each threshold $t \\in [0, 1]$, we route to internal if the per-task internal death rate $\\leq t$, otherwise to deterministic, and sweep all thresholds to find the optimal.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\nStrategy & Mean Score & Death Rate & $\\Delta$ vs Det \\\\\n\\midrule\nAlways-det & $-9.47$ & $0.163$ & $0.00$ \\\\\nOptimal threshold ($t{=}0$) & $-11.03$ & $0.155$ & $-1.56$ \\\\\nAlways-internal & $-39.07$ & $0.429$ & $-29.60$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \\texttt{find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\\% CI for the difference: $[-8.87, +5.92]$.}\n\\label{tab:threshold-routing}\n\\end{table}\n\nEven with perfect per-task death risk knowledge, threshold routing cannot outperform always-deterministic. The sole zero-death task achieves higher scores under deterministic (+28.5) than internal (+18.9), leaving no room for a beneficial mixed strategy.\n\n\\section{Practitioner Decision Framework}\n\\label{app:decision-framework}\n\nGiven a new interactive environment, the following three-stage procedure diagnoses whether learned routing adds value over a fixed deterministic strategy.\n\n\\paragraph{Stage 1: Pilot collection (${\\sim}$50 episodes).}\nRun pure-internal and pure-deterministic strategies on a representative sample (${\\sim}$50 episode pairs). Compute the death-rate differential $\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$.\n\n\\paragraph{Stage 2: Death dominance check.}\nIf $\\Delta\\text{DR} > 15$~pp, death asymmetry is likely the dominant routing signal. Compute the death-label fraction $f_{\\text{death}}$: the proportion of non-tie routing labels where exactly one strategy dies.\n\n\\paragraph{Stage 3: Decision.}\nIf $f_{\\text{death}} > 75\\%$, the routing signal is death-dominated; a fixed deterministic strategy will match or exceed any learned router. If $f_{\\text{death}} < 50\\%$, diverse routing signals may justify a learned router. Between 50\\%--75\\%, collect additional episodes to reduce estimation noise before committing to router development.\n\n\\paragraph{Retrospective validation.}\nAll four experimental conditions in this paper are correctly classified:\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrll@{}}\n\\toprule\nCondition & $\\Delta$DR & $f_{\\text{death}}$ & Prediction & Actual \\\\\n\\midrule\nQwen-7B & +26.5 & 78.9\\% & det-fixed & det wins \\\\\nLlama-8B & +30.0 & $>$75\\% & det-fixed & det wins \\\\\nQwen-72B & +27.8 & $>$75\\% & det-fixed & det wins \\\\\nMATH & +0.5 & 0\\% & router viable & no signal \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Retrospective validation of the decision framework. All four conditions are correctly classified (4/4).}\n\\label{tab:decision-framework}\n\\end{table}\n\nThe framework also predicts the inverted-U relationship between capability and death risk: below ${\\sim}$0.5B parameters, agents rarely reach dangerous states (13.3\\% death rate in a 15-episode pilot), so $\\Delta\\text{DR}$ is low and the framework would not recommend fixed-deterministic. Above ${\\sim}$7B, agents are capable enough to enter catastrophic states but not capable enough to avoid them, producing high $\\Delta\\text{DR}$.\n\n\\paragraph{Threshold calibration.} The thresholds above (15~pp, 75\\%, 50\\%) are illustrative, derived from ScienceWorld's specific reward structure (binary death penalty $P{=}100$, sparse terminal rewards). Environments with graded penalties, dense rewards, or qualitatively different failure modes may require different thresholds. Practitioners should calibrate these boundaries for their specific environment.\n\n\\section{Extended Validation of Excluded Tasks}\n\\label{app:extended-validation}\n\nTo verify that task exclusion does not bias toward death-prone tasks, we collect $n{=}20$ episodes for five representative excluded tasks spanning all exclusion categories (Table~\\ref{tab:extended-val}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcrrrrc}\n\\toprule\nTask & Category & $n$ & Int DR & Det DR & $\\Delta$DR & D/I/N \\\\\n\\midrule\nboil & dev-set & 20 & 55\\% & 25\\% & +30\\,pp & 6/0/14 \\\\\nmelt & dev-set & 20 & 45\\% & 20\\% & +25\\,pp & 7/2/11 \\\\\nfind-living-thing & taxonomic & 20 & 55\\% & 15\\% & +40\\,pp & 10/0/10 \\\\\nuse-thermometer & agent-floor & 20 & 50\\% & 20\\% & +30\\,pp & 7/1/12 \\\\\npower-component & agent-floor & 20 & 50\\% & 15\\% & +35\\,pp & 7/0/13 \\\\\n\\midrule\n\\textit{Mean (5 tasks)} & & 100 & 51.0\\% & 19.0\\% & +32.0\\,pp & 37/3/60 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Extended validation ($n{=}20$) of representative excluded task types. All five tasks confirm death asymmetry; mean $\\Delta$DR $= +32.0$\\,pp is consistent with the $n{=}5$ prescreening estimate for these same tasks (Table~\\ref{tab:excluded-death}).}\n\\label{tab:extended-val}\n\\end{table}\n\nNotably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\n\n\\section{Agent Prompt Templates}\n\\label{app:prompt-templates}\n\nBelow we show the complete prompt templates used for agent interaction in ScienceWorld. Both the internal (ReAct) and deterministic strategies share the same system prompt but differ in the user message template.\n\n\\paragraph{System prompt (shared).} Used for all ScienceWorld agent interactions across both computation modes.\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nYou are an agent interacting with a ScienceWorld text\nenvironment. Your goal is to complete the given task by\nchoosing actions from the available action list.\n\nUse the following format for each step:\nThought: &lt;your reasoning about what to do next>\nAction: &lt;exact action string from the valid actions list>\n\nRules:\n- You MUST choose an action from the valid actions list.\n  Do not invent actions.\n- Think step by step about what physical/scientific\n  process is needed.\n- Pay attention to the current observation for clues\n  about object states.\n\\end{tcblisting}\n\n\\paragraph{Internal (ReAct) user template.} At each step, the agent receives the current observation, valid action list, and recent action history, and must select a single action.\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nCurrent observation:\n{observation}\n\nValid actions:\n{valid_actions_str}\n\nPrevious actions taken: {history_str}\n\nChoose your next action.\n\\end{tcblisting}\n\n\\paragraph{Deterministic candidate generation template.} For the deterministic strategy, the agent generates ranked candidate actions instead of selecting one; these candidates are then evaluated via simulator forking (\\S\\ref{sec:method}).\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nCurrent observation:\n{observation}\n\nValid actions:\n{valid_actions_str}\n\nPrevious actions taken: {history_str}\n\nGenerate the top 3 most promising actions from the valid\nactions list, ranked by how likely they are to make\nprogress on the task. Output exactly 3 actions, one per\nline, in this format:\n1. &lt;action>\n2. &lt;action>\n3. &lt;action>\n\\end{tcblisting}\n\n\\paragraph{Reflexion self-reflection prompt.} After a failed episode, the Reflexion agent (\\S\\ref{sec:agent-improvement}) generates a reflection that is injected into subsequent trial attempts as additional system context.\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nYou just completed an episode in a ScienceWorld text\nenvironment but failed.\n\nTask: {task_name}\nFinal score: {final_score}\nOutcome: {outcome}\nNumber of steps taken: {num_steps}\n\nHere is a summary of your actions:\n{action_summary}\n\nAnalyze why this episode failed and provide a short\nstrategy for the next attempt. Focus on:\n1. What went wrong (wrong sequence, missed key step,\n   dangerous action)?\n2. What should be done differently next time?\n\nKeep your reflection under 200 words.\n\\end{tcblisting}\n\n\\paragraph{Grounding warning (ablation).} The prompt warning condition in the grounding ablation (Appendix~\\ref{app:grounding-ablation}) appends the following to the shared system prompt:\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nCRITICAL SAFETY RULE: The 'focus on [object]' action is\nONLY for submitting your final answer. Do NOT use\n'focus on' to examine, inspect, or interact with objects\nduring exploration. Using 'focus on' on the wrong object\nwill cause irreversible failure. Use 'look at',\n'examine', or 'pick up' instead for exploration.\n\\end{tcblisting}\n\n\\noindent The key difference between the two computation modes is the user message: the internal strategy asks the LLM to \\emph{select} one action (ReAct), while the deterministic strategy asks it to \\emph{rank} candidates for simulator evaluation. Both use identical system prompts and identical observation formatting.\n\n\\input{responsibleNLPchecklist}\n\n\\end{document}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 40,
+        "oldLines": 7,
+        "newStart": 40,
+        "newLines": 7,
+        "lines": [
+          " Our primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\ref{app:penalty}). The 19 excluded task types (63\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\\S\\ref{sec:cross-env}, \\S\\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \\S\\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\\times}$ scale) reduces death rate but does not eliminate death dominance (\\S\\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).",
+          " ",
+          " \\paragraph{Methodological constraints.}",
+          "-Our internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\\% pre-event neutral). The issue is granularity mismatch---applying correct-direction labels to uninformative steps---not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.",
+          "+Our internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\\% pre-event neutral). The issue is granularity mismatch (applying correct-direction labels to uninformative steps), not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.",
+          " ",
+          " \\paragraph{Statistical limitations.}",
+          " Episodes within the same task type are not fully independent because they share environment dynamics, though they use different random seeds. Cluster bootstrap with $K{=}11$ task-type clusters yields wider CIs ($[73.3\\%, 100.0\\%]$); with $K < 40$ clusters, these should be interpreted cautiously~\\citep{cameron-2008,webb-2023}. A wild cluster bootstrap ($K{=}11$, $p < 0.001$; Appendix~\\ref{app:wild-cluster}) and 100\\% directional consistency across all 28 death-prone tasks (Appendix~\\ref{app:per-task-ci}) mitigate this concern."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01THXMjU9b4rA38VHd6qQR5y`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+  "old_string": "routing---for example, by combining DAF analysis with online policy learning---is",
+  "new_string": "routing (for example, by combining DAF analysis with online policy learning) is"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "be8d1659-bad1-47cb-bb40-180fe8c0dd44",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcxGbzTaNHvz6D8z2edf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 40849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 221
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-21T13:52:46.791Z_
+
+<details><summary>↩ Tool result · `toolu_01THXMjU9b4rA38VHd6qQR5y`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "ecd1a200-40bb-40bc-aedb-ef99ac18ab41",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.tex",
+    "oldString": "routing---for example, by combining DAF analysis with online policy learning---is",
+    "newString": "routing (for example, by combining DAF analysis with online policy learning) is",
+    "originalFile": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\graphicspath{{figures/}}\n\\usepackage{booktabs}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{algorithm}\n\\usepackage{algorithmic}\n\\usepackage{tcolorbox}\n\\tcbuselibrary{listings,breakable}\n\n\\hypersetup{pdfauthor={},pdftitle={}}\n\n\\title{Death Avoidance as the Dominant Routing Signal:\\\\A Counterfactual Analysis on ScienceWorld}\n\n\\author{Anonymous}\n\n\\begin{document}\n\\maketitle\n\n\\input{abstract}\n\\input{introduction}\n\\input{method}\n\\input{experiments}\n\\input{related_work}\n\\input{discussion}\n\\input{conclusion}\n\n\\section*{Limitations}\n\n\\paragraph{Environmental scope.}\nOur primary analysis uses a single environment (ScienceWorld, 11 of 30 task types) with one backbone (Qwen2.5-7B-Instruct), though extended validation of representative excluded tasks confirms the pattern (Appendix~\\ref{app:extended-validation}). The $-100$ death penalty amplifies DAF; environments with softer penalties would exhibit lower DAF values (Appendix~\\ref{app:penalty}). The 19 excluded task types (63\\%) lack routing signal because both strategies typically time out within 30 steps; increasing the step budget could surface non-death-dominated signal that our current setup does not capture. Cross-environment analyses on MATH and ALFWorld (\\S\\ref{sec:cross-env}, \\S\\ref{sec:discussion}) provide preliminary supporting evidence but do not conclusively establish generalization. A Llama-3.1-8B-Instruct cross-model replication (11 task types, $N{=}220$; \\S\\ref{sec:cross-model}) shows death dominance replicates with direction consistency 10/10 while vulnerability magnitude varies ($+30.0$~pp vs.\\ Qwen $+26.5$~pp), though both models are in the 7--8B parameter range; Qwen2.5-72B ($10{\\times}$ scale) reduces death rate but does not eliminate death dominance (\\S\\ref{sec:agent-improvement}); validation beyond 72B remains future work. Our quantitative results (DAF $= 90.4\\%$, label fractions) are specific to ScienceWorld; the framework's generality claim is methodological (the diagnostic procedure applies to any environment with asymmetric fatal outcomes), not empirical (the specific percentages may differ across environments).\n\n\\paragraph{Methodological constraints.}\nOur internal-reasoning baseline uses single-pass ReAct~\\citep{react-2023}. Reflexion~\\citep{reflexion-2023} reduces death rate from 42.9\\% to 31.4\\% (\\S\\ref{sec:agent-improvement}), but more aggressive self-correction or Tree-of-Thought backtracking~\\citep{tot-2023} may further reduce internal death rates. Episode-level labels assign a single routing preference to entire episodes, which may be suboptimal for individual steps (particularly those preceding death events). However, of 2{,}040 training steps only 0.3\\% exhibit strict directional conflict (step-level oracle opposite to episode label); the remaining apparent mislabeling consists of episode labels applied to steps where neither strategy has a step-level advantage (60.3\\% pre-event neutral). The issue is granularity mismatch (applying correct-direction labels to uninformative steps), not directional error. Training on pure-strategy trajectories also introduces distribution shift at deployment~\\citep{dagger-2011}. Under mixed-strategy routing with oracle death prediction, switching to deterministic at the step before death could reduce the internal death rate; even under optimistic assumptions (perfect step-level death prediction), a residual gap of ${>}10$~pp between strategies is expected, as fatal trajectories involve cumulative hallucination errors preceding the death event. More broadly, projecting episode-level labels onto 10--50 sequential steps with path-dependent state introduces compounding error: early routing decisions alter the state trajectory, potentially invalidating later labels derived from the episode outcome.\n\n\\paragraph{Statistical limitations.}\nEpisodes within the same task type are not fully independent because they share environment dynamics, though they use different random seeds. Cluster bootstrap with $K{=}11$ task-type clusters yields wider CIs ($[73.3\\%, 100.0\\%]$); with $K < 40$ clusters, these should be interpreted cautiously~\\citep{cameron-2008,webb-2023}. A wild cluster bootstrap ($K{=}11$, $p < 0.001$; Appendix~\\ref{app:wild-cluster}) and 100\\% directional consistency across all 28 death-prone tasks (Appendix~\\ref{app:per-task-ci}) mitigate this concern.\n\n\\paragraph{Pure-strategy upper bound.}\nOur counterfactual analysis compares pure strategies (always-internal vs.\\ always-deterministic). In mixed routing, the router can selectively invoke deterministic mode on high-risk steps, potentially reducing death asymmetry. Thus, DAF${=}90.4\\%$ represents an upper bound on death avoidance's contribution to optimized routing; the actual contribution under mixed strategies may be lower.\n\n\\paragraph{Diagnostic scope.}\nOur framework is diagnostic rather than prescriptive: it identifies what drives routing decisions but does not optimize the routing policy itself. Extending the counterfactual decomposition to prescribe optimal mixed-strategy routing---for example, by combining DAF analysis with online policy learning---is a natural next step.\n\n\\section*{Ethics Statement}\n\nThis work uses ScienceWorld \\citep{scienceworld-2022}, a publicly available text-based simulation environment, and does not involve human subjects or private data. All evaluation environments (ScienceWorld, ALFWorld, MATH) are released under permissive open-source licenses (Apache 2.0 / MIT). All models used (Qwen2.5 family, Llama-3.1-8B, Gemma-2-9B-it) are publicly available for research use. All language models are accessed via standard APIs or publicly released weights. Experiments were conducted on 2$\\times$ NVIDIA RTX 5090 (32GB) and 4$\\times$ NVIDIA RTX 6000 PRO (96GB), totaling approximately 200 GPU-hours, comprising ${\\sim}$140 hours for episode collection (counterfactual inference across three 7--9B model families plus Qwen2.5-72B backbone scaling, Reflexion and retry baselines, and cross-environment validation on ALFWorld and MATH), ${\\sim}$35 hours for router training (LoRA fine-tuning of Qwen3-0.6B/1.7B/4B across 4--8 seeds per scale, including augmentation and ablation variants), and ${\\sim}$25 hours for evaluation and analysis. Code and data will be released upon acceptance.\n\n\\bibliography{references}\n\n\\appendix\n\n\\noindent\\textbf{Appendix Overview.}\n\\hyperref[app:sci]{A.~Signal Concentration Index} $\\cdot$\n\\hyperref[app:labeling]{B.~Labeling Quality Audit} $\\cdot$\n\\hyperref[app:per-task]{C.~Per-Task Decomposition} $\\cdot$\n\\hyperref[app:correlation]{D.~Correlation Robustness} $\\cdot$\n\\hyperref[app:wild-cluster]{E.~Cluster Bootstrap Sensitivity} $\\cdot$\n\\hyperref[app:per-task-ci]{F.~Per-Task CIs} $\\cdot$\n\\hyperref[app:loto-daf]{G.~Leave-One-Task-Out DAF} $\\cdot$\n\\hyperref[app:dose-response]{H.~Dose-Response Breakdown} $\\cdot$\n\\hyperref[app:router-details]{I.~Router Training Details} $\\cdot$\n\\hyperref[app:seed-robustness]{J.~Seed Robustness} $\\cdot$\n\\hyperref[app:penalty]{K.~Penalty Sensitivity} $\\cdot$\n\\hyperref[app:cross-env-details]{L.~Cross-Environment Details} $\\cdot$\n\\hyperref[app:cross-model]{M.~Cross-Model Verification} $\\cdot$\n\\hyperref[app:failure-modes]{N.~Failure Mode Analysis} $\\cdot$\n\\hyperref[app:grounding-ablation]{O.~Grounding Ablation} $\\cdot$\n\\hyperref[app:ablations]{P.~Ablation Studies} $\\cdot$\n\\hyperref[sec:threshold-routing]{Q.~Threshold Routing} $\\cdot$\n\\hyperref[app:decision-framework]{R.~Decision Framework} $\\cdot$\n\\hyperref[app:extended-validation]{S.~Extended Validation} $\\cdot$\n\\hyperref[app:prompt-templates]{T.~Agent Prompt Templates}\n\n\\section{Signal Concentration Index}\n\\label{app:sci}\n\nLet $K$ denote the number of task types and $c_k$ the contribution of task type $k$ to the aggregate routing signal, defined as the fraction of total death-rate differential attributable to task $k$:\n\\begin{equation}\n    c_k = \\frac{n_k \\cdot \\delta_k}{\\sum_{j=1}^{K} n_j \\cdot \\delta_j}\n\\end{equation}\nwhere $n_k$ is the number of episodes and $\\delta_k = d_k^{\\tt int} - d_k^{\\tt det}$ is the per-task death-rate differential. The SCI is the Gini coefficient over $\\{c_1, \\ldots, c_K\\}$:\n\\begin{equation}\n    \\text{SCI} = \\frac{\\sum_{i=1}^K \\sum_{j=1}^K |c_i - c_j|}{2K \\sum_{k=1}^K c_k}\n\\end{equation}\n\n\\section{Labeling Quality Audit}\n\\label{app:labeling}\n\n\\begin{algorithm}[t]\n\\caption{Episode-Level Counterfactual Labeling}\n\\label{alg:labeling}\n\\begin{algorithmic}[1]\n\\REQUIRE Task instance $t$, computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$\n\\ENSURE Label $\\ell \\in \\{{\\tt det\\text{-}pref}, {\\tt int\\text{-}pref}, {\\tt no\\text{-}pref}\\}$\n\\FOR{each $m \\in \\mathcal{M}$}\n    \\STATE Run episode $\\tau_m$ with pure-strategy $m$\n    \\STATE Record score $s_m$ and death indicator $d_m$\n\\ENDFOR\n\\IF{$d_{\\tt int} = 1$ \\AND $d_{\\tt det} = 0$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = 0$ \\AND $d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{death asymmetry}\n\\ELSIF{$d_{\\tt int} = d_{\\tt det} = 1$}\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{both dead}\n\\ELSIF{$s_{\\tt det} > s_{\\tt int}$}\n    \\STATE $\\ell \\leftarrow {\\tt det\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSIF{$s_{\\tt int} > s_{\\tt det}$}\n    \\STATE $\\ell \\leftarrow {\\tt int\\text{-}pref}$ \\COMMENT{score comparison}\n\\ELSE\n    \\STATE $\\ell \\leftarrow {\\tt no\\text{-}pref}$ \\COMMENT{tied alive}\n\\ENDIF\n\\RETURN $\\ell$\n\\end{algorithmic}\n\\end{algorithm}\n\nNote that episode-level labels are used to evaluate step-level predictions, introducing a granularity mismatch rather than independent validation. A potential concern is oracle circularity: whether episode-level labels reflect tie-breaking artifacts rather than genuine computation mode differences. We audit all 245 labels. Of the 150 \\texttt{no\\_preference} labels (61.2\\%), 115 (46.9\\%) are both-alive ties and 35 (14.3\\%) are both-dead, all excluded from router training. The remaining 95 training labels are entirely genuine: 75 from death asymmetry (70 deterministic-preferred, 5 internal-preferred) and 20 from score comparison with both strategies surviving (16 deterministic-preferred, 4 internal-preferred). Zero labels depend on tie-breaking. Retraining the router using only death-asymmetry labels yields step-level balanced accuracy of 57.3\\%, within 1$\\sigma$ of the full-label retrain (57.6 $\\pm$ 0.5\\%, step-level Trainer evaluation); score-comparison labels contribute negligible additional signal. (Step-level metrics are used here for the relative comparison; as shown in \\S\\ref{sec:router-diagnostic}, absolute generalization to new episodes is near chance.) The 97.4\\% step-level tie rate (\\S\\ref{sec:collection}) further motivates episode-level over step-level labeling.\n\n\\section{Per-Task Decomposition}\n\\label{app:per-task}\nWe use ScienceWorld v1.2.3~\\citep{scienceworld-2022}.\nWe select 11 of ScienceWorld's 30 task types for analysis. Types are excluded when they were used for pipeline development (5 tasks, standard hold-out practice), are taxonomically redundant with a retained family representative (7 tasks), or exhibit near-zero task progress under both strategies (7 tasks, agent capability floor).\\footnote{Excluded tasks exhibit even stronger death dominance than included tasks ($\\Delta\\text{DR} = +38.2$\\,pp vs.\\ $+28.7$\\,pp; Table~\\ref{tab:excluded-death}).}\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrrccc@{}}\n\\toprule\nTask & $n$ & $\\Delta_\\text{full}$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & D / I / N \\\\\n\\midrule\nid-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\\\\nlifespan-long          & 25  & $+44.00$ & 56   & 16   & 11 / 1 / 13 \\\\\nlifespan-l-then-s      & 20  & $+40.80$ & 45   & 10   & 8 / 1 / 11  \\\\\ninclined-plane         & 20  & $+36.00$ & 55   & 20   & 7 / 0 / 13  \\\\\nfreeze                 & 20  & $+30.50$ & 55   & 25   & 6 / 0 / 14  \\\\\nmeas-melt-point        & 20  & $+30.05$ & 55   & 25   & 6 / 0 / 14  \\\\\nid-life-stages-2       & 20  & $+30.00$ & 50   & 20   & 6 / 0 / 14  \\\\\nfind-animal            & 20  & $+26.65$ & 50   & 25   & 5 / 0 / 15  \\\\\ngrow-fruit             & 20  & $+25.10$ & 45   & 20   & 6 / 1 / 13  \\\\\nchem-mix               & 20  & $+21.80$ & 45   & 25   & 6 / 2 / 12  \\\\\n\\midrule\nfind-non-living-thing$^\\dagger$ & 40 & $+9.58$ & 0  & 0    & 16 / 4 / 20 \\\\\n\\midrule\n\\textbf{All (11 tasks)} & \\textbf{245} & $\\mathbf{+29.60}$ & \\textbf{42.9} & \\textbf{16.3} & \\textbf{86 / 9 / 150} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task decomposition of the death avoidance effect. D\\%: death rate for internal (int) and deterministic (det) strategies. D/I/N: episode labels (det-preferred / internal-preferred / no-preference). Sorted by $\\Delta_{\\text{full}}$ descending. The \\textit{All} row is an episode-weighted aggregate across 245 episodes. $\\dagger$\\,Only task with zero deaths under both strategies; $n{=}40$ because data was collected in two batches, with the second batch adding 20 episodes to increase statistical power for this zero-death outlier.}\n\\label{tab:per-task}\n\\end{table}\n\n\\paragraph{Task selection and anti-cherry-picking.}\nEighteen of the 19 excluded task types (95\\%) exhibit death-asymmetric patterns (Table~\\ref{tab:excluded-death}): internal-reasoning death rates range from 40\\% to 60\\% (mean 53.9\\%), while deterministic death rates range from 0\\% to 40\\% (mean 15.8\\%), yielding a mean death-rate differential of $+38.2$\\,pp, exceeding the $+28.7$\\,pp for included tasks. The included subset is thus \\emph{less} death-asymmetric than the excluded subset, the opposite of what a cherry-picking hypothesis would predict. The sole exception is \\texttt{grow-plant}, an intrinsically safe task with zero deaths under both strategies, paralleling \\texttt{find-non-living-thing} in the included set. The 19 excluded tasks fall into three independently motivated categories: five used during pipeline development (standard hold-out practice), seven taxonomically redundant with included family representatives (deduplication), and seven where the 7B backbone achieves near-zero task progress regardless of strategy (agent capability floor). In no case was a task excluded because death dominance was absent. Exclusion is driven by absence of non-death routing signal ($\\Delta_{\\text{nd}} = 0$ for 53\\% of excluded tasks) and standard deduplication practices. \\texttt{find-non-living-thing} serves as an internal counterexample: zero deaths under both strategies yet included because it exhibits non-death routing signal ($\\Delta_{\\text{full}} = +9.58$ entirely from score differences), and deterministic is not always preferred (4 of 20 non-tie labels favor internal).\n\n\\begin{table}[t]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2pt}\n\\begin{tabular}{@{}llrcccl@{}}\n\\toprule\nTask & Grp & $n$ & D\\%\\textsubscript{int} & D\\%\\textsubscript{det} & $\\Delta$DR & Excl.\\ reason \\\\\n\\midrule\nboil                          & A & 20 & 50 & 20 & $+30$ & dev set \\\\\nchange-state-of-matter        & A & 20 & 55 & 15 & $+40$ & dev set \\\\\nchem-mix-paint-secondary      & A & 20 & 45 & 10 & $+35$ & dev set \\\\\ngrow-plant                    & A & 20 &  0 &  0 & $\\phantom{+}0$  & dev set \\\\\nmelt                          & A & 20 & 55 & 15 & $+40$ & dev set \\\\\n\\midrule\nchem-mix-paint-tertiary       & B &  5 & 40 & 20 & $+20$ & family redundancy \\\\\nfind-living-thing             & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\nfind-plant                    & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\ninclined-friction-named       & B &  5 & 60 & 20 & $+40$ & family redundancy \\\\\ninclined-friction-unnamed     & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\nlifespan-shortest             & B &  5 & 60 & 40 & $+20$ & family redundancy \\\\\nmeasure-melt-known            & B &  5 & 60 &  0 & $+60$ & family redundancy \\\\\n\\midrule\nmendelian-known               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nmendelian-unknown             & C &  5 & 60 & 40 & $+20$ & agent floor \\\\\npower-component               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\npower-renewable               & C &  5 & 60 &  0 & $+60$ & agent floor \\\\\ntest-conductivity             & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\ntest-conductivity-unknown     & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\nuse-thermometer               & C &  5 & 60 & 20 & $+40$ & agent floor \\\\\n\\midrule\n\\textbf{Mean (19 excluded)}   &   &    & \\textbf{53.9} & \\textbf{15.8} & $\\mathbf{+38.2}$ & \\\\\n\\textit{cf.\\ included (11)}   &   &    & \\textit{46.5} & \\textit{17.8} & $\\textit{+28.7}$ & \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Death-rate analysis of all 19 excluded task types. D\\%: death rate (score $\\leq -100$). $\\Delta$DR = D\\%\\textsubscript{int} $-$ D\\%\\textsubscript{det}. 18 of 19 excluded tasks (95\\%) exhibit positive death asymmetry ($\\Delta$DR $\\geq +20$\\,pp). Exclusion groups: A = development set (excluded to prevent circular evaluation), B = taxonomically redundant with an included family representative, C = agent-floor tasks (backbone achieves near-zero progress regardless of strategy). The mean $\\Delta$DR among excluded tasks ($+38.2$\\,pp) exceeds that of included tasks ($+28.7$\\,pp), confirming that task selection does not bias toward death-prone tasks. Group B--C estimates are based on $n{=}5$ prescreening episodes per task and should be interpreted as directional evidence rather than precise rate estimates.}\n\\label{tab:excluded-death}\n\\end{table}\n\n\\section{Correlation Robustness}\n\\label{app:correlation}\n\nThe Pearson $r = 0.9698$ reported in \\S\\ref{sec:death-decomp} is robust across multiple diagnostics. Spearman rank correlation is $\\rho = 0.986$ ($p = 2.4 \\times 10^{-8}$); the relationship is not driven by outliers or non-linearity. A nonparametric bootstrap (10{,}000 resamples) yields 95\\% CI $[0.952, 0.995]$.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lr@{}}\n\\toprule\nTask removed & $r_{\\text{LOO}}$ \\\\\n\\midrule\nid-life-stages-1       & 0.963 \\\\\nlifespan-long          & 0.969 \\\\\nlifespan-l-then-s      & 0.976 \\\\\ninclined-plane         & 0.969 \\\\\nfreeze                 & 0.971 \\\\\nmeas-melt-point        & 0.972 \\\\\nid-life-stages-2       & 0.972 \\\\\nfind-animal            & 0.970 \\\\\ngrow-fruit             & 0.973 \\\\\nchem-mix               & 0.969 \\\\\nfind-non-living-thing  & 0.980 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Leave-one-out Pearson $r$ for the death rate differential vs.\\ $\\Delta_{\\text{full}}$ correlation. Full $r = 0.970$; LOO range $[0.963, 0.980]$. No single task type is a leverage point.}\n\\label{tab:loo}\n\\end{table}\n\n\\section{Cluster Bootstrap Sensitivity Analysis}\n\\label{app:wild-cluster}\n\nWith $K{=}11$ task-type clusters, cluster bootstrap falls well below the $K{\\geq}20$--30 recommended for reliable inference \\citep{cameron-2008,webb-2023}. The narrower CIs obtained reflect known small-sample bias toward underestimation of variance, not tighter inference.\n\nEpisodes within the same task type share environment dynamics, raising the concern that the effective sample size is closer to $K$ (task types) than $N$ (episodes). We address this with cluster-robust inference treating each task type as a cluster ($K{=}11$, all 11 included task types, 245 episodes).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nMethod & $p$-value & 95\\% CI \\\\\n\\midrule\nCluster-robust $t$-test ($t{=}10.0$, df$=$10) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nWild cluster bootstrap ($B{=}9{,}999$) & $< 0.001$ & $[0.73, 1.00]$ \\\\\nExact permutation ($2{,}048$ perms) & $0.002$ & --- \\\\\nSign test & $< 0.001$ & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Cluster-level tests of death-rate asymmetry ($K{=}11$ task clusters, 245 episodes). 10 of 11 clusters show internal DR $>$ deterministic DR; the sole exception (\\texttt{find-non-living-thing}) has zero deaths under both strategies. Cohen's $d = 3.02$. The exact permutation $p = 0.002$ ($4/2{,}048$) reflects the near-unanimous directional consistency.}\n\\label{tab:wild-cluster}\n\\end{table}\n\n\\noindent All methods confirm significance with $p < 0.01$, and the 95\\% CI $[0.73, 1.00]$ excludes zero by a wide margin. With $K{=}11$ task types, ICC estimation itself carries substantial uncertainty; the high within-task consistency of death patterns (all-or-nothing per task type) suggests high ICC, which explains the CI narrowing under cluster resampling.\n\nWe retain this analysis for transparency; readers should rely on the non-clustered episode-level bootstrap (\\S\\ref{sec:death-decomp}) as the primary inference.\n\n\\section{Per-Task Death Rate Confidence Intervals}\n\\label{app:per-task-ci}\n\nWe compute bootstrap 95\\% CIs for the death-rate differential ($\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$) for all 30 ScienceWorld task types. Of 30 tasks, 28 are death-prone (at least one death under either strategy); the remaining 2 (\\texttt{grow-plant}, \\texttt{find-non-living-thing}) have zero deaths under both strategies.\n\nAcross all 28 death-prone tasks, internal DR exceeds deterministic DR without exception (100\\% directional consistency). The pooled death-rate differential is $+37.3\\%$ (95\\% CI: $[29.7\\%, 44.4\\%]$). Fifteen of 28 tasks are individually significant (CI excludes zero); the 13 non-significant tasks all have $n{=}5$ prescreening episodes, where statistical power is insufficient to detect even large effects (e.g., a task with $\\Delta\\text{DR} = +40$\\,pp at $n{=}5$ has a CI of $\\pm 43$\\,pp). The universal directional consistency, combined with the pooled significance, confirms that death asymmetry is not driven by a subset of outlier tasks.\n\n\\section{Leave-One-Task-Out DAF Sensitivity}\n\\label{app:loto-daf}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Leave-one-task-out DAF sensitivity (penalty-independent label fraction). Among the 10 death-prone tasks, removing any single task changes DAF by at most 3.0\\,pp (range: 75.9\\%--78.9\\%). Removing \\emph{Find Non-Living Thing}, the sole death-free task that contributes all 20 score-comparison episodes, raises DAF to 100\\% by construction.}\n\\label{tab:loto-daf}\n\\begin{tabular}{lrrr}\n\\toprule\nRemoved Task & $N_\\text{rem}$ & DAF (\\%) & $\\Delta$ (pp) \\\\\n\\midrule\n(none, full) & 245 & 78.9 & --- \\\\\n\\midrule\nFind Non-Living$^\\dagger$ & 205 & 100.0 & +21.1 \\\\\nLifespan Longest & 220 & 75.9 & $-$3.0 \\\\\nLife Stages 1 & 225 & 76.7 & $-$2.2 \\\\\nLifespan Long+Short & 225 & 76.7 & $-$2.2 \\\\\nChemistry Mix & 225 & 77.0 & $-$1.9 \\\\\nGrow Fruit & 225 & 77.3 & $-$1.7 \\\\\nInclined Plane Angle & 225 & 77.3 & $-$1.7 \\\\\nFreeze & 225 & 77.5 & $-$1.4 \\\\\nLife Stages 2 & 225 & 77.5 & $-$1.4 \\\\\nMelt Pt Unknown & 225 & 77.5 & $-$1.4 \\\\\nFind Animal & 225 & 77.8 & $-$1.2 \\\\\n\\bottomrule\n\\end{tabular}\n\n\\vspace{2pt}\n{\\footnotesize $^\\dagger$Only death-free task; contributes all score-comparison labels. Sorted by $|\\Delta|$ descending.}\n\\end{table}\n\n\\section{Per-Task Dose-Response Breakdown}\n\\label{app:dose-response}\n\nTable~\\ref{tab:dose-response-detail} reports per-task death rates for Reflexion at $N{=}3$, 4, and 5 on the 10 death-prone tasks ($n{=}20$ episodes per task). Per-task variance is high (up to 25\\,pp range for \\texttt{measure-melting-point}), but the aggregate smooths to a 2.5\\,pp band, confirming that the stabilization conclusion is robust at the aggregate level despite task-level noise. \\texttt{freeze} is consistently the hardest task (50--60\\% DR across all $N$).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\caption{Per-task death rates (\\%) for Reflexion at $N{=}3$, 4, 5 on 10 death-prone tasks ($n{=}20$ per task). Aggregate death rates confirm stabilization at $N \\geq 3$ (range: $34.0$--$36.5\\%$).}\n\\label{tab:dose-response-detail}\n\\begin{tabular}{@{}lrrr@{}}\n\\toprule\nTask & $N{=}3$ & $N{=}4$ & $N{=}5$ \\\\\n\\midrule\nchemistry-mix & 25.0 & 35.0 & 20.0 \\\\\nfind-animal & 45.0 & 30.0 & 45.0 \\\\\nfreeze & 50.0 & 50.0 & 60.0 \\\\\ngrow-fruit & 30.0 & 25.0 & 25.0 \\\\\nidentify-life-stages-1 & 35.0 & 35.0 & 35.0 \\\\\nidentify-life-stages-2 & 25.0 & 25.0 & 30.0 \\\\\ninclined-plane-angle & 20.0 & 30.0 & 35.0 \\\\\nlifespan-longest & 45.0 & 40.0 & 40.0 \\\\\nlifespan-long+short & 30.0 & 45.0 & 35.0 \\\\\nmeasure-melting-pt & 35.0 & 50.0 & 25.0 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{34.0} & \\textbf{36.5} & \\textbf{35.0} \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Router Training Details}\n\\label{app:router-details}\n\nWe use Qwen3-1.7B for the router to avoid circular dependency with the Qwen2.5-7B data-generating model.\n\nWith gradient accumulation of 1 (effective batch size 4), routing performance is highly sensitive to the evaluation split; this suggests overfitting to specific train/validation partition boundaries. With gradient accumulation of 8 (effective batch size 32), step-level performance stabilizes across splits (${\\sim}54\\%$ balanced accuracy). All reported results use gradient accumulation 8.\n\nUnder step-level evaluation with a fixed data split, cross-seed balanced accuracy ranges from 52.7\\% to 58.1\\%, but internal recall varies from 51.5\\% to 81.8\\%, which reflects threshold sensitivity. However, episode-level evaluation reveals that this apparent discrimination does not generalize: balanced accuracy drops to $47.1 \\pm 2.2\\%$ across 8 cross-split seeds (Appendix~\\ref{app:seed-robustness}). Deployed end-to-end, the trained router allocates 97.0\\% of episodes to deterministic computation with 17.6\\% death rate, and misrouting cost (death from internally-routed episodes) exceeds the benefit of correctly routing rare internal-preferred cases.\n\n\\paragraph{Evaluation methods.} All results use \\emph{generation-based evaluation}: the model generates a routing label as text (\\texttt{enable\\_thinking=False}), parsed for classification. We evaluate at two granularities: \\emph{step-level} (steps from the same episode may appear in both train and validation sets) and \\emph{episode-level} (entire episodes held out). Step-level accuracy ($54.1 \\pm 5.4\\%$) exceeds chance (the router captures some signal), but episode-level accuracy ($47.1 \\pm 2.2\\%$, below chance) shows this does not generalize to unseen episodes. Paraphrase-based text augmentation (Appendix~\\ref{app:seed-robustness}) provides no improvement; real-data scaling remains open. Always-deterministic is trivially near-optimal given DAF $= 90.4\\%$. The main text (\\S\\ref{sec:router-diagnostic}) reports controlled 4-seed results at three scales; the model-size ablation (Appendix~\\ref{app:ablations}) provides further detail.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nHyperparameter & Classification Head & Implicit Router \\\\\n\\midrule\nBase model & Qwen3-1.7B & Qwen3-1.7B \\\\\nArchitecture & Linear + LoRA & SFT + LoRA \\\\\nLoRA $r$ / $\\alpha$ & 16 / 32 & 16 / 32 \\\\\nLearning rate & 2e-5 & 2e-4 \\\\\nOptimizer & AdamW & AdamW \\\\\nEpochs & 3 & 3 \\\\\nBatch size (per device) & 4 & 4 \\\\\nGradient accumulation & 8 & 8 \\\\\nWarmup ratio & 0.1 & 0.1 \\\\\nWeight decay & 0.01 & 0.01 \\\\\nMax sequence length & 512 & 512 \\\\\nSeeds & \\{42\\} & \\{42, 123, 456, 789\\} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Router training hyperparameters. Both architectures use the same base model with LoRA adaptation. The classification head degenerates across all configurations; the implicit router results are reported as 4-seed mean$\\pm$std.}\n\\label{tab:hyperparams}\n\\end{table}\n\n\\paragraph{Agent inference parameters.}\nFor ScienceWorld, each agent step uses temperature $T{=}0.3$ and maximum generation length of 256 tokens, served via vLLM v0.21.0. Top-$p$ is left at the vLLM default of $1.0$ (no nucleus sampling). For MATH, the agent uses greedy decoding ($T{=}0.0$) with a maximum of 2{,}048 tokens per generation. For ALFWorld, we use $T{=}0.3$ with 256 maximum tokens. All three environments use Qwen2.5-7B-Instruct~\\citep{qwen25-2024} as the backbone.\n\n\\section{Seed Robustness}\n\\label{app:seed-robustness}\n\nWe assess router generalization at two evaluation granularities: \\emph{step-level}, where steps from the same episode may appear in both train and validation sets, and \\emph{episode-level}, where entire episodes are held out. Both use cross-split evaluation (seeds $\\{42, \\ldots, 49\\}$, 8 seeds total), where the data partition and training seed both vary. Table~\\ref{tab:seed-robustness} reports per-seed results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}llcc@{}}\n\\toprule\nEval.\\ Granularity & Seed & Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nStep-level & 42 & 57.06 \\\\\n(same-episode & 43 & 63.99 \\\\\nleakage) & 44 & 55.43 \\\\\n & 45 & 56.14 \\\\\n & 46 & 55.45 \\\\\n & 47 & 50.08 \\\\\n & 48 & 48.03 \\\\\n & 49 & 59.30 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $54.1 \\pm 5.4$ \\\\\n\\midrule\nEpisode-level & 42 & 48.1 \\\\\n(held-out & 43 & 47.9 \\\\\nepisodes) & 44 & 49.6 \\\\\n & 45 & 49.4 \\\\\n & 46 & 48.5 \\\\\n & 47 & 43.1 \\\\\n & 48 & 45.4 \\\\\n & 49 & 44.8 \\\\\n\\cmidrule{2-3}\n & Mean$\\pm$std & $47.1 \\pm 2.2$ \\\\\n\\midrule\n\\multicolumn{2}{@{}l}{Always-det (= majority-vote)} & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-seed router performance under cross-split evaluation (8 seeds, generation-based, \\texttt{enable\\_thinking=False}). Step-level evaluation allows steps from the same episode in both train and validation sets (same-episode leakage). Episode-level evaluation holds out entire episodes; the resulting $47.1 \\pm 2.2\\%$ is below the 50\\% chance baseline. A text augmentation ablation (Table~\\ref{tab:text-augmentation}) confirms this failure persists under the current data distribution and augmentation regime.}\n\\label{tab:seed-robustness}\n\\end{table}\n\nThe contrast between step-level ($54.1 \\pm 5.4\\%$) and episode-level ($47.1 \\pm 2.2\\%$) evaluation reveals a generalization gap: the step-level signal likely reflects memorization of episode-specific context (enabled by same-episode leakage) rather than extraction of generalizable routing features. At episode level, the router performs below chance across all 8 seeds (range: 43.1\\%--49.6\\%). Paraphrase-based text augmentation (Table~\\ref{tab:text-augmentation}) from 25\\% to 800\\% ($32{\\times}$ range) provides no improvement, converging to the always-deterministic baseline ($50\\%$). Paraphrase augmentation inflates the majority class without generating novel routing patterns; genuine episode-level scaling (collecting more counterfactual pairs) remains an open question. With DAF $= 90.4\\%$ and all task types deterministic-majority (86:9 label ratio), always-deterministic trivially solves the episode-level routing problem, leaving the step-level router with no exploitable signal under current architectures.\n\n\\paragraph{Text augmentation ablation.} To test whether the episode-level generalization failure stems from data scarcity, we vary training set size from 25\\% to 800\\% of the original via paraphrase-based text augmentation (synonym substitution + template variation on step observations), holding the episode-level validation set fixed. This tests augmentation-based scaling, not genuine episode-level scaling (which would require new counterfactual collections). Table~\\ref{tab:text-augmentation} reports the results.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccc@{}}\n\\toprule\nScale & Samples & Det\\% & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\n25\\% & 433 & ${\\sim}90$ & $49.5 \\pm 0.3$ \\\\\n50\\% & 867 & ${\\sim}90$ & $51.5$ \\\\\n100\\% & 1{,}735 & 89.6 & $49.9 \\pm 0.1$ \\\\\n200\\% & 3{,}470 & 94.2 & $50.0 \\pm 0.0$ \\\\\n800\\% & 13{,}880 & ${\\sim}97.7$ & $51.0 \\pm 1.1$ \\\\\n\\midrule\nAlways-det & --- & --- & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Text augmentation ablation: episode-level balanced accuracy across training set sizes (25\\%--800\\% of original via paraphrase, $32{\\times}$ range). Internal recall $= 0.0$ at all scales (complete majority-class collapse). Det\\%: fraction of deterministic-preferred labels in training data. The 50\\% scale is a single seed; all others report mean$\\pm$std across seeds.}\n\\label{tab:text-augmentation}\n\\end{table}\n\nAll scales hover at ${\\sim}50\\%$ episode-level balanced accuracy (equivalent to the always-deterministic baseline), with no monotonic improvement as data increases. Augmentation-based scaling provides no improvement at any scale; however, episode-level minority-class diversity remains a potential confound that cannot be resolved without collecting more internal-preferred episodes. The ground-truth internal-preferred rate (9/245 $= 3.7\\%$) means collecting 50 internal-preferred episodes would require approximately 1{,}350 paired episodes at current environment dynamics, a $5.5{\\times}$ expansion with diminishing return on a $9.6\\%$ signal. The failure points to a limitation of the current data distribution: when DAF $= 90.4\\%$ and all task types are deterministic-majority (86:9 label ratio), the episode-level routing problem is trivially solved by always choosing deterministic, and the step-level router finds no exploitable signal under the current architecture and data regime.\n\nAugmentation disproportionately increases the majority (deterministic) class: Det\\% rises from 89.6\\% at 100\\% to 94.2\\% at 200\\% and ${\\sim}97.7\\%$ at 800\\%. However, the complete collapse to majority-class prediction (internal recall $= 0.0$) occurs even at the smallest unaugmented scale (25\\%, ${\\sim}90\\%$ det); this is not an augmentation artifact. Balanced accuracy corrects for class imbalance by averaging per-class recall, so the metric itself is not biased by the skew.\n\nDecomposition metrics are stable under bootstrap resampling ($B{=}10{,}000$ resamples of the 245-episode dataset): DAF $= 90.4\\% \\pm 4.2\\%$ (95\\% CI $[81.1\\%, 99.0\\%]$); Pearson $r = 0.975 \\pm 0.011$ (95\\% CI $[0.952, 0.995]$). The death avoidance dominance finding is robust to both resampling and split perturbation.\n\n\\paragraph{Per-task-type evaluation breakdown.} To test whether the router learns transferable routing strategies or merely task-type classification, we evaluate existing checkpoints (8 seeds) separately on each of the 11 task types. Of the 11 task types, 7 have \\emph{all-deterministic} labels (no internal-preferred episodes exist), making balanced accuracy undefined; the router has nothing to learn beyond the trivial always-deterministic default. For the remaining 4 task types where both classes are present, balanced accuracy ranges from 50.0\\% to 73.0\\%, but this apparent signal does not indicate cross-task-type routing transfer: the router is effectively classifying task types (which correlate with death risk) rather than extracting a generalizable routing strategy. This complements the text augmentation ablation: routing signal does not transfer across task types because the signal \\emph{is} the task type, i.e., whether a given task carries death risk. The 4B capacity scaling result (Appendix~\\ref{app:ablations}) suggests capacity is one factor, but even 4B's $59.0\\%$ episode-level accuracy does not demonstrate cross-task-type transfer.\n\n\\section{Penalty Sensitivity Analysis}\n\\label{app:penalty}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rrr@{}}\n\\toprule\n$P$ & DAF($P$) & 95\\% CI \\\\\n\\midrule\n0 & 7.4\\% & [$-39.4$, $82.5$] \\\\\n1 & 14.8\\% & [$-28.6$, $89.6$] \\\\\n5 & 35.4\\% & [$-1.8$, $92.7$] \\\\\n10 & 50.4\\% & [$18.5$, $93.3$] \\\\\n25 & 70.7\\% & [$48.0$, $96.3$] \\\\\n50 & 82.6\\% & [$67.2$, $98.2$] \\\\\n100\\textsuperscript{*} & 90.4\\% & [$81.1$, $99.0$] \\\\\n200 & 94.9\\% & [$89.9$, $99.5$] \\\\\n500 & 97.9\\% & [$95.7$, $99.8$] \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Sensitivity of DAF to death penalty magnitude $P$. DAF$(P) = 1 - \\Delta_{\\text{nd}} / \\Delta_{\\text{full}}(P)$, where $\\Delta_{\\text{full}}(P) \\approx \\delta \\cdot P + \\Delta_{\\text{nd}}$, $\\delta = 0.2653$ is the death-rate differential, and $\\Delta_{\\text{nd}} = 2.84$ (strict neither-died filtering). Recomputed from 245 episode-level data; bootstrap 95\\% CIs ($B{=}10{,}000$). \\textsuperscript{*}Default setting.}\n\\label{tab:penalty-sensitivity}\n\\end{table}\n\nThe non-death score gap $\\Delta_{\\text{nd}} = 2.84$ is invariant across penalty levels; it depends only on surviving-episode performance, not on $P$. As $P$ increases, $\\Delta_{\\text{full}}$ grows ($16.33$ at $P{=}50$, $29.60$ at $P{=}100$, $56.13$ at $P{=}200$) while $\\Delta_{\\text{nd}}$ remains fixed, mechanically increasing DAF.\n\n\\paragraph{Mechanism boundary: death specificity.}\nThe $r = 0.97$ correlation between per-task death-rate differential and $\\Delta_{\\text{full}}$ is specific to catastrophic death (score $= -100$). Broader failure definitions dissolve the correlation entirely: defining ``failure'' as any non-positive score ($T{=}0$) yields $r = -0.13$ ($p = 0.70$), because non-death episodes show near-zero performance differential between strategies ($\\Delta_{\\text{nd}} = 2.84$). Table~\\ref{tab:penalty-correlation} quantifies this specificity across penalty magnitudes.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}rccl@{}}\n\\toprule\n$P$ & $r$ & $p$ & Sig.\\ ($\\alpha{=}0.05$) \\\\\n\\midrule\n1 & $-0.44$ & $0.178$ & No \\\\\n5 & $-0.29$ & $0.382$ & No \\\\\n10 & $-0.08$ & $0.813$ & No \\\\\n25 & $0.51$ & $0.108$ & No \\\\\n50 & $0.86$ & $0.0006$ & Yes \\\\\n100\\textsuperscript{*} & $0.97$ & $8 \\times 10^{-7}$ & Yes \\\\\n200 & $0.99$ & $1 \\times 10^{-9}$ & Yes \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Pearson $r$ between per-task death-rate differential and $\\Delta_{\\text{full}}(P)$ across penalty magnitudes. The correlation is non-significant at low penalties and emerges at $P \\geq 50$, which reflects the transition from non-death-dominated to death-dominated score gaps. \\textsuperscript{*}Default ScienceWorld setting.}\n\\label{tab:penalty-correlation}\n\\end{table}\n\nThis sharpens our central finding: death is not merely the dominant component of routing signal; it is effectively the \\emph{only} component that generates differential routing signal in ScienceWorld. At low penalties, the death contribution is small and $\\Delta_{\\text{full}}$ reduces to $\\Delta_{\\text{nd}} \\approx 2.84$, which is near-uniform across task types ($\\text{mean non-death gap} = -1.19$ excluding the \\texttt{find-non-living-thing} outlier); consequently, death-rate differential has no predictive power. As $P$ increases, the death term dominates $\\Delta_{\\text{full}}$, and the correlation sharpens because death rates \\emph{are} the performance gap. The DAF values in Table~\\ref{tab:penalty-sensitivity} increase monotonically with $P$, but this is a mathematical consequence of the decomposition ($\\text{DAF} = \\delta P / (\\delta P + \\Delta_{\\text{nd}})$), not evidence of mechanism robustness.\n\n\\section{Cross-Environment Details}\n\\label{app:cross-env-details}\n\nFigure~\\ref{fig:signal-reversal} and Table~\\ref{tab:cross-env} summarize the label distributions across all three environments.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/signal_reversal.pdf}\n\\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both show deterministic preference, but through different mechanisms: death avoidance (ScienceWorld) vs.\\ information asymmetry from admissible-action access (ALFWorld). MATH shows balanced labels, confirming no routing signal without catastrophic failure.}\n\\label{fig:signal-reversal}\n\\end{figure}\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccccc@{}}\n\\toprule\nEnvironment & $N$ & Det\\% & Int\\% & NoPref\\% & Death? \\\\\n\\midrule\nScienceWorld & 245 & 35.1 & 3.7 & 61.2 & Yes ($-100$) \\\\\nMATH & 795 & 7.3 & 8.3 & 84.4 & No \\\\\nALFWorld & 135 & 25.9 & 1.5 & 72.6 & No\\textsuperscript{$\\dagger$} \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-environment label distribution. ``Deterministic'' denotes qualitatively different computation modes: ScienceWorld = oracle simulator with ground-truth state; MATH = Python code interpreter; ALFWorld = admissible-action enumeration. $\\dagger$\\,ALFWorld's deterministic advantage stems from information asymmetry, not death avoidance.}\n\\label{tab:cross-env}\n\\end{table}\n\nTable~\\ref{tab:alfworld-pertask} provides the per-task-type breakdown for ALFWorld. Unlike ScienceWorld, ALFWorld has no death mechanism ($\\delta = 0$, DAF $= 0\\%$); the entire performance gap $\\Delta_{\\text{full}}$ reflects information asymmetry from admissible-action access. \\texttt{pick\\_and\\_place} shows the strongest effect ($\\Delta = 0.563$, 18 of 32 episodes det-preferred), while \\texttt{pick\\_two\\_obj\\_and\\_place} shows the weakest ($\\Delta = 0.087$), consistent with multi-object tasks requiring more sequential reasoning that admissible actions alone cannot resolve. Only \\texttt{pick\\_heat\\_then\\_place} has a 95\\% CI crossing zero ($n{=}16$).\n\n\\begin{table}[h]\n\\centering\n\\scriptsize\n\\setlength{\\tabcolsep}{2.5pt}\n\\begin{tabular}{@{}lrcccc@{}}\n\\toprule\nTask Type & $n$ & Succ\\%\\textsubscript{int} & Succ\\%\\textsubscript{det} & D / I / N & $\\Delta_{\\text{full}}$ \\\\\n\\midrule\npick\\_and\\_place       & 32 & 0.0  & 56.3 & 18 / 0 / 14 & $+0.563$ \\\\\nlook\\_at\\_obj\\_in\\_light & 13 & 15.4 & 38.5 & 3 / 0 / 10  & $+0.231$ \\\\\npick\\_cool\\_then\\_place & 24 & 0.0  & 16.7 & 4 / 0 / 20  & $+0.167$ \\\\\npick\\_clean\\_then\\_place & 27 & 3.7  & 18.5 & 5 / 1 / 21  & $+0.148$ \\\\\npick\\_heat\\_then\\_place & 16 & 6.3  & 18.8 & 3 / 1 / 12  & $+0.125$ \\\\\npick\\_two\\_obj\\_and\\_place & 23 & 0.0 & 8.7  & 2 / 0 / 21  & $+0.087$ \\\\\n\\midrule\n\\textbf{All (6 types)} & \\textbf{135} & \\textbf{3.0} & \\textbf{27.4} & \\textbf{35 / 2 / 98} & $\\mathbf{+0.244}$ \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task-type decomposition for ALFWorld (135 games, Qwen2.5-7B-Instruct). D/I/N: deterministic-preferred / internal-preferred / no-preference. No death mechanism exists; $\\Delta_{\\text{full}}$ is driven entirely by information asymmetry from admissible-action access. Sorted by $\\Delta_{\\text{full}}$ descending.}\n\\label{tab:alfworld-pertask}\n\\end{table}\n\n\\paragraph{MATH subset composition.}\nThe $N{=}795$ MATH problems span two categories from the MATH test set~\\citep{math-2021} (Levels 4--5): Algebra (585, 73.6\\%) and Counting \\& Probability (210, 26.4\\%). The category imbalance reflects the relative sizes in the original test set.\n\n\\section{Cross-Model Verification}\n\\label{app:cross-model}\n\nWe replicate the counterfactual analysis with Llama-3.1-8B-Instruct across all 11 task types ($N{=}220$ episode pairs, 20 per type; Table~\\ref{tab:cross-model-detail}).\nThe internal strategy dies in $41.4\\%$ of episodes versus $11.4\\%$ for deterministic (death-rate differential $+30.0$~pp), with 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated by the task environment rather than model-specific factors. The differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$), but directional consistency is 100\\% (10/10 death-prone tasks in both models).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrrl@{}}\n\\toprule\nTask & Int\\% & Det\\% & $\\Delta$\\,pp & D / I / N \\\\\n\\midrule\nidentify-life-stages-1 & 55 & 10 & +45 & 9 / 0 / 11 \\\\\nfreeze & 45 & 0 & +45 & 9 / 0 / 11 \\\\\ngrow-fruit & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nidentify-life-stages-2 & 45 & 5 & +40 & 8 / 0 / 12 \\\\\nmeasure-melting-point & 50 & 15 & +35 & 9 / 0 / 11 \\\\\nlifespan-longest & 35 & 5 & +30 & 7 / 1 / 12 \\\\\nlifespan-l-then-s & 50 & 20 & +30 & 6 / 0 / 14 \\\\\nchemistry-mix & 45 & 20 & +25 & 5 / 0 / 15 \\\\\ninclined-plane & 45 & 20 & +25 & 6 / 0 / 14 \\\\\nfind-animal & 40 & 25 & +15 & 6 / 2 / 12 \\\\\nfind-non-living-thing & 0 & 0 & 0 & 10 / 0 / 10 \\\\\n\\midrule\n\\textbf{Aggregate} & \\textbf{41.4} & \\textbf{11.4} & \\textbf{+30.0} & \\textbf{83 / 3 / 134} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-task Llama-3.1-8B cross-model replication ($N{=}20$ per task). D/I/N: deterministic-preferred / internal-preferred / no-preference. Sorted by $\\Delta$ DR descending.}\n\\label{tab:cross-model-detail}\n\\end{table}\n\n\\paragraph{Cross-model and cross-environment summary.}\nTable~\\ref{tab:cross-model-env} consolidates replication results across model families and environments.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{llcrrrccc}\n\\toprule\nModel & Environment & $n$ & Int DR & Det DR & $\\Delta$DR & DAF & DAF 95\\% CI & Signal \\\\\n\\midrule\nQwen2.5-7B & ScienceWorld & 245 & 42.9\\% & 16.3\\% & +26.5 & 90.4\\% & [81.1, 99.0] & death \\\\\nLlama-3.1-8B & ScienceWorld & 220 & 41.4\\% & 11.4\\% & +30.0 & 88.2\\% & [80.2, 95.1] & death \\\\\nGemma-2-9B-it & ScienceWorld & 220 & 36.4\\% & 14.1\\% & +22.3 & 89.7\\% & [79.5, 98.4] & death \\\\\nQwen2.5-72B & ScienceWorld & 255 & 30.6\\% & 2.75\\% & +27.8 & 92.4\\% & --- & death \\\\\n\\midrule\nQwen2.5-7B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\nLlama-3.1-8B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\n\\midrule\nQwen2.5-7B & MATH & 795 & N/A & N/A & N/A & N/A & N/A & none \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Cross-model and cross-environment replication summary. \\textbf{ScienceWorld}: death dominance replicates across three model families in the 7--9B range and persists under $10{\\times}$ scaling (72B); DAF 95\\% CIs from non-clustered episode-level bootstrap ($B{=}10{,}000$). \\textbf{ALFWorld}: DAF $= 0\\%$ (no death mechanism); routing signal arises from information asymmetry. \\textbf{MATH}: no routing signal without catastrophic failure. Signal column: diagnosed routing mechanism. DR = death rate. Gemma-2's wider CI reflects one zero-death task type (\\texttt{find-non-living-thing}); excluding it yields DAF $= 99.9\\%$ $[99.7, 100.0]$.}\n\\label{tab:cross-model-env}\n\\end{table}\n\n\\section{Failure Mode Analysis}\n\\label{app:failure-modes}\n\nAll 105 internal-strategy deaths (100\\%) are triggered by the same action pattern: \\texttt{focus on [object]}. In ScienceWorld, \\texttt{focus on} is the answer-submission action (equivalent to ``this is my final answer''); the LLM agent systematically misuses it as a general interaction or exploration command, and applies it to irrelevant targets (rooms, doors, inventory items). Each such execution submits an incorrect answer and triggers the $-100$ death penalty. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40 for deterministic) reflects how often each strategy enters catastrophic states, not different action selection within those states.\n\nManual inspection identifies four failure categories: (A) no task awareness, where the agent executes \\texttt{focus on} without reading the task; (B) task-aware but lacking action grounding, where the agent correctly identifies the objective but cannot map it to valid action primitives; (D) genuine attempts with execution failure; and (E) initial progress wasted by early errors. Category B dominates: agents demonstrate task comprehension but systematically fail to translate it into correct ScienceWorld actions. This taxonomy was produced by a single annotator; no inter-annotator agreement was computed. The categories are intended as qualitative illustrations, not as formal labels with reliability guarantees.\n\\label{tab:death-taxonomy}\n\n\\paragraph{Representative examples.}\n\\emph{Category A} (no task awareness): In a \\texttt{chemistry-mix} episode, the agent immediately executes \\texttt{focus on kitchen}, \\texttt{focus on door}, \\texttt{focus on inventory} without reading the task, dying on the first \\texttt{focus on} call. \\emph{Category B} (comprehension without grounding): In a \\texttt{lifespan-longest-lived} episode, the agent correctly identifies that it must compare animal lifespans and reasons about which animal lives longest, but then executes \\texttt{focus on oak tree} (a non-animal object in the room) instead of navigating to find the target animal, triggering death.\n\n\\paragraph{Action distribution analysis.}\nFigure~\\ref{fig:death-action-dist} shows the action distribution in death versus non-death episodes for the internal strategy; both are dominated by \\texttt{connect} actions, with \\texttt{focus on} moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$). Crucially, Figure~\\ref{fig:death-comparison} reveals that within death episodes, internal and deterministic strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$). The survival gap (105 vs.\\ 40 deaths) therefore reflects how often each strategy enters catastrophic states, not how it behaves within those states. Among fatal \\texttt{focus on} targets, \\texttt{workshop} remains the most frequent (20.0\\%), followed by \\texttt{inventory} (17.1\\%) and \\texttt{kitchen} (10.5\\%), indicating a systematic object bias rather than random exploration. Figure~\\ref{fig:death-timeline} visualizes the temporal pattern: agents execute long sequences of \\texttt{connect} actions before a terminal \\texttt{focus on} triggers death, typically in the final 1--3 steps.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_distribution.pdf}\n\\caption{Action distribution for the internal (LLM) strategy in death ($n{=}105$) vs.\\ non-death ($n{=}140$) episodes. Left: full distribution (both dominated by \\texttt{connect}). Right: non-\\texttt{connect} actions zoomed. \\texttt{focus on} is moderately more frequent in death episodes ($5.4\\%$ vs.\\ $3.4\\%$), while non-death episodes show higher rates of observation and object interaction.}\n\\label{fig:death-action-dist}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_timeline.pdf}\n\\caption{Step-by-step action sequences for 6 representative death episodes. The fatal \\texttt{focus on} action (marked with arrow) consistently appears in the final steps after long \\texttt{connect} sequences, and illustrates the ``connect loop $\\to$ fatal focus'' pattern. Examples are drawn from the full 30-task dataset for task-type diversity; the pattern is identical in the 11-task analysis subset.}\n\\label{fig:death-timeline}\n\\end{figure}\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/death_action_comparison.pdf}\n\\caption{Non-\\texttt{connect} action distribution comparison between internal (left) and deterministic (right) strategies. Within death episodes, both strategies exhibit comparable \\texttt{focus on} rates (${\\sim}5\\%$); the internal strategy's higher death count (105 vs.\\ 40) reflects more frequent entry into catastrophic states, not different action selection within those states.}\n\\label{fig:death-comparison}\n\\end{figure}\n\n\\section{Grounding Ablation}\n\\label{app:grounding-ablation}\n\nWe test whether directly intervening on the dominant death action (\\texttt{focus on}) eliminates death vulnerability on the 10 death-prone tasks (baseline 48.0\\%, $n{=}200$).\n\n\\paragraph{Prompt warning.} Adding an explicit system prompt (``use \\texttt{focus on} only for final answers'') reduces aggregate death rate to 37.0\\% ($\\Delta = -11$~pp). Both identification tasks exhibit ironic effects (\\texttt{identify-life-stages-1}: 35\\%$\\to$50\\%; \\texttt{identify-life-stages-2}: 25\\%$\\to$70\\%), where explicit mention of the dangerous action may have increased its salience.\n\n\\paragraph{Action-space filtering.} Blocking \\texttt{focus on} during the exploration phase yields 379 blocks across 200 episodes with zero leaks and zero passthroughs (the agent never persisted in retrying blocked actions), reducing death rate to 29.0\\% ($\\Delta = -19$~pp). The zero-passthrough rate suggests \\texttt{focus on} use is a shallow behavioral pattern rather than a deliberate strategy.\n\n\\paragraph{Per-task variation.} Under filtering, \\texttt{identify-life-stages} and \\texttt{inclined-plane} approach deterministic-level safety (${\\sim}$15--20\\% DR), while \\texttt{chemistry-mix} and \\texttt{find-animal} remain at 35--40\\%. Residual deaths occur during the answer-submission window, where the filter is inactive and agents submit \\texttt{focus on} to incorrect objects.\n\n\\section{Ablation Studies}\n\\label{app:ablations}\n\n\\paragraph{Capacity scaling.} We scale the implicit router from Qwen3-0.6B to Qwen3-4B and evaluate at both step and episode level (Table~\\ref{tab:capacity}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lcc@{}}\n\\toprule\nModel & Step Bal.\\ Acc.\\ (\\%) & Ep.\\ Bal.\\ Acc.\\ (\\%) \\\\\n\\midrule\nQwen3-0.6B & $56.4 \\pm 3.5$ & $50.7 \\pm 2.6$ \\\\\nQwen3-1.7B & $58.2 \\pm 4.0$ & $43.1 \\pm 1.0$ \\\\\nQwen3-4B & $59.2 \\pm 3.5$ & $\\mathbf{59.0 \\pm 1.9}$ \\\\\n\\midrule\nAlways-det & 50.0 & 50.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Capacity scaling: step-level and episode-level balanced accuracy (4 seeds, identical configuration across all scales). Step-level accuracy is flat ($56$--$59\\%$, within seed variance). At episode level, only 4B breaks the random baseline ($59.0\\%$, $p < 0.005$).}\n\\label{tab:capacity}\n\\end{table}\n\nStep-level balanced accuracy is flat across scales ($56$--$59\\%$, within seed variance); step-level discrimination is not capacity-sensitive. At episode level, only 4B breaks the random baseline ($59.0 \\pm 1.9\\%$, $p < 0.005$); 0.6B and 1.7B remain at or below chance. The 1.7B model's below-chance episode-level accuracy ($43.1\\%$) may reflect overfitting to spurious step-level correlations that anti-correlate with episode outcomes; without per-class confusion matrices at this scale, this remains a hypothesis. The dominant explanation across scales is that death avoidance constitutes a task-type-level binary signal that a step-level router cannot exploit efficiently.\n\n\\paragraph{Generative router.} A generative routing model trained with explicit routing labels achieves balanced accuracy of 46.7\\%, confirming that the routing bottleneck is signal-limited, not architecture-limited.\n\n\\paragraph{Leave-one-task-type-out routing.} Under leave-one-task-type-out evaluation, blind routing collapses to always-deterministic (balanced accuracy 50.0\\%); a keyword-based variant achieves 62.9\\% only through task-identity leakage, not genuine routing signal. A guided router evaluated under the same protocol confirms this: without task-type identifiers it achieves chance accuracy (50.0\\%), and leaking task names raises this to 62.9\\%, confirming that the only learnable routing feature is task-type identity.\n\n\\paragraph{Death-proximal labeling.} Training a router only on the $k$ steps preceding death events (rather than all steps) also collapses to majority-class prediction (step balanced accuracy 50.0\\%, episode balanced accuracy 50.0\\%, internal recall 0\\%), confirming that the absence of step-level signal is not an artifact of label dilution across long episodes.\n\n\\paragraph{Reasoning depth.} An ablation comparing chain-of-thought reasoning against direct-answer generation on 6 task types ($n{=}120$ episodes per condition, 6 tasks $\\times$ 20 episodes per task) found no significant difference (Mann--Whitney $p > 0.26$, $|d| \\leq 0.31$) and near-identical death rates (41.8\\% vs.\\ 42.5\\%); reasoning depth does not meaningfully alter internal-mode outcomes.\n\n\\section{Threshold Routing Analysis}\n\\label{sec:threshold-routing}\n\nGiven per-task death risk knowledge, we test whether a simple threshold routing strategy can outperform always-deterministic. For each threshold $t \\in [0, 1]$, we route to internal if the per-task internal death rate $\\leq t$, otherwise to deterministic, and sweep all thresholds to find the optimal.\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccc}\n\\toprule\nStrategy & Mean Score & Death Rate & $\\Delta$ vs Det \\\\\n\\midrule\nAlways-det & $-9.47$ & $0.163$ & $0.00$ \\\\\nOptimal threshold ($t{=}0$) & $-11.03$ & $0.155$ & $-1.56$ \\\\\nAlways-internal & $-39.07$ & $0.429$ & $-29.60$ \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Death-risk threshold routing analysis on 245 episodes. The optimal threshold routes only \\texttt{find-non-living-thing} (the sole zero-death task) to internal, with all other tasks routed to deterministic. Bootstrap 95\\% CI for the difference: $[-8.87, +5.92]$.}\n\\label{tab:threshold-routing}\n\\end{table}\n\nEven with perfect per-task death risk knowledge, threshold routing cannot outperform always-deterministic. The sole zero-death task achieves higher scores under deterministic (+28.5) than internal (+18.9), leaving no room for a beneficial mixed strategy.\n\n\\section{Practitioner Decision Framework}\n\\label{app:decision-framework}\n\nGiven a new interactive environment, the following three-stage procedure diagnoses whether learned routing adds value over a fixed deterministic strategy.\n\n\\paragraph{Stage 1: Pilot collection (${\\sim}$50 episodes).}\nRun pure-internal and pure-deterministic strategies on a representative sample (${\\sim}$50 episode pairs). Compute the death-rate differential $\\Delta\\text{DR} = \\text{DR}_{\\text{int}} - \\text{DR}_{\\text{det}}$.\n\n\\paragraph{Stage 2: Death dominance check.}\nIf $\\Delta\\text{DR} > 15$~pp, death asymmetry is likely the dominant routing signal. Compute the death-label fraction $f_{\\text{death}}$: the proportion of non-tie routing labels where exactly one strategy dies.\n\n\\paragraph{Stage 3: Decision.}\nIf $f_{\\text{death}} > 75\\%$, the routing signal is death-dominated; a fixed deterministic strategy will match or exceed any learned router. If $f_{\\text{death}} < 50\\%$, diverse routing signals may justify a learned router. Between 50\\%--75\\%, collect additional episodes to reduce estimation noise before committing to router development.\n\n\\paragraph{Retrospective validation.}\nAll four experimental conditions in this paper are correctly classified:\n\n\\begin{table}[h]\n\\centering\n\\small\n\\begin{tabular}{@{}lrrll@{}}\n\\toprule\nCondition & $\\Delta$DR & $f_{\\text{death}}$ & Prediction & Actual \\\\\n\\midrule\nQwen-7B & +26.5 & 78.9\\% & det-fixed & det wins \\\\\nLlama-8B & +30.0 & $>$75\\% & det-fixed & det wins \\\\\nQwen-72B & +27.8 & $>$75\\% & det-fixed & det wins \\\\\nMATH & +0.5 & 0\\% & router viable & no signal \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Retrospective validation of the decision framework. All four conditions are correctly classified (4/4).}\n\\label{tab:decision-framework}\n\\end{table}\n\nThe framework also predicts the inverted-U relationship between capability and death risk: below ${\\sim}$0.5B parameters, agents rarely reach dangerous states (13.3\\% death rate in a 15-episode pilot), so $\\Delta\\text{DR}$ is low and the framework would not recommend fixed-deterministic. Above ${\\sim}$7B, agents are capable enough to enter catastrophic states but not capable enough to avoid them, producing high $\\Delta\\text{DR}$.\n\n\\paragraph{Threshold calibration.} The thresholds above (15~pp, 75\\%, 50\\%) are illustrative, derived from ScienceWorld's specific reward structure (binary death penalty $P{=}100$, sparse terminal rewards). Environments with graded penalties, dense rewards, or qualitatively different failure modes may require different thresholds. Practitioners should calibrate these boundaries for their specific environment.\n\n\\section{Extended Validation of Excluded Tasks}\n\\label{app:extended-validation}\n\nTo verify that task exclusion does not bias toward death-prone tasks, we collect $n{=}20$ episodes for five representative excluded tasks spanning all exclusion categories (Table~\\ref{tab:extended-val}).\n\n\\begin{table}[h]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lcrrrrc}\n\\toprule\nTask & Category & $n$ & Int DR & Det DR & $\\Delta$DR & D/I/N \\\\\n\\midrule\nboil & dev-set & 20 & 55\\% & 25\\% & +30\\,pp & 6/0/14 \\\\\nmelt & dev-set & 20 & 45\\% & 20\\% & +25\\,pp & 7/2/11 \\\\\nfind-living-thing & taxonomic & 20 & 55\\% & 15\\% & +40\\,pp & 10/0/10 \\\\\nuse-thermometer & agent-floor & 20 & 50\\% & 20\\% & +30\\,pp & 7/1/12 \\\\\npower-component & agent-floor & 20 & 50\\% & 15\\% & +35\\,pp & 7/0/13 \\\\\n\\midrule\n\\textit{Mean (5 tasks)} & & 100 & 51.0\\% & 19.0\\% & +32.0\\,pp & 37/3/60 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Extended validation ($n{=}20$) of representative excluded task types. All five tasks confirm death asymmetry; mean $\\Delta$DR $= +32.0$\\,pp is consistent with the $n{=}5$ prescreening estimate for these same tasks (Table~\\ref{tab:excluded-death}).}\n\\label{tab:extended-val}\n\\end{table}\n\nNotably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\n\n\\section{Agent Prompt Templates}\n\\label{app:prompt-templates}\n\nBelow we show the complete prompt templates used for agent interaction in ScienceWorld. Both the internal (ReAct) and deterministic strategies share the same system prompt but differ in the user message template.\n\n\\paragraph{System prompt (shared).} Used for all ScienceWorld agent interactions across both computation modes.\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nYou are an agent interacting with a ScienceWorld text\nenvironment. Your goal is to complete the given task by\nchoosing actions from the available action list.\n\nUse the following format for each step:\nThought: &lt;your reasoning about what to do next>\nAction: &lt;exact action string from the valid actions list>\n\nRules:\n- You MUST choose an action from the valid actions list.\n  Do not invent actions.\n- Think step by step about what physical/scientific\n  process is needed.\n- Pay attention to the current observation for clues\n  about object states.\n\\end{tcblisting}\n\n\\paragraph{Internal (ReAct) user template.} At each step, the agent receives the current observation, valid action list, and recent action history, and must select a single action.\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nCurrent observation:\n{observation}\n\nValid actions:\n{valid_actions_str}\n\nPrevious actions taken: {history_str}\n\nChoose your next action.\n\\end{tcblisting}\n\n\\paragraph{Deterministic candidate generation template.} For the deterministic strategy, the agent generates ranked candidate actions instead of selecting one; these candidates are then evaluated via simulator forking (\\S\\ref{sec:method}).\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nCurrent observation:\n{observation}\n\nValid actions:\n{valid_actions_str}\n\nPrevious actions taken: {history_str}\n\nGenerate the top 3 most promising actions from the valid\nactions list, ranked by how likely they are to make\nprogress on the task. Output exactly 3 actions, one per\nline, in this format:\n1. &lt;action>\n2. &lt;action>\n3. &lt;action>\n\\end{tcblisting}\n\n\\paragraph{Reflexion self-reflection prompt.} After a failed episode, the Reflexion agent (\\S\\ref{sec:agent-improvement}) generates a reflection that is injected into subsequent trial attempts as additional system context.\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nYou just completed an episode in a ScienceWorld text\nenvironment but failed.\n\nTask: {task_name}\nFinal score: {final_score}\nOutcome: {outcome}\nNumber of steps taken: {num_steps}\n\nHere is a summary of your actions:\n{action_summary}\n\nAnalyze why this episode failed and provide a short\nstrategy for the next attempt. Focus on:\n1. What went wrong (wrong sequence, missed key step,\n   dangerous action)?\n2. What should be done differently next time?\n\nKeep your reflection under 200 words.\n\\end{tcblisting}\n\n\\paragraph{Grounding warning (ablation).} The prompt warning condition in the grounding ablation (Appendix~\\ref{app:grounding-ablation}) appends the following to the shared system prompt:\n\n\\begin{tcblisting}{listing only, colback=gray!5!white, colframe=gray!75!black,\n  listing options={basicstyle=\\small\\ttfamily,breaklines=true,columns=fullflexible},\n  left=2mm, right=2mm, top=1mm, bottom=1mm}\nCRITICAL SAFETY RULE: The 'focus on [object]' action is\nONLY for submitting your final answer. Do NOT use\n'focus on' to examine, inspect, or interact with objects\nduring exploration. Using 'focus on' on the wrong object\nwill cause irreversible failure. Use 'look at',\n'examine', or 'pick up' instead for exploration.\n\\end{tcblisting}\n\n\\noindent The key difference between the two computation modes is the user message: the internal strategy asks the LLM to \\emph{select} one action (ReAct), while the deterministic strategy asks it to \\emph{rank} candidates for simulator evaluation. Both use identical system prompts and identical observation formatting.\n\n\\input{responsibleNLPchecklist}\n\n\\end{document}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 49,
+        "oldLines": 7,
+        "newStart": 49,
+        "newLines": 7,
+        "lines": [
+          " Our counterfactual analysis compares pure strategies (always-internal vs.\\ always-deterministic). In mixed routing, the router can selectively invoke deterministic mode on high-risk steps, potentially reducing death asymmetry. Thus, DAF${=}90.4\\%$ represents an upper bound on death avoidance's contribution to optimized routing; the actual contribution under mixed strategies may be lower.",
+          " ",
+          " \\paragraph{Diagnostic scope.}",
+          "-Our framework is diagnostic rather than prescriptive: it identifies what drives routing decisions but does not optimize the routing policy itself. Extending the counterfactual decomposition to prescribe optimal mixed-strategy routing---for example, by combining DAF analysis with online policy learning---is a natural next step.",
+          "+Our framework is diagnostic rather than prescriptive: it identifies what drives routing decisions but does not optimize the routing policy itself. Extending the counterfactual decomposition to prescribe optimal mixed-strategy routing (for example, by combining DAF analysis with online policy learning) is a natural next step.",
+          " ",
+          " \\section*{Ethics Statement}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 58_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01JtatBs9DVtRBuqYxnyTHDS`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex",
+  "old_string": "fraction---invariant to penalty magnitude---serves",
+  "new_string": "fraction, invariant to penalty magnitude, serves"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "67a7a293-4243-4d86-8aeb-6db06bb6592e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcxGbzTaNHvz6D8z2edf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 40849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 221
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-21T13:52:47.692Z_
+
+<details><summary>↩ Tool result · `toolu_01JtatBs9DVtRBuqYxnyTHDS`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "52c3cdb4-a49a-4209-bd66-b3cd912294c5",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/method.tex",
+    "oldString": "fraction---invariant to penalty magnitude---serves",
+    "newString": "fraction, invariant to penalty magnitude, serves",
+    "originalFile": "\\section{Method}\n\\label{sec:method}\n\nOur diagnostic framework quantifies what drives routing signal in interactive environments through three components: (i)~episode-level counterfactual labeling that generates routing preferences from paired pure-strategy outcomes (\\S\\ref{sec:collection}--\\ref{sec:labeling}); (ii)~the Death Avoidance Factor (DAF), which decomposes the routing score gap into death-avoidance and non-death components (\\S\\ref{sec:daf}); and (iii)~the Signal Concentration Index (SCI), which measures whether routing signal is concentrated in a few task types or distributed systematically (Appendix~\\ref{app:sci}). Episode-level bootstrap resampling provides 95\\% confidence intervals for all metrics.\n\n\\subsection{Problem Setup}\n\\label{sec:problem-setup}\n\nConsider an interactive environment with observation space $\\mathcal{O}$ and action space $\\mathcal{A}$. An agent policy $\\pi: \\mathcal{O}^* \\rightarrow \\mathcal{A}$ maps observation histories to actions. We define two computation modes $\\mathcal{M} = \\{{\\tt int}, {\\tt det}\\}$: \\textbf{internal} (${\\tt int}$), where the agent predicts intermediate observations via chain-of-thought reasoning (ReAct~\\citep{react-2023}), with prediction errors compounding across steps; and \\textbf{deterministic}\\footnote{The term ``deterministic'' denotes different information advantages across environments: in ScienceWorld, an oracle simulator providing ground-truth action outcomes; in MATH, a code interpreter verifying computations; in ALFWorld, admissible-action enumeration eliminating hallucination risk. These qualitative differences affect what routing signals the framework can detect.} (${\\tt det}$), where the agent receives ground-truth observations from the environment simulator at each step. A \\emph{routing policy} $\\rho: \\mathcal{O}^* \\rightarrow \\mathcal{M}$ selects which computation mode to use at each step; our analysis investigates what signal is available to learn $\\rho$.\n\n\\subsection{Counterfactual Episode Collection}\n\\label{sec:collection}\n\nPer-step oracle labeling assigns routing labels by comparing single-step outcomes under each computation mode. Under sparse terminal rewards, this approach degenerates: on ScienceWorld \\citep{scienceworld-2022}, 97.4\\% of steps produce identical intermediate scores regardless of computation mode (5{,}935 of 6{,}094 steps across 11 prescreened task types), yielding no per-step routing signal. The 97.4\\% tie rate arises because ScienceWorld assigns rewards only at episode termination; intermediate steps update environment state but do not change the score, so a per-step oracle can only distinguish strategies through downstream consequences visible at episode end. Episode-level comparison is therefore the principled granularity for sparse-reward environments, not a fallback from per-step analysis: it directly measures whether one strategy produces better terminal outcomes than the other, bypassing the uninformative intermediate steps entirely.\n\n\\paragraph{Pure-strategy trajectories.}\nFor a task instance $t$ and computation mode $m \\in \\mathcal{M}$, a \\emph{pure-strategy trajectory} is the complete episode obtained by applying mode $m$ at every step:\n\\begin{equation}\n    \\tau_m^{(t)} = (o_1, a_1, o_2, a_2, \\ldots, o_T, a_T)\n\\end{equation}\nwhere $T \\leq T_{\\max}$ is the episode length (capped at $T_{\\max} = 30$ steps). Both trajectories $\\tau_{\\tt int}^{(t)}$ and $\\tau_{\\tt det}^{(t)}$ are executed under identical initial conditions (same random seed, same task variation), so performance differences arise solely from the computation mode choice.\n\nEach trajectory $\\tau$ yields a terminal score $s(\\tau) \\in \\mathbb{Z}$ and a death indicator $d(\\tau) \\in \\{0, 1\\}$. When the agent dies ($d = 1$), the environment imposes a penalty: $s(\\tau) = -P$ where $P > 0$ ($P = 100$ in ScienceWorld). The episode pair produces a tuple:\n\\begin{multline}\n    \\bigl(s^{\\tt int}, s^{\\tt det}, d^{\\tt int}, d^{\\tt det}\\bigr) \\triangleq \\\\\n    \\bigl(s(\\tau_{\\tt int}),\\, s(\\tau_{\\tt det}),\\, d(\\tau_{\\tt int}),\\, d(\\tau_{\\tt det})\\bigr)\n\\end{multline}\n\nWe use Qwen2.5-7B-Instruct~\\citep{qwen25-2024} (vLLM) on ScienceWorld \\citep{scienceworld-2022}, a text-based environment spanning 30 task types with a $-100$ death penalty. After prescreening, we collect 245 episode pairs across 11 task types (20--40 per type). The framework is applicable to any environment where paired episodes under two computation modes can be collected with binary success/failure indicators. We apply it unchanged to ALFWorld and MATH in \\S\\ref{sec:math-contrast}--\\ref{sec:cross-env}.\n\n\\subsection{Episode-Level Labeling}\n\\label{sec:labeling}\n\nWe define a labeling function $L$ that maps a counterfactual pair to a routing preference:\n\\begin{multline}\n    L\\!\\bigl(\\tau_{\\tt int}^{(t)}, \\tau_{\\tt det}^{(t)}\\bigr) \\;\\rightarrow \\\\\n    \\ell \\in \\{{\\tt det\\text{-}pref},\\; {\\tt int\\text{-}pref},\\; {\\tt no\\text{-}pref}\\}\n\\end{multline}\n\nThe labeling function is \\emph{death-aware}: it prioritizes survival over score, then compares scores among same-status episodes (Algorithm~\\ref{alg:labeling}; Appendix~\\ref{app:labeling}). ScienceWorld scores are integer-valued, so we use exact (in)equality with no threshold. Figure~\\ref{fig:pipeline} illustrates the overall pipeline; label distributions are reported in \\S\\ref{sec:death-decomp}.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/pipeline_overview.pdf}\n\\caption{Counterfactual episode collection and analysis pipeline. Each task instance is run under both pure strategies independently, producing episode-level labels via Algorithm~\\ref{alg:labeling}.}\n\\label{fig:pipeline}\n\\end{figure}\n\n\\subsection{Death Avoidance Factor}\n\\label{sec:daf}\n\nTo quantify the contribution of death avoidance to routing signal, we decompose the mean score gap between strategies. Let $\\delta = \\mathbb{E}[d^{\\tt int}] - \\mathbb{E}[d^{\\tt det}]$ denote the death-rate differential and $\\Delta_{\\text{nd}}$ the mean score gap restricted to episodes where neither strategy dies. Partitioning episodes by death status, death-asymmetric episodes (where only one strategy dies) contribute a per-episode gap of $P + \\bar{s}_{\\text{surv}}$, where $\\bar{s}_{\\text{surv}}$ is the surviving strategy's mean score; when $\\bar{s}_{\\text{surv}} \\ll P$ (in our data, $\\bar{s}_{\\text{surv}} = 0.87$, or $0.9\\%$ of $P$), these episodes contribute ${\\approx}\\,\\delta P$ in aggregate. The full gap thus decomposes as:\n\\begin{equation}\n    \\Delta_{\\text{full}} \\approx \\underbrace{\\delta \\cdot P}_{\\text{death contribution}} + \\Delta_{\\text{nd}}\n\\end{equation}\nThe approximation residual is $29.60 - 29.37 = 0.23$ ($0.8\\%$ of $\\Delta_{\\text{full}}$).\n\nWe define the Death Avoidance Factor (DAF) as the fraction of the full score gap attributable to death avoidance:\n\\begin{equation}\n    \\text{DAF} = 1 - \\frac{\\Delta_{\\text{nd}}}{\\Delta_{\\text{full}}} \\approx \\frac{\\delta P}{\\delta P + \\Delta_{\\text{nd}}}\n\\end{equation}%\n\\footnote{When $\\Delta_{\\text{nd}} < 0$ (deterministic strategy scores lower than internal on non-death episodes), DAF exceeds 1; death avoidance then overcompensates for a non-death disadvantage.}\n\nSince DAF $= \\delta P / (\\delta P + \\Delta_{\\text{nd}})$, it increases monotonically with $P$, a mathematical consequence rather than an empirical finding. We therefore report both DAF at the environment default ($P{=}100$) and the penalty-independent death-asymmetry label fraction as complementary metrics. In ScienceWorld, $P$ affects only post-hoc score calculation; the agent's policy (ReAct prompting) does not include $P$ in its observation, so death rates and $\\Delta_{\\text{nd}}$ are $P$-invariant by design~\\citep{ng1999policy} (Appendix~\\ref{app:penalty}).\n\n\\paragraph{Relationship between DAF and label fraction.}\nDAF (90.4\\%) exceeds the label fraction (78.9\\%) because death episodes carry disproportionately large score gaps ($P{=}100 \\gg$ typical non-death $\\Delta{\\approx}29$), amplifying their weight in score-weighted aggregation. The label fraction---invariant to penalty magnitude---serves as the primary finding; DAF reflects the score-space reality under ScienceWorld's reward structure.\n\n\\paragraph{Statistical inference.}\nWe quantify uncertainty via episode-level bootstrap resampling ($B = 10{,}000$). Each resample draws $N = 245$ episodes with replacement, recomputes all metrics, and derives percentile-based 95\\% CIs. We resample at the episode level (not the step level) because the episode is the unit of counterfactual comparison. Penalty sensitivity analysis across hypothetical $P$ values is in Appendix~\\ref{app:penalty}.\n\nWe also measure whether death-avoidance signal is concentrated in a few task types via a Signal Concentration Index (SCI $\\in [0, 1]$; Appendix~\\ref{app:sci}), reported in \\S\\ref{sec:death-decomp}.\n\n\\paragraph{Scope of episode-level analysis.}\nAt step level, 97.4\\% of oracle comparisons yield ties (\\S\\ref{sec:collection}); of 2{,}040 training steps, only 0.3\\% exhibit strict directional conflict with episode labels, with 60.3\\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\\S\\ref{sec:router-diagnostic}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 64,
+        "oldLines": 7,
+        "newStart": 64,
+        "newLines": 7,
+        "lines": [
+          " Since DAF $= \\delta P / (\\delta P + \\Delta_{\\text{nd}})$, it increases monotonically with $P$, a mathematical consequence rather than an empirical finding. We therefore report both DAF at the environment default ($P{=}100$) and the penalty-independent death-asymmetry label fraction as complementary metrics. In ScienceWorld, $P$ affects only post-hoc score calculation; the agent's policy (ReAct prompting) does not include $P$ in its observation, so death rates and $\\Delta_{\\text{nd}}$ are $P$-invariant by design~\\citep{ng1999policy} (Appendix~\\ref{app:penalty}).",
+          " ",
+          " \\paragraph{Relationship between DAF and label fraction.}",
+          "-DAF (90.4\\%) exceeds the label fraction (78.9\\%) because death episodes carry disproportionately large score gaps ($P{=}100 \\gg$ typical non-death $\\Delta{\\approx}29$), amplifying their weight in score-weighted aggregation. The label fraction---invariant to penalty magnitude---serves as the primary finding; DAF reflects the score-space reality under ScienceWorld's reward structure.",
+          "+DAF (90.4\\%) exceeds the label fraction (78.9\\%) because death episodes carry disproportionately large score gaps ($P{=}100 \\gg$ typical non-death $\\Delta{\\approx}29$), amplifying their weight in score-weighted aggregation. The label fraction, invariant to penalty magnitude, serves as the primary finding; DAF reflects the score-space reality under ScienceWorld's reward structure.",
+          " ",
+          " \\paragraph{Statistical inference.}",
+          " We quantify uncertainty via episode-level bootstrap resampling ($B = 10{,}000$). Each resample draws $N = 245$ episodes with replacement, recomputes all metrics, and derives percentile-based 95\\% CIs. We resample at the episode level (not the step level) because the episode is the unit of counterfactual comparison. Penalty sensitivity analysis across hypothetical $P$ values is in Appendix~\\ref{app:penalty}."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01HoKgrNR4CaTxQ15ZMpj7jL`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+  "old_string": "rewards---the closest setting to ours;",
+  "new_string": "rewards, the closest setting to ours;"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "c33ef34f-b701-46de-a7e3-9dd021c8df64",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SAcxGbzTaNHvz6D8z2edf9",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 221,
+      "cache_read_input_tokens": 40849,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 221
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-21T13:52:48.736Z_
+
+<details><summary>↩ Tool result · `toolu_01HoKgrNR4CaTxQ15ZMpj7jL`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "7a41f992-9ae9-4087-9448-3f9e6a9aeeaa",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+    "oldString": "rewards---the closest setting to ours;",
+    "newString": "rewards, the closest setting to ours;",
+    "originalFile": "\\section{Related Work}\n\n\\paragraph{Tool Use and External Computation in LLMs.}\nA growing body of work augments language models with external tools \\citep{tool-learning-survey-2024}, spanning several functional categories.\n\\emph{Self-supervised} approaches learn tool invocation from loss signals: Toolformer \\citep{toolformer-2023} inserts API calls filtered by perplexity reduction; ToolACE \\citep{toolace-2025} curates synthetic data for function-calling accuracy.\n\\emph{Token-level} methods embed tools into the model vocabulary: ToolkenGPT \\citep{toolkengpt-2023} represents tools as special tokens resolved at inference.\n\\emph{Task-level} decomposition routes subtasks to specialized modules: ART \\citep{art-2023} generates tool-augmented programs; Chameleon \\citep{chameleon-2023} composes heterogeneous modules per subtask.\n\\emph{RL-based} methods learn routing policies from reward: ReTool \\citep{retool-2025} discovers when code execution is preferable to chain-of-thought.\nAll focus on \\emph{learning to use tools}; we ask a prior question: \\emph{what signal drives the routing decision?}\nConcurrent work examines \\emph{when} to invoke tools: tool-call decisions correlate with uncertainty~\\citep{tool-overuse-illusion-2026}, are encoded in hidden states~\\citep{when2tool-2026}, impose a ``tool-use tax''~\\citep{tool-use-tax-2026}, or follow necessity-utility-affordability logic~\\citep{to-call-or-not-2026}. Our decomposition yields a concrete answer: 78.9\\% of non-tie routing labels trace to catastrophic-failure prevention.\n\n\\paragraph{Adaptive Computation and Routing.}\nAdaptive routing traces back to learned halting policies \\citep{graves2016act}. In the LLM era, CogRouter \\citep{cogrouter-2026} adapts reasoning depth per step, ARES \\citep{ares-2026} selects among reasoning effort levels, Mixture-of-Recursions \\citep{mixture-of-recursions-2025} learns token-level recursion depths, and MTRouter \\citep{mtrouter-2026} addresses multi-turn routing.\nRouteLLM \\citep{routellm-2024} learns routers from preference data to select between strong and weak models.\n\\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards---the closest setting to ours; they optimize \\emph{which} model to invoke, whereas we diagnose \\emph{what} drives the routing decision.\n\n\\paragraph{Counterfactual Evaluation in RL.}\nPrior work generates counterfactual explanations by perturbing individual actions \\citep{olson2021counterfactual, gajcin2023counterfactual, amitai2024explaining}; recent extensions target LLM agents~\\citep{pona2025abstract,axis-2026,cso-2026}. We instead execute complete episodes under two strategies to decompose routing signal \\emph{before} training.\n\n\\paragraph{LLM Agent Environments and Reasoning.}\nScienceWorld \\citep{scienceworld-2022} serves as our primary testbed; ALFWorld \\citep{alfworld-2021} provides a complementary environment; AgentBench \\citep{agentbench-2024} offers systematic evaluation. ReAct \\citep{react-2023} serves as our internal baseline; Reflexion \\citep{reflexion-2023} extends this with verbal self-reflection; LATS \\citep{lats-2024} adds tree search. SALT~\\citep{salt-2026} assigns step-level credit on ALFWorld, complementing our episode-level decomposition.\n\n\\paragraph{Safe RL.}\nDeath avoidance connects to constrained MDPs \\citep{altman1999constrained}, risk-sensitive RL \\citep{mihatsch2002risk}, and classical safe RL \\citep{garcia2015comprehensive,achiam2017cpo,moldovan2012safe}. Our routing achieves safety implicitly through computation mode selection. \\citet{ruan2024failures} identify catastrophic actions as a distinct failure category; SafeRoute \\citep{saferoute-2025} applies adaptive model selection for safety.\n",
+    "structuredPatch": [
+      {
+        "oldStart": 12,
+        "oldLines": 7,
+        "newStart": 12,
+        "newLines": 7,
+        "lines": [
+          " \\paragraph{Adaptive Computation and Routing.}",
+          " Adaptive routing traces back to learned halting policies \\citep{graves2016act}. In the LLM era, CogRouter \\citep{cogrouter-2026} adapts reasoning depth per step, ARES \\citep{ares-2026} selects among reasoning effort levels, Mixture-of-Recursions \\citep{mixture-of-recursions-2025} learns token-level recursion depths, and MTRouter \\citep{mtrouter-2026} addresses multi-turn routing.",
+          " RouteLLM \\citep{routellm-2024} learns routers from preference data to select between strong and weak models.",
+          "-\\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards---the closest setting to ours; they optimize \\emph{which} model to invoke, whereas we diagnose \\emph{what} drives the routing decision.",
+          "+\\citet{budget-aware-routing-2026} train episode-level routing policies under sparse terminal rewards, the closest setting to ours; they optimize \\emph{which} model to invoke, whereas we diagnose \\emph{what} drives the routing decision.",
+          " ",
+          " \\paragraph{Counterfactual Evaluation in RL.}",
+          " Prior work generates counterfactual explanations by perturbing individual actions \\citep{olson2021counterfactual, gajcin2023counterfactual, amitai2024explaining}; recent extensions target LLM agents~\\citep{pona2025abstract,axis-2026,cso-2026}. We instead execute complete episodes under two strategies to decompose routing signal \\emph{before} training."
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62_
+
+All 13 replacements done. Now I also need to handle introduction.tex:6 — that one I found also has `---` but I marked it as KEEP. Let me verify no `---` was missed by re-scanning.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "f2bdcd68-5087-4486-8bd5-4f4d23e785b8",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZDqHfsuAcjnBqLF1DGLXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1752,
+      "cache_read_input_tokens": 41070,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1752
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01UF3fkUaXu8aZFhKKSBEW88`</summary>
+
+```json
+{
+  "pattern": "---",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": true,
+  "head_limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "e0f6e888-add1-4a82-91b5-32027ef42fb0",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GZDqHfsuAcjnBqLF1DGLXF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1752,
+      "cache_read_input_tokens": 41070,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1752
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-21T13:52:53.630Z_
+
+<details><summary>↩ Tool result · `toolu_01UF3fkUaXu8aZFhKKSBEW88`</summary>
+
+```text
+docs/paper/experiments.tex:82:[Omitted long matching line]
+docs/paper/experiments.tex:107:Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\% of decisions matching always-deterministic---an \emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\% of non-tie oracle decisions (balanced accuracy 50.0\%: perfect deterministic recall, zero internal recall).
+docs/paper/experiments.tex:112:[Omitted long matching line]
+docs/paper/main.tex:247:Exact permutation ($2{,}048$ perms) & $0.002$ & --- \\
+docs/paper/main.tex:248:Sign test & $< 0.001$ & --- \\
+docs/paper/main.tex:278:(none, full) & 245 & 78.9 & --- \\
+docs/paper/main.tex:426:Always-det & --- & --- & 50.0 \\
+docs/paper/main.tex:598:Qwen2.5-72B & ScienceWorld & 255 & 30.6\% & 2.75\% & +27.8 & 92.4\% & --- & death \\
+docs/paper/main.tex:600:Qwen2.5-7B & ALFWorld & 135 & 0\% & 0\% & 0 & 0\% & --- & info-asym \\
+docs/paper/main.tex:601:Llama-3.1-8B & ALFWorld & 135 & 0\% & 0\% & 0 & 0\% & --- & info-asym \\
+docs/paper/main.tex:777:Notably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\ref{tab:per-task}), indicating that excluded tasks are \emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.
+docs/paper/method.tex:75:At step level, 97.4\% of oracle comparisons yield ties (\S\ref{sec:collection}); of 2{,}040 training steps, only 0.3\% exhibit strict directional conflict with episode labels, with 60.3\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\S\ref{sec:router-diagnostic}).
+docs/paper/introduction.tex:6:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "0055a04f-0bba-4c47-91db-e29de0d2bc9a",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/experiments.tex:82:[Omitted long matching line]\ndocs/paper/experiments.tex:107:Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\ndocs/paper/experiments.tex:112:[Omitted long matching line]\ndocs/paper/main.tex:247:Exact permutation ($2{,}048$ perms) & $0.002$ & --- \\\\\ndocs/paper/main.tex:248:Sign test & $< 0.001$ & --- \\\\\ndocs/paper/main.tex:278:(none, full) & 245 & 78.9 & --- \\\\\ndocs/paper/main.tex:426:Always-det & --- & --- & 50.0 \\\\\ndocs/paper/main.tex:598:Qwen2.5-72B & ScienceWorld & 255 & 30.6\\% & 2.75\\% & +27.8 & 92.4\\% & --- & death \\\\\ndocs/paper/main.tex:600:Qwen2.5-7B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\ndocs/paper/main.tex:601:Llama-3.1-8B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\ndocs/paper/main.tex:777:Notably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\ndocs/paper/method.tex:75:At step level, 97.4\\% of oracle comparisons yield ties (\\S\\ref{sec:collection}); of 2{,}040 training steps, only 0.3\\% exhibit strict directional conflict with episode labels, with 60.3\\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\\S\\ref{sec:router-diagnostic}).\ndocs/paper/introduction.tex:6:[Omitted long matching line]",
+    "numLines": 13
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the omitted lines. experiments.tex:82 and experiments.tex:112 still show `---`. Let me read those lines again.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "35ed269b-e162-4380-9414-1b6530da266e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019tt7yvCNrLd3qoq3FrM3Sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 42822,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1013
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66_
+
+Two omitted lines still show matches. Let me verify those were actually edited.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "9f44277d-da51-49ca-8c7a-baf25fd2068b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019tt7yvCNrLd3qoq3FrM3Sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 42822,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1013
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SoufoC1zVDeMG5qmMRzu3p`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": 80,
+  "limit": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "1389255a-124d-4685-b836-522f8eda158e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019tt7yvCNrLd3qoq3FrM3Sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 42822,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1013
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 68 · 2026-05-21T13:52:58.609Z_
+
+<details><summary>↩ Tool result · `toolu_01SoufoC1zVDeMG5qmMRzu3p`</summary>
+
+```text
+80	\paragraph{MATH.} On MATH Level~4--5~\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\%$ vs.\ $73.0\%$, McNemar $p = 0.81$), with 84.4\% no-preference. Without catastrophic failure, no routing signal emerges.
+81	
+82	\paragraph{ALFWorld.} ALFWorld~\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\delta = 0$, DAF $= 0\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\%) favor the information-advantaged strategy (Appendix~\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\%). Llama shows fewer non-tie episodes (11.9\% vs.\ 25.9\%) but perfect directional consistency, confirming that information asymmetry, not death avoidance, drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\%$ vs.\ $90.4\%$) without modification.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "12733b2a-568a-4b30-87cf-52ed0071743e",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+      "content": "\\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.\n\n\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry, not death avoidance, drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.",
+      "numLines": 3,
+      "startLine": 80,
+      "totalLines": 117
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 69_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014DXmHnKSF7yCAvGFMz6QzR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "offset": 110,
+  "limit": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "a9fd997e-f21e-4f5c-b579-83dfec8c08d3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019tt7yvCNrLd3qoq3FrM3Sd",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 42822,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1013
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-21T13:52:59.147Z_
+
+<details><summary>↩ Tool result · `toolu_014DXmHnKSF7yCAvGFMz6QzR`</summary>
+
+```text
+110	\label{sec:router-diagnostic}
+111	
+112	We probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\sim}$88\% uninformative signal (60.3\% pre-event neutral, 27.4\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\%--800\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime, though alternative architectures or genuine episode-level scaling remain untested.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "60a76713-614f-47fe-a181-727324c167f9",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+      "content": "\\label{sec:router-diagnostic}\n\nWe probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime, though alternative architectures or genuine episode-level scaling remain untested.",
+      "numLines": 3,
+      "startLine": 110,
+      "totalLines": 117
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Wait, experiments.tex:82 still has `---` in it: `admissible actions---an information asymmetry`. That's a different em-dash that I missed! It wasn't in my original list because the grep only showed the part with the `---` that I edited. Let me check:
+
+The original line 82 had:
+- `asymmetry---not death avoidance---drives` → replaced to commas ✓
+- But there's also `admissible actions---an information asymmetry` on line 82!
+
+I missed that one. Let me also check line 112:
+
+
+- `regime---though` → replaced to comma ✓
+- But there's also `task-type-level---there is no step-level pattern` on line 112!
+
+So I've got two more em-dashes to fix: `admissible actions---an information asymmetry` should become `admissible actions, an information asymmetry`, and `task-type-level---there is no step-level pattern to learn` needs either a colon or semicolon instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "58f0a617-4822-44aa-867c-58e364578337",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QyvTgPPCRHcM58JDy4Fst",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 43835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 984
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72_
+
+Found two more em-dashes I missed on lines 82 and 112. Fixing those now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "cb2dc3f0-6725-4406-9240-4a8e3c79c1a3",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QyvTgPPCRHcM58JDy4Fst",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 43835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 984
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01Lb4EyJK2BsBRa79EpEEcdo`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "admissible actions---an information asymmetry",
+  "new_string": "admissible actions, an information asymmetry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "2a35af6a-3048-4e8a-92f9-b4f327012449",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QyvTgPPCRHcM58JDy4Fst",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 43835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 984
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-21T13:53:09.691Z_
+
+<details><summary>↩ Tool result · `toolu_01Lb4EyJK2BsBRa79EpEEcdo`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "98bd749f-dd2f-4333-aafb-374643820391",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "oldString": "admissible actions---an information asymmetry",
+    "newString": "admissible actions, an information asymmetry",
+    "originalFile": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types (63\\%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). This scope limits generalizability: conclusions apply to the included subset, not to all ScienceWorld tasks. An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\\Delta\\text{DR} = +38.2$\\,pp exceeding the included tasks' $+28.7$\\,pp (Appendix~\\ref{app:per-task}). Extended validation at $n{=}20$ on five representative excluded tasks confirms this direction ($\\overline{\\Delta\\text{DR}} = +32.0$\\,pp; Appendix~\\ref{app:extended-validation}). A reasoning-depth ablation ($n{=}120$) found no significant difference between internal strategy variants ($p > 0.26$; Appendix~\\ref{app:ablations}).\n\n\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$ (Spearman's $\\rho = 0.986$; Appendix~\\ref{app:per-task}), $p < 10^{-6}$, $n = 11$ task types. Since $\\Delta_{\\text{full}} \\approx \\delta P + \\Delta_{\\text{nd}}$ with $P$ constant, $r \\to 1$ as DAF $\\to 1$; the near-perfect correlation is a structural consequence of death dominance, not an independent finding (\\S\\ref{sec:death-decomp}).}\n\\label{fig:decomposition}\n\\end{figure}\n\nOf the 95 non-tie routing labels, 75 (78.9\\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these 75, 54 are sole-signal labels (both strategies score zero without death, so death avoidance was the \\emph{sole} discriminating signal). At $P{=}0$, the 54 sole-signal labels reduce to ties, leaving 41 non-tie labels of which 21 (51.2\\%) still involve death asymmetry; the labeling function itself is penalty-independent (Algorithm~\\ref{alg:labeling}), but the practical routing value of death avoidance requires $P > 0$.\n\nOf 245 episodes, 150 (61.2\\%) are ties (neither strategy outperforms the other), indicating that routing is relevant in only 38.8\\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\\%$ at $P{=}10$; $82.6\\%$ at $P{=}50$; Appendix~\\ref{app:penalty}), confirming that the 78.9\\% label fraction provides the more robust characterization. When $\\Delta_{\\text{nd}} \\to 0$, DAF $\\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\\Delta_{\\text{nd}} < 0$ (as in Reflexion $N{\\geq}3$; \\S\\ref{sec:agent-improvement}), DAF exceeds 100\\%, reflecting that death asymmetry more than accounts for the full gap.\n\n\\paragraph{Per-task correlation structure.}\nThe internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic (2.6$\\times$), consistent with the internal strategy's reliance on self-generated observations that compound prediction errors across steps. Per-task, death rate differential correlates with $\\Delta_{\\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\\ref{fig:decomposition}; Appendix~\\ref{app:correlation}). Since $P$ is constant across all task types, $\\Delta_{\\text{full}} = P \\cdot \\delta + \\Delta_{\\text{nd}}$ makes $\\Delta_{\\text{full}}$ a linear function of $\\delta$ with residual $\\Delta_{\\text{nd}}$; when DAF $\\rightarrow 1$, this residual vanishes and $r \\rightarrow 1$ by construction. The near-perfect correlation is therefore a mathematical consequence of death dominance, not an independent empirical finding. We retain it as an internal consistency check. The correlation drops below significance at $P \\leq 25$ (Appendix~\\ref{app:penalty}). Of 245 episodes, 86 are \\texttt{det\\_preferred}, 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}.\n\n\\paragraph{Signal concentration and binary structure.}\nThe Signal Concentration Index (SCI $= 0.2147$; Appendix~\\ref{app:sci}) confirms low concentration: the top-3 task types account for only $39.8\\%$ of total death-rate differential. The aggregate 78.9\\% reflects a per-task binary structure: all 10 death-prone task types produce 100\\% death-asymmetry labels, while \\texttt{find-non-living-thing} (zero deaths, $\\Delta = +9.58$ from non-death scores) produces 0\\%. The framework thus diagnoses a binary property (``is this environment death-dominated?'') rather than a continuous routing signal. Removing \\texttt{find-non-living-thing} raises the label fraction to 100\\% and yields DAF $\\geq$100\\% ($\\Delta_\\text{nd} \\leq 0$; death avoidance fully accounts for the routing gap among remaining task types; Appendix~\\ref{app:loto-daf}).\n\n\\paragraph{Sensitivity and seed robustness.}\nNon-clustered episode-level bootstrap ($B = 10{,}000$) yields 95\\% CI $[81.1\\%, 99.0\\%]$ for DAF, independent of cluster assumptions, with Cohen's $d = 3.02$ (interpret cautiously given $K{=}11$ task types). Leave-one-task-out analysis confirms stability (label fraction range: 75.9\\%--78.9\\%; Appendix~\\ref{app:loto-daf}); an independent seed replication ($N{=}220$) yields DAF $= 89.7\\%$, within 0.7~pp (Appendix~\\ref{app:seed-robustness}). As a conservative check, wild cluster bootstrap treating each task type as a cluster yields $p = 0.002$; however, with $K{=}11$ clusters this test falls below the $K{\\geq}20$--$40$ threshold recommended for reliable inference~\\citep{cameron-2008,webb-2023}, so we rely on the non-clustered bootstrap as primary. All 28 death-prone tasks share the same direction (Appendices~\\ref{app:wild-cluster}--\\ref{app:per-task-ci}).\n\n\\subsection{Multi-Model Validation}\n\\label{sec:cross-model}\n\nA Llama-3.1-8B-Instruct~\\citep{llama3-2024} cross-model replication across all 11 task types ($N{=}220$) confirms that death dominance replicates across model families: internal death rate $41.4\\%$ vs.\\ deterministic $11.4\\%$ (death-rate differential $+30.0$~pp), DAF $= 88.2\\%$ (95\\% CI: $[80.2\\%, 95.1\\%]$; $\\Delta_{\\text{full}} = +33.17$, $\\Delta_{\\text{nd}} = +3.9$), with direction consistency 10/10 on death-prone tasks, 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated; the differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution (Appendix~\\ref{app:per-task}). Cross-model routing transfer is vacuously correct: Llama produces zero internal-preferred episodes, so Qwen-derived routing rules (always-deterministic) trivially match, confirming that routing signal is environment-determined rather than model-specific.\nA third model family, Gemma-2-9B-it~\\citep{gemma2-2024} (sliding window attention, vs.\\ full attention in Qwen/Llama), independently confirms the pattern: DAF${=}89.7\\%$ (95\\% CI $[79.5\\%, 98.4\\%]$; $N{=}220$), with all 10 death-prone task types showing positive $\\Delta$DR (Appendix~\\ref{app:cross-model}). Three architecturally distinct models thus converge on DAF $88$--$90\\%$ (spread 2.2~pp); $10{\\times}$ scaling to 72B (\\S\\ref{sec:agent-improvement}) confirms persistence across capability levels.\n\n\\subsection{Agent Improvement Baselines}\n\\label{sec:agent-improvement}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lrr@{}}\n\\toprule\nCondition & Death\\% & $N$ \\\\\n\\midrule\nSingle-trial baseline & 42.9 & 245 \\\\\nReflexion ($3{\\times}$) & 31.4 & 220 \\\\\nQwen2.5-72B ($10{\\times}$) & 30.6 & 255 \\\\\nDeterministic baseline & 16.3 & 245 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{\\textit{10 death-prone tasks only:}} \\\\\nDeath-prone baseline & 48.0 & 200 \\\\\nRetry ($5{\\times}$) & 43.5 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Internal-strategy death rates under agent improvement methods. Top: all 11 tasks (72B: independently collected at both internal and deterministic). Bottom: 10 death-prone tasks (\\texttt{find-non-living-thing} excluded, 0\\% death at all scales). All interventions reduce death rate but none approaches deterministic-level safety.}\n\\label{tab:agent-improvement}\n\\end{table}\n\nWe test whether agent-level improvement reduces death dominance (Table~\\ref{tab:agent-improvement}). Retry ($N{=}5$ attempts without self-correction) yields marginal reduction on death-prone tasks ($43.5\\%$ vs.\\ $48.0\\%$ baseline, $\\Delta = -4.5$~pp). Reflexion~\\citep{reflexion-2023} (verbal self-reflection between trials) reduces death to 31.4\\% across all 11 tasks by rescuing 29.3\\% of first-trial deaths, but the gap to deterministic remains 15.1~pp; on the 10 death-prone tasks, Reflexion achieves ${\\sim}$35\\%. Under Reflexion ($N{=}3$, matched-episode analysis), $\\Delta_{\\text{nd}} = -0.47$, yielding DAF $> 100\\%$: the deterministic advantage is entirely attributable to death avoidance, and in non-death episodes the self-correcting agent slightly outperforms the deterministic baseline. Scaling to Qwen2.5-72B ($10{\\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types) reduces death rate to $30.6\\%$. The 72B deterministic strategy achieves $2.75\\%$ death rate ($\\Delta\\text{DR} = +27.8$~pp), and $\\Delta_{\\text{nd}} = +2.28$, yielding DAF $= 92.4\\%$ (7B: $90.4\\%$); scaling lowers death rate but leaves death dominance intact.\n\n\\paragraph{Dose-response analysis.}\nWe extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$, $\\Delta = -4.5$~pp over five trials). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $z = 2.75$, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$). With $n{=}200$ paired episodes, the minimum detectable effect is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power): the key $N{=}1{\\to}3$ decline is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected. We characterize this as suggestive evidence of a Reflexion ceiling rather than a conclusive demonstration. Retry's per-trial conditional death rate stays constant at ${\\sim}48\\%$; Reflexion's declines to ${\\sim}31\\%$ by Trial~3 (per-task breakdown in Appendix~\\ref{app:dose-response}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/dose_response.pdf}\n\\caption{Death rate as a function of trial count ($N$) for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Retry (blue) is nearly flat; Reflexion (red) drops steeply through $N{=}3$ then shows no statistically detectable improvement beyond $N{=}3$ (Wilson CIs for $N{=}3,4,5$ overlap substantially). Horizontal lines: 72B scaling baseline ($30.6\\%$, all 11 tasks) and deterministic baseline ($16.3\\%$). Error bands: Wilson 95\\% CIs.}\n\\label{fig:dose-response}\n\\end{figure}\n\n\\subsection{Cross-Environment Boundary Probes}\n\\label{sec:math-contrast}\n\\label{sec:cross-env}\n\nWe examine MATH and ALFWorld as boundary probes (not cross-domain validation), testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).\n\n\\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.\n\n\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry, not death avoidance, drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\\\\nRandom & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\\\\nOracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\\\\n\\midrule\nTrained Router$^\\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 20--40 episodes per type, 245 total). $\\dagger$\\,Single random seed (42) per episode pair; see Appendix~\\ref{app:seed-robustness} for 8-seed robustness analysis. Per-task results are exploratory ($n{=}20$ episodes per task, power $\\approx 50\\%$ for 20\\,pp effects); aggregate conclusions do not depend on individual task significance.}\n\\label{tab:baselines}\n\\end{table}\n\nAlways-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\n\n\\subsection{Router Training: A Negative Result}\n\\label{sec:router-diagnostic}\n\nWe probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime, though alternative architectures or genuine episode-level scaling remain untested.\n\nAn implicit router (Qwen3, LoRA; Appendix~\\ref{app:router-details}) trained at three scales (0.6B, 1.7B, 4B) shows flat step-level balanced accuracy ($56$--$59\\%$). At episode level, only 4B exceeds always-deterministic ($59.0 \\pm 1.9\\%$, $p < 0.001$, Bonferroni-corrected across 8 comparisons); 0.6B and 1.7B remain at chance. The 4B model's marginally above-chance episode-level accuracy is consistent with task-type identification rather than step-level routing signal, as confirmed by leave-one-task-type-out analysis degrading to chance (49.2\\%; Appendix~\\ref{app:ablations}). Episode-level independent evaluation yields $47.1 \\pm 2.2\\%$, below the majority-vote baseline of 50.0\\%; this independent set includes held-out task types, so the below-chance result reflects cross-task transfer failure rather than overall router incompetence. Training uses episode-level splits (Appendix~\\ref{app:router-details}), ensuring no within-episode leakage. The high uninformative rate connects to noisy-label learning~\\citep{natarajan2013learning,northcutt2021confident,li2020dividemix}: standard ERM on labels with ${\\sim}$88\\% noise yields near-chance classifiers, consistent with theoretical bounds on learning from corrupted labels and empirical results in structured noise settings.\n\n\\paragraph{End-to-end deployment.} The 4B router deployed end-to-end ($N{=}245$) scores $-12.03$ (95\\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$). Paraphrase-based augmentation ($25\\%$--$800\\%$) provides no improvement; the $3.7\\%$ internal-preferred base rate makes real-data collection expensive (Appendices~\\ref{app:seed-robustness}--\\ref{app:ablations}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 79,
+        "oldLines": 7,
+        "newStart": 79,
+        "newLines": 7,
+        "lines": [
+          " ",
+          " \\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.",
+          " ",
+          "-\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions---an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry, not death avoidance, drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.",
+          "+\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions, an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry, not death avoidance, drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.",
+          " ",
+          " \\subsection{Baselines}",
+          " \\label{sec:baselines}"
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_016NkTkr16AcNRZ5o8nfB3Qe`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+  "old_string": "task-type-level---there",
+  "new_string": "task-type-level: there"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "a12be031-e35e-4316-8c98-1163792c7e07",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015QyvTgPPCRHcM58JDy4Fst",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 43835,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 984
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-21T13:53:10.341Z_
+
+<details><summary>↩ Tool result · `toolu_016NkTkr16AcNRZ5o8nfB3Qe`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "51b5df65-4684-49dd-a0da-d999e9a6a9c7",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/experiments.tex",
+    "oldString": "task-type-level---there",
+    "newString": "task-type-level: there",
+    "originalFile": "\\section{Experiments}\n\\label{sec:experiments}\n\nWe analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types (63\\%) lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). This scope limits generalizability: conclusions apply to the included subset, not to all ScienceWorld tasks. An anti-cherry-picking analysis confirms that death dominance holds in 18 of these 19 types, with a mean $\\Delta\\text{DR} = +38.2$\\,pp exceeding the included tasks' $+28.7$\\,pp (Appendix~\\ref{app:per-task}). Extended validation at $n{=}20$ on five representative excluded tasks confirms this direction ($\\overline{\\Delta\\text{DR}} = +32.0$\\,pp; Appendix~\\ref{app:extended-validation}). A reasoning-depth ablation ($n{=}120$) found no significant difference between internal strategy variants ($p > 0.26$; Appendix~\\ref{app:ablations}).\n\n\\subsection{Death Avoidance Decomposition}\n\\label{sec:death-decomp}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.85\\columnwidth]{figures/fig1_daf_scatter.pdf}\n\\caption{Per-task scatter: death rate differential (internal $-$ deterministic) vs.\\ performance gap ($\\Delta_{\\text{full}}$). $r = 0.97$ (Spearman's $\\rho = 0.986$; Appendix~\\ref{app:per-task}), $p < 10^{-6}$, $n = 11$ task types. Since $\\Delta_{\\text{full}} \\approx \\delta P + \\Delta_{\\text{nd}}$ with $P$ constant, $r \\to 1$ as DAF $\\to 1$; the near-perfect correlation is a structural consequence of death dominance, not an independent finding (\\S\\ref{sec:death-decomp}).}\n\\label{fig:decomposition}\n\\end{figure}\n\nOf the 95 non-tie routing labels, 75 (78.9\\%) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these 75, 54 are sole-signal labels (both strategies score zero without death, so death avoidance was the \\emph{sole} discriminating signal). At $P{=}0$, the 54 sole-signal labels reduce to ties, leaving 41 non-tie labels of which 21 (51.2\\%) still involve death asymmetry; the labeling function itself is penalty-independent (Algorithm~\\ref{alg:labeling}), but the practical routing value of death avoidance requires $P > 0$.\n\nOf 245 episodes, 150 (61.2\\%) are ties (neither strategy outperforms the other), indicating that routing is relevant in only 38.8\\% of episodes. Among these, death avoidance dominates. The Death Avoidance Factor, a derived penalty-dependent measure, quantifies death's contribution to the total performance gap: DAF $= 90.4\\%$ at $P{=}100$ ($\\Delta_{\\text{full}} = +29.60$, $\\Delta_{\\text{nd}} = +2.84$; 95\\% CI: $[81.1\\%, 99.0\\%]$, episode-level bootstrap, $B{=}10{,}000$). DAF varies with penalty magnitude ($50.4\\%$ at $P{=}10$; $82.6\\%$ at $P{=}50$; Appendix~\\ref{app:penalty}), confirming that the 78.9\\% label fraction provides the more robust characterization. When $\\Delta_{\\text{nd}} \\to 0$, DAF $\\to 1$ is algebraic necessity regardless of actual death dominance; conversely, when $\\Delta_{\\text{nd}} < 0$ (as in Reflexion $N{\\geq}3$; \\S\\ref{sec:agent-improvement}), DAF exceeds 100\\%, reflecting that death asymmetry more than accounts for the full gap.\n\n\\paragraph{Per-task correlation structure.}\nThe internal strategy dies in 42.9\\% of episodes versus 16.3\\% for deterministic (2.6$\\times$), consistent with the internal strategy's reliance on self-generated observations that compound prediction errors across steps. Per-task, death rate differential correlates with $\\Delta_{\\text{full}}$ ($r = 0.97$, $p < 10^{-6}$; Figure~\\ref{fig:decomposition}; Appendix~\\ref{app:correlation}). Since $P$ is constant across all task types, $\\Delta_{\\text{full}} = P \\cdot \\delta + \\Delta_{\\text{nd}}$ makes $\\Delta_{\\text{full}}$ a linear function of $\\delta$ with residual $\\Delta_{\\text{nd}}$; when DAF $\\rightarrow 1$, this residual vanishes and $r \\rightarrow 1$ by construction. The near-perfect correlation is therefore a mathematical consequence of death dominance, not an independent empirical finding. We retain it as an internal consistency check. The correlation drops below significance at $P \\leq 25$ (Appendix~\\ref{app:penalty}). Of 245 episodes, 86 are \\texttt{det\\_preferred}, 9 \\texttt{internal\\_preferred}, and 150 \\texttt{no\\_preference}.\n\n\\paragraph{Signal concentration and binary structure.}\nThe Signal Concentration Index (SCI $= 0.2147$; Appendix~\\ref{app:sci}) confirms low concentration: the top-3 task types account for only $39.8\\%$ of total death-rate differential. The aggregate 78.9\\% reflects a per-task binary structure: all 10 death-prone task types produce 100\\% death-asymmetry labels, while \\texttt{find-non-living-thing} (zero deaths, $\\Delta = +9.58$ from non-death scores) produces 0\\%. The framework thus diagnoses a binary property (``is this environment death-dominated?'') rather than a continuous routing signal. Removing \\texttt{find-non-living-thing} raises the label fraction to 100\\% and yields DAF $\\geq$100\\% ($\\Delta_\\text{nd} \\leq 0$; death avoidance fully accounts for the routing gap among remaining task types; Appendix~\\ref{app:loto-daf}).\n\n\\paragraph{Sensitivity and seed robustness.}\nNon-clustered episode-level bootstrap ($B = 10{,}000$) yields 95\\% CI $[81.1\\%, 99.0\\%]$ for DAF, independent of cluster assumptions, with Cohen's $d = 3.02$ (interpret cautiously given $K{=}11$ task types). Leave-one-task-out analysis confirms stability (label fraction range: 75.9\\%--78.9\\%; Appendix~\\ref{app:loto-daf}); an independent seed replication ($N{=}220$) yields DAF $= 89.7\\%$, within 0.7~pp (Appendix~\\ref{app:seed-robustness}). As a conservative check, wild cluster bootstrap treating each task type as a cluster yields $p = 0.002$; however, with $K{=}11$ clusters this test falls below the $K{\\geq}20$--$40$ threshold recommended for reliable inference~\\citep{cameron-2008,webb-2023}, so we rely on the non-clustered bootstrap as primary. All 28 death-prone tasks share the same direction (Appendices~\\ref{app:wild-cluster}--\\ref{app:per-task-ci}).\n\n\\subsection{Multi-Model Validation}\n\\label{sec:cross-model}\n\nA Llama-3.1-8B-Instruct~\\citep{llama3-2024} cross-model replication across all 11 task types ($N{=}220$) confirms that death dominance replicates across model families: internal death rate $41.4\\%$ vs.\\ deterministic $11.4\\%$ (death-rate differential $+30.0$~pp), DAF $= 88.2\\%$ (95\\% CI: $[80.2\\%, 95.1\\%]$; $\\Delta_{\\text{full}} = +33.17$, $\\Delta_{\\text{nd}} = +3.9$), with direction consistency 10/10 on death-prone tasks, 83 deterministic-preferred, 3 internal-preferred (1.4\\%, all death-asymmetry reversals), and 134 no-preference labels.\nBoth models exhibit nearly identical internal vulnerability (${\\sim}$42\\%: Qwen $42.9\\%$, Llama $41.4\\%$), confirming that death-prone failure is empirically dominated; the differential magnitude varies ($+26.5$~pp Qwen, $+30.0$~pp Llama) because deterministic strategy safety is model-dependent ($16.3\\%$ vs.\\ $11.4\\%$).\n\\texttt{identify-life-stages-1} shows cross-model precision matching ($55\\%$/$10\\%$/$+45$~pp in both models).\n\\texttt{find-non-living-thing} shows zero deaths in both models, consistent with its majority-class answer distribution (Appendix~\\ref{app:per-task}). Cross-model routing transfer is vacuously correct: Llama produces zero internal-preferred episodes, so Qwen-derived routing rules (always-deterministic) trivially match, confirming that routing signal is environment-determined rather than model-specific.\nA third model family, Gemma-2-9B-it~\\citep{gemma2-2024} (sliding window attention, vs.\\ full attention in Qwen/Llama), independently confirms the pattern: DAF${=}89.7\\%$ (95\\% CI $[79.5\\%, 98.4\\%]$; $N{=}220$), with all 10 death-prone task types showing positive $\\Delta$DR (Appendix~\\ref{app:cross-model}). Three architecturally distinct models thus converge on DAF $88$--$90\\%$ (spread 2.2~pp); $10{\\times}$ scaling to 72B (\\S\\ref{sec:agent-improvement}) confirms persistence across capability levels.\n\n\\subsection{Agent Improvement Baselines}\n\\label{sec:agent-improvement}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lrr@{}}\n\\toprule\nCondition & Death\\% & $N$ \\\\\n\\midrule\nSingle-trial baseline & 42.9 & 245 \\\\\nReflexion ($3{\\times}$) & 31.4 & 220 \\\\\nQwen2.5-72B ($10{\\times}$) & 30.6 & 255 \\\\\nDeterministic baseline & 16.3 & 245 \\\\\n\\midrule\n\\multicolumn{3}{@{}l}{\\textit{10 death-prone tasks only:}} \\\\\nDeath-prone baseline & 48.0 & 200 \\\\\nRetry ($5{\\times}$) & 43.5 & 200 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Internal-strategy death rates under agent improvement methods. Top: all 11 tasks (72B: independently collected at both internal and deterministic). Bottom: 10 death-prone tasks (\\texttt{find-non-living-thing} excluded, 0\\% death at all scales). All interventions reduce death rate but none approaches deterministic-level safety.}\n\\label{tab:agent-improvement}\n\\end{table}\n\nWe test whether agent-level improvement reduces death dominance (Table~\\ref{tab:agent-improvement}). Retry ($N{=}5$ attempts without self-correction) yields marginal reduction on death-prone tasks ($43.5\\%$ vs.\\ $48.0\\%$ baseline, $\\Delta = -4.5$~pp). Reflexion~\\citep{reflexion-2023} (verbal self-reflection between trials) reduces death to 31.4\\% across all 11 tasks by rescuing 29.3\\% of first-trial deaths, but the gap to deterministic remains 15.1~pp; on the 10 death-prone tasks, Reflexion achieves ${\\sim}$35\\%. Under Reflexion ($N{=}3$, matched-episode analysis), $\\Delta_{\\text{nd}} = -0.47$, yielding DAF $> 100\\%$: the deterministic advantage is entirely attributable to death avoidance, and in non-death episodes the self-correcting agent slightly outperforms the deterministic baseline. Scaling to Qwen2.5-72B ($10{\\times}$ parameters; both internal and deterministic strategies independently collected at 72B, 255 episodes across all 11 task types) reduces death rate to $30.6\\%$. The 72B deterministic strategy achieves $2.75\\%$ death rate ($\\Delta\\text{DR} = +27.8$~pp), and $\\Delta_{\\text{nd}} = +2.28$, yielding DAF $= 92.4\\%$ (7B: $90.4\\%$); scaling lowers death rate but leaves death dominance intact.\n\n\\paragraph{Dose-response analysis.}\nWe extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\\ref{fig:dose-response}). Retry is nearly flat ($48.0\\% \\to 43.5\\%$, $\\Delta = -4.5$~pp over five trials). Reflexion drops steeply to $34.0\\%$ at $N{=}3$ ($\\Delta = -13.5$~pp, $z = 2.75$, $p = 0.003$) then stabilizes ($34$--$36.5\\%$ for $N \\geq 3$, pairwise $p > 0.5$). With $n{=}200$ paired episodes, the minimum detectable effect is ${\\sim}8$~pp ($\\alpha = 0.05$, 80\\% power): the key $N{=}1{\\to}3$ decline is well-powered; the stabilization claim ($N{=}3{\\to}5$, $+1.0$~pp) is also supported, since a ${\\geq}8$~pp improvement would be detected. We characterize this as suggestive evidence of a Reflexion ceiling rather than a conclusive demonstration. Retry's per-trial conditional death rate stays constant at ${\\sim}48\\%$; Reflexion's declines to ${\\sim}31\\%$ by Trial~3 (per-task breakdown in Appendix~\\ref{app:dose-response}).\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/dose_response.pdf}\n\\caption{Death rate as a function of trial count ($N$) for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Retry (blue) is nearly flat; Reflexion (red) drops steeply through $N{=}3$ then shows no statistically detectable improvement beyond $N{=}3$ (Wilson CIs for $N{=}3,4,5$ overlap substantially). Horizontal lines: 72B scaling baseline ($30.6\\%$, all 11 tasks) and deterministic baseline ($16.3\\%$). Error bands: Wilson 95\\% CIs.}\n\\label{fig:dose-response}\n\\end{figure}\n\n\\subsection{Cross-Environment Boundary Probes}\n\\label{sec:math-contrast}\n\\label{sec:cross-env}\n\nWe examine MATH and ALFWorld as boundary probes (not cross-domain validation), testing framework applicability across environments that instantiate ``deterministic computation'' differently (oracle simulator, code interpreter, admissible-action enumeration; see operationalization in \\S\\ref{sec:problem-setup}).\n\n\\paragraph{MATH.} On MATH Level~4--5~\\citep{math-2021} ($N{=}795$, code interpreter), internal reasoning and code interpretation achieve near-identical accuracy ($73.5\\%$ vs.\\ $73.0\\%$, McNemar $p = 0.81$), with 84.4\\% no-preference. Without catastrophic failure, no routing signal emerges.\n\n\\paragraph{ALFWorld.} ALFWorld~\\citep{alfworld-2021} (6 task types, 135 games) provides the deterministic strategy with admissible actions, an information asymmetry rather than a computation mode switch, with no death mechanism ($\\delta = 0$, DAF $= 0\\%$). With Qwen2.5-7B, 35 of 37 non-tie labels (94.6\\%) favor the information-advantaged strategy (Appendix~\\ref{app:cross-env-details}); Llama-3.1-8B (135 games) yields 16 of 16 non-tie labels in the same direction (100\\%). Llama shows fewer non-tie episodes (11.9\\% vs.\\ 25.9\\%) but perfect directional consistency, confirming that information asymmetry, not death avoidance, drives routing signal in ALFWorld regardless of model family. The framework diagnoses this qualitatively different mechanism (DAF $= 0\\%$ vs.\\ $90.4\\%$) without modification.\n\n\\subsection{Baselines}\n\\label{sec:baselines}\n\n\\begin{table}[t]\n\\centering\n\\small\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lccc@{}}\n\\toprule\nStrategy & Score & 95\\% CI & Death \\% \\\\\n\\midrule\nAlways-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\\\\nAlways-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\\\\nRandom & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\\\\nOracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\\\\n\\midrule\nTrained Router$^\\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 20--40 episodes per type, 245 total). $\\dagger$\\,Single random seed (42) per episode pair; see Appendix~\\ref{app:seed-robustness} for 8-seed robustness analysis. Per-task results are exploratory ($n{=}20$ episodes per task, power $\\approx 50\\%$ for 20\\,pp effects); aggregate conclusions do not depend on individual task significance.}\n\\label{tab:baselines}\n\\end{table}\n\nAlways-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\n\n\\subsection{Router Training: A Negative Result}\n\\label{sec:router-diagnostic}\n\nWe probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime, though alternative architectures or genuine episode-level scaling remain untested.\n\nAn implicit router (Qwen3, LoRA; Appendix~\\ref{app:router-details}) trained at three scales (0.6B, 1.7B, 4B) shows flat step-level balanced accuracy ($56$--$59\\%$). At episode level, only 4B exceeds always-deterministic ($59.0 \\pm 1.9\\%$, $p < 0.001$, Bonferroni-corrected across 8 comparisons); 0.6B and 1.7B remain at chance. The 4B model's marginally above-chance episode-level accuracy is consistent with task-type identification rather than step-level routing signal, as confirmed by leave-one-task-type-out analysis degrading to chance (49.2\\%; Appendix~\\ref{app:ablations}). Episode-level independent evaluation yields $47.1 \\pm 2.2\\%$, below the majority-vote baseline of 50.0\\%; this independent set includes held-out task types, so the below-chance result reflects cross-task transfer failure rather than overall router incompetence. Training uses episode-level splits (Appendix~\\ref{app:router-details}), ensuring no within-episode leakage. The high uninformative rate connects to noisy-label learning~\\citep{natarajan2013learning,northcutt2021confident,li2020dividemix}: standard ERM on labels with ${\\sim}$88\\% noise yields near-chance classifiers, consistent with theoretical bounds on learning from corrupted labels and empirical results in structured noise settings.\n\n\\paragraph{End-to-end deployment.} The 4B router deployed end-to-end ($N{=}245$) scores $-12.03$ (95\\% CI: $[-17.82, -6.45]$), not exceeding always-deterministic ($-9.47$). Paraphrase-based augmentation ($25\\%$--$800\\%$) provides no improvement; the $3.7\\%$ internal-preferred base rate makes real-data collection expensive (Appendices~\\ref{app:seed-robustness}--\\ref{app:ablations}).\n",
+    "structuredPatch": [
+      {
+        "oldStart": 109,
+        "oldLines": 7,
+        "newStart": 109,
+        "newLines": 7,
+        "lines": [
+          " \\subsection{Router Training: A Negative Result}",
+          " \\label{sec:router-diagnostic}",
+          " ",
+          "-We probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level---there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime, though alternative architectures or genuine episode-level scaling remain untested.",
+          "+We probe whether counterfactual labels can train a step-level router, as a diagnostic of label informativeness. The oracle margin (2.89 points) caps routing upside. The near-chance step-level accuracy admits two interpretations: (A)~episode-level labels projected onto steps create ${\\sim}$88\\% uninformative signal (60.3\\% pre-event neutral, 27.4\\% post-event), drowning learnable patterns in noise; (B)~routing signal is genuinely task-type-level: there is no step-level pattern to learn. Directional conflict is only 0.3\\% of 2{,}040 training steps, but the granularity mismatch leaves minimal signal. The text augmentation ablation (25\\%--800\\% via paraphrase, no improvement) and extreme class imbalance (86/95 $= 90.5\\%$ deterministic-preferred) together favor Interpretation~B (non-learnability): no step-level learnable signal exists under current architectures and data regime, though alternative architectures or genuine episode-level scaling remain untested.",
+          " ",
+          " An implicit router (Qwen3, LoRA; Appendix~\\ref{app:router-details}) trained at three scales (0.6B, 1.7B, 4B) shows flat step-level balanced accuracy ($56$--$59\\%$). At episode level, only 4B exceeds always-deterministic ($59.0 \\pm 1.9\\%$, $p < 0.001$, Bonferroni-corrected across 8 comparisons); 0.6B and 1.7B remain at chance. The 4B model's marginally above-chance episode-level accuracy is consistent with task-type identification rather than step-level routing signal, as confirmed by leave-one-task-type-out analysis degrading to chance (49.2\\%; Appendix~\\ref{app:ablations}). Episode-level independent evaluation yields $47.1 \\pm 2.2\\%$, below the majority-vote baseline of 50.0\\%; this independent set includes held-out task types, so the below-chance result reflects cross-task transfer failure rather than overall router incompetence. Training uses episode-level splits (Appendix~\\ref{app:router-details}), ensuring no within-episode leakage. The high uninformative rate connects to noisy-label learning~\\citep{natarajan2013learning,northcutt2021confident,li2020dividemix}: standard ERM on labels with ${\\sim}$88\\% noise yields near-chance classifiers, consistent with theoretical bounds on learning from corrupted labels and empirical results in structured noise settings.",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77_
+
+Now let me verify: re-scan for any remaining prose em-dashes beyond the 4 kept.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "a8b16e90-bf37-47ea-9dca-572944475105",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbtH5WmDjgbBkVqSEdRYWn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 835,
+      "cache_read_input_tokens": 44819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 835
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01SzXChG8LCRVnSEjkyXnNNg`</summary>
+
+```json
+{
+  "pattern": "---",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+  "glob": "*.tex",
+  "output_mode": "content",
+  "-n": true,
+  "head_limit": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "472d87c5-d661-466c-8217-c021d089e72c",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GbtH5WmDjgbBkVqSEdRYWn",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 835,
+      "cache_read_input_tokens": 44819,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 835
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-21T13:53:15.027Z_
+
+<details><summary>↩ Tool result · `toolu_01SzXChG8LCRVnSEjkyXnNNg`</summary>
+
+```text
+docs/paper/experiments.tex:107:Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\% of decisions matching always-deterministic---an \emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\% of non-tie oracle decisions (balanced accuracy 50.0\%: perfect deterministic recall, zero internal recall).
+docs/paper/main.tex:247:Exact permutation ($2{,}048$ perms) & $0.002$ & --- \\
+docs/paper/main.tex:248:Sign test & $< 0.001$ & --- \\
+docs/paper/main.tex:278:(none, full) & 245 & 78.9 & --- \\
+docs/paper/main.tex:426:Always-det & --- & --- & 50.0 \\
+docs/paper/main.tex:598:Qwen2.5-72B & ScienceWorld & 255 & 30.6\% & 2.75\% & +27.8 & 92.4\% & --- & death \\
+docs/paper/main.tex:600:Qwen2.5-7B & ALFWorld & 135 & 0\% & 0\% & 0 & 0\% & --- & info-asym \\
+docs/paper/main.tex:601:Llama-3.1-8B & ALFWorld & 135 & 0\% & 0\% & 0 & 0\% & --- & info-asym \\
+docs/paper/main.tex:777:Notably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\ref{tab:per-task}), indicating that excluded tasks are \emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.
+docs/paper/method.tex:75:At step level, 97.4\% of oracle comparisons yield ties (\S\ref{sec:collection}); of 2{,}040 training steps, only 0.3\% exhibit strict directional conflict with episode labels, with 60.3\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\S\ref{sec:router-diagnostic}).
+docs/paper/introduction.tex:6:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "feb464bb-629c-4bb9-9c76-0f6f813b3161",
+  "tool_use_result": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "docs/paper/experiments.tex:107:Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points. The oracle improves only to $-6.58$, with 96.3\\% of decisions matching always-deterministic---an \\emph{oracle degeneracy} where an always-deterministic lookup achieves 90.5\\% of non-tie oracle decisions (balanced accuracy 50.0\\%: perfect deterministic recall, zero internal recall).\ndocs/paper/main.tex:247:Exact permutation ($2{,}048$ perms) & $0.002$ & --- \\\\\ndocs/paper/main.tex:248:Sign test & $< 0.001$ & --- \\\\\ndocs/paper/main.tex:278:(none, full) & 245 & 78.9 & --- \\\\\ndocs/paper/main.tex:426:Always-det & --- & --- & 50.0 \\\\\ndocs/paper/main.tex:598:Qwen2.5-72B & ScienceWorld & 255 & 30.6\\% & 2.75\\% & +27.8 & 92.4\\% & --- & death \\\\\ndocs/paper/main.tex:600:Qwen2.5-7B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\ndocs/paper/main.tex:601:Llama-3.1-8B & ALFWorld & 135 & 0\\% & 0\\% & 0 & 0\\% & --- & info-asym \\\\\ndocs/paper/main.tex:777:Notably, the excluded-task aggregate DAF (0.991) exceeds the included-task DAF (0.904; Table~\\ref{tab:per-task}), indicating that excluded tasks are \\emph{more} death-dominated than included tasks---the opposite of a cherry-picking bias.\ndocs/paper/method.tex:75:At step level, 97.4\\% of oracle comparisons yield ties (\\S\\ref{sec:collection}); of 2{,}040 training steps, only 0.3\\% exhibit strict directional conflict with episode labels, with 60.3\\% pre-event neutral (neither strategy advantaged). Episode labels thus apply correct direction to uninformative steps---a granularity mismatch, not label error---explaining why step-level router training approaches chance performance (\\S\\ref{sec:router-diagnostic}).\ndocs/paper/introduction.tex:6:[Omitted long matching line]",
+    "numLines": 11
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me verify the introduction.tex:6 match is the one I'm keeping.
+
+Remaining prose em-dashes:
+1. experiments.tex:107 — KEEP ✓
+2. main.tex:777 — KEEP ✓
+3. method.tex:75 — KEEP (paired) ✓
+4. introduction.tex:6 — KEEP (paired) ✓
+
+Table placeholders (not prose, don't touch):
+- main.tex:247, 248, 278, 426 (×2), 598, 600, 601 — 8 occurrences
+
+
+Now I've replaced all the other prose em-dashes and I'm ready to compile.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "f54b4f09-639c-4764-ae81-f82b9c73e27b",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqvVi6eph3YA1c4hPa1fAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 845,
+      "cache_read_input_tokens": 45654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 845
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 81_
+
+Remaining prose `---`: 4 usages (kept intentionally) + 8 table placeholders. All others replaced. Compiling now.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "ad597ba7-924e-4060-ac90-bf38499676fa",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqvVi6eph3YA1c4hPa1fAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 845,
+      "cache_read_input_tokens": 45654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 845
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01RHVeXS8Ud7scRuCw1BN8vr`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper && rm -f main.aux main.bbl main.blg main.log main.out && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -5",
+  "timeout": 60000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "e76cb0ae-b0ae-4615-9677-64c78474a2ee",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SqvVi6eph3YA1c4hPa1fAX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 845,
+      "cache_read_input_tokens": 45654,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 845
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-21T13:53:24.060Z_
+
+<details><summary>↩ Tool result · `toolu_01RHVeXS8Ud7scRuCw1BN8vr`</summary>
+
+```text
+f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time
+s/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (22 pages, 565822 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "351d2797-81a8-4006-8d8a-e1236140bab2",
+  "tool_use_result": {
+    "stdout": "f-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts\n/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time\ns/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (22 pages, 565822 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01BGnWyBCJf2ojCgw7YNCaBQ`</summary>
+
+```json
+{
+  "command": "bibtex main 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "7aadac2e-fca3-415c-b49d-814f5b68ddb9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BqCys4UqRTwd4A55vzkAbk",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 622,
+      "cache_read_input_tokens": 46499,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 622
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 85_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "b6j0wbft7",
+  "tool_use_id": "toolu_01BGnWyBCJf2ojCgw7YNCaBQ",
+  "description": "bibtex main 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "task_type": "local_bash",
+  "uuid": "a76fa82b-84a7-4408-8844-80c40ca2a92e",
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386"
+}
+```
+
+---
+
+### System
+
+_source line 86_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "b6j0wbft7",
+  "tool_use_id": "toolu_01BGnWyBCJf2ojCgw7YNCaBQ",
+  "status": "completed",
+  "output_file": "",
+  "summary": "bibtex main 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3 && pdflatex -interaction=nonstopmode main.tex 2>&1 | tail -3",
+  "uuid": "a8f070dc-53f6-4ff0-b5c4-3ef2edfeb0ae",
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386"
+}
+```
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-21T13:53:30.803Z_
+
+<details><summary>↩ Tool result · `toolu_01BGnWyBCJf2ojCgw7YNCaBQ`</summary>
+
+```text
+The top-level auxiliary file: main.aux
+The style file: acl_natbib.bst
+Database file #1: references.bib
+pe1/urw/times/utmri8a.pfb>
+Output written on main.pdf (24 pages, 592369 bytes).
+Transcript written on main.log.
+s/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on main.pdf (25 pages, 601391 bytes).
+Transcript written on main.log.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "28f49a43-9943-41f0-9f52-0f9d45724149",
+  "tool_use_result": {
+    "stdout": "The top-level auxiliary file: main.aux\nThe style file: acl_natbib.bst\nDatabase file #1: references.bib\npe1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (24 pages, 592369 bytes).\nTranscript written on main.log.\ns/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (25 pages, 601391 bytes).\nTranscript written on main.log.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01CKB1XrDJkR6jThJcMsTuNo`</summary>
+
+```json
+{
+  "command": "grep -c \"^!\" main.log; echo \"---\"; grep \"^!\" main.log | head -5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "af16391e-45b5-4686-a6c7-dae237122da5",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X3HvQwepjt5jQedjb5Vj6c",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 294,
+      "cache_read_input_tokens": 47121,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 294
+      },
+      "output_tokens": 65,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-21T13:53:34.062Z_
+
+<details><summary>↩ Tool result · `toolu_01CKB1XrDJkR6jThJcMsTuNo`</summary>
+
+```text
+0
+---
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "476c4c1e-2e65-44b9-a1ea-3682d0b9b21c",
+  "tool_use_result": {
+    "stdout": "0\n---",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90_
+
+0 errors, 25 pages. Now checking page 8/9 boundary.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "4660ac33-e4b8-43a4-a51d-f005d7cf7cfb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0172Doh6ADZwQcutiUe84MTF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 91,
+      "cache_read_input_tokens": 47415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 91
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01GdjddiFhP54W8MCrhfvbom`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf",
+  "pages": "8-9"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "0367a5da-7fbc-492c-a87b-de83f87e8d7e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0172Doh6ADZwQcutiUe84MTF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 91,
+      "cache_read_input_tokens": 47415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 91
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-21T13:53:37.870Z_
+
+<details><summary>↩ Tool result · `toolu_01GdjddiFhP54W8MCrhfvbom`</summary>
+
+```text
+PDF pages extracted: 2 page(s) from /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf (587.3KB)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "080b6b06-7b86-48bc-8c9f-afda9594eb31",
+  "tool_use_result": {
+    "type": "parts",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/main.pdf",
+      "originalSize": 601391,
+      "outputDir": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing/fddcb9be-d8d0-4b43-a0cc-6247aea9d386/tool-results/pdf-077afc2a-e16b-4ac4-8e0f-b5161b414cf6",
+      "count": 2
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 1
+
+1 recorded events
+
+### User
+
+_source line 93 · 2026-05-21T13:53:37.868Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "3189410e-f855-49be-b606-000000000000",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+4 recorded events
+
+### User
+
+_source line 94 · 2026-05-21T13:53:37.868Z_
+
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "media_type": "image/jpeg",
+    "data": "[ATTACHMENT_DATA_REDACTED]"
+  }
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "3189410e-f855-49be-b606-000000000001",
+  "isSynthetic": true
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 95_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the page 8/9 boundary:
+
+- Page 8 ends with "Conclusion" section starting at line 658, and the conclusion text begins at line 659-662 but gets cut off mid-sentence at "suf-" (line 666 on page 9 shows "fices for build-vs-buy decisions in new environments.")
+- Page 9 starts with "fices for build-vs-buy decisions in new environ-ments." then "Limitations" at line 668.
+
+So the Conclusion section starts on page 8 (line 658) but overflows to page 9 (lines 666-667). Then Limitations starts on page 9 at line 668.
+
+
+I've confirmed that Conclusion overflows into page 9, so I need to flag this with ⚠️ OVERFLOW and stop here rather than continuing with the report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "42deb1f4-3726-4f43-a2d9-045fbea30a55",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KNMUGNurEwkn8SUEpKgzzq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2723,
+      "cache_read_input_tokens": 47506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2723
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 96_
+
+## 替换清单
+
+1. [abstract.tex:2] `routing---deciding when to rely on internal reasoning versus external tool use---is` → `routing (deciding when to rely on internal reasoning versus external tool use) is` (插入语→括号)
+2. [abstract.tex:2] `death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives` → `death asymmetry: the internal strategy triggers...` (定义→冒号)
+3. [abstract.tex:2] `mechanisms---no extractable signal and information asymmetry, respectively---demonstrating` → `mechanisms (no extractable signal and information asymmetry, respectively), demonstrating` (插入语→括号)
+4. [introduction.tex:4] `error-prone---the model may hallucinate...activated)---while` → `error-prone, as the model may hallucinate...activated), while` (插入语→逗号)
+5. [introduction.tex:15] `death asymmetry---a single mechanism` → `death asymmetry, a single mechanism` (定义→逗号)
+6. [experiments.tex:18] `ties---neither strategy outperforms the other---indicating` → `ties (neither strategy outperforms the other), indicating` (插入语→括号)
+7. [experiments.tex:78] `probes---not cross-domain validation---testing` → `probes (not cross-domain validation), testing` (插入语→括号)
+8. [experiments.tex:82] `admissible actions---an information asymmetry` → `admissible actions, an information asymmetry` (定义→逗号)
+9. [experiments.tex:82] `asymmetry---not death avoidance---drives` → `asymmetry, not death avoidance, drives` (插入语→逗号)
+10. [experiments.tex:112] `task-type-level---there is no step-level pattern` → `task-type-level: there is no step-level pattern` (定义→冒号)
+11. [experiments.tex:112] `data regime---though` → `data regime, though` (转折→逗号)
+12. [main.tex:43] `mismatch---applying correct-direction labels to uninformative steps---not` → `mismatch (applying correct-direction labels to uninformative steps), not` (插入语→括号)
+13. [main.tex:52] `routing---for example, by combining DAF analysis with online policy learning---is` → `routing (for example, by combining DAF analysis with online policy learning) is` (插入语→括号)
+14. [method.tex:67] `fraction---invariant to penalty magnitude---serves` → `fraction, invariant to penalty magnitude, serves` (插入语→逗号)
+15. [related_work.tex:15] `rewards---the closest setting to ours;` → `rewards, the closest setting to ours;` (定义→逗号)
+16. [保留] [introduction.tex:6] `assumption---that routing signal stems from diverse sources and a learned router can exploit it---remains untested` — 核心论点的修辞强调
+17. [保留] [experiments.tex:107] `always-deterministic---an \emph{oracle degeneracy}` — 引入命名概念
+18. [保留] [method.tex:75] `steps---a granularity mismatch, not label error---explaining` — 关键方法论澄清
+19. [保留] [main.tex:777] `tasks---the opposite of a cherry-picking bias` — 强对比
+
+## 统计
+- 总 em-dash（正文）: 19 处 (修复前)
+- 替换: 15 处
+- 保留: 4 处
+- 最终: 4 处 (目标 3-5 ✓)
+- 表格占位符 `---`: 8 处 (未动)
+
+## 编译结果
+- Errors: 0
+- 总页数: 25
+
+## Page 8/9 边界
+- Page 8 末尾: Conclusion 开头 "In ScienceWorld, death avoidance alone accounts for 78.9% of non-tie routing labels... a ~50-episode pilot suf-"
+- Page 9 开头: "-fices for build-vs-buy decisions in new environments." 然后 Limitations
+- ⚠️ **OVERFLOW**: Conclusion 溢出到 page 9（约 2 行），Limitations 从 page 9 line 668 开始
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "uuid": "f2f07e10-013f-4a47-8cb3-8247b07498cf",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KNMUGNurEwkn8SUEpKgzzq",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2723,
+      "cache_read_input_tokens": 47506,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 2723
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 97_
+
+## 替换清单
+
+1. [abstract.tex:2] `routing---deciding when to rely on internal reasoning versus external tool use---is` → `routing (deciding when to rely on internal reasoning versus external tool use) is` (插入语→括号)
+2. [abstract.tex:2] `death asymmetry---the internal strategy triggers catastrophic failure while the deterministic strategy survives` → `death asymmetry: the internal strategy triggers...` (定义→冒号)
+3. [abstract.tex:2] `mechanisms---no extractable signal and information asymmetry, respectively---demonstrating` → `mechanisms (no extractable signal and information asymmetry, respectively), demonstrating` (插入语→括号)
+4. [introduction.tex:4] `error-prone---the model may hallucinate...activated)---while` → `error-prone, as the model may hallucinate...activated), while` (插入语→逗号)
+5. [introduction.tex:15] `death asymmetry---a single mechanism` → `death asymmetry, a single mechanism` (定义→逗号)
+6. [experiments.tex:18] `ties---neither strategy outperforms the other---indicating` → `ties (neither strategy outperforms the other), indicating` (插入语→括号)
+7. [experiments.tex:78] `probes---not cross-domain validation---testing` → `probes (not cross-domain validation), testing` (插入语→括号)
+8. [experiments.tex:82] `admissible actions---an information asymmetry` → `admissible actions, an information asymmetry` (定义→逗号)
+9. [experiments.tex:82] `asymmetry---not death avoidance---drives` → `asymmetry, not death avoidance, drives` (插入语→逗号)
+10. [experiments.tex:112] `task-type-level---there is no step-level pattern` → `task-type-level: there is no step-level pattern` (定义→冒号)
+11. [experiments.tex:112] `data regime---though` → `data regime, though` (转折→逗号)
+12. [main.tex:43] `mismatch---applying correct-direction labels to uninformative steps---not` → `mismatch (applying correct-direction labels to uninformative steps), not` (插入语→括号)
+13. [main.tex:52] `routing---for example, by combining DAF analysis with online policy learning---is` → `routing (for example, by combining DAF analysis with online policy learning) is` (插入语→括号)
+14. [method.tex:67] `fraction---invariant to penalty magnitude---serves` → `fraction, invariant to penalty magnitude, serves` (插入语→逗号)
+15. [related_work.tex:15] `rewards---the closest setting to ours;` → `rewards, the closest setting to ours;` (定义→逗号)
+16. [保留] [introduction.tex:6] `assumption---that routing signal stems from diverse sources and a learned router can exploit it---remains untested` — 核心论点的修辞强调
+17. [保留] [experiments.tex:107] `always-deterministic---an \emph{oracle degeneracy}` — 引入命名概念
+18. [保留] [method.tex:75] `steps---a granularity mismatch, not label error---explaining` — 关键方法论澄清
+19. [保留] [main.tex:777] `tasks---the opposite of a cherry-picking bias` — 强对比
+
+## 统计
+- 总 em-dash（正文）: 19 处 (修复前)
+- 替换: 15 处
+- 保留: 4 处
+- 最终: 4 处 (目标 3-5 ✓)
+- 表格占位符 `---`: 8 处 (未动)
+
+## 编译结果
+- Errors: 0
+- 总页数: 25
+
+## Page 8/9 边界
+- Page 8 末尾: Conclusion 开头 "In ScienceWorld, death avoidance alone accounts for 78.9% of non-tie routing labels... a ~50-episode pilot suf-"
+- Page 9 开头: "-fices for build-vs-buy decisions in new environments." 然后 Limitations
+- ⚠️ **OVERFLOW**: Conclusion 溢出到 page 9（约 2 行），Limitations 从 page 9 line 668 开始
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 228999,
+  "duration_api_ms": 225162,
+  "num_turns": 37,
+  "stop_reason": "end_turn",
+  "session_id": "fddcb9be-d8d0-4b43-a0cc-6247aea9d386",
+  "total_cost_usd": 0.9413320000000002,
+  "usage": {
+    "input_tokens": 23,
+    "cache_creation_input_tokens": 38388,
+    "cache_read_input_tokens": 727964,
+    "output_tokens": 13411,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 38388,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 3,
+        "output_tokens": 1423,
+        "cache_read_input_tokens": 47506,
+        "cache_creation_input_tokens": 2723,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 2723
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1910,
+      "outputTokens": 25,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.002035,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 23,
+      "outputTokens": 13411,
+      "cacheReadInputTokens": 727964,
+      "cacheCreationInputTokens": 38388,
+      "webSearchRequests": 0,
+      "costUSD": 0.9392970000000002,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "41f0ed09-b61f-48df-8cf7-86c4781c9792"
+}
+```
+
+</details>
+
+---

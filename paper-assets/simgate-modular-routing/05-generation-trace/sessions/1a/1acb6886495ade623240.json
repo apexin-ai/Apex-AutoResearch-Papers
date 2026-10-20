@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0",
+  "id": "1acb6886495ade623240",
+  "project": "simgate-modular-routing",
+  "kind": "conversation",
+  "title": "paper related work expansion",
+  "task_key": "worker_paper_related-work-expansion_20260515T101416",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_related-work-expansion_20260515T101416.jsonl",
+    "occurrence": 1,
+    "bytes": 12024,
+    "sha256": "6e589f2eb3912ca831f2b07292da6c2108ce15da724a668833d1125e322cdd3c"
+  },
+  "statistics": {
+    "messages": 7,
+    "user_turns": 0,
+    "tool_calls": 3,
+    "roles": {
+      "tool_call": 3,
+      "tool_result": 3,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-15T10:15:19.453741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-expansion_20260515T101416",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-15T10:15:19.454402+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\n3\t\\paragraph{Tool-Use Learning.}\n4\tToolformer \\cite{toolformer-2024}, ToolkenGPT \\cite{toolkengpt-2023}, ART \\cite{art-2023}, Chameleon \\cite{chameleon-2024}, and ReTool \\cite{retool-2026} learn tool-use policies via self-supervised, embedding-based, or RL approaches.\n5\tWe generate labels via \\emph{episode-level counterfactual analysis}, framing routing as \\emph{catastrophic failure prevention}.\n6\t\n7\t\\paragraph{Adaptive Computation.}\n8\tCogRouter \\cite{cogrouter-2026}, ARES \\cite{ares-2026}, and Mixture-of-Recursions \\cite{mixture-of-recursions-2025} route \\emph{how much} computation; MTRouter \\cite{mtrouter-2026} routes \\emph{which model}. We route \\emph{which modality} and find death avoidance accounts for ${\\sim}90\\%$ of routing signal at $P{=}100$.\n9\t\n10\t\\paragraph{World Model Routing.}\n11\tITP \\cite{itp-2026} and Dyna-Think \\cite{dynathink-2025} route to approximate world models that inherit hallucination failures; our deterministic modality provides exact transitions, mattering almost exclusively for death avoidance.\n12\t\n13\t\\paragraph{Agent Frameworks.}\n14\tReAct \\cite{react-2023} serves as our internal-reasoning baseline; ALFWorld \\cite{alfworld-2021} provides a complementary text-based benchmark. We analyze \\emph{when} reasoning should yield to deterministic computation, connecting to safe RL \\citep{garcia2015comprehensive}.\n15\t\n16\t\\paragraph{Counterfactual Evaluation in RL.}\n17\tCounterfactual reasoning has been applied to explain RL agent behavior post-hoc---comparing observed actions against hypothetical alternatives \\cite{olson2021counterfactual,gajcin2023counterfactual,amitai2024explaining}. Our approach differs fundamentally: rather than explaining a fixed policy, we execute two complete episodes under different routing strategies, producing prospective paired comparisons that isolate the routing signal before any router is trained.\n18\t\n19\t\\paragraph{Concurrent Work.}\n20\tConcurrent studies examine complementary aspects: cognitiv\n…[truncated 515 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-expansion_20260515T101416",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-15T10:15:19.454673+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-expansion_20260515T101416",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-15T10:15:19.454911+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t@inproceedings{scienceworld-2022,\n2\t  title={ScienceWorld: Is Your Agent Smarter Than a 5th Grader?},\n3\t  author={Wang, Ruoyao and Jansen, Peter and C\\^{o}t\\'{e}, Marc-Alexandre and Ammanabrolu, Prithviraj},\n4\t  booktitle={Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n5\t  year={2022}\n6\t}\n7\t\n8\t@inproceedings{react-2023,\n9\t  title={ReAct: Synergizing Reasoning and Acting in Language Models},\n10\t  author={Yao, Shunyu and Zhao, Jeffrey and Yu, Dian and Du, Nan and Shafran, Izhak and Narasimhan, Karthik and Cao, Yuan},\n11\t  booktitle={International Conference on Learning Representations (ICLR)},\n12\t  year={2023}\n13\t}\n14\t\n15\t@inproceedings{toolformer-2024,\n16\t  title={Toolformer: Language Models Can Teach Themselves to Use Tools},\n17\t  author={Schick, Timo and Dwivedi-Yu, Jane and Dess\\`{i}, Roberto and Raileanu, Roberta and Lomeli, Maria and Hambro, Eric and Zettlemoyer, Luke and Cancedda, Nicola and Scialom, Thomas},\n18\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n19\t  year={2023}\n20\t}\n21\t\n22\t@article{art-2023,\n23\t  title={ART: Automatic Multi-step Reasoning and Tool-use for Large Language Models},\n24\t  author={Paranjape, Bhargavi and Lundberg, Scott and Singh, Sameer and Hajishirzi, Hannaneh and Zettlemoyer, Luke and Ribeiro, Marco Tulio},\n25\t  journal={arXiv preprint arXiv:2303.09014},\n26\t  year={2023}\n27\t}\n28\t\n29\t@inproceedings{chameleon-2024,\n30\t  title={Chameleon: Plug-and-Play Compositional Reasoning with Large Language Models},\n31\t  author={Lu, Pan and Peng, Baolin and Cheng, Hao and Galley, Michel and Chang, Kai-Wei and Wu, Ying Nian and Zhu, Song-Chun and Gao, Jianfeng},\n32\t  booktitle={Advances in Neural Information Processing Systems (NeurIPS)},\n33\t  year={2023}\n34\t}\n35\t\n36\t@article{retool-2026,\n37\t  title={ReTool: Reinforcement Learning for Strategic Tool Use in LLMs},\n38\t  author={Feng, Jiazhan and others},\n39\t  journal={arXiv preprint arXiv:2504.11536},\n40\t  year={2025}\n41\t}\n…[truncated 5559 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-expansion_20260515T101416",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-15T10:15:19.455196+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-expansion_20260515T101416",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex",
+              "content": "\\section{Related Work}\n\n\\paragraph{Tool Use and External Computation in LLMs.}\nA growing body of work augments language models with external tools.\nToolformer \\cite{toolformer-2024} teaches LLMs to insert API calls via self-supervised loss filtering, while ToolkenGPT \\cite{toolkengpt-2023} represents tools as special tokens in the embedding space, enabling frozen models to invoke massive tool libraries.\nART \\cite{art-2023} decomposes tasks into multi-step programs that interleave reasoning with tool calls, and Chameleon \\cite{chameleon-2024} composes heterogeneous modules (search, code, vision) via LLM-generated programs.\nReTool \\cite{retool-2026} applies reinforcement learning to let models discover when code execution is preferable to chain-of-thought.\nThese approaches focus on \\emph{learning to use tools}; our work instead asks a prior question: \\emph{what signal drives the decision to route to an external modality at all?}\n\nRecent concurrent studies sharpen this question from multiple angles.\n\\citet{tool-overuse-illusion-2026} identify a cognitive-illusion effect in which LLMs default to external tools even when internal knowledge suffices.\n\\citet{when2tool-2026} show that tool-call decisions are already encoded in hidden states before explicit reasoning occurs.\n\\citet{tool-use-tax-2026} quantify a ``tool-use tax''---cases where invoking a tool degrades rather than improves performance.\n\\citet{to-call-or-not-2026} propose a necessity--utility--affordability framework for deciding whether to call a tool.\nOur counterfactual decomposition provides complementary, environment-grounded evidence: in ScienceWorld, ${\\sim}90\\%$ of the routing signal at $P{=}100$ traces to catastrophic-failure prevention rather than general utility, offering a concrete quantification that these frameworks currently lack.\n\n\\paragraph{Adaptive Computation and Routing.}\nRather than adding new tools, a parallel line of research routes inputs to different computation budgets or models.\nCogRouter \\cite{cogrouter-2026} adapts reasoning depth per step, ARES \\cite{ares-2026} selects among reasoning effort levels for LLM agents, and Mixture-of-Recursions \\cite{mixture-of-recursions-2025} learns token-level recursion depths within a single model.\nMTRouter \\cite{mtrouter-2026} addresses multi-turn routing across heterogeneous models by jointly embedding conversation history and model capabilities.\nThese systems optimize \\emph{how} to route; we focus on \\emph{why} routing helps.\nOur counterfactual analysis reveals that, in interactive environments, the dominant routing signal is not efficiency or capability matching but catastrophic-failure avoidance---a finding that could inform the objective design of future routers.\n\n\\paragraph{Counterfactual Evaluation in RL.}\nCounterfactual reasoning has been used to explain RL agent behavior post hoc.\n\\citet{olson2021counterfactual} generate counterfactual states via deep generative models to highlight features critical to an agent's decisions.\n\\citet{gajcin2023counterfactual} produce counterfactual action explanations that show users which alternative actions would have led to different outcomes.\n\\citet{amitai2024explaining} extend this to action-outcome explanations, contrasting observed and hypothetical trajectories at the step level.\nA common thread is that these methods perturb \\emph{individual actions} within a fixed policy to attribute credit.\nOur approach differs in both purpose and granularity: we execute two \\emph{complete episodes} under different routing strategies (LLM-only vs.\\ LLM+simulator), producing prospective paired comparisons that isolate the routing signal \\emph{before} any router is trained.\nThis episode-level design sidesteps compounding perturbation artifacts and directly measures the aggregate effect of modality access on task outcomes.\n\n\\paragraph{Safe RL and Catastrophic Failure.}\n\\citet{garcia2015comprehensive} survey safe RL methods that constrain policies to avoid catastrophic outcomes, categorizing approaches into constrained optimization, risk-sensitive criteria, and external-knowledge incorporation.\nA common mechanism is reward shaping with large negative penalties for unsafe states, which implicitly teaches agents to avoid irreversible failures.\nOur findings connect to this literature from an analytical rather than algorithmic perspective: the counterfactual decomposition reveals that death avoidance---preventing irreversible task failure---is the dominant component of the routing signal in ScienceWorld.\nThis suggests that modality routing in interactive environments functions primarily as a safety mechanism, and that router design may benefit from explicitly modeling catastrophic-failure risk rather than treating routing as a generic capability-matching problem.\n\n\\paragraph{LLM Agents in Interactive Environments.}\nScienceWorld \\cite{scienceworld-2022} provides a text-based science-experiment environment requiring multi-step causal reasoning, serving as our primary testbed.\nALFWorld \\cite{alfworld-2021} offers a complementary text-based household environment; Voyager \\cite{voyager-2023} demonstrates open-ended exploration in Minecraft using LLM-driven curriculum and skill libraries.\nReAct \\cite{react-2023} interleaves reasoning traces with environment actions and serves as our internal-reasoning baseline.\nMore recent work augments agents with world models: ITP \\cite{itp-2026} uses learned world models for lookahead planning, while Dyna-Think \\cite{dynathink-2025} synergizes reasoning, acting, and world-model simulation.\nBoth inherit the hallucination risks of approximate world models.\nOur deterministic simulator modality provides exact state transitions, and our analysis shows that this exactness matters almost exclusively for death avoidance---the cases where hallucinated transitions would be most costly.\n"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-15T10:15:19.455507+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/related_work.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-expansion_20260515T101416",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-15T10:15:19.455714+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Related Work 已扩写完成。5 个 paragraph 覆盖了要求的全部主题，所有引用均来自 `references.bib`，每个段落末尾都有与本文工作的明确定位对比。篇幅约 1 page。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_related-work-expansion_20260515T101416"
+          },
+          "id": "event-000007"
+        }
+      ],
+      "message_count": 7
+    }
+  ],
+  "readable_path": "readable/conversations/paper-related-work-expansion.md"
+}

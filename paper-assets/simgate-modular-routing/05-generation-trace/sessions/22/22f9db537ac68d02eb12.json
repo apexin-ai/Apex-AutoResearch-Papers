@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22f9db537ac68d02eb12",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis step tie rate 245eps",
+  "task_key": "worker_analysis_step-tie-rate-245eps_20260514T122336",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_step-tie-rate-245eps_20260514T122336_result.json",
+    "occurrence": 1,
+    "bytes": 858,
+    "sha256": "78e1b0f805350ed77f1a8ae5e343461df9b16ea074adbb73a9ea4d6a6ea260d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。总结：\n\n**Step-level tie rate (245 eps / 11 tasks): 97.39% (5935/6094)**\n\n| 指标 | 值 |\n|---|---|\n| Total steps | 6094 |\n| Tie steps | 5935 |\n| **Tie rate** | **97.39%** |\n| Both-zero ties | 5920 (99.7% of ties) |\n| Det preferred | 133 steps |\n| Int preferred | 26 steps |\n\nPer-task range: 96.07% (measure-melting-point) ~ 97.99% (lifespan-longest-lived-then-shortest-lived)\n\n**vs 旧 MVP 对比：** 97.39% vs 98.2%，差 0.78pp < 1% 阈值。差异来源：(1) 方法论不同——旧数据用 oracle routing（同状态对比），新数据用独立轨迹；(2) 11 tasks 覆盖更多 task type 包括更复杂场景。\n\n论文引用建议更新为 **97.4% (5935/6094 steps, 245 episodes, 11 tasks)**。\n\nRegistry entry `plan-012-step-tie-rate` 已注册，status=DONE，含完整 per-task metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-step-tie-rate-245eps.md"
+}

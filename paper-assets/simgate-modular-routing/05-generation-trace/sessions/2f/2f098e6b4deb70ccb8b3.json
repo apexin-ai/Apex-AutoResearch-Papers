@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2f098e6b4deb70ccb8b3",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "verify number consistency",
+  "task_key": "worker_verify_number-consistency_20260514T143205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_verify_number-consistency_20260514T143205_result.json",
+    "occurrence": 1,
+    "bytes": 941,
+    "sha256": "9a416770c91c7245eb28d88d8ca3a368919796478a57ed3ba1de6fb0dbdcfa8a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。**66 项定量 claim 全部核对，0 FAIL，1 NOTE**。\n\n结果：\n- **所有核心数字一致**：Δ_full=+29.60, Δ_nd=+2.84, DAF=90.41%, r=0.9698, p=8.12e-07, 245 episodes, 11 tasks, death rates, label distribution — 全部与 plan-012-full registry 匹配\n- **Table 1 全部匹配**：5 策略的 scores、95% CIs、death rates 均与 bootstrap_95ci.json 和 plan-003-baseline-245eps 一致\n- **Router 训练数字匹配**：GA=8 (65.4%/51.5%) 对应 plan-004-ablation-b，GA=1 (74.5%/79%/53.3%/26.7%) 对应 plan-004-v5\n- **MATH pilot 全部匹配**：50 题、80% vs 72%、label 分布 1/5/44\n- **唯一 NOTE**：4-seed balanced accuracy ±0.8% 略不精确（sample σ=0.884，population σ=0.766），属展示问题非错误\n- **非数字问题**：Δ_nd vs Δ_no_death 下标符号在各节不统一，建议统一\n\n报告已保存至 `artifacts/_project/report/paper_number_audit.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/verify-number-consistency.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4b1314d3f77fd2c0df24",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh diagnose gpu1 speed",
+  "task_key": "worker_ssh_diagnose-gpu1-speed_20260513T223342",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_diagnose-gpu1-speed_20260513T223342_result.json",
+    "occurrence": 1,
+    "bytes": 1872,
+    "sha256": "599194dc91421c8086fbd741215e7392f470308d640092a380a7a10481cf8b6e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "代码确认了原因。现在报告诊断结论。\n\n## 诊断结论\n\n### 当前状态：速度正常\n\n当前 plan-001b-gpu1 进程 (PID 773114) 启动于 **06:10**，截至 ~06:38 已运行约 **28 分钟**，完成 **6 个新 episode**（find-non-living-thing task），速度 **~4.7 min/episode** — 接近预期的 4 min/episode。\n\n**用户上下文中的\"运行 9.5h 仅完成 2 episodes\"与当前实际状态不符。** 可能是基于旧的预估或已被替换的运行。\n\n### 每 episode 耗时分解\n\n每个 episode 跑两个模式：\n\n| 模式 | 平均耗时 | 说明 |\n|------|---------|------|\n| **[I] always-internal** | ~31s | 纯 LLM，无 fork |\n| **[D] always-deterministic** | ~200s | 每步 fork 3 个 JVM + replay action history |\n| **合计** | ~230s ≈ 3.8 min | |\n\n### [D] 模式慢的根因（by design）\n\n`run_episode_deterministic` 每步调用 `fork_and_lookahead` 3 次（`n_candidates=3`），每次：\n1. **新建 JVM**（ScienceWorld 用 py4j，每个 env = 独立 Java 进程）\n2. **Replay 全部历史动作**（step 29 时要 replay 29 步）\n3. **执行候选动作 + 评估**\n4. **关闭 JVM**\n\n30 步 episode = **90 次 JVM 启停** + **1305 次 action replay**。这不是 bug，是 fork-and-evaluate 的设计成本。\n\n### 总预计耗时\n\n- 4 tasks × 15 new episodes = 60 episodes\n- ~4.7 min/episode → **~282 min ≈ 4.7 小时**\n\n### 当前 Java CPU 异常\n\nPID 865588 的 Java 进程占用 **489% CPU**，但整体速度正常，可能是短暂的初始化峰值。\n\n### 建议（如果确需加速）\n\n1. **减少 `n_candidates`**：从 3 降到 2，fork 开销减少 1/3\n2. **环境池化**：保持 n 个 JVM 常驻而非每次新建/销毁\n3. **增量 replay**：保存环境 snapshot 而非每次从头 replay（需 ScienceWorld 支持 save/load state）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-diagnose-gpu1-speed.md"
+}

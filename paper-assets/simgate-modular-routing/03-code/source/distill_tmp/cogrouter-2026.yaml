@@ -1,0 +1,93 @@
+paper_key: "cogrouter-2026"
+title: "Think Fast and Slow: Step-Level Cognitive Depth Adaptation for LLM Agents"
+venue: "arXiv 2026"
+full_text_available: true
+
+research:
+  baselines: [GPT-4o, DeepSeek-V3-0324, OpenAI-o3, DeepSeek-R1-0528, Gemini-2.5-Pro-0506, ReAct, Reflexion, R1-Distill, SFT, ETO, GRPO, GiGPO, AdaptThink]
+  metrics:
+    - {name: "success_rate", direction: "higher_better"}
+    - {name: "avg_tokens_per_task", direction: "lower_better"}
+    - {name: "ScienceWorld_score", direction: "higher_better"}
+  datasets:
+    - {name: "ALFWorld", size: "200 test simulations"}
+    - {name: "ScienceWorld", size: "200 test simulations"}
+  ablation_dimensions: [confidence_metric, cold_start_strategy, reweighting_scope, cognitive_level_distribution]
+  training_recipe:
+    optimizer: "not fully specified"
+    lr: "not specified"
+    base_models: "Llama3.1-8B, Qwen2.5-7B"
+    expert_model: "GPT-4o"
+    cosft_environments: 500
+    copo_groups: 16
+    copo_group_size: 8
+    training_iterations: 150
+    confidence_temperature: 2
+    hardware: "not specified"
+  method_family: "adaptive cognitive depth allocation via RL"
+
+positioning:
+  core_claim: "Step-level multi-level cognitive depth adaptation via confidence-aware advantage reweighting prevents RL collapse to uniform deep thinking and achieves SOTA with 62% fewer tokens"
+  key_results: "Qwen2.5-7B: 82.3% avg SR (92.5% ALFWorld, 72.0% ScienceWorld) with 1641 tokens; outperforms GPT-4o by 40.3pp, o3 by 18.3pp"
+  limitations:
+    - "Evaluated on two text-based environments only"
+    - "Requires expert model (GPT-4o) for data annotation"
+  relation_to_us: "competitor"
+
+narrative:
+  story_type: "突破局限型"
+  hook: "LLM agents suffer from 'cognitive rigidity'—non-thinking models are reflexive while thinking models waste tokens on routine steps"
+  tension: "Standard RL collapses to uniform deep thinking (Figure 1); binary thinking switches are too coarse for heterogeneous step-wise demands"
+  key_insight: "Confidence-aware advantage reweighting at the step level lets the model learn WHEN each cognitive depth is appropriate, preventing mode collapse"
+  argument_chain: "cognitive rigidity problem → RL collapse evidence → ACT-R-inspired 4-level hierarchy → CoSFT balanced initialization → CoPO confidence-aware reweighting → adaptive allocation with SOTA + efficiency"
+  contribution_framing: "Three contributions: (1) problem identification (cognitive rigidity), (2) CogRouter framework with 4 ACT-R levels, (3) CoPO algorithm with step-level credit assignment"
+  intro_structure: "5 paragraphs: agent deployment context → cognitive rigidity illustration → RL collapse observation → prior work limitation → research question and solution overview"
+  notable_technique: "Figure 1 is a powerful 'problem-as-contribution' framing—showing GRPO's collapse to L4 vs CoPO's balanced distribution makes the problem visually undeniable"
+
+figures:
+  figure_count: 5
+  figure1:
+    type: "motivation"
+    description: "GRPO collapses to L4 (deep thinking) while CoPO maintains adaptive cognitive distribution across 4 levels"
+    narrative_role: "Visually demonstrates the cognitive rigidity problem that motivates the entire paper"
+    design_elements: ["side-by-side distribution comparison", "color-coded cognitive levels", "before/after training"]
+    visual_style: "Distribution bars showing L1-L4 usage percentages for GRPO vs CoPO"
+  result_figures:
+    - figure_id: "Figure 4"
+      viz_type: "line_plot"
+      what_compared: "Training curves: CoPO vs GRPO vs GiGPO on both benchmarks"
+      how_gain_highlighted: "CoPO converges faster to higher success rates"
+      design_note: "4-panel training curve comparison"
+    - figure_id: "Figure 5"
+      viz_type: "line_plot"
+      what_compared: "Cognitive level distribution across task progress and task complexity"
+      how_gain_highlighted: "CoPO adapts levels dynamically—more L4 early, more L1 late; more L4 for complex tasks"
+      design_note: "Two-panel analysis (progress × complexity) provides rich behavioral evidence"
+  ablation_figures:
+    - figure_id: "Figure 3"
+      viz_type: "grouped_bar"
+      dimensions_varied: ["RL method (GRPO, GiGPO, CoPO)", "cognitive level distribution"]
+      design_note: "Bar charts showing L1-L4 distribution per method—visual proof of collapse vs adaptation"
+  figure_narrative_role: "Figure 1 (problem: collapse) → Figure 2 (method overview) → Figure 3 (distribution comparison) → Figure 4 (training curves) → Figure 5 (behavioral analysis)"
+
+tables:
+  table_count: 2
+  main_result_table:
+    table_id: "Table 1"
+    row_axis: "methods"
+    col_axis: "(ALFWorld SR + tokens) × (ScienceWorld score + SR + tokens) × (avg SR + tokens)"
+    row_organization: "by_category"
+    col_organization: "grouped_by_dataset"
+    highlight_strategy: "bold_best"
+    statistical_reporting: "success rate on 200 test simulations"
+    num_baselines: 13
+    design_note: "Comprehensive table with prompt-based, offline-trained, online-trained, and frontier model sections; includes token efficiency alongside accuracy"
+  ablation_tables:
+    - table_id: "Table 2"
+      what_varied: [confidence_metric, training_strategy]
+      variation_style: "full_numbers"
+      design_note: "Two-part ablation: confidence metrics (4 variants) and training strategies (4 variants) with cognitive level distribution columns"
+  supplementary_tables:
+    in_appendix: true
+    content: "Hyperparameters, per-category ALFWorld results"
+    reason: "Main table already comprehensive; details in appendix"

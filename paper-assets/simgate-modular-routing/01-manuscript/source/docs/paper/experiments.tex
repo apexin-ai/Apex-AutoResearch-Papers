@@ -1,0 +1,200 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.75\columnwidth]{figures/fig1_daf_scatter.pdf}
+\caption{Per-task death rate differential vs.\ performance gap ($n{=}11$ task types). The near-perfect correlation ($r = 0.97$) is a structural consequence of death dominance (DAF $\to 1 \Rightarrow r \to 1$), not an independent finding. The sole outlier (\texttt{find-non-living-thing}, diamond marker) has zero deaths; its $\Delta_{\text{full}} = +9.58$ arises entirely from non-death score differences.}
+\label{fig:decomposition}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrr@{}}
+\toprule
+Condition & Death\% & $N$ \\
+\midrule
+Single-trial baseline & 42.9 & 245 \\
+Reflexion ($3{\times}$) & 31.4 & 220 \\
+Qwen2.5-72B ($10{\times}$) & 30.6 & 255 \\
+Deterministic baseline & 16.3 & 245 \\
+\midrule
+\multicolumn{3}{@{}l}{\textit{10 death-prone tasks only:}} \\
+Death-prone baseline & 48.0 & 200 \\
+Retry ($5{\times}$) & 43.5 & 200 \\
+\bottomrule
+\end{tabular}}
+\caption{Internal-strategy death rates under improvement methods. Top: all 11 tasks. Bottom: 10 death-prone tasks (\texttt{find-non-living-thing} excluded). No intervention approaches deterministic-level safety.}
+\label{tab:agent-improvement}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures/death_action_timeline.pdf}
+\vspace{-2mm}
+\caption{Action sequences for 6 representative death episodes. The fatal \texttt{focus on} (arrow) appears in final steps after long \texttt{connect} sequences (``connect loop $\to$ fatal focus'').}
+\label{fig:death-timeline}
+\end{figure}
+
+We analyze 11 of ScienceWorld's 30 task types (245 episodes); the 19 excluded types lack actionable routing signal due to development contamination (5), taxonomic redundancy (7), or agent-floor performance (7). An anti-cherry-picking analysis confirms death dominance holds in 18 of these 19 types ($\overline{\Delta\text{DR}} = +38.2$\,pp $>$ included tasks' $+28.7$\,pp; Appendix~\ref{app:per-task}), with extended validation on representative excluded tasks in Appendix~\ref{app:extended-validation}.
+
+\subsection{Death Avoidance Decomposition}
+\label{sec:death-decomp}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrrccc@{}}
+\toprule
+Task & $n$ & $\Delta_\text{full}$ & D\%\textsubscript{int} & D\%\textsubscript{det} & D / I / N \\
+\midrule
+id-life-stages-1       & 20  & $+47.50$ & 55   & 10   & 9 / 0 / 11  \\
+lifespan-long          & 25  & $+44.00$ & 56   & 16   & 11 / 1 / 13 \\
+lifespan-l-then-s      & 20  & $+40.80$ & 45   & 10   & 8 / 1 / 11  \\
+inclined-plane         & 20  & $+36.00$ & 55   & 20   & 7 / 0 / 13  \\
+freeze                 & 20  & $+30.50$ & 55   & 25   & 6 / 0 / 14  \\
+meas-melt-point        & 20  & $+30.05$ & 55   & 25   & 6 / 0 / 14  \\
+id-life-stages-2       & 20  & $+30.00$ & 50   & 20   & 6 / 0 / 14  \\
+find-animal            & 20  & $+26.65$ & 50   & 25   & 5 / 0 / 15  \\
+grow-fruit             & 20  & $+25.10$ & 45   & 20   & 6 / 1 / 13  \\
+chem-mix               & 20  & $+21.80$ & 45   & 25   & 6 / 2 / 12  \\
+\midrule
+find-non-living$^\dagger$ & 40 & $+9.58$ & 0  & 0    & 16 / 4 / 20 \\
+\midrule
+\textbf{All (11 tasks)} & \textbf{245} & $\mathbf{+29.60}$ & \textbf{42.9} & \textbf{16.3} & \textbf{86 / 9 / 150} \\
+\bottomrule
+\end{tabular}}
+\caption{Per-task decomposition. D\%: death rate for internal/deterministic. D/I/N: det-preferred / int-preferred / no-preference labels. $\dagger$\,Only task with zero deaths; $n{=}40$ (two batches).}
+\label{tab:per-task}
+\end{table}
+
+Of the 95 non-tie routing labels, 75 (78.9\%; 95\% CI: $[70.7\%, 87.0\%]$, episode-level bootstrap) arise from death asymmetry: the internal strategy triggers a catastrophic $-100$ penalty while the deterministic strategy survives. This penalty-independent label fraction is the primary diagnostic metric. Of these, 54 are sole-signal labels where death was the only discriminator; at $P{=}0$ these reduce to ties, but the labeling function itself is penalty-independent (Algorithm~\ref{alg:labeling}).
+
+DAF $= 90.4\%$ at $P{=}100$ ($\Delta_{\text{full}} = +29.60$, $\Delta_{\text{nd}} = +2.84$; 95\% CI$_{\text{DAF}}$: $[81.3\%, 99.1\%]$, episode-level bootstrap). The 78.9\% label fraction provides the more robust, penalty-invariant characterization (\S\ref{sec:daf}).
+
+\paragraph{Per-task structure.}
+The internal strategy dies in 42.9\% of episodes versus 16.3\% for deterministic; all 105 internal deaths are triggered by the \texttt{focus on} action (Appendix~\ref{app:failure-modes}). Per-task $\Delta$DR correlates with $\Delta_{\text{full}}$ at $r = 0.97$ (Figure~\ref{fig:decomposition}; leave-one-out and bootstrap robustness in Appendix~\ref{app:correlation}), a structural consequence of DAF$\to 1$ rather than an independent finding. Figure~\ref{fig:death-timeline} illustrates the typical death trajectory.
+
+\paragraph{Binary structure and robustness.}
+All 10 death-prone task types produce 100\% death-asymmetry labels; only \texttt{find-non-living-thing} (zero deaths) produces non-death signal (SCI $= 0.21$; Appendix~\ref{app:sci}). Leave-one-task-out (Table~\ref{tab:loto-daf}) confirms robustness: removing any single task changes DAF by $\leq$3.0~pp. Bootstrap 95\% CIs: DAF $[81.3\%, 99.1\%]$; cluster-robust $[73.3\%, 100.0\%]$ ($K{=}11$; Appendix~\ref{app:wild-cluster}). Two replications (Gemma-2-9B-it; seed=123) converge within 0.7~pp.
+
+\subsection{Multi-Model Validation (7--9B Tier)}
+\label{sec:cross-model}
+
+Llama-3.1-8B~\citep{llama3-2024} ($N{=}220$) and Gemma-2-9B-it~\citep{gemma2-2024} ($N{=}220$) independently replicate death dominance: DAF $= 88.2\%$ and $89.7\%$ respectively, with 10/10 directional consistency on death-prone tasks (Appendix~\ref{app:cross-model}; per-task CIs in Appendix~\ref{app:per-task-ci}). Three architecturally distinct families (Qwen, Llama, Gemma) converge on DAF $88$--$90\%$ (spread 2.2~pp), suggesting death dominance is an environment-level property. Scaling $10{\times}$ to two 70B-class models (\S\ref{sec:agent-improvement}) yields DAF${=}92.4$--$101.0\%$, indicating the pattern persists at larger scale.
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}llcrrrcl@{}}
+\toprule
+Model & Env & $n$ & Int DR & Det DR & $\Delta$DR & DAF [95\% CI] & Signal \\
+\midrule
+Qwen2.5-7B & SW & 245 & 42.9 & 16.3 & +26.5 & 90.4 [81.3, 99.1] & death \\
+Llama-3.1-8B & SW & 220 & 41.4 & 11.4 & +30.0 & 88.2 [80.2, 95.1] & death \\
+Gemma-2-9B & SW & 220 & 36.4 & 14.1 & +22.3 & 89.7 [79.5, 98.4] & death \\
+Qwen2.5-72B & SW & 255 & 30.6 & 2.8 & +27.8 & 92.4 [86.1, 97.9] & death \\
+Llama-70B & SW & 220 & 48.6 & 20.0 & +28.6 & 101.0 [95.3, 107.5] & death \\
+\midrule
+Qwen2.5-7B & ALF & 135 & 0 & 0 & 0 & 0 & info-asym \\
+Llama-3.1-8B & ALF & 135 & 0 & 0 & 0 & 0 & info-asym \\
+\midrule
+Qwen2.5-7B & MATH & 795 & --- & --- & --- & --- & none \\
+\bottomrule
+\end{tabular}}
+\caption{Cross-model and cross-environment summary. SW = ScienceWorld, ALF = ALFWorld. Death dominance replicates across three 7--9B families and intensifies under $10{\times}$ scaling; ALFWorld shows information-asymmetry signal; MATH shows none. DR = death rate (\%).}
+\label{tab:cross-model-env}
+\end{table}
+
+\begin{table}[t]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Removed Task & $N_\text{rem}$ & DAF (\%) & $\Delta$ (pp) \\
+\midrule
+(none, full) & 245 & 78.9 & --- \\
+\midrule
+Find Non-Living$^\dagger$ & 205 & 100.0 & +21.1 \\
+Lifespan Longest & 220 & 75.9 & $-$3.0 \\
+Life Stages 1 & 225 & 76.7 & $-$2.2 \\
+Lifespan Long+Short & 225 & 76.7 & $-$2.2 \\
+Chemistry Mix & 225 & 77.0 & $-$1.9 \\
+Grow Fruit & 225 & 77.3 & $-$1.7 \\
+Inclined Plane & 225 & 77.3 & $-$1.7 \\
+Freeze & 225 & 77.5 & $-$1.4 \\
+Life Stages 2 & 225 & 77.5 & $-$1.4 \\
+Melt Pt Unknown & 225 & 77.5 & $-$1.4 \\
+Find Animal & 225 & 77.8 & $-$1.2 \\
+\bottomrule
+\end{tabular}}
+\caption{Leave-one-task-out DAF sensitivity (label fraction). Removing any death-prone task changes DAF by $\leq$3.0\,pp. $\dagger$\,Sole death-free task; removal raises DAF to 100\% by construction.}
+\label{tab:loto-daf}
+\end{table}
+
+\subsection{Agent Improvement Baselines}
+\label{sec:agent-improvement}
+
+We test whether agent-level improvement reduces death dominance (Table~\ref{tab:agent-improvement}). Retry (re-executing the episode without explicit reflection; $N{=}5$) yields marginal reduction ($43.5\%$ vs.\ $48.0\%$). Reflexion~\citep{reflexion-2023} reduces death to $31.4\%$ but the gap to deterministic remains $15.1$~pp; under matched-episode analysis ($N{=}3$), $\Delta_{\text{nd}} = -0.47$, yielding DAF${}>100\%$. Scaling to Qwen2.5-72B ($N{=}255$) reduces death rate to $30.6\%$ with DAF $= 92.4\%$ (95\% CI: $[86.1\%, 97.9\%]$). A second 70B model, Llama-3.1-70B ($N{=}220$), yields DAF $= 101.0\%$ ($[95.3\%, 107.5\%]$): death avoidance more than fully accounts for the gap. Both 70B-class models suggest that scaling does not attenuate death dominance.
+
+\paragraph{Dose-response analysis.}
+We extend both interventions to $N{=}5$ trials on death-prone tasks ($n{=}200$; Figure~\ref{fig:dose-response}). Retry is nearly flat ($48.0\% \to 43.5\%$). Reflexion drops steeply to $34.0\%$ at $N{=}3$ ($\Delta = -13.5$~pp, $p = 0.003$) then stabilizes ($34$--$36.5\%$ for $N \geq 3$, pairwise $p > 0.5$); both the decline and plateau are well-powered (minimum detectable effect ${\sim}8$~pp at 80\% power; Appendix~\ref{app:dose-response}).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/dose_response.pdf}
+\caption{Death rate vs.\ trial count for Retry and Reflexion on 10 death-prone tasks ($n{=}200$). Reflexion drops steeply through $N{=}3$ then plateaus; Retry is nearly flat. Horizontal lines: 72B ($30.6\%$) and deterministic ($16.3\%$) baselines. Error bands: Wilson 95\% CIs.}
+\label{fig:dose-response}
+\end{figure}
+
+\subsection{Cross-Environment Boundary Probes}
+\label{sec:math-contrast}
+\label{sec:cross-env}
+
+We probe two environments as boundary cases to test the framework's specificity (Figure~\ref{fig:signal-reversal}). On MATH Level~4--5~\citep{math-2021} ($N{=}795$), internal reasoning and code-interpreter accuracy are near-identical ($73.5\%$ vs.\ $73.0\%$, $p = 0.81$): without a catastrophic failure mechanism, no routing signal emerges despite substantial task difficulty. ALFWorld~\citep{alfworld-2021} (135 games, no death mechanism, DAF $= 0\%$) shows 94.6\% of non-tie labels favoring the information-advantaged strategy (which enumerates admissible actions); Llama-3.1-8B replicates at 100\%. The framework identifies this qualitatively different mechanism, information asymmetry rather than death avoidance, without modification, indicating that DAF correctly attributes zero signal to death when none exists (full label distributions and per-task breakdowns in Appendix~\ref{app:cross-env-details}).
+
+\subsection{Baselines}
+\label{sec:baselines}
+
+Always-deterministic ($-9.47$) outperforms always-internal ($-39.07$) by 29.60 points (Table~\ref{tab:baselines}). Random routing ($-22.38$) falls between the two pure strategies, confirming that the gap is not an artifact of evaluation methodology. The oracle improves only to $-6.58$, with 96.3\% of decisions matching always-deterministic, an \emph{oracle degeneracy} where perfect per-episode foresight provides marginal benefit over the trivial always-deterministic baseline (Appendix~\ref{sec:threshold-routing}).
+
+\subsection{Router Training: Inconclusive Results}
+\label{sec:router-diagnostic}
+
+A Qwen3 LoRA router (0.6B--4B; Appendix~\ref{app:router-details}) trained on counterfactual labels shows flat step-level balanced accuracy ($56$--$59\%$) across all model scales; episode-level evaluation yields $47.1 \pm 2.2\%$, below majority-vote.\footnote{Consistent with noisy-label bounds~\citep{natarajan2013learning}: ${\sim}$88\% of step-level labels are uninformative with 90.5\%/3.7\% class imbalance (Appendix~\ref{app:seed-robustness}).} Leave-one-task-out degrades to chance ($50.0\%$), suggesting signal is a per-task-type constant rather than a learnable function of step-level observations. Deployed end-to-end, the best router (4B) scores $-10.70$, not exceeding always-deterministic ($-9.47$); this negative result is consistent with the death-dominance finding, as death avoidance cannot be predicted from pre-episode features when it depends on multi-step trajectory dynamics. Additional ablations (capacity scaling, generative routing, reasoning depth) are in Appendix~\ref{app:ablations}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.95\columnwidth]{figures/signal_reversal.pdf}
+\vspace{-2mm}
+\caption{Cross-environment label distributions. ScienceWorld and ALFWorld both favor deterministic via different mechanisms (death avoidance vs.\ information asymmetry); MATH shows no routing signal.}
+\label{fig:signal-reversal}
+\end{figure}
+
+\begin{table}[t]
+\centering
+\small
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{@{}lccc@{}}
+\toprule
+Strategy & Score & 95\% CI & Death \% \\
+\midrule
+Always-Internal & $-39.07$ & [$-46.40$, $-32.27$] & 42.9 \\
+Always-Deterministic & $-9.47$ & [$-14.71$, $-4.29$] & 16.3 \\
+Random & $-22.38$ & [$-28.67$, $-15.75$] & 27.8 \\
+Oracle & $-6.58$ & [$-11.54$, $-1.70$] & 14.3 \\
+\midrule
+Trained Router$^\dagger$ & $-10.70$ & [$-16.33$, $-5.27$] & 17.6 \\
+\bottomrule
+\end{tabular}}
+\caption{Episode-weighted mean scores on ScienceWorld (11 task types, 245 episodes). $\dagger$\,Single seed (42); see Appendix~\ref{app:seed-robustness} for 8-seed robustness.}
+\label{tab:baselines}
+\end{table}

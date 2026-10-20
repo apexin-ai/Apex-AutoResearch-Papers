@@ -1,0 +1,103 @@
+{
+  "exp_id": "grounding-filter-ablation",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-18T21:43:42.441Z",
+    "updated_at": "2026-05-18T23:45:26.780Z",
+    "hypothesis": "Action-space filtering that blocks 'focus on' during non-answer-submission steps will reduce death rate below baseline 48.0%. This is the strongest possible intervention: if even hard-blocking the lethal action pattern fails to eliminate deaths (agent finds alternative death paths), it proves death vulnerability is structural, not a single-action artifact.",
+    "parent": "plan-012-full",
+    "server": "westb-13313",
+    "gpu": "cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-13313",
+      "gpu": "cuda:1",
+      "started_at": "2026-05-18T21:45:20.204Z"
+    },
+    "spec": {
+      "command": "cd /root/autodl-tmp/simgate-modular-routing && bash run_grounding_filter_wrapper.sh (CUDA_VISIBLE_DEVICES=1, port 8001)",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "data_path": "10 death-prone ScienceWorld tasks",
+      "data_count": 200,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_source": "N/A (inference-only, counterfactual data collection)",
+      "eval_data": "10 death-prone ScienceWorld tasks x 20 episodes"
+    },
+    "conclusion": "success",
+    "metrics": {
+      "total_episodes": 200,
+      "total_deaths": 58,
+      "death_rate": 0.29,
+      "success_rate": 0.105,
+      "total_filter_blocks": 379,
+      "total_passthroughs": 0,
+      "avg_blocks_per_episode": 1.9,
+      "delta_vs_baseline_pp": -13.9,
+      "per_task": {
+        "identify-life-stages-2": {
+          "deaths": 3,
+          "dr": 0.15,
+          "blocks": 24
+        },
+        "identify-life-stages-1": {
+          "deaths": 4,
+          "dr": 0.2,
+          "blocks": 27
+        },
+        "inclined-plane-determine-angle": {
+          "deaths": 3,
+          "dr": 0.15,
+          "blocks": 42
+        },
+        "measure-melting-point-unknown-substance": {
+          "deaths": 3,
+          "dr": 0.15,
+          "blocks": 47
+        },
+        "lifespan-longest-lived-then-shortest-lived": {
+          "deaths": 6,
+          "dr": 0.3,
+          "blocks": 40
+        },
+        "grow-fruit": {
+          "deaths": 7,
+          "dr": 0.35,
+          "blocks": 34
+        },
+        "chemistry-mix": {
+          "deaths": 8,
+          "dr": 0.4,
+          "blocks": 39
+        },
+        "find-animal": {
+          "deaths": 8,
+          "dr": 0.4,
+          "blocks": 39
+        },
+        "freeze": {
+          "deaths": 8,
+          "dr": 0.4,
+          "blocks": 38
+        },
+        "lifespan-longest-lived": {
+          "deaths": 8,
+          "dr": 0.4,
+          "blocks": 49
+        }
+      }
+    },
+    "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/results/grounding_filter_ablation/",
+    "log_path": "/root/autodl-tmp/simgate-modular-routing/results/grounding_filter_ablation.log",
+    "completed_at": "2026-05-18T23:45:26.780Z"
+  },
+  "timestamp": "2026-05-18T23:45:27.022853+00:00",
+  "trigger": "update_registry"
+}

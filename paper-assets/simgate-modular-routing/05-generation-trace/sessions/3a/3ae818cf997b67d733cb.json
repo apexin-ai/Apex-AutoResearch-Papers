@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3ae818cf997b67d733cb",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3687,
+    "sha256": "93ecdb829f976efe133d3a41c7a7c799e29638bdcd12431559038c8f5ffb4756"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: idle_timeout\nupdated: '2026-05-13T18:33:23+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 westb-13313 上的 cuda:0 和 cuda:1（config gpu_ids）\n- submit_on_allocated 命令必须自带环境激活：`source /root/miniconda3/bin/activate && ...`（aml-train 镜像用 conda，不存在 .venv）\n- GPU 编号脚本内始终从 0 开始（`--gpu_id 0`），框架自动注入 CUDA_VISIBLE_DEVICES 映射物理卡\n- mvp-p1-gpu0 的旧代码数据：always-internal/always-deterministic 有效，oracle 数据有 tie-break 偏差（D003/D004）。新代码 v3 数据干净\n- DDL: EMNLP 2026 ARR short paper，2026-05-25（剩 12 天）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，账号 root\n- 工作目录：/root/autodl-tmp/simgate-modular-routing\n- Python：/root/miniconda3/bin/python（conda base 环境）\n- 模型：/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/\n- 数据：ScienceWorld API（实时交互，无静态数据集）\n- 结果目录：/root/autodl-tmp/simgate-modular-routing/results/mvp/\n- 日志目录：~/runs/simgate-modular-routing/\n- W&B：CRON 提示 \"W&B data available\"，但 registry 里没有 wandb_run_id，Worker 分析中会提取\n- 活跃进程：无（两个实验刚退出）\n- Cron：reconcile 返回 0 active\n\n### 3. 📊 当前状态\n两个 Phase 1 实验刚完成（~15:15 UTC），都在 ANALYZING：\n\n| exp_id | GPU | task types | 状态 |\n|--------|-----|------------|------|\n| mvp-p1-gpu1-v3 | cuda:1 | chemistry-mix-paint + grow-plant | ANALYZING，Worker 分析中 |\n| mvp-p1-gpu0-vllm | cuda:0 | melt + change-state-of-matter | ANALYZING，Worker 分析中 |\n\n等待中：\n- **Worker 回调 ×2**：`worker_analysis_mvp-p1-gpu1-v3_20260513T151635` 和 `worker_analysis_mvp-p1-gpu0-vllm_20260513T151641`，它们正在 SSH 读日志提取 metrics\n- 已向 Director 汇报\"实验完成、分析中\"，尚未汇报最终 metrics\n\n历史数据点（旧代码 mvp-p1-gpu0）：boil 20ep → internal=-49.8, det=-19.7, oracle=-29.7（det 优于 internal 30.1 分）\n\n### 4. 📋 待办\n- 两个分析 Worker 回调到达 → 提取 5 个 task type 的 det vs internal 指标 → 按 MVP v3 标准判定（≥2/5 Pass，≥3/5 Conditional，<2/5 Fail）→ update_registry(conclusion=success/negative) → 刷新 report.md → 向 Director 汇报完整 MVP 判定\n- MVP Pass → 进入 Research 阶段，统一代码重跑 strong tasks，开始论文 framing\n- MVP Conditional Pass → 向 Director 汇报需收窄 claim，建议补跑 episodes 或换 task type\n- MVP Fail → 按 red-section 产出 Framing 调整提案，禁止默默跑下一个实验\n- 无论结果如何：两张 GPU 空闲，分析完成后立即安排下一批实验（GPU 空着 = 浪费）\n\n### 5. 🎯 战略上下文\n- 核心假设：确定性外部计算（环境模拟器）在规则驱动任务上优于纯 LLM 内部推理 → selective routing 有信号\n- 早期发现（D004）：1-step lookahead 在稀疏 reward 下 95% 步骤 delta=0，oracle ≈ always-det 是预期行为。因此 primary metric 改为 det vs internal（不看 oracle）\n- 决策链：D001(MVP 方案) → D002(Phase 0+1 修订) → D003(tie-break+death filter 修复) → D004(primary metric 改 det vs internal)\n- 易错点：\n  - 不要把旧代码 (mvp-p1-gpu0) 的 oracle 数据和新代码 v3 的 oracle 数据直接对比（tie-break 逻辑不同）\n  - boil 的 30.1 分差距来自旧代码，新代码重跑可能不同\n  - mvp-p1-signal (PREPARING) 是占位条目，实际拆成了 gpu0/gpu1 多个实验跑\n  - GPU1 已重启 4 次（v1→vllm→v2→v3），前几次的 killed 记录是迭代过程不是事故\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-2.md"
+}

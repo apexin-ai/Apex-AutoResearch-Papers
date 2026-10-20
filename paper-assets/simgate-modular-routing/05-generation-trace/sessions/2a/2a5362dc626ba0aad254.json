@@ -1,0 +1,131 @@
+{
+  "schema_version": "1.0",
+  "id": "2a5362dc626ba0aad254",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "research ref audit C",
+  "task_key": "worker_research_ref-audit-C_20260526T101534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_ref-audit-C_20260526T101534.log",
+    "occurrence": 1,
+    "bytes": 835499,
+    "sha256": "e346d3f687d365c6ab841c81b5b17eddf96eaf076c13ca5bdf70711b756e9518"
+  },
+  "statistics": {
+    "messages": 405,
+    "user_turns": 7,
+    "tool_calls": 129,
+    "roles": {
+      "log": 1,
+      "system": 125,
+      "record": 1,
+      "assistant": 12,
+      "tool_call": 129,
+      "tool_result": 129,
+      "user": 7,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "2a5362dc626ba0aad254-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 32,
+      "chunks": [
+        {
+          "path": "2a5362dc626ba0aad254-part-0001.json",
+          "message_count": 32
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 48,
+      "chunks": [
+        {
+          "path": "2a5362dc626ba0aad254-part-0001.json",
+          "message_count": 48
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 25,
+      "chunks": [
+        {
+          "path": "2a5362dc626ba0aad254-part-0001.json",
+          "message_count": 25
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "2a5362dc626ba0aad254-part-0001.json",
+          "message_count": 43
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 27,
+      "chunks": [
+        {
+          "path": "2a5362dc626ba0aad254-part-0001.json",
+          "message_count": 16
+        },
+        {
+          "path": "2a5362dc626ba0aad254-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 61,
+      "chunks": [
+        {
+          "path": "2a5362dc626ba0aad254-part-0002.json",
+          "message_count": 61
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 153,
+      "chunks": [
+        {
+          "path": "2a5362dc626ba0aad254-part-0002.json",
+          "message_count": 108
+        },
+        {
+          "path": "2a5362dc626ba0aad254-part-0003.json",
+          "message_count": 45
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/research-ref-audit-c.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "106045ee23b5c5ee7a22",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_6_1778759861.md",
+  "task_key": "loop_6_1778759861",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_6_1778759861.md",
+    "occurrence": 1,
+    "bytes": 4724,
+    "sha256": "0fd822702ccf818d954be72d0934321a5faef6bda32d6c4d5741fa8062b7e5e3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 6\nreason: idle_timeout\nupdated: '2026-05-14T11:57:37+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：**只能用 cuda:0 和 cuda:1**（westb-13313）。gpu_constraint = `autodl-simgate:cuda:0`, `autodl-simgate:cuda:1`\n- **Checkpoint 路径混淆高危**：`checkpoints/plan-004-implicit/final_adapter` = ablation-b（正确，唯一非退化 router）；`checkpoints/plan-002-generative-v1/final_adapter` = gen-v1（失败的）。两者 eval metrics 相似（internal_recall ~51%），极易用错。plan-003-e2e-ablation-b 已因此废弃过一次\n- **唯一可用训练数据文件**：`data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏（D026），绝对不能用\n- **Table 1 数字来源**：必须全部来自 `eval_end_to_end.py`。trained-router (ablation-b) = **-10.70**，always-det = -9.47，oracle = -6.58。`eval_implicit_router.py` 产出的 -12.84 **不用于 Table 1**（D037/D038）\n- **Qwen3 推理脚本必须**：`enable_thinking=False` + `re.sub` 兜底清理 `<think>` tags，否则 thinking mode 干扰输出\n- **Framing 已定稿 Option B（D033）**：贡献 = 方法论 + empirical finding，**不是** router 架构。禁止写\"首个非退化 router\"或\"成功训练\"\n\n### 2. 🖥️ 基础设施快照\n- **服务器**：westb-13313，2× RTX 5090 32GB（cuda:0, cuda:1）\n- **工作目录**：`/root/autodl-tmp/simgate-modular-routing`\n- **Python 环境**：aml-train 预置镜像，conda base（`/root/miniconda3/bin/python`）\n- **模型**：Qwen3-1.7B，本地路径在服务器上（AutoDL 下载需 `source /etc/network_turbo` + `HF_HOME=/root/autodl-tmp/.hf_cache`）\n- **W&B 项目**：simgate-modular-routing\n- **活跃进程**：无 RUNNING 实验。4 个 Worker 在拉图/PDF（pull-daf-figure, pull_fig1, pull_figure, pull_pdf），均为论文写作辅助任务\n- **Cron**：reconcile 显示 0 个活跃 cron（所有实验已完成）\n\n### 3. 📊 当前状态\n**阶段**：Paper Writing Sprint。核心实验全部完成（46 个实验：success 14 / negative 13 / failed 9）。\n\n**刚做完**：\n- D032 核实（v5 vs ablation-b 代码级差异确认）+ 3 seed 实验补注册 registry\n- 5 个写作 Worker 并行完成：experiments_v2_patch, conclusion, related_work_v2, abstract, consistency_review, bootstrap_ci_check——全部 done\n- LaTeX 模板搭建（latex-setup worker done）\n- Reference audit worker done\n\n**正在做**：\n- 4 个 Worker 在拉论文图表和 PDF（running），应该很快完成\n\n**等待中**：\n- 无 cron 回调\n- 无 Director 待决策项\n- 上述 4 个 pull worker 回调后需整合图表到 LaTeX\n\n### 4. 📋 待办（条件触发式）\n- pull worker 全部完成 → 整合图表到 LaTeX 初稿，检查 Figure 1 (DAF decomposition) 是否正确渲染\n- LaTeX 初稿整合完成 → 派 Worker 做 paper-visual-review（PDF 视觉审查），同时派 consistency Worker 检查数字一致性\n- 初稿就绪（目标 5/17）→ 汇报 Director 提交审阅，进入 review 迭代循环（5/17-22）\n- 如果 Director 要求补充实验（如 logit-level seed eval）→ GPU 空闲可用，走正常实验流程\n- 5/23-24 → 终稿 + ARR 提交\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n- D013: Framing pivot → death avoidance dominates routing signal（非 router 架构贡献）\n- D025: Classification head 全退化 → pivot 到 generative SFT\n- D029: Router 训练路线全面评估 → 唯一非退化 = ablation-b（ga=8）\n- D033: Framing 定稿 Option B（方法论贡献）\n- D035: ablation-b e2e negative（-10.70 vs -9.47）→ router ≈ always-det IS the finding\n- D036: 跨 seed 非退化可复现，但 internal_recall 方差大（决策边界 seed-dependent）\n- D037/D038: Table 1 统一用 eval_end_to_end.py\n\n**核心数字**（plan-012, 11 tasks / 245 eps）：Δ_full=+29.60, Δ_nd=+2.84, DAF=90.41%, r=0.9698 (p=8.12e-07)\n\n**最容易判断错的事**：\n1. **trained-router 数字**：Table 1 用 -10.70（eval_end_to_end.py），不是 -12.84（eval_implicit_router.py）。两个脚本产出不同，前者是权威来源\n2. **ablation-b 结论是 success**（routing 非退化），但 e2e 部署结论是 negative（不同实验）——不要混淆这两个层面\n3. **ga=8 已 4 重验证确认**（memory.md 有完整证据链），不要再质疑或重新验证\n4. **PREPARING 状态的 3 个实验都是历史遗留**（plan-003-baseline conclusion=success 但 status 卡在 PREPARING；另两个 killed）——不需要推进，但可考虑清理 registry\n5. **DDL 是 5/25**，剩余 11 天。Critical path: 5/17 初稿 → 5/17-22 review 迭代 → 5/23-24 终稿提交\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-6-1778759861.md"
+}

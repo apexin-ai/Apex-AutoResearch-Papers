@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19cc38b125dcdbcbde70",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh download qwen3 1 7b",
+  "task_key": "worker_ssh_download-qwen3-1_7b_20260513T225130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_download-qwen3-1_7b_20260513T225130_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "1d74f03cffcd146b17b10b14cf512b878cb13c13012f1e9788ba165d6c4cb7f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Qwen3-1.7B 下载完成，验证通过。\n\n**结果：**\n- 模型路径：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`（符号链接到 `Qwen3-1___7B`）\n- 总大小：3.8GB\n- 主要文件：`model-00001-of-00002.safetensors` (3.3G) + `model-00002-of-00002.safetensors` (594M)\n- vocab_size=151643，tokenizer 正常加载\n- plan-001b 进程未受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-download-qwen3-1-7b.md"
+}

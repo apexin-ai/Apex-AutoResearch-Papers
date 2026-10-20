@@ -1,0 +1,28 @@
+{
+  "exp_id": "plan-008-router-size-v3",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:49:49.991Z",
+    "updated_at": "2026-05-15T14:54:16.244Z",
+    "hypothesis": "Router size ablation v3 (C2): 直接用原始 implicit_router_sft.py（seed-robustness 验证过），只改 --model_name。Qwen3-0.6B / 1.7B (sanity check) / 4B。不写新 wrapper，不改代码。1.7B 应复现 ~0.554-0.576。",
+    "parent": "plan-008-router-size-v2",
+    "spec": {
+      "command": "bash scripts/plan008_v3_run.sh",
+      "server": "westb-13313",
+      "data_path": "data/plan-004-implicit/implicit_sft.jsonl",
+      "data_count": 2040,
+      "model_name": "Qwen3-0.6B / Qwen3-1.7B / Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "N/A (training from scratch)",
+      "eval_data": "data/plan-004-implicit/implicit_sft.jsonl (15% eval split)",
+      "checkpoint_path": "checkpoints/plan-008-v3-qwen3-{0.6b,1.7b,4b}/",
+      "log_path": "logs/plan008_v3.log"
+    }
+  },
+  "timestamp": "2026-05-15T14:54:16.380905+00:00",
+  "trigger": "update_registry"
+}

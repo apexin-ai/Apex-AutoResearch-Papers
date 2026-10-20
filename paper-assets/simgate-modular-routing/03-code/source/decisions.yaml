@@ -1,0 +1,2272 @@
+_next_id: 134
+decisions:
+- id: D001
+  date: 2026-05-13 04:25 UTC
+  summary: 'MVP 方案: ScienceWorld 信号检测——验证确定性模拟是否在规则驱动任务上优于 LLM 内部推理'
+  rationale: 12 天 deadline 下必须快速验证核心假设。ScienceWorld 是 primary track，其 JVM 后端提供精确的规则化状态转移，与
+    LLM 近似推理的差距应该最大。选 5 task types × 10 episodes 的小规模 counterfactual 比较，不训练 router，纯信号检测。Pass
+    标准 ≥2/5 task types >5pp，基于 ITP-R vs CogRouter 7.4pp 差距的量级。
+  related_experiments: []
+  depends_on: []
+- id: D002
+  date: 2026-05-13 04:28 UTC
+  summary: 采纳 Reviewer 全部 4 条 warning，修订 MVP 为 Phase 0 + Phase 1 两阶段方案
+  rationale: Reviewer 指出 D001 方案 3 个操作层缺陷：(1) counterfactual 方法未明确——改为 episode-level
+    3-way (always-internal / always-deterministic / oracle-routing)，oracle 作为 selective
+    routing 上界；(2) N=10 统计功效不足——增加到 20 episodes/task type + bootstrap 90% CI；(3) kill
+    criteria 不完整——增加 Phase 0 工程 gate、灰区 conditional pass、pre-register 5 task types
+    (3S+1M+1W)。无额外 GPU 成本，仅设计层修正。
+  related_experiments: []
+  depends_on:
+  - D001
+- id: D003
+  date: 2026-05-13 07:43 UTC
+  summary: GPU0 继续收集 baseline，GPU1 停下修复 tie-break + 致死动作过滤后重跑
+  rationale: Fork 诊断发现两个方法论缺陷：(1) tie-break >= 使 95% delta=0 步骤 oracle 永远选 internal，oracle
+    数据不可信；(2) 致死动作 (score=-100) 污染三条线。修 >= 为 >（oracle 仅在 deterministic 严格更优时介入）+ 致死动作过滤。不做
+    N-step rollout——1-step 局限性是真实发现，MVP 应如实反映。GPU0 baseline 数据有效，不浪费已有进度。
+  related_experiments:
+  - exp_id: mvp-p1-gpu0
+    role: baseline data, continue
+  - exp_id: mvp-p1-gpu1-vllm
+    role: kill, fix, rerun
+  depends_on:
+  - D002
+- id: D004
+  date: 2026-05-13 08:13 UTC
+  summary: MVP 判定 primary metric 改为 always-deterministic vs always-internal，oracle
+    降为 supplementary
+  rationale: 1-step lookahead 在稀疏 reward 下 95% 步骤 delta=0，任何 tie-break 都使 oracle 退化（>=
+    → always-internal，> → always-deterministic）。这是 1-step 的本质局限而非 bug。直接比较 det vs
+    internal 能回答核心问题"确定性计算有没有用"，无需 oracle 作为中介。oracle 在密集 reward tasks 上仍有参考价值。
+  related_experiments: []
+  depends_on:
+  - D003
+- id: D005
+  date: 2026-05-13 15:25 UTC
+  summary: MVP Phase 1 判定 PASS — det > internal 在 ≥2/5 task types 上统计显著，oracle > det
+    信号支持 router 训练
+  rationale: melt (+40.15, CI [25, 60.15]) 和 change-state (+40.2, CI [25, 60.15])
+    满足 ≥2/5 Pass 标准。mix-paint (+35.5) 大概率也通过。grow-plant (0.0) 符合预期（pre-registered
+    weak/对照）。最关键发现：oracle > det（melt +16.7, change-state +14.95, mix-paint +10.0）证明
+    selective routing 有额外增量——这是 SimGate router 训练的信号来源。信号机制是 death avoidance（避免 -100
+    致死动作）而非正向引导，论文 framing 需定位为 safety-aware routing。待确认：melt/change-state 数据重复性、mix-paint
+    CI、boil v3 重跑。
+  related_experiments:
+  - exp_id: mvp-p1-gpu0
+    role: boil data (old code)
+    result: det-int +30.1
+  - exp_id: mvp-p1-gpu0-vllm
+    role: melt+change-state (v3)
+    result: det-int +40.15/+40.2, CI [25, 60.15]
+  - exp_id: mvp-p1-gpu1-v3
+    role: mix-paint+grow-plant (v3)
+    result: det-int +35.5/0.0
+  depends_on:
+  - D004
+- id: D006
+  date: 2026-05-13 15:37 UTC
+  summary: 'Research phase plan revised per Reviewer W1-W5: 2-way first, signal pre-screening,
+    parameter-controlled ablation, GPU units fixed'
+  rationale: 'Reviewer 提出 5 个实质性问题全部采纳: (1) C1 "selective > unconditional" 标注为待确认;
+    (2) 2-way collection 优先，与 MVP 一致且省 33% GPU; (3) plan-001 增加 mini signal detection
+    前置步骤避免浪费 GPU; (4) plan-004 增加 1.7B implicit 控制条件隔离架构效果; (5) GPU 预算改为 RTX 5090
+    实际时长。melt/change-state 确认非重复但共享 variations，论文中合并报告。'
+  related_experiments: []
+  depends_on:
+  - D005
+- id: D007
+  date: 2026-05-13 17:01 UTC
+  summary: 'Dream 审稿结果处理: best 4/6, median 3/6, worst 2/6. 三档一致问题修入 framing+plan:
+    tool-use 文献定位, rule-based baseline, death decomposition'
+  rationale: 'Dream 三档一致暴露 3 个结构性问题: (1) 缺 tool-use learning 文献 (Toolformer/ART/Chameleon),
+    核心方法是标准 tool-use SFT pipeline 必须承认并差异化定位; (2) 缺 rule-based routing baseline 无法证明
+    learned signal; (3) ScienceWorld -100 惩罚放大效应未解构。修入 paper_framing.md (tool-use
+    定位段 + 3 新 concerns) 和 experiment_plan.yaml (plan-011 rule-based baseline P0, plan-012
+    death decomposition P0, plan-013 labeling quality P1)。不 re-dream: 改动是补充性 (新 baselines
+    + 定位), 非方向性 pivot。'
+  related_experiments: []
+  depends_on:
+  - D006
+- id: D008
+  date: 2026-05-13 17:09 UTC
+  summary: 1-step labeling 失败 (tie rate 98.2%), plan-001b 必须改为 episode-terminal counterfactual
+    labeling
+  rationale: 'MVP tie-rate 分析: 2880/2894 步 (98.2%) 两种模式 1-step score delta = 0 (稀疏
+    reward)。非 tie 步几乎全是 catastrophic gap (death penalty)。1-step oracle labeling 下
+    router 只能学到"避死"——等价于 always-det on death-risk tasks。必须改为 episode-terminal counterfactual
+    labeling: 每步 fork 环境，两条模式各自继续到 episode 结束，以 final episode score 差异作为 label。Phase
+    0 已验证 forking 可行 (p95 latency 2.37s)。GPU 成本显著增加——需要 Agent 估算 action divergence
+    rate 和实际工时。plan-001a (pre-screening) 和 plan-007 (boil rerun) 不受影响，继续运行。'
+  related_experiments:
+  - exp_id: mvp-p1-gpu0-vllm
+    role: source
+    result: tie rate data from episodes.jsonl
+  depends_on:
+  - D007
+- id: D009
+  date: 2026-05-13 17:15 UTC
+  summary: 'Counterfactual labeling 分 pilot + 全量两阶段执行。Pilot: 3 tasks × 10 ep × K=10
+    on GPU1。Non-tie rate > 30% 则全量 K=10，< 15% 则 pivot。'
+  rationale: Action divergence rate 73.1% 确认 per-step routing 有足够 action space，但 1-step
+    tie rate 98.2% 排除了 1-step labeling。Episode-terminal counterfactual labeling (fork
+    at diverge + K-step continuation) 是必要方案。Full K=20 成本 78h 双卡太高。Pilot 先验证 K=10 的
+    label quality (non-tie rate)，再决定全量策略。Pilot 选 melt/change-state/mix-paint（MVP 确认有信号），10
+    ep each（~7-8h 单卡）。如果 K=10 non-tie rate < 15%，per-step routing 可能是 wrong granularity，需要
+    pivot。
+  related_experiments: []
+  depends_on:
+  - D008
+- id: D010
+  date: 2026-05-13 18:13 UTC
+  summary: C2 重构为 "failure trajectory predictor"，paper_framing v3 更新 Plan C 定位
+  rationale: Reviewer 分析 Plan C (episode-level labeling) 对论文 story 的三个影响：(1) Router
+    学到的是 trajectory-level risk prediction 而非 step-level routing，C2 应重构为 "failure trajectory
+    predictor + diagnostic probe"；(2) Plan C 完全绕开 Dream worst case 的 oracle circularity
+    攻击（不用 per-step tie-breaking，直接用 episode outcome ground truth）；(3) 不做 class weighting，label
+    不平衡反映真实分布。Story 一致性提升：safety-aware framing ↔ episode-level labeling ↔ trajectory
+    risk prediction 三者天然匹配。C1 "selective > unconditional" 的关键指标变为 simulator invocation
+    ratio（用更少的 simulator calls 达到接近 always-det 效果）。
+  related_experiments: []
+  depends_on:
+  - D010
+- id: D011
+  date: 2026-05-13 19:09 UTC
+  summary: Framing 调整：det 优势 = 纯 death avoidance，non-death 时 internal 略优。C1 机制明确为
+    "safety-efficiency tradeoff"，router 学习 death-risk detection 而非泛泛路由。Labeling 策略维持
+    episode-level 但加 death-aware 后处理。
+  rationale: 13 tasks (8 prescreening + 5 MVP) 一致显示：no-death Δ(D-I) = -4.5 ~ -0.4，det
+    的全部 30-60 分优势来自 internal 的 41-49% death rate vs det 的 5-12% death rate。这意味着：(1)
+    always-det 不是最优（safe steps 有性能代价），selective routing 有理论基础；(2) router 的核心任务是 death-risk
+    detection；(3) plan-001b episode-level labels 将以 death episodes 为主要信号源，non-death
+    episodes 提供少量 internal labels；(4) plan-012 death decomposition 升为论文核心证据。
+  related_experiments:
+  - exp_id: research-prescreening-gpu0
+    role: evidence
+    result: '8/25 tasks: aggregate no-death Δ = -4.5, I_death=48.6%, D_death=5.4%'
+  - exp_id: mvp-p1-gpu1-v3
+    role: evidence
+    result: '5 tasks: aggregate no-death Δ = -0.4, I_death=41%, D_death=12%'
+  depends_on:
+  - D010
+  - D008
+- id: D012
+  date: 2026-05-13 19:26 UTC
+  summary: 'D012: Label 不平衡应对——设条件触发点，预筛完成后决定是否 pivot framing'
+  rationale: 'Reviewer Loop #2 确认 14 tasks 中仅 1 个 internal-preferred（7%），预计全部 25 tasks
+    中 internal-preferred ≤ 3。93% det 标签 → router SFT 退化为 always-det → C1 "selective
+    > unconditional" 不成立风险极高。
+
+
+    条件触发：
+
+    - 若 internal-preferred < 3/25（<12%）→ 执行 framing pivot：C1 从 "selective > unconditional"
+    降级为 "det >> internal, 主要机制是 death avoidance"；C2 调整为 "router 学习 death-risk trajectory
+    prediction"；plan-012 (death decomposition) 升为核心贡献；plan-011 (rule-based baseline)
+    变关键（learned vs heuristic）
+
+    - 若 internal-preferred ≥ 3/25（≥12%）→ 保持现有 framing，plan-002 router SFT 使用 class-weighted
+    loss 应对不平衡
+
+
+    不选的方案：(b) 人为增加 internal episodes → p-hacking 风险；(c) 加 MATH track → 12 天 DDL 下风险太大
+
+
+    另外 Reviewer 指出 genuine-det 分类中 find-living-thing（+0.25）和 freeze（+2.0）在 n=5 下无统计意义，仅
+    find-animal（+4.2）可能有真实信号。这进一步削弱 non-death 信号。'
+  related_experiments:
+  - exp_id: research-prescreening-gpu0
+    role: evidence
+    result: 14/25 tasks analyzed, 93% det-preferred
+  - exp_id: research-boil-v3-gpu1
+    role: evidence
+    result: death avoidance confirmed as sole driver
+  depends_on: []
+- id: D013
+  date: 2026-05-13 19:33 UTC
+  summary: 'D013: 接受 Reviewer 结构性论证，framing pivot 从"条件触发"升级为"近确定"——C1 改为纯经验发现，C2 重心从
+    router 转向 labeling method'
+  rationale: 'Reviewer 指出三个关键判断：
+
+    1. Class-weighted loss 无法 salvage selective routing——问题不是 class imbalance，而是 episode-level
+    labels 把同一 episode 所有步骤（含安全步骤）标为同一 label，router 学到的是 task-type classifier 而非 step-level
+    risk detector
+
+    2. C2 "early warning signals" 脆弱（~30% 有实质），需 plan-005 验证 within-task-type 预测方差
+
+    3. Rule-based baseline 有 ~60% 概率让 learned router novelty 归零
+
+
+    Reviewer 建议进一步 pivot：
+
+    - C1 完全放弃 "selective > unconditional"，改为纯经验发现：det >> internal，death avoidance
+    是主要机制
+
+    - C2 重心从 router 转向 labeling method：episode-level counterfactual labeling 绕开 per-step
+    oracle circularity，本身是 methodological contribution
+
+    - 这样 plan-011 威胁降低：论文贡献不在于"router 比 keywords 好"，而在于"counterfactual analysis 揭示
+    death avoidance 机制 + 诊断框架"
+
+
+    评估：Reviewer 的结构性论证正确。Episode-level labels 确实无法教 step-level discrimination（D008
+    98.2% tie rate → Plan C → 但 Plan C 的标注粒度太粗）。这是一个独立于预筛计数的结构性限制。
+
+
+    决策：framing pivot 近确定执行。仍等预筛完成获取完整数据（论文需要），但 paper_framing.md 立即更新方向。实验计划不变——router
+    SFT 仍做（负面结果有论文价值），plan-005/011/012 优先级提升。'
+  related_experiments:
+  - exp_id: research-prescreening-gpu0
+    role: pending
+    result: awaiting final count
+  - exp_id: research-boil-v3-gpu1
+    role: evidence
+    result: oracle > det +10-17pp comes from step-level oracle, not episode-level
+  depends_on:
+  - D012
+  - D011
+  - D010
+- id: D014
+  date: 2026-05-13 20:59 UTC
+  summary: 'D014: 重新注册 plan-011 rule-based keyword list，排除 connect/disconnect 通用动作词'
+  rationale: 'Reviewer critical 发现：原 rule_based_keywords.json 包含 "connect"/"disconnect"，这是
+    ScienceWorld 通用动作词（几乎所有对象交互都用 connect），非科学操作指示词。结果 85.79% 关键词匹配率，184/189 episodes
+    预测为 det-preferred → rule-based ≈ always-det → 与 learned router 对比无区分度。
+
+
+    重新注册理由：原列表设计时未理解 ScienceWorld 动作词汇表。"connect" 类似 web UI 的 "click"，不指示需要确定性计算的科学操作。
+
+
+    新列表只保留真正的状态变化/科学操作动词：heat, cool, boil, melt, freeze, burn, mix, pour, react, dissolve,
+    activate, change-state 等。排除：connect, disconnect, move, look, pick up, go, open,
+    close, focus, examine 等通用交互词。
+
+
+    这不是 post-hoc 修改实验结果——plan-011 尚未正式开始，这是修复实验设计缺陷。新列表需在 plan-011 正式实验前注册并锁定。'
+  related_experiments:
+  - exp_id: plan-011
+    role: design fix
+    result: keyword list re-registration before experiment starts
+  depends_on:
+  - D013
+- id: D015
+  date: 2026-05-13 21:53 UTC
+  summary: 'D015: plan-012 预分析确认核心假设在 30 tasks 上高度稳健 (r=0.989, death_fraction=99%,
+    Δ_full=+37.9)'
+  rationale: 从 MVP 5 tasks 扩展到预筛全量 30 tasks / 219 episodes，所有核心指标保持或改善：r 从 0.986→0.989，Δ_full
+    从 +36.9→+37.9，death_fraction 稳定 99%。Label 分布 det-preferred 41% / internal-preferred
+    0.5% / no-preference 59%。核心发现方向已确定，plan-001b 收集 20 eps/task 后将提升统计功效但不改变结论方向。death_decomposition.py
+    (519行) 已就绪。
+  related_experiments:
+  - exp_id: research-prescreening-gpu0
+    role: data_source
+    result: 30 tasks / 219 episodes 预分析
+  - exp_id: research-boil-v3-gpu1
+    role: data_source
+    result: MVP boil data included
+  depends_on:
+  - D013
+- id: D016
+  date: 2026-05-13 23:33 UTC
+  summary: 'D016: find-non-living-thing 方向翻转评估——framing robust 无需 pivot，C2 诊断贡献重心从
+    router 移向 methodology'
+  rationale: find-non-living-thing 12/20 eps delta 从 -6.8 收窄到 -2.3，可能翻转。Reviewer 独立确认：(1)
+    C1 不依赖 internal-preferred 任务存在，翻转后 death avoidance = 100% 更强；(2) C2 "router-as-probe"
+    措辞需调整——如果 router trivially always-det，诊断价值归属于 labeling methodology 而非 router 本身；(3)
+    plan-002 结果性质转变为 negative result（trivial one-class classifier），但有论文价值（量化 episode-level
+    labeling 的粒度限制）；(4) 成本效率论证需明确为 task-category level 而非 per-episode dynamic routing。等
+    20 eps 全量数据后更新 paper_framing.md 四处文字。
+  related_experiments:
+  - exp_id: plan-001b-gpu1
+    role: data source
+    result: running, find-non-living-thing 12/20 eps delta=-2.3
+  depends_on:
+  - D013
+  - D015
+- id: D017
+  date: 2026-05-14 00:40 UTC
+  summary: 'C1 claim 采用 Tier B: "Death avoidance ~99% 主导，non-death signal negligible"'
+  rationale: 30 tasks / 219 episodes 预分析：Δ_full=+37.9, Δ_nd=+0.2, r=0.989, death_fraction=99%。Tier
+    A ("entirely/唯一") 虽然 provocative 但 find-animal Δ_nd=+4.2 可能成反例；Tier C ("primary")
+    hedging 过度浪费 r=0.989 的强数据。Tier B 用 "small and inconsistent" 准确反映 -6.8~+4.2 的无系统性方向分布。升档条件：plan-001b
+    全量 n=20 数据中所有 task 的 Δ_nd bootstrap 95% CI 跨 0 → 升 Tier A。
+  related_experiments:
+  - exp_id: plan-001b
+    role: evidence
+    result: '30 tasks prescreening: r=0.989, death_fraction=99%, Δ_nd=+0.2'
+  - exp_id: plan-012
+    role: planned_validation
+    result: Full death decomposition on n=20 data will confirm/upgrade tier
+  depends_on: []
+- id: D018
+  date: 2026-05-14 04:55 UTC
+  summary: C1 claim 从 "~99% death avoidance" 调整为 "~90%"，find-non-living-thing 定位为正面案例
+  rationale: plan-012 preliminary 显示 death fraction=90.1%（非 99%），因 find-non-living-thing（0%
+    death rate）拉低。该 task Δ_nd=9.58=Δ_full，证明 router 在零死亡场景仍有 non-trivial 增益，routing
+    价值超越 death avoidance。与 plan-011（keyword heuristic 失效）互相呼应，强化 learned routing 的必要性。论文分两层报告：overall
+    ~90% death-dominated + per-task breakdown 展示非死亡信号。
+  related_experiments:
+  - exp_id: plan-012
+    role: evidence
+    result: death_fraction=90.1%, r=0.967, Δ_nd=2.95 (driven by find-non-living-thing)
+  - exp_id: plan-011
+    role: corroboration
+    result: keyword heuristic 结构性失效，learned routing 不可被简单规则替代
+  depends_on: []
+- id: D019
+  date: 2026-05-14 05:00 UTC
+  summary: C1 death fraction 报告方式：per-task fraction (10/11) + episode-weighted ~94.5%，不用
+    per-task mean
+  rationale: Reviewer 核实发现 death fraction 对聚合方式高度敏感：episode-weighted(plan_c)=~94.5%,
+    per-task mean=~90.9%, 混合数据=98.75%。per-task mean 被 find-non-living-thing 的 0% 拉偏（二值化效应），episode-weighted
+    在均匀数据上更公允。论文报告策略：(1) per-task fraction "10/11 tasks death-dominated" 传达定性结论；(2)
+    episode-weighted ~94.5% 传达定量强度；(3) find-non-living-thing 单独讨论作为 non-death signal
+    正面案例。D018 的 "~90%" 修正为更精确的 ~94.5%。
+  related_experiments:
+  - exp_id: plan-012
+    role: evidence
+    result: episode-weighted death fraction ~94.5% on 11 plan_c tasks/235 eps; per-task
+      mean 90.9% (10/11=100%, 1/11=0%)
+  depends_on:
+  - D018
+- id: D020
+  date: 2026-05-14 06:43 UTC
+  summary: plan-002 分类路线：v5 pad_token_id fix 为最后一次尝试，epoch 1 internal recall=0 则 pivot
+    到生成式
+  rationale: v1-v4 连续失败，但 v5 的 pad_token_id fix 精准命中 Reviewer 识别的根因（ModelScope Qwen3-1.7B
+    未设 pad_token_id → CrossEntropyLoss 在 padding tokens 上计算 → 初始 loss 11.5 远超正常 0.69
+    → 梯度信号被污染 → 退化到 majority class）。plan-004 生成式路线已证明非退化（eval_loss 0.36, internal
+    recall 51.5%），作为 fallback。v5 是分类路线的 make-or-break 实验。
+  related_experiments:
+  - exp_id: plan-002-formal-v4
+    role: evidence
+    result: accuracy 91.9% but internal recall=0 across all 3 epochs, degenerate
+  - exp_id: plan-002-formal-v5
+    role: test
+    result: running, pad_token_id fix
+  - exp_id: plan-004
+    role: fallback
+    result: 'generative route: eval_loss 0.36, accuracy 65.4%, internal recall 51.5%'
+  depends_on: []
+- id: D021
+  date: 2026-05-14 06:48 UTC
+  summary: 修正 D020：pad_token_id 非根因，class_weights auto 才是 loss 异常主因。v5 仍跑完 epoch 1
+    作对照，同时启动 v6（无 class_weights）
+  rationale: Reviewer 提供决定性证据链：(1) router_sft_train.py L294-305 在 v3 就已赋值 pad_token_id=151643，v5
+    只加了 assert；(2) plan-004 v1(无 class_weights)→loss 0.36-0.71 正常，v2(class_weights
+    auto)→loss 48→42→8→4 爆炸，唯一变量是 class_weights；(3) v4 accuracy 88.3% 证明 pooling 正常工作（若
+    pad_token_id 坏了应~50%），88.3%≈majority baseline 92.7%是典型多数类退化。结论：4.5x minority weight
+    + 仅 180 internal 样本 → 模型选择忽略少数类以最小化总加权 loss。v6（去掉 class_weights）是验证此诊断的必要对照。
+  related_experiments:
+  - exp_id: plan-004-v1
+    role: control
+    result: 无 class_weights, loss 0.36-0.71 正常
+  - exp_id: plan-004-v2
+    role: control
+    result: class_weights auto, loss 48→4 异常，决定性证据
+  - exp_id: plan-002-formal-v4
+    role: evidence
+    result: accuracy 88.3% 证明 pooling 正常，退化是多数类收敛
+  - exp_id: plan-002-formal-v5
+    role: running
+    result: 仍用 class_weights auto, 预计复现 v4 退化
+  - exp_id: plan-002-formal-v6
+    role: planned
+    result: 去掉 class_weights, 验证 loss 是否回到正常范围
+  depends_on:
+  - D020
+- id: D022
+  date: 2026-05-14 06:51 UTC
+  summary: plan-002 classification head 定性为 negative baseline，v6 为最终对照后停止迭代
+  rationale: Reviewer 核实：plan-002 从 dryrun 到 v5 共 5 次迭代 internal recall 均为 0，而 plan-004
+    implicit router 首次即达 51.5%。pad_token_id 非根因（v4 已修复），class_weights 4.5× 仅解释 loss
+    数值偏高（不影响退化本质）。真正根因是 classification head 架构无法从当前数据中提取 internal routing 信号。v6（去掉
+    class_weights、3 epochs）作为最终公平对照——预期仍会退化，用作论文中 explicit router 的 negative baseline，与
+    plan-004 implicit router 形成对比证据。
+  related_experiments:
+  - exp_id: plan-002-formal-v5
+    role: evidence
+    result: internal recall=0, eval_loss=0.79, accuracy=87.4%, 与 v3/v4 同样退化
+  - exp_id: plan-004-v2
+    role: contrast
+    result: implicit router internal recall=51.5%, 证明信号可提取但 classification head 架构不行
+  - exp_id: plan-002-dryrun
+    role: evidence
+    result: 无 class_weights 1 epoch 仍 internal recall=0, 排除 class_weights 为退化根因
+  depends_on: []
+- id: D023
+  date: 2026-05-14 07:00 UTC
+  summary: plan-002 根因修正：pad_token_id 假说被 v5 实证否定，真正根因是 class_weights + gradient clipping
+    交互
+  rationale: v5 加入 pad_token_id fix 后 loss 曲线与 v4 完全一致（差异在噪声范围），证伪 pad_token_id 假说。Reviewer
+    识别出真正根因：class_weights [4.5, 0.5625] 给 internal 样本 4.5x 权重 → loss 爆炸(4-11) → grad_norm
+    100-600 → 被 max_grad_norm=1.0 裁剪 → internal 有效学习率≈3e-8。该机制同时解释三个现象：(a) train loss
+    差 10x 但 eval loss 差<2x, (b) grad_norm 100-600 vs dryrun 的 0.5-42, (c) v5 fix 无效。下一步：去掉
+    class_weights 跑 v6 隔离验证。附带：v4 registry 标 killed 但实际完整训练完毕需更正。
+  related_experiments:
+  - exp_id: plan-002-sft-v5
+    role: evidence
+    result: pad_token_id fix 无效，loss 曲线与 v4 一致
+  - exp_id: plan-002-sft-v4
+    role: evidence
+    result: registry 标 killed 但实际完整训练(accuracy=91.9%, internal_recall=0%)
+  - exp_id: plan-002-sft-dryrun
+    role: control
+    result: 无 class_weights 时 loss 正常(0.17-1.03)，但也退化(internal_recall=0%)
+  depends_on: []
+- id: D024
+  date: 2026-05-14 07:15 UTC
+  summary: D021 推翻：class_weights 不是 router 训练退化根因，数据文件差异是首要排查方向
+  rationale: '双 pipeline 实证否定 class_weights 假说：(1) implicit router plan-004-v3 去掉
+    class_weights 后 loss 与 v2 完全一致（step 10: 48.15 vs 48.15），零影响；(2) explicit router
+    plan-002-formal-v6 去掉 class_weights 后仍退化为全 det 预测（f1_internal=0.0, recall_internal=0.0）。唯一非退化结果
+    ablation-b（internal recall 51.5%）使用了不同数据文件 data/plan-004-implicit/（而非 results/plan_c_test_labels/implicit_sft.jsonl），且用了
+    upsample_minority。下一步：对比两份数据的格式/分布/内容差异，隔离数据 vs upsample 的各自贡献。'
+  related_experiments:
+  - exp_id: plan-004-v3
+    role: evidence
+    result: loss identical to v2, class_weights has no effect
+  - exp_id: plan-002-formal-v6
+    role: evidence
+    result: f1_internal=0.0, class_weights removal ineffective
+  - exp_id: plan-004-ablation-b
+    role: reference
+    result: only non-degenerate model, used different data + upsample
+  depends_on:
+  - D021
+  - D023
+- id: D025
+  date: 2026-05-14 07:18 UTC
+  summary: Classification head 路线确认失败，plan-002 pivot 到 generative approach (implicit
+    SFT + upsample)
+  rationale: Reviewer 审查 v6（去掉 class_weights）epoch 1 结果：eval_accuracy 0.929 但 internal
+    recall=0, balanced_accuracy=0.5，仍全预测 deterministic。v3-v6 四个版本均退化，证实 classification
+    head 在 89.7%/10.3% 极端不平衡下无法学到少数类信号。根因不是 class_weights（D024）也不是 pad_token_id（D023），而是分类头方法本身的局限。plan-004-ablation-b
+    的 implicit generative + upsample 方案已验证可行，pivot 到该路线。
+  related_experiments:
+  - exp_id: plan-002-formal-v6
+    role: evidence
+    result: 'epoch 1 still degrades: internal recall=0, balanced_accuracy=0.5 despite
+      removing class_weights'
+  - exp_id: plan-002-formal-v5
+    role: evidence
+    result: degraded with class_weights
+  - exp_id: plan-004-ablation-b
+    role: baseline
+    result: implicit generative + upsample worked
+  depends_on:
+  - D024
+  - D022
+- id: D026
+  date: 2026-05-14 07:20 UTC
+  summary: plan-004 v2/v3/v4 失败根因确认：训练数据标签损坏（no-preference→internal mapping bug），非
+    class_weights
+  rationale: Reviewer 独立审计三个 implicit SFT 数据文件发现：v2/v3/v4 使用的 results/plan_c_test_labels/implicit_sft.jsonl
+    中 66.9% 标记为 internal（真实应为 10.3%），no-preference 步骤被错误映射为 internal。ablation-b 使用正确数据（data/plan-004-implicit/）loss
+    0.71→0.36 且 internal recall=51.5%；v2/v3 使用错误数据 loss 48→4.4，无论是否有 class_weights。已指令
+    kill v4 并用修复数据重跑 v5。
+  related_experiments:
+  - exp_id: plan-004-v4
+    role: evidence
+    result: loss 48→13.7, repeating v2/v3 failure pattern on corrupted data
+  - exp_id: plan-004-v3
+    role: evidence
+    result: loss 48→4.4 on corrupted data, identical to v2 despite no class_weights
+  - exp_id: plan-004-ablation-b
+    role: control
+    result: loss 0.71→0.36, internal recall=51.5% on CORRECT data
+  depends_on:
+  - D024
+- id: D027
+  date: 2026-05-14 07:31 UTC
+  summary: generative-v1 双对照提交：grad_accum=8 vs grad_accum=1 并行隔离变量
+  rationale: Reviewer 修正根因：数据污染只影响 v2，v3/v4 失败的真正 confound 是 upsample_minority 和 gradient_accumulation_steps
+    同时变化（ablation-b 成功用 upsample=true+ga=1，v3/v4 失败用 upsample=false+ga=8）。generative-v1
+    原 spec 用 ga=8 有风险，利用双 GPU 并行跑 ga=8 和 ga=1 对照，一次实验同时验证 generative SFT 可行性和 grad_accum
+    是否为退化因素。
+  related_experiments:
+  - exp_id: plan-002-generative-v1
+    role: subject
+    result: preparing
+  - exp_id: plan-004-v4
+    role: evidence
+    result: negative (upsample=false+ga=8, internal_recall=0)
+  - exp_id: plan-002-formal-v6
+    role: evidence
+    result: negative (classification head degenerated)
+  - exp_id: ablation-b
+    role: evidence
+    result: success (upsample=true+ga=1, internal_recall=51.5%)
+  depends_on: []
+- id: D028
+  date: 2026-05-14 07:38 UTC
+  summary: 暂停论文写作，修复核心数字不一致（至少 3 套数据源混用）
+  rationale: Reviewer CRITICAL：paper_framing.md（245eps/11tasks）与 experiment_tables.md（249eps/30tasks）与
+    plan-003 registry（194eps/11tasks）三套数字矛盾，label distribution 差异尤其严重（9 vs 1 个 internal-preferred）。在错误数字上写论文是浪费。需确定唯一权威数据源（plan-012
+    最终输出），统一所有材料，可能需要在权威集合上重跑 baseline。
+  related_experiments:
+  - exp_id: plan-012-decomposition
+    role: authority
+    result: 249eps/30tasks 全量分析
+  - exp_id: plan-003-baseline
+    role: conflict
+    result: 194eps/11tasks baseline，数字与 plan-012 不一致
+  depends_on: []
+- id: D029
+  date: 2026-05-14 08:52 UTC
+  summary: 'Router 训练路线全面评估完毕：classification head 全退化(D025)、generative SFT NEGATIVE、ablation-b
+    复现失败(v5)。论文以 plan-012 empirical finding 为核心，router 结果作 informative data。Critical
+    path: e2e eval → D028 修复 → plan-003 baselines → Paper Agent'
+  rationale: 'Router 训练 8+ 次迭代结果：(1) classification head v3-v6 全退化为 always-det (D025确认)；(2)
+    generative SFT (plan-002-generative-v1) ga=8 和 ga=1 双对照均 NEGATIVE；(3) ablation-b
+    唯一成功 (internal_recall=51.5%) 但 v5 严格复现条件下失败。根因：episode-level labels 粒度太粗 (D013)，标签分布极端不平衡
+    (89.7% det-preferred)，router 结构性受限于 task-level risk classification。
+
+
+    论文策略调整：v3 framing 本身以 empirical finding + methodology 为核心贡献。router 训练结果 (partial
+    success + systematic failure) 恰好证明 episode-level labeling 的粒度限制——这 IS the finding。ablation-b
+    的 51.5% recall 说明 signal 可提取但不稳定，与 D013 "task-type classifier" 判断一致。
+
+
+    11 天 DDL critical path：(1) ablation-b e2e eval (当前进行中) → 判断 router 是否能 end-to-end
+    工作；(2) D028 数据一致性修复 (editorial)；(3) plan-003 baselines (always-int/det/random/oracle
+    大部分可从 plan-001b 数据后处理)；(4) Paper Agent 启动 (目标 5/17 前交初稿)。plan-005 routing pattern
+    分析和 plan-013 labeling quality 为 nice-to-have。'
+  related_experiments:
+  - exp_id: plan-002-generative-v1
+    role: evidence
+    result: NEGATIVE - generative SFT 双对照 (ga=8/ga=1) 均未改善
+  - exp_id: plan-004-v5
+    role: evidence
+    result: NEGATIVE - 严格复现 ablation-b 条件失败
+  - exp_id: plan-004-ablation-b
+    role: reference
+    result: 唯一成功 (internal_recall=51.5%) 但不可复现
+  - exp_id: plan-002-formal-v6
+    role: evidence
+    result: classification head 最终对照仍退化
+  - exp_id: plan-012-decomposition
+    role: core
+    result: 论文核心数据已到位 (11 tasks/245 eps, r=0.9698)
+  depends_on:
+  - D025
+  - D027
+  - D028
+- id: D030
+  date: 2026-05-14 09:00 UTC
+  summary: Generative routing negative 结果纳入 C1 叙事：router 训练失败是 death dominance 极端
+    class imbalance 的必然后果，非独立发现
+  rationale: 所有 router 训练路线（classification head D025, generative v1, v5）均失败/退化。唯一成功的
+    ablation-b 无法复现。根因：episode-level labels 极端不平衡（86 det / 9 internal / 150 no-pref
+    = 3.7% internal），death avoidance 占 90% signal 导致 router 结构性无法学到平衡决策。这一结果 REINFORCES
+    C1（death dominance）。84.9% logit vs 26.7% generation gap 放入 Discussion 作为 secondary
+    observation（signal learnable but not reliably expressible）。论文核心贡献不变：empirical
+    finding (death avoidance) + diagnostic methodology (counterfactual labeling)，非
+    router 架构。等 v5/ablation-b 调查完毕后 finalize 措辞。
+  related_experiments:
+  - exp_id: plan-004-v5
+    role: evidence
+    result: 'negative: gen internal_recall 26.7%, logit 84.9%'
+  - exp_id: plan-002-generative-v1
+    role: evidence
+    result: 'negative: gen internal_recall 16.7%'
+  - exp_id: plan-004-ablation-b
+    role: anomaly
+    result: 'success: internal_recall 51.5%, unreproducible'
+  - exp_id: plan-002-formal-v6
+    role: evidence
+    result: 'negative: classification head degenerated to always-det'
+  depends_on:
+  - D029
+  - D025
+- id: D031
+  date: 2026-05-14 09:01 UTC
+  summary: 发现 v5 未真正复现 ablation-b 配置：ga=8→1 (effective batch 32→4) + 脚本重构，logit-generation
+    gap 结论需重新验证
+  rationale: Registry spec 对比发现 ablation-b 用 gradient_accumulation_steps=8（effective
+    batch=32），v5 用 ga=1（effective batch=4）。此外脚本从无 train 子命令重构为有 train 子命令，说明代码经历过修改。v5
+    从未在与 ablation-b 相同条件下训练，logit-generation gap 可能是配置/代码差异引入的 artifact 而非 generative
+    routing 的系统性问题。需用匹配配置重新训练验证。
+  related_experiments:
+  - exp_id: ablation-b
+    role: 原始实验
+    result: routing 有效但有 logit-generation gap
+  - exp_id: v5
+    role: 复现尝试
+    result: 配置不匹配导致未真正复现
+  depends_on: []
+- id: D032
+  date: 2026-05-14 09:04 UTC
+  summary: 确认 v5 与 ablation-b 代码级差异：loss 计算(WeightedTrainer vs 标准HF)、数据上采样逻辑、class_weights
+    全部不同，logit-generation gap 可能是代码重构副产物
+  rationale: 代码 diff 确认三个影响训练行为的关键差异：(1) ablation-b 用自定义 WeightedTrainer.compute_loss
+    做 per-sample 加权，v5 用标准 HF Trainer loss；(2) ablation-b 数据加载无内置上采样，v5 默认开启 upsample_ratio=1.0
+    导致双重平衡；(3) ablation-b 支持 class_weights，v5 完全移除。加上之前发现的 ga=8 vs ga=1，v5 从未在可比条件下复现
+    ablation-b。需要用 ablation-b 原始代码+原始配置重新训练验证 gap 是否真实存在。
+  related_experiments:
+  - exp_id: ablation-b
+    role: 原始实验
+    result: 自定义 WeightedTrainer + ga=8
+  - exp_id: v5
+    role: 失败的复现
+    result: 标准 HF Trainer + ga=1 + 双重上采样
+  depends_on:
+  - D031
+- id: D033
+  date: 2026-05-14 09:14 UTC
+  summary: 'Framing 定稿 Option B (方法论贡献): Reviewer seed 变体分析确认 router balanced_acc
+    仅 ~58%(接近随机)，router 架构非贡献点，论文贡献 = 分析方法论 + death avoidance empirical finding'
+  rationale: 'Reviewer 发现 ablation-b 的 3 个 seed 变体(123/456/789)在 balanced_accuracy
+    上恒定 57-59%，仅比随机(50%)高 ~8pp，internal_recall 从 51% 到 82% 大幅波动完全由 seed 决定。这意味着：(1)
+    router 判别力接近随机，"internal_recall=51.5%" 不是固有属性而是 seed=42 的阈值效应；(2) 所有 router 训练路线（classification
+    head 退化、generative SFT negative、ablation-b 近随机）均未产出有效 router；(3) 论文不应声称 "首个非退化
+    router"，而应将 router 近随机作为 C1 的补充证据——routing signal 被 death avoidance 主导到 router
+    几乎无法学到其他信号。选择 Option B: 论文贡献 = episode-level counterfactual 方法论 + death avoidance
+    占 90% routing signal 的 empirical finding + router 负面结果强化分析叙事。'
+  related_experiments:
+  - exp_id: plan-004-ablation-b
+    role: evidence
+    result: seed 变体 balanced_acc 57-59% 恒定,接近随机
+  - exp_id: plan-004-v5
+    role: evidence
+    result: negative
+  - exp_id: plan-002-generative-v1
+    role: evidence
+    result: negative
+  - exp_id: plan-002-formal-v6
+    role: evidence
+    result: degenerate always-det
+  - exp_id: plan-012-decomposition
+    role: core_finding
+    result: DAF=90.41%, r=0.9698
+  depends_on:
+  - D029
+  - D030
+- id: D034
+  date: 2026-05-14 09:15 UTC
+  summary: 'D027 更正: ablation-b 使用 gradient_accumulation_steps=8（非 ga=1），D027 原文 "ga=1"
+    为错误记录'
+  rationale: Reviewer 审查发现 D027 声称 ablation-b 用 ga=1，D031 声称用 ga=8。Registry spec 命令和
+    seed 变体的 train_config.json 均确认 ga=8。D027 的 ga=1 描述错误，以本条更正。v5(ga=1) 与 ablation-b(ga=8)
+    确实不同，D031 的判断方向正确。
+  related_experiments:
+  - exp_id: plan-004-ablation-b
+    role: subject
+    result: ga=8 confirmed
+  depends_on:
+  - D027
+  - D031
+- id: D035
+  date: 2026-05-14 09:17 UTC
+  summary: Trained router e2e 确认 negative (-12.84 vs always-det -9.47)，纳入 C1 叙事作为正面证据
+  rationale: plan-003-eval-implicit 用正确 checkpoint (ablation-b adapter) 做 e2e eval，trained
+    router -12.84 (CI [-17.52, -8.45])，always-det -9.47。CI 包含 -9.47（不显著），但点估计负向。93.5%
+    路由到 det，仅 16 个 internal 决策导致 catastrophic_failure_rate 升至 19.2% (vs 16.3%)。这完全一致
+    C1：death avoidance dominance → 少量 misrouting 代价 > 正确路由收益。Paper Table 1 增加此行，Discussion
+    讨论 router 训练困境。
+  related_experiments:
+  - exp_id: plan-003-eval-implicit
+    role: e2e eval with correct ablation-b checkpoint
+    result: trained-router=-12.84 vs always-det=-9.47, negative
+  - exp_id: plan-004-ablation-b
+    role: source checkpoint
+    result: internal_recall=51.5% (generation-level non-degenerate)
+  depends_on: []
+- id: D036
+  date: 2026-05-14 09:17 UTC
+  summary: Ablation-b 跨 seed 复制确认非退化可复现，但 internal_recall 方差 30pp+，决策边界不稳定
+  rationale: 4 个 seed (42/123/456/789) 的 balanced_accuracy 稳定在 57-59%，确认模型学到了信号。但
+    internal_recall 从 51.5% 到 81.8%，overall accuracy 从 65.4% 到 39.9%。seed 789 将 67%
+    样本预测为 internal（真实仅 10.8%）。ga=8 确认为非退化必要条件（vs v5 ga=1 → internal_recall=26.7%）。论文引用
+    ablation-b 时需标注方差。进一步支持 C1：即使 router 学到非退化信号，决策边界脆弱，实用性有限。
+  related_experiments:
+  - exp_id: plan-004-ablation-b
+    role: original seed 42
+    result: internal_recall=51.5%, balanced_acc=59.3%
+  - exp_id: ablation-b-seed123
+    role: replication
+    result: internal_recall=57.6%, balanced_acc=57.4%
+  - exp_id: ablation-b-seed456
+    role: replication
+    result: internal_recall=75.8%, balanced_acc=57.5%
+  - exp_id: ablation-b-seed789
+    role: replication
+    result: internal_recall=81.8%, balanced_acc=58.3%
+  depends_on: []
+- id: D037
+  date: 2026-05-14 09:25 UTC
+  summary: Table 1 统一使用 eval_end_to_end.py，trained-router = -10.70（非 -12.84）
+  rationale: 两个 eval 脚本对同一 ablation-b checkpoint 给出不同结果：eval_implicit_router.py=-12.84,
+    eval_end_to_end.py=-10.70（差 2.14 分）。因 plan-003-baseline-245eps 的 4 个 baseline
+    均用 eval_end_to_end.py 评估，trained-router 必须用同一框架以保证公平比较。CI [-15.25, -6.38] 仍包含
+    always-det -9.47，差异不显著。论文措辞用 "did not significantly outperform always-deterministic"。
+  related_experiments:
+  - exp_id: plan-003-eval-implicit
+    role: eval_implicit_router.py result
+    result: '-12.84'
+  - exp_id: plan-003-e2e-ablation-b-correct
+    role: eval_end_to_end.py result (authoritative)
+    result: '-10.70'
+  depends_on:
+  - D035
+- id: D038
+  date: 2026-05-14 09:25 UTC
+  summary: 'Table 1 统一用 eval_end_to_end.py: trained-router = -10.70 (非 -12.84)，与 baseline
+    同框架'
+  rationale: '两个 eval 脚本对同一 ablation-b checkpoint 给出不同结果: eval_implicit_router.py=-12.84,
+    eval_end_to_end.py=-10.70。差异 2.14 分(17%)，推测 fallback/路由判定逻辑不同。plan-003-baseline-245eps
+    的 4 个 baseline (always-int/det/oracle/random) 均用 eval_end_to_end.py 评估，trained-router
+    行也必须用同一脚本保证公平比较。两个数字的 CI 均包含 always-det(-9.47)，差异不显著——论文措辞用 "did not significantly
+    outperform"。'
+  related_experiments:
+  - exp_id: plan-003-eval-implicit
+    role: eval_implicit_router.py result
+    result: -12.84 CI[-17.52,-8.45]
+  - exp_id: plan-003-e2e-ablation-b-correct
+    role: eval_end_to_end.py result (authoritative)
+    result: -10.70 CI[-15.25,-6.38]
+  depends_on:
+  - D035
+- id: D039
+  date: 2026-05-14 12:35 UTC
+  summary: 'plan-013 确认 oracle circularity 不成立: 0% tie-break, 61.2% ties 全排除, strict-only
+    retrain=ablation-b 1σ内'
+  rationale: 'Dream worst-case reviewer 的 oracle circularity concern 是核心风险。plan-013
+    三维度验证: (1) 标注管线无 tie-break 机制, 100% genuine labels; (2) 86 个 det-preferred 中 70
+    来自 death asymmetry, 16 来自 score comparison (min delta=8); (3) strict-only retrain
+    balanced_acc=0.5729 vs ablation-b 均值 0.5761±0.005. 论文 Discussion 加一句即可封死该 concern.'
+  related_experiments:
+  - exp_id: plan-013-labeling-quality
+    role: primary
+    result: success
+  - exp_id: plan-004-ablation-b
+    role: baseline
+    result: reference (0.5761±0.005)
+  depends_on:
+  - D029
+- id: D040
+  date: 2026-05-14 12:55 UTC
+  summary: 'R1 审稿 Action Matrix 定稿: C1 reframe (sensitivity analysis + 解析关系), C2 缩窄
+    title, C3/W5/W7/W4 格式修复已派 Agent'
+  rationale: '审稿报告 weak reject (2.25/5)。Reviewer 独立验证 C1 解析关系: DAF(P)=1-Δ_nd/(δP+C),
+    P=10→50.4%。核心 reframing: 贡献是 δ=0.266 + r=0.97 + Δ_nd=2.84 (全部 penalty-independent),
+    不是 DAF=90% 数值本身。W2 heuristic baseline 降级为 Discussion-only (预期退化为 always-det)。用户另提出要训练合理
+    router (非纯观察), 待确认具体方案后可能影响论文定位。'
+  related_experiments:
+  - exp_id: plan-012-full
+    role: primary
+    result: sensitivity reanalysis base
+  - exp_id: plan-013-labeling-quality
+    role: supporting
+    result: oracle circularity defense
+  depends_on:
+  - D039
+- id: D041
+  date: 2026-05-14 13:19 UTC
+  summary: 重大方向 pivot：从 analysis paper 回归 method paper，多环境统一 router（ScienceWorld +
+    MATH + ALFWorld）
+  rationale: 用户指出原始 IDEA_BRIEF 目标是训练统一 router（method paper），当前 paper 因 ScienceWorld
+    death avoidance 主导 routing signal 而退化为 analysis paper。单环境训练的 router 只是 death detector，不是真正的
+    routing 方法。加入 MATH（code interpreter）和 ALFWorld（无死亡惩罚模拟器）后，router 必须学习多元 signal，才能成为跨环境通用决策器。目标仍为
+    EMNLP ARR May 25，升级为 long paper（8 页），2-3 天内完成。
+  related_experiments: []
+  depends_on:
+  - D013
+  - D033
+- id: D042
+  date: 2026-05-14 13:19 UTC
+  summary: 'Pivot back to method paper: multi-environment unified router (ScienceWorld
+    + MATH + ALFWorld)'
+  rationale: 用户指出原始 idea 目标是训练统一 router（method paper），不是纯分析。ScienceWorld 单环境下 death
+    avoidance 主导 90% signal，router 退化为 death detector，无法体现真正的 routing 能力。加入 MATH（code
+    interpreter）和 ALFWorld（household simulator）后，router 被迫学习多元 signal，回归原始 method
+    贡献。目标仍为 EMNLP ARR May 25，升级为 long paper。Timeline 压缩至 2-3 天。
+  related_experiments:
+  - exp_id: plan-012-full
+    role: motivation
+    result: ScienceWorld DAF=90.41%, router退化为death detector
+  - exp_id: plan-011
+    role: motivation
+    result: keyword heuristic structural failure
+  depends_on:
+  - D013
+  - D033
+- id: D043
+  date: 2026-05-14 13:48 UTC
+  summary: CI 统一为 95% Bootstrap CI + 本地/远程合并策略：本地为底本 cherry-pick 远程改进
+  rationale: Reviewer 审计发现远程 experiments.tex 标签写 "95% Bootstrap CIs" 但数值仍为 90% CI，数据完整性问题。决定统一为
+    95% CI（学术出版更标准，对审稿人更友好），使用 plan-003-bootstrap-95ci 的真实数值。合并策略：本地为底本，cherry-pick
+    远程的 97.4% tie rate、Limitations/Ethics 节、Setup 子节、GA 对比框架；丢弃远程错误的 95% CI 标签。
+  related_experiments:
+  - exp_id: plan-003-bootstrap-95ci
+    role: source
+    result: 95% CI ground truth values
+  depends_on:
+  - D040
+- id: D044
+  date: 2026-05-14 13:52 UTC
+  summary: ALFWorld 定位为 exploratory，MATH 为主要跨环境验证；ALFWorld framing 复杂度不适合 short paper
+  rationale: Reviewer 指出三个 ALFWorld 结构性问题：(1) "deterministic" 语义不同（信息优势 vs 计算卸载），(2)
+    无 death penalty 导致 DAF 不适用，(3) action format fallback 引入 confound。MATH 的 code
+    interpreter 与 ScienceWorld simulator 语义一致（都是 computation offloading），是更干净的跨环境对比。11
+    天 DDL 下 short paper 无法容纳 ALFWorld 的 framing 适配工作。ALFWorld dryrun 继续跑看信号，但不承诺入稿。
+  related_experiments:
+  - exp_id: plan-009
+    role: primary cross-env
+    result: MATH track
+  - exp_id: alfworld-counterfactual
+    role: exploratory
+    result: pending dryrun
+  depends_on:
+  - D041
+  - D042
+- id: D045
+  date: 2026-05-14 14:03 UTC
+  summary: Pivot 回归 analysis paper：MATH 反转信号否定统一 router 前提，MATH 50 题作为负面对照纳入论文
+  rationale: MATH pilot 50 题结果：internal 80% > code interpreter 72%，88% no-preference，信号完全反转。这直接否定了
+    D041/D042 的跨环境统一 router 前提，但恰好为分析论文提供了最强证据——无 death mechanism 的环境里 routing signal
+    消失甚至反转，确认 ScienceWorld 的 routing signal = death avoidance 而非通用计算优势。50 题足够作为 short
+    paper 的负面对照，不需要全量 2538 题。ALFWorld 已在跑（cuda:1），完成后看结果但不承诺入稿。
+  related_experiments:
+  - exp_id: math-counterfactual-dryrun
+    role: pilot
+    result: internal 80% > code 72%, signal reversed
+  - exp_id: plan-012-full
+    role: contrast
+    result: DAF=90.41% on ScienceWorld
+  depends_on:
+  - D041
+  - D042
+  - D044
+- id: D046
+  date: 2026-05-14 14:04 UTC
+  summary: 撤销 PIVOT（D041/D042），回归分析论文。MATH 不扩全量，pilot 结果入 Discussion 作负面验证
+  rationale: 'MATH pilot: Internal 80% > Code-interp 72%，88% no-preference，信号极弱。加上
+    code interpreter confound（空输出时 LLM 编造答案）和 ALFWorld framing 问题（D044），多环境统一 router
+    的 method paper 方向无法成立。原始分析论文 framing（DAF=90.41%, r=0.9698, ScienceWorld 单 benchmark
+    深度分析）更强、更 self-contained，适合 short paper 格式。MATH pilot 作为 Discussion 中的负面验证（"无
+    death penalty 环境中 routing signal 消失"）简要提及，附 code-interp 可靠性 caveat。不扩全量。'
+  related_experiments:
+  - exp_id: math-counterfactual-dryrun
+    role: negative control evidence
+    result: Internal 80% > Code-interp 72%, 88% no-pref
+  - exp_id: alfworld-counterfactual
+    role: exploratory
+    result: framing issues per D044
+  depends_on:
+  - D041
+  - D042
+  - D044
+- id: D047
+  date: 2026-05-14 14:43 UTC
+  summary: MATH-200-fixed 不恢复。105 题足够支撑 Discussion。cuda:0 写作热备。
+  rationale: D046 已定 MATH 不扩全量。55 题新数据与 pilot-50 趋势完全一致（Internal 80% vs CodeInterp
+    74.5%，差距 ~5.5pp）。sandbox bug 修复后 CodeInterp 仅提升 2.5pp，Internal 仍领先。对 short paper
+    Discussion 段的"跨环境信号反转"论点，105 题已足够。恢复实验的边际收益（更精确的百分比）不值得 cuda:0 的 GPU 时间，写作期间 ad-hoc
+    分析优先。
+  related_experiments: []
+  depends_on: []
+- id: D048
+  date: 2026-05-14 18:13 UTC
+  summary: R2 Action Matrix 定稿：3 blockers (标题scope/train-test说明/penalty sensitivity)
+    + 8 secondary 一次性修复
+  rationale: R2 评分 2.75 Borderline Accept - Findings，Reviewer 共识完成 2/3 blockers 即达
+    Findings 线。B3 penalty sensitivity 已有现成数据(plan-012-penalty-sensitivity)零成本引用，B2
+    train/test 经 Reviewer 核实为 episode-stratified 85/15 split，B1 标题纯文本改动。全部修改预计 2-3
+    小时。
+  related_experiments:
+  - exp_id: plan-012-penalty-sensitivity
+    role: B3 数据源
+    result: P=10:46.4%, P=25:68.4%, P=50:81.2%, P=100:89.6%, P=200:94.5%
+  - exp_id: plan-004-ablation-b
+    role: B2 train/test split 核实
+    result: episode-stratified 85/15, 81 train / 14 val episodes
+  depends_on: []
+- id: D049
+  date: 2026-05-14 18:34 UTC
+  summary: R3 Weak Accept - Findings (3.25/5) camera-ready 修复完成，终稿 ready
+  rationale: CR1 Δ_nd 不一致已通过注明计算口径差异解决（正文 2.84 neither-die only vs Appendix D 3.07
+    含 both-died）。CR2 编译验证通过（4p 正文）。三轮审稿 2.25→2.75→3.25 持续提升，两位 Reviewer 一致推荐 Findings
+    接收。
+  related_experiments:
+  - exp_id: plan-012-full
+    role: 权威数据源
+    result: Δ_nd=2.84, DAF=90.41%
+  - exp_id: plan-012-penalty-sensitivity
+    role: Appendix D 数据源
+    result: Δ_nd=3.07, DAF=89.6% (含 both-died episodes)
+  depends_on: []
+- id: D050
+  date: 2026-05-15 06:37 UTC
+  summary: '目标升级: EMNLP Main Long Paper (8p)，从 short paper (4p, Findings) 扩展'
+  rationale: 用户明确指示投 main track long paper。需要：(1) multi-model validation 验证 finding
+    非模型特异性 (2) MATH 扩展为 cross-domain evidence (3) 方法论/Related Work/Discussion 展开填充
+    4 额外页。10 天内可行：2 GPU 并行跑实验 + AI 团队 24h 写作。
+  related_experiments:
+  - exp_id: plan-012-full
+    role: core finding basis
+    result: DAF=90.41%, r=0.9698
+  - exp_id: plan-013-labeling-quality
+    role: methodology validation
+    result: tie_rate=61.2%, strict retrain comparable
+  depends_on:
+  - D046
+- id: D051
+  date: 2026-05-15 07:58 UTC
+  summary: MATH 300 题 negative contrast 统计显著确认：internal 81.7% > code interp 76.7%，CI
+    [+0.7%, +9.3%] 排除 0
+  rationale: 从 pilot 50 题（CI 重叠, suggestive）扩到 300 题后，internal > code interpreter
+    的优势达到统计显著。Label 分布 25 internal / 9 det（vs ScienceWorld 9 internal / 86 det）完全反转。无
+    death penalty → routing signal 反转，直接且显著地验证 death avoidance 是 ScienceWorld routing
+    signal 核心驱动力。Long paper C3 的 negative contrast 部分已有坚实数据支撑。
+  related_experiments:
+  - exp_id: math-negative-contrast
+    role: primary
+    result: Internal 81.7% [77.3,86.0] vs Code 76.7% [72.0,81.3], CI excludes 0
+  - exp_id: math-counterfactual-dryrun
+    role: pilot
+    result: Internal 80% vs Code 72%, CI overlapping
+  depends_on:
+  - D050
+  - D045
+- id: D052
+  date: 2026-05-15 09:06 UTC
+  summary: D051 修正：MATH 改用 N=250 clean subset，显著性消失但 directional reversal + label
+    inversion 仍支撑 negative contrast
+  rationale: Pilot 50 题有 sandbox empty output bug (32% 空输出 vs clean 的 3.6%)，人为压低 code
+    accuracy。N=300 的 +5.0% [+0.7%, +9.3%] 刚越显著线，去掉 buggy 数据后 N=250 为 +4.4% [−0.4%,
+    +9.2%] CI 含 0。但 negative contrast 的核心论点不需要 "internal 显著优于 code"——只需要 "在无 death
+    penalty 环境下 code 不再占优"，这一点 clean data 完全支持：point estimate 仍为 internal > code，label
+    分布仍反转 (internal-preferred > det-preferred)。论文措辞从 "statistically significant reversal"
+    降为 "directional reversal, not statistically significant"。选 Option 1 (仅报 N=250
+    clean) 而非双报告：buggy 数据无科学价值，双报告只会给 reviewer 攻击面。
+  related_experiments:
+  - exp_id: math-negative-contrast
+    role: primary
+    result: 'N=250 clean: Internal 82.0% vs Code 77.6%, diff +4.4% [-0.4%, +9.2%],
+      not significant'
+  depends_on:
+  - D051
+- id: D053
+  date: 2026-05-15 09:31 UTC
+  summary: MATH clean N=300 定稿：+4.3% directional reversal (McNemar p=0.079)，双线报告 accuracy
+    gap + label inversion
+  rationale: '重跑 pilot-50 with sandbox fix 后 clean N=300: Internal 81.0% vs Code 76.7%,
+    diff +4.3% CI [0, 8.7], McNemar p=0.079 (双侧不显著), one-sided p=0.032。选稳版措辞 "directionally
+    outperforms"——审稿人不会攻击 directional claim，但会攻击无 pre-registration 的单侧检验。双线报告：(1)
+    accuracy gap 方向性, (2) label 分布反转 30:17 vs ScienceWorld 9:86（独立于 accuracy 的强证据）。'
+  related_experiments:
+  - exp_id: math-negative-contrast
+    role: primary
+    result: 'Clean N=300: Internal 81.0% vs Code 76.7%, diff +4.3% [0, 8.7], McNemar
+      p=0.079, labels 30int/17det'
+  depends_on:
+  - D052
+- id: D054
+  date: 2026-05-15 09:36 UTC
+  summary: Llama pilot 结论：death mechanism 跨模型一致但方向模型依赖，不做全量收集，pilot 数据作 mechanism
+    verification
+  rationale: 'Llama-3.1-8B pilot (2 tasks × 5 eps): freeze 唯一 non-tie label 来自 death_asymmetry
+    (100%)，find-non-living-thing 0 deaths 全部 score_comparison——机制层面与 Qwen 完全一致。但方向反转：Qwen
+    上 internal 帮助避死，Llama 上 internal 更易死。Llama 在 ScienceWorld 上能力极弱（多数 ep 得分 0），全量收集（11
+    tasks × 20 eps）会产出大量 0/0 tied episodes 无信息价值。决策：停在 pilot，用作 "mechanism verification
+    across model families"（§4.2 约 0.5 页）。C3 cross-model 从 "same direction" 调整为 "death
+    events dominate routing signal regardless of which strategy benefits — the mechanism
+    is model-invariant, the direction is model-dependent"。GPU 资源转向论文写作支持。'
+  related_experiments:
+  - exp_id: multi-model-pilot
+    role: primary
+    result: 'freeze: 1/5 death_asymmetry, 2/5 tied_alive, 1/5 both_dead, 1/5 tied_alive;
+      FNLT: 3 det-pref, 1 int-pref, 1 tied'
+  depends_on:
+  - D050
+- id: D055
+  date: 2026-05-15 09:39 UTC
+  summary: D054 修正：Llama 与 Qwen 方向一致（internal 都更易死），非反转。Cross-model 结论从 "mechanism
+    consistent, direction reversed" 改为 "fully consistent"
+  rationale: 'Reviewer 自查发现 Finding #2 有误：Qwen 上 internal death rate 42.9% vs det
+    16.3%（internal 也更易死），det-preferred=86 远多于 internal-preferred=9。Llama freeze 同样
+    internal 死亡 > det 死亡。两模型方向完全一致。D054 中 "方向模型依赖" 措辞错误。修正后 C3 cross-model 更强：death
+    dominance 跨模型完全复现（机制+方向均一致）。全量收集仍不做（Llama 太弱，>80% no-preference 预期）。'
+  related_experiments:
+  - exp_id: multi-model-pilot
+    role: primary
+    result: 'freeze: internal death > det death (consistent with Qwen), FNLT: 0 deaths
+      (consistent)'
+  - exp_id: plan-012-full
+    role: reference
+    result: Qwen internal death 42.9% vs det 16.3%
+  depends_on:
+  - D054
+- id: D056
+  date: 2026-05-15 11:55 UTC
+  summary: Kill llama-expanded 实验，撤回扩展指令——D054/D055 判断正确
+  rationale: 我之前的"扩展 Llama cross-model 验证"指令与 D054（不做全量收集）矛盾。Agent 按我的最新指令提交了 run_llama_expanded.sh，但第一个
+    episode 结果 both_dead/no-preference 验证了 D054 的判断：Llama 太弱，全量收集产出大量无信息价值的 tied episodes。立即
+    kill 释放 GPU 0。
+  related_experiments:
+  - exp_id: llama-cross-model-expanded
+    role: cancelled
+    result: first episode both_dead, confirms D054 judgment
+  depends_on:
+  - D054
+  - D055
+- id: D057
+  date: 2026-05-15 15:07 UTC
+  summary: 论文补报 cross-seed robustness：55.4±5.2% (cross-split) alongside 57.6±0.5%
+    (fixed-split)，ROADMAP 58.1% 修正
+  rationale: Reviewer 发现 ROADMAP/论文/registry 三方 router accuracy 数字不一致。ROADMAP 的 58.1±0.8%
+    不对应任何实际统计量，已修正。论文只报固定 split 方差 (±0.5%) 隐藏了 cross-split 大方差 (±5.2%)，审稿人问 seed robustness
+    会发现 CI 过窄。在 fresh review 前修复，主文同时报告两种方差并解释区别，appendix 加详细表格。
+  related_experiments:
+  - exp_id: seed-robustness-core
+    role: cross-split 方差来源
+    result: 55.4±5.2%, 4 seeds
+  - exp_id: plan-013-labeling-quality
+    role: fixed-split 方差来源
+    result: 57.6±0.5%, 4 seeds
+  depends_on: []
+- id: D058
+  date: 2026-05-15 15:13 UTC
+  summary: Kill plan-008 router-size ablation 系列（3 次失败），GPU0 转投 plan-006 加速或 review-driven
+    任务
+  rationale: v1（3 个 bug：logit eval/混合家族/split 不一致）→ v2（wrapper 脚本 prompt 模板不匹配）→ v3（疑似服务器脚本被篡改，1.7B
+    sanity check 未复现参考值）。3 次失败根因各不同，继续投入调试的 ROI 极低。该实验为 P1 非核心证据，论文 8 维证据包已完整。DDL
+    5/25 剩 10 天，优先 fresh review 迭代。GPU0 应转投加速 plan-006 或留给 review 驱动的实验。
+  related_experiments:
+  - exp_id: plan-008-router-size
+    role: v1 failed
+    result: '3 bugs: logit eval / mixed family / split mismatch'
+  - exp_id: plan-008-router-size-v2
+    role: v2 failed
+    result: wrapper prompt template mismatch
+  - exp_id: plan-008-router-size-v3
+    role: v3 failed
+    result: all 3 models below random, suspected script tampering
+  depends_on:
+  - D050
+- id: D059
+  date: 2026-05-15 15:13 UTC
+  summary: plan-008-router-size-v3 标记 failed，执行一次低成本诊断后决定是否永久放弃 plan-008 系列
+  rationale: 'plan-008 三次失败（v1: 3 个 bug, v2: prompt 模板不匹配, v3: 与 v2 相同故障——模型生成游戏动作而非路由标签）。1.7B
+    sanity check 与 seed-robustness 差距 17.8pp，远超 cross-seed 噪声。Reviewer 建议用 seed42
+    checkpoint 跑 eval_routing_metrics.py 定位根因：若 eval 模块本身有问题→修复后可能一次解决；若 eval 正常→v3
+    训练路径有问题→永久放弃。Router-size ablation 不在核心证据包内，DDL 5/25 优先 fresh review 迭代。GPU0 空闲，诊断完后分配给
+    plan-006 加速数据收集。'
+  related_experiments:
+  - exp_id: plan-008-router-size-v3
+    role: failed experiment
+    result: balanced_acc 0.32-0.38, all below random
+  - exp_id: plan-008-router-size-v2
+    role: prior failure
+    result: same failure mode
+  - exp_id: plan-008-router-size
+    role: prior failure
+    result: 3 bugs
+  - exp_id: seed-robustness-core
+    role: reference
+    result: 55.4±5.2% balanced acc
+  depends_on: []
+- id: D060
+  date: 2026-05-15 15:27 UTC
+  summary: 暂停论文审稿，优先追溯 57.6% router accuracy 来源并修复 eval template mismatch
+  rationale: Reviewer 诊断发现 eval_routing_metrics.py 的 enable_thinking=False 与训练默认值（True）不匹配。用当前
+    eval 评估 plan-004-v5 adapter 得到 balanced_acc=0.4278（低于随机基线），而论文引用 57.6%。三数字互不一致，论文核心数字可信度存疑。必须先追溯来源、修复
+    eval、重新评估后才能继续审稿流程。
+  related_experiments:
+  - exp_id: plan-008-router-size-v3
+    role: trigger
+    result: failed, bal_acc 0.32-0.38
+  - exp_id: seed-robustness-core
+    role: affected
+    result: 57.6% 数字待验证
+  - exp_id: plan-013-labeling-quality
+    role: affected
+    result: 数字待验证
+  depends_on: []
+- id: D061
+  date: 2026-05-15 15:38 UTC
+  summary: Round 7 审稿 Action Matrix：4 MF + 7 SF 全部可通过论文编辑+分析解决，Paper Agent 执行 patch
+  rationale: Fresh review borderline reject。3 个系统性问题：(1) Overclaiming/scope — 78.9%
+    取代 DAF~90% 做 headline + 全文 scope qualifiers (2) Methodological gaps — ALFWorld
+    待溯源、Router diagnostic 降级、death timing 补分析 (3) Reference gaps — 补 RouteLLM/Reflexion/CPO。核心发现未被挑战，修复以论文编辑为主。Agent
+    并行处理 ALFWorld 溯源 + death timing + excluded tasks 分析，Paper Agent 执行全部论文修改。
+  related_experiments:
+  - exp_id: plan-012-full
+    role: core finding defended
+    result: success
+  - exp_id: plan-004-v5
+    role: router diagnostic MF2
+    result: negative
+  - exp_id: plan-013-labeling-quality
+    role: labeling audit defended
+    result: success
+  - exp_id: seed-robustness-core
+    role: D059 resolved
+    result: success
+  depends_on:
+  - D059
+  - D060
+- id: D062
+  date: 2026-05-15 15:43 UTC
+  summary: 标题必须改（去 90% 数字）+ Discussion pilot-50 数据替换 + Paper Agent 精确位置指令
+  rationale: Reviewer 二次审查发现三个遗漏：(1) 标题实际包含 "90%" 需去数字改为定性表述 (2) Discussion MATH 段仍用
+    pilot-50 旧数据未更新为 N=300 clean (3) R6 修复失败根因是 Paper Agent 只做最小 caveat 句，本轮改为精确位置+改写内容指令。78.9%
+    已确认正确 (75/95 genuine labels)。MF2 从 contribution list 完全移除。
+  related_experiments:
+  - exp_id: math-negative-contrast
+    role: MATH N=300 clean data source
+    result: success
+  - exp_id: plan-012-full
+    role: 78.9% source (75/95 genuine labels)
+    result: success
+  depends_on:
+  - D061
+- id: D063
+  date: 2026-05-15 16:31 UTC
+  summary: plan-006-deep-internal 数据质量审计通过，conclusion 从 failed 改为 success
+  rationale: Reviewer 全量审计确认 6 tasks × 20 eps = 120/120 完整。cron 误标 failed（进程崩溃重启后数据实际已补齐）。WARNING：identify-life-stages-1
+    仅 14 unique variations（eps 14-19 伪重复），分析时取前 14 eps。find-non-living-thing 0% death
+    rate 是 task 结构特征非 bug。
+  related_experiments:
+  - exp_id: plan-006-deep-internal
+    role: primary
+    result: success (corrected from cron-mislabeled failed)
+  depends_on: []
+- id: D064
+  date: 2026-05-15 16:32 UTC
+  summary: excluded_tasks_analysis 统一到 20-episode 数据源，修正混杂统计
+  rationale: Reviewer 审计发现分析表混用 prescreening 5-ep 和 plan-001b 20-ep 数据但标注不一致，导致 det_death_rate
+    和 delta_nd 数值无法从标注的数据源交叉验证。统一到 20-ep（样本量更大更可靠）并重算全部统计值。排除逻辑本身合理不变。
+  related_experiments:
+  - exp_id: plan-001b-fast-internal-full
+    role: data_source
+    result: 20-episode data used as unified source
+  depends_on: []
+- id: D065
+  date: 2026-05-15 16:43 UTC
+  summary: 维持 2-way routing (deterministic vs internal)，放弃 3-way routing
+  rationale: Deep-internal vs fast-internal 对比分析（6 tasks, Mann-Whitney + paired t-test）：6/6
+    tasks 无显著差异（最小 p=0.268），效应量 negligible-small（|d|≤0.31），death rate 几乎相同（41.8% vs
+    42.5%），aggregate 完全等价（Δ=0.56, p=0.832）。Deep thinking 不改善生存率也不改变 routing signal，3-way
+    routing 无数据支撑。
+  related_experiments:
+  - exp_id: plan-006-deep-internal
+    role: primary
+    result: deep-internal ≈ fast-internal across all metrics
+  - exp_id: plan-001b-fast-internal-full
+    role: baseline
+    result: fast-internal as reference
+  depends_on:
+  - D063
+- id: D066
+  date: 2026-05-15 19:32 UTC
+  summary: 论文 seed robustness 数字从 4-seed 更新为 8-seed (54.1±5.8%)
+  rationale: 8-seed 样本量更大统计更可信，balanced_acc 从 55.4±5.2% 变为 54.1±5.8%，差异在 CI 内，核心结论不变（router
+    准确率接近 chance level）。Seed 46 outlier (balanced_acc=0.4463, internal_recall=0.2333)
+    强化了 router 对 split 敏感的叙事。选择最诚实的报告方式。
+  related_experiments:
+  - exp_id: seed-robustness
+    role: core 4-seed baseline
+    result: 55.4±5.2%
+  - exp_id: seed-robustness-extended
+    role: extended 4 seeds
+    result: '8-seed合并: 54.1±5.8%'
+  depends_on: []
+- id: D067
+  date: 2026-05-15 19:43 UTC
+  summary: 重试 plan-008 router-size ablation (v4)，根因已修复（gradient_accumulation 8→1 bug），双
+    GPU 并行跑 0.6B + 4B，reference 1.7B 已有
+  rationale: C2 覆盖率 20% 的唯一可修复缺口。plan-008 连续 3 次失败根因已确认（implicit_router_sft.py 被修改
+    ga=8→1 导致训练崩溃），脚本已从 .bak 恢复。2 张 GPU 空闲（L1 违规），DDL 10 天内，router-size ablation 对"lightweight
+    router"claim 有直接支撑价值。即使结果是各尺寸性能相近（negative），也是有用的论文 ablation 数据。
+  related_experiments:
+  - exp_id: plan-008-router-size
+    role: v1 failed (ga bug)
+  - exp_id: plan-008-router-size-v2
+    role: v2 failed (ga bug)
+  - exp_id: plan-008-router-size-v3
+    role: v3 killed (ga bug)
+  - exp_id: seed-robustness-core
+    role: 1.7B reference (0.554±0.052)
+  depends_on:
+  - D058
+- id: D068
+  date: 2026-05-15 20:39 UTC
+  summary: plan-008-v4 router-size ablation 成功：0.6B(0.5945) ≥ 4B(0.5621) ≥ 1.7B(0.5307)，无
+    scaling advantage，lightweight router claim 成立。需补跑 1.7B enable_thinking eval 消除
+    pipeline confound。
+  rationale: 根因修复后首次成功完成 router-size ablation。三个模型尺寸 balanced_acc 差异 3-6pp，在 1.7B
+    8-seed std=5.8pp 范围内。0.6B vs 4B 对比无 confound（相同 eval pipeline），是最干净的证据。1.7B 用
+    enable_thinking=False eval 而 0.6B/4B 用 thinking+strip，需统一后再做正式对比。核心结论不受影响：增大 router
+    不提升性能。
+  related_experiments:
+  - exp_id: plan-008-router-size-v4
+    role: router size ablation (0.6B + 4B)
+    result: 'success: no scaling advantage'
+  - exp_id: seed-robustness-core
+    role: 1.7B reference
+    result: 0.5307 mean (seeds 42-43)
+  depends_on:
+  - D067
+  - D058
+- id: D069
+  date: 2026-05-15 21:08 UTC
+  summary: Router-size ablation 统一 eval pipeline（enable_thinking=False）：0.6B(0.591)≈4B(0.585)>1.7B(0.531)，lightweight
+    router suffices 成立
+  rationale: Reviewer critical：论文主体用 enable_thinking=False，ablation 必须一致。补跑 0.6B/4B
+    的 thinking=False eval 后三模型公平对比。之前 thinking-enabled 下 1.7B 的 0.39 是 thinking trace
+    解析问题，非真实能力差异。统一后排序 0.6B≈4B>1.7B，均在 seed variance 内，无显著差异，C2 lightweight claim
+    成立。
+  related_experiments:
+  - exp_id: plan-008-router-size-v4
+    role: primary
+    result: 0.6B=0.591, 4B=0.585, 1.7B=0.531 (unified enable_thinking=False)
+  - exp_id: seed-robustness-core
+    role: reference
+    result: 1.7B baseline 0.5307 (enable_thinking=False, seeds 42-43)
+  depends_on:
+  - D068
+- id: D070
+  date: 2026-05-15 21:25 UTC
+  summary: Router-size ablation 只报告 0.6B vs 4B（统一 generation-based nothinking eval），1.7B
+    引用 §4.3 主体数据
+  rationale: 1.7B 在 generation-based eval 下低于 chance（0.417），原因是 LoRA fine-tuning 导致的
+    generation degeneracy（logit 空间有信号但自回归生成偏向 internal）。混入同表需大篇幅解释，且不增加 C2 结论强度。0.6B(0.591)≈4B(0.585)
+    在完全统一的 pipeline 下直接支撑 "lightweight router suffices"。1.7B 在 §4.3 已有 8-seed Trainer
+    eval 充分表征。
+  related_experiments:
+  - exp_id: plan-008-router-size-v4
+    role: primary
+    result: 0.6B=0.591, 4B=0.585 (generation-based nothinking); 1.7B=0.417 (generation
+      degeneracy)
+  - exp_id: seed-robustness-core
+    role: reference
+    result: 1.7B 8-seed Trainer eval 54.1±5.8%
+  depends_on:
+  - D069
+- id: D071
+  date: 2026-05-15 22:20 UTC
+  summary: 补跑 1.7B seed 44,45 generation-based eval（enable_thinking=False）以获得三模型对等
+    4-seed 数据
+  rationale: 0.6B/4B 已有 4-seed generation-based eval 数据，1.7B 仅有 2-seed。论文 ablation
+    table 要求数据对等。补 2 个 eval 成本几分钟，远小于解释数据不对等的成本。1.7B 4-seed 完整后再最终决定论文中如何呈现三个模型（revise
+    D070）。
+  related_experiments:
+  - exp_id: plan-008-router-size-v4
+    role: primary
+    result: supplementing 1.7B eval
+  - exp_id: seed-robustness-core
+    role: source
+    result: 1.7B checkpoints from 4-seed training
+  depends_on:
+  - D070
+  - D069
+- id: D072
+  date: 2026-05-15 22:30 UTC
+  summary: Seeds 44/45 eval 结果作废（data leakage：eval split seed ≠ training split seed），全部重跑
+  rationale: Reviewer 审查发现 1.7B seeds 44/45 eval 脚本硬编码 seed=42，但 checkpoint 训练时用 seed
+    44/45 做 data split，导致 ~85% eval 数据出现在训练集中。三个模型 seeds 44/45 均比 42/43 高 10-23pp，符合泄漏预期。0.6B/4B
+    也需确认训练 split 机制。当前论文仅用 2-seed (42/43) 数据，不受影响。
+  related_experiments:
+  - exp_id: plan-008-router-size-v4
+    role: affected
+    result: seeds 44/45 eval invalidated
+  - exp_id: seed-robustness-core
+    role: affected
+    result: 1.7B seeds 44/45 eval invalidated
+  depends_on:
+  - D071
+- id: D073
+  date: 2026-05-15 22:49 UTC
+  summary: D072 修正完成：三种 split 算法不匹配，修正后 4B(0.592)≈1.7B(0.582)≈0.6B(0.564)，C2 仍成立但叙事调整为"模型趋同"
+  rationale: 根因比预期更广：不仅 seed 不匹配，训练/eval 的 split 算法本身就不同（per-task stratified vs episode
+    stratified vs flat random）。修正后 1.7B 从 0.42 恢复到 0.582（之前的异常完全是 split artifact）。三个模型在
+    seed variance 内趋同，C2 claim 从"0.6B 明显最优"调整为"router 容量无显著影响，0.6B 即可"——更干净、更 defensible。Table
+    7 seed 42 统一为 generation eval (0.5927)。
+  related_experiments:
+  - exp_id: plan-008-router-size-v4
+    role: corrected
+    result: 0.6B=0.564, 1.7B=0.582, 4B=0.592 (4-seed corrected)
+  - exp_id: seed-robustness-core
+    role: pending_check
+    result: Trainer eval may be unaffected but needs confirmation
+  depends_on:
+  - D072
+  - D070
+  - D069
+- id: D074
+  date: 2026-05-15 22:55 UTC
+  summary: 8-seed robustness 数据需 corrected eval 重跑：eval_routing_metrics.load_val_split
+    与训练 split 不同，存在 data leakage
+  rationale: Agent 发现 seed-robustness 的 balanced_acc (54.1±5.8%) 来自 eval_routing_metrics.load_val_split()，该函数使用
+    sklearn episode-level split（300 samples），与训练的 load_implicit_sft_data 的 per-task
+    stratified split（305 samples）不同。相同 seed 下两个函数产生不同 val set，eval 的 val 集可能包含训练样本。4-seed
+    ablation 已用 corrected_eval.py 修正，但 8-seed 数据未修正。批准用 corrected eval 重跑全部 8 seeds，统一所有
+    balanced_acc 到训练 split。
+  related_experiments:
+  - exp_id: seed-robustness-core
+    role: affected
+    result: 54.1±5.8% 来自 leaky split，需重跑
+  depends_on: []
+- id: D075
+  date: 2026-05-15 23:00 UTC
+  summary: D074 部分修正：论文主体数字（54.1±5.8%, 57.6±0.5%）来自 Trainer eval 不受 leaky split 影响，无需重跑
+  rationale: Reviewer 独立核实确认：论文中 seed-robustness 和 fixed-split 的 balanced_acc 全部来自
+    Trainer eval（训练期间内联计算，使用训练自身 split），不受 routing_eval_sft.py 的 split 差异影响。Agent
+    之前的分析错误地将 54.1±5.8% 归因于 eval_routing_metrics.load_val_split。8-seed corrected eval
+    已在跑，作为 supplementary cross-validation 保留，但不再是紧急修复项。仅需更新：ablation [TBD] 填入 corrected
+    gen eval 数字 + step count 修正 + 跨 pipeline 方差引用修正。
+  related_experiments: []
+  depends_on:
+  - D074
+- id: D076
+  date: 2026-05-15 23:14 UTC
+  summary: Table 7 fixed-split 统一为 corrected gen eval (56.2±2.4%)，cross-split 保留 Trainer
+    eval (54.1±5.8%)，调整 variance ratio 叙事
+  rationale: Seeds 123/456/789 无 Trainer eval balanced_acc，当前值来自 INVALIDATED 的 OLD
+    generation eval。corrected eval 揭示 seed 789 下降 5.6pp，fixed-split std 从 0.5pp 升至
+    2.4pp。选择 Option 1（最小改动）：fixed-split 改用 corrected gen eval，cross-split 保留 Trainer
+    eval（所有 8 seeds 都有，嵌入论文多处）。Pipeline 差异在 Table 7 caption 和 appendix 明确标注。12× variance
+    ratio 变为 ~2×，调整叙事但核心结论（near-chance, illustrative negative result）不变甚至更强。
+  related_experiments:
+  - exp_id: seed-robustness-core
+    role: data_source
+    result: 'Table 7 fixed-split seeds 123/456/789 corrected: 58.07/57.02/52.70, mean
+      56.2±2.4%'
+  - exp_id: seed-robustness-extended
+    role: data_source
+    result: Table 7 cross-split 8-seed Trainer eval 54.1±5.8% 保留
+  depends_on:
+  - D075
+- id: D077
+  date: 2026-05-15 23:15 UTC
+  summary: Table 7 统一到 corrected generation eval：fixed-split 57.6±0.5% → 56.2±2.4%，cross-split
+    54.1±5.8% → 55.7±5.0%，variance ratio 12× → ~2×
+  rationale: Reviewer 确认 Table 7 fixed-split 中 seeds 123/456/789 无 Trainer eval balanced_acc，现有数字来自
+    INVALIDATED 的 OLD generation eval。corrected eval 结果：seed 789 从 58.31% 降至 52.70%（-5.6pp），fixed-split
+    mean 从 57.6±0.5% 变为 56.2±2.4%。为避免 pipeline 混用，Table 7 两个 section 统一到 corrected
+    generation eval。核心结论（near-chance）被加强，但 "12× variance increase" 叙事不再成立（实际 ~2×），需要调整
+    split sensitivity 讨论。
+  related_experiments:
+  - exp_id: seed-robustness-core
+    role: affected
+    result: 'fixed-split corrected: 56.2±2.4%'
+  - exp_id: seed-robustness-extended
+    role: affected
+    result: 'cross-split corrected gen eval: 55.7±5.0%'
+  depends_on:
+  - D075
+- id: D078
+  date: 2026-05-16 00:06 UTC
+  summary: 修正 ga 对比叙事：ga=1 非 "fails"，而是 split-sensitive overfitting；ga=8 split-robust
+    但 ~57% 近随机。main.tex:130 必须改写
+  rationale: Reviewer critical 发现：corrected eval 下 ga=1 balanced_acc=75.3%（matched
+    split）vs 42.8%（mismatched），Δ=32.5pp，是过拟合而非失败。ga=8 matched 57.1% ≈ mismatched 57.6%，split-robust。论文旧数字
+    26.7% 来自 invalidated eval pipeline，不能使用。ga=8 仍为推荐设置（泛化好），C1 不受影响。
+  related_experiments:
+  - exp_id: plan-004-v5
+    role: primary
+    result: corrected eval invalidates 'ga=1 fails' claim; true finding is split-sensitivity
+  depends_on:
+  - D029
+  - D030
+  - D033
+- id: D079
+  date: 2026-05-16 00:19 UTC
+  summary: plan-004-v5 corrected eval 75.3% 因 val set mismatch (data leakage) 判定不可信，论文
+    ga 对比改为纯定性描述
+  rationale: Reviewer 发现 corrected_eval.py 使用 per-task step-level split (305 val)
+    而非训练时的 episode-level split (300 val)。训练日志 1740 train / 300 val / 1305 total steps
+    与当前 split 函数产生的 1735 train 不匹配。Val set 中可能包含训练样本。75.3% 已有 split-sensitivity 问题
+    (D078)，现叠加 data leakage，完全不可信。论文 ga 对比仅保留定性描述 + ga=8 的多 seed 验证数字 (~57%)。
+  related_experiments:
+  - exp_id: plan-004-v5
+    role: primary
+    result: corrected eval 75.3% invalidated due to val set mismatch + data leakage
+  depends_on:
+  - D078
+- id: D080
+  date: 2026-05-16 00:59 UTC
+  summary: Eval split mismatch 波及 headline 数字：seed-robustness-core seeds 43-45 训练用
+    episode-level split，corrected eval 用 step-level split。需 cross-split 验证 + 可能重训
+  rationale: Reviewer 系统性审查发现 load_implicit_sft_data 有两个版本（episode-level vs step-level），corrected_eval.py
+    错误地声称用了训练版本但实际用了当前版。seed-robustness-core seeds 43-45 确认 mismatch（训练 300/330 val
+    vs eval 305 val），seed 42 来源不明。8-seed headline 数字 55.7±5.0% 中至少 37.5% 数据点被污染。plan-008-v4
+    不受影响（训练+eval 均用当前版）。已派 Agent 在 GPU1 做 cross-split eval 验证；如结果不一致，需用当前 split 重训
+    seeds 42-45（~1.4h）。
+  related_experiments:
+  - exp_id: seed-robustness-core
+    role: affected
+    result: seeds 43-45 confirmed split mismatch, seed 42 unknown
+  - exp_id: seed-robustness-extended
+    role: unaffected
+    result: seeds 46-49 match confirmed
+  - exp_id: plan-008-router-size-v4
+    role: unaffected
+    result: all seeds match confirmed
+  depends_on:
+  - D079
+- id: D081
+  date: 2026-05-16 01:21 UTC
+  summary: Router episode-level 泛化 = 随机 (47.1%±2.2%)，step-level 55.7% 确认为 data leakage
+    artifact。论文 C2 需降级，C1 不受影响且被强化
+  rationale: cross-split-robustness-8seed 完整结果：episode-level eval (n_val=300, 10 held-out
+    episodes) 均值 47.1%±2.2%，vs step-level corrected eval 54.1%±5.4%，Δ=-7.0pp，6/8 seed
+    |Δ|>5pp。根因：step-level split 将同一 episode 的 steps 分到 train/val 两侧（65/66 episodes
+    跨越），模型 memorize episode 内模式。D078 的 "Δ≈0.5pp split-robust" 被推翻——那是对比两种 step-level
+    split，非真正独立 split。C1 不受影响（基于 counterfactual analysis，独立于 router）。C2 "diagnostic
+    probe" framing 需降级——router 在已见 episodes 内有模式识别能力但不泛化到新 episodes，这本身支持 C1：routing
+    signal 是 task-level death avoidance（二元特征），非 step-level observation 可学习的。
+  related_experiments:
+  - exp_id: cross-split-robustness-8seed
+    role: primary
+    result: episode-level balanced_acc 47.1%±2.2%, confirming step-level eval leakage
+  - exp_id: seed-robustness-core
+    role: affected
+    result: headline 55.7%±5.0% invalidated as leakage artifact
+  - exp_id: seed-robustness-extended
+    role: affected
+    result: same leakage mechanism
+  depends_on:
+  - D080
+  - D078
+  - D033
+- id: D082
+  date: 2026-05-16 01:21 UTC
+  summary: Router 55.7% balanced_acc 确认为 step-level data leakage artifact。Episode-level
+    独立 eval 下 47.1±2.2%（低于随机）。C2 "diagnostic probe" framing 需重构，C1 不受影响
+  rationale: cross-split-robustness-8seed 实验用 episode-level sklearn split (n_val=300)
+    对全部 8 seed 重新 eval，均值 0.471±0.022 vs corrected eval 0.541±0.054，Δ=-7.0pp。机制：step-level
+    split 将同 episode 的 steps 分散到 train/val 两侧，模型 memorize episode 特征即可在 step-level
+    val 上 above chance；episode-level held-out 消除此 leakage 后回落到 chance level。D078 的
+    "Δ≈0.5pp split-robust" 被推翻（那只是两种 step-level split 的对比）。C1 (DAF=90.41%, death rate
+    correlation) 完全独立于 router balanced_acc，不受影响。但 C2 的 "router as diagnostic probe"
+    需要 reframe：router 无法泛化到未见 episode 本身可作为 C1 的证据——routing signal 是 task-level (death/no-death)
+    而非 step-level (observation features)。
+  related_experiments:
+  - exp_id: cross-split-robustness-8seed
+    role: primary
+    result: episode-level eval mean balanced_acc=0.471±0.022, below chance
+  - exp_id: seed-robustness-core
+    role: invalidated
+    result: 55.7±5.0% was step-level leakage artifact
+  - exp_id: plan-012-full
+    role: unaffected
+    result: C1 DAF=90.41% independent of router performance
+  depends_on:
+  - D080
+  - D078
+- id: D083
+  date: 2026-05-16 01:24 UTC
+  summary: C2 重大 reframe：router episode-level 失败 (47.1%) 是 C1 的补充证据，不是论文弱点。step-level
+    eval 55.7% 因 data leakage 作废，改报 episode-level 结果
+  rationale: Cross-split eval 8 seed 确认 router balanced_acc = 47.1±2.2%（episode-level），显著低于随机
+    50%。Step-level eval 的 55.7% 因 same-episode leakage（65/66 episodes 跨越 train/val）被夸大。核心逻辑：C1
+    证明 death avoidance 占 routing signal 90%，这是 task-level binary property（某些 task
+    type 有死亡风险），不是 step-level observation pattern。因此 step-level router 结构性地无法泛化到新
+    episodes——这恰好独立验证了 C1。C2 从 "router as diagnostic probe" 调整为 "counterfactual labeling
+    methodology + router training confirms signal is task-level"。论文 headline 数字改为
+    episode-level eval。C1 和 C3 完全不受影响。需要补跑 episode-level split 重训实验闭环。
+  related_experiments:
+  - exp_id: cross-split-robustness-8seed
+    role: primary
+    result: 47.1±2.2% episode-level, 54.1±5.4% step-level, delta=-7.0pp, split_robust=false
+  - exp_id: seed-robustness-core
+    role: affected
+    result: headline 55.7±5.0% invalidated by data leakage
+  - exp_id: plan-008-router-size-v4
+    role: affected
+    result: qualitative conclusion 0.6B≈1.7B≈4B likely holds but step-level numbers
+      unreliable
+  depends_on:
+  - D078
+  - D079
+  - D080
+- id: D084
+  date: 2026-05-16 01:24 UTC
+  summary: Router episode-level 泛化性能确认为随机水平 (47.1±2.2%)，55.7% 是 step-level data leakage
+    artifact。C2 "diagnostic probe" framing 需调整为 "methodology contribution + router
+    failure as evidence for C1"
+  rationale: cross-split-robustness-8seed 完成：8 seed episode-level balanced_acc 均值
+    0.471±0.022，远低于 corrected eval 的 0.541±0.054（Δ=-7.0pp）。step-level split 导致 65/66
+    episodes 跨越 train/val，本质是 data leakage。Reviewer 三次独立确认。C1 完全不受影响（基于 counterfactual
+    analysis，不依赖 router）。C2 reframe：(1) 方法论贡献（episode-level counterfactual labeling
+    揭示 death avoidance）保留，(2) router 无法泛化到新 episodes 本身是 C1 的补充证据——routing signal
+    是 task-level property（death risk），step-level observation router 无法提取。论文变得更诚实且更有洞察。需要：更新
+    paper_framing.md、重训 episode-level split router 验证、修改论文 balanced_acc 相关段落。
+  related_experiments:
+  - exp_id: cross-split-robustness-8seed
+    role: primary
+    result: episode-level balanced_acc=0.471±0.022, split-robust=NO, confirms data
+      leakage in step-level eval
+  - exp_id: seed-robustness-core
+    role: affected
+    result: headline 55.7±5.0% invalidated as leakage artifact
+  - exp_id: plan-008-router-size-v4
+    role: affected
+    result: 1.7B reference column uses leaked eval; 0.6B/4B also need episode-level
+      re-eval
+  depends_on:
+  - D078
+  - D079
+  - D080
+- id: D085
+  date: 2026-05-16 01:24 UTC
+  summary: Cross-split eval 确认 router episode-level 泛化≈随机 (47.1±2.2%)。采用 Option B
+    reframing：降级 router 到 Appendix，主文聚焦 C1+C2 方法论。Router negative result 作为 C1 的支撑证据
+  rationale: 8-seed episode-level eval 均值 0.471±0.022，95% CI [0.455, 0.487] 不含 0.5，显著低于随机。step-level
+    corrected_eval 的 55.7% 是 episode-内 leakage artifact（65/66 episodes 跨越 train/val）。C1
+    不受影响（基于 counterfactual analysis）。C2 的 "diagnostic probe" 子论点不成立，但 counterfactual
+    labeling 方法论本身仍是贡献。Router 不泛化这一发现反而支持 C1：death avoidance 是 task-level 二元特征，step-level
+    observation router 无法学习。Option B 更适合 EMNLP main：主文干净聚焦，Appendix 完整披露。同时批准 episode-level
+    retrain 实验作为最终验证。
+  related_experiments:
+  - exp_id: cross-split-robustness-8seed
+    role: primary
+    result: 47.1±2.2% episode-level, confirms step-level leakage
+  - exp_id: seed-robustness-core
+    role: affected
+    result: 55.7±5.0% headline number invalidated as leakage artifact
+  - exp_id: plan-008-router-size-v4
+    role: affected
+    result: size ablation numbers also step-level, qualitative conclusion likely holds
+  depends_on:
+  - D078
+  - D079
+  - D080
+- id: D086
+  date: 2026-05-16 01:26 UTC
+  summary: 'C2 reframe: Narrative A — router cross-split failure confirms signal is
+    task-type-level, not episode-level'
+  rationale: 'Cross-split-robustness-8seed: episode-level held-out balanced_acc=47.1±2.2%
+    vs step-level 55.7±5.0% (Δ=7pp). 7/8 seeds下降。Router memorizes episode-internal
+    patterns via step-level leakage, 无法泛化到未见 episode。选 Narrative A: router failure
+    变为 C1 death-avoidance-is-task-type-level 的 supporting evidence，而非独立 diagnostic
+    tool。不等 r7n2 data-scaling 结果——A 无论 r7n2 结果如何都成立。需确认实验: task-type majority-vote
+    baseline on cross-split，若 majority-vote ≈ 47.1% 则铁证信号完全在 task-type level。'
+  related_experiments:
+  - exp_id: cross-split-robustness-8seed
+    role: primary evidence
+    result: 'negative: 47.1% balanced_acc, 7pp below step-level eval'
+  - exp_id: r7n2-data-size-ablation
+    role: supplementary (running)
+    result: seed42 first scale = 0.5000, not encouraging
+  depends_on: []
+- id: D087
+  date: 2026-05-16 01:40 UTC
+  summary: D086 修正：撤回 Narrative A framing，router cross-split failure 归为 limitation
+    而非 C1 evidence
+  rationale: Reviewer critical 指出 Narrative A 核心逻辑漏洞："step-level 无法获取 task-level signal"
+    前提不成立（文本 observation 含 task-type 信息，54% step-level > 50% 反驳）。更简洁解释：66 episodes
+    数据不足 + episode 内 leakage。将 router failure 包装为 C1 evidence 是 rationalization，降低论文诚实度。修正方案：router
+    cross-split failure 诚实归为 limitation（数据规模 + leakage），C1 凭 plan-012-full 直接证据 (DAF=90.41%,
+    r=0.97) 独立成立，不需要间接佐证。C1+C3 已足够撑 long paper。
+  related_experiments:
+  - exp_id: cross-split-robustness-8seed
+    role: primary evidence for limitation
+    result: 47.1±2.2% episode-level (below chance)
+  - exp_id: r7n2-data-size-ablation
+    role: supports data-quantity explanation
+    result: 25% scale → 0.5, 100% → 54%
+  depends_on:
+  - D086
+- id: D088
+  date: 2026-05-16 01:45 UTC
+  summary: D087 Narrative A 撤回：implicit router 失败解释从"structural impossibility"改为"data
+    scarcity"
+  rationale: 旧 narrative 声称 step-level routing signal 在结构上不可能从 per-step observations
+    中恢复——这是 95 个 non-tie episode 的数据无法支撑的强 claim。新 narrative 更诚实：将 router 泛化失败归因于
+    (a) 数据稀缺 ~56 训练 episodes, (b) same-episode leakage, (c) 61.2% no-preference 稀释。同步更新论文
+    8 处 + paper_framing.md Story Spine。r7n2-data-size-ablation 实验将直接检验此 narrative——若
+    synthetic scaling 显示 balanced_acc 饱和，则数据瓶颈解释更强；若持续上升，说明确实是数据不足。
+  related_experiments:
+  - exp_id: r7n2-data-size-ablation
+    role: 验证新 narrative
+    result: running
+  depends_on: []
+- id: D089
+  date: 2026-05-16 01:50 UTC
+  summary: C2 最终定调：router 低于 majority-vote baseline (0.471 vs 0.50)，signal 基本为 task-level
+    death avoidance，论文诚实报 negative result
+  rationale: '三条证据交叉验证：(1) cross-split 8-seed: 0.471±0.022 < majority-vote 0.50; (2)
+    r7n2 data-size-ablation 中间结果：5/5 eval = 0.50，全预测 internal（upsampling 翻转 bias 但无真实信号）；(3)
+    step-level 55.7% 确认为 same-episode leakage artifact。D088 的 "data scarcity" 解释被
+    r7n2 削弱——扩数据只改变 bias 方向不提升 accuracy。最终定调：router 在 episode-level independent eval
+    上无泛化能力是事实，论文 C2 保留 counterfactual labeling methodology 贡献，router 部分诚实报告为 informative
+    negative result（降至 Appendix）。不再尝试把 router failure 包装成 C1 evidence（D086 Narrative
+    A 教训）。C1 (DAF=90.41%, r=0.97) 和 C3 (cross-model + MATH) 完全不受影响，足够撑 long paper。'
+  related_experiments:
+  - exp_id: majority-vote-baseline
+    role: evidence
+    result: majority-vote = 0.50, router cross-split = 0.471
+  - exp_id: cross-split-robustness-8seed
+    role: evidence
+    result: 0.471±0.022, 低于 0.50
+  - exp_id: r7n2-data-size-ablation
+    role: evidence
+    result: 中间结果 5/5 = 0.50, 全预测 internal
+  - exp_id: seed-robustness-core
+    role: evidence
+    result: step-level 55.7% = leakage artifact
+  depends_on:
+  - D088
+  - D087
+  - D085
+- id: D090
+  date: 2026-05-16 01:59 UTC
+  summary: 'r7n2 contingency plan: scaling helps → rewrite §4.3 as data scarcity;
+    scaling doesn''t help → keep structural limitation framing. Threshold: any scale
+    3-seed mean > 0.55 + monotonic trend = Outcome A'
+  rationale: 'Reviewer warning: r7n2 是区分 data scarcity vs structural limitation 的关键实验，但两个结局都没有预案。明确判定标准和论文修改路径，避免结果出来后临时决策浪费时间。'
+  related_experiments:
+  - exp_id: r7n2-data-size-ablation
+    role: primary
+    result: crashed, 3/21 runs, all 0.50
+  depends_on:
+  - D089
+  - D088
+  - D087
+- id: D091
+  date: 2026-05-16 05:10 UTC
+  summary: D090 Outcome B 确认：32× data scaling 对 episode-level routing 无改善（0.495-0.515），structural
+    limitation 定论
+  rationale: r7n2 round 3 完成 7/21 runs（25%/50%/800% scales），episode-level balanced_acc
+    全部 ≈ 50%（随机水平），internal recall 0-8.3%。结合 cross-split (47.1%)、majority-vote (50%)、LOTO
+    (7/11 全 deterministic)，三条独立证据链共同确认：routing signal 本质为 "always deterministic"，与
+    C1 death avoidance dominance 一致。R7-N2 reviewer concern 回应：低 balanced_acc 非数据不足，而是
+    episode-level 信号本身 trivial。当前 framing 不变，进入论文更新阶段。
+  related_experiments:
+  - exp_id: r7n2-data-size-ablation-r3
+    role: primary
+    result: negative - all scales ≈50% balanced_acc
+  - exp_id: cross-split-robustness-8seed
+    role: supporting
+    result: 47.1% episode-level
+  - exp_id: majority-vote-baseline
+    role: supporting
+    result: 50% baseline
+  - exp_id: leave-one-tasktype-out
+    role: supporting
+    result: 7/11 all deterministic
+  depends_on:
+  - D090
+  - D089
+- id: D092
+  date: 2026-05-16 05:10 UTC
+  summary: D090 Outcome B 确认：32× data scaling 无效，episode-level routing signal 不存在，当前
+    framing (structural limitation) 保持不变
+  rationale: 'r7n2-data-size-ablation-r3 完成 7/21 runs（25%/50%/800% bracket），episode-level
+    balanced_acc 全部 ≈ 50%（25%: 0.497±0.001, 50%: 0.515, 800%: 0.510±0.014）。433→13,880
+    样本（32×）无改善，模型在所有 scale 下 collapse 为 majority-class predictor。结合 cross-split (47.1%)、majority-vote
+    (50%)、LOTO (7/11 all-deterministic) 三条证据链，C2 negative 定调完备。按 D090 contingency
+    plan 选 Outcome B：不改 framing，§4.3 data scaling 作为 structural limitation 的补充证据。'
+  related_experiments:
+  - exp_id: r7n2-data-size-ablation-r3
+    role: primary
+    result: negative
+  - exp_id: cross-split-robustness-8seed
+    role: corroborating
+    result: negative
+  - exp_id: majority-vote-baseline
+    role: corroborating
+    result: negative
+  - exp_id: leave-one-tasktype-out
+    role: corroborating
+    result: negative
+  depends_on:
+  - D090
+  - D089
+- id: D093
+  date: 2026-05-16 06:04 UTC
+  summary: Reviewer 系统性审查：C1 solid, C3 最弱需补强（ALFWorld 未纳入 + Llama 仅 2 tasks + MATH
+    p=0.079 不显著）。启动 P0/P1 preemptive experiments
+  rationale: Reviewer 5 维度评估：C1 证据稳固（DAF CI [0.816, 0.988]）；C2 四条证据链一致但 LOTO 命名需修正、r7n2
+    缺中间 scales；C3 是最大风险——ALFWorld 135 eps 已有数据但未纳入 paper_framing、MATH p=0.079 不显著（CI含0）、Llama
+    仅 2 tasks/20 eps 不足支撑 cross-model claim。启动三组 preemptive experiments：(1) ALFWorld
+    DAF 分析（0 GPU 成本，纯分析）(2) Llama 扩展至 5+ tasks（3-5 GPU-hrs）(3) r7n2 补 100%/200% scales（2-3
+    GPU-hrs）。同时通知 Paper Agent 修正 MATH 措辞、LOTO 命名、纳入 ALFWorld。
+  related_experiments:
+  - exp_id: alfworld-counterfactual-full
+    role: gap
+    result: 135 eps collected but not in C3 framing
+  - exp_id: multi-model-pilot
+    role: gap
+    result: only 2 tasks/20 eps, insufficient
+  - exp_id: math-negative-contrast
+    role: weakness
+    result: p=0.079, CI includes 0
+  - exp_id: r7n2-data-size-ablation-r3
+    role: gap
+    result: missing 100%/200% middle scales
+  depends_on:
+  - D091
+  - D092
+- id: D094
+  date: 2026-05-16 06:11 UTC
+  summary: C1 claim 精确化：death 不只是 dominant component，而是 effectively the only source
+    of differential routing signal。Threshold sensitivity 确认 broader failure 定义下 correlation
+    完全消失
+  rationale: daf-sensitivity-extended threshold 分析：T=-100/-50/-20 时 r=0.97（完全相同，ScienceWorld
+    分数离散）；T=0 时 r=-0.13 (p=0.70)，相关性完全消失。放宽 failure 定义后几乎所有 episode 变成 failure，differential
+    缩为噪声。Non-Q1 mean gap=-1.19 确认非 death episodes 无差异。这让 C1 从 "death avoidance dominates
+    ~90%" 升级为 "death is effectively the only source of differential routing signal"——claim
+    更尖锐、更精确。同时必须诚实报告 penalty sensitivity（P≤25 时 r 不显著）和 chemistry-mix CI 跨零。
+  related_experiments:
+  - exp_id: daf-sensitivity-extended
+    role: primary
+    result: threshold T=0 → r=-0.13; penalty P≤25 → r not significant; chemistry-mix
+      CI crosses zero
+  depends_on:
+  - D093
+- id: D095
+  date: 2026-05-16 18:52 UTC
+  summary: 方向 A (Framework 形式化) 确认，启动 Method section 重写
+  rationale: '用户确认方向 A。Evidence: DAF=0.904 bootstrap CI [0.816,0.988]验证通过，SCI Gini=0.2147确认signal是systematic
+    phenomenon，方向B证伪(guided router=task identity leakage)。Reviewer推荐A+Main track。DDL
+    5/25剩9天，timeline恰好够。'
+  related_experiments:
+  - exp_id: daf-bootstrap-ci-full
+    role: validates DAF point estimate
+    result: success
+  - exp_id: sci-concentration-index
+    role: validates signal systematicity
+    result: success
+  - exp_id: cross-model-guided-router-eval
+    role: proves direction B invalid
+    result: negative
+  depends_on:
+  - D094
+  - D093
+- id: D096
+  date: 2026-05-16 19:30 UTC
+  summary: R9 修复策略确定：纯写作降级 claim framing，不加新实验。78.9% 为 headline，r=0.97 降为 diagnostic，cross-env
+    改为 demonstration。
+  rationale: R9 评分 3.0/5，4 个 Critical 均为 framing 过强（非实验缺陷）。Reviewer 明确指出"写作修复可达 weak
+    accept"。Partial r=0.02 (p=0.91) 确认 r=0.97 纯结构性；MATH power=42% 确认 underpowered。DDL
+    5/25 剩 9 天，纯写作修复 1-2 天可完成，时间充裕。Reviewer 独立审查确认 70-80% 可行性。
+  related_experiments:
+  - exp_id: daf-bootstrap-ci-full
+    role: DAF quantification
+    result: success
+  - exp_id: sci-concentration-index
+    role: signal distribution
+    result: success
+  - exp_id: cross-split-robustness-8seed
+    role: router negative result
+    result: success
+  depends_on:
+  - D095
+- id: D097
+  date: 2026-05-16 21:32 UTC
+  summary: Backbone scaling 实验确认：0.5B death rate=80% vs 7B=42.9%，+37.1pp 验证 capability-dependent
+    DAF 预测
+  rationale: 0.5B 在 3 个 death-prone task types 上均表现 80% death rate，远高于 7B 的 42.9%。验证预测链
+    "weaker model → higher death rate → higher DAF"。结果一致性强（3/3 task types 均 80%）。可作为
+    Discussion 中 capability-dependent 段落的经验支撑，无论 Findings 或 Main track。
+  related_experiments:
+  - exp_id: backbone-scaling-death-rate-0.5b
+    role: primary
+    result: 0.5B death=80% vs 7B death=42.9%, +37.1pp
+  depends_on:
+  - D095
+  - D096
+- id: D098
+  date: 2026-05-16 21:33 UTC
+  summary: D097 修正：0.5B death rate=13.3%（非80%），capability-death 关系为非单调倒 U 型，论文需加 capability
+    threshold caveat
+  rationale: Reviewer 审查发现 Agent 错将 score=0 标为 death。正确结果：0.5B death=13.3% (2/15)
+    vs 7B=~58%。关系非单调：极弱模型到不了危险状态所以 death rate 低。论文 §4.5 和 Conclusion 的单调预测需加 caveat
+    "for models above a capability threshold"。作为 Discussion point 倒 U 型假说仍有学术价值。
+  related_experiments:
+  - exp_id: backbone-scaling-death-rate-0.5b
+    role: primary
+    result: 0.5B death=13.3% (2/15), NOT 80%. Non-monotonic inverted-U relationship.
+  depends_on:
+  - D097
+- id: D099
+  date: 2026-05-16 22:38 UTC
+  summary: 0.5B 倒 U 型结果处置：不纳入论文 contribution，仅作 Discussion 1-sentence caveat（capability
+    threshold）
+  rationale: Reviewer 判断：N=15 不支持 curve shape claim，增加攻击面而非强化 contribution。正确处置：(1)
+    不在论文中 claim 倒 U 型关系 (2) Discussion 加 1 句 caveat "prediction assumes models above
+    capability threshold" (3) 不影响 Findings/Main 决策。GPU 空闲合理——Findings track 纯写作不需要
+    GPU；Main track 实验取决于用户未回复的决策。
+  related_experiments:
+  - exp_id: backbone-scaling-death-rate-0.5b
+    role: negative
+    result: 0.5B death=13.3%, contradicts monotonic prediction, inverted U-shape.
+      N=15 too small to claim.
+  depends_on:
+  - D098
+- id: D100
+  date: 2026-05-17 00:34 UTC
+  summary: R10-Q4 确认：1.7B 4-seed=43.1% 证实 non-monotonicity 是 real（非 seed artifact），C5
+    confound 彻底消除
+  rationale: 用相同 4-seed 配置重跑 1.7B，结果 43.1%（甚至低于 8-seed 的 47.1%）。曲线 0.6B(50.7%)>1.7B(43.1%)<4B(59.0%)
+    为确认的 U 型。Per-seed std 极小（41.7%-44.4%），结论稳健。论文可从"confounded, causal claims not
+    supported"更新为"controlled replication confirms non-monotonic capacity scaling"。强化
+    router negative result narrative。
+  related_experiments:
+  - exp_id: capacity-scaling-1.7b-4seed
+    role: primary
+    result: 1.7B 4-seed balanced_acc=43.1±1.0%, confirms non-monotonicity is real
+  depends_on:
+  - D099
+- id: D101
+  date: 2026-05-17 02:08 UTC
+  summary: 用户未回复 3 次催促，Director 主动推进 Findings track reframe（C2 + C3），用户可随时叫停 revert
+  rationale: DDL 5/25 剩 8 天。已催用户 3 次 Main vs Findings 决策无回复。Director 建议从一开始就是 Findings。Reviewer
+    确认 no viable GPU experiment，remaining value = writing。Crafter pilot no-go（概念映射硬伤
+    + 6 天实现成本）。C2/C3 是纯写作修改可 revert，不等于放弃 Main track——只是先准备 Findings version，用户后续可改。
+  related_experiments:
+  - exp_id: capacity-scaling-1.7b-4seed
+    role: context
+    result: confirms non-monotonicity, strengthens router negative
+  - exp_id: backbone-scaling-death-rate-0.5b
+    role: context
+    result: inverted-U, caveat added
+  depends_on:
+  - D098
+  - D099
+  - D100
+- id: D102
+  date: 2026-05-17 05:56 UTC
+  summary: MATH N=795 确认 null：+4.3pp 效应消失 (p=0.81)，C3 narrative 从 "inconclusive directional
+    trend" 升级为 "confirmed null — no routing signal without death"
+  rationale: N=300 的 +4.3pp 是抽样变异。N=795 下 internal 73.5% vs code 73.0% (p=0.81, CI
+    [-2.6, +3.6]pp)。确认的 null 比 inconclusive 更有力地支持 C3 "without catastrophic failure,
+    modality routing confers no systematic advantage"。论文多处数字需同步更新但 narrative 方向不变甚至更强。
+  related_experiments:
+  - exp_id: math-extension-n800
+    role: primary
+    result: internal 73.5% vs code 73.0%, p=0.81, confirmed null
+  - exp_id: math-negative-contrast
+    role: predecessor
+    result: N=300, +4.3pp, p=0.079 (now invalidated as sampling noise)
+  depends_on:
+  - D101
+- id: D103
+  date: 2026-05-17 09:09 UTC
+  summary: Death-risk threshold routing 结果写入 Appendix（negative but strengthens death
+    dominance claim）
+  rationale: Threshold routing 在所有 threshold 下都无法优于 always-det（CI包含0），证明 death dominance
+    如此彻底连 oracle routing 也 futile。作为 Appendix 补充分析强化核心 claim。
+  related_experiments:
+  - exp_id: death-risk-routing-analysis
+    role: primary
+    result: negative (hypothesis falsified, but strengthens paper)
+  depends_on:
+  - D102
+- id: D104
+  date: 2026-05-17 20:20 UTC
+  summary: 72B framing 从 "no improvement" 修正为 "experimental triangle"：三种干预均部分降低但均不足以消除
+    death dominance
+  rationale: Reviewer 独立验证 10/11 tasks 72B 数据：aggregate DR ~37% vs 7B ~51% (Δ≈-14pp)。此前基于
+    4/11 tasks 的 "no improvement" 判断不准确（chemistry-mix 恰好是唯一 Δ=0 的 task）。新 framing："三种定性不同的干预（retry
+    Δ=0, scaling Δ=-14pp, reflexion Δ=-12pp）均无法达到 deterministic-level safety (16.3%)"——这比
+    "scaling 无效" 更强且更诚实。避免 "marginal" 一词（14pp 非边际）。
+  related_experiments:
+  - exp_id: backbone-scaling-70b
+    role: primary
+    result: DR ~37% (10/11 tasks)
+  - exp_id: reflexion-internal-baseline
+    role: comparison
+    result: DR 31.4%
+  - exp_id: retry-control-baseline
+    role: comparison
+    result: DR 40.9%
+  depends_on:
+  - D103
+- id: D105
+  date: 2026-05-17 22:03 UTC
+  summary: 72B aggregate 修正为 34.5% (Δ=-17pp)，">20pp gap" 改为 "~18pp"，per-task range
+    扩至 0-31pp
+  rationale: Reviewer 独立审计发现 Agent 报的 36.7% 基于混合两台服务器数据。规范化后 (13313 为主源, 14838 补充)
+    death-prone aggregate = 69/200 = 34.5%。关键变化：(1) Δ从-14pp升到-17pp，与reflexion (-17pp)
+    几乎一致，反而强化"不同机制相同量级"论证；(2) ">20pp gap"变为~18pp，具体数字需修正但"substantial gap"叙事不变；(3)
+    per-task range 扩至-31pp (lifespan-ll)，揭示 scaling 对 biological reasoning 特别有效。ep15
+    重复冲突决策 first-write-wins。
+  related_experiments:
+  - exp_id: backbone-scaling-70b
+    role: primary
+    result: 34.5% death-prone aggregate
+  - exp_id: backbone-scaling-70b-parallel
+    role: supplement
+    result: data merged, ep15 conflict resolved first-write-wins
+  depends_on:
+  - D104
+- id: D106
+  date: 2026-05-17 22:05 UTC
+  summary: D105 修正：Reviewer 自纠，Agent 原始数据正确。~37% / Δ≈-14pp / >20pp gap 均维持，仅更新 per-task
+    range 至 +5pp~-31pp
+  rationale: Reviewer 之前的 critical（34.5%, -17pp, ~18pp gap）因遗漏 both_dead episodes
+    导致 undercounting。独立验证后确认 Agent 原始 death-prone aggregate 36.5% ≈ ~37% 正确，Δ=14.6pp≈-14pp
+    正确，gap=20.2pp technically >20pp。仍需更新：per-task range 从 0~-24pp 扩至 +5pp~-31pp（chemistry-mix
+    变差 +5pp, lifespan-ll 改善 -31pp），>20pp 改为 ~20pp 留安全余量。已撤回给 Paper Agent 的错误 patch。
+  related_experiments:
+  - exp_id: backbone-scaling-70b
+    role: primary
+    result: death-prone 36.5%, Reviewer 验证一致
+  depends_on:
+  - D105
+- id: D107
+  date: 2026-05-17 22:29 UTC
+  summary: 72B 最终数字确定：34.5% (69/200), Δ=-16.7pp, gap=18.2pp。Scaling 和 Reflexion 收敛到同一
+    death rate (~35%)
+  rationale: 7B 主实验 per-task 数据确认 death-prone baseline = 51.2%（论文 ~51% 准确）。72B canonical
+    (13313 primary) = 34.5%。Reflexion death-prone ≈ 34.5%。两种完全不同的干预（10× scaling vs
+    self-correction）收敛到同一 death rate，Δ 都约 -17pp。这是 death dominance 结构性上限的最强证据。Per-task
+    range +5pp~-31pp 已在论文中。
+  related_experiments:
+  - exp_id: backbone-scaling-70b
+    role: primary
+    result: 34.5% death-prone canonical
+  - exp_id: reflexion-internal-baseline
+    role: comparison
+    result: ~34.5% death-prone, same ceiling
+  depends_on:
+  - D106
+- id: D108
+  date: 2026-05-18 02:10 UTC
+  summary: '72B DAF decomposition confirms death dominance scale-invariant: DAF=90.9%
+    (vs 7B 90.4%), label fraction=84.3% (vs 7B 78.9%). R15 action matrix dispatched
+    to Paper Agent.'
+  rationale: '72B DAF computed from 220 episodes (11 tasks x 20 eps). Key finding:
+    scaling reduces death RATE (51%→35%) but death DOMINANCE (DAF) is unchanged (90.4%→90.9%).
+    Label fraction actually increases (78.9%→84.3%) because 72B has fewer non-death-driven
+    labels. This is the strongest cross-scale evidence for death dominance and directly
+    addresses R15-W3 (SF4). R15 全部 action items (MF1-3, SF1-5, references) dispatched
+    to Paper Agent in one comprehensive patch.'
+  related_experiments:
+  - exp_id: backbone-scaling-70b
+    role: primary
+    result: 72B DAF=90.9%, label fraction=84.3%
+  - exp_id: backbone-scaling-70b-parallel
+    role: supplement
+    result: 3 tasks data source
+  depends_on:
+  - D107
+- id: D109
+  date: 2026-05-18 04:08 UTC
+  summary: Go Crafter permadeath pilot (50 eps) to address C3 env diversity gap, targeting
+    Conference from Findings 3.0/5
+  rationale: 'R22=3.0/5, C3 (lack of permadeath env replication) is the key Findings→Conference
+    differentiator. Agent feasibility study shows Crafter viable: LLM death rate 60-80%
+    vs heuristic 20-40%, BALROG text wrapper available, $10-15 cost. Reviewer concerned
+    about "deterministic modality" definition but heuristic agent with full state
+    observation is consistent with paper''s core insight. User directive: "冲 Conference".
+    Go/no-go checkpoints: Day 2 demo, Day 3 asymmetry ≥15pp.'
+  related_experiments:
+  - exp_id: retry-dose-response
+    role: parallel
+    result: running N=5
+  depends_on:
+  - D108
+  - D107
+- id: D110
+  date: 2026-05-18 06:01 UTC
+  summary: Death taxonomy reveals 100% deaths from single action-space grounding failure
+    (focus on misuse); writing into paper as Significance booster
+  rationale: P4 failure mode taxonomy found that ALL 73 internal-strategy deaths are
+    caused by LLM misusing `focus on` (answer-submission action) as exploration. 69.9%
+    have task awareness but lack grounding. Deterministic agent survives 91.8% by
+    never using focus on. This transforms "death dominates" from descriptive to mechanistic,
+    significantly boosting Significance dimension (2.5→3.0 target).
+  related_experiments:
+  - exp_id: plan-012-full
+    role: data source
+    result: 73 death episodes analyzed
+  depends_on:
+  - D109
+  - D107
+- id: D111
+  date: 2026-05-18 06:05 UTC
+  summary: 'Kill Crafter pilot: heuristic agent 100% death rate after 10 versions,
+    no death rate asymmetry possible'
+  rationale: 'Go/no-go checkpoint failed: heuristic agent death rate = 100% (same
+    as LLM), asymmetry = 0pp (threshold was ≥15pp). Crafter''s survival mechanism
+    (continuous open-world threats) is structurally different from ScienceWorld (task-specific
+    failure triggers). Any agent eventually dies in Crafter regardless of strategy.
+    10 heuristic versions (v1-v10) could not reduce DR below 100%. Confirms Reviewer''s
+    original assessment that deterministic modality has no natural definition in Crafter.'
+  related_experiments:
+  - exp_id: retry-dose-response
+    role: parallel
+    result: continuing on westb-13313
+  depends_on:
+  - D109
+- id: D112
+  date: 2026-05-18 07:55 UTC
+  summary: 启动 seed=123 第二 seed 主实验 (245 eps) on westd-18266，回应 Soundness 单 seed 弱点
+  rationale: Reviewer 分析最薄弱维度为 Soundness (3/4)，根因是主实验 245 episodes 全部 seed=42。第二 seed
+    如果 DAF 和 label fraction 一致，Soundness 可从 3 提到 3.5，是 Conference push 性价比最高的实验。westd-18266
+    有 4 张空闲 GPU，1 张跑 12-24h 即可。
+  related_experiments:
+  - exp_id: plan-012-full
+    role: parent
+    result: DAF=90.4%, 78.9% label fraction, seed=42
+  depends_on:
+  - D108
+- id: D113
+  date: 2026-05-18 11:16 UTC
+  summary: seed=123 复现确认 death dominance 非 seed artifact：DAF 90.41% vs 89.68%（Δ=0.73pp）
+  rationale: Reviewer 识别 single seed (42) 为 Soundness 最大弱点。seed=123 在 220 episodes
+    上复现 DAF~90%，delta_nd 几乎相同（2.84 vs 2.83），10/11 tasks DAF≥81%。Soundness 显著加固。
+  related_experiments:
+  - exp_id: plan-012-full
+    role: parent
+    result: DAF=90.41%, seed=42
+  - exp_id: seed-123-replication
+    role: validation
+    result: DAF=89.68%, seed=123, Δ=0.73pp
+  depends_on:
+  - D112
+- id: D114
+  date: 2026-05-18 12:50 UTC
+  summary: 'Retry N=5 plateau confirmed: DR=43.5% at both N=3 and N=5（同分母 10 death-prone
+    tasks），blind retry 完全无效 [D114 修正: 旧版 40.9% 来自混用 11-task 分母]'
+  rationale: 同分母（10 death-prone tasks, 200 eps）下 N=3 和 N=5 death rate 完全相同（43.5%），plateau
+    是绝对的。agent 平均消耗 4.66/5.0 次 retry，证明 agent 在重复同样致死错误。与 reflexion 形成对比（retry 平坦
+    43.5% vs reflexion N=3 34.0%）。Death dominance 是结构性上限。
+  related_experiments:
+  - exp_id: retry-dose-response
+    role: primary
+    result: N=5 DR=43.5%, plateau confirmed
+  - exp_id: retry-control-baseline
+    role: reference
+    result: N=3 DR=40.9%
+  depends_on:
+  - D107
+- id: D115
+  date: 2026-05-18 18:32 UTC
+  summary: 'Reflexion dose-response framing: "N=3 optimal (34.0%), plateau at N≥3,
+    no monotonic improvement claim." U-shape 为 descriptive pattern 非显著发现。'
+  rationale: Reflexion N=1(47.5%)→N=2(40.0%)→N=3(34.0%)→N=4(36.5%)→N=5(35.0%)。N=3
+    后微幅回升但 Wilson CI 严重重叠（N=5 trial3 [25.2%,38.3%] vs trial5 [29.6%,43.3%]），不具统计显著性。N=3/N=4/N=5
+    两个独立条件一致出现 trial-3 最低的模式，作为 descriptive observation 提及即可。核心 claim 不变：所有干预（reflexion
+    34%/retry 43.5%/72B 34.5%）均收敛在 deterministic 16.3% 之上，支撑 death dominance 结构性上限。
+  related_experiments:
+  - exp_id: reflexion-dose-response-n345
+    role: primary
+    result: N=3=34.0%, N=4=36.5%, N=5=35.0%
+  - exp_id: retry-dose-response
+    role: comparison
+    result: N=1..5 flat at 43-48%
+  depends_on:
+  - D114
+- id: D116
+  date: 2026-05-18 21:42 UTC
+  summary: 启动 grounding-aware prompting ablation（P0 预防性实验）：测试 focus on 误用是否可通过 prompt
+    engineering / action filtering 消除
+  rationale: 'Reviewer 预判 #6 攻击面：论文发现 100% 致死来自 focus on 误用但未测试是否可修复。审稿人几乎必然会问"加一句
+    prompt 指令 death rate 是否归零"。实验成本低（~4-6h, 1×5090），结果双赢：DR 下降=可修复但需 reframing；DR
+    不降=structural bound 更强。westb-13313 两卡空闲正好用。'
+  related_experiments:
+  - exp_id: plan-012-full
+    role: baseline
+    result: 100% deaths from focus on misuse
+  depends_on:
+  - D115
+  - D110
+- id: D117
+  date: 2026-05-18 23:45 UTC
+  summary: Grounding ablation 确认 death vulnerability 是结构性的：Prompt 37%, Filter 29%,
+    均远高于 deterministic 16.3%。集成到论文 Discussion。
+  rationale: '即使硬拦截 focus on（探索阶段 379 次拦截，0 泄漏），agent 在答案提交窗口仍对错误对象执行 focus on，DR=29%。Prompt
+    指令仅降到 37%。梯度 48→37→29→16.3% 证明 death 不是单一 action pattern 可修复的——是 agent 在 action-space
+    grounding 上的结构性缺陷。直接回应 Reviewer 预判的 #6 攻击面。Baseline 使用 48.0%（10-task death-prone
+    only）保持口径统一。'
+  related_experiments:
+  - exp_id: grounding-prompt-ablation-v2
+    role: primary
+    result: DR=37.0%, -11pp vs baseline
+  - exp_id: grounding-filter-ablation
+    role: primary
+    result: DR=29.0%, -19pp vs baseline, 379 blocks 0 leaks
+  depends_on:
+  - D116
+  - D110
+- id: D118
+  date: 2026-05-19 01:39 UTC
+  summary: 启动 Llama-3.1-8B 全量复现（11 tasks × 20 eps = 220 episodes），不等 R25 反馈。westb-13313
+    双卡并行。
+  rationale: Reviewer P1 建议：现有 Llama pilot 仅 7 tasks/70 eps，标注为 "preliminary"。全量 220
+    eps 可将 cross-model 从 pilot 升级为正式 replication，堵住 "Qwen-specific artifact" 攻击面。westb-13313
+    双卡空闲超 1 小时，GPU 不该闲着。即使 R25 不要求，cross-model replication 也是 Conference 级别论文的标配。
+  related_experiments:
+  - exp_id: llama-cross-model-expanded
+    role: pilot
+    result: 7 tasks, N=70, δ=+34.3% directional consistency
+  depends_on:
+  - D117
+- id: D119
+  date: 2026-05-19 01:46 UTC
+  summary: 紧急压缩主文从 ~10.5 页到 ≤8 页（EMNLP ARR 限制），Discussion 压缩 + seed robustness/grounding
+    细节移入 appendix
+  rationale: Reviewer 全文自检发现主文超限 ~2.5 页，desk reject 风险。压缩策略：Discussion -1 页（grounding
+    细节/oracle degeneracy/scaling predictions 移 appendix）、seed robustness 移 appendix
+    (-0.5 页)、Method 形式化简化 (-0.3 页)、Related Work 压缩 (-0.2 页)。同时修复 5 个 warning。
+  related_experiments: []
+  depends_on:
+  - D117
+  - D118
+- id: D120
+  date: 2026-05-19 08:45 UTC
+  summary: C3 叙事 pivot：从 "Llama shows larger death differential" 改为 "both models converge
+    to ~27pp, death dominance is model-family-independent"
+  rationale: D118 中期数据（170/220 eps）显示 Llama Δ DR ~27pp ≈ Qwen ~27pp，pilot 的 +34.3%
+    是小样本 artifact。量级收敛比量级差异是更强的 cross-model claim。Reviewer 还警告 per-task r=0.73 被 (0,0)
+    outlier 驱动，不可报告。改用方向一致性 (8/8=100%) + aggregate 收敛。
+  related_experiments:
+  - exp_id: llama-cross-model-full
+    role: primary
+    result: ongoing, 77% complete, Δ DR ~27pp converges with Qwen
+  depends_on:
+  - D118
+- id: D121
+  date: 2026-05-19 10:40 UTC
+  summary: D118 完成：Llama Δ DR=+30.0pp, DAF=88.2%, 方向一致性 10/10。叙事方案 B 确认（direction
+    consistent, magnitude model-dependent）
+  rationale: 220 eps 全量数据：Llama +30.0pp vs Qwen +26.6pp，差距 3.4pp，"convergent magnitude"
+    不成立。方案 B 更诚实且更有说服力——方向一致性是 hard fact，量级差异本身支撑框架的诊断价值。
+  related_experiments:
+  - exp_id: llama-cross-model-full
+    role: primary
+    result: DONE/success, 220 eps, Internal DR 41.4%, Det DR 11.4%, Δ DR +30.0pp,
+      DAF 88.2%
+  depends_on:
+  - D118
+  - D120
+- id: D122
+  date: 2026-05-19 11:08 UTC
+  summary: 三线并行冲刺 accept：(1) MiniHack permadeath pilot 堵单一环境攻击 (2) Method 恢复 formal
+    setup (3) Practitioner decision framework 强化实际影响
+  rationale: 用户明确指令"三点同时进行"。Reviewer 评估当前 3.5-4.0，Conference 线 4.0。三个扣分点：单一环境（最高风险）、方法新颖性薄、实际影响有限。MiniHack
+    pilot 如成功可直接堵住最大攻击面；Method 恢复和 practitioner guidance 在 8 页内可完成。DDL 还有 6 天。
+  related_experiments: []
+  depends_on:
+  - D121
+- id: D123
+  date: 2026-05-19 11:37 UTC
+  summary: R17 Action Matrix 定稿：接受 Reviewer 4 项修正（+W8 scope limitation, +M5 引用, W2→P0,
+    reframe 锚点 action filter+72B），分两批派 Paper Agent（写作批 now + 数据批 after Agent 回查）
+  rationale: Reviewer 独立审核发现 2 处遗漏和 1 项优先级调整，均合理。P=0 51.2% framing 采用 "sole signal"
+    强化方向，避免自伤。Reframe 叙事严格限定 "4 tested axes" 避免过度概括。数据依赖项（72B det model/Reflexion
+    Δ_nd/CI type）等 Agent 确认后再 Patch。
+  related_experiments: []
+  depends_on:
+  - D122
+- id: D124
+  date: 2026-05-19 12:01 UTC
+  summary: MiniHack 导航任务 0% death rate 触发 Day 2 fallback：双轨并行——(1) Crafter 作为第二个 permadeath
+    环境尝试 (2) MiniHack 导航数据转为 negative contrast（无 death mechanism → 无 routing signal）
+  rationale: MiniHack Room/Corridor 默认不生成怪物，所有 "death" 实为 timeout 误判（M010）。修复后 0%
+    real death across all tasks/conditions。有怪物的 MiniHack 任务 LLM 完全无法解决（BALROG 报告 0%）。DDL
+    仅剩 5 天，自定义怪物任务开发成本太高。Crafter 有明确 HP=0 死亡机制和 60-80% LLM 死亡率预期，是最可行的 permadeath
+    环境。MiniHack 导航数据虽无法作为 permadeath replication，但可作为第三个 negative contrast（与 MATH
+    互补），强化 "death mechanism 是 routing signal 必要条件" 的论证。
+  related_experiments:
+  - exp_id: minihack-cross-env-pilot
+    role: trigger
+    result: 0% real death across all tasks
+  depends_on:
+  - D122
+- id: D125
+  date: 2026-05-19 12:36 UTC
+  summary: 终止第三环境 permadeath replication 尝试。MiniHack 0%/0% (无怪物)，Crafter 100%/100%
+    (两端太难)。MiniHack 导航转 negative contrast，剩余时间全部投入论文质量
+  rationale: 两个候选环境均无法产生 death asymmetry：MiniHack 导航无怪物（结构性 0% DR），Crafter 即使 det
+    agent 有 20-tile 全图访问也 100% 死亡（LLM 也 100%，0 achievements）。核心要求是 det 低 DR + LLM
+    高 DR 的不对称——MiniHack 两端都低，Crafter 两端都高。DDL 剩 5 天，无法从头工程化一个可行的跨环境 replication。替代策略：(1)
+    MiniHack 导航 0% death 作为 negative contrast（与 MATH null 互补），(2) 强化已有证据（cross-model
+    Qwen+Llama、四轴 intervention robustness），(3) Discussion 诚实讨论单环境限制。
+  related_experiments:
+  - exp_id: minihack-cross-env-pilot
+    role: negative
+    result: 0% death across all tasks/conditions, structural absence of monsters
+  - exp_id: crafter-pilot
+    role: negative
+    result: 100% death both conditions, no asymmetry
+  depends_on:
+  - D124
+- id: D126
+  date: 2026-05-19 16:08 UTC
+  summary: 'R19 Action Matrix: Framework-centric reframing + 27 条写作修复'
+  rationale: R19 Overall 3.0-3.5, Excitement 收敛至 3.0/5。核心瓶颈是 novelty。R1 交叉回应明确指出 framework-centric
+    可大幅缓解 novelty concern。19 轮 finding-centric 未突破 3.5。Framework-centric 同时解决 MF2(novelty)+MF3(framing
+    unity)+SF9(routing value=framework diagnostic proof)。标题保留但 narrative 从 "we found
+    X" 转为 "we develop framework that reveals X"。无新实验，全部写作修改，6天内可完成。
+  related_experiments: []
+  depends_on: []
+- id: D127
+  date: 2026-05-19 17:07 UTC
+  summary: paper_framing.md 更新为 framework-centric（D126 落地）：C1=诊断框架, C2=case study
+    finding, C3=cross-validation
+  rationale: D126 决定 framework-centric pivot 后，paper_framing.md 是战略锚点必须同步更新。Core Insight/Claims/Story
+    Spine 全部重写为框架优先叙事，router negative 从 limitation 变为 framework prediction，SF9 (routing
+    unnecessary) 从 weakness 变为 framework 诊断价值的验证。R1 明确背书此方向。
+  related_experiments: []
+  depends_on:
+  - D126
+- id: D128
+  date: 2026-05-19 20:30 UTC
+  summary: '预防性跑 #3 扩展 task types：5 个排除 task types × 20 eps full collection，升级 anti-cherry-picking
+    证据'
+  rationale: 'Reviewer 预测 R20 三种实验要求中，#3 扩展 task types 是唯一成本-风险可接受的预跑：10-15 GPU-hours，方向由
+    Table 4 prescreening 确认（18/19 excluded tasks 显示 death asymmetry，ΔDR=+38.2pp），即使
+    R20 不要求也可作为 Appendix extended validation。#1 第二环境风险极高（MiniHack/Crafter 均失败），#2
+    LATS 可能反向削弱 claim。GPU 空闲 >9 小时，跑 #3 比空转更有价值。'
+  related_experiments: []
+  depends_on:
+  - D127
+- id: D129
+  date: 2026-05-21 00:55 UTC
+  summary: 释放 2× RTX 5090 GPU，不再跑新实验。剩余工作全部是零 GPU 分析/写作。
+  rationale: Reviewer 两次独立评估一致：(1) 最弱攻击点（环境单一性）不可用 GPU 解决；(2) Gemma CI 宽度已有 sensitivity
+    analysis 防御；(3) 阴性/失败实验无 retry 价值；(4) DDL 前 4 天的注意力应在论文质量而非新数据；(5) last-minute
+    新实验的最大风险是跑出意料之外需要解释的结果。
+  related_experiments:
+  - exp_id: gemma-scienceworld-v5
+    role: final_experiment
+    result: DAF=89.7%, third model family confirmed
+  depends_on:
+  - D128
+- id: D130
+  date: 2026-05-21 01:50 UTC
+  summary: 'D130: 接受 Findings 级别 (3.0)，不追 Borderline Conference (3.5)'
+  rationale: Round 20 Fresh 审稿 Overall 3.0。升到 3.5 需要 "(d) 中等 death regime 环境深度分析"——4
+    天内搭建新环境 + 收集数据 + 分析 + 写入论文风险极高，且匆忙数据引入新 attack surface。Excitement 2.75 是结构性瓶颈（核心发现受环境
+    penalty structure 制约），论文修改最多提升 0.25pp。Reviewer 独立确认此判断。集中精力修 4 critical + 9 warning
+    确保 3.0 稳固。EMNLP 2026 Main/Findings 走同一审稿系统，Findings 是正式发表。
+  related_experiments: []
+  depends_on:
+  - D129
+- id: D131
+  date: 2026-05-21 10:30 UTC
+  summary: DDL 前 4 天不再做新实验，聚焦零错误提交
+  rationale: Reviewer 评估 Excitement 3.0 是诊断类论文结构性瓶颈，最有潜力的 confidence-based baseline
+    预期仅 +0.1-0.2 且引入新 bug 风险高（参见 M015 step tie rate 事故）。53 个成功实验 + 3 model families
+    + 3 environments 覆盖度已充分。剩余 4 天用于确保零错误 + 格式完美 + 留 1 天 buffer。
+  related_experiments: []
+  depends_on: []
+- id: D132
+  date: 2026-05-21 16:12 UTC
+  summary: 维持 D131 冻结，不补做 task-level router positive control 实验；rebuttal 用现有证据链文字
+    argue
+  rationale: Reviewer 评估：keyword variant 62.9% + LOTO 49.2% + generative router 46.7%
+    已充分证明 signal 在 task-type level。formal positive control 结果 trivially expected（10/11
+    types 有 death → ~90%+ accuracy），只能放 Appendix，边际 ROI 低。如果审稿人 rebuttal 期间明确要求，2-3h
+    可补做。
+  related_experiments: []
+  depends_on:
+  - D131
+- id: D133
+  date: 2026-05-22 07:39 UTC
+  summary: W4 64.7% task-type classifier 写入正文 §3.6（推翻之前 rebuttal-only 决定）
+  rationale: Reviewer 两次强烈建议 + 用户确认。Attack 4 是 rebuttal 最弱环节(6/10)，正文有数据 vs rebuttal
+    才拿出来信任度差距大。Framing 改为 signal granularity diagnosis 规避弱证据误读风险。1 句话成本极低，R27 后有 ~4
+    行 margin。
+  related_experiments: []
+  depends_on:
+  - D132

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "39a6dad64707a7d2e9ad",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_7_1778780463.md",
+  "task_key": "loop_7_1778780463",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_7_1778780463.md",
+    "occurrence": 1,
+    "bytes": 4250,
+    "sha256": "334f13c670a24e66e9e3c166fbbf3f6eaea5ea8b58e7701bc222f6a144776fd6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 7\nreason: max_messages\nupdated: '2026-05-14T17:22:33+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单仅 `cuda:0` 和 `cuda:1`（服务器 westb-13313），不得使用其他 GPU\n- ALFWorld counterfactual (D044) 定位为 **exploratory**——不承诺纳入论文正文，结果出来后由 Director 决定是否作为 supplementary/future work\n- D046 已撤销 PIVOT（D041/D042），**当前是 analysis paper 路线**，不是 method paper——不要再提\"统一 router\"或\"多环境方法论文\"\n- 论文 Table 1 数字**只能来自 `eval_end_to_end.py`**（D037），不能用 `eval_implicit_router.py` 的 -12.84\n- C1 措辞上限\"~90%\"（D018），不能说 ~99%；find-non-living-thing 是正面案例不是异常\n- MATH-200-fixed 已放弃（D047），105 题够用，不要尝试恢复\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westb-13313, 2× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp/simgate-modular-routing`\n- **Python**: `/root/miniconda3/bin/python`（conda base，激活命令 `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`）\n- **模型**: Qwen2.5-7B-Instruct（ALFWorld 用）、Qwen3-1.7B（router 训练用，checkpoint: `checkpoints/plan-004-implicit/final_adapter`）\n- **数据**: ALFWorld data at `/root/autodl-tmp/alfworld_data/json_2.1.1/valid_seen`; ScienceWorld 数据在 `data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples，唯一可用训练数据文件）\n- **活跃进程**: `alfworld-counterfactual-full`（tmux=`alfworld_cf`, cuda:1, PID=alfworld_cf）\n- **活跃 Cron**: 1 个，监控 alfworld-counterfactual-full\n\n### 3. 📊 当前状态\n**刚完成**: Loop #8 修复——fig1_daf_scatter.pdf 生成、discussion.tex TODO 清理、97.4% tie rate 全文一致确认、数字一致性验证通过。\n\n**Registry**: 54 DONE + 1 RUNNING + 3 PREPARING（后三个是早期遗留：plan-003-baseline / plan-001b-gpu1-rebalance / mvp-p1-signal，可视为 stale）。成功 21 / 负向 13 / 失败 10。\n\n**RUNNING**: `alfworld-counterfactual-full` 在 westb-13313 cuda:1，135 games / 6 task types，~3.5h 预估。Cron 监控中。\n\n**关键阻塞**: **论文 6 页，超出 ARR short paper 4 页限制约 1 页。** 已列出 7 个压缩候选方案（总计可节省 ~0.85 页），等 Director 决策压缩方案。\n\n**Worker 池**: 0（报告称\"后端无可用账号\"）。cuda:0 空闲热备。\n\n**等待中**: alfworld-counterfactual-full cron 回调；Director 页数压缩决策。\n\n### 4. 📋 待办（条件触发式）\n- alfworld-counterfactual-full cron 回调到达 → spawn worker 分析结果、update_registry、汇报 Director（D044 exploratory 结论）\n- Director 批准页数压缩方案 → spawn worker(s) 按方案删减各 section，重新编译验证 ≤4 页\n- 压缩完成 → 整合完整 LaTeX 初稿（目标 5/17）\n- 初稿完成 → 进入 Review 对抗迭代（5/17-22）\n- 3 个 PREPARING 实验（plan-003-baseline, plan-001b-gpu1-rebalance, mvp-p1-signal）→ 确认是否 stale 可清理，或 Director 还需要\n\n### 5. 🎯 战略上下文\n- **核心结论**: Death avoidance 占 ~90% routing signal（DAF=90.41%, r=0.9698）。Router 训练本身 near-random（balanced_acc=58.1±0.8%），这 IS the finding——router 学不到有用信号因为信号本质上就是 death avoidance。\n- **决策链关键转折**: D013（framing pivot → death avoidance dominance）→ D025（classification head 全失败）→ D033（Option B 方法论贡献定稿）→ D045/D046（MATH 反转信号 → 撤销 method paper pivot → 回归 analysis paper）→ D047（MATH 不恢复）\n- **最大风险**: 页数超限。DDL 5/25 仅剩 11 天，压缩方案未决会阻塞整个 writing sprint。新 session 应立即催 Director 决策。\n- **易踩的坑**: (1) 不要混淆 `checkpoints/plan-002-generative-v1/final_adapter`（gen-v1 失败）和 `checkpoints/plan-004-implicit/final_adapter`（ablation-b 成功）——eval metrics 相似但完全不同的实验；(2) 所有 eval 脚本必须 `enable_thinking=False` + 清理 `<think>` tags（Qwen3 thinking mode 干扰）；(3) ALFWorld 结果不论好坏都不能直接塞进 main body——D044 明确是 exploratory。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-7-1778780463.md"
+}

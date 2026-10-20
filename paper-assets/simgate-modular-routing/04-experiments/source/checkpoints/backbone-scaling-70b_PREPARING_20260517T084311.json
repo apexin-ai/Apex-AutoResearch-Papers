@@ -1,0 +1,14 @@
+{
+  "exp_id": "backbone-scaling-70b",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:10.909Z",
+    "updated_at": "2026-05-17T08:43:10.910Z"
+  },
+  "timestamp": "2026-05-17T08:43:11.137355+00:00",
+  "trigger": "update_registry"
+}

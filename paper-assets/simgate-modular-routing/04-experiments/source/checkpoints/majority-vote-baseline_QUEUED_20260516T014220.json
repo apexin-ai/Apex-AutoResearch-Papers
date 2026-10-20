@@ -1,0 +1,14 @@
+{
+  "exp_id": "majority-vote-baseline",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T01:42:20.661Z",
+    "updated_at": "2026-05-16T01:42:20.661Z"
+  },
+  "timestamp": "2026-05-16T01:42:20.889412+00:00",
+  "trigger": "update_registry"
+}

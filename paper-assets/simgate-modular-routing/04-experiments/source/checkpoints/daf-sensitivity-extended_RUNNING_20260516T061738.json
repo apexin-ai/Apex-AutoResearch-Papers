@@ -1,0 +1,77 @@
+{
+  "exp_id": "daf-sensitivity-extended",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T05:59:31.251Z",
+    "updated_at": "2026-05-16T06:17:38.158Z",
+    "spec": {
+      "command": "CPU-only analysis: per-task bootstrap CI + Pearson r at all P values + DAF threshold sensitivity",
+      "server": "westb-13313",
+      "data_path": "uses plan-012-full assembled data (245 eps / 11 tasks)",
+      "data_count": 245,
+      "model_name": "N/A (analysis only)",
+      "seed": "bootstrap 10000 resamples"
+    },
+    "hypothesis": "DAF sensitivity analysis (preemptive defense): (1) Pearson r remains significant at all penalty values, (2) DAF stable under continuous score-drop thresholds (not just binary death), (3) per-task-type bootstrap CIs all point same direction (no outlier dragging overall result).",
+    "metrics": {
+      "per_task_bootstrap": {
+        "tasks_positive": 10,
+        "tasks_total": 11,
+        "outlier": "chemistry-mix (CI=[-5.0, 48.6] crosses 0, point estimate still positive at 21.8)",
+        "conclusion": "10/11 consistent positive direction"
+      },
+      "pearson_r_by_penalty": {
+        "P_10": {
+          "r": -0.08,
+          "p": 0.81,
+          "significant": false
+        },
+        "P_25": {
+          "r": 0.51,
+          "p": 0.11,
+          "significant": false
+        },
+        "P_50": {
+          "r": 0.86,
+          "p": 0.00059,
+          "significant": true
+        },
+        "P_100": {
+          "r": 0.97,
+          "p": 8.1e-07,
+          "significant": true
+        },
+        "P_200": {
+          "r": 0.99,
+          "p": 1.1e-09,
+          "significant": true
+        },
+        "P_500": {
+          "r": 0.999,
+          "p": 2.1e-13,
+          "significant": true
+        }
+      },
+      "threshold_sensitivity": {
+        "all_above_87pct": true,
+        "bimodal_note": "ScienceWorld scores are bimodal (-100 or >=0), so T in {-100,-50,-20} give identical results",
+        "method2_relative": {
+          "drop_50pct": 0.874,
+          "drop_75pct": 0.874,
+          "drop_90pct": 1,
+          "drop_100pct": 0.904
+        }
+      },
+      "rank_based": {
+        "Q1_det_preferred_enrichment": 1.9
+      }
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-16T06:17:38.377436+00:00",
+  "trigger": "update_registry"
+}

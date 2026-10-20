@@ -1,0 +1,10 @@
+Signal reversal figure generated on westb-13313.
+Server paths:
+- PDF: /root/autodl-tmp/simgate-modular-routing/docs/paper/figures/signal_reversal.pdf
+- PNG: /root/autodl-tmp/simgate-modular-routing/docs/paper/figures/signal_reversal.png
+
+Data:
+ScienceWorld (N=245): det=35.1%, int=3.7%, no-pref=61.2%
+MATH (N=300): det=5.7%, int=10.0%, no-pref=84.3%
+
+Key insight: Signal reverses — det>>int in ScienceWorld, int>det in MATH.

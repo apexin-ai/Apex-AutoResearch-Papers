@@ -1,0 +1,42 @@
+{
+  "exp_id": "plan-002-formal-v2",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:35:54.371Z",
+    "updated_at": "2026-05-14T05:40:43.455Z",
+    "hypothesis": "Router SFT 正式训练 v2（WANDB_MODE=offline 修复网络问题）：Qwen3-1.7B + LoRA r=16, 3 epochs, batch_size=4 + grad_accum=8, class_weights auto + WeightedRandomSampler。v1 因 W&B 网络不可达崩溃。",
+    "parent": "plan-002-formal",
+    "spec": {
+      "command": "bash -c \"export WANDB_MODE=offline && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python src/router_sft_train.py --data_dir results/plan_c --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-002-formal --seed 42\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "221772",
+      "log_path": "~/runs/simgate-modular-routing/plan-002-formal-v2.log",
+      "submitted_at": "2026-05-14T05:36:27.353Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "wall_clock_seconds": 256.1,
+      "gpu_hours": 0.07
+    },
+    "server": "westb-13313",
+    "gpu": "cuda:0",
+    "pid": "221772",
+    "log_path": "~/runs/simgate-modular-routing/plan-002-formal-v2.log",
+    "reproduce": {
+      "command": "bash -c \"export WANDB_MODE=offline && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python src/router_sft_train.py --data_dir results/plan_c --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-002-formal --seed 42\"",
+      "finished_at": "2026-05-14T05:40:42.225Z"
+    },
+    "failure_reason": "Traceback → -packages/urllib3/util/connection.py\", line 85, in create_connection raise err File \"/root/miniconda3/lib/python3.12/site-packages/urllib3/util/connection.py\", line 73, in create_connection sock.connect(sa) OSError: [Errno 101] Network is unreachable",
+    "conclusion": "failed",
+    "completed_at": "2026-05-14T05:40:43.455Z"
+  },
+  "timestamp": "2026-05-14T05:40:43.511883+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,1959 @@
+# cron hook seed robustness extended 20260515T222942 056274
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 56
+- **Recorded user turns:** 2
+- **Tool calls:** 26
+- **Original source:** `logs/chats/archive/cron_hook_seed-robustness-extended_20260515T222942_056274.jsonl`
+- **Structured JSON:** [`84ebfb1e287fad823551.json`](../../sessions/84/84ebfb1e287fad823551.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+54 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T19:25:15.034228+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: seed-robustness-extended
+- project: simgate-modular-routing
+- server: westb-13313
+- log_path: ~/runs/simgate-modular-routing/seed-robustness-ext-gpu0.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:seed-robustness-extended",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T19:25:25.907608+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+  "max_results": "4"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+    "max_results": "4"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T19:25:25.958370+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "ToolSearch",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T19:25:28.973570+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T19:25:29.475238+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T19:25:29.829456+00:00_
+
+Error: result (131,593 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 855
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 7 · 2026-05-15T19:25:29.829809+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 354
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T19:25:29.830073+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T19:25:29.830392+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T19:25:29.881143+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T19:25:13Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 74 个实验 — DONE 74\\n**DONE 分布**: failed 13, killed 18, negative 15, success 28\\n\\n### GPU 占用\\n- **分配**: 2 张 — westb-13313:cuda:0, westb-13313:cuda:1\\n- **空闲（分配了没跑）**: westb-13313:cuda:0, westb-13313:cuda:1\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `seed-robustness-extended` [failed] — 2026-05-15T19:25:12 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `seed-robustness-ext-gpu1` [killed] — 2026-05-15T19:15:30\\n- `seed-robustness-ext-gpu0` [killed] — 2026-05-15T19:15:29\\n- `seed-robustness-ext` [killed] — 2026-05-15T19:12:29\\n- `plan-012-penalty-curve` [success] — 2026-05-15T19:08:30\\n\\n### 🔴 最近失败原因 (top 3)\\n- `seed-robustness-extended`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `seed-robustness-ext-gpu1`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `seed-robustness-ext-gpu0`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **seed-robustness-extended** (failed): 追加 4 个新 seed (46/47/48/49) 重训 router，与 seed-robustness-core 的 4 seed (42-45) 合并为 8-seed 汇总统计。验证 cross-split balanced_acc 的 55.4±5.2% 在更大样本下是否稳定。同一训练 protocol（Qwen3-1.7B LoRA, same hyperparams, episode-level stratified split）。 ← 基于 seed-robustness-core\\n- **seed-robustness-ext-gpu1** (killed): —\\n- **seed-robustness-ext-gpu0** (killed): —\\n\\n## 趋势\\n成功 28 / 负向 15 / 失败 13 / 共 74\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestb-13313: 无 GPU 信息\\n\\n## 告警\\n- gpu0-v6-lifespan: 已被终止 — unknown\\n- llama-cross-model-expanded: 已被终止 — unknown\\n- math-2
+…[truncated 1236 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T19:25:29.881748+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/ROADMAP.md\", \"content\": \"# simgate-modular-routing — Research Dashboard\\n\\n> 最后更新: 2026-05-15 18:18 UTC | 更新原因: 全部实验完成（plan-005 + plan-010-v2），进入终稿阶段，等待 Round 8 审批\\n\\n## 核心方向\\nEpisode-level counterfactual analysis 揭示 ScienceWorld 上 routing signal 主要来自 death avoidance。详见 paper_framing.md。\\n\\n## 当前进展\\n**全部实验完成（9 done / 5 negative-killed），进入终稿阶段。等待用户审批 Round 8 审稿。**\\n\\n- 目标：EMNLP 2026 Main Conference Long Paper (8p + refs)，DDL 2026-05-25（剩 10 天）\\n- 覆盖率：C1 83.3%, C1+C2 100%, C2 20%（已降级 preliminary，充分）\\n- plan-005 routing pattern 分析完成：failure taxonomy (68% exploration loop) + routing heatmap，零 GPU 成本\\n- plan-010-cross-task-v2 完成（negative）：cross-domain transfer ≈ chance level，routing signal task-specific\\n- plan-006 D065 confirmed：2-way routing suffices（p=0.83, |d|≤0.31）\\n- DAF 口径 Reviewer 验证通过：aggregate 0.9041 正确使用，0.9614 未混入 tex\\n- Round 7 全部 action done，待 Round 8 验证\\n\\n### 审稿 review_issues 状态\\n| 类别 | in_progress | resolved | 说明 |\\n|------|-------------|----------|------|\\n| Critical | 3 (R6-C1, R7-N1, R7-N2) | 1 | 全部 action done，待 R8 验证 |\\n| Warning | 8 | 4 | 全部 action done，待 R8 验证 |\\n| Info | 3 | 0 | 全部 action done，待 R8 验证 |\\n\\n## 近期任务\\n- [x] plan-005 routing pattern 分析完成\\n- [x] plan-010-cross-task-v2 完成（negative）\\n- [x] experiment_plan.yaml 元数据同步（plan-002/006/008/009/010）\\n- [x] DAF 口径验证通过\\n- [ ] Paper Agent 整合 3 处更新（deep-internal ablation + §4.4 failure taxonomy + Discussion cross-task）← 进行中\\n- [ ] 用户审批 continue review → Round 8 启动 ← **BLOCKING**\\n- [ ] Round 8 审稿报告 → 按 review-report-action skill 处理\\n- [ ] 迭代修复 → 终稿 → ARR 提交\\n\\n## 关键时间线\\n| 日期 | 里程碑 |\\n|------|--------|\\n| 5/15 | 全部实验完成 + Paper Agent 论文更新 ← 当前 |\\n| 5/15-16 | Continue review 审批 + Round 8 验证 |\\n| 5/17-19 | Round 8 修复迭代 |\\n| 5/20-22 | 终稿定稿 |\\n| 5/23-25 | ARR 提交 |\\n\\n## GPU 预算\\nwestb-13313: 2× RTX 5090\\n- GPU0: 空闲\\n- GPU
+…[truncated 1507 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T19:25:40.441191+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\nfor exp in experiments:\n    if exp.get('exp_id') == 'seed-robustness-extended':\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n        break\n\"",
+  "description": "Extract seed-robustness-extended experiment from registry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt | python3 -c \"\nimport json, sys\ndata = json.load(sys.stdin)\nresult = json.loads(data['result'])\nexperiments = result['data']['experiments']\nfor exp in experiments:\n    if exp.get('exp_id') == 'seed-robustness-extended':\n        print(json.dumps(exp, indent=2, ensure_ascii=False))\n        break\n\"",
+    "description": "Extract seed-robustness-extended experiment from registry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T19:25:40.994927+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    if exp.get('exp_id') == 'seed-robustness-extended':
+       ^^^^^^^
+AttributeError: 'str' object has no attribute 'get'
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Bash",
+  "elapsed_ms": 553
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T19:25:41.196025+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T19:25:41.196552+00:00_
+
+&lt;tool_use_error>Cancelled: parallel tool call Bash(cat /home/ubuntu/.claude-account-2/proje…) errored&lt;/tool_use_error>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T19:25:46.575704+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps), type(exps[0]) if exps else 'empty')\nif isinstance(exps, dict):\n    if 'seed-robustness-extended' in exps:\n        print(json.dumps(exps['seed-robustness-extended'], indent=2, ensure_ascii=False))\nelif isinstance(exps, list):\n    print(len(exps))\n    print(exps[0][:200] if isinstance(exps[0], str) else json.dumps(exps[0])[:200])\n\"",
+  "description": "Probe registry structure"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps), type(exps[0]) if exps else 'empty')\nif isinstance(exps, dict):\n    if 'seed-robustness-extended' in exps:\n        print(json.dumps(exps['seed-robustness-extended'], indent=2, ensure_ascii=False))\nelif isinstance(exps, list):\n    print(len(exps))\n    print(exps[0][:200] if isinstance(exps[0], str) else json.dumps(exps[0])[:200])\n\"",
+    "description": "Probe registry structure"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T19:25:46.826998+00:00_
+
+Exit code 1
+Traceback (most recent call last):
+  File "&lt;string>", line 7, in &lt;module>
+    print(type(exps), type(exps[0]) if exps else 'empty')
+                           ~~~~^^^
+KeyError: 0
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Bash",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T19:25:51.745562+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps))\nif isinstance(exps, dict):\n    print(list(exps.keys())[:5])\n    if 'seed-robustness-extended' in exps:\n        val = exps['seed-robustness-extended']\n        if isinstance(val, str):\n            print(val[:2000])\n        else:\n            print(json.dumps(val, indent=2, ensure_ascii=False)[:2000])\n\"",
+  "description": "Extract seed-robustness-extended from registry dict"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nprint(type(exps))\nif isinstance(exps, dict):\n    print(list(exps.keys())[:5])\n    if 'seed-robustness-extended' in exps:\n        val = exps['seed-robustness-extended']\n        if isinstance(val, str):\n            print(val[:2000])\n        else:\n            print(json.dumps(val, indent=2, ensure_ascii=False)[:2000])\n\"",
+    "description": "Extract seed-robustness-extended from registry dict"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T19:25:51.946908+00:00_
+
+&lt;class 'dict'>
+['seed-robustness-extended', 'seed-robustness-ext-gpu1', 'seed-robustness-ext-gpu0', 'seed-robustness-ext', 'plan-012-penalty-curve']
+{
+  "account": "root",
+  "completed_at": "2026-05-15T19:08:17.165Z",
+  "created_at": "2026-05-15T19:03:15.593Z",
+  "extra": {
+    "previous_failure": {
+      "conclusion": "killed"
+    },
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-15T19:25:14.631277+00:00"
+      }
+    ]
+  },
+  "gpu": "cuda:0,cuda:1",
+  "hypothesis": "追加 4 个新 seed (46/47/48/49) 重训 router，与 seed-robustness-core 的 4 seed (42-45) 合并为 8-seed 汇总统计。验证 cross-split balanced_acc 的 55.4±5.2% 在更大样本下是否稳定。同一训练 protocol（Qwen3-1.7B LoRA, same hyperparams, episode-level stratified split）。",
+  "parent": "seed-robustness-core",
+  "reproduce": {
+    "gpu": "cuda:0,cuda:1",
+    "server": "westb-13313",
+    "started_at": "2026-05-15T19:04:14.228Z",
+    "finished_at": "2026-05-15T19:25:11.705Z",
+    "training_hours": 0.35
+  },
+  "retry_count": 1,
+  "server": "westb-13313",
+  "spec": {
+    "checkpoint_path": "checkpoints/seed-robustness-seed{46,47,48,49}/",
+    "checkpoint_source": "n/a (training from scratch, not eval)",
+    "command": "GPU0: implicit_router_sft.py --seed 46 then --seed 47 | GPU1: implicit_router_sft.py --seed 48 then --seed 49",
+    "data_count": 2040,
+    "data_path": "data/plan-004-implicit/ + results/plan_c/",
+    "eval_data": "n/a (training experiment, eval is part of train script)",
+    "gpu": "cuda:0 + cuda:1 (RTX 5090 32GB)",
+    "gpu0_pid": 890486,
+    "gpu1_pid": 890629,
+    "hyperparams": {
+      "batch_size": 4,
+      "effective_batch_size": 32,
+      "epochs": 3,
+      "gradient_accumulation_steps": 8,
+      "lora_r": 16,
+      "lr": 2e-05,
+      "upsample_minority": true
+    },
+    "log_path": "~/runs/simgate-modular-routing/seed-robustness-ext-gpu{0,1}.log",
+    "model_name": "Qwen3-1.7B",
+    "seed": "46,47,48,49",
+    "server": "westb-13313"
+  },
+  "status": "DONE",
+  "updated_
+…[truncated 149 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Bash",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T19:25:51.947444+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T19:25:51.998207+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_d5241f79.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T19:25:56.867810+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nexp = exps['seed-robustness-extended']\nif isinstance(exp, str):\n    print(exp)\nelse:\n    print(json.dumps(exp, indent=2, ensure_ascii=False))\n\" 2>&1 | tail -80",
+  "description": "Get full seed-robustness-extended entry"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "python3 -c \"\nimport json\nwith open('/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-d5241f79/06df5dbd-ecda-4060-8689-1116e6ecac1e/tool-results/mcp-agent-ml-research-read_registry-1778873129495.txt') as f:\n    data = json.load(f)\nresult = json.loads(data['result'])\nexps = result['data']['experiments']\nexp = exps['seed-robustness-extended']\nif isinstance(exp, str):\n    print(exp)\nelse:\n    print(json.dumps(exp, indent=2, ensure_ascii=False))\n\" 2>&1 | tail -80",
+    "description": "Get full seed-robustness-extended entry"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T19:25:57.069566+00:00_
+
+{
+  "account": "root",
+  "completed_at": "2026-05-15T19:08:17.165Z",
+  "created_at": "2026-05-15T19:03:15.593Z",
+  "extra": {
+    "previous_failure": {
+      "conclusion": "killed"
+    },
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-15T19:25:14.631277+00:00"
+      }
+    ]
+  },
+  "gpu": "cuda:0,cuda:1",
+  "hypothesis": "追加 4 个新 seed (46/47/48/49) 重训 router，与 seed-robustness-core 的 4 seed (42-45) 合并为 8-seed 汇总统计。验证 cross-split balanced_acc 的 55.4±5.2% 在更大样本下是否稳定。同一训练 protocol（Qwen3-1.7B LoRA, same hyperparams, episode-level stratified split）。",
+  "parent": "seed-robustness-core",
+  "reproduce": {
+    "gpu": "cuda:0,cuda:1",
+    "server": "westb-13313",
+    "started_at": "2026-05-15T19:04:14.228Z",
+    "finished_at": "2026-05-15T19:25:11.705Z",
+    "training_hours": 0.35
+  },
+  "retry_count": 1,
+  "server": "westb-13313",
+  "spec": {
+    "checkpoint_path": "checkpoints/seed-robustness-seed{46,47,48,49}/",
+    "checkpoint_source": "n/a (training from scratch, not eval)",
+    "command": "GPU0: implicit_router_sft.py --seed 46 then --seed 47 | GPU1: implicit_router_sft.py --seed 48 then --seed 49",
+    "data_count": 2040,
+    "data_path": "data/plan-004-implicit/ + results/plan_c/",
+    "eval_data": "n/a (training experiment, eval is part of train script)",
+    "gpu": "cuda:0 + cuda:1 (RTX 5090 32GB)",
+    "gpu0_pid": 890486,
+    "gpu1_pid": 890629,
+    "hyperparams": {
+      "batch_size": 4,
+      "effective_batch_size": 32,
+      "epochs": 3,
+      "gradient_accumulation_steps": 8,
+      "lora_r": 16,
+      "lr": 2e-05,
+      "upsample_minority": true
+    },
+    "log_path": "~/runs/simgate-modular-routing/seed-robustness-ext-gpu{0,1}.log",
+    "model_name": "Qwen3-1.7B",
+    "seed": "46,47,48,49",
+    "server": "westb-13313"
+  },
+  "status": "DONE",
+  "updated_at": "2026-05-15T19:25:12.788Z",
+  "metrics": {
+    "training_complete": true,
+    "seeds": [
+      46,
+      47,
+      48,
+      49
+    ],
+    "eval
+…[truncated 653 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Bash",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T19:25:57.220644+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T19:25:57.321453+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T19:26:25.777865+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-15T19:26:25.828731+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_d5241f79.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-15T19:26:29.692653+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/resource-saturation.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/resource-saturation.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-15T19:26:30.094725+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-15T19:26:30.145393+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*.skill.md",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*.skill.md",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-15T19:26:30.246230+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T19:26:33.260402+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/skills/**/*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/skills/**/*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T19:26:33.310912+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-15T19:26:35.568710+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/*.skill.md",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/*.skill.md",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-15T19:26:35.770408+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/academic-writer.skill.md
+/home/ubuntu/agent-ml-research/skills/global/code-survey.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-experiment-review.skill.md
+/home/ubuntu/agent-ml-research/skills/global/accelerate-distributed.skill.md
+/home/ubuntu/agent-ml-research/skills/global/dataset-discovery.skill.md
+/home/ubuntu/agent-ml-research/skills/global/director-reviewer-synthesis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/data-snapshot.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-training-status.skill.md
+/home/ubuntu/agent-ml-research/skills/global/check-key.skill.md
+/home/ubuntu/agent-ml-research/skills/global/distill-session.skill.md
+/home/ubuntu/agent-ml-research/skills/global/elastic-gpu.skill.md
+/home/ubuntu/agent-ml-research/skills/global/hf-hub.skill.md
+/home/ubuntu/agent-ml-research/skills/global/draw-paper-figure.skill.md
+/home/ubuntu/agent-ml-research/skills/global/first-project-entry.skill.md
+/home/ubuntu/agent-ml-research/skills/global/experiment-analysis.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-generation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/idea-proposal.skill.md
+/home/ubuntu/agent-ml-research/skills/global/framing-reaudit.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-cloud-rental.skill.md
+/home/ubuntu/agent-ml-research/skills/global/lm-eval-harness.skill.md
+/home/ubuntu/agent-ml-research/skills/global/manager-claude-pool.skill.md
+/home/ubuntu/agent-ml-research/skills/global/paper-image-extractor.skill.md
+/home/ubuntu/agent-ml-research/skills/global/novelty-check.skill.md
+/home/ubuntu/agent-ml-research/skills/global/narrative-animation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/mvp-validation.skill.md
+/home/ubuntu/agent-ml-research/skills/global/latex-paper.skill.md
+/home/ubuntu/agent-ml-research/skills/global/on-datagen-done.skill.md
+/home/ubuntu/agent-ml-research/skills/global/negative-framing-review.skill.md
+…[truncated 3626 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-15T19:26:38.580535+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-15T19:26:38.732039+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "elapsed_ms": 151
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-15T19:26:38.732565+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-15T19:26:38.784233+00:00_
+
+1	---
+2	name: resource-saturation
+3	description: "当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。"
+4	always: false
+5	roles:
+6	  - director
+7	  - agent
+8	---
+9	
+10	# 资源饱和度自检（硬约束）
+11	
+12	## A. GPU 分配率检查
+13	
+14	调 `get_project_resource_usage(project)` 看:
+15	- 已分配给本项目的 GPU 总数和具体卡号
+16	- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）
+17	- 分配了但没跑的 GPU 清单 ⚠️
+18	
+19	任何"分配了但没跑"的 GPU = 失职。必须立即:
+20	- 派 Worker 铺 dry-run / 下一批实验代码准备
+21	- 铺 ablation（从 experiment-matrix 空白格子里挑）
+22	- 确实无实验可铺 → 向 Director 汇报"暂无可铺实验"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作
+23	
+24	**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。
+25	
+26	## B. GPU 效率检查
+27	
+28	调 `get_gpu_health(server)`:
+29	- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务
+30	- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）
+31	- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优
+32	
+33	## C. 非 GPU 任务并行
+34	
+35	GPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:
+36	- 下一批实验的数据集下载 / 预处理 / fingerprint
+37	- 下一批实验的代码准备 / dry-run / 环境配置
+38	- 论文文献调研 / related work 检索
+39	- 已完成实验的 log 深度分析 / metric 聚合
+40	- 论文章节起草
+41	- 代码 review / refactor
+42	
+43	**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。
+44	
+45	## D. 汇报格式
+46	
+47	向 Director 汇报时开头必须带资源声明行:
+48	
+49	    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)
+50	
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "Read",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-15T19:26:59.621301+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "file": "memory.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "file": "memory.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-15T19:26:59.672282+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/memory.md\", \"content\": \"# Memory — simgate-modular-routing\\n\\n## 决策记录\\n\\n### Deep-internal vs Fast-internal: 2-way suffices (2026-05-15)\\nplan-006 数据对比分析结论：**3-way routing 无数据支撑，维持 2-way routing**。\\n- 6 个重叠 task 无一达到 p<0.05（Mann-Whitney U），效应量全部 negligible（|d|≤0.31）\\n- 跨 task 平均分：fast -38.11 vs deep -37.55（Δ=0.56, p=0.83）\\n- Death rate 几乎相同：41.8% vs 42.5%\\n- Score 分布在两种 mode 下高度一致：死亡（-100）或低分（0）双峰结构\\n- find-non-living-thing 有微弱趋势（deep 26.6 vs fast 18.9, p=0.27），但 0% death rate\\n- **结论**：deep-internal 的额外 thinking cost 未换来可测量的性能提升，以 fast-internal 代表 internal mode\\n\\n### Seed robustness 两种方差 (2026-05-15)\\nRouter balanced_acc 方差取决于是否改变 train/val split：\\n- **固定 split，不同训练 seed**（plan-013, 4 seeds）：57.6±0.5% — 训练过程稳定\\n- **不同 split，不同 seed**（seed-robustness-core, 4 seeds）：55.4±5.2% — split 选择是主要方差来源\\n论文引用时需区分两种方差。Decomposition 指标（DAF, r）对 bootstrap 非常稳定：DAF 90.6%±4.2%, r 0.975±0.011。\\n\\n### 🚨 57.6% 可信度验证 (2026-05-15)\\n**论文 57.6% 数字可信。** 根因是 checkpoint mismatch，非 eval template 问题。\\n- 论文引用的 57.6% 来自 `plan-004-implicit/final_adapter`（gradient_accumulation=8，correct）\\n- Reviewer 测到的 42.78% 来自 `plan-004-v5/final_adapter`（gradient_accumulation=1，05-14 脚本被修改导致）\\n- enable_thinking 对 plan-004-v5 结果无影响（thinking_on=0.4148, thinking_off=0.4148）\\n- 修复后 eval 在正确 checkpoint 上得到 0.5685 ≈ 0.5761（采样方差）\\n- **唯一可信 checkpoint：`plan-004-implicit/final_adapter`**。plan-004-v5 是 buggy 产物。\\n\\n### ga 验证定论 (2026-05-14, 紧急验证)\\n**ablation-b 及全部 seed 变体实际 ga=8，Reviewer 声称 ga=1 不成立。**\\n证据链（4 重交叉验证）：\\n1. total_steps=165（4 个 run 均一致）→ 1735 samples / batch=4 / ga=8 / 3 epochs = ceil(1735/32)×3 = 165\\n2. 旧版脚本 `implicit_router_sft.py.bak` 第 270 行硬编码：`gradient_accumulation_steps=max(1, 32 // args.batch_size)` = 8\\n3. seed123/456/789 的 train_config.json 均显式记录 `gradient_accumulation_steps: 8`\\n4. ablation-b config 缺失 ga 字段原因：当时 ga 是脚本内计算值（非 
+…[truncated 7135 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-15T19:27:23.195160+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__get_project_resource_usage",
+  "max_results": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__tail_training_logs,mcp__agent-ml-research__get_project_resource_usage",
+    "max_results": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-15T19:27:23.195681+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "ToolSearch",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-15T19:27:29.319158+00:00_
+
+called mcp__agent-ml-research__tail_training_logs
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__tail_training_logs</summary>
+
+```json
+{
+  "server": "westb-13313",
+  "log_path": "~/runs/simgate-modular-routing/seed-robustness-ext-gpu0.log",
+  "n": "80"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "tool_args": {
+    "server": "westb-13313",
+    "log_path": "~/runs/simgate-modular-routing/seed-robustness-ext-gpu0.log",
+    "n": "80"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T19:27:29.421279+00:00_
+
+called mcp__agent-ml-research__get_project_resource_usage
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__get_project_resource_usage</summary>
+
+```json
+{
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "tool_args": {
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T19:27:31.379257+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"lines\": [\"{'loss': 0.7087, 'grad_norm': 2.079035520553589, 'learning_rate': 1.4324324324324326e-05, 'epoch': 1.09}\", \"{'loss': 0.5973, 'grad_norm': 2.826371192932129, 'learning_rate': 1.2972972972972975e-05, 'epoch': 1.28}\", \"{'loss': 0.4776, 'grad_norm': 1.4434828758239746, 'learning_rate': 1.1621621621621622e-05, 'epoch': 1.46}\", \"{'loss': 0.4763, 'grad_norm': 3.554888963699341, 'learning_rate': 1.027027027027027e-05, 'epoch': 1.65}\", \"{'loss': 0.3813, 'grad_norm': 1.7459423542022705, 'learning_rate': 8.91891891891892e-06, 'epoch': 1.83}\", \"{'loss': 0.3874, 'grad_norm': 2.6507911682128906, 'learning_rate': 7.567567567567569e-06, 'epoch': 2.0}\", \"\", \"\\r  0%|          | 0/77 [00:00<?, ?it/s]\\u001b[A\", \"\\r  5%|▌         | 4/77 [00:00<00:02, 32.00it/s]\\u001b[A\", \"\\r 10%|█         | 8/77 [00:00<00:02, 27.07it/s]\\u001b[A\", \"\\r 14%|█▍        | 11/77 [00:00<00:02, 25.57it/s]\\u001b[A\", \"\\r 18%|█▊        | 14/77 [00:00<00:02, 25.04it/s]\\u001b[A\", \"\\r 22%|██▏       | 17/77 [00:00<00:02, 24.46it/s]\\u001b[A\", \"\\r 26%|██▌       | 20/77 [00:00<00:02, 24.13it/s]\\u001b[A\", \"\\r 30%|██▉       | 23/77 [00:00<00:02, 24.23it/s]\\u001b[A\", \"\\r 34%|███▍      | 26/77 [00:01<00:02, 24.26it/s]\\u001b[A\", \"\\r 38%|███▊      | 29/77 [00:01<00:02, 23.89it/s]\\u001b[A\", \"\\r 42%|████▏     | 32/77 [00:01<00:01, 24.07it/s]\\u001b[A\", \"\\r 45%|████▌     | 35/77 [00:01<00:01, 24.23it/s]\\u001b[A\", \"\\r 49%|████▉     | 38/77 [00:01<00:01, 24.16it/s]\\u001b[A\", \"\\r 53%|█████▎    | 41/77 [00:01<00:01, 24.36it/s]\\u001b[A\", \"\\r 57%|█████▋    | 44/77 [00:01<00:01, 24.36it/s]\\u001b[A\", \"\\r 61%|██████    | 47/77 [00:01<00:01, 24.33it/s]\\u001b[A\", \"\\r 65%|██████▍   | 50/77 [00:02<00:01, 24.42it/s]\\u001b[A\", \"\\r 69%|██████▉   | 53/77 [00:02<00:00, 24.44it/s]\\u001b[A\", \"\\r 73%|███████▎  | 56/77 [00:02<00:00, 24.64it/s]\\u001b[A\", \"\\r 77%|███████▋  | 59/77 [00:02<00:00, 24.72it/s]\\u001
+…[truncated 7362 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__tail_training_logs",
+  "elapsed_ms": 2060
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-15T19:27:31.630624+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"allocated_gpus\": [{\"server\": \"westb-13313\", \"gpu_id\": \"cuda:0\"}, {\"server\": \"westb-13313\", \"gpu_id\": \"cuda:1\"}], \"actually_running_gpus\": [], \"allocated_but_idle\": [{\"server\": \"westb-13313\", \"gpu_id\": \"cuda:0\", \"idle_min\": null}, {\"server\": \"westb-13313\", \"gpu_id\": \"cuda:1\", \"idle_min\": null}], \"running_experiments\": [], \"worker_pool\": {\"total\": 1, \"gpu_tasks\": 0, \"cpu_tasks\": 1, \"details\": [{\"worker_id\": \"worker_eval_seed-robustness-extended_20260515T192102\", \"task\": \"eval:seed-robustness-extended\"}]}, \"summary\": \"分配 2 张, 实际跑 0 张 ⚠️ | Worker 1 (GPU 0 / CPU 1)\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__get_project_resource_usage",
+  "elapsed_ms": 2209
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-15T19:27:53.214086+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "seed-robustness-extended",
+  "field": "notes",
+  "value": "Cron 误判：训练实际完成（EXIT_CODE=0，sentinel 已写入），W&B 在 offline 模式导致 cron 检测不到在线指标。4 个 seed (46-49) 均有 eval_loss，checkpoints 已保存。Router eval（balanced_acc/internal_recall）待 eval Worker 完成后补充。",
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "seed-robustness-extended",
+    "field": "notes",
+    "value": "Cron 误判：训练实际完成（EXIT_CODE=0，sentinel 已写入），W&B 在 offline 模式导致 cron 检测不到在线指标。4 个 seed (46-49) 均有 eval_loss，checkpoints 已保存。Router eval（balanced_acc/internal_recall）待 eval Worker 完成后补充。",
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-15T19:27:53.917740+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"seed-robustness-extended\", \"experiment\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T19:08:17.165Z\", \"created_at\": \"2026-05-15T19:03:15.593Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T19:25:14.631277+00:00\"}]}, \"gpu\": \"cuda:0,cuda:1\", \"hypothesis\": \"追加 4 个新 seed (46/47/48/49) 重训 router，与 seed-robustness-core 的 4 seed (42-45) 合并为 8-seed 汇总统计。验证 cross-split balanced_acc 的 55.4±5.2% 在更大样本下是否稳定。同一训练 protocol（Qwen3-1.7B LoRA, same hyperparams, episode-level stratified split）。\", \"parent\": \"seed-robustness-core\", \"reproduce\": {\"gpu\": \"cuda:0,cuda:1\", \"server\": \"westb-13313\", \"started_at\": \"2026-05-15T19:04:14.228Z\", \"finished_at\": \"2026-05-15T19:25:11.705Z\", \"training_hours\": 0.35}, \"retry_count\": 1, \"server\": \"westb-13313\", \"spec\": {\"checkpoint_path\": \"checkpoints/seed-robustness-seed{46,47,48,49}/\", \"checkpoint_source\": \"n/a (training from scratch, not eval)\", \"command\": \"GPU0: implicit_router_sft.py --seed 46 then --seed 47 | GPU1: implicit_router_sft.py --seed 48 then --seed 49\", \"data_count\": 2040, \"data_path\": \"data/plan-004-implicit/ + results/plan_c/\", \"eval_data\": \"n/a (training experiment, eval is part of train script)\", \"gpu\": \"cuda:0 + cuda:1 (RTX 5090 32GB)\", \"gpu0_pid\": 890486, \"gpu1_pid\": 890629, \"hyperparams\": {\"batch_size\": 4, \"effective_batch_size\": 32, \"epochs\": 3, \"gradient_accumulation_steps\": 8, \"lora_r\": 16, \"lr\": 2e-05, \"upsample_minority\": true}, \"log_path\": \"~/runs/simgate-modular-routing/seed-robustness-ext-gpu{0,1}.log\", \"model_name\": \"Qwen3-1.7B\", \"seed\": \"46,47,48,49\", \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T19:27:53.424Z\", \"metrics\": {\"training_complete\": true, \"seeds\": [46, 47, 48, 49], \"eval_loss_training\": {\"
+…[truncated 873 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 703
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-15T19:27:54.871774+00:00_
+
+called mcp__agent-ml-research__update_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry</summary>
+
+```json
+{
+  "exp_id": "seed-robustness-extended",
+  "field": "failure_reason",
+  "value": "FALSE POSITIVE: W&B offline mode → cron 在线检查无指标 → 误判 failed。训练实际成功完成。",
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "tool_args": {
+    "exp_id": "seed-robustness-extended",
+    "field": "failure_reason",
+    "value": "FALSE POSITIVE: W&B offline mode → cron 在线检查无指标 → 误判 failed。训练实际成功完成。",
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-15T19:27:55.273971+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"seed-robustness-extended\", \"experiment\": {\"account\": \"root\", \"completed_at\": \"2026-05-15T19:08:17.165Z\", \"created_at\": \"2026-05-15T19:03:15.593Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}, \"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T19:25:14.631277+00:00\"}]}, \"gpu\": \"cuda:0,cuda:1\", \"hypothesis\": \"追加 4 个新 seed (46/47/48/49) 重训 router，与 seed-robustness-core 的 4 seed (42-45) 合并为 8-seed 汇总统计。验证 cross-split balanced_acc 的 55.4±5.2% 在更大样本下是否稳定。同一训练 protocol（Qwen3-1.7B LoRA, same hyperparams, episode-level stratified split）。\", \"parent\": \"seed-robustness-core\", \"reproduce\": {\"gpu\": \"cuda:0,cuda:1\", \"server\": \"westb-13313\", \"started_at\": \"2026-05-15T19:04:14.228Z\", \"finished_at\": \"2026-05-15T19:25:11.705Z\", \"training_hours\": 0.35}, \"retry_count\": 1, \"server\": \"westb-13313\", \"spec\": {\"checkpoint_path\": \"checkpoints/seed-robustness-seed{46,47,48,49}/\", \"checkpoint_source\": \"n/a (training from scratch, not eval)\", \"command\": \"GPU0: implicit_router_sft.py --seed 46 then --seed 47 | GPU1: implicit_router_sft.py --seed 48 then --seed 49\", \"data_count\": 2040, \"data_path\": \"data/plan-004-implicit/ + results/plan_c/\", \"eval_data\": \"n/a (training experiment, eval is part of train script)\", \"gpu\": \"cuda:0 + cuda:1 (RTX 5090 32GB)\", \"gpu0_pid\": 890486, \"gpu1_pid\": 890629, \"hyperparams\": {\"batch_size\": 4, \"effective_batch_size\": 32, \"epochs\": 3, \"gradient_accumulation_steps\": 8, \"lora_r\": 16, \"lr\": 2e-05, \"upsample_minority\": true}, \"log_path\": \"~/runs/simgate-modular-routing/seed-robustness-ext-gpu{0,1}.log\", \"model_name\": \"Qwen3-1.7B\", \"seed\": \"46,47,48,49\", \"server\": \"westb-13313\"}, \"status\": \"DONE\", \"updated_at\": \"2026-05-15T19:27:55.102Z\", \"metrics\": {\"training_complete\": true, \"seeds\": [46, 47, 48, 49], \"eval_loss_training\": {\"
+…[truncated 880 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__update_registry",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-15T19:28:13.504421+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 0（终稿阶段无 GPU 需求）| Worker 池 1 (GPU 0 / CPU 1: eval worker)\n\n## seed-robustness-extended 失败诊断\n\n**结论：Cron 误判，训练实际成功完成。**\n\n- **根因**：W&B 运行在 offline 模式（`wandb sync ...offline-run...`），cron 在线检测不到 W&B 指标，5 次检查后自动标记 failed\n- **实际状态**：4 个 seed (46-49) 全部训练完成，EXIT_CODE=0，sentinel 已写入，checkpoints 已保存\n- **eval_loss**：seed46=0.3679, seed47=0.3749, seed48=0.3468, seed49=0.3710（mean=0.3652±0.0127，与 core seeds 42-45 一致）\n\n**待完成**：router eval（balanced_acc/internal_recall），已有 eval Worker `worker_eval_seed-robustness-extended_20260515T192102` 在跑，完成后可合并 8-seed 汇总统计。\n\n**对论文影响**：如果 8-seed 结果稳定，可更新 §4.4 seed robustness 数据（从 4-seed 55.4±5.2% 扩展到 8-seed），增强统计说服力。等 eval Worker 回调后汇报最终数字。",
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 0（终稿阶段无 GPU 需求）| Worker 池 1 (GPU 0 / CPU 1: eval worker)\n\n## seed-robustness-extended 失败诊断\n\n**结论：Cron 误判，训练实际成功完成。**\n\n- **根因**：W&B 运行在 offline 模式（`wandb sync ...offline-run...`），cron 在线检测不到 W&B 指标，5 次检查后自动标记 failed\n- **实际状态**：4 个 seed (46-49) 全部训练完成，EXIT_CODE=0，sentinel 已写入，checkpoints 已保存\n- **eval_loss**：seed46=0.3679, seed47=0.3749, seed48=0.3468, seed49=0.3710（mean=0.3652±0.0127，与 core seeds 42-45 一致）\n\n**待完成**：router eval（balanced_acc/internal_recall），已有 eval Worker `worker_eval_seed-robustness-extended_20260515T192102` 在跑，完成后可合并 8-seed 汇总统计。\n\n**对论文影响**：如果 8-seed 结果稳定，可更新 §4.4 seed robustness 数据（从 4-seed 55.4±5.2% 扩展到 8-seed），增强统计说服力。等 eval Worker 回调后汇报最终数字。",
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-15T19:28:16.970601+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:seed-robustness-extended",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3466
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 54 · 2026-05-15T19:28:25.994374+00:00_
+
+诊断和汇报完成。
+
+**总结**：`seed-robustness-extended` 不是真正的训练失败——W&B offline 模式导致 cron 监控误判。4 个 seed 训练全部成功完成（EXIT_CODE=0），eval_loss 正常。已有 eval Worker 在跑 router eval 补充 balanced_acc 指标，等回调后更新最终结果。Registry 已更新诊断信息，Director 已收到汇报。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:seed-robustness-extended"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 55 · 2026-05-15T22:29:01.109638+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:seed-robustness-extended",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 56 · 2026-05-15T22:29:42.054244+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：westb-13313 的 cuda:0 和 cuda:1（RTX 5090 32GB）。不得使用其他卡
+- 唯一可信 checkpoint：`plan-004-implicit/final_adapter`（ga=8）。plan-004-v5 是 buggy 产物（ga=1），绝不引用
+- 论文 Table 1 数字必须来自 `eval_end_to_end.py`，不是 `eval_implicit_router.py`
+- Router eval 必须用生成式评估（generate + parse_output），禁止 logit_level_eval（plan-008 三次失败教训）
+- implicit_router_sft.py 曾被篡改（ga 8→1），已从 .bak 恢复。修改训练脚本必须 git commit
+- W&B 在 westb-13313 上是 offline 模式，cron 会误判——注意区分 false positive
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westb-13313，工作目录 `/root/autodl-tmp/simgate-modular-routing`
+- Python：`/root/miniconda3/bin/python`（conda base 环境，不是 venv）
+- 模型：Qwen3-1.7B（本地路径需 Worker 确认）
+- 数据：`data/plan-004-implicit/implicit_sft.jsonl`（2040 samples, MD5: c9b59e04de78）
+- HF_HOME：`/root/autodl-tmp/.hf_cache`
+- Checkpoints：`checkpoints/seed-robustness-seed{42..49}/final_adapter/`（8 seeds 全部训练完成）
+- 活跃进程：无 GPU 进程。1 个 eval Worker 在跑：`worker_eval_seed-robustness-extended_20260515T192102`（CPU task，跑 router eval for seeds 46-49）
+- Cron：reconcile 返回 0，无活跃 cron
+
+### 3. 📊 当前状态
+刚处理 seed-robustness-extended 的 cron 失败回调。诊断为 **false positive**（W&B offline 模式导致 cron 误判）。训练实际全部完成，4 seed eval_loss 正常（mean=0.3652±0.0127）。已更新 registry notes 和 failure_reason，已向 Director 汇报。
+
+- Registry：74 个实验全部 DONE（success 28 / negative 15 / failed 13 / killed 18）。无 RUNNING/PREPARING
+- 等待 eval Worker 回调：`worker_eval_seed-robustness-extended` 正在跑 seeds 46-49 的 router eval（balanced_acc/internal_recall）
+- 等待 Director 审批：Round 8 continue review（BLOCKING，决定是否需要补充实验）
+- 论文更新进行中：Paper Agent 整合 3 处更新（deep-internal ablation + §4.4 failure taxonomy + Discussion cross-task）
+
+### 4. 📋 待办
+- eval Worker 回调到达 → 合并 8-seed 统计（core 42-45 + extended 46-49），更新 registry metrics，将 conclusion 从 failed 改为 success（如果 balanced_acc 合理），更新 memory.md 的 seed robustness 条目，向 Director 汇报最终 8-seed 数字
+- Director 审批 Round 8 → 启动 Round 8 审稿，按 review-report-action skill 处理
+- Round 8 发现需要补充实验 → 两张 GPU 空闲可立即跑，优先 seed robustness 相关或 reviewer 要求的补充
+- 8-seed 结果不稳定（std 显著偏离 core 的 5.2%）→ 产出 Framing 提案，不默默继续
+
+### 5. 🎯 战略上下文
+- **核心结论**：Episode-level counterfactual analysis 揭示 ScienceWorld 上 routing signal 主要来自 death avoidance（~90% DAF）。论文贡献 = counterfactual 方法论 + death avoidance empirical finding（D013/D033 Option B）
+- **DDL**：EMNLP 2026 ARR，2026-05-25（剩 10 天）。全部实验已完成，进入终稿阶段
+- **覆盖率**：C1 83.3%, C1+C2 100%。plan-010 cross-task transfer 为 negative（routing signal task-specific），已降级 preliminary
+- **易错点**：
+  - seed-robustness-extended 当前 conclusion 仍为 "failed"（registry 未改），等 eval Worker 回来才能改。不要在此之前引用为 success
+  - memory.md 记录了两种方差：固定 split 57.6±0.5% vs 不同 split 55.4±5.2%，论文引用时必须区分
+  - plan-008 router-size ablation 已被 kill（3 次失败），不要再尝试
+  - Multi-model pilot（Llama 3.1 8B）已 PASS 但全量收集（11 tasks × 20 eps）未审批，不要自行启动
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:seed-robustness-extended"
+}
+```
+
+</details>
+
+---

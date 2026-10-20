@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5048a74308bbcef9a2f6",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix full paper sync compile",
+  "task_key": "worker_fix_full-paper-sync-compile_20260516T141141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_full-paper-sync-compile_20260516T141141_result.json",
+    "occurrence": 1,
+    "bytes": 270,
+    "sha256": "b64efc463f03967ab1a6744024649bff917d15ff0f69b01631ca600dca89c88d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译完全成功。\n\n```\n=== 编译结果 ===\nErrors: 0\nUndefined citations: 0\nUndefined references: 0\nWarnings: 7\nPDF 页数: 14\nPDF 大小: 397 KB\n```\n\n0 error / 0 undefined citation / 0 undefined reference。全量同步和编译完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-full-paper-sync-compile.md"
+}

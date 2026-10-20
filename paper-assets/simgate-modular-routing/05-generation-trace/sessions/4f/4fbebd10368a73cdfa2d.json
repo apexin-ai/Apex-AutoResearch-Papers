@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fbebd10368a73cdfa2d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis routing patterns",
+  "task_key": "worker_analysis_routing-patterns_20260515T114910",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_routing-patterns_20260515T114910_result.json",
+    "occurrence": 1,
+    "bytes": 1847,
+    "sha256": "26e1d79ef6c18ac7e004a545f93814341ed3531b7566cfa8c986a2fc16189571"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 PDF 和分析脚本均已就绪。\n\n---\n\n## 产出\n\n### 文件\n- `results/routing-patterns/routing_heatmap.pdf` (30KB)\n- `results/routing-patterns/death_timing.pdf` (16KB)\n- `results/routing-patterns/episode_length_comparison.pdf` (20KB)\n- `scripts/analyze_routing_patterns.py`\n\n### 分析 Summary\n\n**Routing Pattern（245 episodes, 11 tasks）**\n\n| 指标 | 值 |\n|---|---|\n| Det-preferred | 86 (35.1%) |\n| Internal-preferred | 9 (3.7%) |\n| No-preference | 150 (61.2%) |\n| **Det/(Det+Int)** | **90.5%** |\n\n- 6 个 task（Find-Animal, Life-Stage-1/2, Freeze, Melting-Pt, Incline）Det/(Det+Int) = **100%**，无一 episode 偏好 internal\n- 5 个 task 有 internal-preferred episodes，最多的是 Find-NL（4/40=10%）和 Chem-Mix（2/20=10%）\n\n**Death Timing**\n\n| | Internal | Deterministic |\n|---|---|---|\n| 总 death 数 | 105 | 40 |\n| Mean death step | **18.6** | **21.9** |\n| Early (1-10) | 3.8% | 0.0% |\n| **Mid (11-20)** | **69.5%** | 30.0% |\n| Late (21-30) | 26.7% | **70.0%** |\n\n**关键 insight**: Internal model 的 death 集中在 mid-game（steps 11-20, 69.5%），而 deterministic model 的 death 集中在 late-game（steps 21-30, 70.0%）。Internal model 平均早 3.3 步死亡。这说明 internal model 在中期阶段更容易做出致命错误决策。\n\n**Episode Length**\n\n- Internal 平均 episode 长度在所有 task 上都 ≤ deterministic（因为 death 导致提前终止）\n- Find-NL 是唯一例外（两者均为 30.0，该 task 无 death）\n- 差距最大的是 Life-Stage-1（+5.7 步）和 Lifespan-L（+5.2 步）\n\n**Death-conditioned routing**: Internal 死亡的 105 个 episode 中 66.7% 被标记为 det-preferred；无 death 的 140 个 episode 中仅 11.4% 为 det-preferred。Death asymmetry 是 routing label 的主要驱动信号。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-routing-patterns.md"
+}

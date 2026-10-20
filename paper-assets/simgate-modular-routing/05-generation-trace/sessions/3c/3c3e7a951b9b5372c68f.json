@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3c3e7a951b9b5372c68f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "review paper consistency",
+  "task_key": "worker_review_paper-consistency_20260514T112531",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_paper-consistency_20260514T112531_result.json",
+    "occurrence": 1,
+    "bytes": 1293,
+    "sha256": "fa36829525b5e3da8beb7503184d179d67daaea2c88edf2597a199bb263a4aae"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审查完成。报告已写入 `artifacts/_project/paper/review_report.md`。\n\n**核心发现摘要**:\n\n**🔴 Critical (4)**:\n1. **Logit/Generation 准确率混源** — 74.5% logit 来自 plan-004-v5 (GA=1)，65.36% generation 来自 plan-004-ablation-b (GA=8)，是两个不同模型。v5 的 generation 实际只有 53.3%（degenerate），ablation-b 的 logit-generation gap 为 0。论文制造了一个不存在的\"中等 gap\"。\n2. **缺 main.tex** — 无法编译\n3. **`\\ref{fig:decomposition}` 悬空** — 无对应 Figure\n4. **页数超限** — 估算 ~5.0 页，超 4 页限制约 1 页\n\n**🟡 Important (6)**: Limitations 重复出现两次、Method/Experiments 数值重复、DAgger gap 未讨论（paper_framing 明确要求）、bib 条目不完整（2 条缺 venue、2 条 Anonymous）、96.2% 可能应为 96.3%、98.2% tie rate 无 registry 支撑\n\n**🟢 Minor (5)**: Abstract 过密、C2 贡献混入 router 细节、-100 惩罚泛化性讨论不足、CogRouter 82.3% 与本文 metric 不可比、Future Work 可压缩\n\n**好消息**: 所有核心数字（Δ_full、Δ_nd、DAF、r、p、Table 1 全部数字）跨 section 一致且与 registry 匹配。Framing 一致性合规（Option B），无违禁表述，强度词使用合理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-paper-consistency.md"
+}

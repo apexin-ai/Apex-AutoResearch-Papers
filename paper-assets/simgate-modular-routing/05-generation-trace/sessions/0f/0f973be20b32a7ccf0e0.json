@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "0f973be20b32a7ccf0e0",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "exp death proximal labeling router",
+  "task_key": "worker_exp_death-proximal-labeling-router_20260519T162129",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_death-proximal-labeling-router_20260519T162129.log",
+    "occurrence": 1,
+    "bytes": 1562844,
+    "sha256": "4281d1437645df5def7a4088497f1a572fda5d2ac3dc31c148a83a526188ad75"
+  },
+  "statistics": {
+    "messages": 768,
+    "user_turns": 1,
+    "tool_calls": 303,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 154,
+      "tool_call": 303,
+      "tool_result": 303,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 470,
+      "chunks": [
+        {
+          "path": "0f973be20b32a7ccf0e0-part-0001.json",
+          "message_count": 168
+        },
+        {
+          "path": "0f973be20b32a7ccf0e0-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f973be20b32a7ccf0e0-part-0003.json",
+          "message_count": 122
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 298,
+      "chunks": [
+        {
+          "path": "0f973be20b32a7ccf0e0-part-0003.json",
+          "message_count": 58
+        },
+        {
+          "path": "0f973be20b32a7ccf0e0-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "0f973be20b32a7ccf0e0-part-0005.json",
+          "message_count": 60
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/exp-death-proximal-labeling-router.md"
+}

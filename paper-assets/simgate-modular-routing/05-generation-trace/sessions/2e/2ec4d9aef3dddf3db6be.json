@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2ec4d9aef3dddf3db6be",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra paper sync final submit",
+  "task_key": "worker_infra_paper-sync-final-submit_20260517T081558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_paper-sync-final-submit_20260517T081558_result.json",
+    "occurrence": 1,
+    "bytes": 96,
+    "sha256": "65f51708b6e3cc7c7f7fbb9a9229995ee09c3c1861eadbafee252aca23f09ddb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步 + 编译完成。\n\n- 0 undefined citations\n- 0 errors\n- 15 页，432KB"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-paper-sync-final-submit.md"
+}

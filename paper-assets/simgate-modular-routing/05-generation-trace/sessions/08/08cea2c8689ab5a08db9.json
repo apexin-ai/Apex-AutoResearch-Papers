@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "08cea2c8689ab5a08db9",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "ops disk cleanup step1 3",
+  "task_key": "worker_ops_disk-cleanup-step1-3_20260514T034844",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk-cleanup-step1-3_20260514T034844.log",
+    "occurrence": 1,
+    "bytes": 1519023,
+    "sha256": "10247896624b5851c0fb88b8911e1b0c5e561877f05bc8a104de4b221c238eb7"
+  },
+  "statistics": {
+    "messages": 962,
+    "user_turns": 1,
+    "tool_calls": 355,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 2,
+      "assistant": 241,
+      "tool_call": 355,
+      "tool_result": 355,
+      "user": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 487,
+      "chunks": [
+        {
+          "path": "08cea2c8689ab5a08db9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "08cea2c8689ab5a08db9-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "08cea2c8689ab5a08db9-part-0003.json",
+          "message_count": 127
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 475,
+      "chunks": [
+        {
+          "path": "08cea2c8689ab5a08db9-part-0003.json",
+          "message_count": 53
+        },
+        {
+          "path": "08cea2c8689ab5a08db9-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "08cea2c8689ab5a08db9-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "08cea2c8689ab5a08db9-part-0006.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-disk-cleanup-step1-3.md"
+}

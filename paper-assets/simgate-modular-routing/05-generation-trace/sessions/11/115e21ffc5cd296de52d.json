@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "115e21ffc5cd296de52d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis excluded 19 tasks",
+  "task_key": "worker_analysis_excluded-19-tasks_20260515T161414",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_excluded-19-tasks_20260515T161414_result.json",
+    "occurrence": 1,
+    "bytes": 1847,
+    "sha256": "4d09f7f92f74af93d4074e7013c69f98d1ba8e48ae5f20befae511ff0b88dc45"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是结果摘要：\n\n---\n\n## 30 Task 分类总览\n\n**Included (11)**: chemistry-mix, find-animal, find-non-living-thing, freeze, grow-fruit, identify-life-stages-1/2, inclined-plane-determine-angle, lifespan-longest-lived, lifespan-longest-lived-then-shortest-lived, measure-melting-point-unknown-substance\n\n**Excluded (19)** 分三组：\n\n### Group A: MVP 开发数据 (5 tasks)\nboil, melt, change-the-state-of-matter-of, chemistry-mix-paint-secondary-color, grow-plant\n→ 管线开发阶段用过，排除防止循环评估\n\n### Group B: 家族冗余变体 (7 tasks)\nchemistry-mix-paint-tertiary-color, find-living-thing, find-plant, inclined-plane-friction-named/unnamed-surfaces, lifespan-shortest-lived, measure-melting-point-known-substance\n→ 同一 task family 保留 1 个代表，避免 correlated variants 膨胀样本量\n\n### Group C: Agent 能力天花板 (7 tasks)\nmendelian-genetics-known/unknown-plant, power-component/renewable, test-conductivity/unknown, use-thermometer\n→ 两种策略在非死亡 episode 中均得分 0.0，7B backbone 无法完成这些任务，routing 无信号可学\n\n## 关键统计对比\n\n| 指标 | Included (11) | Excluded (19) |\n|------|--------------|---------------|\n| det_death_rate mean | **3.8%** | 15.5% |\n| det_mean_score | **+3.22** | -14.61 |\n| det_death ≥ 20% | 2/11 | 10/19 |\n| Δ_nd = 0 | 9/11 | 14/19 |\n\n## 排除标准合理性\n排除 **不会偏向** death-avoidance 结论——included 集合保留了 find-non-living-thing（零死亡、internal 更优）和 measure-melting-point-unknown-substance（Δ_nd=16.5）。纳入 Group C 反而会 **强化** death-dominance claim（7 个全部 DAF=100%）。\n\n## 论文文本\nAppendix 和 Limitations 两个版本已写入 `artifacts/excluded_tasks_analysis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-excluded-19-tasks.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "04a4897723958c31fb95",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis leave one task out daf",
+  "task_key": "worker_analysis_leave-one-task-out-daf_20260518T194504",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_leave-one-task-out-daf_20260518T194504_result.json",
+    "occurrence": 1,
+    "bytes": 857,
+    "sha256": "d05d25f1623b7d415f3eefcfd680d2aa463877254d7e91e595ae6500754ad2e1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**Full DAF = 78.9%** (75 death-asymmetry / 95 decisive episodes)，验证通过。\n\n| Leave-one-out 结论 | |\n|---|---|\n| 10 个 death-prone tasks | 移除任意一个，DAF 变化 ≤ 3.0 pp (range: 75.9%--78.9%) |\n| find-non-living-thing | 唯一 death-free task，贡献全部 20 个 score-comparison episodes；移除后 DAF = 100% (by construction) |\n\n关键发现：DAF 对 task 组成高度稳健。find-non-living-thing 的 +21.1 pp 跳变恰好说明为什么 DAF 不是 100%（唯一一个 death-free task 提供了所有非死亡路由信号），这反而强化了 death dominance 的叙事。\n\n产出：\n- LaTeX table → `artifacts/appendix/leave_one_task_out_daf_table.tex` (art_20260518_8eda42)\n- JSON data → `artifacts/appendix/leave_one_task_out_daf_data.json` (art_20260518_1d2974)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-leave-one-task-out-daf.md"
+}

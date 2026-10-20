@@ -1,0 +1,14 @@
+{
+  "exp_id": "r7n2-data-size-ablation-v2",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T03:12:54.564Z",
+    "updated_at": "2026-05-16T03:12:54.564Z"
+  },
+  "timestamp": "2026-05-16T03:12:54.748801+00:00",
+  "trigger": "update_registry"
+}

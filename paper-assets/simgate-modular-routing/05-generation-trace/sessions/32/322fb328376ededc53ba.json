@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "322fb328376ededc53ba",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis plan 012 preliminary",
+  "task_key": "worker_analysis_plan-012-preliminary_20260514T045209",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_plan-012-preliminary_20260514T045209_result.json",
+    "occurrence": 1,
+    "bytes": 2089,
+    "sha256": "082db4999e00a5e9fecce42cf6729d7e15e931a4f973fd2ec73bc7fe36731b39"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Death Decomposition 初步分析结果 (PRELIMINARY)\n\n### 全局汇总\n\n| 指标 | 本次 (11 tasks, 235 eps) | Prescreening (30 tasks) | 变化 |\n|------|------------------------|------------------------|------|\n| Δ_full (det-int) | **+29.85** | +37.9 | ↓ 更低 |\n| Δ_nd (no-death) | **+2.95** | +0.2 | ↑ 略高但仍极小 |\n| Death fraction | **90.1%** | 99% | ↓ 仍然 dominant |\n| Pearson r | **0.967** (p=1.2e-06) | 0.989 | ↓ 仍极强相关 |\n| Death rate | int=43.0%, det=16.2% | — | — |\n| Labels | det=83, int=8, no-pref=144 | — | — |\n\n### Per-task CSV\n\n| task | n | death_int | death_det | Δ_full | Δ_nd | det_pref | int_pref |\n|------|---|-----------|-----------|--------|------|----------|----------|\n| **chemistry-mix** ⚠️ | 10 | 0.50 | 0.30 | 20.0 | 0.0 | 3 | 1 |\n| find-animal | 20 | 0.50 | 0.25 | 26.65 | 0.0 | 5 | 0 |\n| find-non-living-thing | 40 | 0.00 | 0.00 | 9.58 | 9.58 | 16 | 4 |\n| freeze | 20 | 0.55 | 0.25 | 30.5 | 0.0 | 6 | 0 |\n| grow-fruit | 20 | 0.45 | 0.20 | 25.1 | 0.0 | 6 | 1 |\n| identify-life-stages-1 | 20 | 0.55 | 0.10 | 47.5 | 0.0 | 9 | 0 |\n| identify-life-stages-2 | 20 | 0.50 | 0.20 | 30.0 | 0.0 | 6 | 0 |\n| inclined-plane-determine-angle | 20 | 0.55 | 0.20 | 36.0 | 0.0 | 7 | 0 |\n| lifespan-longest-lived | 25 | 0.56 | 0.16 | 44.0 | 0.0 | 11 | 1 |\n| lifespan-longest-lived-then-shortest | 20 | 0.45 | 0.10 | 40.8 | 0.0 | 8 | 1 |\n| measure-melting-point-unknown | 20 | 0.55 | 0.25 | 30.05 | 0.0 | 6 | 0 |\n\n⚠️ chemistry-mix 仅 10 episodes（incomplete，缺 12 eps），最终版需重跑。\n\n### 关键观察\n\n1. **核心结论不变**：90.1% 的 det-int gap 来自 death avoidance，与 prescreening 的 99% 方向一致\n2. **Δ_full 偏低**（29.85 vs 37.9）：plan_c 的 11 个 task 子集 death rate 差距比 30-task 全集小\n3. **find-non-living-thing 是唯一零死亡 task**：Δ_nd=9.58 = Δ_full，说明该 task 的 gap 完全来自非死亡因素，拉高了全局 Δ_nd\n4. **Pearson r=0.967 仍极强**：death rate 差异几乎完美预测 score gap"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-plan-012-preliminary.md"
+}

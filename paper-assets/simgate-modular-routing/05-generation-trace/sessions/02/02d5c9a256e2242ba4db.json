@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02d5c9a256e2242ba4db",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "research related work check",
+  "task_key": "worker_research_related-work-check_20260520T120005",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related-work-check_20260520T120005_result.json",
+    "occurrence": 1,
+    "bytes": 7886,
+    "sha256": "5f71cb75db365f89a8bcd7f8a98a0c8d2fde5b9afe67e28d7c93760610c32b93"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "搜索完毕，以下是整理后的结果。\n\n---\n\n## 2025-2026 年可能遗漏的相关工作\n\n### Tier 1: Direct Competitor — 必须引用\n\n| # | 论文 | 年份/Venue | 关系 | 相关性 |\n|---|------|-----------|------|--------|\n| 1 | **[Budget-Aware Agentic Routing via Boundary-Guided Training](https://arxiv.org/abs/2602.21227)** | Feb 2026, arXiv | **Direct competitor** | 最直接的竞争者：同样做 episode-level agent routing（step-wise model selection），明确指出 agentic routing 是 path-dependent + sparse terminal feedback 问题，用 boundary policies 构建 difficulty taxonomy。区别：他们优化 cost-performance frontier，我们做 diagnostic analysis 揭示 routing signal 来源。 |\n| 2 | **[Abstract Counterfactuals for Language Model Agents](https://arxiv.org/abs/2506.02946)** (Pona et al.) | NeurIPS 2025 Poster | **Direct competitor** | 同样将 counterfactual 方法用于 LM agent，提出 action-level abstract counterfactuals。区别：他们做 token→action 的 abstraction layer 用于解释，我们做 episode-level diagnostic 揭示 routing signal 的组成（DAF）。 |\n| 3 | **[Verified Critical Step Optimization for LLM Agents](https://arxiv.org/abs/2602.03412)** (Li et al.) | Feb 2026, arXiv | **Direct competitor** | 用 counterfactual 思路识别 critical steps（alternative actions flip failure→success），与我们的 counterfactual diagnostic 精神一致。区别：他们用于 post-training（DPO），我们用于 routing signal 分析。 |\n| 4 | **[AXIS: Integrating Counterfactual Simulations with Language Models for Explaining Multi-Agent Behaviour](https://arxiv.org/abs/2505.17801)** (Gyevnar et al.) | May 2025, arXiv | **Method component** | LLM 通过 what-if 查询 simulator 生成 counterfactual 解释 agent 行为，与我们的 counterfactual diagnostic framework 方法论相关。 |\n\n### Tier 2: 高度相关 — 强烈建议引用\n\n| # | 论文 | 年份/Venue | 关系 | 相关性 |\n|---|------|-----------|------|--------|\n| 5 | **[EvoRoute: Experience-Driven Self-Routing LLM Agent Systems](https://arxiv.org/abs/2601.02695)** | Jan 2026, arXiv | Method component | 动态 agent routing，用 experience 做 Pareto-optimal model selection，在 GAIA 上降低 80% cost。与我们的 routing 主题直接相关。 |\n| 6 | **[SALT: Step-level Advantage Assignment for Long-horizon Agents via Trajectory Graph](https://arxiv.org/abs/2510.20022)** | EACL 2026 Findings | Method component | 用 trajectory graph 做 step-level credit assignment，**在 ALFWorld 上实验**。与我们的 episode-level signal 分析互补。 |\n| 7 | **[SkillOrchestra: Learning to Route Agents via Skill Transfer](https://arxiv.org/abs/2602.19672)** (Wang et al.) | Feb 2026, arXiv | Method component | Skill-aware routing 框架，学习 agent-specific competence + cost trade-off，outperforms RL-based orchestrators。 |\n| 8 | **[Learning Agent Routing From Early Experience](https://arxiv.org/abs/2605.07180)** | May 2026, arXiv | Method component | BoundaryRouter: training-free routing，用 early behavioral experience 决定 LLM vs full agent execution，引入 RouteBench。 |\n| 9 | **[AgentRx: Diagnosing AI Agent Failures from Execution Trajectories](https://arxiv.org/abs/2602.02475)** (Microsoft) | Feb 2026, arXiv | Related but different | 从 agent trajectory 自动诊断失败原因（step localization + failure category），与我们的 diagnostic framework 目标类似，但他们做 post-hoc debugging，我们做 routing signal analysis。 |\n| 10 | **[Which Agent Causes Task Failures and When?](https://arxiv.org/abs/2505.00212)** (Zhang et al.) | ICML 2025 Spotlight | Related but different | Multi-agent failure attribution，Who&When dataset。与我们的 failure 分析方向相关，但针对 multi-agent coordination 而非 single-agent routing。 |\n\n### Tier 3: 相关但侧重不同 — 视篇幅决定是否引用\n\n| # | 论文 | 年份/Venue | 关系 | 相关性 |\n|---|------|-----------|------|--------|\n| 11 | **[STeCa: Step-level Trajectory Calibration for LLM Agent Learning](https://arxiv.org/abs/2502.14276)** (Wang et al.) | ACL 2025 Findings | Related but different | Step-level reward comparison + trajectory calibration for agent learning。 |\n| 12 | **[Check Yourself Before You Wreck Yourself: Selectively Quitting Improves LLM Agent Safety](https://arxiv.org/abs/2510.16492)** | NeurIPS 2025 Workshop | Related but different | Agent 主动 quit 避免 catastrophic failure，与我们的 death avoidance 发现相关——他们发现 quit 指令显著提升 safety，呼应我们发现 death avoidance 占 ScienceWorld routing signal ~90%。 |\n| 13 | **[DiSRouter: Distributed Self-Routing for LLM Selections](https://arxiv.org/abs/2510.19208)** | arXiv, Oct 2025 | Related but different | 分布式 self-aware routing，每个 LLM 自主决定 route。但面向 API-level model selection，非 interactive environment。 |\n| 14 | **[MoMA: Towards Generalized Routing](https://arxiv.org/abs/2509.07571)** | Sep 2025, arXiv | Related but different | 统一 model routing + agent routing 的框架，Related Work 中 routing 方法论综述可引。 |\n| 15 | **[The Long-Horizon Task Mirage? Diagnosing Where and Why Agentic Systems Break](https://arxiv.org/abs/2604.11978)** | Apr 2026, arXiv | Related but different | 700+ tasks across 4 benchmarks 诊断 agent 失败模式，包含 horizon-conditioned failure 分析。 |\n| 16 | **[Understanding Dynamic Diffusion Process of LLM-based Agents under Information Asymmetry](https://arxiv.org/abs/2502.13160)** | Feb 2025, arXiv | Related but different | LLM agent 在信息不对称下的行为，与我们发现 ALFWorld 中 routing signal 来自 information asymmetry（DAF=0%）的结论有概念层面关联。 |\n| 17 | **[SkillRouter: Skill Routing for LLM Agents at Scale](https://arxiv.org/abs/2603.22455)** | Mar 2026, arXiv | Related but different | 大规模 skill routing（~80K skills），retrieve-and-rerank pipeline。面向 tool selection 而非 model routing。 |\n| 18 | **[From Reasoning to Agentic: Credit Assignment in RL for LLMs](https://arxiv.org/abs/2604.09459)** | Apr 2026, arXiv | Survey/reference | 综述 47 篇 credit assignment 论文，包括 counterfactual 方法（HCAPO, C3, CCPO），可在 Related Work 中引用以定位我们的方法。 |\n| 19 | **[Adaptive Tool Use in LLMs with Meta-Cognition Trigger (MeCo)](https://arxiv.org/abs/2502.12961)** | Feb 2025, arXiv | Related but different | LLM 自我评估是否需要外部工具，与 routing decision 的 \"when to use which capability\" 主题相关。 |\n| 20 | **[Graph-Based Self-Healing Tool Routing](https://arxiv.org/abs/2603.01548)** | Mar 2026, arXiv | Related but different | 用 Dijkstra 做 deterministic tool routing，deterministic strategy 部分可与我们的发现对比。 |\n\n---\n\n### 总结建议\n\n**必须加入 Related Work 的（Tier 1，4 篇）：**\n- Budget-Aware Agentic Routing — 最直接的 routing 竞品，必须 discuss\n- Abstract Counterfactuals for LM Agents — counterfactual + agent 的 NeurIPS 论文\n- Verified Critical Step Optimization — counterfactual step identification\n- AXIS — counterfactual simulation for agent explanation\n\n**强烈建议引用的（Tier 2，6 篇）：**\n- EvoRoute, SALT, SkillOrchestra, Learning Agent Routing — routing 方法的最新进展\n- AgentRx, Which Agent Causes Task Failures — trajectory-level diagnostic 和 failure attribution\n\n**Tier 1 中 Budget-Aware Agentic Routing 是最需要注意的**——它的 problem formulation（path-dependent, episode-level sparse reward, step-wise model selection）与我们高度重叠。需要在 Related Work 中明确区分：他们优化 routing policy，我们诊断 routing signal 的来源和组成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-check.md"
+}

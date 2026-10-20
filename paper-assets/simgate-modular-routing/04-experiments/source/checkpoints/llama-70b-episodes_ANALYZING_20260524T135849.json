@@ -1,0 +1,104 @@
+{
+  "exp_id": "llama-70b-episodes",
+  "project": "simgate-modular-routing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:13:38.961Z",
+    "updated_at": "2026-05-24T13:58:48.898Z",
+    "hypothesis": "Llama-3.1-70B-Instruct-AWQ on ScienceWorld will show death dominance (DAF > 80%) consistent with 7-9B models, confirming the pattern scales to 70B",
+    "parent": "llama-70b-cross-model",
+    "spec": {
+      "command": "nohup python src/episode_level_collection.py --task_types 'chemistry-mix,...' --episodes 20 --api_base 'http://localhost:8002/v1' --output_dir results/llama70b/ --max_steps 30 --seed 42",
+      "server": "westd-18266",
+      "data_path": "results/llama70b/",
+      "data_count": 220,
+      "model_name": "Meta-Llama-3.1-70B-Instruct-AWQ-INT4",
+      "seed": 42,
+      "checkpoint_source": "vLLM HTTP server on port 8002",
+      "eval_data": "ScienceWorld 11 task types x 20 episodes"
+    },
+    "metrics": {
+      "n_episodes": 220,
+      "n_tasks": 11,
+      "label_fraction": 0.913,
+      "daf": 1.0102,
+      "daf_pct": 101,
+      "daf_ci95": [
+        0.9531,
+        1.0748
+      ],
+      "delta_full": 29.53,
+      "delta_full_ci95": [
+        23.4,
+        35.87
+      ],
+      "delta_nd": -0.3,
+      "delta_nd_ci95": [
+        -2.1,
+        1.38
+      ],
+      "int_death_rate": 0.486,
+      "det_death_rate": 0.2,
+      "delta_dr": 0.286,
+      "labels": {
+        "det_preferred": 67,
+        "int_preferred": 2,
+        "no_preference": 151
+      },
+      "per_task_death_rate": {
+        "chemistry-mix": {
+          "int": 0.55,
+          "det": 0.15
+        },
+        "find-animal": {
+          "int": 0.55,
+          "det": 0.2
+        },
+        "find-non-living-thing": {
+          "int": 0,
+          "det": 0
+        },
+        "freeze": {
+          "int": 0.55,
+          "det": 0.3
+        },
+        "grow-fruit": {
+          "int": 0.5,
+          "det": 0.35
+        },
+        "identify-life-stages-1": {
+          "int": 0.55,
+          "det": 0.25
+        },
+        "identify-life-stages-2": {
+          "int": 0.5,
+          "det": 0.25
+        },
+        "inclined-plane-determine-angle": {
+          "int": 0.55,
+          "det": 0.2
+        },
+        "lifespan-longest-lived": {
+          "int": 0.5,
+          "det": 0.25
+        },
+        "lifespan-longest-lived-then-shortest-lived": {
+          "int": 0.55,
+          "det": 0.15
+        },
+        "measure-melting-point-unknown-substance": {
+          "int": 0.55,
+          "det": 0.1
+        }
+      }
+    },
+    "checkpoint_path": "results/llama70b/llama70b_analysis.json",
+    "log_path": "/tmp/llama70b_episodes.log",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-24T13:58:49.152643+00:00",
+  "trigger": "update_registry"
+}

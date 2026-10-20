@@ -1,0 +1,30 @@
+{
+  "exp_id": "plan-003-implicit-eval-full",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:27:09.398Z",
+    "updated_at": "2026-05-14T09:27:34.228Z",
+    "spec": {
+      "command": "python3 src/eval_implicit_router.py --adapter checkpoints/plan-004-implicit/final_adapter --output results/plan-003-eval-implicit/",
+      "server": "westb-13313",
+      "data_path": "episodes_slim_FINAL.jsonl (245 episodes)",
+      "data_count": 245,
+      "model_name": "Qwen2.5-7B + plan-004-implicit/final_adapter (ablation-b implicit SFT)",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan-004-implicit/final_adapter",
+      "eval_data": "245 episodes / 11 tasks / 2160 steps",
+      "parent": "plan-004-implicit-train",
+      "checkpoint_path": "checkpoints/plan-004-implicit/final_adapter",
+      "log_path": "results/plan-003-eval-implicit/"
+    },
+    "conclusion": "negative",
+    "hypothesis": "Step-level implicit routing eval of ablation-b (plan-004-implicit/final_adapter) on 245 episodes / 11 tasks via eval_implicit_router.py. Score -12.84 worse than always-det baseline -9.47.",
+    "completed_at": "2026-05-14T09:27:34.228Z"
+  },
+  "timestamp": "2026-05-14T09:27:34.337604+00:00",
+  "trigger": "update_registry"
+}

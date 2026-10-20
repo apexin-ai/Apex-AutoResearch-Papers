@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "423e517dc733e58eb93d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh fix tmux path",
+  "task_key": "worker_ssh_fix-tmux-path_20260518T032353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_fix-tmux-path_20260518T032353_result.json",
+    "occurrence": 1,
+    "bytes": 119,
+    "sha256": "c0bc6f8c1022c0386529e02263192e0b0e9f5c8ec93270a85c5f3b531d8043bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已修复。`/usr/local/bin/tmux` → tmux 3.6a，`submit_training_job` 现在可以正常调用 tmux。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-fix-tmux-path.md"
+}

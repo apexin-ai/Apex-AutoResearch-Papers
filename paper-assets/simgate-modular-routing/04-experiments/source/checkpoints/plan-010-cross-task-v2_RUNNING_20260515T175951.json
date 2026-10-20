@@ -1,0 +1,63 @@
+{
+  "exp_id": "plan-010-cross-task-v2",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:30:55.550Z",
+    "updated_at": "2026-05-15T17:59:50.929Z",
+    "spec": {
+      "hypothesis": "Cross-task transfer: chemistry-trained router → physics eval (GPU0) + physics-trained router → chemistry eval (GPU1) 并行。验证 routing signal（主要是 death avoidance）是否跨 task domain 迁移。正迁移 → C2 泛化性增强；负迁移 → task-specific patterns 存在。",
+      "plan_id": "plan-010",
+      "server": "westb-13313",
+      "gpu_budget_hours": 5,
+      "data_path": "data/plan-004-v3/implicit_sft.jsonl",
+      "model_name": "Qwen3-1.7B",
+      "command": "python src/cross_task_transfer.py --train_domain {physical,life} --eval_domain {life,physical} --gpu {0,1} --seed 42",
+      "data_count": 2040,
+      "seed": 42,
+      "domain_split": {
+        "physical": [
+          "chemistry-mix",
+          "freeze",
+          "measure-melting-point-unknown-substance",
+          "inclined-plane-determine-angle"
+        ],
+        "life": [
+          "find-animal",
+          "find-non-living-thing",
+          "grow-fruit",
+          "identify-life-stages-1",
+          "identify-life-stages-2",
+          "lifespan-longest-lived",
+          "lifespan-longest-lived-then-shortest-lived"
+        ]
+      },
+      "hyperparams": {
+        "epochs": 3,
+        "batch_size": 8,
+        "gradient_accumulation_steps": 4,
+        "effective_batch_size": 32,
+        "lr": 2e-05,
+        "lora_r": 16,
+        "lora_alpha": 32,
+        "upsample_minority": true
+      },
+      "checkpoint_path": "checkpoints/plan-010-cross-task-*-seed42/final_adapter",
+      "log_path": "results/plan-010-cross-task-*-seed42/results.json"
+    },
+    "server": "westb-13313",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-13313",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-15T17:31:50.224Z"
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-15T17:59:51.063621+00:00",
+  "trigger": "update_registry"
+}

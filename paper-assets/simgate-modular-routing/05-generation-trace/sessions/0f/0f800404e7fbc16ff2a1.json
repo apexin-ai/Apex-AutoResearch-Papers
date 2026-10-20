@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "0f800404e7fbc16ff2a1",
+  "project": "simgate-modular-routing",
+  "kind": "worker",
+  "title": "code plan 004 ablation",
+  "task_key": "worker_code_plan-004-ablation_20260514T042558",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_plan-004-ablation_20260514T042558.log",
+    "occurrence": 1,
+    "bytes": 640110,
+    "sha256": "ee02cefcbef4ddffd7a9c062a5589cd6e9c3ec13ec95288c0ccac92f71f4e3ed"
+  },
+  "statistics": {
+    "messages": 172,
+    "user_turns": 1,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 15,
+      "record": 1,
+      "assistant": 27,
+      "tool_call": 63,
+      "tool_result": 63,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "0f800404e7fbc16ff2a1-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 161,
+      "chunks": [
+        {
+          "path": "0f800404e7fbc16ff2a1-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "0f800404e7fbc16ff2a1-part-0002.json",
+          "message_count": 20
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-plan-004-ablation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17e6f40aa747825767a8",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "analysis sf3 death timing",
+  "task_key": "worker_analysis_sf3-death-timing_20260515T161355",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_sf3-death-timing_20260515T161355_result.json",
+    "occurrence": 1,
+    "bytes": 4114,
+    "sha256": "e7a0b72631b888c020fffb63f57c20ed916432cc8a77ff0c6775758848913596"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All data collected and saved. Here's the structured output:\n\n---\n\n## 1. Death Timing Statistics\n\n| Metric | Internal | Deterministic |\n|--------|----------|---------------|\n| n deaths | 179 | 55 |\n| Mean step | **17.4** | **20.9** |\n| Median step | 16.0 | 21.0 |\n| Std | 4.1 | 4.1 |\n| Range | [8, 29] | [11, 29] |\n| Q1/Q2/Q3 | 15/16/19 | 18/21/23 |\n| Early (≤10) | 6 (3.4%) | 0 (0%) |\n| Mid (11-20) | **140 (78.2%)** | 22 (40.0%) |\n| Late (>20) | 33 (18.4%) | **33 (60.0%)** |\n\n**Peak**: Internal deaths spike sharply at **step 16** (55/179 = 31%), suggesting a consistent structural vulnerability around mid-episode.\n\n## 2. Internal vs Deterministic Comparison\n\n- Deterministic deaths occur **~3.5 steps later** on average\n- When both modalities die in the same episode (n=50): deterministic dies later in **84%** of cases (42/50), by a mean of 4.6 steps\n- Internal-only deaths dominate: 129 episodes vs 5 deterministic-only deaths\n- **Death rate asymmetry**: internal 49% vs deterministic 11.7% (from aggregate data)\n\n## 3. Histogram Data\n\n```\nInternal (n=179):       Deterministic (n=55):\nstep  8:   1            step 11:   1\nstep  9:   3            step 12:   1\nstep 10:   2            step 14:   2\nstep 11:   3            step 15:   3\nstep 12:   2            step 16:   2\nstep 13:   3            step 17:   3\nstep 14:  12            step 18:   5\nstep 15:  22            step 20:   5\nstep 16: ■55■           step 21:   6\nstep 17:  12            step 22:  ■8■\nstep 18:  16            step 23:   6\nstep 19:  10            step 24:   4\nstep 20:   5            step 25:   1\nstep 21:   4            step 26:   2\nstep 22:   1            step 27:   3\nstep 23:  10            step 28:   2\nstep 24:   1            step 29:   1\nstep 25:   5\nstep 26:   4\nstep 27:   5\nstep 29:   3\n```\n\nJSON saved at `results/death_timing_analysis.json`.\n\n## 4. Mixed Routing Discussion Points\n\n**Finding 1: Deaths are mid-episode, not early.** Internal deaths concentrate in steps 14-19 (78% in the 11-20 range), with almost none before step 8. This means the agent has an \"exploration phase\" (steps 0-10) that is relatively safe regardless of modality, followed by a critical \"commitment phase\" where action choices become lethal.\n\n**Finding 2: Mixed routing has limited upside because death timing overlaps.** A switching strategy (deterministic for first K steps, then internal) would need K≥15 to avoid even 15% of internal deaths, while simultaneously introducing some deterministic deaths. The optimal switching point analysis shows the net gain is modest for early switches (net +4 at K=10, +22 at K=15), and the large gains at K=18-20 would essentially mean running deterministic for most of the episode — making it indistinguishable from the pure-deterministic baseline.\n\n**Finding 3: The real routing signal is death avoidance, not step-level modality mixing.** The data shows 93/102 det-preferred episodes are due to `death_asymmetry` — internal died, deterministic survived. This is an episode-level binary outcome, not a gradual step-by-step advantage. Lethal candidates appear at mean step 16 and death follows within ~5 steps (median 4), meaning the critical window is narrow. A step-level mixed router would need to predict lethal states ~5 steps in advance, which is harder than the current episode-level routing that simply learns which task-variation combinations are death-prone.\n\n**Conclusion for paper**: Mixed routing is theoretically possible but empirically unnecessary for SF3. The death timing distribution (concentrated mid-episode with sharp peak at step 16) means any practical switching point either catches too few deaths (early switch) or converges to the deterministic baseline (late switch). Episode-level routing already captures 96.4% of oracle decisions; the remaining 3.6% error cases would not be rescued by step-level mixing. This is a strength of our approach: a lightweight episode-level router suffices because death risk is a property of the task-variation pair, not a step-by-step phenomenon."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-sf3-death-timing.md"
+}

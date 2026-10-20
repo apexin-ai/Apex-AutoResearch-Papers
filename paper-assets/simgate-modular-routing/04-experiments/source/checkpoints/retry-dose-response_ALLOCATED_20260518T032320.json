@@ -1,0 +1,25 @@
+{
+  "exp_id": "retry-dose-response",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-18T02:58:01.903Z",
+    "updated_at": "2026-05-18T03:23:19.865Z",
+    "hypothesis": "Death rate在retry trials增加时会plateau在~35-40%，与reflexion/72B的convergence一致，证明death dominance是结构性上限而非retry机会不足。如果DR随N单调递减且无plateau，则说明retry机会确实是限制因素。",
+    "parent": "retry-control-baseline",
+    "spec": {
+      "command": "bash -c \"cd /root/autodl-tmp/simgate-modular-routing && source /root/miniconda3/bin/activate && mkdir -p logs && VLLM_USE_FLASHINFER_SAMPLER=0 python -m vllm.entrypoints.openai.api_server --model /root/autodl-tmp/models/Qwen2.5-7B-Instruct --port 8000 --gpu-memory-utilization 0.9 --trust-remote-code > logs/vllm-dose-n5.log 2>&1 & VLLM_PID=\\$! && trap 'kill \\$VLLM_PID 2>/dev/null; wait \\$VLLM_PID 2>/dev/null' EXIT && for i in \\$(seq 1 60); do curl -s http://localhost:8000/health > /dev/null 2>&1 && break; if ! kill -0 \\$VLLM_PID 2>/dev/null; then echo vLLM died; exit 1; fi; sleep 10; done && python run_retry_dose_response.py --n-values 5 --episodes-per-task 20 2>&1 | tee logs/dose_response_n5.log\"",
+      "server": "westb-14838",
+      "gpu": "cuda:0",
+      "data_path": "ScienceWorld death-prone tasks (10 tasks × 20 eps)",
+      "data_count": 200,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-18T03:23:20.122515+00:00",
+  "trigger": "update_registry"
+}

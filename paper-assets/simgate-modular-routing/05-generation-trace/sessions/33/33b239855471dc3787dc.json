@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "33b239855471dc3787dc",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh heuristic agent v10",
+  "task_key": "worker_ssh_heuristic-agent-v10_20260518T053735",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_heuristic-agent-v10_20260518T053735_result.json",
+    "occurrence": 1,
+    "bytes": 2562,
+    "sha256": "9658588ac49f02177b6ae6f421ac7be1a537fcf6d7cf728f309029e9bb36411e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "最终结果汇总。\n\n---\n\n## v10 结果\n\n### v10 核心修改（vs v9）\n\n| 改动 | 说明 |\n|------|------|\n| **恢复紧急 sleep** | energy ≤ 1 且 monster > 3 tiles → sleep; energy ≤ 2 且 monster > 5 tiles → sleep |\n| **条件性 flee** | 有剑+hp≥5: 仅逃 2+ within 3 tiles; 有剑+hp<5: 逃 any within 4; 无剑: 逃 any within 5 |\n| **主动清怪** | 有剑+hp≥6+单个 zombie within 2 tiles+无附近其他 monster → 攻击 |\n| **放宽常规 sleep** | energy ≤ 3 且 monster > 5 tiles → sleep |\n| **Sapling farming** | food ≤ 5 时收集 sapling (DO on grass); 有 sapling 时种植; 空闲时机会性收集/种植 |\n\n### 5 Episode 结果（seed=42）\n\n| Agent | Ep0 | Ep1 | Ep2 | Ep3 | Ep4 | **Avg** | Avg Achieve |\n|-------|-----|-----|-----|-----|-----|---------|-------------|\n| **v10** | 495 | 226 | 475 | 501 | 188 | **377** | **8.4** |\n| v9 baseline | 220 | 179 | 481 | 653 | 203 | 347 | 6.2 |\n| Random | 180 | 40 | 135 | 254 | 148 | **151** | **2.4** |\n\n### 20 Episode 结果（seed=100）\n\n| 指标 | v10 | v9 baseline |\n|------|-----|-------------|\n| Avg steps | **328** | 286 |\n| Avg achievements | **7.2** | 5.8 |\n| Max steps | 772 | 760 |\n| Min steps | 204 | 180 |\n\n### v10 vs Random 优势\n- 存活步数 **2.5x**（377 vs 151）\n- 成就数 **3.5x**（8.4 vs 2.4）\n- v10 每局解锁: collect_drink, collect_sapling, collect_wood, defeat_zombie, eat_cow, make_wood_sword, place_plant, place_table (8/5 episodes)\n\n### Death Rate\n- **100% death rate**（未达到 <80% 目标）\n- 死因分布: ~60% monster 集群伤害（-7hp 单步），~40% 饥饿（food=0 后缓慢失血）\n\n### 迭代过程\n\n| 版本 | 改动 | Avg Steps (seed=100) | 结果 |\n|------|------|---------------------|------|\n| v10 | 紧急sleep+条件flee+清怪 | 286 | 基线 |\n| v10.1 | 更激进flee (3+ within 5) | 209 | **退步** |\n| v10.4 | +sapling farming | **326** | **最佳** |\n| v10.5 | +cluster flee (3+ within 4) | 295 | 略退 |\n| v10.6 | +aggressive hunting (4 tiles) | 218 | **大退** |\n| v10.7 | +danger-aware movement | 225 | **退步** |\n\n### 剩余瓶颈\n1. **Monster 集群伤害**：走进 3+ monster 时受 7hp 单步伤害。更激进的 flee 反而降低存活（减少进食/喝水时间）。danger-aware movement 也帮倒忙\n2. **食物上限**：地图 32 cows 有限，sapling farming 有帮助但不够撑到 1000 步\n3. 要突破 100% death rate 可能需要**根本性策略变化**（如石墙庇护所、更高级武器/盔甲）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-heuristic-agent-v10.md"
+}

@@ -1,0 +1,80 @@
+{
+  "exp_id": "death-proximal-labeling-router",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-19T16:18:42.562Z",
+    "updated_at": "2026-05-19T16:57:49.268Z",
+    "hypothesis": "Training a router only on steps near the fatal step (death-proximal window k) will improve step-level balanced accuracy compared to training on all 30 steps per episode, because episode-level labels are most informative near the death event where routing decisions actually matter.",
+    "server": "westb-13313",
+    "gpu": "cuda:0",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-13313",
+      "gpu": "cuda:0",
+      "started_at": "2026-05-19T16:20:15.045Z"
+    },
+    "spec": {
+      "server": "westb-13313",
+      "gpu": "cuda:0",
+      "model_name": "Qwen3-0.6B",
+      "seed": 42,
+      "command": "bash scripts/run_death_proximal.sh",
+      "data_path": "data/death-proximal/",
+      "data_count": 2040
+    },
+    "metrics": {
+      "full": {
+        "step_ba_all": 0.5,
+        "step_ba_death": 1,
+        "step_ba_prox": 1,
+        "episode_ba": 0.5,
+        "det_recall": 1,
+        "int_recall": 0,
+        "train_steps": 1740
+      },
+      "k10": {
+        "step_ba_all": 0.4963,
+        "step_ba_death": 0.9905,
+        "step_ba_prox": 0.987,
+        "episode_ba": 0.5,
+        "det_recall": 0.9926,
+        "int_recall": 0,
+        "train_steps": 903
+      },
+      "k5": {
+        "step_ba_all": 0.4926,
+        "step_ba_death": 0.9857,
+        "step_ba_prox": 0.974,
+        "episode_ba": 0.5,
+        "det_recall": 0.9852,
+        "int_recall": 0,
+        "train_steps": 684
+      },
+      "k3": {
+        "step_ba_all": 0.487,
+        "step_ba_death": 0.9857,
+        "step_ba_prox": 0.961,
+        "episode_ba": 0.5,
+        "det_recall": 0.9741,
+        "int_recall": 0,
+        "train_steps": 596
+      },
+      "k1": {
+        "step_ba_all": 0.4907,
+        "step_ba_death": 0.9952,
+        "step_ba_prox": 0.987,
+        "episode_ba": 0.5,
+        "det_recall": 0.9815,
+        "int_recall": 0,
+        "train_steps": 508
+      }
+    },
+    "conclusion": "negative"
+  },
+  "timestamp": "2026-05-19T16:57:49.522499+00:00",
+  "trigger": "update_registry"
+}

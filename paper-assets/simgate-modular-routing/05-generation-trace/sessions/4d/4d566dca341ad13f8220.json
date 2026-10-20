@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d566dca341ad13f8220",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code dtype check",
+  "task_key": "worker_code_dtype-check_20260514T070330",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dtype-check_20260514T070330_result.json",
+    "occurrence": 1,
+    "bytes": 881,
+    "sha256": "f4993e3c69526f21eeba86c1b2b9d628d1dd9c4dad63146620f98cf82048e8b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修正完成，语法验证通过。\n\n### 结果\n\n| 文件 | 问题 | 状态 |\n|------|------|------|\n| `src/router_sft_train.py` L303 | `dtype=torch.bfloat16` → `torch_dtype=torch.bfloat16` | **已修正** |\n| `src/training/implicit_router_sft.py` L308, L407 | 已正确使用 `torch_dtype=` | 无需修改 |\n\n### 影响范围\n\n所有通过 `router_sft_train.py` 训练的 router 分类器实验都受影响——模型实际以 **fp32** 加载和训练，而非预期的 bf16。具体影响：\n\n- **显存占用翻倍**：fp32 参数量是 bf16 的 2 倍，可能限制了 batch size\n- **训练速度变慢**：fp32 计算无法利用 A6000 的 bf16 tensor core 加速\n- **模型精度可能略有差异**：fp32 精度更高，已完成实验的结果不一定变差，但与预期配置不一致\n- `implicit_router_sft.py` 的实验不受影响"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dtype-check.md"
+}

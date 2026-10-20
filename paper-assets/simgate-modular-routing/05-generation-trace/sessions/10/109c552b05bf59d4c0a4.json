@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "109c552b05bf59d4c0a4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "infra boil v3 check and keyword",
+  "task_key": "worker_infra_boil-v3-check-and-keyword_20260513T170532",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_boil-v3-check-and-keyword_20260513T170532_result.json",
+    "occurrence": 1,
+    "bytes": 955,
+    "sha256": "3659daaf3964595195bd707ef6f4626642fcced2e8bbf25e4da06db1333a071a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果汇总：\n\n---\n\n### 任务 1: GPU1 boil v3 实验状态\n\n**仍在运行中。**\n\n| 项目 | 详情 |\n|------|------|\n| PID | 650421 (运行 42 分钟) |\n| GPU1 显存 | 28004 MiB (PID 651246, vLLM engine) |\n| 模型 | Qwen2.5-7B-Instruct (vLLM, bf16, FlashAttn v2) |\n| 进度 | **Episode 4/20** (完成 5 个 episode，25%) |\n| 推理次数 | 570 次 prompt 处理 |\n| 预计剩余 | ~42min × 3 ≈ 约 2 小时（按当前速率） |\n\n按当前速度（42 分钟完成 5 episodes），总耗时约 2.8 小时，比预计的 1.5h 慢不少。\n\n---\n\n### 任务 2: Rule-based keyword list\n\n**已写入并验证。**\n\n文件: `/root/autodl-tmp/simgate-modular-routing/src/rule_based_keywords.json`\n- 20 个关键词/短语，覆盖 heat/cool/boil/melt/freeze/burn/mix/pour/react/dissolve/combine/activate/deactivate/turn on/turn off/connect/disconnect/change state/phase change/temperature\n- JSON 格式正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-boil-v3-check-and-keyword.md"
+}

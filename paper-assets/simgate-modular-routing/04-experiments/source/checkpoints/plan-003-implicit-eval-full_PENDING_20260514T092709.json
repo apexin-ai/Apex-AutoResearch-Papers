@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-003-implicit-eval-full",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T09:27:09.398Z",
+    "updated_at": "2026-05-14T09:27:09.398Z"
+  },
+  "timestamp": "2026-05-14T09:27:09.542524+00:00",
+  "trigger": "update_registry"
+}

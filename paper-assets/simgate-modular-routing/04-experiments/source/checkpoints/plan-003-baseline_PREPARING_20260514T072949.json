@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan-003-baseline",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T07:29:43.220Z",
+    "updated_at": "2026-05-14T07:29:49.274Z",
+    "hypothesis": "End-to-end evaluation baselines: always-internal, always-deterministic, oracle, random, trained-router (degenerate v6). 194 episodes / 11 tasks. 建立论文 Table 1 的 baseline 数据。",
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-14T07:29:49.367145+00:00",
+  "trigger": "update_registry"
+}

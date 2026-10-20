@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4585b983ec9639e82c09",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code seed robustness core",
+  "task_key": "worker_code_seed-robustness-core_20260515T131911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_seed-robustness-core_20260515T131911_result.json",
+    "occurrence": 1,
+    "bytes": 882,
+    "sha256": "2d51729e9b6da0a23a083efe046be518c01a741471f10965564abd5398968c30"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交并在运行。总结：\n\n**Part B (bootstrap) 已完成**：\n| 指标 | Point | Mean ± Std | 95% CI |\n|------|-------|------------|--------|\n| Δ_full | 29.60 | 29.61 ± 3.18 | [23.76, 35.82] |\n| Δ_nd | 2.84 | 2.78 ± 1.27 | [0.34, 5.57] |\n| DAF | 90.41% | 90.58% ± 4.25% | [81.60%, 98.76%] |\n| Pearson r | 0.9698 | 0.9752 ± 0.0108 | [0.952, 0.995] |\n\nJackknife：去掉任意单一 task 后 DAF 范围 89.0%–100.0%，Pearson r 范围 0.963–0.980，无单一 task 主导。\n\n**Part A (router training)** 正在 GPU1 上运行（PID=474403）：\n- 3 seeds (43,44,45)，每个 ~8.5 min 训练 + ~5 min eval\n- 预计 ~40-50 min 全部完成\n- 日志：`results/seed-robustness/run.log`\n- 每个 seed 完成后会保存中间结果到 `results/seed-robustness/router_seed{N}.json`\n- 最终汇总：`results/seed-robustness/summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-seed-robustness-core.md"
+}

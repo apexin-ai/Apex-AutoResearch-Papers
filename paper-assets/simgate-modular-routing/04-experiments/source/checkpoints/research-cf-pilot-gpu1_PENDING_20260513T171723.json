@@ -1,0 +1,16 @@
+{
+  "exp_id": "research-cf-pilot-gpu1",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T17:15:37.908Z",
+    "updated_at": "2026-05-13T17:17:23.652Z",
+    "hypothesis": "Episode-terminal counterfactual labeling (K=10) 在 melt/change-state/mix-paint 上产生 >30% non-tie rate，为 router 训练提供有效信号",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-13T17:17:23.672362+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,281 @@
+{
+  "figures_found": [
+    {
+      "number": "2",
+      "env_type": "figure",
+      "image_path": "figures/label_decomposition.pdf",
+      "caption": "Episode-level label decomposition ($N{=}245$). Of 95 non-tie labels, 75 (78.9\\%) arise from death asymmetry: 54 where death is the sole discriminator and 21 with co-occurring score differences. All 20",
+      "tool": "matplotlib",
+      "fig_type": "statistical",
+      "is_hero": false,
+      "source_file": "experiments.tex"
+    }
+  ],
+  "results": [
+    {
+      "number": "2",
+      "status": "skipped",
+      "tool": "matplotlib",
+      "iterations": 0,
+      "error": ""
+    }
+  ],
+  "post_review": {
+    "compile": {
+      "success": true,
+      "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/_latex_iso_0tean0vq/main.pdf"
+    },
+    "figure_check": {
+      "passed": true,
+      "critical": [],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:death-taxonomy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:threshold-routing} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:loo} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:loto-daf} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:decision-framework} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:wild-cluster} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:non-death-taxonomy} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:experiments} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{tab:baselines} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:92"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:168"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:243"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:347"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:524"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:577"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:607"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:720"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "main.tex:782"
+        }
+      ],
+      "info": [],
+      "summary": "0 critical, 19 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 2,
+          "num_cites": 0
+        },
+        {
+          "file": "discussion.tex",
+          "role": "other",
+          "num_numbers": 5,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 142,
+          "num_cites": 7
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 13,
+          "num_cites": 13
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 17,
+          "num_cites": 4
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 1,
+          "num_cites": 56
+        },
+        {
+          "file": "responsibleNLPchecklist.tex",
+          "role": "other",
+          "num_numbers": 4,
+          "num_cites": 7
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'cameron-2008' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dagger-2011' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'li2020dividemix' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'tot-2023' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'webb-2023' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\sim"
+            ],
+            "conclusion": [
+              "\\times"
+            ],
+            "discussion": [
+              "\\Delta",
+              "\\gg",
+              "\\sim",
+              "\\times"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\Rightarrow",
+              "\\approx",
+              "\\dagger",
+              "\\delta",
+              "\\geq",
+              "\\leq",
+              "\\overline",
+              "\\pm",
+              "\\sim",
+              "\\times",
+              "\\to"
+            ],
+            "introduction": [
+              "\\Delta",
+              "\\geq",
+              "\\sim",
+              "\\times"
+            ],
+            "method": [
+              "\\Delta",
+              "\\approx",
+              "\\bar",
+              "\\delta",
+              "\\gg",
+              "\\in",
+              "\\leq",
+              "\\ll",
+              "\\max",
+              "\\pi",
+              "\\rho",
+              "\\rightarrow",
+              "\\tau",
+              "\\tt"
+            ],
+            "responsibleNLPchecklist": [
+              "\\pm",
+              "\\times"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 5,
+        "info": 1
+      }
+    }
+  },
+  "backup_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/docs/paper/_figure_backups/20260524_092318",
+  "error": "",
+  "timestamp": "2026-05-24T09:31:04.471894+00:00"
+}

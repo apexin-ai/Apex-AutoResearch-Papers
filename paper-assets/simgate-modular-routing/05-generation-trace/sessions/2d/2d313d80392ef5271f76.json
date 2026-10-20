@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2d313d80392ef5271f76",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_8_1778781237.md",
+  "task_key": "loop_8_1778781237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_8_1778781237.md",
+    "occurrence": 1,
+    "bytes": 4011,
+    "sha256": "2bd5a662dca985ec7f50073f49629541654a2e0e1d4edcd72337a6804fa4d66a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 8\nreason: idle_timeout\nupdated: '2026-05-14T17:53:34+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westb-13313 的 cuda:0 和 cuda:1（2× RTX 5090 32GB）。config `gpu_ids: [\"cuda:0\", \"cuda:1\"]`\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`（根分区空间有限，大文件只能放 `/root/autodl-tmp/`）\n- 模型路径：成功 checkpoint 只有 `checkpoints/plan-004-implicit/final_adapter`（ablation-b）。**不要用** `checkpoints/plan-002-generative-v1/final_adapter`（已失败）\n- 训练数据：唯一可用文件 `data/plan-004-implicit/implicit_sft.jsonl`（MD5: c9b59e04de78, 2040 samples）。`results/plan_c_test_labels/implicit_sft.jsonl` 标签损坏，禁止使用\n- eval 必须 `enable_thinking=False` + regex 清理 `<think>` tags（Qwen3 thinking mode 干扰）\n- Table 1 数字来源：`eval_end_to_end.py`，不用 `eval_implicit_router.py` 的 -12.84\n- AutoDL 网络：提交训练前 `source /etc/network_turbo` + `HF_HOME=/root/autodl-tmp/.hf_cache` + SSL 证书环境变量\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境，非 venv）\n- 环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- 模型：Qwen3-1.7B，本地路径待确认（AutoDL 缓存在 `/root/autodl-tmp/.hf_cache`）\n- W&B：项目名 simgate-modular-routing\n- 活跃 Worker：`worker_ops_kill-vllm-and-sync-paper_20260514T174712`（status=running，任务：kill vLLM 僵尸进程 + 远程同步论文）\n- Cron：reconcile 返回 0 活跃 cron\n- GPU：cuda:0 和 cuda:1 均空闲\n\n### 3. 📊 当前状态\n**论文初稿 READY，进入 Review 迭代阶段。** EMNLP 2026 ARR short paper (4p)，DDL 2026-05-25（剩余 11 天）。\n\n刚完成：\n- alfworld-counterfactual-full 最后实验完成（135 games, det 27.4% vs int 3.0%），结果写入 Limitations + Conclusion\n- 修复断引用 `\\ref{sec:rule}`，本地 pdflatex 编译通过（0 warnings, 0 undefined refs）\n- 全文数字一致性审计通过\n\nRegistry：58 个实验全部 DONE/PREPARING（无 RUNNING）。成功 22 / 负向 13 / 失败 10。\n\n等待中：\n- Worker `kill-vllm-and-sync-paper` 正在运行（kill 僵尸 vLLM + 远程同步论文文件）\n- 远程编译验证尚未完成\n- 尚未提交 Review Director 启动审稿迭代\n\n### 4. 📋 待办（条件触发式）\n- `kill-vllm-and-sync-paper` Worker 完成 → 确认远程编译成功 → 更新 report.md\n- 远程编译确认通过 → 向 Director 汇报\"初稿就绪，请启动 Review 迭代\"\n- Director 启动 Review → 配合审稿迭代，5/15-22 窗口\n- Review 迭代完成 → 终稿 + ARR 提交（5/23-24）\n- 若 Director 要求补充实验 → cuda:0/cuda:1 空闲可用，batch_size≤4 避免 OOM\n\n### 5. 🎯 战略上下文\n**核心结论**：death avoidance 占 ~90% routing signal（DAF=90.41%, r=0.9698）。论文贡献 = counterfactual 分析方法论 + empirical finding，非 router 架构。Router 本身 near-random（balanced_acc=58.1±0.8%）IS the finding。\n\n**决策链关键节点**：\n- D046: 撤销 method paper pivot，回归 analysis paper（MATH 反转信号否定统一 router 前提）\n- D033: Framing 定稿 Option B（方法论贡献）\n- D025: Classification head 路线宣告失败，pivot 到 generative SFT\n- D037: Table 1 所有数字来自 eval_end_to_end.py\n\n**易错点**：\n- 不要把 trained-router 的 e2e 性能（-10.70, negative vs always-det）误读为\"router 失败\"——router 训练是 success（非退化），e2e 部署是 negative（不同实验，不同结论）\n- MATH 跨环境验证是 pilot 级（105 题），不支撑强泛化声明，只入 Discussion\n- ALFWorld 是 exploratory 定位（D044），98.2% tie rate，入 Limitations\n- plan-002 v3-v6 全退化为 all-deterministic，根因是 class_weights + max_grad_norm 交互（D023），不要重试这条路线\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-8-1778781237.md"
+}

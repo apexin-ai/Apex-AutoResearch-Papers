@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f37cbc420b3df56440c",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper daf scatter figure",
+  "task_key": "worker_paper_daf-scatter-figure_20260514T112313",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_daf-scatter-figure_20260514T112313_result.json",
+    "occurrence": 1,
+    "bytes": 1657,
+    "sha256": "a2434c8129086f32580e27b1a0e7f18980f08b580bdf04133d17f3baa199428f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表已生成并注册。\n\n**产出文件（服务器 westb-13313）：**\n- PDF: `/root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter.pdf`\n- PNG: `/root/autodl-tmp/simgate-modular-routing/figures/fig1_daf_scatter.png`\n- 生成脚本: `/root/autodl-tmp/simgate-modular-routing/figures/gen_fig1.py`\n\n**图表内容：**\n- X 轴：per-task death rate differential (internal − deterministic)，范围 0.0–0.45\n- Y 轴：Δ_full (deterministic − internal)，范围 ~10–48\n- 11 个点（task types），点大小按 episode 数缩放（20–40 episodes）\n- 红色回归线 + 95% CI band\n- 左上角标注 r=0.9698, p=8.09e-07\n- find-non-living-thing 标注为异常点（零死亡差异但 Δ=+9.58）\n- 双列宽度 6.75 inch，去掉 top/right spines，符合 ACL/EMNLP 风格\n\n**数据验证通过：**\n\n| Task | N | IntDR | DetDR | DeathDiff | Δ_full |\n|------|---|-------|-------|-----------|--------|\n| identify-life-stages-1 | 20 | 0.550 | 0.100 | 0.450 | +47.50 |\n| lifespan-longest-lived | 25 | 0.560 | 0.160 | 0.400 | +44.00 |\n| lifespan-longest-lived-then-shortest | 20 | 0.450 | 0.100 | 0.350 | +40.80 |\n| inclined-plane-determine-angle | 20 | 0.550 | 0.200 | 0.350 | +36.00 |\n| freeze | 20 | 0.550 | 0.250 | 0.300 | +30.50 |\n| measure-melting-point | 20 | 0.550 | 0.250 | 0.300 | +30.05 |\n| identify-life-stages-2 | 20 | 0.500 | 0.200 | 0.300 | +30.00 |\n| find-animal | 20 | 0.500 | 0.250 | 0.250 | +26.65 |\n| grow-fruit | 20 | 0.450 | 0.200 | 0.250 | +25.10 |\n| chemistry-mix | 20 | 0.450 | 0.250 | 0.200 | +21.80 |\n| find-non-living-thing | 40 | 0.000 | 0.000 | 0.000 | +9.58 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-daf-scatter-figure.md"
+}

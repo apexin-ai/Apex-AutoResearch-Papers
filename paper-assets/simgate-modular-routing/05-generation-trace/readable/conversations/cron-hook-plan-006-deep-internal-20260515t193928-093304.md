@@ -1,0 +1,1993 @@
+# cron hook plan 006 deep internal 20260515T193928 093304
+
+**Death Avoidance as the Dominant Routing Signal: A Counterfactual Analysis on ScienceWorld** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 63
+- **Recorded user turns:** 3
+- **Tool calls:** 29
+- **Original source:** `logs/chats/archive/cron_hook_plan-006-deep-internal_20260515T193928_093304.jsonl`
+- **Structured JSON:** [`ecf3d6e15bc239c06056.json`](../../sessions/ec/ecf3d6e15bc239c06056.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Round 1
+
+27 recorded events
+
+### User
+
+_source line 1 · 2026-05-15T16:15:24.549130+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: plan-006-deep-internal
+- project: simgate-modular-routing
+- server: westb-13313
+- log_path: /tmp/plan006_deep_internal.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:plan-006-deep-internal",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 2 · 2026-05-15T16:15:36.539675+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+  "max_results": "8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+    "max_results": "8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 3 · 2026-05-15T16:15:36.591118+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "ToolSearch",
+  "elapsed_ms": 51
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 4 · 2026-05-15T16:15:40.370329+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5 · 2026-05-15T16:15:40.975570+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-15T16:15:41.429662+00:00_
+
+Error: result (121,308 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-47720cd7/f15914dc-a739-4f5f-8a05-45e474186b4c/tool-results/mcp-agent-ml-research-read_registry-1778861741287.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-47720cd7/f15914dc-a739-4f5f-8a05-45e474186b4c/tool-results/mcp-agent-ml-research-read_registry-1778861741287.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1059
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 7 · 2026-05-15T16:15:41.436187+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8 · 2026-05-15T16:15:41.436520+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-15T16:15:42.620688+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 1645
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T16:15:42.671622+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md\", \"content\": \"&lt;!-- AUTO-FACTS-BEGIN (generated 2026-05-15T16:15:28Z; do not edit — regenerated by auto_build_report_facts) -->\\n## 📊 当前状态（auto-derived from registry）\\n\\n**总计**: 68 个实验 — DONE 68\\n**DONE 分布**: failed 14, killed 14, negative 13, success 27\\n\\n### GPU 占用\\n- **分配**: 2 张 — westb-13313:cuda:0, westb-13313:cuda:1\\n- **空闲（分配了没跑）**: westb-13313:cuda:0, westb-13313:cuda:1\\n\\n### 🏃 RUNNING\\n_（无）_\\n\\n### 📌 最近完成 (top 5)\\n- `plan-006-deep-internal` [failed] — 2026-05-15T16:15:25 — process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `plan-008-router-size-v3` [failed] — 2026-05-15T15:35:28\\n- `plan-008-router-size-v2` [failed] — 2026-05-15T14:49:49\\n- `plan-008-router-size` [failed] — 2026-05-15T13:58:39\\n- `seed-robustness-core` [success] — 2026-05-15T13:45:09\\n\\n### 🔴 最近失败原因 (top 3)\\n- `plan-006-deep-internal`: process dead 5× with no sentinel/W&B — auto-resolved as failed\\n- `plan-008-router-size-v3`: _(no failure_reason — pre-2026-04-24 entry)_\\n- `plan-008-router-size-v2`: _(no failure_reason — pre-2026-04-24 entry)_\\n\\n&lt;!-- AUTO-FACTS-END -->\\n\\n---\\n\\n# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **plan-006-deep-internal** (failed): 2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic 配对，为 3-way router 训练提供数据。如果 deep-internal 分数显著高于 fast-internal → 3-way routing 有价值；如果差异小 → 2-way suffices。\\n- **plan-008-router-size-v3** (failed): Router size ablation v3 (C2): 直接用原始 implicit_router_sft.py（seed-robustness 验证过），只改 --model_name。Qwen3-0.6B / 1.7B (sanity check) / 4B。不写新 wrapper，不改代码。1.7B 应复现 ~0.554-0.576。 ← 基于 plan-008-router-size-v2\\n  [plan-008-v3-training-logs](/api/workspace-files/projects/simgate-modul
+…[truncated 1660 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 1235
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-15T16:15:42.672364+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/ROADMAP.md\", \"content\": \"# simgate-modular-routing — Research Dashboard\\n\\n> 最后更新: 2026-05-15 15:39 UTC | 更新原因: D061 Round 7 审稿 Action Matrix + D059 CRITICAL resolved\\n\\n## 核心方向\\nEpisode-level counterfactual analysis 揭示 ScienceWorld 上 ~90% routing signal 来自 death avoidance。详见 paper_framing.md。\\n\\n## 当前进展\\n**Round 7 fresh review 收到 (borderline reject)，Action Matrix 已定稿，Paper Agent + Agent 并行执行修复。**\\n\\n- 目标：EMNLP 2026 Main Conference Long Paper (8p + refs)，DDL 2026-05-25\\n- D059 CRITICAL 已解决：论文 57.6% router accuracy 可信（checkpoint mismatch 非 eval template）\\n- Round 7 审稿：4 MF + 7 SF + 6 Minor，核心发现未被挑战\\n- 3 个系统性问题：Overclaiming / Methodological gaps / Reference gaps\\n\\n### 审稿回溯·系统性问题 (D061)\\n\\n| SYSTEMIC | 问题 | 修复路径 | 状态 |\\n|----------|------|---------|------|\\n| A | Overclaiming / scope (7 条) | 78.9% 做 headline + scope qualifiers + 降级弱证据 | Paper Agent 执行中 |\\n| B | Methodological gaps (4 条) | ALFWorld 溯源 + Router C4 降级 + death timing 分析 | Agent 检查中 |\\n| C | Reference gaps (4 条) | 补 RouteLLM/Reflexion/CPO/survey | Paper Agent 执行中 |\\n\\n### Action Matrix\\n\\n| ID | 动作 | 负责人 | 状态 |\\n|----|------|-------|------|\\n| MF1 | ALFWorld 数据溯源→补描述或删除 | Agent→Paper Agent | 🔄 Agent 检查中 |\\n| MF2 | Contribution 4 降级 preliminary observation | Paper Agent | 🔄 |\\n| MF3 | Title/Abstract/Conclusion 加 scope qualifier | Paper Agent | 🔄 |\\n| MF4 | 78.9% 做 headline，DAF co-equal | Paper Agent | 🔄 |\\n| SF1 | MATH p=0.079 全文标注 | Paper Agent | 🔄 |\\n| SF2 | Llama pilot 从 Contribution 移除 | Paper Agent | 🔄 |\\n| SF3 | Death timing 分析 + mixed routing 讨论 | Agent | 🔄 |\\n| SF4 | r=0.97 abstract 加限定 | Paper Agent | 🔄 |\\n| SF5-7 | 补 Safe RL/RouteLLM/Reflexion 引用 | Paper Agent | 🔄 |\\n| m1-6 | Bib 修正 + minor 修改 | Paper Agent | 🔄 |\\n\\n### 补充实验\\n| exp_id | Claim | 说明 | 状态 |\\n|--------|-------|------|------|\\n| plan-006-deep-internal | C2 |
+…[truncated 2249 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 1235
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T16:15:42.672699+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T16:15:42.725137+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_47720cd7.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "elapsed_ms": 52
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T16:15:48.170247+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed*",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed*",
+    "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T16:15:48.628218+00:00_
+
+No files found
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Glob",
+  "elapsed_ms": 457
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T16:15:49.131341+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "filters": "{'exp_id': 'plan-006-deep-internal'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "filters": "{'exp_id': 'plan-006-deep-internal'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T16:15:49.586177+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.206}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T16:15:49.586578+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "simgate-modular-routing",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "simgate-modular-routing",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T16:15:49.637084+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"simgate-modular-routing\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-simgate:cuda:0\", \"autodl-simgate:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/autodl-tmp/simgate-modular-routing\", \"servers\": [\"westb-13313\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T16:15:56.321431+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "filters": "{'status': 'DONE'}",
+  "fields": "['*']",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "filters": "{'status': 'DONE'}",
+    "fields": "['*']",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T16:15:56.877249+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"plan-006-deep-internal\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:30:17.277Z\", \"updated_at\": \"2026-05-15T16:15:25.645Z\", \"hypothesis\": \"2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic 配对，为 3-way router 训练提供数据。如果 deep-internal 分数显著高于 fast-internal → 3-way routing 有价值；如果差异小 → 2-way suffices。\", \"spec\": {\"command\": \"GPU1: python src/episode_level_collection.py --task_types 'find-non-living-thing,lifespan-longest-lived-then-shortest-lived' | GPU0: python src/episode_level_collection.py --task_types 'inclined-plane-determine-angle,chemistry-mix'\", \"server\": \"westb-13313\", \"data_path\": \"results/plan-006-deep-internal/\", \"data_count\": \"6 tasks x 20 episodes = 120 episodes\", \"model_name\": \"Qwen2.5-7B-Instruct\", \"seed\": 42, \"gpu0_pid\": 499308, \"parallelized_at\": \"2026-05-15T15:37:00Z\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T16:15:23.921Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T16:15:22.636Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T16:15:29.096824+00:00\"}]}}, \"plan-008-router-size-v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T14:49:49.991Z\", \"updated_at\": \"2026-05-15T15:35:28.098Z\", \"hypothesis\": \"Router size ablation v3 (C2): 直接用原始 implicit_router_sft.py（seed-robustness 验证过），只改 --model_name。Qwen3-0.6B / 1.7B (sanity check) / 4B。不写新 wrapper，不改代码。1.7B 应复现 ~0.554-0.576。\", \"parent\": \"plan-008-router-size-v2\", \"spec\": {\"command\": \"bash scripts/plan008_v3_run.sh\", \"server\": \"westb-13313\", \"data_path\": \"data/plan-004-implicit/implicit_sft.jsonl\", \"data_count\": 2040, \"model_name\": \"Qwen3-0.6B / Qwen3-1.7B 
+…[truncated 6237 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 555
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-15T16:16:09.691663+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-15T16:16:10.094183+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_47720cd7.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "elapsed_ms": 402
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T16:16:21.508125+00:00_
+
+called mcp__agent-ml-research__spawn_worker
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__spawn_worker</summary>
+
+```json
+{
+  "task_type": "diagnose:plan-006-deep-internal",
+  "project": "simgate-modular-routing",
+  "task_prompt": "## 任务：诊断 plan-006-deep-internal 实验失败原因\n\n### 背景\n实验 plan-006-deep-internal 在 westb-13313 上失败，cron 报告 \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"。\n\n实验是收集 deep-internal (CoT/thinking mode) 轨迹用于 2-way vs 3-way routing ablation。\n- 命令分两部分并行：\n  - GPU1: python src/episode_level_collection.py --task_types 'find-non-living-thing,lifespan-longest-lived-then-shortest-lived'\n  - GPU0: python src/episode_level_collection.py --task_types 'inclined-plane-determine-angle,chemistry-mix'\n- 服务器: westb-13313\n- 项目路径: /root/autodl-tmp/simgate-modular-routing\n- 日志路径: /tmp/plan006_deep_internal.log\n\n### 你要做的事\n\n1. SSH 到 westb-13313，读取日志文件：\n   - `cat /tmp/plan006_deep_internal.log | tail -200`\n   - 如果日志太大，先 `wc -l /tmp/plan006_deep_internal.log`，然后读最后 200 行\n   \n2. 检查是否有部分结果：\n   - `ls -la /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/`\n   - 统计已完成的 episode 数量：`find /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/ -name \"*.json\" | wc -l` 或类似\n\n3. 检查进程状态：\n   - `ps aux | grep episode_level_collection` 看是否有残留进程\n   - `tmux ls` 看是否有相关 tmux session\n\n4. 检查是否有 OOM 或其他系统错误：\n   - `dmesg | tail -50` 看是否有 OOM killer\n   - `nvidia-smi` 看 GPU 状态\n\n5. 检查可能的错误原因：\n   - API key 过期？\n   - 网络问题？\n   - 代码 bug？\n   - 磁盘满？(`df -h`)\n\n### 产出\n写一个简洁的诊断报告到 save_project_file(file=\"artifacts/plan-006-deep-internal/failure_diagnosis.md\")，包含：\n- 失败原因（明确）\n- 日志关键错误信息\n- 已完成的 episode 数量（如果有部分结果）\n- 是否可以重试 + 重试前需要修复什么\n",
+  "tool_groups": "['ssh', 'knowledge']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "tool_args": {
+    "task_type": "diagnose:plan-006-deep-internal",
+    "project": "simgate-modular-routing",
+    "task_prompt": "## 任务：诊断 plan-006-deep-internal 实验失败原因\n\n### 背景\n实验 plan-006-deep-internal 在 westb-13313 上失败，cron 报告 \"process dead 5× with no sentinel/W&B — auto-resolved as failed\"。\n\n实验是收集 deep-internal (CoT/thinking mode) 轨迹用于 2-way vs 3-way routing ablation。\n- 命令分两部分并行：\n  - GPU1: python src/episode_level_collection.py --task_types 'find-non-living-thing,lifespan-longest-lived-then-shortest-lived'\n  - GPU0: python src/episode_level_collection.py --task_types 'inclined-plane-determine-angle,chemistry-mix'\n- 服务器: westb-13313\n- 项目路径: /root/autodl-tmp/simgate-modular-routing\n- 日志路径: /tmp/plan006_deep_internal.log\n\n### 你要做的事\n\n1. SSH 到 westb-13313，读取日志文件：\n   - `cat /tmp/plan006_deep_internal.log | tail -200`\n   - 如果日志太大，先 `wc -l /tmp/plan006_deep_internal.log`，然后读最后 200 行\n   \n2. 检查是否有部分结果：\n   - `ls -la /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/`\n   - 统计已完成的 episode 数量：`find /root/autodl-tmp/simgate-modular-routing/results/plan-006-deep-internal/ -name \"*.json\" | wc -l` 或类似\n\n3. 检查进程状态：\n   - `ps aux | grep episode_level_collection` 看是否有残留进程\n   - `tmux ls` 看是否有相关 tmux session\n\n4. 检查是否有 OOM 或其他系统错误：\n   - `dmesg | tail -50` 看是否有 OOM killer\n   - `nvidia-smi` 看 GPU 状态\n\n5. 检查可能的错误原因：\n   - API key 过期？\n   - 网络问题？\n   - 代码 bug？\n   - 磁盘满？(`df -h`)\n\n### 产出\n写一个简洁的诊断报告到 save_project_file(file=\"artifacts/plan-006-deep-internal/failure_diagnosis.md\")，包含：\n- 失败原因（明确）\n- 日志关键错误信息\n- 已完成的 episode 数量（如果有部分结果）\n- 是否可以重试 + 重试前需要修复什么\n",
+    "tool_groups": "['ssh', 'knowledge']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T16:16:24.490421+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"worker_id\": \"worker_diagnose_plan-006-deep-internal_20260515T161622\", \"status\": \"running\", \"log_path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/logs/workers/worker_diagnose_plan-006-deep-internal_20260515T161622.log\", \"setup_data\": {}, \"message\": \"Worker worker_diagnose_plan-006-deep-internal_20260515T161622 started. Use get_worker_status('worker_diagnose_plan-006-deep-internal_20260515T161622') to check progress.\"}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__spawn_worker",
+  "elapsed_ms": 2982
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-15T16:16:52.069819+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1-诊断)\n\n## plan-006-deep-internal 失败通知\n\n**失败原因（cron 报告）**: process dead 5× with no sentinel/W&B — auto-resolved as failed\n\n**实验概要**: 2-way vs 3-way routing ablation Phase 1，收集 deep-internal (CoT/thinking mode) 轨迹，6 tasks × 20 episodes。双 GPU 并行：\n- GPU1: find-non-living-thing, lifespan-longest-lived-then-shortest-lived\n- GPU0: inclined-plane-determine-angle, chemistry-mix\n\n**当前动作**: 已派 Worker SSH 到 westb-13313 读取 /tmp/plan006_deep_internal.log 诊断具体失败原因。Worker 会检查：日志错误信息、已完成 episode 数量、OOM/磁盘/API 问题。\n\n**资源状况**: 两张 GPU (cuda:0, cuda:1) 均空闲。plan-006 诊断是 CPU 任务。\n\n**待 Director 决策**:\n1. 诊断完成后是否重试 plan-006？（取决于失败原因和已有数据量）\n2. 空闲 GPU 是否先安排其他任务？ROADMAP 上仍有 cross-seed checkpoint 验证、death timing 分析等可执行项\n3. 考虑到 DDL 5/25，plan-006 (deep-internal 数据收集) 对论文修改的优先级如何？Action Matrix 中该实验未列为 MF/SF\n\n等诊断 Worker 回调后会补充具体失败原因和建议。",
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1-诊断)\n\n## plan-006-deep-internal 失败通知\n\n**失败原因（cron 报告）**: process dead 5× with no sentinel/W&B — auto-resolved as failed\n\n**实验概要**: 2-way vs 3-way routing ablation Phase 1，收集 deep-internal (CoT/thinking mode) 轨迹，6 tasks × 20 episodes。双 GPU 并行：\n- GPU1: find-non-living-thing, lifespan-longest-lived-then-shortest-lived\n- GPU0: inclined-plane-determine-angle, chemistry-mix\n\n**当前动作**: 已派 Worker SSH 到 westb-13313 读取 /tmp/plan006_deep_internal.log 诊断具体失败原因。Worker 会检查：日志错误信息、已完成 episode 数量、OOM/磁盘/API 问题。\n\n**资源状况**: 两张 GPU (cuda:0, cuda:1) 均空闲。plan-006 诊断是 CPU 任务。\n\n**待 Director 决策**:\n1. 诊断完成后是否重试 plan-006？（取决于失败原因和已有数据量）\n2. 空闲 GPU 是否先安排其他任务？ROADMAP 上仍有 cross-seed checkpoint 验证、death timing 分析等可执行项\n3. 考虑到 DDL 5/25，plan-006 (deep-internal 数据收集) 对论文修改的优先级如何？Action Matrix 中该实验未列为 MF/SF\n\n等诊断 Worker 回调后会补充具体失败原因和建议。",
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 27 · 2026-05-15T16:35:26.276094+00:00_
+
+诊断 Worker 已派出。两张 GPU 目前都空闲——在等诊断结果的同时，先向 Director 汇报当前状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:plan-006-deep-internal"
+}
+```
+
+</details>
+
+---
+
+## Round 2
+
+34 recorded events
+
+### User
+
+_source line 28 · 2026-05-15T16:35:26.280569+00:00_
+
+[CRON] 实验进程异常退出（失败），需要你诊断原因。
+详情: Process exited without valid W&B metrics
+
+- exp_id: plan-006-deep-internal
+- project: simgate-modular-routing
+- server: westb-13313
+- log_path: /tmp/plan006_deep_internal.log
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:plan-006-deep-internal",
+  "source": "cron:hook"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-15T16:35:39.720386+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+  "max_results": "8"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__spawn_worker,mcp__agent-ml-research__load_project_config",
+    "max_results": "8"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-15T16:35:39.821202+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-15T16:35:43.886135+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-15T16:35:44.388171+00:00_
+
+called mcp__agent-ml-research__reconcile_crons
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reconcile_crons</summary>
+
+```json
+Arguments not recorded in this source.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__reconcile_crons"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 33 · 2026-05-15T16:35:44.841662+00:00_
+
+Error: result (121,595 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-47720cd7/2d079dfa-d92f-4611-9bf4-a5004a1f7c3e/tool-results/mcp-agent-ml-research-read_registry-1778862944717.txt.
+Format: JSON with schema: {result: string}
+Use offset and limit parameters to read specific portions of the file, search within it for specific content, and jq to make structured queries.
+REQUIREMENTS FOR SUMMARIZATION/ANALYSIS/REVIEW:
+- You MUST read the content from the file at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-47720cd7/2d079dfa-d92f-4611-9bf4-a5004a1f7c3e/tool-results/mcp-agent-ml-research-read_registry-1778862944717.txt in sequential chunks until 100% of the content has been read.
+- If you receive truncation warnings when reading the file, reduce the chunk size until you have read 100% of the content without truncation.
+- Before producing ANY summary or analysis, you MUST explicitly describe what portion of the content you have read. ***If you did not read the entire content, you MUST explicitly state this.***
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 955
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-15T16:35:44.842196+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"reconciled\": 0, \"results\": []}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__reconcile_crons",
+  "elapsed_ms": 454
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-15T16:35:44.842473+00:00_
+
+called mcp__agent-ml-research__read_project_file
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "file": "report.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "file": "report.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-15T16:35:45.094157+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/report.md\", \"content\": \"# Handover — 2026-05-15\\n\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\n\\n## 运行中\\n（无）\\n\\n## 待处理\\n（无）\\n\\n## 近期结论\\n- **plan-006-deep-internal** (failed): 2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic 配对，为 3-way router 训练提供数据。如果 deep-internal 分数显著高于 fast-internal → 3-way routing 有价值；如果差异小 → 2-way suffices。\\n- **plan-008-router-size-v3** (failed): Router size ablation v3 (C2): 直接用原始 implicit_router_sft.py（seed-robustness 验证过），只改 --model_name。Qwen3-0.6B / 1.7B (sanity check) / 4B。不写新 wrapper，不改代码。1.7B 应复现 ~0.554-0.576。 ← 基于 plan-008-router-size-v2\\n  [plan-008-v3-training-logs](/api/workspace-files/projects/simgate-modular-routing/artifacts/plan-008-router-size-v3/data/plan008_v3_results.md)\\n- **plan-008-router-size-v2** (failed): Router size ablation v2 (C2 lightweight claim): Qwen3 同家族对比 0.6B / 1.7B / 4B。修复 v1 的 3 个 bug：生成式评估（非 logit argmax）、同家族模型（非混合 Qwen2.5/3）、episode-level stratified split（与 seed-robustness 一致）。 ← 基于 plan-008-router-size\\n\\n## 趋势\\n成功 27 / 负向 13 / 失败 14 / 共 68\\n\\n## 下一步\\n（无活跃 idea，请通过 ideas.md 添加）\\n\\n## 资源状态\\nwestb-13313: 无 GPU 信息\\n\\n## 告警\\n- mvp-p1-signal: 已被终止 — unknown\\n- mvp-p1-gpu1: 已被终止 — unknown\\n- mvp-p1-gpu0: 已被终止 — unknown\\n- mvp-p1-gpu1-vllm: 已被终止 — unknown\\n- mvp-p1-gpu1-v2: 已被终止 — unknown\\n- research-prescreening-gpu0: 已被终止 — unknown\\n- research-cf-pilot-gpu1: 已被终止 — unknown\\n- plan-001b-gpu0: 训练失败 — unknown\\n- plan-001b-gpu0-v2: 训练失败 — unknown\\n- plan-001b-gpu1-extra: 训练失败 — unknown\\n- plan-001b-gpu1-rebalance: 已被终止 — unknown\\n- plan-001b-gpu0-v3: 训练失败 — unknown\\n- plan-001b-gpu0-v4: 已被终止 — unknown\\n- plan-001b-gpu0-v5: 已被终止 — unknown\\n- gpu0-v6-lifespan: 已被终止 — unknown\\n- plan-002-formal: 训练失败 — unknown\\n- plan-002-formal-v2: 训练失败 — unkno
+…[truncated 556 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_project_file",
+  "elapsed_ms": 251
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-15T16:35:45.094665+00:00_
+
+called mcp__agent-ml-research__read_roadmap
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_roadmap</summary>
+
+```json
+{
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "tool_args": {
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-15T16:35:45.145298+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/ROADMAP.md\", \"content\": \"# simgate-modular-routing — Research Dashboard\\n\\n> 最后更新: 2026-05-15 16:26 UTC | 更新原因: Loop 6 进入：Round 7 action items 全部完成，更新状态 + 时间线\\n\\n## 核心方向\\nEpisode-level counterfactual analysis 揭示 ScienceWorld 上 ~90% routing signal 来自 death avoidance。详见 paper_framing.md。\\n\\n## 当前进展\\n**Round 7 Action Matrix 全部执行完毕（Paper Agent + Agent），continue review 已提交（pending 用户审批），等待 Round 8 验证。**\\n\\n- 目标：EMNLP 2026 Main Conference Long Paper (8p + refs)，DDL 2026-05-25（剩 10 天）\\n- Round 7：4 MF + 7 SF + 6 Minor 全部 action items 标 done\\n- 3 个系统性问题（Overclaiming / Methodological gaps / Reference gaps）均已修复，待 Round 8 确认\\n- plan-006-deep-internal：数据收集 ~113-133/120 episodes（registry 误标 failed，实为 GPU kill 连锁）\\n- SF3 death timing 245-episode 子集分析：worker 已完成，Agent 队列中待处理\\n\\n### 审稿 review_issues 状态\\n| 类别 | in_progress | resolved | 说明 |\\n|------|-------------|----------|------|\\n| Critical | 3 (R6-C1, R7-N1, R7-N2) | 1 | 全部 action done，待 R8 验证 |\\n| Warning | 8 | 4 | 全部 action done，待 R8 验证 |\\n| Info | 3 | 0 | 全部 action done，待 R8 验证 |\\n\\n### 重点关注（Round 8）\\n- **R6-C1**（从 R4 起每轮 resurface）：DAF penalty-dependence，78.9% 是否真正成为 headline\\n- **R7-N2**（最强批评）：Router diagnostic 降级为 preliminary observation 是否被接受\\n- **R7-N1**：ALFWorld 数据溯源描述是否充分\\n\\n## 补充实验\\n| exp_id | Claim | 说明 | 状态 |\\n|--------|-------|------|------|\\n| plan-006-deep-internal | C2 | deep-internal 数据收集（registry 误报 failed，实际 113+ eps） | Agent 处理 worker 结果中 |\\n\\n## 近期任务\\n- [ ] Agent 处理 worker:done 结果 → 修复 plan-006 registry + 报告 SF3 245-ep 分析\\n- [ ] plan-006 数据完整性确认 → 分析 deep-internal vs fast-internal 差异\\n- [ ] 差异分析结果决定：3-way routing 纳入论文 vs 2-way suffices\\n- [ ] 用户审批 continue review → Round 8 启动\\n- [ ] Round 8 审稿报告返回 → 按 review-report-action skill 处理\\n- [ ] 迭代修复 → 终稿 → ARR 提交\\n\\n## 关键时间线\\n| 日期 | 里程碑 |\\n|------|--------|\\n| 5/15 | Round 7 Action Ma
+…[truncated 1709 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_roadmap",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-15T16:35:57.054137+00:00_
+
+called mcp__agent-ml-research__read_registry
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "filters": "{'exp_id': 'plan-006-deep-internal'}",
+  "fields": "['*']"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "filters": "{'exp_id': 'plan-006-deep-internal'}",
+    "fields": "['*']"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-15T16:35:59.013711+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1913}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__read_registry",
+  "elapsed_ms": 1959
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-15T16:35:59.164686+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-15T16:35:59.165403+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_47720cd7.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-15T16:35:59.967720+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/resource-saturation.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/skills/resource-saturation.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-15T16:36:00.069516+00:00_
+
+File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0509_12/projects/simgate-modular-routing/.claude/sessions/agent_47720cd7.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "elapsed_ms": 101
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-15T16:36:11.133290+00:00_
+
+called Bash
+
+<details open><summary>🔧 Tool call — Bash</summary>
+
+```json
+{
+  "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-47720cd7/2d079dfa-d92f-4611-9bf4-a5004a1f7c3e/tool-results/mcp-agent-ml-research-read_registry-1778862944717.txt | python3 -c \"import sys,json; d=json.load(sys.stdin); exps=json.loads(d['result'])['data']['experiments']; e=exps.get('plan-006-deep-internal',{}); print(json.dumps(e, indent=2, ensure_ascii=False))\" 2>/dev/null | head -80",
+  "description": "Extract plan-006-deep-internal from registry dump"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Bash",
+  "tool_args": {
+    "command": "cat /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-12-projects-simgate-modular-routing--claude-sessions-agent-47720cd7/2d079dfa-d92f-4611-9bf4-a5004a1f7c3e/tool-results/mcp-agent-ml-research-read_registry-1778862944717.txt | python3 -c \"import sys,json; d=json.load(sys.stdin); exps=json.loads(d['result'])['data']['experiments']; e=exps.get('plan-006-deep-internal',{}); print(json.dumps(e, indent=2, ensure_ascii=False))\" 2>/dev/null | head -80",
+    "description": "Extract plan-006-deep-internal from registry dump"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-15T16:36:11.435352+00:00_
+
+{
+  "status": "DONE",
+  "retry_count": 0,
+  "created_at": "2026-05-15T14:30:17.277Z",
+  "updated_at": "2026-05-15T16:33:27.012Z",
+  "hypothesis": "2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic 配对，为 3-way router 训练提供数据。如果 deep-internal 分数显著高于 fast-internal → 3-way routing 有价值；如果差异小 → 2-way suffices。",
+  "spec": {
+    "command": "GPU1: python src/episode_level_collection.py --task_types 'find-non-living-thing,lifespan-longest-lived-then-shortest-lived' | GPU0: python src/episode_level_collection.py --task_types 'inclined-plane-determine-angle,chemistry-mix'",
+    "server": "westb-13313",
+    "data_path": "results/plan-006-deep-internal/",
+    "data_count": "6 tasks x 20 episodes = 120 episodes",
+    "model_name": "Qwen2.5-7B-Instruct",
+    "seed": 42,
+    "gpu0_pid": 499308,
+    "parallelized_at": "2026-05-15T15:37:00Z"
+  },
+  "reproduce": {
+    "finished_at": "2026-05-15T16:15:23.921Z"
+  },
+  "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+  "conclusion": "success",
+  "completed_at": "2026-05-15T16:15:22.636Z",
+  "extra": {
+    "hook_events": [
+      {
+        "event": "on_failed",
+        "action": "agent",
+        "ts": "2026-05-15T16:15:29.096824+00:00"
+      }
+    ]
+  },
+  "metrics": {
+    "total_episodes": 120,
+    "tasks": 6,
+    "episodes_per_task": 20,
+    "data_quality": "passed",
+    "note": "identify-life-stages-1 has only 14 unique variations; episodes 14-19 reuse variations 0-5 (pseudo-duplicates). Use first 14 episodes for this task in analysis."
+  }
+}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Bash",
+  "elapsed_ms": 302
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-15T16:36:11.487185+00:00_
+
+called Glob
+
+<details open><summary>🔧 Tool call — Glob</summary>
+
+```json
+{
+  "pattern": "**/on-experiment-failed.skill.md",
+  "path": "/home/ubuntu"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Glob",
+  "tool_args": {
+    "pattern": "**/on-experiment-failed.skill.md",
+    "path": "/home/ubuntu"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-15T16:36:11.688622+00:00_
+
+/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Glob",
+  "elapsed_ms": 201
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-15T16:36:31.295715+00:00_
+
+called Read
+
+<details open><summary>🔧 Tool call — Read</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "tool_args": {
+    "file_path": "/home/ubuntu/agent-ml-research/skills/global/on-experiment-failed.skill.md"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-15T16:36:31.597387+00:00_
+
+1	---
+2	name: on-experiment-failed
+3	description: 实验失败后的自动诊断工作流——查日志分析原因、更新 registry、通知 Director。[CRON] 实验失败消息到达时使用。
+4	scope: global
+5	tags:
+6	- workflow
+7	- diagnosis
+8	- cron-hook
+9	tools:
+10	- read_registry
+11	- tail_training_logs
+12	- update_registry
+13	- append_idea
+14	- feishu_send_result_card
+15	- spawn_worker
+16	- check_job_status
+17	version: 4
+18	heavy: true
+19	roles:
+20	- agent
+21	---
+22	
+23	# 实验失败诊断工作流
+24	
+25	## 触发方式
+26	由 cron hook 自动触发：进程退出且 W&B 无数据 / W&B state=failed/crashed / NaN 检测到。
+27	
+28	## 步骤
+29	
+30	### Step 0: 读取项目上下文（诊断前必须执行）
+31	先读文档，再看日志——否则诊断方向可能完全错误：
+32	
+33	- `read_project_file("memory.md")` — **最重要**：查是否有相同失败模式的历史记录和已知修复方案
+34	- Worker 通过 `list_repo_tree` + `read_repo_file` 按需从代码仓库读取训练脚本结构
+35	
+36	读完后检查：
+37	- memory.md 里有没有"此类实验曾失败，原因是 X"的记录？→ 直接按已知方案诊断，跳过 Step 2 通用流程
+38	- 代码仓库中的训练入口和参数格式是否与本次实验配置匹配？（Worker 可用 `list_repo_tree` + `read_repo_file` 查看）
+39	
+40	### Step 1: 了解失败背景
+41	- read_registry(exp_id) — 查看状态、conclusion、notes、metrics、log_path
+42	
+43	### Step 2: 浅层日志诊断
+44	有 log_path 时：tail_training_logs(server, **绝对路径**, lines=80)
+45	- 寻找：OOM、CUDA error、NaN、assertion error、数据加载错误、Python Traceback
+46	- 没找到 → 增加行数再查
+47	
+48	### Step 2.5: 深查（满足以下任一条件时 spawn_worker）
+49	- 运行时长 < 5 分钟（初始化阶段崩溃）
+50	- tail 日志中未见明确 Traceback 或错误行
+51	- 同类实验连续失败 ≥ 2 次
+52	
+53	```python
+54	spawn_worker(
+55	    task_type="diagnose:{exp_id}",
+56	    task_prompt="""SSH 到服务器 {server}，诊断实验 {exp_id} 的失败原因。
+57	
+58	项目路径：{project_path}（绝对路径）
+59	日志路径：{log_path}（可能为空）
+60	
+61	执行步骤（按顺序，有结论就停）：
+62	
+63	1. 如果有日志路径：
+64	   - 先看结尾 50 行（找 Traceback / Error / CUDA OOM）
+65	   - 没找到明确错误：再看开头 100 行（初始化崩溃在这里）
+66	   - 日志文件不存在：说明任务启动即失败，跳到步骤 2
+67	
+68	2. 日志无错误或无日志时，检查基础设施：
+69	   - 入口文件是否存在
+70	   - 激活环境并验证 import
+71	   - 检查 configs/ 目录
+72	
+73	3. 检查磁盘/内存（OOM 类）
+74	
+75	最后输出一行 JSON：
+76	{"root_cause":"<引用具体报错行>","error_type":"infrastructure|hyperparameter|resource|data","fix_steps":["步骤1","步骤2"],"can_auto_fix":true}""",
+77	    tool_groups=["ssh"],
+78	)
+79	```
+80	
+81	Worker 返回后，以其结论作为 Step 3 的诊断依据。
+82	
+83	### 
+…[truncated 1766 chars]
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "Read",
+  "elapsed_ms": 301
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-15T16:36:31.649188+00:00_
+
+called mcp__agent-ml-research__load_project_config
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__load_project_config</summary>
+
+```json
+{
+  "project_name": "simgate-modular-routing",
+  "section": "execution"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "tool_args": {
+    "project_name": "simgate-modular-routing",
+    "section": "execution"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-15T16:36:31.649699+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"project\": \"simgate-modular-routing\", \"section\": \"execution\", \"config\": {\"execution\": {\"account\": \"root\", \"gpu_constraint\": [\"autodl-simgate:cuda:0\", \"autodl-simgate:cuda:1\"], \"gpu_ids\": [\"cuda:0\", \"cuda:1\"], \"project_path\": \"/root/autodl-tmp/simgate-modular-routing\", \"servers\": [\"westb-13313\"]}}}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__load_project_config",
+  "elapsed_ms": 0
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-15T16:36:55.292181+00:00_
+
+called ToolSearch
+
+<details open><summary>🔧 Tool call — ToolSearch</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+  "max_results": "2"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "ToolSearch",
+  "tool_args": {
+    "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status",
+    "max_results": "2"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-15T16:36:55.393084+00:00_
+
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "ToolSearch",
+  "elapsed_ms": 100
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-15T16:36:57.556082+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "status": "running"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "status": "running"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-15T16:36:57.607024+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_excluded-tasks-data-fix_20260515T163652\", \"task_type\": \"analysis:excluded-tasks-data-fix\", \"project\": \"simgate-modular-routing\", \"status\": \"running\", \"started_at\": \"2026-05-15T16:36:52.131582+00:00\", \"ended_at\": null}], \"count\": 1}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 50
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-15T16:37:14.905147+00:00_
+
+called mcp__agent-ml-research__list_workers
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__list_workers</summary>
+
+```json
+{
+  "project": "simgate-modular-routing",
+  "status": "done",
+  "limit": "5"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "tool_args": {
+    "project": "simgate-modular-routing",
+    "status": "done",
+    "limit": "5"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-15T16:37:15.007716+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"workers\": [{\"worker_id\": \"worker_analysis_excluded-19-tasks_20260515T161414\", \"task_type\": \"analysis:excluded-19-tasks\", \"project\": \"simgate-modular-routing\", \"status\": \"done\", \"started_at\": \"2026-05-15T16:14:14.530658+00:00\", \"ended_at\": \"2026-05-15T16:21:34.870907+00:00\"}, {\"worker_id\": \"worker_analysis_death-timing-sf3_20260515T161427\", \"task_type\": \"analysis:death-timing-sf3\", \"project\": \"simgate-modular-routing\", \"status\": \"done\", \"started_at\": \"2026-05-15T16:14:27.775182+00:00\", \"ended_at\": \"2026-05-15T16:18:35.277573+00:00\"}, {\"worker_id\": \"worker_diagnose_plan-006-deep-internal_20260515T161622\", \"task_type\": \"diagnose:plan-006-deep-internal\", \"project\": \"simgate-modular-routing\", \"status\": \"done\", \"started_at\": \"2026-05-15T16:16:22.236547+00:00\", \"ended_at\": \"2026-05-15T16:20:58.099589+00:00\"}, {\"worker_id\": \"worker_ops_paper-sync-to-server_20260515T163307\", \"task_type\": \"ops:paper-sync-to-server\", \"project\": \"simgate-modular-routing\", \"status\": \"done\", \"started_at\": \"2026-05-15T16:33:07.185882+00:00\", \"ended_at\": \"2026-05-15T16:34:34.526898+00:00\"}, {\"worker_id\": \"worker_ops_cleanup-and-verify_20260515T163311\", \"task_type\": \"ops:cleanup-and-verify\", \"project\": \"simgate-modular-routing\", \"status\": \"done\", \"started_at\": \"2026-05-15T16:33:11.982967+00:00\", \"ended_at\": \"2026-05-15T16:34:04.491289+00:00\"}], \"count\": 5}, \"error\": null, \"metadata\": {}}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__list_workers",
+  "elapsed_ms": 102
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-15T16:37:39.458961+00:00_
+
+called mcp__agent-ml-research__main_agent_post_to_director
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__main_agent_post_to_director</summary>
+
+```json
+{
+  "text": "[资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)\n\n## plan-006-deep-internal cron 回调处理\n\n收到 cron 失败回调（\"Process exited without valid W&B metrics\"），但 registry 已为 `DONE / conclusion=success`（D063 决策：数据质量审计通过，120 episodes，6 tasks×20 eps）。\n\n**这是过期回调**，原始 cron 在进程退出时自动标记 failed，但后续 diagnose worker 已确认数据完整并修正 conclusion。无需额外诊断动作。\n\n## 当前状态\n\n- **GPU0/GPU1 均空闲**，无运行中实验\n- **Worker 池 = 1**（analysis:excluded-tasks-data-fix 运行中），低于最低 2\n- ROADMAP 近期任务待推进：\n  1. plan-006 deep-internal vs fast-internal 差异分析 → 决定 3-way routing 是否纳入论文\n  2. 用户审批 continue review → Round 8 启动\n  3. Round 8 修复迭代 → 终稿 → ARR 提交（DDL 5/25，剩 10 天）\n\n## 请求\n\n1. 两块 GPU 空闲中，是否有实验任务需要分配？\n2. deep-internal vs fast-internal 差异分析是否现在启动（可立即 spawn worker）？",
+  "project": "simgate-modular-routing"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "tool_args": {
+    "text": "[资源] GPU 分配 2 / 实际跑 0 | Worker 池 1 (GPU 0 / CPU 1)\n\n## plan-006-deep-internal cron 回调处理\n\n收到 cron 失败回调（\"Process exited without valid W&B metrics\"），但 registry 已为 `DONE / conclusion=success`（D063 决策：数据质量审计通过，120 episodes，6 tasks×20 eps）。\n\n**这是过期回调**，原始 cron 在进程退出时自动标记 failed，但后续 diagnose worker 已确认数据完整并修正 conclusion。无需额外诊断动作。\n\n## 当前状态\n\n- **GPU0/GPU1 均空闲**，无运行中实验\n- **Worker 池 = 1**（analysis:excluded-tasks-data-fix 运行中），低于最低 2\n- ROADMAP 近期任务待推进：\n  1. plan-006 deep-internal vs fast-internal 差异分析 → 决定 3-way routing 是否纳入论文\n  2. 用户审批 continue review → Round 8 启动\n  3. Round 8 修复迭代 → 终稿 → ARR 提交（DDL 5/25，剩 10 天）\n\n## 请求\n\n1. 两块 GPU 空闲中，是否有实验任务需要分配？\n2. deep-internal vs fast-internal 差异分析是否现在启动（可立即 spawn worker）？",
+    "project": "simgate-modular-routing"
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-15T16:37:43.125977+00:00_
+
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_f6bffc7e8351600df8091f08a63cd5a0:director\"}, \"error\": \"\"}"}
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "tool_result",
+  "session": "cron:hook:plan-006-deep-internal",
+  "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+  "elapsed_ms": 3667
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 61 · 2026-05-15T16:37:49.051666+00:00_
+
+已处理完毕：
+
+- **plan-006-deep-internal cron 回调**：过期回调，实验已在之前的 session 中被修正为 `DONE/success`（120 episodes，数据质量通过）。无需诊断动作。
+- **资源告警**：2 块 GPU 空闲、Worker 池仅 1，已向 Director 请求任务分配指令。
+- 等待 Director 回复决定下一步（deep-internal vs fast-internal 差异分析 / Round 8 审稿 / 其他实验）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:plan-006-deep-internal"
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+2 recorded events
+
+### User
+
+_source line 62 · 2026-05-15T19:38:51.879096+00:00_
+
+[WRITE HANDOFF] 请立即写你的 handoff。
+
+**格式硬约束**:
+- 整条回复**只能**是 &lt;handoff>...&lt;/handoff> 标签包裹
+- 禁止在标签外写任何寒暄 / 说明 / 确认（"好的"/"我开始写"/"写完了"等）
+
+**必须覆盖以下 5 个 section（缺一不可，无内容写 N/A）**:
+
+### 1. 🔴 硬约束 / 红线
+  本项目特定的不可违反约束（GPU 设备号、服务器名、账号、路径限制等）。
+  写本项目特定的，不要抄 CLAUDE.md 通用 L1 红线。
+  下一个"你"第一眼看到的就是这里，写错了会被 Director CRITICAL。
+
+### 2. 🖥️ 基础设施快照
+  - 服务器名 + 工作目录 + Python 路径 + conda env
+  - 模型路径 / 数据集路径 / wandb config / HF cache
+  - 活跃进程：PID + tmux session + cron 任务 ID
+  写一次就稳定，下一个"你"不用再 SSH 探查。
+
+### 3. 📊 当前状态
+  - 你刚做完什么 / 正在做什么
+  - registry 里 RUNNING/PREPARING 的实验列表 + 一句话摘要
+  - 等待中的 Worker 回调 / Cron / Director 决策
+
+### 4. 📋 待办（条件触发式）
+  格式 "条件 X 满足 → 动作 Y"。例如:
+  - "Falcon-H1R 下载完成 → sed 修 MODEL_PATH → dry-run → 提交"
+  - "pilot_011 出 GC4 结果 → ≥2pp 转架构 narrative，<2pp 写 null-result"
+
+### 5. 🎯 战略上下文
+  - 项目核心结论 / 决策链（D001..）
+  - 下一个"你"最容易判断错的事 / 容易踩的坑
+
+**写作原则**：
+- 第 1 节必须是项目特定的（不是通用 L1 红线）
+- 第 2 节让下一轮 BOOT 后能立即开工，避免重新 SSH 探查
+- 简洁 > 完整：每节 5-10 行足够，长 handoff 不等于好 handoff
+
+示例格式:
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- 本项目只能用 cuda:4 / cuda:5（之前两次违规 cuda:0 被 Director CRITICAL）
+- submit_training_job 不支持 shell builtin（source/conda activate 全不行）
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westd-8x6000，工作目录 /root/autodl-tmp/hybrid_reasoning_phases
+- Python：/root/miniconda3/bin/python（绝对路径，不走 conda activate）
+- 模型：/root/autodl-tmp/qwen35_4b_direct
+- 活跃：pilot_011 (PID 203221, tmux=pilot_011, cuda:4)
+
+### 3. 📊 当前状态
+我刚完成 pilot_010 分析，正在等 pilot_011 (Falcon-H1R) CoT 生成完成（6/50）。
+registry: pilot_011 RUNNING；其他全 DONE。
+
+### 4. 📋 待办
+- pilot_011 cron 回调 → spawn worker 跑 probe + GC4 计算
+- GC4 ≥2pp → 转架构 narrative；<2pp → null-result paper outline 已就绪
+
+### 5. 🎯 战略上下文
+Falcon-H1R 是最后一个数据点。已知 4B/9B GC4 都 FAIL。
+易错：不要把 GC4-par (Falcon parallel) 和 GC4-seq (Qwen sequential) 直接对比。
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "session": "cron:hook:plan-006-deep-internal",
+  "source": "system:ralph_loop"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-15T19:39:28.091475+00:00_
+
+&lt;handoff>
+### 1. 🔴 硬约束 / 红线
+- GPU 白名单：只能用 `cuda:0` 和 `cuda:1`（westb-13313），gpu_ids 配置源：`load_project_config("simgate-modular-routing", section="execution")`
+- plan-008 router-size ablation 系列已被 Director kill（D058），不要再重试
+- plan-006-deep-internal registry 已修正为 success（D063），cron 回调是过期的，不要再走 on-experiment-failed 流程
+- llama-cross-model-expanded 已被 kill（D056），不要再扩展 Llama 实验
+- EMNLP 2026 DDL = 2026-05-25，剩 10 天，不要建议降级 venue
+
+### 2. 🖥️ 基础设施快照
+- 服务器：westb-13313，工作目录 `/root/autodl-tmp/simgate-modular-routing`
+- Python：需 SSH 探查确认（可能是 conda 或 venv，先用 `detect_image` 检测）
+- GPU：2× RTX 5090，均空闲
+- 活跃进程：无训练进程运行中
+- 活跃 Worker：`analysis:excluded-tasks-data-fix`（running，截至 handoff 时刻）
+- Cron：reconcile 返回 0 条活跃
+
+### 3. 📊 当前状态
+刚处理了 plan-006-deep-internal 的过期 cron 失败回调——确认 registry 已是 DONE/success，无需动作。已向 Director 汇报当前资源空闲状态并请求指令。
+
+Registry 无 RUNNING/PREPARING 实验。所有实验均为 DONE。
+
+等待中：
+- Director 回复（刚发了资源空闲 + 下一步请求）
+- 用户审批 continue review → Round 8 启动
+- Worker `analysis:excluded-tasks-data-fix` 完成回调
+
+### 4. 📋 待办
+- Director 回复分配任务 → 按指令执行，优先填满 2 块 GPU
+- `analysis:excluded-tasks-data-fix` worker 完成 → 处理结果，更新 registry/report
+- 用户审批 continue review → Round 8 审稿启动 → 按 review-report-action skill 处理
+- Round 8 审稿返回 → 按 action matrix 处理所有 issues
+- deep-internal vs fast-internal 差异分析（待 Director 确认启动）→ 结果决定 3-way routing 是否纳入论文
+
+### 5. 🎯 战略上下文
+- 核心发现：ScienceWorld 上 ~90% routing signal 来自 death avoidance（DAF），这是论文 headline
+- Round 7 审稿 action matrix 已全部执行完毕，待 Round 8 验证三个系统性问题是否修复（Overclaiming / Methodological gaps / Reference gaps）
+- R6-C1 从 R4 起每轮 resurface：DAF penalty-dependence 78.9% 是否能做 headline——这是最大风险点
+- R7-N2 最强批评：Router diagnostic 降级为 preliminary observation 是否被接受
+- 易错点：plan-006 数据有 identify-life-stages-1 只有 14 个 unique variations（eps 14-19 是 pseudo-duplicates），分析时只用前 14 episodes
+- 成功/负向/失败比 = 27/13/14（共 68），失败率偏高，多数是早期基础设施问题
+- 标题必须改（去 90% 数字，D062），Discussion 中 pilot-50 数据需替换
+&lt;/handoff>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "session": "cron:hook:plan-006-deep-internal"
+}
+```
+
+</details>
+
+---

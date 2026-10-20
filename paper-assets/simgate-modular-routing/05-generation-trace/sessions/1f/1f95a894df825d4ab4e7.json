@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f95a894df825d4ab4e7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose plan 002 v3 kill and rootcause",
+  "task_key": "worker_diagnose_plan-002-v3-kill-and-rootcause_20260514T060232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_plan-002-v3-kill-and-rootcause_20260514T060232_result.json",
+    "occurrence": 1,
+    "bytes": 2822,
+    "sha256": "368ec628a4b63e8193e22e5725f48f3019d146972abac2a93c8d8be1d5afca6f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因分析完成。\n\n## Kill 状态\n- PID 224543: killed（tmux session + 进程已清理）\n- GPU0: 533 MiB（已释放）\n- GPU1: 4533 MiB（其他进程占用，非本任务）\n\n## 根因分析\n\n### config 对比\n- ModelScope 版: vocab_size=151936, arch=Qwen3ForCausalLM, 无 num_labels（base model）\n- HF cache 版: find 命令被 read_only 限制，但 dryrun eval 结果 (92.3%) 证明模型本身没问题\n- 差异: 无关键差异，不是模型问题\n\n### label encoding\n- label_map: `{internal: 0, deterministic: 1}`\n- 原始数据: **1830 det-preferred (89.7%) / 210 internal-preferred (10.3%)**\n- internal 仅存在于 4 个 task: chemistry-mix(60), find-non-living-thing(90), grow-fruit(30), lifespan-longest-lived-then-shortest-lived(30)\n\n### 数据 split 问题\n- Episode-level split: 55 train / 13 val episodes → 1650 train / 390 val\n- **Val 集 0 个 internal 样本**（混淆矩阵 `[[0,0],[390,0]]` 证实）\n- 原因: episode 级 split 将所有含 internal 的 episode 分到了 train，val 只有纯 deterministic episode\n\n### 模型 forward（未训练 baseline）\n- logits: [-1.38, -3.23] → 未训练就偏向 class 0 (internal)\n- softmax: [0.86, 0.14]\n- classification head `score.weight` 随机初始化\n\n### 训练日志（v3）\n- **Class weights: [3.93, 0.57]**（auto inverse frequency，internal 权重是 det 的 6.9 倍）\n- **Upsampling: enabled**（WeightedRandomSampler 同时过采样 internal）\n- **train_loss: 4.07**（binary CE 随机应为 ~0.69，高出 6 倍）\n- **grad_norm: 125.8**（梯度爆炸）\n- Epoch 1 eval: accuracy=0.0, 全部预测为 class 0 (internal)\n- Epoch 3 eval: accuracy=0.0, 无变化\n\n### dryrun 对比\n- Dryrun eval: accuracy=92.3%\n- 混淆矩阵: `[[0,30],[0,360]]` → 全预测 class 1 (deterministic)，trivial majority baseline\n- Dryrun 大概率未用 class_weights + upsample_minority\n\n## 根因结论\n\n**class_weights=\"auto\" + upsample_minority 双重少数类校正导致灾难性过校正。** 过采样使 internal 在 batch 中占 ~50%，class_weight 再给 internal 3.93x 权重加成，internal 的 loss 贡献是 deterministic 的 ~7:1。模型被极端推向预测 internal，collapse 为全部输出 class 0。加上 val 集恰好 0 个 internal 样本，accuracy = 0。\n\n## 修复建议\n\n1. **只用其中一个**：`class_weights=\"auto\"` 或 `upsample_minority`，不能同时用\n2. **修复 stratified split**：当前按 episode 分，不保证 label 分布。需要 label-aware split，确保 val 集包含两个 class 的样本\n3. **加早期 sanity check**：如果 epoch 1 train_loss > 2.0 或 eval_accuracy = 0，自动停止\n4. 推荐：只用 `class_weights=\"auto\"`（不用 upsample），同时修复 split 逻辑保证 val 有 internal 样本"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-plan-002-v3-kill-and-rootcause.md"
+}

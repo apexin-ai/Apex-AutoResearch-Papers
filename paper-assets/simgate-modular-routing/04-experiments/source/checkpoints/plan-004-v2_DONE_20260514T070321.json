@@ -1,0 +1,49 @@
+{
+  "exp_id": "plan-004-v2",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "DONE",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:41:13.286Z",
+    "updated_at": "2026-05-14T07:03:21.561Z",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 WANDB_MODE=offline HF_HUB_OFFLINE=1 python src/training/implicit_router_sft.py train --data_dir results/plan_c_test_labels/implicit_sft.jsonl --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --class_weights auto --lr 2e-5 --output_dir checkpoints/plan-004-v2 --seed 42 --gpu_id 0",
+      "server": "westb-13313",
+      "gpu": "cuda:1",
+      "data_path": "results/plan_c_test_labels/implicit_sft.jsonl",
+      "data_count": 1814,
+      "model_name": "Qwen/Qwen3-1.7B",
+      "seed": 42,
+      "pid": "235893",
+      "checkpoint_path": "checkpoints/plan-004-v2",
+      "log_path": "checkpoints/plan-004-v2/train.log"
+    },
+    "conclusion": "failed",
+    "failure_reason": "class_weights auto 导致训练 loss 异常偏高（48→4.4，avg 12.74），与 plan-002 v3/v4/v5 同一已知问题。eval_loss 0.49 看似合理但无 accuracy/balanced_accuracy/per-class metrics 可验证模型质量。无 eval_report.json。",
+    "metrics": {
+      "train_loss_avg": 12.74,
+      "train_loss_epoch1": [
+        48.15,
+        42.05,
+        26.14,
+        13.71
+      ],
+      "train_loss_epoch3": [
+        4.58,
+        4.42,
+        4.15,
+        4.46,
+        4.36
+      ],
+      "eval_loss_epoch2": 0.5509,
+      "eval_loss_epoch3": 0.4905,
+      "train_runtime_sec": 150.74,
+      "note": "no accuracy/balanced_accuracy computed"
+    },
+    "completed_at": "2026-05-14T07:02:44.123Z"
+  },
+  "timestamp": "2026-05-14T07:03:21.640305+00:00",
+  "trigger": "update_registry"
+}

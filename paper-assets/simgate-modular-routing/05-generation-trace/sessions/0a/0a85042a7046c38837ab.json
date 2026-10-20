@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a85042a7046c38837ab",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix kill rescue processes",
+  "task_key": "worker_fix_kill-rescue-processes_20260516T040131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill-rescue-processes_20260516T040131_result.json",
+    "occurrence": 1,
+    "bytes": 330,
+    "sha256": "e5c4c9aa8fd50d303f55ba65984a5d49b49f2b60831b1b391d54a49590cde944"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇报：\n\n- **kill 结果**：937526 已终止，937942 在 kill 前已不存在\n- **GPU0 显存**：从接近满载恢复到 15431MiB / 32607MiB，释放约 17GB 可用空间\n- **PID 934738 状态**：正常运行中，GPU 利用率 75%，占用 15422MiB，GPU 温度 61°C\n- **GPU1**：未受影响，空闲"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-rescue-processes.md"
+}

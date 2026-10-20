@@ -1,0 +1,23 @@
+{
+  "exp_id": "math-negative-contrast",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T07:05:50.464Z",
+    "updated_at": "2026-05-15T07:15:09.667Z",
+    "hypothesis": "MATH Level 4-5 negative contrast: 在无 death penalty 的环境中，code interpreter (deterministic) 不优于 internal reasoning (80% vs 72% pilot)。扩展到 300 题收紧 CI，反向验证 death avoidance 是 ScienceWorld routing signal 的核心机制。",
+    "spec": {
+      "command": "python src/math_counterfactual.py --n_problems 195 --offset 105 --output data/math-counterfactual/math_extend_195.jsonl --model_path /root/autodl-tmp/models/Qwen/Qwen2.5-7B-Instruct --api_url http://localhost:8001/v1 --seed 42",
+      "server": "westb-13313",
+      "data_path": "/root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/math_extend_195.jsonl",
+      "data_count": 195,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    }
+  },
+  "timestamp": "2026-05-15T07:15:09.813384+00:00",
+  "trigger": "update_registry"
+}

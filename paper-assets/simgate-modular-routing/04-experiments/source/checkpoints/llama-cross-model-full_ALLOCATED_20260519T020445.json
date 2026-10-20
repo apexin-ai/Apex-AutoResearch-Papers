@@ -1,0 +1,24 @@
+{
+  "exp_id": "llama-cross-model-full",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "ALLOCATED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-19T01:39:54.695Z",
+    "updated_at": "2026-05-19T02:04:45.069Z",
+    "hypothesis": "Death dominance mechanism (DAF ~78.9% on Qwen-7B) generalizes across model families: Llama-3.1-8B-Instruct on the same 11 ScienceWorld tasks will show (1) DAF direction consistent with Qwen, (2) similar death-prone vs non-death-prone task pattern, and (3) high per-task death rate correlation with Qwen. This validates C3's cross-model generality claim beyond the limited pilot (7 tasks, 70 eps).",
+    "parent": "plan-012-full",
+    "server": "westb-13313",
+    "gpu": "cuda:0,cuda:1",
+    "account": "root",
+    "reproduce": {
+      "server": "westb-13313",
+      "gpu": "cuda:0,cuda:1",
+      "started_at": "2026-05-19T02:04:28.366Z"
+    }
+  },
+  "timestamp": "2026-05-19T02:04:45.332633+00:00",
+  "trigger": "update_registry"
+}

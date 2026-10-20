@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-004-v2",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:41:13.286Z",
+    "updated_at": "2026-05-14T06:41:13.286Z"
+  },
+  "timestamp": "2026-05-14T06:41:13.405499+00:00",
+  "trigger": "update_registry"
+}

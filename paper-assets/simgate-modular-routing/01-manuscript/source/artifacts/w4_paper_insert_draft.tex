@@ -1,0 +1,27 @@
+% W4 Paper Insert: Task-type positive control (signal granularity confirmation)
+% Location: End of §3.6 "Router Training: A Preliminary Negative Result", after "End-to-end deployment" paragraph
+% Insertion point: After the sentence ending "...our finding is specific to LoRA-tuned Qwen3 on 2{,}040 steps."
+
+% --- INSERT THIS SENTENCE ---
+A task-type-only classifier (logistic regression on one-hot task identity) achieves $64.7\%$ balanced accuracy---higher than all step-level routers---but collapses to chance under LOTO ($50.0\%$), matching the neural router's LOTO performance ($49.2\%$) and confirming that routing signal is a per-task-type constant with no cross-type generalization.
+% --- END INSERT ---
+
+% Notes:
+% - This provides the "signal granularity" positive control discussed in rebuttal Attack 4
+% - Confirms Interpretation B (non-learnability) with an independent method
+% - Does NOT require new citations
+%
+% PAGE STATUS:
+% - without_w4.pdf: 23 pages, Conclusion on page 8, Limitations page 9 ✅ (COMPLIANT)
+% - with_w4.pdf: 23 pages, Conclusion pushed to page 9 ❌ (OVERFLOW ~2 column lines)
+%
+% COMPRESSION PLAN (if user approves insertion):
+% Option A: Replace last sentence of "End-to-end deployment" paragraph with W4 sentence
+%   (remove "Alternative architectures...our finding is specific to LoRA-tuned Qwen3 on 2,040 steps.")
+%   This trades a caveat (already covered in Limitations) for a stronger positive control.
+%   Net: -1 line, should fit.
+%
+% Option B: Compress §3.2 Llama "Both models exhibit..." to 1 sentence (saves ~2 lines)
+%   Then W4 sentence fits with margin.
+%
+% Both PDFs saved in artifacts/ for comparison.

@@ -1,0 +1,14 @@
+{
+  "exp_id": "seed-robustness-core",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T13:17:38.963Z",
+    "updated_at": "2026-05-15T13:17:38.963Z"
+  },
+  "timestamp": "2026-05-15T13:17:39.087295+00:00",
+  "trigger": "update_registry"
+}

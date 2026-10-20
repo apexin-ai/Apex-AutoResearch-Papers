@@ -1,0 +1,25 @@
+{
+  "exp_id": "plan-012-decomposition",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T00:50:01.170Z",
+    "updated_at": "2026-05-14T00:50:12.064Z",
+    "hypothesis": "Death decomposition 中间分析：30 tasks / 249 episodes 上验证 death avoidance 占 ~99% routing signal（预分析，plan-001b 完整数据后将重跑最终版）",
+    "spec": {
+      "command": "python src/death_decomposition.py --data_dirs results/plan_c results/prescreening results/research --output results/decomposition_final/",
+      "server": "westb-13313",
+      "data_path": "results/plan_c/ + results/prescreening/ + results/research/ (30 ScienceWorld task types)",
+      "data_count": 249,
+      "model_name": "N/A (analysis only)",
+      "seed": "N/A",
+      "script_path": "src/death_decomposition.py",
+      "task_count": 30
+    }
+  },
+  "timestamp": "2026-05-14T00:50:12.093879+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,16 @@
+{
+  "exp_id": "e002_budgeted_confusion_estimation_retry1",
+  "project": "ec_hte_codex_b",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-31T15:57:51.114Z",
+    "updated_at": "2026-05-31T15:58:28.706Z",
+    "hypothesis": "Under finite expert annotation budgets, hierarchical/partial-pooling confusion estimation reduces subgroup CATE RMSE more than global pooled correction and is more stable than independent subgroup estimation when B is small; retry1 tests the same hypothesis after fixing the remote launcher work_dir path failure before experiment code executed.",
+    "parent": "e001_global_correction_smoke"
+  },
+  "timestamp": "2026-05-31T15:58:28.744308+00:00",
+  "trigger": "update_registry"
+}

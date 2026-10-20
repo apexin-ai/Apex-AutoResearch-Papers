@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02ca4c2d9fbe17404605",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix sync missing figures",
+  "task_key": "worker_fix_sync-missing-figures_20260516T231104",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sync-missing-figures_20260516T231104_result.json",
+    "occurrence": 1,
+    "bytes": 372,
+    "sha256": "156055f8ce9ee3cc82fd93b6500c44ddbc310098852e23846b2fdb59846c242c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\n=== Figure Sync Results ===\nFiles transferred: 3\n  pipeline_overview.pdf: local 34660 bytes → remote 34660 bytes ✓\n  fig1_daf_scatter.pdf:  local 24317 bytes → remote 24317 bytes ✓\n  signal_reversal.pdf:   local 20548 bytes → remote 20548 bytes ✓\nCompilation: errors 0, missing figures 0\nOutput: main.pdf (15 pages, 418583 bytes)\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sync-missing-figures.md"
+}

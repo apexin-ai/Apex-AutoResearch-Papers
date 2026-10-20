@@ -1,0 +1,27 @@
+{
+  "exp_id": "mvp-p1-gpu1-v2",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:44:48.498Z",
+    "updated_at": "2026-05-13T07:57:17.045Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && python src/phase1_signal.py --task_types 'chemistry-mix-paint-secondary-color,grow-plant' --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --use_vllm\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "282176",
+      "log_path": "~/runs/simgate-modular-routing/mvp-p1-gpu1-v2.log",
+      "submitted_at": "2026-05-13T07:56:59.044Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    }
+  },
+  "timestamp": "2026-05-13T07:57:17.081222+00:00",
+  "trigger": "update_registry"
+}

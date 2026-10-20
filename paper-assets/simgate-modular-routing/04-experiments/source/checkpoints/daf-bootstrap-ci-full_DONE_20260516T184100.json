@@ -1,0 +1,36 @@
+{
+  "exp_id": "daf-bootstrap-ci-full",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-16T17:56:43.173Z",
+    "updated_at": "2026-05-16T18:41:00.050Z",
+    "hypothesis": "Full 245-episode bootstrap (10000 resamples) validates DAF point estimate ≈ 0.90 with tight 95% CI. Per-task DAF provides granular decomposition.",
+    "spec": {
+      "command": "python guided_router/daf_bootstrap.py",
+      "server": "westb-13313",
+      "data_path": "results/baseline_245eps/episode_details.jsonl",
+      "data_count": "245 episodes, 10000 bootstrap resamples (global), 1000 per-task",
+      "model_name": "N/A (analysis)",
+      "seed": 42
+    },
+    "conclusion": "success",
+    "checkpoint_path": "N/A",
+    "log_path": "guided_router/daf_bootstrap_results.json",
+    "metrics": {
+      "daf_point": 0.6353,
+      "ci_95_low": 0.5169,
+      "ci_95_high": 0.764,
+      "n_episodes": 245,
+      "n_det_preferred": 86,
+      "n_death": 105,
+      "n_boot": 10000
+    },
+    "completed_at": "2026-05-16T18:41:00.051Z"
+  },
+  "timestamp": "2026-05-16T18:41:00.225447+00:00",
+  "trigger": "update_registry"
+}

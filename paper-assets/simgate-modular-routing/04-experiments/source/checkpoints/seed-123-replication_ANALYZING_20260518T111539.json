@@ -1,0 +1,51 @@
+{
+  "exp_id": "seed-123-replication",
+  "project": "simgate-modular-routing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-18T08:07:59.713Z",
+    "updated_at": "2026-05-18T11:15:39.726Z",
+    "hypothesis": "seed=123 重复 plan-012-full (seed=42) 的 episode-level counterfactual collection，验证 DAF=90.4% 和 death dominance 结论的 seed robustness——若两个 seed 的 DAF 差异 <5pp 且方向一致，则排除 seed artifact",
+    "parent": "seed-robustness-extended",
+    "spec": {
+      "command": "4 GPU parallel episode_level_collection.py",
+      "server": "westd-18266",
+      "gpu": [
+        "cuda:0",
+        "cuda:1",
+        "cuda:2",
+        "cuda:3"
+      ],
+      "pid": "28559",
+      "log_path": "~/runs/simgate-modular-routing/seed-123-replication.log",
+      "submitted_at": "2026-05-18T08:09:24.632Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "/root/autodl-tmp/simgate-modular-routing/results/seed123-plan-c/",
+      "data_count": 220,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 123,
+      "checkpoint_source": "N/A (data collection, not eval)",
+      "eval_data": "11 ScienceWorld tasks x 20 episodes, seed=123 replication"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-18T11:10:45.100Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-18T11:10:49.420475+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-18T11:15:39.961461+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1948fb568af39b8e5eec",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ops diagnose plan008 v3 script",
+  "task_key": "worker_ops_diagnose-plan008-v3-script_20260515T151438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_diagnose-plan008-v3-script_20260515T151438_result.json",
+    "occurrence": 1,
+    "bytes": 516,
+    "sha256": "7d33afed02e0af0346a6891bb2970a2dd77a0024e6b20b2863451559966bd64f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复完成。文件大小 16,810 字节，与 `.bak` 一致。\n\n## 总结\n\n| 项目 | 结果 |\n|------|------|\n| **根因** | `implicit_router_sft.py` 在 05-14 被大幅修改：自定义 loss、gradient_accumulation 降为1、数据切分策略变更 |\n| **为何全部预测 internal** | 有效 batch 从 32 降到 4 导致训练不稳定，模型坍缩到多数类预测 |\n| **恢复操作** | 已用 `.bak` 覆盖当前文件 |\n| **下一步** | 用恢复后的脚本重跑 v3 实验 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-diagnose-plan008-v3-script.md"
+}

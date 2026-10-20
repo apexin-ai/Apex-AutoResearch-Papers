@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0113b35e0937a7ab58f0",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code episode collection reuse adapter",
+  "task_key": "worker_code_episode-collection-reuse-adapter_20260513T205644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_episode-collection-reuse-adapter_20260513T205644_result.json",
+    "occurrence": 1,
+    "bytes": 1049,
+    "sha256": "f831c3a4a54d52957bb1ba2d838b8623f3708266c61a3603494ff644329529e8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部功能正常。总结修改：\n\n**新增功能：**\n\n1. **`--reuse_dirs`** — 逗号分隔的目录列表，自动扫描已有 `episodes.jsonl`，按 task name 匹配（支持 `-`/`_`/大小写模糊匹配）。已有 ≥ target 的 task 自动 SKIP，不足的只补差额，`start_episode` 从已有数量开始编号。\n\n2. **`--task_list`** — `--task_types` 的别名，两者任选其一。\n\n3. **`--dry_run`** — 只扫描 reuse 目录并报告计划，不启动 GPU 推理。\n\n4. **`collection_meta.json`** — 每个 task 输出目录下写入元数据，记录 reuse 来源和新收集数量。\n\n5. **`copy_reused_episodes()`** — 将 reuse 源的 episodes.jsonl 拷贝到输出目录的 `episodes.jsonl`。\n\n6. **跳过 agent 初始化优化** — 如果所有 task 都已有足够数据，不会初始化 LLMAgent（省去 GPU 加载）。\n\n**未改变：** 原有参数默认行为、`run_task_collection` 核心逻辑、输出文件格式（`labeled_steps.jsonl` + `episode_summary.jsonl`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-episode-collection-reuse-adapter.md"
+}

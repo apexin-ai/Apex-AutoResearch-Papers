@@ -1,0 +1,171 @@
+meta:
+  venue: EMNLP 2026
+  track: ARR short paper
+  template: acl  # ACL/EMNLP shared template (acl.sty)
+  template_note: "EMNLP 2026 uses ARR submission, ACL 2023+ template format"
+  page_limit: 4  # + unlimited references
+  deadline: 2026-05-25
+  core_claim: >
+    Episode-level counterfactual analysis reveals that death avoidance accounts
+    for ~90% of routing signal between LLM internal reasoning and deterministic
+    computation on ScienceWorld (r=0.9698, 11 tasks/245 episodes).
+  data_source_authority: "plan-012-full (A source: 11 tasks / 245 episodes)"
+  data_source_robustness: "prescreening (B source: 30 tasks / 249 episodes) — appendix only"
+  created_at: 2026-05-14T09:00:00Z
+
+paper_outline:
+  - section: abstract
+    word_budget: 150
+    core_bullets:
+      - "Problem: LLM agents face catastrophic death from hallucinated state transitions; per-step routing labels degenerate (98% ties)"
+      - "Method: episode-level counterfactual analysis comparing pure-internal vs pure-deterministic strategies"
+      - "Finding: death avoidance accounts for ~90% of routing signal (DAF=90.4%, r=0.97, 11 tasks/245 eps)"
+      - "Implication: deterministic computation value concentrated in failure prevention, not positive guidance"
+    dependencies: [experiments, method, introduction]
+
+  - section: introduction
+    word_budget: 600
+    core_bullets:
+      - "Hook: LLM agents die from hallucinated state transitions in rule-governed environments"
+      - "Gap: routing literature frames tool selection as capability/efficiency — ignores failure avoidance as routing signal"
+      - "Oracle degeneracy: per-step oracle produces 98% ties in sparse-reward → episode-level solution"
+      - "Core finding: ~90% routing signal = death avoidance (Δ_full=+29.60, Δ_nd=+2.84)"
+      - "Contributions: (1) episode-level counterfactual methodology + death decomposition, (2) empirical finding across 11 ScienceWorld tasks"
+    dependencies: [experiments]
+    citation_hints:
+      - "tool-use: Toolformer, ART, Chameleon"
+      - "adaptive: CogRouter, ARES"
+      - "agent: ReAct"
+    figures: []
+
+  - section: method
+    word_budget: 700
+    core_bullets:
+      - "§3.1 Counterfactual Episode Collection: pure-internal vs pure-deterministic, seed-matched, Qwen2.5-7B-Instruct"
+      - "§3.2 Death-Aware Labeling: four mutually exclusive cases (death_asymmetry/both_dead/score_comparison/tied_alive), exact equality"
+      - "§3.3 Death Avoidance Factor: DAF = 1 - Δ_nd/Δ_full, boundary case Δ_full=0"
+      - "§3.4 Rule-Based Baseline: 3 keyword lists all degenerate, structural failure analysis"
+      - "Deterministic mode operational definition for ScienceWorld"
+    dependencies: []
+    registry_refs: [plan-012-full, plan-011-rule-based]
+
+  - section: experiments
+    word_budget: 1200
+    core_bullets:
+      - "Setup: ScienceWorld, 11 task types, 245 episodes [A], Qwen2.5-7B-Instruct"
+      - "§4.1 Death Avoidance Decomposition (core): Δ_full=+29.60, Δ_nd=+2.84, DAF=90.4%, r=0.97"
+      - "§4.2 Baselines: always-int/-det/oracle/random + keyword heuristic — Table 1"
+      - "§4.3 Router Training as Diagnostic Probe: (a) logit-level — episode labels successfully capture routing patterns (ablation-b logit acc 74.5%, bal_acc 79%); (b) generation-level — logit-to-generation expression gap (classification head all degenerate, ablation-b zero gap but reproduction sensitivity). Frame as 'interesting finding' on LM generation dynamics, NOT limitation. Distinguish labeling granularity vs implementation sensitivity (investigation ongoing)."
+      - "§4.4 Per-task Analysis: find-non-living-thing exception (zero deaths, all non-death signal)"
+      - "Limitations: single benchmark, episode-level granularity, Qwen-only"
+    dependencies: []
+    registry_refs: [plan-012-full, plan-011-rule-based, plan-003-baseline-245eps, plan-002-formal-v4, plan-002-formal-v5, plan-002-formal-v6, plan-004-ablation-b]
+    tables: [tab1_baselines, tab2_decomposition]
+    figures: [fig1_daf_scatter]
+
+  - section: related_work
+    word_budget: 500
+    core_bullets:
+      - "Tool-use learning: Toolformer/ART/Chameleon → our differentiation (counterfactual labels, safety framing, modular router)"
+      - "Adaptive computation: CogRouter/ARES/MoR → route how much vs which modality"
+      - "World model routing: ITP-R/Dyna-Think → approximate vs exact state transitions"
+      - "Agent frameworks: ReAct → our internal-reasoning baseline"
+    dependencies: [introduction]
+    citation_hints:
+      - "MTRouter (Zhang ACL 2026) — explicit distinction"
+      - "EnvSimBench — causal link to death avoidance"
+
+  - section: conclusion
+    word_budget: 250
+    core_bullets:
+      - "Summary: death avoidance dominates routing signal (~90%)"
+      - "Limitations: single benchmark (ScienceWorld), single LLM (Qwen2.5-7B), episode-level granularity"
+      - "Future: step-level labeling, MATH/code-interpreter extension, multi-LLM"
+    dependencies: [experiments, method]
+
+visualization_plan:
+  - fig_id: fig1_daf_scatter
+    type: statistical
+    tool: matplotlib
+    description: "Per-task scatter: x=death rate differential (int-det), y=Δ(det-int). Shows r=0.97 correlation. Color/size by episode count."
+    data_source: "registry: plan-012-full (per-task breakdown)"
+    placement: experiments
+    aspect_ratio: "1:1"
+
+table_plan:
+  - table_id: tab1_baselines
+    caption: "Baseline comparison on ScienceWorld (11 tasks, 245 episodes)"
+    placement: experiments
+    type: comparison
+    columns: [Strategy, "Mean Score", "95% CI", "Death Rate %"]
+    data_source: "registry: plan-003-baseline-245eps"
+    notes: "always-int/-det/oracle/random + keyword v1-v3. Bold best non-oracle."
+    rows_planned:
+      - "Always Internal: -39.07 [-44.89,-33.37] 42.9%"
+      - "Always Deterministic: -9.47 [-13.66,-5.11] 16.3%"
+      - "Oracle: -6.58 [-10.65,-2.43] 14.3%"
+      - "Random: -22.38 [-27.75,-17.09] 27.8%"
+      - "[PLACEHOLDER: Keyword v1/v2/v3 scores]"
+      - "[PLACEHOLDER: Implicit Router (ablation-b) e2e score]"
+
+  - table_id: tab2_decomposition
+    caption: "Death avoidance decomposition across 11 ScienceWorld task types"
+    placement: experiments
+    type: statistics
+    columns: [Task, N, "Δ_full", "Δ_nd", "DAF%", "DR_int%", "DR_det%"]
+    data_source: "registry: plan-012-full (key_tasks breakdown)"
+    notes: "Per-task DAF values. Highlight find-non-living-thing exception."
+
+literature_strategy:
+  citation_budget: 20  # short paper, tight
+  macro_context:
+    - "LLM agent tool use and routing"
+    - "interactive environment evaluation"
+  micro_clusters:
+    - cluster_name: "tool-use-learning"
+      search_queries:
+        - "tool use learning LLM 2024 2025"
+      must_cite:
+        - "Toolformer (Schick et al.)"
+        - "ART (Paranjape et al.)"
+        - "Chameleon (Lu et al.)"
+      target_count: 4
+      status: complete  # Related Work v2 covers these
+
+    - cluster_name: "adaptive-computation"
+      search_queries:
+        - "adaptive computation routing LLM agent"
+      must_cite:
+        - "CogRouter"
+        - "ARES"
+      target_count: 3
+      status: complete
+
+    - cluster_name: "world-model-routing"
+      must_cite:
+        - "ITP-R"
+        - "Dyna-Think"
+      target_count: 2
+      status: complete
+
+    - cluster_name: "agent-frameworks"
+      must_cite:
+        - "ReAct"
+        - "ScienceWorld"
+      target_count: 2
+      status: needs_verification  # ScienceWorld cite key TBD
+
+    - cluster_name: "concurrent-work"
+      must_cite:
+        - "MTRouter (Zhang et al., ACL 2026)"
+        - "EnvSimBench"
+      target_count: 2
+      status: needs_search  # from patch memo
+
+writing_order:
+  - experiments   # core results first, anchors all other sections
+  - method        # rewrite with new A-source numbers
+  - introduction  # rewrite with new framing
+  - related_work  # v2 exists, patch with MTRouter/EnvSimBench
+  - conclusion
+  - abstract      # last, after all claims stable

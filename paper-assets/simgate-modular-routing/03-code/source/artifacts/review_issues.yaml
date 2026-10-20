@@ -1,0 +1,1087 @@
+# Round 32 Review Issues — Fresh review (2 reviewers: R1 方法严谨性+实验设计, R2 新颖性+完整性+写作)
+# Updated after cross-response convergence. Prior rounds' resolved/wont_fix issues carried over.
+
+# =============================================
+# Carried-over resolved issues (from prior rounds)
+# =============================================
+
+- id: "R13-W1"
+  summary: "正文篇幅严重不足 long paper 要求"
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 14
+  resolution: "正文已扩展至 8 页"
+  resolution_round: 14
+
+- id: "R13-W2"
+  summary: "Router 训练实验存在多个 confound"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 15
+  resolution: "1.7B dip 有可检验假说，augmentation 术语修正，N 统一"
+  resolution_round: 15
+
+- id: "R13-W3"
+  summary: "Episode-level label → step-level training 的 mislabeling 未被量化"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 14
+  resolution: "Limitations 和 Appendix B 已充分量化"
+  resolution_round: 14
+
+- id: "R13-W4"
+  summary: "SCI 方法贡献与实际使用不成比例"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 14
+  resolution: "SCI 已降级到 Appendix A"
+  resolution_round: 14
+
+- id: "R13-W7"
+  summary: "Router negative results 解释不完整"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 15
+  resolution: "Router 实验定位为 diagnostic probe"
+  resolution_round: 15
+
+- id: "R13-m2"
+  summary: "Figure 3 仅含 ScienceWorld 和 MATH，缺少 ALFWorld"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 16
+  resolution: "Figure 3 已移除，数据在 Table 2 和正文中完整呈现"
+  resolution_round: 16
+
+- id: "R13-m3"
+  summary: "Reference 格式不统一 + orphan entries"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 15
+  resolution: "Orphan entries 清理完毕，格式统一"
+  resolution_round: 15
+
+- id: "R14-W2"
+  summary: "Concurrent work 讨论过于压缩"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 15
+  resolution: "Concurrent work 展开讨论，各有明确 positioning"
+  resolution_round: 15
+
+- id: "R14-W3"
+  summary: "Selection bias from prescreening 11/30 task types"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 15
+  resolution: "Anti-cherry-picking analysis 到位"
+  resolution_round: 15
+
+- id: "R14-M1"
+  summary: "Table 2 caption 'Single seed' 需澄清"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 15
+  resolution: "Caption 已修正"
+  resolution_round: 15
+
+- id: "R14-M2"
+  summary: "Limitations section 组织松散"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 15
+  resolution: "三个 paragraph headers 结构清晰"
+  resolution_round: 15
+
+- id: "R14-M3"
+  summary: "Appendix F minority-class diversity caveat 应在正文提及"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 16
+  resolution: "§3.7 和 Appendix F 均明确提及"
+  resolution_round: 16
+
+- id: "R13-N2"
+  summary: "统计推断可靠性不足：cluster bootstrap K=11 CI 反常收窄"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 24
+  resolution: "Wild cluster CI 修正且降级为 sensitivity analysis；non-clustered bootstrap 为主推断"
+  resolution_round: 24
+
+- id: "R13-W5"
+  summary: "Abstract 数字堆砌"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 30
+  resolution: "R30 移除 Cohen's d，精简至 4 个统计量，168 词"
+  resolution_round: 30
+
+- id: "R13-W6"
+  summary: "Safe RL 和 LLM agent failure mode 相关引用覆盖不足"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 24
+  resolution: "Ng 1999, Northcutt 2021, DivideMix 已添加"
+  resolution_round: 24
+
+- id: "R14-W1"
+  summary: "核心发现存在 obvious-in-hindsight triviality 风险"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 14
+  last_seen_round: 24
+  resolution: "§5 Non-triviality 段有效回应 novelty 质疑"
+  resolution_round: 24
+
+- id: "R15-N1"
+  summary: "'Structural' claim 推断基础不足"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "Discussion 已弱化为 'robust under tested interventions'"
+  resolution_round: 16
+
+- id: "R15-N3"
+  summary: "Contribution 1 'any environment' generalizability claim 过宽"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "Contribution 1 措辞已收窄"
+  resolution_round: 16
+
+- id: "R15-W1"
+  summary: "§3.7 Augmentation scaling 措辞易误读为 data scaling"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "§3.7 明确标注为 paraphrase-based augmentation"
+  resolution_round: 16
+
+- id: "R15-W3"
+  summary: "72B 缺完整 DAF decomposition"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 16
+  resolution: "72B DAF decomposition 完整呈现"
+  resolution_round: 16
+
+- id: "R17-W4"
+  summary: "Related Work 第一段论文罗列"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 17
+  resolution: "§4 已按功能类别重组"
+  resolution_round: 19
+
+- id: "R17-W1"
+  summary: "Pure-strategy 设计高估 death asymmetry 对 realistic routing 的影响"
+  category: method
+  severity: warning
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 24
+  resolution: "Limitations 新增 pure-strategy upper bound 段落"
+  resolution_round: 24
+
+- id: "R17-W3"
+  summary: "Data scaling 'structural failure' 措辞"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 24
+  resolution: "术语全局修正为 text augmentation"
+  resolution_round: 24
+
+- id: "R17-N2"
+  summary: "penalty-independent 表述误导"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 24
+  resolution: "P-invariance 适用范围明确量化"
+  resolution_round: 24
+
+- id: "R18-N1"
+  summary: "Episode→step granularity gap 削弱框架实用性"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 24
+  resolution: "4B router 结论 qualified；完整统计处理"
+  resolution_round: 24
+
+- id: "R18-W1"
+  summary: "Router 实验 confounds"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 24
+  resolution: "Router claim 从绝对否定改为有条件否定"
+  resolution_round: 24
+
+- id: "R18-W2"
+  summary: "Agent improvement 实验统计功效不足"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 24
+  resolution: "措辞软化 + effect size detection threshold 完整报告"
+  resolution_round: 24
+
+- id: "R20-N2"
+  summary: "4B router episode-level 59.0% 与 non-learnability 结论矛盾"
+  category: experiment
+  severity: critical
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 24
+  resolution: "合并 R18-N1 解决"
+  resolution_round: 24
+
+- id: "R20-N3"
+  summary: "'Structurally determined' overclaim"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 24
+  resolution: "'structurally determined' → 'empirically dominated'"
+  resolution_round: 24
+
+- id: "R20-W2"
+  summary: "Per-task n=20 不显著问题"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 24
+  resolution: "Per-task 结果标注为 exploratory"
+  resolution_round: 24
+
+- id: "R17-M1"
+  summary: "Orphan bib entries + Webb 年份"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 24
+  resolution: "清理完毕"
+  resolution_round: 24
+
+- id: "R19-M2"
+  summary: "Missing references: Altman, Mihatsch, Natarajan"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 19
+  last_seen_round: 24
+  resolution: "所有缺失引用已补充"
+  resolution_round: 24
+
+- id: "R18-M3"
+  summary: "Appendix 缺索引"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 24
+  resolution: "Appendix Overview 已存在"
+  resolution_round: 24
+
+- id: "R18-M4"
+  summary: "§3.1 术语首次出现未定义"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 24
+  resolution: "术语已修正并定义"
+  resolution_round: 24
+
+- id: "R18-M5"
+  summary: "Appendix N failure categories 缺 agreement 声明"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 24
+  resolution: "Single annotator caveat 已存在"
+  resolution_round: 24
+
+- id: "R18-M2"
+  summary: "100% internal deaths 来自 single action pattern"
+  category: framing
+  severity: info
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 24
+  resolution: "§5 已讨论"
+  resolution_round: 24
+
+- id: "R20-M1"
+  summary: "Orphan bib entries"
+  category: format
+  severity: info
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 24
+  resolution: "合并 R17-M1 解决"
+  resolution_round: 24
+
+- id: "R15-N2"
+  summary: "跨环境模态定义不一致"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 24
+  resolution: "交叉引用指向 §2.1 operationalization"
+  resolution_round: 24
+
+- id: "R15-W2"
+  summary: "Oracle margin vs mislabeling 逻辑层级"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 24
+  resolution: "Appendix B 加 circularity caveat"
+  resolution_round: 24
+
+- id: "R20-W1"
+  summary: "Noisy label learning 讨论深度不足"
+  category: writing
+  severity: info
+  status: wont_fix
+  first_raised_round: 20
+  last_seen_round: 24
+  resolution: "引用已补全；8 页限制无法展开"
+  resolution_round: 24
+
+- id: "R18-M1"
+  summary: "'modality' 术语歧义"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 18
+  last_seen_round: 24
+  resolution: "修正为 computation modes"
+  resolution_round: 24
+
+- id: "R17-N1"
+  summary: "78.9% label fraction binary per-task structure"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 17
+  last_seen_round: 24
+  resolution: "§3.1 binary structure 讨论充分"
+  resolution_round: 24
+
+- id: "R16-W1"
+  summary: "72B vs 7B DAF 对比基于不同 task population"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 24
+  resolution: "72B decomposition 完整报告"
+  resolution_round: 24
+
+- id: "R16-W2"
+  summary: "Router 1.7B non-monotonic dip"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 24
+  resolution: "被 R20-N2 取代并解决"
+  resolution_round: 24
+
+- id: "R16-W3"
+  summary: "signal_reversal.pdf 未被引用"
+  category: format
+  severity: warning
+  status: resolved
+  first_raised_round: 16
+  last_seen_round: 24
+  resolution: "Appendix L 已引用"
+  resolution_round: 24
+
+- id: "R19-W1"
+  summary: "缺 penalty magnitude 实验验证"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 19
+  last_seen_round: 24
+  resolution: "P-invariance by design 论证覆盖"
+  resolution_round: 24
+
+- id: "R19-N1"
+  summary: "Framework vs finding 定位不清"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 19
+  last_seen_round: 27
+  resolution: "统一为 empirical analysis + reusable diagnostic methodology"
+  resolution_round: 27
+
+- id: "R26-N3"
+  summary: "Strawman framing"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 26
+  last_seen_round: 27
+  resolution: "R27 验收确认修复完好"
+  resolution_round: 27
+
+- id: "R28-M2"
+  summary: "Pages 7-8 纯文本无 display item"
+  category: format
+  severity: info
+  status: wont_fix
+  first_raised_round: 28
+  last_seen_round: 31
+  resolution: "8 页限制下无法插入 display item"
+  resolution_round: 28
+  mentions:
+    - round: 31
+      source: "Visual Check"
+      note: "R31 视觉审查再次标记 pages 7-8 纯文本无 figure/table，建议加 summary bar chart"
+
+- id: "R28-M4"
+  summary: "Figure 2 仅 11 点无 task name label"
+  category: writing
+  severity: info
+  status: wont_fix
+  first_raised_round: 28
+  last_seen_round: 29
+  resolution: "Figure 2 已缩至 0.38\\textwidth"
+  resolution_round: 28
+
+- id: "R20-N1"
+  summary: "正文超出 8 页限制"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 30
+  resolution: "R30 确认正文 ≤8 页"
+  resolution_round: 30
+
+- id: "R29-N1"
+  summary: "正文超出 8 页限制（复发）"
+  category: format
+  severity: critical
+  status: resolved
+  first_raised_round: 20
+  last_seen_round: 30
+  resolution: "R30 确认正文 ≤8 页"
+  resolution_round: 30
+
+- id: "R27-N2"
+  summary: "DAF=90.4% framing 过度突出"
+  category: framing
+  severity: critical
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 30
+  resolution: "R30: Intro 重构——降低 DAF 权重，突出 oracle degeneracy 96.3%、72B 5 int-pref、Reflexion DAF>100%。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R27-N3"
+  summary: "Deterministic strategy 实为 oracle access，跨环境含义不统一"
+  category: method
+  severity: critical
+  status: resolved
+  first_raised_round: 15
+  last_seen_round: 30
+  resolution: "R30: §2.1 加 umbrella term（privileged-information strategy）；Discussion 加 Δ_nd=2.84 oracle privilege 回应 + ALFWorld DAF=0% 对照。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R27-N4"
+  summary: "环境覆盖过窄"
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 15
+  last_seen_round: 32
+  resolution: "结构性限制。Limitations/hedging 已到位。Conclusion 加 future work。"
+  resolution_round: 30
+  mentions:
+    - round: 31
+      source: "R1-W1, R2-W3"
+      note: "R31 fresh review 再次将单一主环境标记为 critical——两位 Reviewer 共识认为需要至少第二个 death-dominated 环境验证"
+    - round: 32
+      source: "R1-W5, R2-N2"
+      note: "R32 fresh review 两位 Reviewer 再次共识 [AGREE x2]：cross-env probes 仅覆盖极端（ScienceWorld/MATH/ALFWorld），缺中间验证（DAF 30-60%）"
+
+- id: "R27-W1"
+  summary: "Router negative result framing"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 30
+  resolution: "R30: §3.5 title → 'Inconclusive Results'，正文 'inconclusive under current data regime'。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R27-W2"
+  summary: "Actionability 有限，Decision Framework 被埋"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 25
+  last_seen_round: 30
+  resolution: "R30: Discussion 合并 oracle degeneracy 96.3% + Decision Framework 摘要 + action-level filter。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R27-W4"
+  summary: "Excluded tasks prescreening 样本量小"
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 16
+  last_seen_round: 32
+  resolution: "Anti-cherry-picking analysis 已到位。全 30 task types 列为 future work。"
+  resolution_round: 30
+  mentions:
+    - round: 32
+      source: "R1-W7 (R2 partial rebut)"
+      note: "R32 R1 质疑全 30 tasks 可能都是 death-dominated。R2 反驳 cherry-picking 指控（排除子集 ΔDR 更高）但同意 scope 限制。Director 判断：cherry-picking 不成立，但 scope 限制真实——回归 R27-N4。"
+
+- id: "R27-W5"
+  summary: "K=11 cluster bootstrap CI"
+  category: method
+  severity: info
+  status: resolved
+  first_raised_round: 13
+  last_seen_round: 30
+  resolution: "R2 rebut 有效。论文已自我限定。"
+  resolution_round: 30
+
+- id: "R28-N1"
+  summary: "Episode-level vs step-level 粒度失配"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 28
+  last_seen_round: 30
+  resolution: "R29-R30 均未再提及，prior fix 有效"
+  resolution_round: 30
+
+- id: "R28-W1"
+  summary: "72B scaling 仅做 probe"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 28
+  last_seen_round: 30
+  resolution: "R30: 降级 'preliminary probe' + DAF CI [86.1%, 97.9%] + 修正 5 int-pref (非 0)。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R28-W2"
+  summary: "'Death' 术语限制 generality"
+  category: framing
+  severity: warning
+  status: resolved
+  first_raised_round: 28
+  last_seen_round: 30
+  resolution: "R29-R30 均未再提及"
+  resolution_round: 30
+
+- id: "R28-M1"
+  summary: "Missing references: hallucination detection, early exit"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 28
+  last_seen_round: 30
+  resolution: "R30: SelfCheckGPT + Kadavath 2022 + DeeBERT + PABEE 已加入 §4。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R28-M3"
+  summary: "Introduction/Discussion/Conclusion 重复度高"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 28
+  last_seen_round: 30
+  resolution: "R30: Discussion 压缩 3→2 段去重；Conclusion 扩展含 future work 且无与 Intro 重复。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R28-M5"
+  summary: "Related Work 缺 non-agent adaptive computation"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 28
+  last_seen_round: 30
+  resolution: "R30: DeeBERT + PABEE early exit positioning 句已加入 §4。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R29-W1"
+  summary: "Non-death 21.1% routing signal 来源未分析"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 30
+  resolution: "R30: Appendix U 加系统分析（三分类 + Table）+ §3.1 摘要句。诚实承认 20 个 labels 全部来自 find-non-living-thing。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R29-W2"
+  summary: "单一 death mechanism (focus on) 限制 generalizability"
+  category: experiment
+  severity: warning
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 30
+  resolution: "R30: Limitations 加 grounding ablation 定量估算 (+26.6pp→~+8pp) + future work。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R29-M1"
+  summary: "Missing references: FrugalGPT, AutoMix 等"
+  category: writing
+  severity: info
+  status: resolved
+  first_raised_round: 29
+  last_seen_round: 30
+  resolution: "R29 已添加。R30 确认存在。"
+  resolution_round: 30
+
+- id: "R16-N1"
+  summary: "核心发现 novelty/excitement deficit"
+  category: framing
+  severity: critical
+  status: wont_fix
+  first_raised_round: 16
+  last_seen_round: 32
+  resolution: "结构性——单一环境 + diagnostic contribution type。Findings 定位合理。"
+  resolution_round: 30
+  mentions:
+    - round: 31
+      source: "R2-W3"
+      note: "R31 再次标记 contribution type 对 Main Conference 偏弱，两位 Reviewer 共识 3.0 Findings"
+    - round: 32
+      source: "R1 Excitement 3.5/5, R2 Excitement 2/5"
+      note: "R32 两位 Reviewer 再次分歧：R1 认为诊断范式有方法论价值（3.5），R2 认为 oracle+P-dep 叠加后 novelty 受损严重（3.0）。Director 综合 3.0 Findings。"
+
+- id: "R30-W1"
+  summary: "'Deterministic' 术语跨环境含义不一致"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 30
+  last_seen_round: 30
+  resolution: "§2.1 加 umbrella term 括号说明（privileged-information strategy + 三环境 operationalizations）。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R30-W2"
+  summary: "Abstract 数字过密，Cohen's d 不适合 abstract"
+  category: writing
+  severity: warning
+  status: resolved
+  first_raised_round: 30
+  last_seen_round: 30
+  resolution: "移除 d=3.02，精简至 4 个统计量，168 词。Reviewer 验收 PASS。"
+  resolution_round: 30
+
+- id: "R30-W3"
+  summary: "Grounding ablation 后未重新收集 counterfactual 计算 DAF"
+  category: experiment
+  severity: warning
+  status: wont_fix
+  first_raised_round: 30
+  last_seen_round: 32
+  resolution: "DDL 前不可行。Limitations 加定量估算 (+26.6pp→~+8pp) + future work。"
+  resolution_round: 30
+  mentions:
+    - round: 31
+      source: "R1-Q5, R2-Q5"
+      note: "R31 两位 Reviewer 均追问 grounding ablation 后 DAF 是否仍成立"
+    - round: 32
+      source: "R1, R2"
+      note: "R32 两位 Reviewer 再次在 Questions 中提及。仍为结构性限制。"
+
+# =============================================
+# R31 issues (from prior round, updated with R32 status)
+# =============================================
+
+- id: "R31-N1"
+  summary: "单一主环境 + diagnostic-only 定位限制 Main Conference 级别"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-W1, R2-W1, R2-W3"
+      note: "[AGREE x2] 两位 Reviewer 共识：核心实证发现仅在 ScienceWorld 验证，cross-env probes 反证了 generalizability，contribution type 更适合 Findings。映射到历史 R27-N4（环境覆盖过窄）和 R16-N1（novelty deficit），属结构性限制。"
+    - round: 32
+      source: "R1-W1/W2, R2-N1/N2"
+      note: "R32 两位 Reviewer 再次独立识别相同问题。交叉回应全部 [AGREE]。R1 补充 scope 问题：如果全部 30 tasks 都是 death-dominated，发现仅关于 ScienceWorld。"
+
+- id: "R31-N2"
+  summary: "Oracle privilege 使 death avoidance 发现接近 tautology"
+  category: framing
+  severity: critical
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-W2"
+      note: "Deterministic 策略 = simulator forking（极强 oracle），death avoidance 本质上 = oracle prevents irreversible errors。真正非直觉的洞见是 Δ_nd≈2.84（non-death gap 极小），但论文将此作为 DAF 副产品而非核心发现呈现。映射到历史 R27-N3，R30 已加 umbrella term 和 Δ_nd 讨论，但 R31 fresh reviewer 认为仍不够突出。"
+    - round: 32
+      source: "R1-W2, R2-N1 cross-response"
+      note: "R32 [AGREE x2]。R2 补充：non-oracle deterministic baseline 是分离 oracle effect 与 strategy effect 的关键控制实验。如果 non-oracle det 的 death rate 接近 internal（~42.9%），则 death asymmetry 主要来自 oracle access。"
+
+- id: "R31-W1"
+  summary: "DAF 对 P 的单调依赖需更谨慎处理——headline 应用 label fraction"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-W4, R2-W2"
+      note: "[AGREE x2] DAF=δP/(δP+Δ_nd) 随 P 单调递增是数学事实。论文已在 §2.4 承认并以 label fraction 为 primary，但 Abstract/Intro/Conclusion 仍多处突出 DAF=90.4%。建议进一步降低 DAF 在 headline 位置的权重。映射到历史 R27-N2（DAF framing 过度突出），R30 已部分修复。"
+    - round: 32
+      source: "R1-W1, R2-N1 cross-response"
+      note: "R32 [AGREE x2]。R2 补充数学论证：DAF 公式在 P→∞ 时 DAF→1 是数学必然而非经验发现。R1 建议 ΔDR=28.7pp 作为 P-invariant 替代指标，R2 同意。"
+
+- id: "R31-W2"
+  summary: "K=11 cluster bootstrap 推断——应以非参数检验为主"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-W3"
+      note: "论文建议读者依赖非聚类 bootstrap CI 但同时承认 within-cluster correlation 存在——逻辑不自洽。建议将 permutation test / sign test 作为主要推断依据。映射到历史 R13-N2 和 R27-W5，prior rounds resolved 但 fresh reviewer 认为 messaging 仍有改进空间。"
+    - round: 32
+      source: "R2 cross-response [REBUT]"
+      note: "R2 反驳：论文核心推断使用 episode-level bootstrap（N=245），cluster bootstrap 仅为 sensitivity analysis。论文在 Appendix E 已主动承认 K=11 局限。补充统计检验（LOO, sign test, permutation p=0.002）支撑充分。Director 判断：R2 rebut 有效，维持 warning 非 critical。"
+
+- id: "R31-W3"
+  summary: "Episode→step 粒度错配限制框架实用性"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-W5"
+      note: "框架产出 episode-level labels 但 routing 需 step-level 决策。88% uninformative steps。实用价值收窄为 sanity check。映射到历史 R18-N1 和 R28-N1，prior rounds resolved 但 R31 fresh reviewer 认为仍需更明确定位。"
+    - round: 32
+      source: "R1-W5, R2-N2"
+      note: "R32 交叉回应中 R1 和 R2 均认为 cross-env probes 过于初步，ALFWorld 缺完整 DAF 分解，episode→step gap 仍未充分解决。"
+
+- id: "R31-W4"
+  summary: "72B probe 缺 cross-model replication at scale"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-W6"
+      note: "7-9B 有三个模型族，但 72B 仅 Qwen2.5-72B 一个数据点。Intro 将 72B 与三个模型族并列可能高估 robustness。映射到历史 R28-W1，R30 已降级 'preliminary probe'。"
+    - round: 32
+      source: "cross-response"
+      note: "R32 交叉回应中未被重点讨论，但 R1 在 W6 中再次提及 capacity scaling 不足。维持 warning。"
+
+- id: "R31-W5"
+  summary: "Appendix 过多（21 个, 15 页）正文依赖过重"
+  category: format
+  severity: warning
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R2-W4"
+      note: "核心 claim 的支撑证据分散在 Appendix（K, M, Q, R），读者无法仅通过正文评估贡献。"
+    - round: 32
+      source: "R1 cross-response [AGREE]"
+      note: "R32 R1 同意。特别强调 Appendix K（P sensitivity）直接关系核心 claim 稳健性，应在正文讨论，而非藏在附录。"
+
+- id: "R31-W6"
+  summary: "Related Work 缺 risk-sensitive RL / CVaR 文献"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R2-W5"
+      note: "CVaR optimization（Chow 2015, Tamar 2015）直接处理 trajectory-level catastrophic risk，与 death avoidance 高度相关。§4 未讨论。"
+    - round: 32
+      source: "R1 cross-response [AGREE]"
+      note: "R1 同意 risk-sensitive RL 引用必要性。Dabney 2018 也应补充。Agent failure taxonomy（Kambhampati 2024, Valmeekam 2023）也获共识。"
+
+- id: "R31-W7"
+  summary: "'Counterfactual' 术语使用松散"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R2-W6"
+      note: "方法更接近 matched-seed A/B testing 而非 Pearl (2009) structural counterfactual。需要在 §2.1 明确定义。"
+    - round: 32
+      source: "R1 [AGREE], R2 [AGREE] cross-response"
+      note: "R32 [AGREE x2]。两位 Reviewer 共识：用法不算错误但与因果推断标准用法有偏差。建议 §3 开头加简短定位声明即可消除歧义。"
+
+- id: "R31-W8"
+  summary: "Discussion section 过薄（~0.5 page，仅 2 个话题）"
+  category: writing
+  severity: warning
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R2-W8"
+      note: "缺条件分析（when does death avoidance dominate?）和与 concurrent work 的对话。"
+    - round: 32
+      source: "cross-response"
+      note: "R32 交叉回应中隐含：R2 建议 P/max_score 条件分析应在 Discussion 展开。"
+
+- id: "R31-M1"
+  summary: "Abstract 信息密度仍偏高"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R2-M1"
+      note: "前 2 句 6+ 数值。映射到历史 R13-W5（R30 resolved），fresh reviewer 仍感觉偏密。"
+    - round: 32
+      source: "cross-response"
+      note: "R32 未在交叉回应中重点讨论。维持 info。"
+
+- id: "R31-M2"
+  summary: "Figure 1 配色偏素，Figure 2 axis label 偏小"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R2-M2, Visual Check"
+      note: "Figure 1 灰/米色为主缺对比度；Figure 2 legend 约 6-7pt 偏小。"
+    - round: 32
+      source: "Visual Check"
+      note: "R32 视觉审查再次确认 Figure 2 axis label ≤6pt，Figure 4 文字标签也偏小。"
+
+- id: "R31-M3"
+  summary: "RTX 5090 硬件可能泄露作者身份"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-M6"
+      note: "如果 RTX 5090 尚未公开发售，使用此硬件可能违反 double-blind。"
+    - round: 32
+      source: "cross-response"
+      note: "R32 交叉回应中未讨论。维持 info。"
+
+- id: "R31-M4"
+  summary: "SCI 在正文仅出现一次，与 Method 中的显著度不匹配"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-M5"
+      note: "SCI 列为框架三大组件之一但正文只用了一次。映射到历史 R13-W4（已降级到 Appendix），但 R31 认为 Method §2 中仍 over-prominent。"
+    - round: 32
+      source: "cross-response"
+      note: "R32 交叉回应中未讨论。维持 info。"
+
+- id: "R31-M5"
+  summary: "Limitations 章节偏长（~1.5 页, 5 段）"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-M1"
+      note: "内容全部是必要讨论，但对 ARR mandatory limitations 来说偏长。"
+    - round: 32
+      source: "cross-response"
+      note: "R32 交叉回应中未讨论。维持 info。"
+
+- id: "R31-M6"
+  summary: "Missing references: AgentGym, OSWorld, Trial-and-Error, CVaR"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 31
+  last_seen_round: 32
+  mentions:
+    - round: 31
+      source: "R1-R1/R2/R3, R2-R1/R2"
+      note: "AgentGym (Xi 2024), OSWorld (Xie 2024), Trial-and-Error (Wang 2024), Chow 2015 CVaR, Tamar 2015 CVaR"
+    - round: 32
+      source: "R1, R2 cross-response"
+      note: "R32 交叉回应扩展缺失引用列表：+Uesato 2022 (process vs outcome), +Lightman 2023 (PRM), +Snell 2024 (scaling test-time compute), +Dabney 2018 (IQN), +Kambhampati 2024, +Valmeekam 2023 (agent failure taxonomy)。"
+
+# =============================================
+# R32 新发现（交叉回应中首次出现或独立识别）
+# =============================================
+
+- id: "R32-W1"
+  summary: "Router 训练负面结果过度推断——应区分 signal absence 与 learnability failure"
+  category: experiment
+  severity: warning
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  mentions:
+    - round: 32
+      source: "R1-W6, R2-W4"
+      note: "[AGREE x2] LoRA rank=8, 245 episodes, Qwen2.5-7B 单一配置。Appendix P capacity scaling 显示 4B 时 episode-level accuracy 才勉强超过 random。R2 列出三个替代假设：特征表示不够、数据不足、评估天花板。结论应从 'no signal' 改为 'signal not learnable with this setup'。"
+
+- id: "R32-W2"
+  summary: "Spearman ρ=0.586 vs Pearson r=0.97 巨大差异未报告"
+  category: method
+  severity: warning
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  mentions:
+    - round: 32
+      source: "R1-W8, R2 [AGREE]"
+      note: "正文 Figure 3 突出 r=0.97 ('near-perfect') 但 Appendix D 的 ρ=0.586 远低。Pearson r 对极端值敏感，K=11 中少数高 death rate 任务可能驱动膨胀。ρ=0.586 显著但远不能称为 near-perfect。正文应同时报告两个系数。"
+
+- id: "R32-M1"
+  summary: "'708-scale' 疑为排版错误（应为 '70B-scale'）"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  mentions:
+    - round: 32
+      source: "R1-W10, R2 [AGREE]"
+      note: "Abstract 'three model families (7B-708B) at 708-scale' 中最大模型为 Qwen2.5-72B。708 可能是 70B 或 70.8B 的排版错误。"
+
+- id: "R32-M2"
+  summary: "Table 2 D/I/N 列标题不直观"
+  category: writing
+  severity: info
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  mentions:
+    - round: 32
+      source: "R1, R2 [AGREE]"
+      note: "需查 caption 才能理解 D/I/N 含义。建议改为 Det/Int/NoPref 或加表头脚注。"
+
+- id: "R32-M3"
+  summary: "§4.3 未报告 Retry/Reflexion intervention 对 DAF 的影响"
+  category: experiment
+  severity: info
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  mentions:
+    - round: 32
+      source: "R1 cross-response, R2 [AGREE]"
+      note: "Table 1 报告了 Retry (43.5%) 和 Reflexion (31.4%) 的 death rate，但未报告 DAF 是否同步变化。无论结果如何都有信息量——加强或暴露 death avoidance 作为 routing signal 的稳健性。"
+
+- id: "R32-M4"
+  summary: "Eq.(4) 近似缺 worst-case bound"
+  category: method
+  severity: info
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  mentions:
+    - round: 32
+      source: "R1-W9, R2 [AGREE]"
+      note: "残差 0.23（占 Δ_tot 的 0.8%）虽小，但正式给出 bound（如基于 death-conditional score 分布 range）会强化论证严谨性。"
+
+- id: "R32-M5"
+  summary: "Pages 5 和 7 display item 密度过高"
+  category: format
+  severity: info
+  status: open
+  first_raised_round: 32
+  last_seen_round: 32
+  mentions:
+    - round: 32
+      source: "Visual Check"
+      note: "Page 5: 4 个 display items（Figure 3 + Figure 4 + Table 1 + Table 2）；Page 7: 3 个（Figure 5 + Figure 6 + Table 5）。连续形成图表密集带。建议将 Table 2 移至 page 6。"

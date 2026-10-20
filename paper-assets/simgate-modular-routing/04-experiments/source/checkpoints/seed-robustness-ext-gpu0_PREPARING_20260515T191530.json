@@ -1,0 +1,28 @@
+{
+  "exp_id": "seed-robustness-ext-gpu0",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T19:08:32.231Z",
+    "updated_at": "2026-05-15T19:15:29.946Z",
+    "spec": {
+      "command": "bash -c \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/simgate-modular-routing && export WANDB_MODE=offline && export HF_HUB_OFFLINE=1 && export HF_HOME=/root/autodl-tmp/.hf_cache && python src/training/implicit_router_sft.py train --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --upsample_minority --lr 2e-5 --output_dir checkpoints/seed-robustness-seed46 --seed 46 --gpu_id 0 && python src/training/implicit_router_sft.py train --data_dir data/plan-004-implicit --model_name /root/autodl-tmp/models/Qwen/Qwen3-1.7B --epochs 3 --batch_size 4 --upsample_minority --lr 2e-5 --output_dir checkpoints/seed-robustness-seed47 --seed 47 --gpu_id 0\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "890486",
+      "log_path": "~/runs/simgate-modular-routing/seed-robustness-ext-gpu0.log",
+      "submitted_at": "2026-05-15T19:09:43.278Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-15T19:15:30.122286+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "llama-70b-episodes",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:13:38.961Z",
+    "updated_at": "2026-05-24T00:13:38.961Z"
+  },
+  "timestamp": "2026-05-24T00:13:39.251859+00:00",
+  "trigger": "update_registry"
+}

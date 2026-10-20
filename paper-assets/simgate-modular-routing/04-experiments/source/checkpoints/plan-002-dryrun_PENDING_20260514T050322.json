@@ -1,0 +1,16 @@
+{
+  "exp_id": "plan-002-dryrun",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:03:05.854Z",
+    "updated_at": "2026-05-14T05:03:22.354Z",
+    "hypothesis": "Pipeline validation on partial data (10/11 tasks). NOT for results — verify data loading, model init, training loop, checkpoint save, eval. Will retrain on full data after chemistry-mix completes.",
+    "notes": "is_dryrun=true. 关联 plan-002. batch_size=4 (32 OOM on RTX 5090 32GB). 1 epoch, 1163 steps, ~14min. PID 171059 on GPU0."
+  },
+  "timestamp": "2026-05-14T05:03:22.408793+00:00",
+  "trigger": "update_registry"
+}

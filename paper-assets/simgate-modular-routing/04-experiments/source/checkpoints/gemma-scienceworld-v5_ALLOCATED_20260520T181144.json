@@ -1,0 +1,15 @@
+{
+  "exp_id": "gemma-scienceworld-v5",
+  "project": "simgate-modular-routing",
+  "state": "ALLOCATED",
+  "previous_state": "QUEUED",
+  "experiment_data": {
+    "status": "ALLOCATED",
+    "retry_count": 0,
+    "created_at": "2026-05-20T18:11:30.569Z",
+    "updated_at": "2026-05-20T18:11:44.313Z",
+    "hypothesis": "Gemma-2-9B-it replicates the death-avoidance dominance pattern observed in Qwen2.5-7B (DAF=90.4%) and Llama-3.1-8B (DAF=88.2%), confirming that high DAF is model-agnostic rather than an artifact of a specific backbone architecture"
+  },
+  "timestamp": "2026-05-20T18:11:44.549050+00:00",
+  "trigger": "update_registry"
+}

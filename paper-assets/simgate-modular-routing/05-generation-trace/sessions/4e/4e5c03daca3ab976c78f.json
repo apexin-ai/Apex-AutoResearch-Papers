@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4e5c03daca3ab976c78f",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh w1 cluster bootstrap",
+  "task_key": "worker_ssh_w1-cluster-bootstrap_20260518T070541",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_w1-cluster-bootstrap_20260518T070541_result.json",
+    "occurrence": 1,
+    "bytes": 1320,
+    "sha256": "80f54974623a00a3e1336195e8f6140fba8ca3db2aa95c8ed67db398483dc6c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Report written to `/root/autodl-tmp/simgate-modular-routing/artifacts/w1_cluster_bootstrap.md`.\n\n## Results Summary\n\n**Data**: K=7 task clusters, N=240 episodes (actual data has 7 tasks with 20-40 episodes each, not K=11 as originally estimated; `plan_c` directories were empty).\n\n**Death rate differential**: Grand mean = 0.2964, range [0.20, 0.40]. All 7/7 tasks show internal agent dying more than deterministic.\n\n| Method | p-value | 95% CI |\n|---|---|---|\n| Cluster-robust t-test (df=6) | 0.0001 | [0.2126, 0.3802] |\n| Wild cluster bootstrap (B=9999) | 0.0142 | [0.2393, 0.3607] |\n| Exact permutation test (128 perms) | 0.0156 | — |\n| Sign test | 0.0156 | — |\n| Wilcoxon signed-rank | 0.0156 | — |\n\n**Cohen's d = 3.27** (massive effect size).\n\n**Conclusion**: Death asymmetry is significant (p < 0.05) across all three primary methods, even at K=7. The exact permutation p-value of 1/64 = 0.0156 is the theoretical minimum for a two-sided test with K=7 (all signs must align), confirming the finding is as strong as possible given the cluster count. The CI excludes zero by a wide margin.\n\nNote: The 2/128 extreme permutations correspond to the two cases where all 7 signs flip to +1 or all to -1, producing the maximal |mean|. This is the strongest possible result for K=7."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-w1-cluster-bootstrap.md"
+}

@@ -1,0 +1,24 @@
+MATH Counterfactual Dryrun Results (10 problems)
+
+Internal accuracy: 5/10 (50.0%)
+CodeInterp accuracy: 7/10 (70.0%)
+Labels: det-preferred=3, internal-preferred=1, no-preference=6
+Avg internal tokens: 689
+Avg code-interp tokens: 683
+Total time: 158s (15.8s/problem)
+
+Per-problem breakdown:
+1. Algebra L4 - Internal: N, CodeInterp: Y [0 code] → det-preferred
+2. Algebra L5 - Internal: N, CodeInterp: Y [0 code] → det-preferred  
+3. Algebra L4 - Internal: N, CodeInterp: N [0 code] → no-preference
+4. Algebra L4 - Internal: Y, CodeInterp: Y [0 code] → no-preference
+5. Algebra L4 - Internal: Y, CodeInterp: N [0 code] → internal-preferred
+6. Algebra L4 - Internal: Y, CodeInterp: Y [0 code] → no-preference
+7. Algebra L5 - Internal: Y, CodeInterp: Y [1 code] → no-preference
+8. Algebra L5 - Internal: N, CodeInterp: Y [1 code] → det-preferred
+9. Algebra L4 - Internal: Y, CodeInterp: Y [1 code] → no-preference
+10. Algebra L4 - Internal: N, CodeInterp: N [0 code] → no-preference
+
+Note: Only 3/10 problems actually executed code. Most "code interpreter" answers came from reasoning alone under a different system prompt.
+
+Server path: /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/dryrun.jsonl

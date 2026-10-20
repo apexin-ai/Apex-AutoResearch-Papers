@@ -1,0 +1,102 @@
+{
+  "exp_id": "backbone-scaling-70b",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-17T08:43:10.909Z",
+    "updated_at": "2026-05-19T13:05:06.155Z",
+    "hypothesis": "72B model 的 death rate 显著低于 7B (42.9%)，但 DAF 可能仍 dominant 因为 deterministic modality 的 death rate 也会降低",
+    "parent": "backbone-scaling-death-rate-0.5b",
+    "spec": {
+      "command": "bash scripts/run_72b_episodes.sh",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0",
+        "cuda:1"
+      ],
+      "pid": "607756",
+      "log_path": "~/runs/simgate-modular-routing/backbone-scaling-70b.log (13313)",
+      "submitted_at": "2026-05-17T08:49:13.759Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "results/backbone_72b/",
+      "data_count": "11 task types x 20 episodes = 220 episodes",
+      "model_name": "Qwen2.5-72B-Instruct-AWQ",
+      "seed": 42,
+      "checkpoint_source": "Qwen/Qwen2.5-72B-Instruct-AWQ (HuggingFace)",
+      "eval_data": "ScienceWorld 11 task types",
+      "checkpoint_path": "results/backbone_72b/ (13313: tasks 1-8, 14838: tasks 5-11)",
+      "wall_clock_seconds": 48564.8,
+      "gpu_hours": 26.98
+    },
+    "metrics": {
+      "tasks_completed": 11,
+      "tasks_total": 11,
+      "episodes_analyzed": 255,
+      "episodes_target": 220,
+      "aggregate_death_rate": 0.306,
+      "aggregate_death_rate_ci95": [
+        0.255,
+        0.373
+      ],
+      "det_death_rate": 0.0275,
+      "death_prone_death_rate": 0.332,
+      "death_prone_det_death_rate": 0.0298,
+      "death_prone_ci95": [
+        0.28,
+        0.41
+      ],
+      "deaths_internal": 78,
+      "deaths_det": 7,
+      "delta_dr_72b_own": 0.2784,
+      "delta_full": 30.07,
+      "delta_nd": 2.28,
+      "daf": 92.42,
+      "labels": {
+        "det_preferred": 84,
+        "int_preferred": 0,
+        "no_preference": 171
+      },
+      "data_sources": "westb-13313 (9 tasks, 175 eps) + westd-18266 (2 tasks, 80 eps)",
+      "per_task_death_rate": {
+        "chemistry-mix": 0.5,
+        "find-animal": 0.4,
+        "find-non-living-thing": 0,
+        "freeze": 0.45,
+        "grow-fruit": 0.4,
+        "identify-life-stages-1": 0.4,
+        "identify-life-stages-2": 0.3,
+        "inclined-plane-determine-angle": 0.3,
+        "lifespan-longest-lived": 0.267,
+        "lifespan-longest-lived-then-shortest-lived": 0.225,
+        "measure-melting-point-unknown-substance": 0.25
+      },
+      "per_task_det_death_rate": {
+        "chemistry-mix": 0.05,
+        "find-animal": 0,
+        "find-non-living-thing": 0,
+        "freeze": 0,
+        "grow-fruit": 0.1,
+        "identify-life-stages-1": 0,
+        "identify-life-stages-2": 0.05,
+        "inclined-plane-determine-angle": 0.05,
+        "lifespan-longest-lived": 0,
+        "lifespan-longest-lived-then-shortest-lived": 0.025,
+        "measure-melting-point-unknown-substance": 0.025
+      },
+      "notes": "Consolidated 11 tasks. westd-18266 tasks (lifespan-l-then-s, measure-melting) have 40 eps each (2 batches). lifespan-longest-lived has 15 eps. int_preferred=0 across all 255 episodes.",
+      "det_death_rate_9task": 0.029,
+      "delta_dr_72b": 0.309,
+      "daf_9task": 0.896,
+      "delta_nd_9task": 3.5
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-17T22:18:38.514Z"
+  },
+  "timestamp": "2026-05-19T13:05:06.453861+00:00",
+  "trigger": "update_registry"
+}

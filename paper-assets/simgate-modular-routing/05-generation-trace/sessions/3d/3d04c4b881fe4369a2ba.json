@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d04c4b881fe4369a2ba",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper writing experiments patch v2",
+  "task_key": "worker_paper_writing_experiments-patch-v2_20260514T112358",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_experiments-patch-v2_20260514T112358_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "d34e0e1c706fe994eaeefbbbd4158657a10f2b7acebf250682f8e36f121ee4c3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。v2 draft 已写入并注册 (`art_20260514_0014da`)。变更摘要：\n\n**Table 1 补全：**\n- 扩展为 6 列（Score / 90% CI / Succ.% / Death% / Sim%），修正 CI 标签从 95% → 90%（匹配数据源 plan-003-baseline-245eps）\n- 新增 Trained Router (Ours) 行：**-10.70** [-15.25, -6.38]，23.7% success，17.6% death，97.0% sim ratio\n- 配套新增解读段落：vs always-det Δ = -1.23（方向性负面但不显著），70.6% fallback rate，强化 C1\n\n**Section 3.3 Seed Stability 段落：**\n- 4 seeds balanced_acc: 58.1 ± 0.8%（稳定，仅高于随机 8pp）\n- internal_recall: 51.52%–81.82%（range > 30pp，极不稳定）\n- 解读：弱信号可复现，但决策边界 seed-dependent → 无法产生稳定的非 always-det 策略\n- 更新了 Section 3.3 末尾的总结段落，整合 seed stability 证据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-experiments-patch-v2.md"
+}

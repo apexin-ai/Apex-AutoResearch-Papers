@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4583659cca5845ba2306",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "fix plan 002 004 classweight scripts",
+  "task_key": "worker_fix_plan-002-004-classweight-scripts_20260514T052102",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_plan-002-004-classweight-scripts_20260514T052102_result.json",
+    "occurrence": 1,
+    "bytes": 1878,
+    "sha256": "bfea901d16f8731a9a6f703a574ad75a1793043141ea9b9874fdc0331675c9d6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All validations pass. Here's the summary:\n\n## 修复清单\n\n### launch_plan002.sh\n- `--batch_size 32` → `--batch_size 4`\n- 新增 `--gradient_accumulation_steps 8`（有效 batch size = 4×8 = 32）\n- eval 步骤保持 `--batch_size 32`（无梯度计算，不会 OOM）\n- 参数确认：`--class_weights auto` ✓ / `--upsample_minority` ✓ / `--batch_size 4` ✓ / `--gradient_accumulation_steps 8` ✓ / `--epochs 3` ✓\n\n### router_sft_train.py\n- **class_weights 传入 loss**: YES，`WeightedCETrainer.compute_loss()` 已正确将 `class_weights` 传入 `CrossEntropyLoss(weight=...)`，无需修复\n- **WeightedRandomSampler**: YES，已在 `get_train_dataloader()` 中实现\n- **gradient_accumulation_steps**: 新增 CLI 参数，已连接到 `TrainingArguments`\n- **sentinel 机制**: 新增 — 训练+eval 完成后写 `TRAINING_COMPLETE` 文件（含 `completed_at`, `output_dir`, `eval_accuracy`）\n- **启动确认日志**: 已有 — class_weights 值 ✓ / sampler 类型 ✓ / 数据分布 ✓\n\n### implicit_router_sft.py (plan-004)\n- **class_weights 支持**: N/A — 这是 causal LM（生成式），不是分类器，CrossEntropyLoss weight 作用在 token 级而非路由级，不适用\n- **oversampling 支持**: 新增 `--upsample_minority` — 基于 `route_label` 字段用 `WeightedRandomSampler` 过采样少数路由类\n- **sentinel 机制**: 新增 `TRAINING_COMPLETE`\n- **UpsamplingTrainer**: 新增自定义 Trainer 子类，覆盖 `get_train_dataloader()`\n\n### 验证结果\n- plan-002 `--help` 解析: **PASS** — `--gradient_accumulation_steps` / `--class_weights` / `--upsample_minority` 均识别\n- plan-002 `--dry_run`: **PASS** — 数据分布 det 95.4% / internal 4.6%，auto weights 将大幅提升 internal 权重\n- plan-004 `train --help` 解析: **PASS** — `--upsample_minority` 已识别"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-plan-002-004-classweight-scripts.md"
+}

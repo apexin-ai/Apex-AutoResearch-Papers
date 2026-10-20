@@ -1,0 +1,46 @@
+{
+  "exp_id": "research-boil-v3-gpu1",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T16:20:17.657Z",
+    "updated_at": "2026-05-13T19:30:55.385Z",
+    "hypothesis": "用统一 v3 代码（> tie-break + death filter 仅 det/oracle）重跑 boil 20ep，获得与其他 4 个 task 一致的代码版本数据",
+    "parent": "mvp-p1-gpu0",
+    "spec": {
+      "command": "CUDA_VISIBLE_DEVICES=1 python src/phase1_signal.py --task_types boil --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/research/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --use_vllm",
+      "server": "westb-13313",
+      "data_path": "ScienceWorld API (boil)",
+      "data_count": 60,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": "default (no --seed flag)",
+      "pid": 650421,
+      "log_path": "/tmp/research-boil-v3-gpu1.log",
+      "checkpoint_path": "results/research/",
+      "checkpoint_source": "Qwen2.5-7B-Instruct (base, no fine-tune)",
+      "eval_data": "ScienceWorld boil task (20 episodes × 3 modes)"
+    },
+    "notes": "Registry 状态 ANALYZING 但 cron reconcile 确认 PID 650421 仍存活（16/20 episodes 完成）。实际仍在 RUNNING。状态机不允许回退 ANALYZING→RUNNING，等完成后直接转 DONE。",
+    "metrics": {
+      "boil_v3_20ep": {
+        "internal_mean": -44.7,
+        "internal_std": 50,
+        "det_mean": -9.3,
+        "det_std": 30.3,
+        "oracle_mean": 3.8,
+        "oracle_std": 15.2,
+        "oracle_minus_internal": 48.5,
+        "oracle_minus_det": 13.1,
+        "det_minus_internal": 35.4
+      },
+      "note": "v3 code (> tie-break, death filter det/oracle only). Oracle大幅优于两个baseline, 但绝对分低(3.8), 仅1/20 episode拿到70分"
+    },
+    "conclusion": "success",
+    "completed_at": "2026-05-13T19:30:55.385Z"
+  },
+  "timestamp": "2026-05-13T19:30:55.413391+00:00",
+  "trigger": "update_registry"
+}

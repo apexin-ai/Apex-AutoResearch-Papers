@@ -1,0 +1,48 @@
+{
+  "exp_id": "plan-004-ablation-b",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:36:59.120Z",
+    "updated_at": "2026-05-14T05:55:42.980Z",
+    "hypothesis": "Plan-004 条件 (b) implicit router SFT：Qwen3-1.7B + LoRA, [SIMULATE] token 隐式路由。与 plan-002 (explicit router) 对比，验证路由 signal 是否需要显式分类器还是可通过 token 嵌入隐式学习。同样使用 upsample_minority 处理类别不平衡。",
+    "parent": "plan-002-formal-v2",
+    "spec": {
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "account": "root",
+      "command": "WANDB_MODE=offline CUDA_VISIBLE_DEVICES=1 python src/training/implicit_router_sft.py --data_dir data/implicit_formatted --epochs 3 --batch_size 4 --gradient_accumulation_steps 8 --upsample_minority --lr 2e-5 --output_dir checkpoints/plan-004-implicit --seed 42",
+      "data_path": "data/implicit_formatted/",
+      "data_count": "2040 samples (train 1735 / val 305)",
+      "model_name": "Qwen/Qwen3-1.7B + LoRA r=16",
+      "seed": 42,
+      "pid": "223455",
+      "checkpoint_source": "N/A (training from scratch, not eval)",
+      "eval_data": "N/A (ablation training, not eval)"
+    },
+    "server": "westb-13313",
+    "gpu": "cuda:1",
+    "reproduce": {
+      "finished_at": "2026-05-14T05:53:26.481Z"
+    },
+    "failure_reason": "process dead 5× with no sentinel/W&B — auto-resolved as failed",
+    "conclusion": "success",
+    "completed_at": "2026-05-14T05:53:27.018Z",
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_failed",
+          "action": "agent",
+          "ts": "2026-05-14T05:53:28.176854+00:00"
+        }
+      ]
+    }
+  },
+  "timestamp": "2026-05-14T05:55:43.070473+00:00",
+  "trigger": "update_registry"
+}

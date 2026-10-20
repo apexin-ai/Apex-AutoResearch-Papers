@@ -1,0 +1,16 @@
+{
+  "exp_id": "backbone-scaling-70b-parallel",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T15:22:17.222Z",
+    "updated_at": "2026-05-17T15:22:24.451Z",
+    "hypothesis": "72B AWQ TP=1 在 westb-14838 cuda:1 上并行收集剩余 7 tasks（与 westb-13313 分担），加速 backbone-scaling-70b 的数据收集",
+    "parent": "backbone-scaling-70b"
+  },
+  "timestamp": "2026-05-17T15:22:24.675526+00:00",
+  "trigger": "update_registry"
+}

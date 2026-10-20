@@ -1,0 +1,2386 @@
+- id: art_20260513_9c2f99
+  name: keywords-v2-accuracy-comparison
+  type: report
+  description: 'v1 vs v2 keyword heuristic accuracy comparison: v1=always-det(97.5%),
+    v2=always-internal(99.5%), both fail at episode-level routing'
+  path: projects/simgate-modular-routing/artifacts/_project/report/keywords_v2_comparison.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T21:47:25.623693+00:00'
+  tags:
+  - plan-011
+  - keywords
+  - rule-based
+- id: art_20260513_8f4a3f
+  name: plan-012-preliminary-death-decomposition
+  type: report
+  description: 'Death decomposition on 30 tasks/219 episodes (prescreening+MVP): Δ_full=+37.9,
+    Δ_nd=+0.2, fraction=99%, r=0.989 p&lt;0.0001'
+  path: projects/simgate-modular-routing/artifacts/_project/report/plan012_preliminary_decomposition.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T21:51:20.709616+00:00'
+  tags:
+  - plan-012
+  - death-decomposition
+  - preliminary
+- id: art_20260513_f4a27f
+  name: prescreening-final-summary
+  type: data
+  description: '25/25 prescreening tasks final classification: 19 death-dominated,
+    5 genuine-det, 1 internal-preferred'
+  path: projects/simgate-modular-routing/artifacts/_project/data/prescreening_final_summary.json
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T22:07:43.043365+00:00'
+  tags:
+  - plan-001a
+  - prescreening
+  - final
+- id: art_20260513_e904a0
+  name: plan-012-dryrun-figures
+  type: chart
+  description: 'Death decomposition paper figures (prescreening data): scatter plot
+    (r=0.986), label distribution, DAF bar chart. PDF+PNG in results/decomposition_dryrun/'
+  path: projects/simgate-modular-routing/artifacts/_project/chart/plan012_dryrun_summary.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T22:32:15.060155+00:00'
+  tags:
+  - plan-012
+  - figures
+  - dry-run
+  - paper
+- id: art_20260513_14e334
+  name: plan-005-routing-pattern-dryrun
+  type: chart
+  description: 'Routing pattern analysis: heatmap (30 tasks), failure taxonomy (focus-on-location
+    deaths), routing_metrics.json'
+  path: projects/simgate-modular-routing/artifacts/_project/chart/plan005_routing_pattern_summary.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-13T23:38:33.111539+00:00'
+  tags:
+  - plan-005
+  - routing-pattern
+  - heatmap
+  - failure-taxonomy
+- id: art_20260514_19522e
+  name: c1-claim-impact-analysis
+  type: report
+  description: 'find-animal + find-non-living-thing extreme case analysis: C1 claim
+    support evaluation, upgrade options, case study draft (146 words)'
+  path: projects/simgate-modular-routing/artifacts/_project/report/c1_claim_impact_analysis.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T00:25:32.774954+00:00'
+  tags:
+  - C1
+  - claim
+  - case-study
+  - paper
+- id: art_20260514_plan005_analysis
+  name: plan-005-routing-analysis-full
+  type: report
+  description: 'Plan-005 full routing analysis: 25/30 death-dominated (83.3%), weighted
+    DAF=98.09%, 3 genuine-det, 2 internal-preferred. Figure 1 heatmap data + taxonomy
+    summary.'
+  path: projects/simgate-modular-routing/artifacts/plan005_routing_analysis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:00:00.000000+00:00'
+  tags:
+  - plan-005
+  - routing-analysis
+  - figure-1
+  - C1
+- id: art_20260514_c5ade9
+  name: Related Work Draft
+  type: paper
+  description: Related Work 章节草稿 (~370 words)，覆盖 Tool-Use Learning / Adaptive Computation
+    / World Model Routing / Agent Frameworks 四个方向，所有引用来自 literature_map.yaml
+  path: projects/simgate-modular-routing/artifacts/_project/paper/related_work_draft.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T01:04:03.040946+00:00'
+  tags:
+  - paper
+  - related-work
+  - draft
+- id: art_20260514_213114
+  name: Plan-005 Routing Pattern Analysis
+  type: data
+  description: 30 tasks routing pattern 分类 + heatmap 数据 + failure taxonomy。25 death-dominated
+    (83.3%), 3 genuine-det, 2 internal-preferred。DAF=98.09%。Figure 1 数据源。
+  path: projects/simgate-modular-routing/artifacts/plan-012-decomposition/data/plan005_routing_analysis_summary.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-012-decomposition
+  skill: ''
+  created_at: '2026-05-14T01:45:57.327419+00:00'
+  tags:
+  - plan-005
+  - routing-pattern
+  - figure-1
+  - analysis
+- id: art_20260514_d860d5
+  name: introduction_draft_v1
+  type: paper
+  description: 'EMNLP 2026 short paper Introduction section draft v1 (~650 words).
+    Covers: catastrophic failure framing, per-step oracle degeneracy, episode-level
+    counterfactual methodology, death avoidance dominance finding (99% routing signal),
+    3 contributions. Registry data marked with [PLACEHOLDER].'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/introduction_draft_d860d5.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T01:46:56.650315+00:00'
+  tags:
+  - paper
+  - introduction
+  - draft-v1
+  - emnlp-2026
+- id: art_20260514_a06d7d
+  name: experiment_tables
+  type: report
+  description: EMNLP 2026 short paper Experiment section 数据表格（4张表：death decomposition、keyword
+    baseline、label distribution、baseline comparison）。Preliminary，基于 249 episodes，plan-001b
+    完成后更新。
+  path: projects/simgate-modular-routing/artifacts/_project/report/experiment_tables.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T01:48:18.469032+00:00'
+  tags:
+  - paper
+  - experiment
+  - tables
+  - emnlp2026
+- id: art_20260514_1cf12e
+  name: Experiment Section Data Tables
+  type: paper
+  description: 论文 Experiment section 4 张结构化数据表：Death Decomposition / Keyword Baseline
+    / Label Distribution / Baseline Comparison。数据来源标注 preliminary，plan-001b 完成后更新。
+  path: projects/simgate-modular-routing/artifacts/_project/paper/experiment_tables.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T01:49:22.113777+00:00'
+  tags:
+  - paper
+  - experiments
+  - tables
+  - preliminary
+- id: art_20260514_e328fe
+  name: method_draft
+  type: paper
+  description: 'Method section draft v1 for EMNLP 2026 short paper — 4 subsections:
+    Counterfactual Episode Collection, Death-Aware Labeling, Death Avoidance Factor
+    (DAF), Rule-Based Baseline. ~850 words, LaTeX format with PLACEHOLDER annotations.'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/method_draft_e328fe.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T02:08:01.449321+00:00'
+  tags:
+  - paper
+  - method
+  - draft-v1
+  - emnlp2026
+- id: art_20260514_3c02f5
+  name: paper_data_tables
+  type: report
+  description: EMNLP 2026 short paper data tables (final plan-012-full numbers), figure
+    specs, baseline comparisons, paper_framing consistency check, and data gap action
+    items
+  path: projects/simgate-modular-routing/artifacts/_project/report/paper_data_tables.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:31:53.746329+00:00'
+  tags:
+  - paper
+  - tables
+  - figures
+  - emnlp2026
+  - plan-012
+- id: art_20260514_f69db2
+  name: death_decomposition_preliminary_v2
+  type: data
+  description: 'Death decomposition per-task CSV (plan-012-full final: 11 tasks, 245
+    eps). Updated from 235→245 eps (chemistry-mix 10→20). Replaces old 235-ep version.'
+  path: projects/simgate-modular-routing/artifacts/plan-012-full/data/death_decomposition_preliminary.csv
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-012-full
+  skill: ''
+  created_at: '2026-05-14T06:41:14.681437+00:00'
+  tags:
+  - paper-data
+  - plan-012-full
+  - 245eps
+- id: art_20260514_5ea537
+  name: heatmap_data_v2
+  type: data
+  description: Heatmap CSV with corrected find-non-living-thing row (40eps, delta_DI=+9.58
+    genuine-det, was 25eps/-1.32 internal-preferred). All 30 tasks.
+  path: projects/simgate-modular-routing/artifacts/_project/data/heatmap_data.csv
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T06:41:44.027920+00:00'
+  tags:
+  - paper-data
+  - heatmap
+  - corrected
+- id: art_20260514_01d3f5
+  name: paper-outline
+  type: paper
+  description: 'EMNLP 2026 short paper outline: death avoidance dominance in LLM agent
+    routing'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/paper_outline.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T07:33:53.774541+00:00'
+  tags:
+  - paper
+  - outline
+  - emnlp2026
+- id: art_20260514_e311aa
+  name: D028 Number Consistency Audit
+  type: report
+  description: D028 核心数字一致性审计报告：审计所有实验数据源，识别三套数据宇宙（A=245eps, B=249eps, C=194eps），发现6项不一致，生成权威数字表和论文写作建议
+  path: projects/simgate-modular-routing/artifacts/_project/report/number_consistency_audit.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T08:03:06.403256+00:00'
+  tags:
+  - D028
+  - audit
+  - consistency
+  - paper
+- id: art_20260514_1ec097
+  name: plan-004-v5-routing-eval
+  type: report
+  description: Generation-based routing eval for plan-004-v5. internal_recall=26.7%
+    below 30% threshold.
+  path: projects/simgate-modular-routing/artifacts/plan-004-v5/report/routing_eval_v5.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-004-v5
+  skill: ''
+  created_at: '2026-05-14T08:30:12.607934+00:00'
+  tags:
+  - eval
+  - routing
+  - generation-based
+- id: art_20260514_dd0191
+  name: ablation-b generation-level eval
+  type: data
+  description: 'Generation-level routing eval for ablation-b. Zero logit-generation
+    gap: internal_recall=51.52% at both levels. Only model without the gap.'
+  path: projects/simgate-modular-routing/artifacts/plan-004-ablation-b/data/ablation_b_gen_eval.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-004-ablation-b
+  skill: ''
+  created_at: '2026-05-14T08:42:08.453635+00:00'
+  tags:
+  - generation-eval
+  - logit-generation-gap
+  - ablation-b
+- id: art_20260514_dd9866
+  name: experiments_draft
+  type: paper
+  description: EMNLP 2026 short paper Experiments section draft v1 (~1200 words).
+    Covers death avoidance decomposition (DAF=90.41%), baselines (Table 1), router
+    training diagnostic, and limitations. All numbers from A source (plan-012-full,
+    245 episodes / 11 tasks).
+  path: projects/simgate-modular-routing/artifacts/_project/paper/experiments_draft_dd9866.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:03:27.980054+00:00'
+  tags:
+  - paper
+  - experiments
+  - emnlp2026
+  - draft-v1
+- id: art_20260514_8ce697
+  name: plan-003-e2e-ablation-b-results
+  type: data
+  description: 'End-to-end eval results for trained router (ablation-b / plan-002-generative-v1).
+    Negative result: score=-11.11 worse than always-det=-9.47. Includes overall_results.json,
+    per_task_results.csv, episode_details.jsonl.'
+  path: projects/simgate-modular-routing/artifacts/plan-003-e2e-ablation-b/data/plan-003-e2e-ablation-b-results.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-003-e2e-ablation-b
+  skill: ''
+  created_at: '2026-05-14T09:03:42.223099+00:00'
+  tags:
+  - eval
+  - e2e
+  - table-1
+  - negative
+- id: art_20260514_0568b9
+  name: ablation-b-multiseed-reproduction
+  type: report
+  description: ablation-b (ga=8) 多种子复现实验：3/3 非退化 generation-level router, balanced_acc
+    57-58%, internal_recall 51-82%
+  path: projects/simgate-modular-routing/artifacts/_project/report/ablation_b_multiseed_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:05:46.583845+00:00'
+  tags:
+  - ablation-b
+  - reproduction
+  - generation-eval
+  - multi-seed
+- id: art_20260514_05d5ea
+  name: plan-003-eval-implicit-results
+  type: data
+  description: 'Implicit router (ablation-b) full evaluation: Score=-12.84 [CI -17.52,
+    -8.45], worse than always-det=-9.47. 245 episodes, 2040 steps, 11 tasks.'
+  path: projects/simgate-modular-routing/artifacts/plan-003-eval-implicit/data/plan-003-eval-implicit-results.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-003-eval-implicit
+  skill: ''
+  created_at: '2026-05-14T09:12:42.539656+00:00'
+  tags:
+  - eval
+  - implicit-router
+  - ablation-b
+  - plan-003
+- id: art_20260514_f2d03f
+  name: e2e-eval-ablation-b-correct-results
+  type: data
+  description: End-to-end evaluation results for ablation-b with correct checkpoint
+    (plan-004-implicit/final_adapter). Score=-10.70 (negative vs always-det=-9.47).
+    245 episodes, 11 tasks, sim_ratio=97%, fallback=70.6%.
+  path: null
+  url: westb-13313:/root/autodl-tmp/simgate-modular-routing/results/eval_ablation_b_e2e_correct/
+  project: simgate-modular-routing
+  exp_id: plan-003-e2e-ablation-b-correct
+  skill: ''
+  created_at: '2026-05-14T09:23:05.952898+00:00'
+  tags:
+  - eval
+  - e2e
+  - ablation-b
+  - plan-003
+  - negative
+- id: art_20260514_875550
+  name: method_v2_draft
+  type: paper
+  description: 'Method section v2 draft (LaTeX) for EMNLP 2026 short paper. 4 subsections:
+    Counterfactual Episode Collection, Death-Aware Labeling, Death Avoidance Factor,
+    Rule-Based Baseline. ~700 words, A-source data (plan-012-full, 11 tasks / 245
+    episodes).'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/method_v2_draft_875550.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:26:50.786906+00:00'
+  tags:
+  - paper
+  - method
+  - latex
+  - v2
+  - a-source
+- id: art_20260514_32f156
+  name: introduction_v2_draft
+  type: paper
+  description: Introduction section v2 draft with A-source data (plan-012-full, 11
+    tasks / 245 episodes). ~580 words, 4 paragraphs, exactly 2 contributions. All
+    placeholders replaced with verified numbers.
+  path: projects/simgate-modular-routing/artifacts/_project/paper/introduction_v2_draft_32f156.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T09:40:36.601149+00:00'
+  tags:
+  - paper
+  - introduction
+  - v2
+  - a-source
+- id: art_20260514_e3232a
+  name: fig1_daf_scatter
+  type: chart
+  description: 'Figure 1: Per-task death rate differential vs Δ_full scatter plot
+    with regression line (r=0.9698, p=8.09e-07). 11 task types, 245 episodes. Annotates
+    find-non-living-thing outlier.'
+  path: projects/simgate-modular-routing/artifacts/_project/chart/fig1_daf_scatter_info.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:24:41.732507+00:00'
+  tags:
+  - figure
+  - paper
+  - daf
+  - scatter
+- id: art_20260514_49608d
+  name: conclusion_draft
+  type: paper
+  description: EMNLP 2026 short paper Conclusion section draft v1 — Summary + Limitations
+    + Future Work, all numbers from plan-012-full (A-source)
+  path: projects/simgate-modular-routing/artifacts/_project/paper/conclusion_draft_49608d.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:25:10.024749+00:00'
+  tags:
+  - paper
+  - conclusion
+  - v1
+- id: art_20260514_0014da
+  name: experiments_v2_draft
+  type: paper
+  description: 'Experiments section v2: patched Table 1 with trained router row (-10.70,
+    worse than always-det by 1.23) and Section 3.3 seed stability analysis (4 seeds,
+    balanced_acc 58.1±0.8%, internal_recall 30+pp variance)'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/experiments_v2_draft_0014da.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:25:59.654862+00:00'
+  tags:
+  - paper
+  - experiments
+  - v2
+  - table1-patched
+  - seed-stability
+- id: art_20260514_903d3a
+  name: paper-conclusion
+  type: paper
+  description: EMNLP 2026 short paper Conclusion section — summarizes death avoidance
+    dominance finding, methodology contribution, limitations, and future work
+  path: projects/simgate-modular-routing/artifacts/_project/paper/conclusion.tex
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:27:05.190039+00:00'
+  tags:
+  - paper
+  - conclusion
+  - latex
+- id: art_20260514_e0d414
+  name: paper-abstract
+  type: paper
+  description: EMNLP 2026 short paper Abstract — frames problem, methodology, core
+    DAF finding, and implication
+  path: projects/simgate-modular-routing/artifacts/_project/paper/abstract.tex
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:27:09.176552+00:00'
+  tags:
+  - paper
+  - abstract
+  - latex
+- id: art_20260514_a3c1c2
+  name: conclusion_v1_draft
+  type: paper
+  description: 'Conclusion section v1 draft for EMNLP 2026 short paper (~170 words,
+    3 paragraphs: summary, implications, future directions)'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/conclusion_v1_draft_a3c1c2.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:27:40.593468+00:00'
+  tags:
+  - paper
+  - conclusion
+  - v1
+  - a-source
+- id: art_20260514_7196ef
+  name: related_work_v2
+  type: paper
+  description: 'Related Work v2: fixed DAF 99→90%, expanded Agent Frameworks (ScienceWorld,
+    MTRouter), strengthened differentiation per paragraph'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/related_work_v2_7196ef.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:27:46.313955+00:00'
+  tags:
+  - paper
+  - related-work
+  - v2
+- id: art_20260514_c1b3b2
+  name: experiments_v2_draft
+  type: paper
+  description: 'Experiments section v2 draft for EMNLP 2026 short paper. Changes from
+    v1: (1) Table 1 trained-router row filled with A-source data (score=-10.70, CI=[-15.25,-6.38],
+    death=17.6%); (2) trained router explanation paragraph added to baselines; (3)
+    end-to-end evaluation paragraph and seed stability paragraph (58.1±0.8% balanced
+    acc, 51.5-81.8% internal recall across 4 seeds) added to Section 3.3, replacing
+    placeholder.'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/experiments_v2_draft_c1b3b2.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:28:12.111946+00:00'
+  tags:
+  - paper
+  - experiments
+  - v2
+  - a-source
+- id: art_20260514_6cab3a
+  name: paper_review_report
+  type: report
+  description: 论文初稿一致性审查报告：4 Critical / 6 Important / 5 Minor issues，含数字交叉验证、framing
+    一致性检查、强度词审计、缺失项清单
+  path: projects/simgate-modular-routing/artifacts/_project/report/review_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T11:33:41.480068+00:00'
+  tags:
+  - paper
+  - review
+  - consistency-check
+- id: art_20260514_77a79a
+  name: fig1_daf_scatter
+  type: chart
+  description: 'Figure 1: Death Avoidance Fraction scatter plot. 11 task types, r=0.9698,
+    p=8.12e-07, slope=88.19, intercept=5.83. find-non-living-thing outlier annotated.
+    31KB PDF.'
+  path: projects/simgate-modular-routing/artifacts/plan-012-full/chart/fig1_daf_scatter.pdf
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-012-full
+  skill: ''
+  created_at: '2026-05-14T11:57:42.305814+00:00'
+  tags:
+  - paper
+  - figure1
+  - daf
+  - scatter
+- id: art_20260514_7a8aab
+  name: references_bib_audited
+  type: paper
+  description: 'Audited references.bib: 10 entries corrected (years, authors), 1 hallucinated
+    entry deleted (envsimbench-2026), 1 added (dagger-2011). All entries verified
+    against real publications.'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/references_7a8aab.bib
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:10:40.976976+00:00'
+  tags:
+  - paper
+  - references
+  - bib
+  - audit
+- id: art_20260514_4fd018
+  name: EMNLP 2026 Short Paper LaTeX Project
+  type: paper
+  description: 'Complete compilable 4-page ACL-format LaTeX project for EMNLP 2026
+    ARR short paper. Server: /root/autodl-tmp/simgate-modular-routing/paper/. Local:
+    artifacts/_project/paper/latex/. All critical issues (C1-C4) and important issues
+    (I1-I6, M4) resolved.'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/main.tex
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:20:50.800965+00:00'
+  tags:
+  - paper
+  - latex
+  - emnlp2026
+  - short-paper
+- id: art_20260514_b09c23
+  name: latex_integrated_draft_v1
+  type: paper
+  description: 'First integrated LaTeX draft (main.tex). 5-page PDF (3.5pp content
+    + 1.5pp refs). ACL review template. Critical fixes applied: GA config separation,
+    Figure 1 integrated, 4-page compliance.'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/main_b09c23.tex
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T12:22:07.039712+00:00'
+  tags:
+  - paper
+  - latex
+  - draft
+  - v1
+  - integrated
+- id: art_20260514_b5b58d
+  name: step_tie_rate_full_analysis
+  type: data
+  description: Step-level tie rate analysis for 245 episodes / 11 tasks (plan_c).
+    Tie rate = 97.39% (5935/6094 steps).
+  path: projects/simgate-modular-routing/artifacts/plan-012-step-tie-rate/data/step_tie_rate_full.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-012-step-tie-rate
+  skill: ''
+  created_at: '2026-05-14T12:29:48.851821+00:00'
+  tags:
+  - tie-rate
+  - step-level
+  - plan-012
+  - paper-data
+- id: art_20260514_6e60c6
+  name: plan-013-labeling-quality-report
+  type: report
+  description: 'Labeling quality analysis: tie rates, genuine vs tie-break fractions,
+    strict-only retrain comparison'
+  path: projects/simgate-modular-routing/artifacts/plan-013-labeling-quality/report/labeling_quality_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-013-labeling-quality
+  skill: ''
+  created_at: '2026-05-14T12:30:42.305745+00:00'
+  tags:
+  - labeling
+  - quality
+  - tie-rate
+  - oracle-circularity
+- id: art_20260514_485d76
+  name: bootstrap_95ci
+  type: data
+  description: Bootstrap 95% CI for all 5 conditions (Table 1), updated from 90% CI
+    per reviewer request. N=245 episodes, 10000 bootstrap resamples.
+  path: projects/simgate-modular-routing/artifacts/plan-003-bootstrap-95ci/data/bootstrap_95ci.json
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-003-bootstrap-95ci
+  skill: ''
+  created_at: '2026-05-14T12:57:36.508574+00:00'
+  tags:
+  - bootstrap
+  - 95ci
+  - table1
+  - reviewer-response
+- id: art_20260514_8e0ebf
+  name: penalty-sensitivity-json
+  type: data
+  description: 'Penalty sensitivity analysis: death decomposition counts, δ, Δ_nd,
+    DAF at P∈{10,25,50,100,200}, per-task breakdown'
+  path: projects/simgate-modular-routing/artifacts/plan-012-penalty-sensitivity/data/penalty_sensitivity.json
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-012-penalty-sensitivity
+  skill: ''
+  created_at: '2026-05-14T12:57:44.733217+00:00'
+  tags:
+  - penalty
+  - sensitivity
+  - DAF
+  - reviewer-response
+- id: art_20260514_1b576b
+  name: penalty-sensitivity-latex
+  type: report
+  description: 'LaTeX tables for penalty sensitivity analysis (Table A: overall, Table
+    B: per-task)'
+  path: projects/simgate-modular-routing/artifacts/plan-012-penalty-sensitivity/report/penalty_sensitivity_table.tex
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-012-penalty-sensitivity
+  skill: ''
+  created_at: '2026-05-14T12:57:46.659643+00:00'
+  tags:
+  - penalty
+  - sensitivity
+  - latex
+  - paper-table
+- id: art_20260514_d6477c
+  name: scienceworld-counterfactual-unified
+  type: data
+  description: 'ScienceWorld 245 episodes / 11 tasks counterfactual data in unified
+    multi-environment JSONL format. Output: data/scienceworld-counterfactual/episodes.jsonl'
+  path: projects/simgate-modular-routing/artifacts/scienceworld-data-consolidation/data/scienceworld-counterfactual-summary.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: scienceworld-data-consolidation
+  skill: ''
+  created_at: '2026-05-14T13:25:50.875872+00:00'
+  tags:
+  - data
+  - scienceworld
+  - counterfactual
+  - unified-format
+- id: art_20260514_82282d
+  name: MATH counterfactual dryrun (10 problems)
+  type: data
+  description: 'MATH Level 4-5 counterfactual labeling dry-run: 10 problems, internal
+    acc 50%, code-interp acc 70%, labels: det=3 int=1 nopref=6. File on server: /root/autodl-tmp/simgate-modular-routing/data/math-counterfactual/dryrun.jsonl'
+  path: projects/simgate-modular-routing/artifacts/_project/data/math_dryrun_summary.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T13:37:23.161730+00:00'
+  tags:
+  - math
+  - counterfactual
+  - dryrun
+- id: art_20260514_684c29
+  name: math-counterfactual-dryrun-summary
+  type: data
+  description: 'MATH Level 4-5 counterfactual labeling dry-run: 10 problems, internal
+    (50%) vs code-interpreter (70%). Labels: det=3, int=1, nopref=6. 15.8s/problem
+    with vLLM on RTX 5090.'
+  path: projects/simgate-modular-routing/artifacts/math-counterfactual-dryrun/data/math-counterfactual-dryrun-summary.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: math-counterfactual-dryrun
+  skill: ''
+  created_at: '2026-05-14T13:38:36.924452+00:00'
+  tags:
+  - math
+  - counterfactual
+  - dryrun
+  - pivot
+- id: art_20260514_c3a7ec
+  name: math-pilot-50
+  type: data
+  description: 'MATH 50-problem pilot with forced code execution prompt + verification
+    filtering. Code exec rate 82%, Internal acc 80%, CodeInterp acc 72%. Labels: det=1,
+    int=5, nopref=44.'
+  path: projects/simgate-modular-routing/artifacts/_project/data/math-pilot-50.json
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:00:40.430136+00:00'
+  tags:
+  - math
+  - pilot
+  - counterfactual
+  - code-execution
+- id: art_20260514_805b5e
+  name: paper_number_audit
+  type: report
+  description: 'Paper number consistency audit: 66 quantitative claims checked against
+    registry/data sources. 0 FAIL, 1 NOTE (±0.8% std minor imprecision). All core
+    numbers verified.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/paper_number_audit.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:37:57.638628+00:00'
+  tags:
+  - audit
+  - paper
+  - numbers
+  - consistency
+- id: art_20260514_725f6d
+  name: paper-compiled-20260514-symbol-unified
+  type: paper
+  description: 完整编译 PDF — 符号统一 Δ_nd + tie rate 97.4% + plan-013 labeling quality in
+    Limitations。零 undefined 引用，零编译错误。5 pages。
+  path: projects/simgate-modular-routing/artifacts/_project/paper/main.pdf
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:45:28.377904+00:00'
+  tags:
+  - paper
+  - compiled
+  - symbol-unified
+- id: art_20260514_4c3337
+  name: paper_completeness_audit
+  type: report
+  description: 论文初稿完成度审计报告：完成度~90%，2项必修/4项可选
+  path: projects/simgate-modular-routing/artifacts/_project/report/paper_completeness_audit.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:49:48.757136+00:00'
+  tags:
+  - paper
+  - audit
+  - completeness
+- id: art_20260514_32a263
+  name: paper_audit_report
+  type: report
+  description: Full-number audit and structural integrity check for EMNLP 2026 paper.
+    Covers canonical directory determination, all numerical claims vs registry, structural
+    completeness, and prioritized issue list.
+  path: projects/simgate-modular-routing/artifacts/_project/report/paper_audit_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-14T14:54:22.263935+00:00'
+  tags:
+  - paper
+  - audit
+  - emnlp2026
+- id: art_20260515_224809
+  name: math-full-300-counterfactual
+  type: data
+  description: 'MATH negative contrast full dataset: 300 problems (Level 4-5), internal
+    81.7% vs code 76.7%, diff +5.0% [CI: +0.7%, +9.3%]'
+  path: projects/simgate-modular-routing/artifacts/math-negative-contrast/data/math_full_300_location.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: math-negative-contrast
+  skill: ''
+  created_at: '2026-05-15T07:52:33.013770+00:00'
+  tags:
+  - math
+  - negative-contrast
+  - counterfactual
+  - qwen2.5-7b
+- id: art_20260515_3de1ee
+  name: long_paper_results_summary
+  type: report
+  description: Long paper 统一格式实验结果汇总 — 8 个实验的关键数据、结论、支撑 claim 映射
+  path: projects/simgate-modular-routing/artifacts/_project/report/long_paper_results_summary.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:07:10.198567+00:00'
+  tags:
+  - long-paper
+  - results
+  - writing-material
+- id: art_20260515_cd23fa
+  name: long_paper_figures_tables
+  type: report
+  description: Long paper figures/tables 清单 — 按 section 列出所有需要的 figures/tables，标注数据来源和当前状态
+  path: projects/simgate-modular-routing/artifacts/_project/report/long_paper_figures_tables.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:07:12.317831+00:00'
+  tags:
+  - long-paper
+  - figures
+  - tables
+  - writing-material
+- id: art_20260515_551fbe
+  name: appendix_promotion_plan
+  type: report
+  description: Appendix→正文升级计划 — 标记哪些 appendix 内容升级到正文、放哪个 section、需要什么扩展，含空间预算
+  path: projects/simgate-modular-routing/artifacts/_project/report/appendix_promotion_plan.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T08:07:14.757822+00:00'
+  tags:
+  - long-paper
+  - appendix
+  - writing-material
+- id: art_20260515_354201
+  name: math_clean_300
+  type: data
+  description: MATH Level 4-5 clean N=300 counterfactual data (pilot rerun with sandbox
+    fix + fixed 55 + extend 195)
+  path: projects/simgate-modular-routing/artifacts/math-negative-contrast/data/math_clean_300_manifest.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: math-negative-contrast
+  skill: ''
+  created_at: '2026-05-15T09:30:32.264100+00:00'
+  tags:
+  - math
+  - counterfactual
+  - clean
+  - n300
+- id: art_20260515_99bc24
+  name: multi-model-pilot-analysis
+  type: report
+  description: 'Llama 3.1 8B Instruct multi-model pilot results: 2 tasks × 5 episodes
+    × 2 modalities = 20 episodes. Freeze: internal death 40% vs det 20% (direction
+    matches Qwen). find-non-living-thing: 0% death both sides (matches Qwen). Verdict:
+    PASS.'
+  path: projects/simgate-modular-routing/artifacts/multi-model-pilot/report/multi_model_pilot_analysis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: multi-model-pilot
+  skill: ''
+  created_at: '2026-05-15T09:34:43.408396+00:00'
+  tags:
+  - pilot
+  - llama
+  - multi-model
+  - counterfactual
+- id: art_20260515_bf2e29
+  name: cross_env_summary_table
+  type: paper
+  description: LaTeX table comparing label distributions across ScienceWorld, MATH,
+    and ALFWorld environments — signal direction reversal
+  path: projects/simgate-modular-routing/artifacts/_project/paper/cross_env_summary_table.tex
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T10:15:51.357474+00:00'
+  tags:
+  - paper
+  - table
+  - cross-environment
+  - signal-reversal
+- id: art_20260515_0113e0
+  name: signal_reversal_figure
+  type: chart
+  description: 'Grouped bar chart showing cross-environment signal reversal: ScienceWorld
+    (det>>int) vs MATH (int>det). Files on server: /root/autodl-tmp/simgate-modular-routing/docs/paper/figures/signal_reversal.{pdf,png}'
+  path: projects/simgate-modular-routing/artifacts/_project/chart/signal_reversal_figure_info.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T10:17:41.375863+00:00'
+  tags:
+  - paper
+  - figure
+  - signal-reversal
+  - cross-environment
+- id: art_20260515_e68203
+  name: plan-008-v3-training-logs
+  type: data
+  description: 'Training logs for router size ablation v3: Qwen3-0.6B/1.7B (plan008_v3.log)
+    and Qwen3-4B (plan008_v3_4b.log)'
+  path: projects/simgate-modular-routing/artifacts/plan-008-router-size-v3/data/plan008_v3_results.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-008-router-size-v3
+  skill: ''
+  created_at: '2026-05-15T15:08:07.639064+00:00'
+  tags:
+  - plan-008
+  - router-size
+  - ablation
+  - training
+- id: art_20260515_c6294b
+  name: eval-template-fix-report
+  type: report
+  description: 'Fixed eval on plan-004-implicit: balanced_acc=0.5685, root cause is
+    checkpoint mismatch not eval template'
+  path: projects/simgate-modular-routing/artifacts/seed-robustness-core/report/eval_template_fix_report.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: seed-robustness-core
+  skill: ''
+  created_at: '2026-05-15T15:34:22.687499+00:00'
+  tags:
+  - eval-fix
+  - router-accuracy
+  - reproducibility
+- id: art_20260515_0338b4
+  name: SF3 Death Timing Analysis & Mixed Routing Discussion
+  type: report
+  description: Death step timing distribution analysis for internal vs deterministic
+    modes, with mixed routing feasibility discussion for reviewer response
+  path: projects/simgate-modular-routing/artifacts/_project/report/death_timing_analysis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:18:22.795598+00:00'
+  tags:
+  - reviewer-response
+  - death-timing
+  - mixed-routing
+  - analysis
+- id: art_20260515_040b1c
+  name: deep_vs_fast_analysis
+  type: report
+  description: Deep-internal vs fast-internal per-task comparison with statistical
+    tests, score distributions, and 3-way routing feasibility assessment
+  path: projects/simgate-modular-routing/artifacts/_project/report/deep_vs_fast_analysis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T16:40:22.985297+00:00'
+  tags:
+  - analysis
+  - routing
+  - deep-internal
+  - fast-internal
+  - statistics
+- id: art_20260515_4134f6
+  name: plan005-v2-routing-patterns
+  type: report
+  description: 'Plan-005 v2: Per-task routing pattern analysis — 11 tasks, 245 episodes.
+    Includes per-task routing frequency, phase analysis, failure taxonomy, and key
+    statistics for paper.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/plan005_routing_patterns_v2.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:39:48.855027+00:00'
+  tags:
+  - plan-005
+  - routing-analysis
+  - paper-figure
+- id: art_20260515_ce42f2
+  name: routing-heatmap-figure1
+  type: chart
+  description: 'Paper Figure 1: Three-panel routing heatmap (death rate, label distribution,
+    DAF) for 11 ScienceWorld tasks. Server: artifacts/routing_heatmap.pdf/png'
+  path: projects/simgate-modular-routing/artifacts/_project/chart/routing_heatmap_info.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:40:01.483636+00:00'
+  tags:
+  - paper
+  - figure-1
+  - routing-heatmap
+- id: art_20260515_6f28f1
+  name: phase-heatmap
+  type: chart
+  description: 'Death rate differential by episode phase heatmap. All deaths in late
+    phase. Server: artifacts/phase_heatmap.pdf/png'
+  path: projects/simgate-modular-routing/artifacts/_project/chart/phase_heatmap_info.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:40:02.944500+00:00'
+  tags:
+  - paper
+  - phase-analysis
+- id: art_20260515_a9927d
+  name: daf-scatter-plot
+  type: chart
+  description: 'DAF vs death rate differential scatter for 11 tasks. Server: artifacts/daf_scatter.pdf/png'
+  path: projects/simgate-modular-routing/artifacts/_project/chart/daf_scatter_info.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T17:40:04.511490+00:00'
+  tags:
+  - paper
+  - daf
+- id: art_20260515_b3dd41
+  name: plan-005 routing patterns report v2
+  type: report
+  description: 'Per-task routing pattern analysis: routing frequency heatmap, episode
+    phase analysis, failure mode taxonomy. 11 tasks / 245 episodes from plan-001b
+    data.'
+  path: projects/simgate-modular-routing/artifacts/plan-005-routing-patterns/report/plan005_routing_patterns_v2.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-005-routing-patterns
+  skill: ''
+  created_at: '2026-05-15T17:41:32.672453+00:00'
+  tags:
+  - plan-005
+  - routing-analysis
+  - C1
+  - C2
+- id: art_20260515_09f8fc
+  name: plan-010-cross-task-results-summary
+  type: data
+  description: 'Cross-task transfer experiment results summary. Both directions near
+    chance. Physical→Life balanced_acc=0.498, Life→Physical balanced_acc=0.492. Conclusion:
+    negative.'
+  path: projects/simgate-modular-routing/artifacts/plan-010-cross-task-v2/data/plan-010-cross-task-results.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-010-cross-task-v2
+  skill: ''
+  created_at: '2026-05-15T18:00:38.545362+00:00'
+  tags:
+  - cross-task
+  - transfer
+  - routing
+  - plan-010
+- id: art_20260515_36842c
+  name: penalty_sensitivity_table_tex
+  type: data
+  description: LaTeX table for DAF penalty sensitivity curve, ready for paper appendix
+  path: projects/simgate-modular-routing/artifacts/plan-012-penalty-curve/data/penalty_sensitivity_table.tex
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-012-penalty-curve
+  skill: ''
+  created_at: '2026-05-15T19:01:50.883232+00:00'
+  tags:
+  - daf
+  - penalty
+  - latex
+  - table
+- id: art_20260515_d4c885
+  name: penalty_vs_daf_chart
+  type: chart
+  description: DAF sensitivity curve vs death penalty magnitude P={0,10,25,50,100,200,500}
+    with 95% bootstrap CI. For R6-C1 rebuttal.
+  path: projects/simgate-modular-routing/artifacts/plan-012-penalty-curve/chart/penalty_vs_daf.pdf
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-012-penalty-curve
+  skill: ''
+  created_at: '2026-05-15T19:07:27.418231+00:00'
+  tags:
+  - daf
+  - penalty
+  - sensitivity
+  - chart
+  - R6-C1
+  - rebuttal
+- id: art_20260515_4991fd
+  name: penalty_sensitivity_curve_data
+  type: data
+  description: DAF penalty sensitivity curve JSON data with bootstrap CI for P={0,10,25,50,100,200,500}.
+    N=245, DAF(100)=90.41%.
+  path: projects/simgate-modular-routing/artifacts/plan-012-penalty-curve/data/penalty_sensitivity_curve_data.json
+  url: null
+  project: simgate-modular-routing
+  exp_id: plan-012-penalty-curve
+  skill: ''
+  created_at: '2026-05-15T19:07:30.129431+00:00'
+  tags:
+  - daf
+  - penalty
+  - sensitivity
+  - data
+  - R6-C1
+- id: art_20260515_0d85e3
+  name: penalty_robustness_analysis
+  type: data
+  description: 'Penalty sensitivity robustness analysis: DAF at P=50/100/200 with
+    bootstrap CI and Pearson r. Saved at server results/penalty_robustness/penalty_robustness_analysis.json'
+  path: null
+  url: file:///root/autodl-tmp/simgate-modular-routing/results/penalty_robustness/penalty_robustness_analysis.json
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-15T22:05:52.825679+00:00'
+  tags:
+  - penalty
+  - robustness
+  - DAF
+  - decomposition
+- id: art_20260516_e547bf
+  name: R7-N2 Data-Size Ablation Script
+  type: intermediate
+  description: 'Pre-written ablation script for R7-N2 reviewer concern: scales training
+    data from 25% to 800% via observation perturbation augmentation, trains implicit
+    router at each scale, reports balanced_acc saturation curve. Ready to run on GPU
+    approval.'
+  path: projects/simgate-modular-routing/artifacts/_project/intermediate/ablation_data_size.py
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T00:21:30.564661+00:00'
+  tags:
+  - R7-N2
+  - ablation
+  - data-size
+  - reviewer-response
+  - ready-to-run
+- id: art_20260516_ae9f0f
+  name: Retrain Seeds 42-45 Contingency Scripts
+  type: intermediate
+  description: 'Contingency retrain scripts for seeds 42-45 if cross-split eval shows
+    Δ>2pp. Includes: retrain_seeds_42_45.sh (single/dual GPU training) + eval_retrained_seeds.py
+    (dual-split comparison eval). Ready to run on Director approval.'
+  path: projects/simgate-modular-routing/artifacts/_project/intermediate/retrain_seeds_42_45.sh
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-16T01:15:59.350636+00:00'
+  tags:
+  - contingency
+  - retrain
+  - split-robustness
+  - ready-to-run
+- id: art_20260516_e546a6
+  name: cross_split_results
+  type: data
+  description: 'Cross-split robustness eval: 8-seed balanced_acc on episode-level
+    val split. Mean 47.1±2.2% vs corrected_eval 54.1±5.4%, NOT split-robust (Δ=-7.0pp).'
+  path: projects/simgate-modular-routing/artifacts/cross-split-robustness-8seed/data/cross_split_results.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: cross-split-robustness-8seed
+  skill: ''
+  created_at: '2026-05-16T01:20:25.783642+00:00'
+  tags:
+  - eval
+  - split-robustness
+  - 8-seed
+- id: art_20260516_5309bf
+  name: LOTO results
+  type: data
+  description: 'Leave-one-task-type-out evaluation results: per-seed per-task balanced
+    accuracy for 8 seeds × 11 task types. Remote path: /root/autodl-tmp/simgate-modular-routing/results/leave_one_tasktype_out/results.json
+    on westb-13313'
+  path: projects/simgate-modular-routing/artifacts/leave-one-tasktype-out/data/loto_results_summary.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: leave-one-tasktype-out
+  skill: ''
+  created_at: '2026-05-16T03:34:40.238465+00:00'
+  tags:
+  - loto
+  - evaluation
+  - diagnostic
+- id: art_20260516_8b2bd0
+  name: LOTO Guided Router Evaluation Results
+  type: data
+  description: 11-fold LOTO evaluation for guided router. Learned variant achieves
+    62.92% episode-level bal_acc (0pp delta from in-sample). Prior-based strategies
+    degrade to 50%. Pattern-matching generalizes perfectly to unseen task types.
+  path: projects/simgate-modular-routing/artifacts/loto-guided-router-eval/data/loto_summary.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: loto-guided-router-eval
+  skill: ''
+  created_at: '2026-05-16T15:08:59.191508+00:00'
+  tags:
+  - loto
+  - guided-router
+  - evaluation
+  - generalization
+- id: art_20260516_a2c2ea
+  name: cross-model-guided-router-eval-results
+  type: data
+  description: 'Cross-model guided router eval: Qwen death-risk rule on Llama-3.1-8B
+    episodes. 100% balanced acc (degenerate: 0 int-preferred in Llama data).'
+  path: projects/simgate-modular-routing/artifacts/cross-model-guided-router-eval/data/cross_model_results.json
+  url: null
+  project: simgate-modular-routing
+  exp_id: cross-model-guided-router-eval
+  skill: ''
+  created_at: '2026-05-16T15:28:27.145314+00:00'
+  tags:
+  - cross-model
+  - guided-router
+  - eval
+  - llama
+  - qwen
+- id: art_20260516_6d4a74
+  name: DAF Bootstrap CI Results (full 245 episodes)
+  type: data
+  description: 'DAF bootstrap 95% CI with 10000 resamples over 245 plan-012 episodes.
+    Global DAF=0.635 [0.517, 0.764]. Per-task breakdown. Server: westb-13313, path:
+    guided_router/daf_bootstrap_results.json'
+  path: null
+  url: file:///root/autodl-tmp/simgate-modular-routing/guided_router/daf_bootstrap_results.json
+  project: simgate-modular-routing
+  exp_id: daf-bootstrap-ci-full
+  skill: ''
+  created_at: '2026-05-16T18:41:34.356716+00:00'
+  tags:
+  - daf
+  - bootstrap
+  - ci
+  - plan-012
+- id: art_20260517_594e4f
+  name: ARR Submission Compliance Checklist
+  type: report
+  description: 'EMNLP 2026 ARR submission format compliance check: anonymization,
+    page limits, responsible NLP checklist, required fixes'
+  path: projects/simgate-modular-routing/artifacts/_project/report/arr_submission_checklist.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-17T18:45:37.793844+00:00'
+  tags:
+  - submission
+  - arr
+  - emnlp2026
+- id: art_20260518_9ef536
+  name: 72B DAF Decomposition Analysis
+  type: report
+  description: '72B backbone DAF decomposition: DAF=90.9% (all tasks), 99.5% (death-prone).
+    Confirms death asymmetry dominance is scale-independent (7B DAF=90.4% vs 72B DAF=90.9%).'
+  path: projects/simgate-modular-routing/artifacts/backbone-scaling-70b/report/72b_daf_decomposition.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: backbone-scaling-70b
+  skill: ''
+  created_at: '2026-05-18T02:56:10.653054+00:00'
+  tags:
+  - 72b
+  - daf
+  - decomposition
+  - backbone-scaling
+  - death-asymmetry
+- id: art_20260518_466dfb
+  name: Retry Dose-Response Per-Trial Analysis
+  type: data
+  description: 'Per-trial dose-response analysis from existing retry (N=1,2,3) and
+    reflexion (N=1,2,3) data. Retry DR nearly flat: 46.5%→44.5%→41.5% (-5pp). Reflexion
+    DR steep: 46.0%→34.0%→27.0% (-19pp). Zero GPU cost.'
+  path: projects/simgate-modular-routing/artifacts/retry-dose-response/data/retry_dose_response_analysis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: retry-dose-response
+  skill: ''
+  created_at: '2026-05-18T03:10:04.054180+00:00'
+  tags:
+  - retry
+  - dose-response
+  - per-trial
+  - reflexion
+  - death-rate
+  - analysis
+- id: art_20260518_048ccc
+  name: Retry Per-Trial Data Audit Report
+  type: report
+  description: 'Full data integrity audit of retry per-trial data. No bugs, no anomalies.
+    Key finding: Table 4 DR=40.9% uses final_is_death/220, while dose-response DR(3)=41.5%
+    uses all-3-death/200. 7 episodes differ (had score=0 intermediate trial). Per-trial
+    DR stable across trials (46.5%, 50.3%, 48.9%).'
+  path: projects/simgate-modular-routing/artifacts/retry-dose-response/report/retry_data_audit_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: retry-dose-response
+  skill: ''
+  created_at: '2026-05-18T03:26:25.342941+00:00'
+  tags:
+  - audit
+  - retry
+  - per-trial
+  - data-integrity
+- id: art_20260518_d3c3c2
+  name: Permadeath Environment Feasibility Report
+  type: report
+  description: 'Crafter vs NetHack feasibility for C3 permadeath replication. Recommends
+    Crafter: LLM 33% milestones, death rate 60-80% (good DAF signal), semantic map
+    enables heuristic oracle, pip install, 5-7 day pilot. NetHack rejected: LLM too
+    bad (1.5%), episodes too long/expensive.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/permadeath_env_feasibility.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T04:06:59.309596+00:00'
+  tags:
+  - crafter
+  - nethack
+  - permadeath
+  - c3
+  - feasibility
+  - conference
+- id: art_20260518_bfae7d
+  name: Excluded Tasks Death Dominance Analysis
+  type: report
+  description: 'Anti-cherry-picking analysis: 18/19 excluded tasks (95%) show death
+    asymmetry. Mean ΔDR=+38.2pp (excluded) vs +28.7pp (included) — excluded tasks
+    have HIGHER death asymmetry. Includes LaTeX table, Appendix C paragraph, and experiments.tex
+    revision suggestions.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/excluded_tasks_analysis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T04:12:17.300630+00:00'
+  tags:
+  - excluded-tasks
+  - cherry-picking
+  - c2
+  - death-asymmetry
+  - appendix
+  - rebuttal
+- id: art_20260518_9dc035
+  name: Crafter Seed Determinism Verification
+  type: report
+  description: 'Crafter seed determinism analysis: original env has PARTIAL determinism
+    due to Python set iteration order in _balance_chunk. Monkey-patch with OrderedSet
+    achieves FULL determinism (10/10 seeds, 500 steps). Paired counterfactual design
+    feasible.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/crafter_seed_verification.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T04:22:09.216001+00:00'
+  tags:
+  - crafter
+  - seed
+  - determinism
+  - C3
+- id: art_20260518_7c827b
+  name: Crafter Random Agent Demo (5 eps, seed=42)
+  type: data
+  description: 5 random agent Crafter episodes with seed determinism patch. All death,
+    avg ~151 steps. Determinism verified (two runs identical with PYTHONHASHSEED=0).
+    Checkpoint 1 prerequisite for text wrapper demo.
+  path: projects/simgate-modular-routing/artifacts/_project/data/crafter_random_demo_5eps.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T04:35:37.926522+00:00'
+  tags:
+  - crafter
+  - demo
+  - random-agent
+  - C3
+- id: art_20260518_a3b2ac
+  name: Missing References BibTeX
+  type: data
+  description: 'BibTeX entries for 3 missing references: Webb 2023 (wild cluster bootstrap),
+    BALROG/NetPlay (permadeath LLM agents), SafeRoute (safety-aware routing). Ready
+    for Paper Agent to add to .bib file.'
+  path: projects/simgate-modular-routing/artifacts/_project/data/missing_references.bib
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:29:52.222066+00:00'
+  tags:
+  - references
+  - paper
+  - bib
+- id: art_20260518_89718a
+  name: Crafter Heuristic Agent v8-v9 Results
+  type: data
+  description: 'Heuristic agent v9: 100% death, avg 293 steps (worse than v8 353).
+    Root cause: aggressive flee policy prevents sleep, causing energy depletion and
+    health spiral. v10 recommendations: restore emergency sleep, conditional flee,
+    active monster clearing.'
+  path: projects/simgate-modular-routing/artifacts/_project/data/crafter_heuristic_v8v9.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T05:37:09.887575+00:00'
+  tags:
+  - crafter
+  - heuristic
+  - C3
+- id: art_20260518_4fbf4e
+  name: Death Failure Mode Taxonomy
+  type: report
+  description: ALL 73 ScienceWorld deaths (100%) caused by misuse of focus on [object]
+    (answer-submission action). LLM treats it as generic interaction. Action-space
+    grounding failure. Deterministic agent survives 91.8% by never issuing focus on.
+    4-category taxonomy.
+  path: projects/simgate-modular-routing/artifacts/_project/report/death_failure_taxonomy_summary.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T06:00:00.788097+00:00'
+  tags:
+  - death-taxonomy
+  - P4
+  - paper
+  - key-finding
+- id: art_20260518_08d694
+  name: Crafter Heuristic Agent v10 Final Results
+  type: data
+  description: 'Heuristic v10.4 (best): avg 377 steps (2.5x random), 8.4 achievements
+    (3.5x random), but still 100% death rate. 7 iterations tested. Breakthrough requires
+    shelter/armor strategy. Death rate asymmetry not achievable with rule-based survival
+    alone.'
+  path: projects/simgate-modular-routing/artifacts/_project/data/crafter_heuristic_v10_final.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T06:41:31.721726+00:00'
+  tags:
+  - crafter
+  - heuristic
+  - v10
+  - C3
+- id: art_20260518_35e2ac
+  name: 72B Matched 10-Task DAF Comparison
+  type: report
+  description: 'DAF is scale-independent: 7B DAF=100% → 72B DAF=97.5% (ep-weighted),
+    8/10 tasks at perfect 100% at both scales. Death rates drop (internal 51.2%→33.2%,
+    det 19.5%→3.0%) but no dominance shifts. All death-dominated tasks remain death-dominated
+    at 72B.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/w2_72b_matched_daf.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:06:10.847670+00:00'
+  tags:
+  - W2
+  - 72B
+  - DAF
+  - scale-independence
+- id: art_20260518_e85ece
+  name: W4 Per-Task Death Rate Differential CIs
+  type: report
+  description: 'Per-task death rate CIs: 28/30 tasks death-prone, 15/28 individually
+    significant, 100% directional consistency (internal DR > det DR in ALL 28 tasks).
+    Pooled Delta: +37.3% [+29.7%, +44.4%]. 13 non-significant tasks all have n=5 (power
+    limitation).'
+  path: projects/simgate-modular-routing/artifacts/_project/report/w4_death_rate_cis_summary.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:08:26.924435+00:00'
+  tags:
+  - W4
+  - CIs
+  - death-rate
+  - statistical
+- id: art_20260518_a1a04f
+  name: W1 Wild Cluster Bootstrap
+  type: report
+  description: 'Wild cluster bootstrap (K=7 tasks): death asymmetry significant across
+    all methods. Cluster-robust t p=0.0001, bootstrap p=0.0142, exact permutation
+    p=0.0156 (theoretical minimum for K=7). Cohen''s d=3.27. CI [0.21, 0.38] excludes
+    zero.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/w1_cluster_bootstrap_summary.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:12:27.458840+00:00'
+  tags:
+  - W1
+  - cluster-bootstrap
+  - soundness
+  - statistical
+- id: art_20260518_cc6182
+  name: W3 1.7B Per-Class Confusion Matrix
+  type: report
+  description: '1.7B router confusion matrix: accuracy 0.64, balanced acc 0.58. Router
+    mispredicts 33% of death-episode steps as internal (FPs). No death-specific bias.
+    Internal precision=0.14 (weak). High task variance (0.43-0.83).'
+  path: projects/simgate-modular-routing/artifacts/_project/report/w3_confusion_matrix_summary.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T07:16:59.093183+00:00'
+  tags:
+  - W3
+  - confusion-matrix
+  - 1.7B
+  - router
+- id: art_20260518_dbeeda
+  name: W1 Cluster Bootstrap K=11 (Corrected)
+  type: report
+  description: W1 wild cluster bootstrap 修正结果：用正确数据源 baseline_245eps (K=11, 245 episodes)
+    重跑全部 4 种统计方法。替换 art_20260518_a1a04f (K=7 错误版本)。四种方法一致显著：bootstrap p<0.001, permutation
+    p=0.002, t-test p=0.000002, Cohen's d=3.02。
+  path: projects/simgate-modular-routing/artifacts/_project/report/w1_cluster_bootstrap_k11.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T08:09:14.046767+00:00'
+  tags:
+  - W1
+  - cluster-bootstrap
+  - K11
+  - corrected
+  - soundness
+- id: art_20260518_367035
+  name: P2 Death Failure Taxonomy Figures
+  type: chart
+  description: Death action distribution 三张图：(1) death_action_distribution.pdf - 双面板显示
+    death vs non-death 动作分布，focus on 在 death 中 3x 高于 non-death；(2) death_action_timeline.pdf
+    - 6 个代表性 death episode 的动作序列时间线；(3) death_action_comparison.pdf - Internal vs
+    Deterministic 策略对比。基于 133 prescreening episodes, 74 deaths。位于 westd-18266:/root/autodl-tmp/simgate-modular-routing/artifacts/
+  path: projects/simgate-modular-routing/artifacts/_project/chart/p2_death_taxonomy_figures_summary.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T08:31:35.049169+00:00'
+  tags:
+  - P2
+  - death-taxonomy
+  - figure
+  - action-distribution
+- id: art_20260518_847eab
+  name: Death Failure Taxonomy 245eps (Corrected)
+  type: report
+  description: 245-episode 主数据集 death taxonomy 分析（替换 prescreening 版本）。105/245 internal
+    deaths (42.9%), 100% fatal action = focus on [X]。与论文 Table 4 数据一致。
+  path: projects/simgate-modular-routing/artifacts/_project/report/death_failure_taxonomy_245eps.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T09:39:10.334778+00:00'
+  tags:
+  - P4
+  - death-taxonomy
+  - 245eps
+  - corrected
+  - soundness
+- id: art_20260518_b325eb
+  name: seed-123-replication-analysis
+  type: report
+  description: 'Seed=123 replication analysis comparing DAF and death dominance metrics
+    against seed=42 reference. Conclusion: SUCCESS (DAF diff = 0.73pp < 5pp threshold)'
+  path: projects/simgate-modular-routing/artifacts/seed-123-replication/report/analysis_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: seed-123-replication
+  skill: ''
+  created_at: '2026-05-18T11:14:55.894539+00:00'
+  tags:
+  - seed-robustness
+  - daf
+  - plan-012
+  - replication
+- id: art_20260518_fea679
+  name: retry-dose-response-analysis
+  type: report
+  description: 'Retry dose-response experiment analysis: N=5 DR=43.5% vs N=3 DR=40.9%,
+    plateau confirmed (+2.6pp, hypothesis supported)'
+  path: projects/simgate-modular-routing/artifacts/retry-dose-response/report/analysis_report_fea679.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: retry-dose-response
+  skill: ''
+  created_at: '2026-05-18T12:48:12.228343+00:00'
+  tags:
+  - experiment-analysis
+  - retry
+  - dose-response
+  - death-rate
+- id: art_20260518_bdd415
+  name: reflexion-dose-response-n345-analysis
+  type: report
+  description: 'Reflexion dose-response N=3/4/5 analysis: complete N=1..5 curve, plateau
+    confirmed at N>=3 (34-36.5%), reflexion ~7pp better than retry at plateau'
+  path: projects/simgate-modular-routing/artifacts/reflexion-dose-response-n345/report/analysis_report_bdd415.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: reflexion-dose-response-n345
+  skill: ''
+  created_at: '2026-05-18T18:31:38.917201+00:00'
+  tags:
+  - reflexion
+  - dose-response
+  - death-rate
+  - plateau
+- id: art_20260518_dose_response_fig
+  name: dose-response-figure
+  type: figure
+  description: 'Dose-response figure: Retry vs Reflexion death rate across N=1..5
+    trials with Wilson 95% CI bands and baselines (72B=34.5%, Deterministic=16.3%)'
+  path: projects/simgate-modular-routing/artifacts/dose_response_figure.pdf
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T19:02:00+00:00'
+  tags:
+  - dose-response
+  - reflexion
+  - retry
+  - figure
+- id: art_20260518_61ae87
+  name: dose-response-dual-curve-figure
+  type: chart
+  description: 'Dose-response dual-curve figure: Retry vs Reflexion death rate (N=1..5),
+    with 72B and Deterministic baselines. Wilson CI error bands. Final unified data
+    (all final_dr, denominator=200).'
+  path: projects/simgate-modular-routing/artifacts/reflexion-dose-response-n345/chart/dose_response_figure.pdf
+  url: null
+  project: simgate-modular-routing
+  exp_id: reflexion-dose-response-n345
+  skill: ''
+  created_at: '2026-05-18T19:03:24.668158+00:00'
+  tags:
+  - dose-response
+  - figure
+  - paper
+  - P3
+- id: art_20260518_8eda42
+  name: leave_one_task_out_daf_table
+  type: paper
+  description: 'LaTeX table: leave-one-task-out DAF sensitivity analysis (11 tasks,
+    245 episodes). Shows DAF ranges 75.9%-100.0% across all LOO conditions, max delta
+    3.0pp among death-prone tasks.'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/leave_one_task_out_daf_table.tex
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T19:51:07.984582+00:00'
+  tags:
+  - appendix
+  - daf
+  - sensitivity
+  - leave-one-out
+- id: art_20260518_1d2974
+  name: leave_one_task_out_daf_data
+  type: data
+  description: 'JSON data: leave-one-task-out DAF sensitivity for all 11 ScienceWorld
+    tasks. Full DAF=78.9%, range 75.9%-100.0%.'
+  path: projects/simgate-modular-routing/artifacts/_project/data/leave_one_task_out_daf_data.json
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T19:51:10.210801+00:00'
+  tags:
+  - appendix
+  - daf
+  - sensitivity
+  - leave-one-out
+- id: art_20260518_0ac577
+  name: per_task_dose_response_table
+  type: paper
+  description: 'LaTeX table: per-task death rate breakdown for 10 death-prone tasks
+    under Retry/Reflexion N=1..5 (Appendix)'
+  path: projects/simgate-modular-routing/artifacts/_project/paper/per_task_dose_response_table.tex
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T19:51:20.845474+00:00'
+  tags:
+  - appendix
+  - dose-response
+  - death-rate
+  - latex
+- id: art_20260518_6139d2
+  name: per_task_dose_response_data
+  type: data
+  description: 'Raw JSON data: per-task death rates for 10 death-prone tasks under
+    Retry/Reflexion N=1..5'
+  path: projects/simgate-modular-routing/artifacts/_project/data/per_task_dose_response_data.json
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T19:51:22.542217+00:00'
+  tags:
+  - appendix
+  - dose-response
+  - death-rate
+  - json
+- id: art_20260518_2792e2
+  name: negative_results_audit
+  type: report
+  description: 'Audit of all 28 negative experiments: 17 already discussed in paper,
+    4 should be discussed, 5 infrastructure failures, 2 outdated. Includes actionable
+    recommendations for Discussion and Appendix.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/negative_results_audit.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:44:58.936091+00:00'
+  tags:
+  - audit
+  - negative-results
+  - paper-writing
+- id: art_20260518_228cd6
+  name: fnlt_zero_death_analysis
+  type: report
+  description: 'Analysis of why find-non-living-thing has 0% death rate: task-dependent
+    focus on semantics make death structurally impossible when target category is
+    the majority class'
+  path: projects/simgate-modular-routing/artifacts/_project/report/fnlt_zero_death_analysis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:50:19.545525+00:00'
+  tags:
+  - death-analysis
+  - find-non-living-thing
+  - appendix
+  - discussion
+- id: art_20260518_e31254
+  name: grounding-prompt-ablation-script
+  type: intermediate
+  description: 'Condition A ablation script: tests whether explicit ''focus on'' safety
+    warning in system prompt reduces death rate. Located at /root/autodl-tmp/simgate-modular-routing/src/run_grounding_prompt_ablation.py
+    on westb-13313.'
+  path: projects/simgate-modular-routing/artifacts/_project/intermediate/grounding_prompt_ablation_script_info.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-18T21:53:53.358522+00:00'
+  tags:
+  - ablation
+  - death-analysis
+  - grounding-prompt
+  - condition-a
+- id: art_20260519_7eeb12
+  name: minihack_feasibility_report
+  type: report
+  description: MiniHack/NetHack permadeath environment feasibility report for cross-environment
+    validation of counterfactual diagnostic framework
+  path: projects/simgate-modular-routing/artifacts/_project/report/minihack_feasibility_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:13:35.773354+00:00'
+  tags:
+  - line-1
+  - minihack
+  - cross-environment
+  - feasibility
+- id: art_20260519_56eaf2
+  name: method_recovery_and_decision_framework
+  type: report
+  description: Method section recovery assessment (4 items, +0.30p) and Practitioner
+    Decision Framework (50-episode pilot protocol with ΔDR/f_death/tie-rate thresholds)
+  path: projects/simgate-modular-routing/artifacts/_project/report/method_recovery_and_decision_framework.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T11:14:22.608761+00:00'
+  tags:
+  - line-2
+  - method-section
+  - decision-framework
+  - paper
+- id: art_20260519_558aee
+  name: minihack-crafter-negative-contrast
+  type: report
+  description: 'MiniHack + Crafter negative contrast summary: post-fix death rates
+    showing 0% (MiniHack) and 100% (Crafter) across all agent types, providing negative
+    contrast for Discussion section'
+  path: projects/simgate-modular-routing/artifacts/minihack-cross-env-pilot/report/minihack_crafter_negative_contrast.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: minihack-cross-env-pilot
+  skill: ''
+  created_at: '2026-05-19T12:44:08.731313+00:00'
+  tags:
+  - negative-contrast
+  - cross-environment
+  - minihack
+  - crafter
+  - discussion
+- id: art_20260519_51c67c
+  name: fig1_daf_scatter_v2
+  type: chart
+  description: Fig1 DAF scatter plot regenerated with corrected task names (D125 cleanup)
+  path: projects/simgate-modular-routing/artifacts/_project/chart/fig1_daf_scatter.pdf
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:06:19.352133+00:00'
+  tags:
+  - fig1
+  - daf
+  - d125
+  - paper-figure
+- id: art_20260519_f1c629
+  name: minihack_negative_contrast
+  type: report
+  description: 'MiniHack cross-env negative contrast summary: 0% death (MiniHack)
+    and 100% universal death (Crafter) confirm framework only detects modality-dependent
+    asymmetry'
+  path: projects/simgate-modular-routing/artifacts/minihack-cross-env-pilot/report/minihack_negative_contrast.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: minihack-cross-env-pilot
+  skill: ''
+  created_at: '2026-05-19T13:09:29.524843+00:00'
+  tags:
+  - negative-result
+  - cross-env
+  - discussion
+  - minihack
+  - crafter
+- id: art_20260519_8bb37c
+  name: fig2_dose_response_v2
+  type: chart
+  description: Fig2 dose-response curves (Retry + Reflexion) with 72B line updated
+    from 34.5% to 31.4%
+  path: projects/simgate-modular-routing/artifacts/_project/chart/dose_response.pdf
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T13:11:57.567090+00:00'
+  tags:
+  - fig2
+  - dose-response
+  - d125
+  - paper-figure
+- id: art_20260519_3e73ca
+  name: minihack_negative_contrast_summary
+  type: data
+  description: 'MiniHack + Crafter negative contrast summary: 0% death asymmetry in
+    both environments validates framework specificity'
+  path: projects/simgate-modular-routing/artifacts/minihack-cross-env-pilot/data/minihack_negative_contrast.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: minihack-cross-env-pilot
+  skill: ''
+  created_at: '2026-05-19T13:13:23.361525+00:00'
+  tags:
+  - minihack
+  - crafter
+  - negative-contrast
+  - d125
+- id: art_20260519_85255a
+  name: death_proximal_labeling_results
+  type: report
+  description: 'Death-proximal labeling router experiment results: negative result.
+    All 5 variants (full, k10, k5, k3, k1) achieve 0% recall on internal class due
+    to 9:1 class imbalance. Death-proximal filtering only marginally improves internal%
+    (10.3% → 13.4%) because death_asymmetry episodes are mono-class (all deterministic).'
+  path: projects/simgate-modular-routing/artifacts/death-proximal-labeling-router/report/death_proximal_labeling_results.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: death-proximal-labeling-router
+  skill: ''
+  created_at: '2026-05-19T16:57:32.129617+00:00'
+  tags:
+  - experiment
+  - negative-result
+  - routing
+  - death-proximal
+- id: art_20260519_9369df
+  name: extended_task_validation_results
+  type: report
+  description: Extended task validation interim results — 2/5 tasks complete (boil,
+    use-thermometer), 2 in progress, melt failed. ΔDR confirmed at +30pp for both
+    complete tasks.
+  path: projects/simgate-modular-routing/artifacts/extended-task-validation/report/extended_task_validation_results.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: extended-task-validation
+  skill: ''
+  created_at: '2026-05-19T22:03:07.561544+00:00'
+  tags:
+  - validation
+  - death-rate
+  - interim
+- id: art_20260519_f670d6
+  name: extended-task-validation-status-report
+  type: report
+  description: 'Status report for extended task validation experiment: 2/5 tasks complete,
+    2 running, 1 crashed (melt). Includes per-task metrics and restart plan.'
+  path: projects/simgate-modular-routing/artifacts/extended-task-validation/report/status_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: extended-task-validation
+  skill: ''
+  created_at: '2026-05-19T22:11:14.363512+00:00'
+  tags:
+  - experiment-status
+  - extended-validation
+  - counterfactual
+- id: art_20260519_a819dc
+  name: extended-task-validation-final-check
+  type: report
+  description: 'Extended task validation status report: 4/5 tasks complete with death
+    rate analysis, melt rerun launched'
+  path: projects/simgate-modular-routing/artifacts/_project/report/final_check_and_melt.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-19T23:19:29.532492+00:00'
+  tags:
+  - extended-task-validation
+  - death-rate
+  - counterfactual
+- id: art_20260520_358982
+  name: extended-task-validation-final-5task-report
+  type: report
+  description: 'Final 5-task extended validation report with melt results. 100 episodes
+    across boil/find-living-thing/melt/power-component/use-thermometer. Aggregate:
+    ΔDR=+32pp, D/I/N=37/3/60, DAF=0.991.'
+  path: projects/simgate-modular-routing/artifacts/extended-task-validation/report/final_5task_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: extended-task-validation
+  skill: ''
+  created_at: '2026-05-20T00:37:43.579235+00:00'
+  tags:
+  - validation
+  - 5-task
+  - final
+  - melt
+  - latex
+- id: art_20260520_37c23f
+  name: gpu_cleanup_dual_restart_report
+  type: report
+  description: GPU cleanup, code fix (system role compatibility), and dual experiment
+    restart report (2026-05-20)
+  path: projects/simgate-modular-routing/artifacts/_project/report/gpu_cleanup_dual_restart_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T07:02:57.974952+00:00'
+  tags: []
+- id: art_20260520_39f31b
+  name: Gemma GPU1 Fix & Restart Report
+  type: report
+  description: GPU1清理、system role排查、dry-run验证、11 tasks全量启动报告
+  path: projects/simgate-modular-routing/artifacts/_project/report/gemma_fix_restart_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:27:39.264306+00:00'
+  tags:
+  - gemma
+  - gpu1
+  - restart
+  - scienceworld
+- id: art_20260520_0d2187
+  name: alfworld_llama_restart_v2
+  type: report
+  description: 'ALFWorld Llama restart report: resumed from 68/135 episodes on GPU
+    0 with resume patch'
+  path: projects/simgate-modular-routing/artifacts/_project/report/alfworld_llama_restart_v2.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:38:35.276857+00:00'
+  tags:
+  - alfworld
+  - llama
+  - restart
+  - gpu0
+- id: art_20260520_bccf65
+  name: gemma_definitive_fix_report
+  type: report
+  description: Gemma-2-9B-IT ScienceWorld 第三次修复报告：三个问题的诊断与解决，dry-run 验证，全量 11 tasks
+    启动
+  path: projects/simgate-modular-routing/artifacts/gemma-scienceworld-counterfactual/report/gemma_definitive_fix_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: gemma-scienceworld-counterfactual
+  skill: ''
+  created_at: '2026-05-20T08:46:31.108331+00:00'
+  tags:
+  - gemma
+  - scienceworld
+  - vllm-fix
+  - cross-model
+- id: art_20260520_a5cdf5
+  name: alfworld_llama_v3_report
+  type: report
+  description: ALFWorld Llama v3 restart report - GPU 0, enable_prefix_caching=False
+    fix, 67 remaining games
+  path: projects/simgate-modular-routing/artifacts/_project/report/alfworld_llama_v3_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T08:54:26.125469+00:00'
+  tags:
+  - alfworld
+  - llama
+  - restart
+  - gpu0
+- id: art_20260520_1107f9
+  name: ALFWorld Llama Analysis Results
+  type: report
+  description: 'ALFWorld Llama-3.1-8B counterfactual analysis: 135 episodes, 11.9%
+    det-preferred, 0% int-preferred, DAF=0%, Bootstrap CI, per-task breakdown, Qwen
+    comparison'
+  path: projects/simgate-modular-routing/artifacts/alfworld-llama-v3/report/alfworld_llama_v3_analysis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: alfworld-llama-v3
+  skill: ''
+  created_at: '2026-05-20T11:08:20.184620+00:00'
+  tags:
+  - alfworld
+  - llama
+  - cross-model
+  - counterfactual
+  - DAF
+- id: art_20260520_f95039
+  name: Related Work Check 2025-2026
+  type: report
+  description: '2025-2026 related work search: 4 must-cite direct competitors, 6 strongly
+    recommended, 10 tier-3. Key: Budget-Aware Agentic Routing, Abstract Counterfactuals
+    for LM Agents.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/related_work_check_2025_2026.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T12:05:36.414775+00:00'
+  tags:
+  - related-work
+  - literature
+  - pre-submission
+- id: art_20260520_79bd24
+  name: Cross-Model Bootstrap CIs
+  type: data
+  description: ScienceWorld cross-model bootstrap 95% CIs for Int DR, Det DR, ΔDR,
+    DAF. Qwen (245eps) + Llama (220eps). B=10000.
+  path: projects/simgate-modular-routing/artifacts/_project/data/cross_model_bootstrap_cis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-20T12:11:57.519045+00:00'
+  tags:
+  - bootstrap
+  - CI
+  - cross-model
+  - statistics
+- id: art_20260521_9fad34
+  name: Gemma-2-9B ScienceWorld Analysis Results
+  type: data
+  description: 'Gemma-2-9B-it ScienceWorld counterfactual analysis: 220 episodes,
+    11 tasks, DAF=89.7% [68.8,100.0]. Bug-fixed version with cross-model comparison
+    table.'
+  path: projects/simgate-modular-routing/artifacts/gemma-scienceworld-v5/data/gemma_scienceworld_analysis.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: gemma-scienceworld-v5
+  skill: ''
+  created_at: '2026-05-21T00:04:30.815825+00:00'
+  tags:
+  - gemma
+  - scienceworld
+  - DAF
+  - cross-model
+- id: art_20260521_0586d5
+  name: Cross-Model DAF Sensitivity Analysis
+  type: data
+  description: Sensitivity analysis excluding find-non-living-thing (zero-death task)
+    for all 3 models. Qwen DAF=100.0%, Llama DAF=97.0% [91.3,100.0], Gemma DAF=99.9%
+    [99.7,100.0]. Confirms CI width is mechanical effect of zero-death task, not method
+    instability.
+  path: projects/simgate-modular-routing/artifacts/gemma-scienceworld-v5/data/cross_model_daf_sensitivity.txt
+  url: null
+  project: simgate-modular-routing
+  exp_id: gemma-scienceworld-v5
+  skill: ''
+  created_at: '2026-05-21T00:55:51.578197+00:00'
+  tags:
+  - sensitivity
+  - DAF
+  - cross-model
+  - appendix
+- id: art_20260521_94067d
+  name: rebuttal_prep
+  type: report
+  description: 'EMNLP 2026 ARR rebuttal preparation: 3 attack scenarios (single-env
+    generalization, trivial finding, no actionable solution) with 200-300 word English
+    response drafts'
+  path: projects/simgate-modular-routing/artifacts/_project/report/rebuttal_prep.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T04:12:10.279594+00:00'
+  tags:
+  - rebuttal
+  - emnlp2026
+  - paper
+- id: art_20260521_28b1d5
+  name: ARR Submission Prep
+  type: report
+  description: ARR submission form pre-fill (title/abstract/keywords/track) + supplementary
+    materials checklist + pre-submission verification + rebuttal prep pointer
+  path: projects/simgate-modular-routing/artifacts/_project/report/arr_submission_prep.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T17:56:17.736902+00:00'
+  tags:
+  - submission
+  - arr
+  - emnlp2026
+- id: art_20260521_efc08b
+  name: W4 Task-Type Positive Control Results
+  type: report
+  description: 'Task-type one-hot positive control: LogReg 64.7% BA > step-level routers
+    56-59% BA. LOTO shows signal is per-task-type constant with no cross-task generalization.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/w4_task_level_router_results.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-21T21:09:23.177776+00:00'
+  tags:
+  - w4
+  - router
+  - positive-control
+  - rebuttal
+- id: art_20260522_1991b7
+  name: phase3_case_study_data
+  type: data
+  description: find-non-living-thing counterfactual episode case studies for appendix
+    — 2 det-preferred + 2 internal-preferred episodes with full action traces and
+    analysis
+  path: projects/simgate-modular-routing/artifacts/_project/data/phase3_case_study_data.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-22T23:44:01.104107+00:00'
+  tags:
+  - case-study
+  - appendix
+  - find-non-living-thing
+  - counterfactual
+- id: art_20260523_c550c8
+  name: r30_batch1_analysis
+  type: report
+  description: Non-death non-tie episode analysis (7B) + 72B DAF bootstrap CI. 20
+    episodes classified into hallucination/action_selection/object_quality. DAF=92.4%
+    [86.1%, 97.9%].
+  path: projects/simgate-modular-routing/artifacts/_project/report/r30_batch1_analysis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T04:36:19.350263+00:00'
+  tags:
+  - review-round-30
+  - daf
+  - bootstrap
+  - error-taxonomy
+- id: art_20260523_e99a56
+  name: data_audit_report
+  type: report
+  description: 'Full data audit report: 127 claims checked, 109 verified, 2 discrepancies
+    (Gemma DAF CI, trained router CI), 16 unverifiable'
+  path: projects/simgate-modular-routing/artifacts/_project/report/data_audit_report.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-23T10:37:45.392572+00:00'
+  tags:
+  - audit
+  - emnlp-2026
+  - pre-submission
+- id: art_20260524_370b85
+  name: llama70b_episodes_launch
+  type: report
+  description: Llama-3.1-70B episode collection launch report - 220 episodes on ScienceWorld
+  path: projects/simgate-modular-routing/artifacts/llama-70b-episodes/report/llama70b_episodes_launch.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: llama-70b-episodes
+  skill: ''
+  created_at: '2026-05-24T00:23:47.361848+00:00'
+  tags: []
+- id: art_20260524_52cbec
+  name: Final Data Audit v2
+  type: report
+  description: 'EMNLP 2026 pre-submission full data audit: 45 claims verified, 2 fixes
+    applied (DAF CI rounding [81.3%, 99.1%], Limitations delta_dr 26.5pp), 4 items
+    unverifiable (missing MATH/72B data files). All .tex edits completed.'
+  path: projects/simgate-modular-routing/artifacts/_project/report/final_data_audit_v2.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T04:44:59.651879+00:00'
+  tags:
+  - audit
+  - emnlp2026
+  - data-consistency
+  - pre-submission
+- id: art_20260524_102e9e
+  name: fig1_pipeline_overview_paperbanana
+  type: chart
+  description: PaperBanana 重画的 Figure 1 pipeline_overview（蓝色 internal / 红色 deterministic
+    / 绿色 analysis，300 DPI，proper fraction bar）
+  path: projects/simgate-modular-routing/artifacts/_project/chart/fig1_pipeline_overview_v2.png
+  url: null
+  project: simgate-modular-routing
+  exp_id: null
+  skill: ''
+  created_at: '2026-05-24T09:45:09.355386+00:00'
+  tags:
+  - figure
+  - paper
+  - paperbanana
+- id: art_20260524_e94804
+  name: llama70b_episodes_diagnosis
+  type: report
+  description: Llama-70B episode collection 诊断报告：220 episodes 全部完成，2070 labeled steps，label
+    分布分析
+  path: projects/simgate-modular-routing/artifacts/llama-70b-episodes/report/llama70b_episodes_diagnosis.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: llama-70b-episodes
+  skill: ''
+  created_at: '2026-05-24T13:56:57.522320+00:00'
+  tags:
+  - diagnosis
+  - llama70b
+  - episode-collection
+- id: art_20260524_71de38
+  name: llama70b_analysis_results
+  type: report
+  description: 'Llama-70B episode analysis: DAF=101.0% [95.3,107.5], strongest death
+    dominance across all models, hypothesis confirmed'
+  path: projects/simgate-modular-routing/artifacts/llama-70b-episodes/report/llama70b_analysis_results.md
+  url: null
+  project: simgate-modular-routing
+  exp_id: llama-70b-episodes
+  skill: ''
+  created_at: '2026-05-24T13:59:33.653409+00:00'
+  tags:
+  - llama-70b
+  - daf
+  - cross-model
+  - episode-analysis

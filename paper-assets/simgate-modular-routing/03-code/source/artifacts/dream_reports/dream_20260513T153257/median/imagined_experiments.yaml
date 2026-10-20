@@ -1,0 +1,1181 @@
+tier: median
+narrative_guidance: '整体叙事从 "new SOTA via safety-aware routing" 转向 "first explicit
+  study of when deterministic computation helps LLM agents, with controlled causal
+  evidence"。 C1 不与 CogRouter 直接比 SOTA，改为强调 SimGate vs 自身 ablation baselines 的受控实验，headline
+  为 "reduces catastrophic failures by ~50%"。 C2 explicit vs implicit 差距写成 "consistent
+  but moderate advantage"，重心转向 interpretability/modularity 的定性价值。 routing pattern
+  分析从 failure mode taxonomy 降为 phase-dependent routing trends。 补充 plan-006 (2-way
+  vs 3-way) 增加实验密度弥补 headline number 不够突出的不足。
+
+  '
+imagined_experiments:
+- name: Mini Signal Detection (Pre-screening)
+  plan_id: plan-001a
+  description: '对 ~20 个 ScienceWorld task type 各跑 5 episodes，2-way (internal + deterministic)，
+    筛选出 det > internal 的 task types 进入 plan-001b。
+
+    '
+  expected_results:
+    total_task_types_screened: 20
+    signal_positive_task_types: 13
+    strong_signal_types: 7
+    moderate_signal_types: 4
+    weak_signal_types: 2
+    no_signal_types: 7
+    strong_signal_list: boil, melt, change-state-of-matter, freeze, use-thermometer,
+      mix-chemicals, react-acid-base
+    moderate_signal_list: mix-paint, measure-melting-point, conduct-electricity, identify-life-stages
+    weak_signal_list: grow-plant-basic, navigate-rooms
+    no_signal_example: grow-plant-advanced, read-thermometer, find-animal, classify-living,
+      ecology-food-web, identify-rocks, use-microscope
+    mean_det_minus_internal_strong: 38.5
+    mean_det_minus_internal_moderate: 18.2
+    mean_det_minus_internal_weak: 6.3
+    gpu_hours_actual: 9.5
+  result_rationale: 'Median 档下 death avoidance 是主要增益来源但集中在 physics/chemistry tasks。
+    涉及温度变化、相态转换、化学反应的 7 个 task type 展示强信号（det-internal ~35-45 分）， 因为 LLM 在多步物理推理中频繁
+    hallucinate 状态导致 death (-100)，deterministic oracle 消除了这些 catastrophic failures。
+    4 个 moderate signal tasks 有部分物理/化学子步骤但非全程依赖，增益在 10-25 分。 2 个 weak signal tasks
+    动作空间简单、death 风险低，deterministic 的 safety-net 价值有限。 7 个 no-signal tasks（生态观察、分类、阅读类）几乎无
+    death 惩罚，internal reasoning 本身足够， det invocation 反而引入不必要的 rigid execution，无法利用
+    LLM 的灵活推理优势。 这个 13/20 的通过率说明 safety-aware routing 不是 universal solution，而是 domain-specific
+    mechanism。
+
+    '
+  tables:
+  - name: 'Table: Signal Pre-screening Results (5 episodes per task type)'
+    columns:
+    - task_type
+    - domain
+    - internal_mean
+    - det_mean
+    - det_minus_internal
+    - death_rate_internal
+    - death_rate_det
+    - signal
+    rows:
+    - - boil
+      - physics
+      - -48.2
+      - -12.6
+      - 35.6
+      - 0.6
+      - 0.1
+      - strong
+    - - melt
+      - physics
+      - -52.1
+      - -11.8
+      - 40.3
+      - 0.65
+      - 0.08
+      - strong
+    - - change-state
+      - physics
+      - -50.8
+      - -10.4
+      - 40.4
+      - 0.62
+      - 0.1
+      - strong
+    - - freeze
+      - physics
+      - -45.6
+      - -8.2
+      - 37.4
+      - 0.58
+      - 0.06
+      - strong
+    - - use-thermometer
+      - physics
+      - -38.4
+      - -5.0
+      - 33.4
+      - 0.5
+      - 0.08
+      - strong
+    - - mix-chemicals
+      - chemistry
+      - -55.2
+      - -14.8
+      - 40.4
+      - 0.68
+      - 0.12
+      - strong
+    - - react-acid-base
+      - chemistry
+      - -46.0
+      - -7.5
+      - 38.5
+      - 0.55
+      - 0.08
+      - strong
+    - - mix-paint
+      - chemistry
+      - -32.5
+      - -14.3
+      - 18.2
+      - 0.35
+      - 0.12
+      - moderate
+    - - measure-melting-point
+      - physics
+      - -28.0
+      - -8.6
+      - 19.4
+      - 0.3
+      - 0.1
+      - moderate
+    - - conduct-electricity
+      - physics
+      - -25.8
+      - -10.2
+      - 15.6
+      - 0.28
+      - 0.08
+      - moderate
+    - - identify-life-stages
+      - biology
+      - -22.4
+      - -2.6
+      - 19.8
+      - 0.25
+      - 0.06
+      - moderate
+    - - grow-plant-basic
+      - biology
+      - -15.2
+      - -8.9
+      - 6.3
+      - 0.12
+      - 0.04
+      - weak
+    - - navigate-rooms
+      - spatial
+      - -10.4
+      - -4.1
+      - 6.3
+      - 0.08
+      - 0.02
+      - weak
+    - - grow-plant-advanced
+      - biology
+      - -8.6
+      - -9.2
+      - -0.6
+      - 0.06
+      - 0.04
+      - none
+    - - read-thermometer
+      - physics
+      - -5.2
+      - -4.8
+      - 0.4
+      - 0.02
+      - 0.02
+      - none
+    - - find-animal
+      - ecology
+      - -12.0
+      - -13.5
+      - -1.5
+      - 0.04
+      - 0.06
+      - none
+    - - classify-living
+      - biology
+      - -6.8
+      - -8.0
+      - -1.2
+      - 0.02
+      - 0.04
+      - none
+    - - ecology-food-web
+      - ecology
+      - -18.5
+      - -20.1
+      - -1.6
+      - 0.1
+      - 0.12
+      - none
+    - - identify-rocks
+      - geology
+      - -8.0
+      - -7.5
+      - 0.5
+      - 0.04
+      - 0.02
+      - none
+    - - use-microscope
+      - biology
+      - -4.2
+      - -5.0
+      - -0.8
+      - 0.02
+      - 0.02
+      - none
+  figures_description:
+  - 'Bar chart: det_minus_internal per task type, colored by domain (physics=blue,
+    chemistry=green, biology=orange, ecology=red, spatial=gray), horizontal line at
+    0. Clear visual separation: physics/chemistry tasks cluster above +30, biology/ecology
+    near 0 or negative.'
+  analysis: '13/20 task types 通过信号筛选（≥5 分 det>internal 差距），与 median 档 task_types_with_significant_gain
+    8-12 的预期一致 （部分 moderate/weak signal 在 full 20-episode 评估中可能跌出显著性）。 Domain 分布清晰：physics
+    5/5 全部有信号，chemistry 3/3 全部有信号，biology 2/5 有信号，ecology 0/2 无信号。 这直接支持 median 档的
+    A1 判断——death avoidance 增益集中在 physics/chemistry tasks。 No-signal tasks 将排除出 plan-001b，节约
+    ~35% GPU 时间。
+
+    '
+- name: Full Counterfactual Trajectory Collection
+  plan_id: plan-001b
+  description: '对 plan-001a 筛出的 13 个 signal-positive task types 各跑 20 episodes， 2-way
+    counterfactual collection (internal + deterministic)，max_steps=30， 记录每步最优 modality
+    的 hindsight labels。
+
+    '
+  expected_results:
+    task_types_collected: 13
+    episodes_per_task: 20
+    total_episodes: 260
+    total_steps_labeled: 6240
+    label_distribution_deterministic_pct: 38.5
+    label_distribution_internal_pct: 61.5
+    label_agreement_strong_tasks_pct: 82.0
+    label_agreement_weak_tasks_pct: 64.0
+    noisy_label_rate_overall_pct: 18.5
+    avg_steps_per_episode: 24.0
+    gpu_hours_actual: 23.5
+  result_rationale: 'Median 档下 counterfactual labels 泛化中等（A4），具体表现为： 强信号 tasks (physics/chemistry)
+    的 label agreement ~82%——大多数步骤中 deterministic 和 internal 的优劣清晰， 因为 death/survival
+    差异提供了 binary signal。 弱信号 tasks 的 label agreement 仅 ~64%——很多步骤两种 modality 表现相近（都不死也都没进展），
+    hindsight labeling 分不出哪个更好，导致标签噪声大。 整体 38.5% 步骤 labeled as deterministic-preferred，说明不是每步都需要
+    safety net， 支持 selective routing 的必要性。但这个比例意味着 router 要学会一个相当细粒度的 per-step 判断。
+    标签噪声 ~18.5% 将直接限制 router accuracy 的上限（A4），是 median 档 router accuracy 65-75% 的根本原因。
+
+    '
+  tables:
+  - name: 'Table: Trajectory Collection Summary by Domain'
+    columns:
+    - domain
+    - n_tasks
+    - n_episodes
+    - total_steps
+    - pct_det_preferred
+    - label_agreement_pct
+    - avg_death_rate_internal
+    rows:
+    - - physics (strong)
+      - 5
+      - 100
+      - 2450
+      - 42.1
+      - 84.5
+      - 0.59
+    - - chemistry (strong)
+      - 2
+      - 40
+      - 960
+      - 43.8
+      - 79.0
+      - 0.62
+    - - physics (moderate)
+      - 2
+      - 40
+      - 920
+      - 33.2
+      - 68.5
+      - 0.29
+    - - chemistry (moderate)
+      - 1
+      - 20
+      - 480
+      - 30.5
+      - 72.0
+      - 0.35
+    - - biology (moderate)
+      - 1
+      - 20
+      - 510
+      - 28.0
+      - 60.5
+      - 0.25
+    - - biology (weak)
+      - 1
+      - 20
+      - 460
+      - 22.4
+      - 58.0
+      - 0.12
+    - - spatial (weak)
+      - 1
+      - 20
+      - 460
+      - 20.8
+      - 55.0
+      - 0.08
+  figures_description:
+  - 'Scatter plot: x=death_rate_internal, y=pct_det_preferred per task type. Strong
+    positive correlation (r~0.85). 标注 task names. 直观展示 death avoidance 与 deterministic
+    routing 需求的关联。'
+  analysis: '~6240 个 labeled steps 为 router SFT 提供训练数据。标签质量的 domain-dependent 特征 预示了
+    router 在不同 task domains 上性能将不均匀。强信号 tasks 提供高质量 labels (agreement>80%)， 弱信号 tasks
+    的 labels 噪声高 (agreement<65%)，将直接反映在 plan-003 的 per-task-type breakdown 中。 det-preferred
+    比例 38.5% 与 median 档 simulator_invocation_ratio 30-50% 一致。
+
+    '
+- name: Router SFT Training
+  plan_id: plan-002
+  description: '在 plan-001b 的 counterfactual labels 上 fine-tune Qwen3-1.7B 做 2-way
+    classification (internal vs deterministic)。Leave-one-out cross-validation by task
+    type。
+
+    '
+  expected_results:
+    train_loss_final: 0.42
+    val_accuracy_overall_pct: 71.2
+    val_accuracy_strong_tasks_pct: 78.5
+    val_accuracy_moderate_tasks_pct: 66.0
+    val_accuracy_weak_tasks_pct: 58.3
+    val_f1_deterministic: 0.68
+    val_f1_internal: 0.74
+    leave_one_out_accuracy_range:
+    - 62.0
+    - 76.0
+    leave_one_out_mean_accuracy: 68.5
+    best_epoch: 2
+    convergence_epoch: 3
+    gpu_hours_actual: 6.5
+  result_rationale: 'Median 档 router accuracy 65-75% (A4)。整体 val accuracy 71.2% 符合此区间。
+    强信号 tasks 的 labels 清晰（death/survival 二分），router 在这些 tasks 上学到了有效的 pattern， accuracy
+    达 78.5%。弱信号 tasks 的标签噪声大，router accuracy 仅 58.3%——接近 random baseline (50%)。 Leave-one-out
+    验证显示跨 task type 泛化中等（A4），range 62-76%： 留出 physics task 时其他 physics tasks 提供足够
+    coverage，accuracy 高端 (~76%)； 留出 biology task 时几乎没有同 domain 训练数据，accuracy 低端 (~62%)。
+    F1 score deterministic < internal 反映类别不平衡（38.5% vs 61.5%）和 deterministic labels
+    更noisy。 Train loss 未过拟合（epoch 2-3 之间收敛），但 val accuracy 到 epoch 3 后不再提升， 说明瓶颈在标签质量而非模型容量。
+
+    '
+  tables:
+  - name: 'Table: Router Training Metrics'
+    columns:
+    - metric
+    - epoch_1
+    - epoch_2
+    - epoch_3
+    rows:
+    - - train_loss
+      - 0.58
+      - 0.45
+      - 0.42
+    - - val_loss
+      - 0.55
+      - 0.48
+      - 0.47
+    - - val_accuracy (%)
+      - 64.8
+      - 70.5
+      - 71.2
+    - - val_f1_det
+      - 0.6
+      - 0.67
+      - 0.68
+    - - val_f1_int
+      - 0.68
+      - 0.73
+      - 0.74
+  - name: 'Table: Leave-One-Out Cross-Validation (selected task types)'
+    columns:
+    - held_out_task
+    - domain
+    - accuracy_on_held_out (%)
+    - accuracy_on_rest (%)
+    rows:
+    - - boil
+      - physics
+      - 76.0
+      - 71.8
+    - - melt
+      - physics
+      - 74.5
+      - 71.5
+    - - mix-chemicals
+      - chemistry
+      - 72.0
+      - 71.0
+    - - mix-paint
+      - chemistry
+      - 67.5
+      - 72.0
+    - - identify-life-stages
+      - biology
+      - 62.0
+      - 72.5
+    - - grow-plant-basic
+      - biology
+      - 63.5
+      - 72.0
+  figures_description:
+  - 'Training curves: x=steps, y=loss/accuracy. Train loss (solid) vs val loss (dashed).
+    Val accuracy plateaus at epoch 2.5. 标注 label noise ceiling (~75%) as horizontal
+    dotted line.'
+  analysis: 'Router 训练收敛稳定，但 accuracy 受限于标签噪声上限。71.2% 的 val accuracy 是 median 档的中间值。
+    Leave-one-out 结果确认跨 task type 泛化中等——同 domain 迁移较好，跨 domain 较差。 这个 router 的主要价值在于
+    physics/chemistry tasks 上的可靠判断， 弱 tasks 上的 routing decisions 接近 random 但因为这些 tasks
+    本身 death rate 低，影响有限。
+
+    '
+- name: SimGate End-to-End Evaluation
+  plan_id: plan-003
+  description: 'Trained router + Qwen2.5-7B backbone 在 held-out episodes 上端到端评估。 对比
+    always-internal, always-deterministic, oracle-routing, random-routing, confidence-threshold
+    heuristic。
+
+    '
+  expected_results:
+    simgate_score_overall: 78.2
+    always_internal_score: 56.8
+    always_deterministic_score: 70.5
+    oracle_routing_score: 81.2
+    random_routing_score: 63.4
+    confidence_threshold_score: 66.8
+    simgate_minus_always_internal: 21.4
+    simgate_minus_always_deterministic: 7.7
+    oracle_minus_simgate: 3.0
+    oracle_minus_always_det: 10.7
+    catastrophic_failure_rate_internal_pct: 48.5
+    catastrophic_failure_rate_simgate_pct: 22.3
+    catastrophic_failure_rate_det_pct: 8.5
+    catastrophic_failure_reduction_pct: 54.0
+    simulator_invocation_ratio_pct: 41.2
+    cogrouter_reported: 84.6
+    itp_r_reported: 62.58
+    simgate_minus_cogrouter: -6.4
+    bootstrap_90ci_simgate:
+    - 74.5
+    - 81.8
+    bootstrap_90ci_always_internal:
+    - 52.0
+    - 61.5
+    bootstrap_90ci_always_det:
+    - 66.2
+    - 74.8
+    task_types_with_significant_gain: 10
+    gpu_hours_actual: 14.0
+  result_rationale: 'Median 档 simgate_score_overall 72-84，取 78.2。未超过 CogRouter (84.6)
+    但差距 6.4 分， 在 bootstrap CI 下两者 overlap（SimGate CI 上界 81.8 vs CogRouter 84.6），不能
+    claim SOTA。 SimGate vs always-internal +21.4 分——核心 safety-net value，catastrophic
+    failure 从 48.5% 降至 22.3%（降幅 54%）， 符合 median 档 catastrophic_failure_reduction_pct
+    40-60%。 SimGate vs always-deterministic +7.7 分——selective routing 价值，说明并非所有步骤需要
+    safety net， unconditional simulation 在低风险步骤引入了不必要的 rigid execution（LLM 在安全步骤上
+    reasoning 更灵活）。 Oracle vs SimGate 仅 3.0 分——router 已捕获大部分可学习的 routing signal，剩余
+    gap 来自弱 task types 的标签噪声。 Simulator invocation ratio 41.2%——router 在约 40% 步骤调用
+    deterministic，远少于 always-det 的 100%， 说明 router 学到了 selective invocation pattern。
+    对比 CogRouter 差距的原因：CogRouter 用 RL (CoPO) 在 trajectory 级别优化， SimGate 用 SFT per-step
+    labels，且无 positive guidance signal (A6)——router 仅防死不指路。 10/13 task types 显著增益（physics
+    5/5 + chemistry 3/3 + moderate 2/4）， 符合 median 档 task_types_with_significant_gain
+    8-12。
+
+    '
+  tables:
+  - name: 'Table 1 (Main Results): SimGate vs Baselines on ScienceWorld'
+    columns:
+    - method
+    - overall_score
+    - 90% CI
+    - catastrophic_failure_rate (%)
+    - sim_invocation_ratio (%)
+    - LLM_tokens (k)
+    rows:
+    - - Always-Internal
+      - 56.8
+      - '[52.0, 61.5]'
+      - 48.5
+      - 0
+      - 385
+    - - Always-Deterministic
+      - 70.5
+      - '[66.2, 74.8]'
+      - 8.5
+      - 100
+      - 142
+    - - Random Routing (p=0.4)
+      - 63.4
+      - '[58.8, 68.0]'
+      - 30.2
+      - 40.0
+      - 248
+    - - Confidence Threshold
+      - 66.8
+      - '[62.0, 71.5]'
+      - 28.8
+      - 35.5
+      - 262
+    - - SimGate (ours)
+      - 78.2
+      - '[74.5, 81.8]'
+      - 22.3
+      - 41.2
+      - 240
+    - - Oracle Routing
+      - 81.2
+      - '[77.8, 84.5]'
+      - 12.0
+      - 36.5
+      - 255
+    - - '---'
+      - '---'
+      - '---'
+      - '---'
+      - '---'
+      - '---'
+    - - CogRouter (reported)
+      - 84.6
+      - —
+      - —
+      - —
+      - —
+    - - ITP-R (reported)
+      - 62.58
+      - —
+      - —
+      - —
+      - —
+  - name: 'Table: Per-Task-Type Breakdown (SimGate vs Always-Internal)'
+    columns:
+    - task_type
+    - domain
+    - simgate_score
+    - internal_score
+    - delta
+    - catastrophic_failure_reduction_pct
+    - significant
+    rows:
+    - - boil
+      - physics
+      - 82.5
+      - 52.0
+      - 30.5
+      - 62
+      - 'yes'
+    - - melt
+      - physics
+      - 85.0
+      - 48.5
+      - 36.5
+      - 68
+      - 'yes'
+    - - change-state
+      - physics
+      - 84.2
+      - 50.2
+      - 34.0
+      - 65
+      - 'yes'
+    - - freeze
+      - physics
+      - 80.8
+      - 55.0
+      - 25.8
+      - 58
+      - 'yes'
+    - - use-thermometer
+      - physics
+      - 78.0
+      - 60.5
+      - 17.5
+      - 52
+      - 'yes'
+    - - mix-chemicals
+      - chemistry
+      - 82.0
+      - 46.8
+      - 35.2
+      - 70
+      - 'yes'
+    - - react-acid-base
+      - chemistry
+      - 80.5
+      - 52.5
+      - 28.0
+      - 60
+      - 'yes'
+    - - mix-paint
+      - chemistry
+      - 76.2
+      - 62.0
+      - 14.2
+      - 42
+      - 'yes'
+    - - measure-melting-point
+      - physics
+      - 74.5
+      - 65.0
+      - 9.5
+      - 35
+      - 'yes'
+    - - conduct-electricity
+      - physics
+      - 72.0
+      - 60.5
+      - 11.5
+      - 38
+      - 'yes'
+    - - identify-life-stages
+      - biology
+      - 68.5
+      - 62.0
+      - 6.5
+      - 22
+      - 'no'
+    - - grow-plant-basic
+      - biology
+      - 65.0
+      - 60.5
+      - 4.5
+      - 15
+      - 'no'
+    - - navigate-rooms
+      - spatial
+      - 62.8
+      - 58.0
+      - 4.8
+      - 12
+      - 'no'
+  figures_description:
+  - 'Grouped bar chart: SimGate vs Always-Internal vs Always-Det vs Oracle per task
+    type, sorted by delta. Physics/chemistry tasks cluster left with large deltas,
+    biology/spatial tasks cluster right with small deltas.'
+  - 'Scatter plot: x=catastrophic_failure_rate_internal, y=SimGate delta. Strong positive
+    correlation, 标注 r=0.91. 直接可视化 ''death avoidance is primary mechanism'' claim.'
+  analysis: 'SimGate 78.2 低于 CogRouter 84.6 约 6 分。叙事不能 claim SOTA，但 controlled ablation
+    提供了强因果证据： SimGate vs internal (+21.4)、vs det (+7.7)、vs random (+14.8)、vs heuristic
+    (+11.4) 全部显著。 catastrophic failure reduction 54% 是强 headline number。 Per-task
+    breakdown 清晰展示 death avoidance 是主要机制——physics/chemistry 的 delta 与 internal death
+    rate 高度相关 (r=0.91)。 3 个弱 tasks (biology/spatial) 的 delta <7 且不显著，支持 A1 的 domain-specific
+    判断。 SimGate 比 CogRouter 差的原因可归为：(1) SFT vs RL training，(2) 无 positive guidance
+    signal。 Paper 叙事应改为 "first controlled study demonstrating causal role of deterministic
+    computation in preventing catastrophic LLM failures"。
+
+    '
+- name: Explicit vs Implicit Routing Ablation
+  plan_id: plan-004
+  description: '三条件对比：(a) 1.7B explicit router (SimGate), (b) 1.7B implicit router
+    (SFT output [SIMULATE]), (c) 7B implicit routing (backbone tool-use prompt)。全部用相同
+    counterfactual labels 训练。
+
+    '
+  expected_results:
+    explicit_1_7b_score: 78.2
+    implicit_1_7b_score: 73.5
+    implicit_7b_score: 74.8
+    explicit_minus_implicit_1_7b: 4.7
+    explicit_minus_implicit_7b: 3.4
+    implicit_1_7b_catastrophic_failure_pct: 28.5
+    implicit_7b_catastrophic_failure_pct: 26.2
+    explicit_sim_invocation_ratio_pct: 41.2
+    implicit_1_7b_sim_invocation_ratio_pct: 35.0
+    implicit_7b_sim_invocation_ratio_pct: 38.5
+    bootstrap_90ci_explicit:
+    - 74.5
+    - 81.8
+    bootstrap_90ci_implicit_1_7b:
+    - 69.2
+    - 77.8
+    bootstrap_90ci_implicit_7b:
+    - 70.5
+    - 79.0
+    explicit_vs_implicit_1_7b_significant: true
+    explicit_vs_implicit_7b_significant: marginal (p=0.08)
+    gpu_hours_actual: 11.0
+  result_rationale: 'Median 档 explicit_minus_implicit 3-8 分，statistical significance
+    在部分条件下边缘 (A3)。 Explicit 1.7B vs implicit 1.7B: +4.7 分，parameter-matched comparison
+    显著 (p<0.05)。 这说明 explicit modular router 架构本身有价值——将 routing decision 从 generation
+    中解耦， 避免了 implicit routing 中 generation 任务和 routing 任务的 multi-task interference。
+    Explicit 1.7B vs implicit 7B: +3.4 分，但 CI overlap 大 (p=0.08，边缘显著)。 7B implicit
+    比 1.7B implicit 好 1.3 分——额外容量有 marginal 帮助但不足以弥补架构劣势。 Implicit routers 的 sim_invocation_ratio
+    偏低 (35-38.5% vs explicit 41.2%)—— implicit routing 倾向于 under-invoke simulator（routing
+    signal 在 generation logits 中被稀释）， 导致更多 catastrophic failures 未被拦截。 这个 "consistent
+    but moderate advantage" 的结果支持 C2 的定性 claim（interpretability, modularity） 而非强 performance
+    claim。Median 档下 C2 的重心应转向： explicit router 可独立替换、routing decisions 可分析，这些定性价值在
+    3-5 分性能差距之上额外成立。
+
+    '
+  tables:
+  - name: 'Table: Explicit vs Implicit Routing Ablation'
+    columns:
+    - condition
+    - params
+    - overall_score
+    - 90% CI
+    - catastrophic_failure (%)
+    - sim_invocation (%)
+    - p vs explicit
+    rows:
+    - - Explicit Router (SimGate)
+      - 1.7B
+      - 78.2
+      - '[74.5, 81.8]'
+      - 22.3
+      - 41.2
+      - —
+    - - Implicit Router (SFT)
+      - 1.7B
+      - 73.5
+      - '[69.2, 77.8]'
+      - 28.5
+      - 35.0
+      - '0.03'
+    - - Implicit Routing (tool-use)
+      - 7B
+      - 74.8
+      - '[70.5, 79.0]'
+      - 26.2
+      - 38.5
+      - '0.08'
+    - - Always-Internal
+      - —
+      - 56.8
+      - '[52.0, 61.5]'
+      - 48.5
+      - 0
+      - <0.001
+  figures_description:
+  - 'Box plot: three conditions'' score distributions across task types. Explicit
+    has higher median and tighter IQR. Annotate p-values for pairwise comparisons.'
+  analysis: 'Parameter-matched comparison (1.7B explicit vs 1.7B implicit, +4.7, p=0.03)
+    是 C2 最干净的证据。 7B implicit 条件 (p=0.08) 可写为 "marginal significance"，但方向一致。 Median
+    档叙事：explicit routing 是 "consistent but moderate advantage"， 主要价值在 architectural
+    benefits (modularity, interpretability, independent replacement)， 用 4.7 分的定量证据
+    + 定性分析支撑。不能写成 "large performance gap"。
+
+    '
+- name: Per-Task Routing Pattern Analysis
+  plan_id: plan-005
+  description: '从 plan-003 输出分析 routing patterns：(a) 哪些 task types 触发 deterministic
+    最多， (b) routing 集中在哪个 episode phase，(c) router-as-diagnostic-probe 识别 LLM failure
+    modes。
+
+    '
+  expected_results:
+    n_routing_decisions_analyzed: 3900
+    phase_early_det_pct: 25.0
+    phase_mid_det_pct: 52.0
+    phase_late_det_pct: 38.0
+    physics_det_invocation_pct: 48.5
+    chemistry_det_invocation_pct: 45.2
+    biology_det_invocation_pct: 28.0
+    spatial_det_invocation_pct: 22.0
+    top_3_routing_triggers: state-change actions (heat/cool/mix), multi-step causal
+      chains (>3 steps), post-failure recovery steps
+    failure_mode_clusters_identified: 4
+    cluster_clarity: moderate — 2 clear clusters, 2 diffuse
+    gpu_hours_actual: 1.5
+  result_rationale: 'Median 档 routing patterns 部分可解释 (A5)——能看到 phase-dependent 模式但
+    failure taxonomy 不够清晰。 Phase-dependent pattern 清晰：mid-game (steps 8-20) routing
+    最密集 (52%)， 因为这个阶段 agent 执行 state-changing actions (加热、冷却、混合) 最多， LLM 容易在多步物理推理中
+    hallucinate 中间状态。 Early-game (steps 1-7) routing 较低 (25%)——agent 主要在 navigate
+    和 gather objects，death 风险低。 Late-game (steps 21-30) routing 中等 (38%)——部分 tasks
+    在此阶段做 final verification， 但也有很多 episodes 已经结束或 stuck。 4 个 failure mode clusters
+    中： (1) "thermal state tracking failure" — 清晰，LLM 丢失温度/相态信息 (2) "chemical reaction
+    sequencing" — 清晰，LLM 搞错反应步骤顺序 (3) "multi-step causal confusion" — 模糊，涵盖多种因果推理错误，不够
+    specific (4) "environment state drift" — 模糊，router triggers 散布在各种步骤中 这是 median
+    档 A5 的典型表现——有 pattern 但 failure taxonomy 不 clean。 Paper figure 只报告 phase-dependent
+    routing trends，不宣称 comprehensive failure taxonomy。
+
+    '
+  tables:
+  - name: 'Table: Routing Decision Distribution by Episode Phase'
+    columns:
+    - phase
+    - steps
+    - total_decisions
+    - det_routing_pct
+    - avg_death_rate_if_internal
+    rows:
+    - - early
+      - 1-7
+      - 1200
+      - 25.0
+      - 0.12
+    - - mid
+      - 8-20
+      - 1800
+      - 52.0
+      - 0.45
+    - - late
+      - 21-30
+      - 900
+      - 38.0
+      - 0.28
+  - name: 'Table: Failure Mode Clusters (Router-as-Diagnostic-Probe)'
+    columns:
+    - cluster
+    - description
+    - n_steps
+    - pct_of_det_routing
+    - clarity
+    rows:
+    - - 1
+      - thermal state tracking failure
+      - 420
+      - 27.0
+      - clear
+    - - 2
+      - chemical reaction sequencing error
+      - 310
+      - 20.0
+      - clear
+    - - 3
+      - multi-step causal confusion
+      - 480
+      - 31.0
+      - diffuse
+    - - 4
+      - environment state drift
+      - 340
+      - 22.0
+      - diffuse
+  figures_description:
+  - 'Figure 1 (Paper): Routing heatmap — x=episode step (1-30), y=task type (sorted
+    by domain). Color intensity = deterministic routing probability. Clear ''hot band''
+    in mid-game steps for physics/chemistry tasks. Annotated with phase boundaries.'
+  - 'Supplementary: t-SNE of router hidden states at deterministic-routing steps,
+    colored by cluster ID. Clusters 1&2 tight, clusters 3&4 overlapping.'
+  analysis: 'Phase-dependent routing trend 是 robust 的 finding，可以放 paper Figure 1。
+    但 failure taxonomy 降级处理——从 "failure mode taxonomy" 改为 "we observe routing concentrates
+    at state-change actions during mid-game phases, suggesting the router learns to
+    detect high-risk physical reasoning steps"。不宣称 comprehensive failure analysis，只报告
+    observable trends。 Mid-game concentration (52% of det routing) 直接对应 death avoidance
+    mechanism—— 这正是 agent 执行 irreversible physical actions 的阶段。
+
+    '
+- name: 2-Way vs 3-Way Routing Ablation
+  plan_id: plan-006
+  description: '补充 deep-internal modality 数据，比较 {internal, deterministic} vs {fast-internal,
+    deep-internal, deterministic}。 测试 fast/deep internal 区分是否有额外价值。
+
+    '
+  expected_results:
+    two_way_score: 78.2
+    three_way_score: 79.8
+    delta: 1.6
+    p_value: 0.22
+    significant: false
+    three_way_sim_invocation_pct: 39.5
+    three_way_deep_internal_pct: 18.0
+    three_way_fast_internal_pct: 42.5
+    supplemental_data_collection_hours: 5.5
+    router_retraining_hours: 3.0
+    gpu_hours_actual: 9.5
+  result_rationale: 'Median 档下 3-way 与 2-way 差距小且不显著 (+1.6, p=0.22)。 Fast/deep internal
+    区分的理论价值在于：deep-internal 在需要更多 reasoning 但不需要 ground-truth 的步骤上 用 extended thinking
+    提升质量。但实际效果有限，原因： (1) death avoidance 是主要增益来源 (A6)——一旦 deterministic 拦截了 catastrophic
+    failures， 剩余步骤中 fast vs deep internal 的差异很小（LLM 在安全步骤上的表现差异不大）。 (2) 没有 positive
+    guidance signal——deep internal 不能给出更好的 task guidance，只是"想更久"， 但在 deterministic
+    已经处理了高风险步骤后，多想对安全步骤帮助有限。 (3) Router 从 2-class 升到 3-class 增加了 classification 难度，在
+    median 档标签噪声下性能提升被抵消。 结论：2-way 足够，simplifies the story。Paper 中可以一句话报告 "binary
+    routing (simulate-or-not) suffices; adding a third modality yields no significant
+    improvement"。
+
+    '
+  tables:
+  - name: 'Table: 2-Way vs 3-Way Routing Comparison'
+    columns:
+    - routing_scheme
+    - overall_score
+    - 90% CI
+    - sim_invocation (%)
+    - p vs 2-way
+    rows:
+    - - 2-way {int, det}
+      - 78.2
+      - '[74.5, 81.8]'
+      - 41.2
+      - —
+    - - 3-way {fast, deep, det}
+      - 79.8
+      - '[75.8, 83.5]'
+      - 39.5
+      - '0.22'
+  figures_description:
+  - 'Paired bar chart: 2-way vs 3-way per task type. Most bars nearly identical. 标注
+    ns (not significant).'
+  analysis: '3-way 不显著优于 2-way，simplifies the paper narrative。 可以 claim "binary routing
+    decision (simulate or not) captures the essential routing signal"， 支持 safety-net
+    framing——router 的核心工作是检测 high-risk steps，而非 fine-grained compute allocation。 在
+    paper 中作为 ablation 一句话报告即可。这增加了实验密度而不改变结论。
+
+    '
+- name: Boil Task Rerun with v3 Code
+  plan_id: plan-007
+  description: '用 v3 clean code（strict > tie-break, death filter only on internal）重跑
+    boil task 20 episodes， 与 MVP 旧代码结果对比，确保分析一致性。
+
+    '
+  expected_results:
+    boil_v3_internal_mean: -46.5
+    boil_v3_det_mean: -10.8
+    boil_v3_oracle_mean: -3.2
+    boil_v3_det_minus_internal: 35.7
+    boil_v3_oracle_minus_det: 7.6
+    boil_v3_bootstrap_90ci_det_minus_internal:
+    - 22.0
+    - 49.5
+    boil_v3_death_rate_internal: 0.55
+    boil_v3_death_rate_det: 0.08
+    boil_mvp_internal_mean: -49.8
+    boil_mvp_det_mean: -19.7
+    delta_from_mvp_internal: 3.3
+    delta_from_mvp_det: 8.9
+    gpu_hours_actual: 2.5
+  result_rationale: 'V3 code 的两个修正（strict > tie-break + death filter only on internal）对
+    boil 的影响： (1) Strict > tie-break：减少了 deterministic 被选为 "best" 的 marginal cases，
+    internal mean 略有提升 (-49.8 → -46.5) 因为部分原本 tie-break 判给 det 的 cases 现在留在 internal。
+    (2) Death filter only on internal：det mean 显著提升 (-19.7 → -10.8) 因为 MVP 旧代码对 det
+    也做了 death filter， 过滤掉了一些 det 原本能正确处理但被误判为 "death" 的 steps。 整体 det_minus_internal
+    从 MVP 的 ~30 分变为 35.7 分，与 melt/change-state 的 ~40 分更接近， 说明 v3 code 修正消除了旧代码的 systematic
+    bias。 Oracle mean 提升到 -3.2（接近 0），更符合预期——selective routing 应当接近 best-of-both。
+
+    '
+  tables:
+  - name: 'Table: Boil Task — v3 vs MVP Code Comparison'
+    columns:
+    - metric
+    - MVP (old code)
+    - v3 (clean code)
+    - delta
+    rows:
+    - - internal_mean
+      - -49.8
+      - -46.5
+      - '+3.3'
+    - - det_mean
+      - -19.7
+      - -10.8
+      - '+8.9'
+    - - oracle_mean
+      - -29.7
+      - -3.2
+      - '+26.5'
+    - - det_minus_internal
+      - 30.1
+      - 35.7
+      - '+5.6'
+    - - death_rate_internal
+      - ~0.6
+      - 0.55
+      - —
+    - - death_rate_det
+      - ~0.15
+      - 0.08
+      - —
+  figures_description: []
+  analysis: 'V3 code 修正提升了数据质量，特别是 oracle routing 从 -29.7 → -3.2 的大幅改善 说明旧 code 的
+    death filter bug 严重低估了 selective routing 的价值。 修正后 boil 与其他 physics tasks (melt,
+    change-state) 的 pattern 更一致， 全部 det_minus_internal 在 35-40 分范围。Paper 只使用 v3 数据。
+
+    '
+- name: Router Size Ablation
+  plan_id: plan-008
+  description: '比较 Qwen3-1.7B vs Qwen2.5-1.5B vs Qwen2.5-3B 作为 router 的效果。 测试 router
+    capacity 敏感性。
+
+    '
+  expected_results:
+    qwen3_1_7b_score: 78.2
+    qwen2_5_1_5b_score: 76.0
+    qwen2_5_3b_score: 79.0
+    qwen3_1_7b_router_accuracy_pct: 71.2
+    qwen2_5_1_5b_router_accuracy_pct: 67.5
+    qwen2_5_3b_router_accuracy_pct: 73.0
+    delta_1_5b_vs_1_7b: -2.2
+    delta_3b_vs_1_7b: 0.8
+    significant_1_5b_vs_1_7b: false
+    significant_3b_vs_1_7b: false
+    inference_latency_1_5b_ms: 12
+    inference_latency_1_7b_ms: 15
+    inference_latency_3b_ms: 28
+    gpu_hours_actual: 10.0
+  result_rationale: 'Median 档下 router 性能受限于 label noise 而非 model capacity (plan-002
+    分析已显示)。 1.5B vs 1.7B: -2.2 分但不显著 (p>0.1)——1.5B 容量略不足以 capture 一些 edge case routing
+    patterns， 但差距在标签噪声范围内。Router accuracy 67.5% vs 71.2%，差距主要在 moderate/weak signal
+    tasks。 3B vs 1.7B: +0.8 分不显著——额外容量无法突破标签噪声上限。Router accuracy 73% vs 71.2%， marginal
+    improvement 被 end-to-end evaluation 的 variance 吞没。 这支持 "lightweight router suffices"
+    claim：1.5B-3B 范围内性能差异 <3 分， 瓶颈在训练数据质量而非 router capacity。 Inference latency 差异对
+    overall pipeline 影响 negligible（router inference 远快于 LLM backbone inference）。
+
+    '
+  tables:
+  - name: 'Table: Router Size Ablation'
+    columns:
+    - router
+    - params
+    - router_accuracy (%)
+    - e2e_score
+    - 90% CI
+    - latency (ms)
+    rows:
+    - - Qwen2.5-1.5B
+      - 1.5B
+      - 67.5
+      - 76.0
+      - '[71.8, 80.2]'
+      - 12
+    - - Qwen3-1.7B
+      - 1.7B
+      - 71.2
+      - 78.2
+      - '[74.5, 81.8]'
+      - 15
+    - - Qwen2.5-3B
+      - 3.0B
+      - 73.0
+      - 79.0
+      - '[75.2, 82.8]'
+      - 28
+  figures_description:
+  - 'Line plot: x=router params (log scale), y=e2e score. Near-flat line with error
+    bars overlapping. 标注 ''label noise ceiling'' as horizontal band.'
+  analysis: 'Router size ablation 支持两个 claims：(1) 小 router 足够 ("lightweight" in C2)，
+    (2) 瓶颈在标签质量——增加 router capacity 收益递减。 Paper 可报告 "routers from 1.5B to 3B parameters
+    achieve comparable performance (76-79), suggesting the routing task is learnable
+    at modest scale"。
+
+    '
+- name: MATH Track — Code Interpreter as Oracle
+  plan_id: plan-009
+  description: '500 道 Level 4-5 MATH 题，2-way routing: internal / code-interpreter。
+    测试 safety-aware routing 是否泛化到代码解释器场景。
+
+    '
+  expected_results:
+    simgate_math_accuracy_pct: 62.5
+    always_internal_accuracy_pct: 55.0
+    always_code_accuracy_pct: 58.8
+    oracle_routing_accuracy_pct: 68.0
+    simgate_minus_internal: 7.5
+    simgate_minus_always_code: 3.7
+    code_invocation_ratio_pct: 45.0
+    router_accuracy_math_pct: 63.0
+    catastrophic_error_reduction_pct: 28.0
+    gpu_hours_actual: 18.0
+  result_rationale: 'Median 档下 MATH track 显示中等泛化 (A4)。 Safety-aware routing 在 MATH
+    上的增益 (+7.5 vs internal) 远小于 ScienceWorld (+21.4)，原因： (1) MATH 没有 -100 death penalty——错误只是
+    0 分而非 catastrophic failure， safety-net 机制的 value proposition 减弱。 (2) Code interpreter
+    的优势在于 arithmetic/algebraic computation，不在于 "preventing catastrophic failures"。
+    LLM 在 MATH 上的错误模式更分散（reasoning errors, not just computation errors）， code interpreter
+    只能修正 computation errors 这一子集。 (3) Router 的 ScienceWorld labels 无法直接迁移，MATH 上需要
+    fresh labels， 但 label quality 更差——hindsight labeling 在 MATH 上不如 ScienceWorld 清晰（没有
+    death/survival 信号）。 Router accuracy 仅 63%（低于 ScienceWorld 71.2%），进一步说明 routing
+    signal 在 MATH 上更弱。 Catastrophic error reduction 仅 28%——定义 catastrophic 为 "算错导致
+    0 分"， code interpreter 能防止部分但远非全部。 这个结果仍有 paper 价值：证明 selective routing 原则泛化 (simgate
+    > always-code > always-internal)， 但 safety-aware framing 在无 catastrophic penalty
+    的环境中 weakens。可作为 discussion/future work 素材。
+
+    '
+  tables:
+  - name: 'Table: MATH Track Results (Level 4-5, n=500)'
+    columns:
+    - method
+    - accuracy (%)
+    - code_invocation (%)
+    - computation_error_rate (%)
+    rows:
+    - - Always-Internal
+      - 55.0
+      - 0
+      - 18.5
+    - - Always-Code
+      - 58.8
+      - 100
+      - 5.2
+    - - SimGate Router
+      - 62.5
+      - 45.0
+      - 10.8
+    - - Oracle Routing
+      - 68.0
+      - 38.0
+      - 3.0
+  figures_description:
+  - 'Bar chart: MATH results alongside ScienceWorld results (normalized). Clear visual:
+    ScienceWorld gains much larger. 标注 ''catastrophic penalty effect''.'
+  analysis: 'MATH 结果支持 selective > unconditional 的一般原则但效果弱得多。 如果 paper 长度允许，可以作为一段
+    "Generalization" 讨论； 如果 4-page 紧张，放 appendix 或 future work 一句话提及。 关键 takeaway："safety-aware
+    routing gains are proportional to the severity of catastrophic failure penalties"。
+
+    '
+- name: Cross-Task Transfer within ScienceWorld
+  plan_id: plan-010
+  description: 'Chemistry-only 训练 → physics 评估，physics-only 训练 → chemistry 评估。 测试
+    routing patterns 跨 domain 迁移性。
+
+    '
+  expected_results:
+    chem_train_chem_eval_score: 79.5
+    chem_train_phys_eval_score: 72.8
+    phys_train_phys_eval_score: 80.0
+    phys_train_chem_eval_score: 71.5
+    transfer_degradation_chem_to_phys: 7.2
+    transfer_degradation_phys_to_chem: 8.0
+    full_train_phys_eval_score: 82.5
+    full_train_chem_eval_score: 82.0
+    cross_domain_router_accuracy_pct: 62.5
+    same_domain_router_accuracy_pct: 76.0
+    gpu_hours_actual: 4.5
+  result_rationale: 'Median 档 routing pattern 迁移中等 (A4/A5)。 Chemistry → physics 迁移降幅
+    7.2 分，physics → chemistry 降幅 8.0 分—— 大约 40-50% 的 routing knowledge 可以跨 domain
+    迁移。 原因：death avoidance 的部分 pattern 是 domain-generic 的 （如 "state-change actions
+    需要 deterministic verification"）——这个 high-level 模式在两个 domain 共享。 但 domain-specific
+    failure patterns（如 chemistry 的 reaction sequencing vs physics 的 thermal tracking）
+    不迁移，导致 cross-domain router accuracy 从 76% 降到 62.5%。 这个结果在 paper 中可以作为一段 analysis："routing
+    patterns partially transfer across task domains sharing similar physical reasoning
+    requirements, but domain-specific failure modes require domain-specific training
+    data"。 不需要改变 main claims，但增加了对 router generalization 的理解。
+
+    '
+  tables:
+  - name: 'Table: Cross-Task Transfer Matrix'
+    columns:
+    - train_domain
+    - eval_domain
+    - score
+    - router_accuracy (%)
+    - vs full-train delta
+    rows:
+    - - chemistry
+      - chemistry
+      - 79.5
+      - 78.0
+      - '-2.5'
+    - - chemistry
+      - physics
+      - 72.8
+      - 62.5
+      - '-9.7'
+    - - physics
+      - physics
+      - 80.0
+      - 77.5
+      - '-2.5'
+    - - physics
+      - chemistry
+      - 71.5
+      - 61.0
+      - '-10.5'
+    - - all
+      - physics
+      - 82.5
+      - 78.5
+      - —
+    - - all
+      - chemistry
+      - 82.0
+      - 79.0
+      - —
+  figures_description:
+  - 'Transfer matrix heatmap: 2x2 grid showing score degradation. Diagonal (same-domain)
+    brighter, off-diagonal darker but not black — partial transfer.'
+  analysis: ~40-50% routing knowledge 跨 domain 迁移，与 median 档 A4 (counterfactual labels
+    泛化中等) 一致。 如果 4-page 紧张，这个实验可以仅在 results 最后一段用 2 句话概括。 重要 insight：routing 的 domain-generic
+    component 是 "detect state-change actions under uncertainty"， 这个 framing 比 task-specific
+    failure taxonomy 更 generalizable。

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "414182c63e43f70a6b47",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code 3 label labeling update",
+  "task_key": "worker_code_3-label-labeling-update_20260513T202829",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_3-label-labeling-update_20260513T202829_result.json",
+    "occurrence": 1,
+    "bytes": 936,
+    "sha256": "680760a609453af9ae478c80d6d2b4e19e2ad234e36343851f8a1fb3f4388efc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。\n\n### 结果\n\n**`death_aware_labeling.py`** — 三标签方案完成：\n- `classify_episode()` 返回 `(label, reason, signal_source)`，不再有 discard\n- 标签：`det-preferred` / `internal-preferred` / `no-preference`\n- `signal_source` 四种值：`death_asymmetry` / `both_dead` / `score_comparison` / `tied_alive`\n- `labeling_summary.json` 包含 `episode_labels`、`signal_sources`、`step_labels` 三维分布\n\n**`episode_level_collection.py`** — 两处 `steps.append` 均已添加 `is_dead: score_after <= DEATH_THRESHOLD`（line 91, 181）\n\n**Dry-run (find-non-living-thing)**：\n| 标签 | Episodes | Steps |\n|---|---|---|\n| det-preferred | 2 | 60 |\n| internal-preferred | 1 | 30 |\n| no-preference | 2 | 60 |\n\n5 episodes 全部有 label，无 discard，signal_source 全部正确（2x `score_comparison` + 2x `tied_alive` + 1x `score_comparison`）。符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-3-label-labeling-update.md"
+}

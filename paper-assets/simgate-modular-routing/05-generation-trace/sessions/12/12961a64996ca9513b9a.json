@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "12961a64996ca9513b9a",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code death figures colorfix",
+  "task_key": "worker_code_death-figures-colorfix_20260524T203505",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_death-figures-colorfix_20260524T203505_result.json",
+    "occurrence": 1,
+    "bytes": 2131254,
+    "sha256": "02b8f1f5b1bf031fd4c2c4a47caaa561331c0c5c9d32f41f6e4288f0edea2a5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2131274,
+                "serialized_sha256": "2859a806158d8864c1530082cb39c4dca5d0e20721ba1bce6ec5b7847968c8cb",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-death-figures-colorfix.md"
+}

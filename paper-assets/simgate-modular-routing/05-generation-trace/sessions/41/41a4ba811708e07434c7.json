@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41a4ba811708e07434c7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code alfworld analysis script",
+  "task_key": "worker_code_alfworld-analysis-script_20260520T095619",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_alfworld-analysis-script_20260520T095619_result.json",
+    "occurrence": 1,
+    "bytes": 593,
+    "sha256": "66bd67885d29bb1d44515f7c1347599c1cbb4982132d810e6b0b814de2c7a640"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "脚本运行成功。111 episodes（比刚才多了 2 行，实验还在跑）。结果摘要：\n\n| 指标 | Llama | Qwen |\n|------|-------|------|\n| det-preferred | 14.4% | 25.9% |\n| int-preferred | 0.0% | 0.0% |\n| no-preference | 85.6% | 72.6% |\n| det-leaning (non-tie) | 100.0% | 100.0% |\n| DAF | 0% | 0% |\n| det-preferred 95% CI | [8.1%, 20.7%] | — |\n| Δ_full (det-int) | 0.1439 [0.0811, 0.2072] | — |\n\n脚本已部署到 `src/analyze_alfworld_llama.py`，输出 `analysis.json` 和 `latex_table.tex` 已保存到 `results/alfworld_llama_counterfactual/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-alfworld-analysis-script.md"
+}

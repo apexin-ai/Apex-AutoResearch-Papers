@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "525379521063625feb1d",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnose alfworld 0pct success",
+  "task_key": "worker_diagnose_alfworld-0pct-success_20260514T143540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnose_alfworld-0pct-success_20260514T143540_result.json",
+    "occurrence": 1,
+    "bytes": 901,
+    "sha256": "3f50ed4b9a08d5eebc8845c79e8176610d45e6ea3c02957fea6a0a6dab4f1a95"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结果\n\n实验实际上**没有 0% 成功率**，数据如下：\n\n| 策略 | 成功率 |\n|------|--------|\n| Internal（无 action list） | 2/50 (4%) |\n| Deterministic（有 action list） | 25/50 (50%) |\n\n**根因**：Internal mode 低成功率是因为 Qwen2.5-7B 用自然语言名称（\"table\"/\"couch\"/\"kitchen\"）而 ALFWorld 用特定命名（\"countertop 1\"/\"sofa 1\"），`match_to_admissible()` 匹配失败后 fallback 到 `admissible[0]`（任意动作），模型就在错误位置反复打转。\n\n**这不是 bug**。Internal mode 设计意图就是测试无外部计算时的表现。4% vs 50% 的差距正是有价值的 counterfactual 信号（46% det-preferred 标签率）。\n\n**建议：不要 kill 实验，继续跑完 140 episodes。** 数据对训练 router 是有用的。\n\n报告已写入 `artifacts/alfworld_cf_diagnosis.md`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnose-alfworld-0pct-success.md"
+}

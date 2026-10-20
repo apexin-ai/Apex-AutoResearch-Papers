@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4c8a6294b3ad71ce3519",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_5_1778757603.md",
+  "task_key": "loop_5_1778757603",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_5_1778757603.md",
+    "occurrence": 1,
+    "bytes": 4029,
+    "sha256": "47c4e63edb51552e07930c8cdfbbfd014eed5001f5220ee8d6110d658b702502"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 5\nreason: max_messages\nupdated: '2026-05-14T11:20:02+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：只能用 westb-13313 的 cuda:0 和 cuda:1，gpu_ids 写死在 project config 里\n- submit_on_allocated 命令必须自带环境激活：`source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`，不能假设 .venv\n- GPU 编号始终从 0 开始（框架注入 CUDA_VISIBLE_DEVICES 映射物理 GPU）\n- WANDB_MODE=offline + HF_HUB_OFFLINE=1 是必须的（AutoDL 网络不可达）\n- 模型必须用本地路径 `/root/autodl-tmp/models/Qwen/Qwen3-1.7B`，不能用 HF hub ID\n- plan-002-formal-v6 已 ALLOCATED 但尚未获得 Director 确认提交——我在汇报中问了\"请确认可否立即提交到 cuda:1\"，等回复中\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westb-13313，2× RTX 5090 32GB\n- 工作目录：`/root/autodl-tmp/simgate-modular-routing`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型路径：`/root/autodl-tmp/models/Qwen/Qwen3-1.7B`（router SFT 用）、`/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/`（backbone / 数据收集用）\n- HF cache：`/root/autodl-tmp/.hf_cache`\n- 数据：`results/plan_c/`（11 tasks, 245 episodes, 2040 labeled samples）\n- 活跃进程：**两块 GPU 均空闲**。plan-002-formal-v5 已完成，plan-004-v2 进程已死\n- Workers 仍在跑（CPU）：monitor:v5-early-loss、investigate:label-distribution-reversal、diagnose:plan-004-v2-completion\n\n### 3. 📊 当前状态\n刚完成 plan-002-formal-v5 的 on-experiment-done 处理：\n- v5 结论 = negative，确认 class_weights auto [4.5, 0.5625] 单独即导致分类头退化（train_loss 5.59, internal recall=0, grad_norm 604）\n- 已更新 registry (DONE)、memory.md（修正 D021 根因分析）、向 Director 发送汇报（含 Framing 影响评估 + v6 提交确认请求）\n- **等待 Director 回复**：是否确认提交 v6 到 cuda:1\n\nRegistry 关键状态：\n- plan-002-formal-v6: **ALLOCATED**（cuda:1），移除 class_weights 的对照实验，等 Director 确认\n- plan-004-v2: status=RUNNING 但 conclusion=failed，进程已死，Worker 正在诊断\n- 其余实验全部 DONE\n\n**report.md 未更新**——MCP 断连前没来得及刷新，下一轮需要更新\n\n### 4. 📋 待办\n- Director 确认 v6 → `submit_on_allocated(\"plan-002-formal-v6\")`，命令已在 registry spec 中（需要 Worker 构建提交命令，移除 --class_weights auto）\n- diagnose:plan-004-v2-completion Worker 回调 → 根据诊断结果决定是否重提交 plan-004-v2（implicit router with class_weights auto 也可能需要移除 class_weights）\n- v6 完成 → 如果 loss 正常 + internal recall>0：分类头路线救回，推进 plan-003 end-to-end eval；如果仍退化：分类头路线彻底失败，转 implicit router (plan-004-ablation-b 已成功) 作为 diagnostic probe\n- 两块 GPU 空闲 = **失职状态**，Director 回复后必须立即提交实验\n\n### 5. 🎯 战略上下文\n- **DDL: EMNLP ARR 2026-05-25（剩 11 天）**，critical path: ~1.5 天实验 + ~3 天写作\n- 核心结论已确认：death avoidance 占 ~90% routing signal（plan-012: 11 tasks/245 eps, r=0.9698）\n- 论文 framing v3 (D013)：贡献 = empirical finding + counterfactual methodology，非 router 架构。D022 将分类头定性为 negative baseline\n- plan-002 分类头路线 v3→v4→v5 三连 negative，根因锁定为 class_weights auto。v6 是最终对照\n- **关键对比**：plan-004-ablation-b（implicit router）用同样的 class_weights auto 但成功（internal recall=51.5%）——generative loss 与 classification loss 对权重的响应不同。如果 v6 也失败，implicit router 是 backup\n- 易错点：不要再尝试 class_weights auto + 分类头的任何变体（已证明单独即退化）。如果要恢复 class_weights，必须用归一化权重 [1.75, 0.25] 而非 auto\n- keyword baseline (plan-011) 已确认结构性失效，是正面发现（支持 learned routing 叙事）\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-5-1778757603.md"
+}

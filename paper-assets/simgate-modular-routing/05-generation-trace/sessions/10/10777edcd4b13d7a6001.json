@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "10777edcd4b13d7a6001",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "check r7n2 data size ablation status",
+  "task_key": "worker_check_r7n2-data-size-ablation-status_20260516T013627",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_r7n2-data-size-ablation-status_20260516T013627_result.json",
+    "occurrence": 1,
+    "bytes": 1554,
+    "sha256": "b7a3f0cb834b34336bde07b2ad1c542676312e9221b57633b12dfc0b9951b2cf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## r7n2-data-size-ablation 状态\n\n**进程**: PID 921548 已死亡。**替代进程 PID 920406 存活**，已运行 ~29 分钟。\n- 命令: `python src/ablation_data_size.py --seeds 42 43 44 --batch_size 4 --output_dir results/ablation_data_size`\n- GPU: RTX 5090，13103 MiB / 32607 MiB，28% 利用率\n\n### 进度\n\n代码定义 5 个 scale × 3 seeds = **15 个 run**：\n\n| Scale | seed 42 | seed 43 | seed 44 |\n|-------|---------|---------|---------|\n| 25pct | done | done | **training** |\n| 50pct | - | - | - |\n| 100pct | - | - | - |\n| 2x | - | - | - |\n| 4x | - | - | - |\n\n当前完成 **2/15**，正在第 3 个。\n\n### 已完成结果（有问题）\n\n两个完成的 run 结果一致：\n\n| | seed 42 | seed 43 |\n|---|---------|---------|\n| **balanced_acc** | **0.500** | **0.500** |\n| deterministic_recall | 0.0 | 0.0 |\n| internal_recall | 1.0 | 1.0 |\n| n_train | 433 | 433 |\n| pred_distribution | all internal (305/305) | all internal (305/305) |\n| true_distribution | 275 det / 30 int | 275 det / 30 int |\n\n模型将所有样本预测为 `internal`，导致 deterministic_recall = 0，balanced_acc 恰好 0.5。这是典型的模型 collapse——没有学到区分信号。\n\n### 预计剩余时间\n\n每个 run ~10 分钟（25pct scale），更大 scale 会更慢（2x/4x 数据量翻倍）。粗略估计还需 **2-3 小时**完成全部 15 个 run。\n\n### 结果路径\n\n- `results/ablation_data_size/` — 主输出目录\n- 最终汇总会写入 `results/ablation_data_size/summary.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-r7n2-data-size-ablation-status.md"
+}

@@ -1,0 +1,14 @@
+{
+  "exp_id": "llama-70b-cross-model",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-23T22:16:23.406Z",
+    "updated_at": "2026-05-23T22:16:23.406Z"
+  },
+  "timestamp": "2026-05-23T22:16:23.647188+00:00",
+  "trigger": "update_registry"
+}

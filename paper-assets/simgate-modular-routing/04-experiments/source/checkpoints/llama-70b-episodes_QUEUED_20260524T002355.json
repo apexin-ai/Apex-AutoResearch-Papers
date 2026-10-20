@@ -1,0 +1,16 @@
+{
+  "exp_id": "llama-70b-episodes",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-24T00:13:38.961Z",
+    "updated_at": "2026-05-24T00:23:55.138Z",
+    "hypothesis": "Llama-3.1-70B-Instruct-AWQ on ScienceWorld will show death dominance (DAF > 80%) consistent with 7-9B models, confirming the pattern scales to 70B",
+    "parent": "llama-70b-cross-model"
+  },
+  "timestamp": "2026-05-24T00:23:55.403860+00:00",
+  "trigger": "update_registry"
+}

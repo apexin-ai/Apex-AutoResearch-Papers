@@ -1,0 +1,19 @@
+{
+  "exp_id": "mvp-p1-gpu1",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T05:45:20.053Z",
+    "updated_at": "2026-05-13T05:45:20.053Z",
+    "spec": {
+      "hypothesis": "Oracle routing 在 medium/weak tasks 上信号较弱或不存在（对照组）",
+      "description": "Phase 1 GPU1: medium+weak tasks (mix-paint, grow-plant)",
+      "parent": "mvp-p0-forking"
+    }
+  },
+  "timestamp": "2026-05-13T05:45:20.062489+00:00",
+  "trigger": "update_registry"
+}

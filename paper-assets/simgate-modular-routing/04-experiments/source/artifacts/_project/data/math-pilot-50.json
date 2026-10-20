@@ -1,0 +1,29 @@
+artifact: math-pilot-50
+path: data/math-counterfactual/pilot_50.jsonl
+server: westb-13313
+date: 2026-05-14
+n_problems: 50
+
+METRICS:
+  code_execution_rate: 41/50 (82%)
+  internal_accuracy: 40/50 (80%)
+  codeinterp_accuracy: 36/50 (72%)
+  filtered_0_code_rounds: 9/50 (18%)
+  labels_raw: det=1, int=5, nopref=44
+  labels_filtered: det=1, int=5, nopref=44
+  code_rounds_dist: {0:9, 1:36, 2:5}
+  avg_internal_tokens: 628
+  avg_codeinterp_tokens: 557
+  total_time: 599s (12.0s/problem)
+  gate: PASS (82% >= 80%)
+
+CHANGES:
+  - Forced code execution system prompt for deterministic arm
+  - Verification filtering: 0 code rounds -> no-preference label
+  - Added OpenAI-compatible API mode for vLLM server
+
+NOTES:
+  - Internal reasoning (80%) outperforms code interpreter (72%) - opposite of expected
+  - 5 cases internal-preferred, only 1 det-preferred
+  - 9/50 (18%) still bypassed code execution despite forced prompt
+  - All filtered cases were already no-preference, so filtering didn't change label distribution

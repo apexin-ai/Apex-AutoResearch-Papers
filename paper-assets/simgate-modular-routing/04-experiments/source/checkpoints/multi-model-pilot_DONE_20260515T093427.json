@@ -1,0 +1,45 @@
+{
+  "exp_id": "multi-model-pilot",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-15T06:59:50.510Z",
+    "updated_at": "2026-05-15T09:34:27.394Z",
+    "hypothesis": "Multi-model pilot: Llama-3.1-8B-Instruct 在 2 个 ScienceWorld task types (1 high-death + 1 zero-death) × 5 episodes 上复现 counterfactual analysis。验证 (1) pipeline 兼容性 (2) death pattern 方向一致性。如果 death rate differential > 0 且方向与 Qwen 一致，审批后全量收集 11 tasks × 20 eps。",
+    "spec": {
+      "command": "python src/episode_level_collection.py --task_types 'freeze,find-non-living-thing' --episodes 5 --gpu_id 0 --output_dir results/multi_model_pilot/llama31/ --model_path /root/autodl-tmp/models/LLM-Research/Meta-Llama-3___1-8B-Instruct --seed 42",
+      "server": "westb-13313",
+      "data_path": "results/multi_model_pilot/llama31/",
+      "data_count": 20,
+      "model_name": "Meta-Llama-3.1-8B-Instruct",
+      "seed": 42
+    },
+    "metrics": {
+      "freeze_internal_death_rate": 0.4,
+      "freeze_det_death_rate": 0.2,
+      "freeze_death_differential": 0.2,
+      "fnlt_internal_death_rate": 0,
+      "fnlt_det_death_rate": 0,
+      "fnlt_death_differential": 0,
+      "freeze_det_pref": 1,
+      "freeze_int_pref": 0,
+      "freeze_no_pref": 4,
+      "fnlt_det_pref": 3,
+      "fnlt_int_pref": 1,
+      "fnlt_no_pref": 1,
+      "total_episodes": 20,
+      "pipeline_compatible": true,
+      "direction_consistent_with_qwen": true,
+      "verdict": "PASS"
+    },
+    "conclusion": "success",
+    "log_path": "/tmp/pilot_llama31.log",
+    "checkpoint_path": "results/multi_model_pilot/llama31/",
+    "completed_at": "2026-05-15T09:34:27.394Z"
+  },
+  "timestamp": "2026-05-15T09:34:27.522030+00:00",
+  "trigger": "update_registry"
+}

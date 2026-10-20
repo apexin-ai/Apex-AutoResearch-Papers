@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4424bc916e93a119beb7",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnosis gpu conflict check",
+  "task_key": "worker_diagnosis_gpu-conflict-check_20260520T063233",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_gpu-conflict-check_20260520T063233_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "c5849780725aad09bbf89cf39b4b9a4b6cf1de051adda85018d55515ea331e85"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n**无 GPU 冲突。** 两块 GPU 各跑一个 vLLM 进程，分配正常：\n\n| GPU | PID | 显存占用 | 对应 session |\n|-----|-----|---------|-------------|\n| GPU 0 | 532172 | 20,330 MiB / 32,607 MiB | **gemma-gpu0** (Gemma 9B) |\n| GPU 1 | 532006 | 20,588 MiB / 32,607 MiB | **gemma-gpu1** (Gemma 9B) |\n\n**alfworld-llama-cross-model 已 crash。** 日志最后一行：\n```\nERROR 05-20 14:30:39 Engine core proc EngineCore died unexpectedly, shutting down client.\n```\n\n时间线：alfworld-llama 在 14:11 启动，gemma-gpu0 在 14:30 启动抢占 GPU 0，alfworld-llama 的 vLLM EngineCore 在 14:30:39 被挤死。当前 GPU 0 上运行的是 gemma-gpu0 的 vLLM 进程。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-gpu-conflict-check.md"
+}

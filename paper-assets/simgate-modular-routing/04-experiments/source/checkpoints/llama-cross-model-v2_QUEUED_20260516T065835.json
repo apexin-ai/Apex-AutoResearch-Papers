@@ -1,0 +1,28 @@
+{
+  "exp_id": "llama-cross-model-v2",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-16T06:38:51.677Z",
+    "updated_at": "2026-05-16T06:58:35.709Z",
+    "spec": {
+      "command": "bash -c \"bash /root/autodl-tmp/simgate-modular-routing/scripts/run_llama_cross_model_v2.sh\"",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "961982",
+      "log_path": "~/runs/simgate-modular-routing/llama-cross-model-v2.log",
+      "submitted_at": "2026-05-16T06:38:51.441Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root"
+    },
+    "hypothesis": "Cross-model DAF validation: Llama-3.1-8B on 5-7 ScienceWorld task types replicates death avoidance pattern seen with Qwen2.5-7B. Strengthens C3 cross-model generalization claim."
+  },
+  "timestamp": "2026-05-16T06:58:35.925346+00:00",
+  "trigger": "update_registry"
+}

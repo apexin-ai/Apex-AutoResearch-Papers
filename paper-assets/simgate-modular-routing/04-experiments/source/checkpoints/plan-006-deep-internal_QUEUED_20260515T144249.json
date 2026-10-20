@@ -1,0 +1,15 @@
+{
+  "exp_id": "plan-006-deep-internal",
+  "project": "simgate-modular-routing",
+  "state": "QUEUED",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "QUEUED",
+    "retry_count": 0,
+    "created_at": "2026-05-15T14:30:17.277Z",
+    "updated_at": "2026-05-15T14:42:49.226Z",
+    "hypothesis": "2-way vs 3-way routing ablation Phase 1: 收集 deep-internal (CoT/thinking mode) 轨迹，5-6 个 high-signal tasks × 20 episodes。与已有 fast-internal/deterministic 配对，为 3-way router 训练提供数据。如果 deep-internal 分数显著高于 fast-internal → 3-way routing 有价值；如果差异小 → 2-way suffices。"
+  },
+  "timestamp": "2026-05-15T14:42:49.392539+00:00",
+  "trigger": "update_registry"
+}

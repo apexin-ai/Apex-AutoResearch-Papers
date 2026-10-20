@@ -1,0 +1,19 @@
+{
+  "exp_id": "mvp-p1-gpu1-v2",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T07:44:48.498Z",
+    "updated_at": "2026-05-13T07:44:48.498Z",
+    "spec": {
+      "hypothesis": "修复 tie-break (> 替代 >=) + 致死动作过滤后，oracle routing 在 medium+weak tasks 上能显示 deterministic 路径的增量价值",
+      "description": "Phase 1 GPU1 v2 — tie-break fix + lethal filter (mix-paint + grow-plant)",
+      "parent": "mvp-p1-gpu1-vllm"
+    }
+  },
+  "timestamp": "2026-05-13T07:44:48.509078+00:00",
+  "trigger": "update_registry"
+}

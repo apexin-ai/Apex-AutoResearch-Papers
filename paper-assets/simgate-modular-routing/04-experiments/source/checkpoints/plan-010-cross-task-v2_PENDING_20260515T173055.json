@@ -1,0 +1,22 @@
+{
+  "exp_id": "plan-010-cross-task-v2",
+  "project": "simgate-modular-routing",
+  "state": "PENDING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PENDING",
+    "retry_count": 0,
+    "created_at": "2026-05-15T17:30:55.550Z",
+    "updated_at": "2026-05-15T17:30:55.550Z",
+    "spec": {
+      "hypothesis": "Cross-task transfer: chemistry-trained router → physics eval (GPU0) + physics-trained router → chemistry eval (GPU1) 并行。验证 routing signal（主要是 death avoidance）是否跨 task domain 迁移。正迁移 → C2 泛化性增强；负迁移 → task-specific patterns 存在。",
+      "plan_id": "plan-010",
+      "server": "westb-13313",
+      "gpu_budget_hours": 5,
+      "data_path": "/root/autodl-tmp/simgate-modular-routing/data/plan-001b/",
+      "model_name": "Qwen3-1.7B"
+    }
+  },
+  "timestamp": "2026-05-15T17:30:55.709440+00:00",
+  "trigger": "update_registry"
+}

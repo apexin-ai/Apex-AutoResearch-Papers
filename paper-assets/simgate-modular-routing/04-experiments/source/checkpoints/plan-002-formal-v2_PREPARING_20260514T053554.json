@@ -1,0 +1,14 @@
+{
+  "exp_id": "plan-002-formal-v2",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T05:35:54.371Z",
+    "updated_at": "2026-05-14T05:35:54.371Z"
+  },
+  "timestamp": "2026-05-14T05:35:54.429410+00:00",
+  "trigger": "update_registry"
+}

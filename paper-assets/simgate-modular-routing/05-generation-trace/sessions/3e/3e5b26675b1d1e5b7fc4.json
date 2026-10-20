@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3e5b26675b1d1e5b7fc4",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "diagnosis ext val urgent check",
+  "task_key": "worker_diagnosis_ext-val-urgent-check_20260519T215927",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_diagnosis_ext-val-urgent-check_20260519T215927_result.json",
+    "occurrence": 1,
+    "bytes": 1267,
+    "sha256": "5cd2a543b4e9a895fa14247a82c47a5089790fd2017ca95de2e0a8b8d8cc71f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态\n\n**实验仍在运行，不是挂掉。** GPU 利用率 0% 是瞬时快照，两个 tmux session 都在活跃推理。\n\n### 当前进度\n\n| Task | 完成/目标 | 状态 |\n|------|----------|------|\n| boil | 20/20 | ✅ 完成 |\n| melt | 0/20 | ❌ VLLM EngineDeadError 崩溃，需重跑 |\n| find-living-thing | 4/20 | 🔄 GPU 0 运行中 |\n| use-thermometer | 20/20 | ✅ 完成 |\n| power-component | 4/20 | 🔄 GPU 1 运行中 |\n\n### 已完成 task 的关键结果\n\n| Task | internal DR | det DR | **ΔDR** | D/I/N | Prescreening ΔDR | 一致？ |\n|------|------------|--------|---------|-------|-------------------|--------|\n| boil (n=20) | 55% | 25% | **+30pp** | 6/0/14 | +30pp | ✅ exact |\n| use-thermometer (n=20) | 50% | 20% | **+30pp** | 7/1/12 | ~+30pp | ✅ exact |\n\n### melt 失败原因\nVLLM EngineCore 进程在 `run_episode_deterministic` 推理过程中意外死亡。脚本 catch 了错误继续跑 find-living-thing。melt 需要在当前 task 完成后单独重跑。\n\n### 预计完成时间\nGPU 0/1 各还剩 ~16 episodes，按当前速率约 1-1.5 小时完成 find-living-thing 和 power-component。melt 需额外重跑。\n\n报告已写入 artifacts，registry 已更新 metrics。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/diagnosis-ext-val-urgent-check.md"
+}

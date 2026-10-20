@@ -1,0 +1,77 @@
+% Responsible NLP Research Checklist
+% Required as appendix for ARR/EMNLP 2026 submissions
+
+\section*{Responsible NLP Research Checklist}
+
+This paper presents a diagnostic framework for analyzing routing signal in modular LLM agents, applied to ScienceWorld, MATH, and ALFWorld environments.
+
+\subsection*{A \quad For Every Submission}
+
+\begin{enumerate}
+\item[\textbf{A1.}] \textbf{Did you describe the limitations of your work?}\\
+Yes. A dedicated \textbf{Limitations} section (after Section~6) discusses environmental scope (single primary environment, one backbone), methodological constraints (single-pass ReAct baseline, episode-level labels), and statistical limitations (cluster bootstrap with $K{=}11$).
+
+\item[\textbf{A2.}] \textbf{Did you discuss any potential risks of your work?}\\
+Yes. The \textbf{Ethics Statement} (after Limitations) confirms no human subjects or private data are involved, all models are publicly available, and computational costs are reported.
+\end{enumerate}
+
+\subsection*{B \quad Did you use or create scientific artifacts?}
+
+Yes. We use existing environments (ScienceWorld, ALFWorld, MATH) and language models (Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, Qwen2.5-72B-Instruct, Gemma-2-9B-it, Qwen3-0.6B/1.7B/4B).
+
+\begin{enumerate}
+\item[\textbf{B1.}] \textbf{Did you cite the creators of artifacts you used?}\\
+Yes. All environments, models, and methods are cited: ScienceWorld~\cite{scienceworld-2022}, ALFWorld~\cite{alfworld-2021}, MATH~\cite{math-2021}, Qwen2.5~\cite{qwen25-2024}, Llama-3.1~\cite{llama3-2024}, ReAct~\cite{react-2023}, Reflexion~\cite{reflexion-2023}.
+
+\item[\textbf{B2.}] \textbf{Did you discuss the license or terms for use and/or distribution of any artifacts?}\\
+Yes. The Ethics Statement states that all evaluation environments (ScienceWorld, ALFWorld, MATH) are released under permissive open-source licenses (Apache 2.0 / MIT) and all models are publicly available for research use.
+
+\item[\textbf{B3.}] \textbf{Did you discuss if your use of existing artifact(s) was consistent with their intended use?}\\
+Yes. We use ScienceWorld, ALFWorld, and MATH as evaluation environments for language model agents, consistent with their intended purpose as agent benchmarks.
+
+\item[\textbf{B4.}] \textbf{Did you discuss the steps taken to check whether the data contains any information that names or uniquely identifies individual people or offensive content?}\\
+Not applicable. All data is generated from simulation environments (ScienceWorld, ALFWorld) or mathematical problems (MATH). No human-generated text, personal information, or user data is involved.
+
+\item[\textbf{B5.}] \textbf{Did you provide documentation of the artifacts?}\\
+Yes. Section~\ref{sec:method} and Appendix~\ref{app:per-task} describe the environments, task types, and data collection procedures. Appendix~\ref{app:router-details} documents router training configurations.
+
+\item[\textbf{B6.}] \textbf{Did you report relevant statistics like the number of examples, details of train/test/dev splits, etc.?}\\
+Yes. We report: 245 episodes across 11 task types (Table~\ref{tab:per-task}), 795 MATH problems (Section~\ref{sec:cross-env}), 135 ALFWorld games (Section~\ref{sec:cross-env}), per-task episode counts (Table~\ref{tab:per-task}), and router training splits with cross-validation details (Appendix~\ref{app:router-details}).
+\end{enumerate}
+
+\subsection*{C \quad Did you run computational experiments?}
+
+Yes.
+
+\begin{enumerate}
+\item[\textbf{C1.}] \textbf{Did you report the number of parameters in the models used, the total computational budget, and computing infrastructure used?}\\
+Yes. Model sizes are specified (Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, Qwen2.5-72B-Instruct, Gemma-2-9B-it, Qwen3-0.6B/1.7B/4B). The Ethics Statement reports 2$\times$ NVIDIA RTX 5090 (32GB) and 4$\times$ NVIDIA RTX 6000 PRO (96GB), totaling approximately 200 GPU-hours with an estimated carbon footprint of approximately 25\,kg CO$_2$eq.
+
+\item[\textbf{C2.}] \textbf{Did you discuss the experimental setup, including hyperparameter search and best-found hyperparameter values?}\\
+Yes. Table~\ref{tab:hyperparams} (Appendix~\ref{app:router-details}) provides complete hyperparameters for both router architectures. Section~\ref{sec:router-diagnostic} and Appendix~\ref{app:router-details} describe the evaluation methodology. Gradient accumulation selection is justified in Appendix~\ref{app:router-details}.
+
+\item[\textbf{C3.}] \textbf{Did you report descriptive statistics about your results with at least a measure of central tendency and variation?}\\
+Yes. We report mean$\pm$std for router accuracy across seeds (Section~\ref{sec:router-diagnostic}), bootstrap 95\% CIs for DAF and correlation metrics (Section~\ref{sec:death-decomp}), and per-seed breakdowns (Appendix~\ref{app:seed-robustness}). All counterfactual diagnostic experiments use a fixed seed (42) with variability captured through 20 episode variations per task type; router training experiments (Section~\ref{sec:router-diagnostic}) use 4 seeds per configuration.
+
+\item[\textbf{C4.}] \textbf{If you used existing packages, did you report the implementation, model, and parameter settings used?}\\
+Yes. We specify vLLM for inference, LoRA for fine-tuning, and provide all relevant configuration parameters (Table~\ref{tab:hyperparams}). Model identifiers are given precisely (e.g., Qwen2.5-7B-Instruct, Qwen3-1.7B).
+\end{enumerate}
+
+\subsection*{D \quad Did you use human annotators or participants?}
+
+No. All labels are generated automatically via the counterfactual labeling algorithm (Algorithm~1). No human annotation or participation is involved.
+
+\begin{enumerate}
+\item[\textbf{D1.}] Not applicable.
+\item[\textbf{D2.}] Not applicable.
+\item[\textbf{D3.}] Not applicable.
+\item[\textbf{D4.}] Not applicable.
+\item[\textbf{D5.}] Not applicable.
+\end{enumerate}
+
+\subsection*{E \quad Did you use AI assistants?}
+
+\begin{enumerate}
+\item[\textbf{E1.}] \textbf{Did you include information about your use of AI assistants?}\\
+Yes. Claude (Anthropic) was used for code development, data analysis scripting, and manuscript drafting. All experimental design, scientific claims, and interpretation of results were conducted by the authors.
+\end{enumerate}

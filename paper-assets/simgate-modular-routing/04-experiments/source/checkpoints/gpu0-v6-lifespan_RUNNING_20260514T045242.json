@@ -1,0 +1,33 @@
+{
+  "exp_id": "gpu0-v6-lifespan",
+  "project": "simgate-modular-routing",
+  "state": "RUNNING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "RUNNING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T04:19:08.846Z",
+    "updated_at": "2026-05-14T04:52:42.314Z",
+    "spec": {
+      "command": "SLIM_EPISODES=1 bash scripts/run_gpu0_v6_lifespan.sh (lifespan-longest-lived 20 eps from ep0)",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "36874",
+      "log_path": "~/runs/simgate-modular-routing/gpu0-v6-lifespan.log",
+      "submitted_at": "2026-05-14T04:19:08.547Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "results/plan_c/lifespan-longest-lived/",
+      "data_count": "20 episodes",
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": "default"
+    },
+    "hypothesis": "GPU0 干净重收 lifespan-longest-lived 全量 20 eps（SLIM_EPISODES=1，从 ep0 开始）。之前数据文件损坏（150GB），已删除后重启。plan-001b 最后 3 个未完成 task 之一。",
+    "conclusion": "killed"
+  },
+  "timestamp": "2026-05-14T04:52:42.474609+00:00",
+  "trigger": "update_registry"
+}

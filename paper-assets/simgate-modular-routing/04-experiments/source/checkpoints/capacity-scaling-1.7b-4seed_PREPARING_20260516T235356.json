@@ -1,0 +1,14 @@
+{
+  "exp_id": "capacity-scaling-1.7b-4seed",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-16T23:53:56.577Z",
+    "updated_at": "2026-05-16T23:53:56.577Z"
+  },
+  "timestamp": "2026-05-16T23:53:56.770614+00:00",
+  "trigger": "update_registry"
+}

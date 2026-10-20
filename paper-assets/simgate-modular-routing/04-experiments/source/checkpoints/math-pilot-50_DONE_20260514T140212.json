@@ -1,0 +1,54 @@
+{
+  "exp_id": "math-pilot-50",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-14T14:01:45.836Z",
+    "updated_at": "2026-05-14T14:02:12.357Z",
+    "spec": {
+      "command": "python src/math_counterfactual.py --n_problems 50 --forced_code",
+      "server": "westb-13313",
+      "data_path": "MATH Level 4-5",
+      "data_count": 50,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "checkpoint_path": "src/math_counterfactual.py",
+      "log_path": "results/math_pilot_50/"
+    },
+    "conclusion": "success",
+    "hypothesis": "MATH 50-题 pilot: forced code execution prompt, 验证代码执行率 >80% 后再全量收集。结果：代码执行率 82% PASS，但 internal (80%) 反超 code interpreter (72%)，label 严重偏 internal-preferred。",
+    "metrics": {
+      "n_problems": 50,
+      "code_execution_rate": 0.82,
+      "code_exec_count": 41,
+      "no_code_count": 9,
+      "internal_accuracy": 0.8,
+      "codeinterp_accuracy": 0.72,
+      "labels": {
+        "det_preferred": 1,
+        "internal_preferred": 5,
+        "no_preference": 44
+      },
+      "filtered_labels": {
+        "det_preferred": 1,
+        "internal_preferred": 5,
+        "no_preference": 44
+      },
+      "code_rounds_dist": {
+        "0_rounds": 9,
+        "1_round": 36,
+        "2_rounds": 5
+      },
+      "avg_time_per_problem_s": 12,
+      "total_time_s": 599,
+      "gate": "PASS",
+      "critical_finding": "Internal reasoning (80%) outperforms code interpreter (72%). Labels heavily skewed toward internal-preferred."
+    },
+    "completed_at": "2026-05-14T14:02:12.357Z"
+  },
+  "timestamp": "2026-05-14T14:02:12.473710+00:00",
+  "trigger": "update_registry"
+}

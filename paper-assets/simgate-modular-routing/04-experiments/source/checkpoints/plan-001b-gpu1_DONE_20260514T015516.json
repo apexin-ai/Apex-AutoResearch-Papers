@@ -1,0 +1,140 @@
+{
+  "exp_id": "plan-001b-gpu1",
+  "project": "simgate-modular-routing",
+  "state": "DONE",
+  "previous_state": "ANALYZING",
+  "experiment_data": {
+    "status": "DONE",
+    "retry_count": 0,
+    "created_at": "2026-05-13T22:10:04.310Z",
+    "updated_at": "2026-05-14T01:55:16.607Z",
+    "spec": {
+      "command": "python src/episode_level_collection.py --task_types find-non-living-thing,...,identify-life-stages-2 --episodes 20 --gpu_id 1",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:1"
+      ],
+      "pid": "773109",
+      "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu1.log",
+      "submitted_at": "2026-05-13T22:10:04.279Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "ScienceWorld API (4 tasks x 20 eps)",
+      "data_count": 80,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42,
+      "wall_clock_seconds": 13512.3,
+      "gpu_hours": 3.75
+    },
+    "hypothesis": "Episode-level data collection for 4 tasks (1 internal-pref: find-non-living-thing + 3 death-dom: grow-fruit, inclined-plane-determine-angle, identify-life-stages-2), 20 eps/task, reusing prescreening 5 eps. find-non-living-thing needs follow-up to reach 40 eps total.",
+    "notes": "Part of plan-001b approved by Director. Tasks: find-non-living-thing (20 eps first pass, needs extra 20 to reach 40 target), grow-fruit, inclined-plane-determine-angle, identify-life-stages-2. 80 new eps this run. Follow-up needed for find-non-living extra 20 eps.",
+    "reproduce": {
+      "finished_at": "2026-05-14T01:42:06.391Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-14T01:42:07.322977+00:00"
+        }
+      ]
+    },
+    "conclusion": "success",
+    "checkpoint_path": "/root/autodl-tmp/simgate-modular-routing/results/plan_c/",
+    "log_path": "~/runs/simgate-modular-routing/plan-001b-gpu1.log",
+    "metrics": {
+      "find-non-living-thing": {
+        "episodes": 20,
+        "internal_mean": 24.9,
+        "det_mean": 24.95,
+        "delta_int_minus_det": -0.05,
+        "int_deaths": 0,
+        "det_deaths": 0,
+        "both_deaths": 0,
+        "int_only_death": 0,
+        "det_only_death": 0,
+        "labels": {
+          "det-pref": 7,
+          "int-pref": 4,
+          "no-pref": 9
+        },
+        "alive_int_mean": 24.9,
+        "alive_det_mean": 24.95,
+        "note": "Prescreening 5eps showed internal-preferred, but 20eps shows essentially TIED (delta=-0.05). Direction did NOT hold. det-pref=7 vs int-pref=4 by episode count."
+      },
+      "grow-fruit": {
+        "episodes": 20,
+        "internal_mean": -43.65,
+        "det_mean": -18.55,
+        "delta_int_minus_det": -25.1,
+        "int_deaths": 9,
+        "det_deaths": 4,
+        "both_deaths": 3,
+        "int_only_death": 6,
+        "det_only_death": 1,
+        "labels": {
+          "det-pref": 6,
+          "int-pref": 1,
+          "no-pref": 13
+        },
+        "alive_int_mean": 2.45,
+        "alive_det_mean": 1.81,
+        "note": "Death-dominated confirmed. Internal dies 6x exclusively vs det 1x. Alive scores low and similar."
+      },
+      "inclined-plane-determine-angle": {
+        "episodes": 20,
+        "internal_mean": -55,
+        "det_mean": -19,
+        "delta_int_minus_det": -36,
+        "int_deaths": 11,
+        "det_deaths": 4,
+        "both_deaths": 4,
+        "int_only_death": 7,
+        "det_only_death": 0,
+        "labels": {
+          "det-pref": 7,
+          "int-pref": 0,
+          "no-pref": 13
+        },
+        "alive_int_mean": 0,
+        "alive_det_mean": 1.25,
+        "note": "Most extreme death-dominated. Internal dies 7x exclusively, det never dies alone. Internal NEVER preferred (0/20). Alive scores near zero."
+      },
+      "identify-life-stages-2": {
+        "episodes": 20,
+        "internal_mean": -48.4,
+        "det_mean": -18.4,
+        "delta_int_minus_det": -30,
+        "int_deaths": 10,
+        "det_deaths": 4,
+        "both_deaths": 4,
+        "int_only_death": 6,
+        "det_only_death": 0,
+        "labels": {
+          "det-pref": 6,
+          "int-pref": 0,
+          "no-pref": 14
+        },
+        "alive_int_mean": 3.2,
+        "alive_det_mean": 2,
+        "note": "Death-dominated confirmed. Internal dies 6x exclusively, det never alone. Internal NEVER preferred (0/20)."
+      },
+      "summary": {
+        "total_episodes": 80,
+        "all_tasks_complete": true,
+        "death_dominated_tasks": [
+          "grow-fruit",
+          "inclined-plane-determine-angle",
+          "identify-life-stages-2"
+        ],
+        "internal_preferred_tasks": [],
+        "key_finding": "find-non-living-thing prescreening signal (internal>det) did NOT replicate at 20 eps — essentially tied. All 3 death-dom tasks confirmed: internal router causes significantly more deaths than deterministic."
+      }
+    },
+    "completed_at": "2026-05-14T01:55:16.607Z"
+  },
+  "timestamp": "2026-05-14T01:55:16.711381+00:00",
+  "trigger": "update_registry"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "454fbaccb46f85970460",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "ssh plan 005 classification fix",
+  "task_key": "worker_ssh_plan-005-classification-fix_20260514T015143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_plan-005-classification-fix_20260514T015143_result.json",
+    "occurrence": 1,
+    "bytes": 550,
+    "sha256": "eb5e5a8bdd62135d35614a35817e754181f4769c4dc1b4f6a7ea4a3138ff4f9f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件全部修改并验证完成：\n\n| 分类 | 修改前 | 修改后 |\n|------|--------|--------|\n| death-dominated | 25 | 25 |\n| genuine-det | 3 | 3 |\n| internal-preferred | 2 | **1** (仅 find-non-living-thing) |\n| no-signal | 0 | **1** (grow-plant) |\n\n- `task_classification.json`: grow-plant → `\"no-signal\"`\n- `taxonomy_summary.json`: internal-preferred task_count 2→1, episode_count 45→25; no-signal task_count 0→1, episode_count 0→20\n- `heatmap_data.csv`: grow-plant 行 category 改为 `no-signal`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-plan-005-classification-fix.md"
+}

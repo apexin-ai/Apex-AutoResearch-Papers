@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "36846175154272c3e090",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260514T020639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260514T020639_result.json",
+    "occurrence": 1,
+    "bytes": 929,
+    "sha256": "41e8d1189e2a7adaab4f5c6983913dc15ad26382dee8990eeae1adee516653cb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Method draft v1 已写入 `artifacts/_project/paper/method_draft.md` 并注册 (`art_20260514_e328fe`)。\n\n**结构**：4 个 subsection，约 850 words，符合 ~1 页篇幅：\n- §3.1 Counterfactual Episode Collection — pure-internal vs pure-deterministic 对比设计，seed-matched episodes\n- §3.2 Death-Aware Labeling — 四元组 → 四类 signal 的优先级规则，label 分布\n- §3.3 Death Avoidance Factor — DAF 公式（编号 equation），全局 DAF=0.99，per-task 分析，Pearson r=0.989\n- §3.4 Rule-Based Baseline — 三版 keyword list 均退化，结构性原因分析\n\n**一致性**：术语、符号（$\\Delta_{\\text{full}}$, $\\Delta_{\\text{no\\_death}}$, DAF）、引用 keys 均与 Introduction/Related Work 对齐。所有可能更新的数字标注了 `[PLACEHOLDER]`。Introduction 已论述的 oracle degeneracy 仅用 \"as motivated in §1\" 回指，未重复。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method.md"
+}

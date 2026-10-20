@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "22e0a8e45b7c51a4faff",
+  "project": "simgate-modular-routing",
+  "kind": "result",
+  "title": "code llama70b analysis run",
+  "task_key": "worker_code_llama70b-analysis-run_20260524T135758",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_llama70b-analysis-run_20260524T135758_result.json",
+    "occurrence": 1,
+    "bytes": 748,
+    "sha256": "7691fac9e1983bc2b468b335ba5f4382e584ca903f2438bad7bda8c2aec1aac3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果摘要：\n\n**Llama-70B DAF = 101.0% [95.3, 107.5] → Hypothesis SUCCESS**\n\n关键发现：\n- 70B 模型展现了所有测试模型中最强的 death dominance（Δ death rate = 28.6pp）\n- DAF > 100% 意味着 death avoidance 解释了超过 100% 的确定性 agent 优势——当双方都存活时，内部 agent 反而略好（delta_nd = −0.30）\n- Label fraction 91.3%，其中 97.1% 偏好确定性 agent（67:2）\n- 除 find-non-living-thing（零死亡 task）外，所有 task 都一致显示强 death dominance\n\nCross-model 排序：Llama-70B (101.0%) > Qwen-72B (92.4%) > Qwen-7B (90.4%) > Gemma-9B (89.7%) > Llama-8B (88.2%)。Death dominance 在更大模型上不仅保持而且增强。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-llama70b-analysis-run.md"
+}

@@ -1,0 +1,38 @@
+{
+  "exp_id": "plan-008-v4-4b-e2e",
+  "project": "simgate-modular-routing",
+  "state": "ANALYZING",
+  "previous_state": "RUNNING",
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-17T03:37:58.279Z",
+    "updated_at": "2026-05-17T04:16:45.347Z",
+    "hypothesis": "4B router (episode-level 59%) 在 end-to-end deployment 中能否超越 always-det baseline (-9.47 mean score)。若超过：larger capacity translates to marginal deployment gain at disproportionate cost。若未超过：进一步强化 analytical framework > learned routing at all tested scales。",
+    "parent": "plan-008-v4-4b",
+    "spec": {
+      "command": "python src/eval_end_to_end.py --router_type generative --router_checkpoint checkpoints/plan-008-v4-4b-seed42/final_adapter --base_model /root/autodl-tmp/models/Qwen/Qwen3-4B --data_dir results/plan_c/ --output_dir results/eval_4b_e2e/ --conditions trained-router --gpu_id 0",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "559163",
+      "log_path": "~/runs/simgate-modular-routing/plan-008-v4-4b-e2e.log",
+      "submitted_at": "2026-05-17T03:40:22.573Z",
+      "submitted_via": "submit_training_job",
+      "backend": "tmux",
+      "account": "root",
+      "data_path": "results/plan_c/",
+      "data_count": 245,
+      "model_name": "Qwen3-4B",
+      "seed": 42,
+      "checkpoint_source": "checkpoints/plan-008-v4-4b-seed42/final_adapter",
+      "eval_data": "ScienceWorld 245 episodes (plan_c)"
+    },
+    "reproduce": {
+      "finished_at": "2026-05-17T04:16:44.662Z"
+    }
+  },
+  "timestamp": "2026-05-17T04:16:45.670552+00:00",
+  "trigger": "update_registry"
+}

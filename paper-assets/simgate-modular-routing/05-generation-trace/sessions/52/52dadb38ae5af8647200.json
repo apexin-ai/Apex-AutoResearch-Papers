@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "52dadb38ae5af8647200",
+  "project": "simgate-modular-routing",
+  "kind": "history",
+  "title": "agent / loop_3_1778730436.md",
+  "task_key": "loop_3_1778730436",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/agent/loop_3_1778730436.md",
+    "occurrence": 1,
+    "bytes": 5642,
+    "sha256": "2dbee124b4c6ad7195c4704aecf39ad6de2f3cb2c8082aa353674065b5186f27"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: idle_timeout\nupdated: '2026-05-14T00:59:29+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单 **仅** `cuda:0` 和 `cuda:1`（westb-13313），project config 明确限定，无其他可用 GPU\n- 服务器 **westb-13313** 是 AutoDL 实例，SSH 端口可能随重启变化——连接失败先查端口\n- plan-001b 数据收集使用 `episode_level_collection.py`，脚本启动时会调 `cleanup_gpu_processes()` 清理孤儿 vLLM EngineCore——**不要手动 kill GPU 进程**，让脚本自行清理\n- C1 claim 锁定 **Tier B**（D017）：\"Death avoidance ~99% 主导，non-death signal negligible\"。升 Tier A 的条件是 plan-001b 全量 n=20 所有 task Δ_nd bootstrap 95% CI 跨 0——未满足前不要擅自改措辞\n- plan-011 (rule-based) 和 plan-012 (decomposition) registry 状态标为 RUNNING，但 **实际已完成**（conclusion=success），是分析实验不涉及 GPU 进程。不要尝试监控它们的 PID\n\n### 2. 🖥️ 基础设施快照\n- **服务器**: westb-13313 (AutoDL)，2× RTX 5090 32GB\n- **工作目录**: `/root/autodl-tmp/simgate-modular-routing`\n- **Python**: `/root/miniconda3/bin/python`（conda base 环境，不是 venv）\n- **激活**: `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n- **模型**: `/root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/`\n- **HF cache**: `/root/autodl-tmp/.hf_cache`\n- **数据**: `results/plan_c/`, `results/prescreening/`, `results/research/` (MVP+预筛数据)；plan-001b 产出到 `results/plan_c/` 下各 task 目录\n- **活跃进程**:\n  - `plan-001b-gpu0-v2`: PID 853847, tmux session, cuda:0 — 7 tasks × 20 eps 数据收集\n  - `plan-001b-gpu1`: PID 773109, tmux session, cuda:1 — 4 tasks × 20 eps 数据收集\n- **活跃 cron**: 2 个，分别监控上述两个进程\n- **活跃 Worker**: `worker_code_plan-002-router-sft_20260514T004238` (running) — 写 router SFT 训练代码\n\n### 3. 📊 当前状态\n**刚做完**: 提交了 plan-001b 双卡数据收集（gpu0-v2 + gpu1），派 Worker 写 plan-002 router SFT 代码。D017 决策确认 C1 Tier B。plan-011 (rule-based baseline, 三版 keyword list 均结构性失效) 和 plan-012 (death decomposition 预分析, r=0.989) 已完成并入 registry。\n\n**Registry 活跃实验**:\n- `plan-001b-gpu0-v2` (RUNNING): 7 tasks (find-animal, identify-life-stages-1, lifespan-longest/shortest, measure-melting-point, freeze, chemistry-mix), 20 eps/task, cuda:0\n- `plan-001b-gpu1` (RUNNING): 4 tasks (find-non-living-thing, grow-fruit, inclined-plane, identify-life-stages-2), 20 eps/task, cuda:1。find-non-living-thing 完成后需追加 20 eps 达到 40 eps 目标\n- `plan-011-rule-based` (RUNNING/实际 DONE): 三版 keyword list 均 degenerate，论文定位为 structural failure evidence\n- `plan-012-decomposition` (RUNNING/实际 DONE): 预分析 30 tasks，Δ_full=+37.9, Δ_nd=+0.2, r=0.989\n\n**等待中**:\n- plan-001b-gpu0-v2 / gpu1 的 cron 完成回调\n- Worker `plan-002-router-sft` 完成回调（代码编写中）\n- research-cf-pilot-gpu1 (PENDING, conclusion=killed) 和 mvp-p1-signal (PREPARING, conclusion=killed) 已废弃，不需处理\n\n### 4. 📋 待办（条件触发式）\n- **plan-001b-gpu1 cron 回调到达** → spawn Worker 执行 find-non-living-thing 追加 20 eps（`--start_episode 20`，cuda:1）→ 然后检查 gpu0 进度，若 gpu0 有未开始 tasks 则接管到 gpu1\n- **plan-001b-gpu0-v2 cron 回调到达** → 检查 7 tasks 数据完整性，若完成则标 DONE\n- **双卡数据收集全部完成** → spawn Worker 运行 `post_collection_analysis.sh` 汇总 → 重跑 plan-012 death decomposition 全量版（n=20 数据）→ 检查 Tier A 升档条件\n- **Worker plan-002-router-sft 完成** → 审查代码 → 等 plan-001b 数据就绪后在 cuda:0 启动 `launch_plan002.sh`，cuda:1 启动 `launch_plan004b.sh`（注意 plan-004b 依赖 plan-002 Step 1 的 death_aware_labeling.py 输出，不能完全并行）\n- **plan-012 全量分析完成** → 若所有 task Δ_nd 95% CI 跨 0 → 向 Director 建议升 Tier A；否则维持 Tier B → 更新 paper_framing.md\n- **find-non-living-thing 全量 40 eps 完成** → 计算最终方向：若仍 internal-preferred → D016 无需更新；若翻转为 no-preference → death avoidance = 100%，C1 更强（D016 预判）\n\n### 5. 🎯 战略上下文\n- **核心结论链**: D005(MVP PASS) → D011(death avoidance primary) → D013(framing pivot: empirical finding, not router architecture) → D015(r=0.989 in 30 tasks) → D017(Tier B locked)\n- **论文方向**: EMNLP 2026 ARR short paper (4 pages)，DDL **2026-05-25**（剩 11 天）。C1 = death avoidance dominates routing signal (empirical finding)，C2 = episode-level counterfactual methodology + diagnostic framework\n- **关键路径**: plan-001b 数据收集(~20h 双卡) → plan-012 全量 decomposition → plan-002 router SFT (预期 negative result，但有论文价值) → 写作\n- **最容易判断错的事**:\n  - plan-011 / plan-012 在 registry 里是 RUNNING 但实际已完成（分析任务，无 GPU 进程）——不要为它们注册 cron 或 spawn 监控 Worker\n  - plan-002 router SFT **预期是 negative result**（D013/D016 分析：episode-level labels 让 router 退化为 task-type classifier）——这是论文需要的，不是失败\n  - find-non-living-thing 是唯一可能的 internal-preferred task，方向可能翻转（D016）——翻转反而强化 C1，不需要 panic\n  - 每 episode 约 4.7 分钟（总 ~20h 双卡）——不要低估收集时间\n  - `network_turbo` + SSL 证书设置对 AutoDL pip/HF 操作是必需的\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3-1778730436.md"
+}

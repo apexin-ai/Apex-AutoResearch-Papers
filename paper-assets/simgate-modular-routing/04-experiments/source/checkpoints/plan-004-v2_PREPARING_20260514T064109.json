@@ -1,0 +1,20 @@
+{
+  "exp_id": "plan-004-v2",
+  "project": "simgate-modular-routing",
+  "state": "PREPARING",
+  "previous_state": "PREPARING",
+  "experiment_data": {
+    "status": "PREPARING",
+    "retry_count": 0,
+    "created_at": "2026-05-14T06:41:09.096Z",
+    "updated_at": "2026-05-14T06:41:09.096Z",
+    "spec": {
+      "hypothesis": "Fix plan-004-ablation-b bugs: (1) stratified split by route_label to ensure val has both classes, (2) replace upsample_minority with class_weights auto for balanced loss weighting",
+      "parent": "plan-004-ablation-b",
+      "server": "westb-13313",
+      "gpu": "cuda:1"
+    }
+  },
+  "timestamp": "2026-05-14T06:41:09.176865+00:00",
+  "trigger": "update_registry"
+}

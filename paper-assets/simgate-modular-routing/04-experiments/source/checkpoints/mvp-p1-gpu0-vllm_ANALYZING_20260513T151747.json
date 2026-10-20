@@ -1,0 +1,44 @@
+{
+  "exp_id": "mvp-p1-gpu0-vllm",
+  "project": "simgate-modular-routing",
+  "state": "ANALYZING",
+  "previous_state": null,
+  "experiment_data": {
+    "status": "ANALYZING",
+    "retry_count": 0,
+    "created_at": "2026-05-13T09:18:47.128Z",
+    "updated_at": "2026-05-13T15:17:46.983Z",
+    "spec": {
+      "command": "python src/phase1_signal.py --task_types 'melt,change-the-state-of-matter-of' --episodes 20 --gpu_id 0 --max_steps 30 --output_dir results/mvp/ --model_path /root/autodl-tmp/models/Qwen/Qwen2___5-7B-Instruct/ --use_vllm",
+      "server": "westb-13313",
+      "gpu": [
+        "cuda:0"
+      ],
+      "pid": "572089",
+      "log_path": "~/runs/simgate-modular-routing/mvp-p1-gpu0-vllm.log",
+      "submitted_at": "2026-05-13T09:20:46.082Z",
+      "submitted_via": "submit_training_job",
+      "backend": "vLLM",
+      "account": "root",
+      "data_path": "ScienceWorld API melt+change-state",
+      "data_count": 40,
+      "model_name": "Qwen2.5-7B-Instruct",
+      "seed": 42
+    },
+    "reproduce": {
+      "finished_at": "2026-05-13T15:15:24.324Z"
+    },
+    "extra": {
+      "hook_events": [
+        {
+          "event": "on_complete",
+          "action": "agent",
+          "ts": "2026-05-13T15:15:25.405505+00:00"
+        }
+      ]
+    },
+    "conclusion": "success"
+  },
+  "timestamp": "2026-05-13T15:17:47.031453+00:00",
+  "trigger": "update_registry"
+}
